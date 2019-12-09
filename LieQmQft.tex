@@ -249,8 +249,8 @@ $n$次元調和振動子の場合Lagrangianは
 
 \subsection{Hamilton力学}
 
-一般にEuler-Lagrange方程式は各変数$q_i$に対して
-2階以上の微分を含む、非常に複雑な方程式系となる。
+一般にEuler-Lagrange方程式は各変数$q_i$の
+高階の微分を含む、複雑な方程式系となる。
 変数を増やす代わりに、
 低次の微分で書ける方程式系を見付けたいと思うのも自然な発想である。
 Lagrangian $L(\{q\},\{\dot{q}\})$に
@@ -264,7 +264,7 @@ Euler-Lagrange方程式と等価な微分方程式系を得ることを考えよ
 \label{generalized momentum}
 \end{align}
 で定義する。
-一般に$\det \dfrac{\partial^2 L}{\partial q_i \partial q_j} \neq 0 $
+一般に$\det \dfrac{\partial^2 L}{\partial \dot{q_i} \partial \dot{q_j} } \neq 0 $
 であれば
 $p$の定義式を$\dot{q_i}$について
 \begin{align}
@@ -299,7 +299,7 @@ $\{q\},\{p\}$の$6n$変数関数として書き直すと
 Lagrangianを古い変数で微分して得られる方程式系である。
 そこで、新しい変数$\{q\},\{p\}$で微分すると
 Lagrangianを古い変数$\{q\}, \{\dot{q}\}$
-で微分したときと同じ値を与えるような、
+で微分したときと等価の式を与えるような、
 新しい関数$H(\{q\},\{p\})$を構成することを考える。
 
 Legendre変換
@@ -359,7 +359,7 @@ $q(t)$がEuler-Lagrange方程式の解であるとすると
 \notag\\  &= 
   \sum_j    p_j
    \dfrac{\partial \dot{q_j} (\{q\},\{p\},t) }{\partial q_i }
-   - \dfrac{\partial L(\{q\}, \{\dot{q}\}(\{q\},\{p\},t) ) }{
+   - \dfrac{\partial L(\{q\}, \{\dot{q}(\{q\},\{p\},t)\} ) }{
      \partial q_i
    }
 \notag\\  &= 
