@@ -214,6 +214,39 @@ scalar量$L$によって力学法則を与えたという点で
 $q_i = q_i(\{q'\})$
 のもとでEuler-Lagrange方程式が形を変えないことが示される。
 
+\subsubsection{調和振動子の例}
+
+$n$次元調和振動子の場合Lagrangianは
+\begin{align}
+  L = \sum_{j=1}^n
+  \bigg(
+    \dfrac{m}{2}\dot{q_j}^2
+  -
+    \dfrac{m\omega^2}{2} q_j
+  \bigg)
+\end{align}
+であるので、Euler-Lagrange方程式は
+\begin{align}
+  0 &= 
+  \dfrac{d}{dt}\dfrac{\partial L}{\partial \dot{q_i} }
+  - \dfrac{\partial L}{\partial q_i }
+\notag\\&=
+  \dfrac{d}{dt}
+  \bigg(
+    m\dot{q_i}
+  \bigg)
+  - 
+  \bigg(
+  -
+    m\omega^2 q_i
+  \bigg)
+\notag\\&=
+    m\ddot{q_i}
+  +
+    m\omega^2 q_i
+\end{align}
+となり、確かにNewtonの運動方程式を再現する。
+
 \subsection{Hamilton力学}
 
 一般にEuler-Lagrange方程式は各変数$q_i$に対して
@@ -439,6 +472,57 @@ Hamiltonの正準方程式という。
 Hamiltonの方程式はscalar関数$H$から得られ、
 1階の時間微分のみを含むので、
 望む方程式系が得られたことになる。
+
+\subsection{調和振動子の例}
+
+$n$次元調和振動子の一般化運動量は
+\begin{align}
+  p_i &= \dfrac{\partial L}{\partial \dot{q_i}}
+=
+  m \dot{q_i}
+\end{align}
+と通常の運動量の定義に一致するので、
+Hamiltonianは
+\begin{align}
+  H &= \bigg[
+    \sum_i p_i \dot{q_i}
+    - L
+    \bigg]_{ \dot{q_i} = \frac{p_i}{m} }
+\notag\\&=
+    \sum_i p_i \frac{p_i}{m}
+    - 
+      \sum_i \bigg(
+      \dfrac{p_i^2}{2m}
+    -
+      \dfrac{ m \omega^2 }{2}
+      q_i^2
+    \bigg)
+\notag\\&=
+    \sum_i \bigg(
+      \dfrac{p_i^2}{2m}
+    +
+      \dfrac{ m \omega^2 }{2}
+      q_i^2
+    \bigg)
+\end{align}
+となる。
+正準方程式は
+\begin{align}
+  \begin{cases}
+    \dot{q_i} &= \dfrac{\partial H}{\partial p_i}
+    = \dfrac{p_i}{m}
+  \\\\
+    \dot{p_i} &= - \dfrac{\partial H}{\partial q_i}
+    = - m \omega^2 q_i  
+  \end{cases}
+\quad
+\Leftrightarrow
+\quad
+  \ddot{q_i} &= \dfrac{\dot{p_i}}{m}
+  = \dfrac{- m \omega^2 q_i}{m} 
+  = - \omega^2 q_i
+\end{align}
+となって、やはりNewtonの方程式を再現する。
 
 %\begin{align*}
 %\end{align*}
