@@ -8,3 +8,5 @@
 *.blg
 *.bbl
 *.toc
+*.fdb_latexmk
+*.fls
