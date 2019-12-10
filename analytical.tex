@@ -435,7 +435,7 @@ Hamiltonの方程式はscalar関数$H$から得られ、
 1階の時間微分のみを含むので、
 望む方程式系が得られたことになる。
 
-\subsection{調和振動子の例}
+\subsubsection{調和振動子の例}
 
 $n$次元調和振動子の一般化運動量は
 \begin{align}
@@ -485,3 +485,56 @@ Hamiltonianは
   = - \omega^2 q_i
 \end{align}
 となって、やはりNewtonの方程式を再現する。
+
+\subsubsection{Poisson括弧}
+
+Hamiltonの正準方程式
+\begin{align}
+   \begin{cases}
+      \dot{q_i} &= \dfrac{\partial H}{\partial p_i}
+    \\\\
+      \dot{p_i} &= - \dfrac{\partial H}{\partial q_i}
+    \end{cases}
+\label{Hamilton's eom}
+\end{align}
+は$\{q\},\{p\}$のいずれについても
+時間の1階微分しか含まない点で美しいが、
+$\{q\},\{p\}$に対して右辺の符号が異なるという非対称性がある。
+より抽象的な演算を導入することで、この非対称性を取り除こう。
+
+2つの量$A,B$のPoisson括弧を
+\begin{align}
+    \{A, B\}_{ \mathrm{P} }
+    := \sum_i \bigg(
+        \dfrac{ \partial A }{ \partial q_i }
+        \dfrac{ \partial B }{ \partial p_i }
+    -
+        \dfrac{ \partial B }{ \partial q_i }
+        \dfrac{ \partial A }{ \partial q_i }
+    \bigg)
+\end{align}
+で定義すると、
+正準方程式(\ref{Hamilton's eom})は
+\begin{align}
+    \begin{cases}
+        \dot{q_i} = \{q_i, H\}_{ \mathrm{P} }
+      \\
+        \dot{p_i} = \{p_i, H\}_{ \mathrm{P} }
+      \end{cases}
+\quad
+\therefore
+\quad
+    \dot{r} &= \{r, H\}_{ \mathrm{P} }
+\qquad
+    ( r = q_i, p_j \quad\forall i, j )
+\end{align}
+と書ける。
+より一般に、任意の関数
+$F( \{q\},\{p\} , t )$
+の時間発展が
+\begin{align}
+    \dot{F} &= \dfrac{ \partial F }{ \partial t } + \{F, H\}_{ \mathrm{P} } 
+\end{align}
+と一つの式にまとまってしまう。
+あらゆる量の時間発展を求める過程が、
+Poisson括弧の計算という一つの操作に統一されたのである。
