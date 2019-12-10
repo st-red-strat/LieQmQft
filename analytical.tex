@@ -29,8 +29,6 @@
 以下で議論するLagrange力学やHamilton力学はそのような
 記述を与える枠組みの例である。
 
-\newgeometry{left=25truemm,top=25truemm,bottom=20truemm,right=25truemm}
-
 \subsection{Lagrange力学}
 
 多くの力学系において、
@@ -538,3 +536,13 @@ $F( \{q\},\{p\} , t )$
 と一つの式にまとまってしまう。
 あらゆる量の時間発展を求める過程が、
 Poisson括弧の計算という一つの操作に統一されたのである。
+
+なお、正準変数同士のPoisson括弧は
+\begin{align}
+   \{q_i, p_j\}_{ \mathrm{P} }
+   = \delta_{ij}
+,\qquad
+   \{p_i, q_j\}_{ \mathrm{P} }
+   = - \delta_{ij}
+\end{align}
+のようになる。

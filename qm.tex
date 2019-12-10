@@ -22,8 +22,27 @@ $\hat{A}, \hat{B}$は可換であるという。
 ある古典力学系のHamiltonianが知られているとき、
 その正準力学変数$\{q\},\{p\}$を
 \begin{align}
-    [ \hat{q_i} , \hat{p_j} ] = i\hbar \delta_{ij}
+    [ \hat{q}_i , \hat{p}_j ] = i\hbar \delta_{ij}
 \end{align}
 を満たすような演算子の組
 $ \{\hat{q}\} , \{\hat{p}\} $
 で置き換える手続きを正準量子化という。
+
+\subsubsection{調和振動子の例}
+
+調和振動子を正準量子化してみよう。
+\begin{align}
+    \hat{H} &= \sum_k \bigg(
+        \dfrac{ \hat{p}_k^2 }{2m} 
+    +
+        \dfrac{ m\omega^2 }{2} \hat{q}_k^2
+    \bigg)
+\\
+    [ \hat{q}_i , \hat{p}_j ] &= i\hbar \delta_{ij}
+\end{align}
+より、公式(\ref{A,BC to B(A,C) + (A,B)C})を使って
+\begin{align}
+    [q_i, H] &= i\hbar \dfrac{ \hat{p}_i }{m} 
+\\
+    [p_j, H] &= - i \hbar\ m\omega^2 \hat{q}_j
+\end{align}
