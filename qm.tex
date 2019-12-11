@@ -1,12 +1,152 @@
 \section{量子力学の基礎}
 
 量子力学に特徴的な事は、
-物理量が単なる数ではなく非可換なoperatorとなる事である。
+物理量が単なる数ではなくHilbert空間に作用する
+非可換なoperatorとなる事である。
 観測可能な量はHermitian operatorとなるので、
-我々はoperatorとして専らHilbert空間に作用するlinearな
+我々はoperatorとして専らlinearな
 Hermitianないしunitary operatorを扱う。
 
-\subsection{正準交換関係（CCR: Canonical Commutation Relation）}
+\subsection{正準量子化}
+
+\subsubsection{状態空間とOperator}
+
+量子力学に現れるoperator $O$とは、
+写像$O: \mathcal{H} \to \mathcal{H}$
+すなわち
+ある複素vector space $\mathcal{H}$の
+元$\ket{\psi}$に作用して
+再びvector space の元
+$O\ket{\psi} \in \mathcal{H}$
+を与えるものである。
+
+あるoperator $O$が$\mathcal{H}$にlinearに作用している、
+あるいはlinearである、とは
+\begin{align}
+    \text{ For }
+        \forall \ket{\psi_1}, \ket{\psi_2}
+        \in \mathcal{H}
+    \text{ and }
+        \forall a,b\in \mathbb{C}
+    ,\qquad
+        O\Big(
+            a \ket{\psi_1}
+            +
+            b \ket{\psi_2}    
+        \Big)
+    =
+        a O \ket{\psi_1}
+        +
+        b O \ket{\psi_2}    
+\end{align}
+であることを言う。
+例えば時間反転操作に対応するoperator $T$は
+anti-unitary (anti-linearかつunitary)
+\begin{align}
+    \text{ For }
+        \forall \ket{\psi_1}, \ket{\psi_2}
+        \in \mathcal{H}
+    \text{ and }
+        \forall a,b\in \mathbb{C}
+    ,\qquad
+        T\Big(
+            a \ket{\psi_1}
+            +
+            b \ket{\psi_2}    
+        \Big)
+    =
+        a^* T \ket{\psi_1}
+        +
+        b^* T \ket{\psi_2}    
+\end{align}
+なoperatorの重要な例であるが、
+以下では専らlinearなものに話を限る。
+
+量子力学では物理量はoperatorで表され、
+解析力学で基本的な力学自由度であった
+$\{q\},\{p\}$
+さえもoperatorとなっている。
+我々は任意の観測量の時間発展が決定論的な
+物理法則によって記述されることを仮定するが、
+一方で直接観測される量はもちろん実数であるので、
+まずはこれらの観測量を
+$\{\hat{q}\},\{\hat{p}\}$
+のようなoperatorと関係付ける方法を考えなければならない。
+以下ではこの方法を
+Hilbert空間と呼ばれるvector spaceを用いて与えよう。
+
+vector space $\mathcal{H}$が
+内積$\cdot\ (\ ,\ )$を持つとは、
+$
+\forall \ket{\psi_1}, \ket{\psi_2}
+\in \mathcal{H}
+$
+に対し複素数
+$ \braket{ \psi_1 | \psi_2 }
+:= \cdot\ (\ket{\psi_1}, \ket{\psi_2})
+\in \mathbb{C} $
+を与える写像
+$\cdot\ (\ ,\ ): 
+\mathcal{H}\times \mathcal{H}
+\to \mathbb{C}$
+であって、
+\begin{align}
+    \braket{ \psi | \phi } &= \braket{ \phi | \psi }^*
+&\text{（共役対称性）}
+\\
+            \bra{\phi}\Big(
+            a \ket{\psi_1}
+        +
+            b \ket{\psi_2}
+        \Big)
+    &=
+        a \braket{\phi|\psi_1}
+    +
+        b \braket{\phi|\psi_2}
+    \qquad
+    \text{ for } \forall
+    a,b\in \mathbb{C}
+&\text{（線形性）}
+\\
+    \braket{ \psi | \psi } \ge 0
+    ,\quad&\text{and}\quad
+    \braket{ \phi | \phi } = 0
+    \Leftrightarrow
+    \ket{\phi}=0
+&\text{（正定値性）}
+\end{align}
+を満たすものがあることを言う。
+Hilbert空間とは内積空間であって完備な
+（直感的には、極限が定義されている）
+ものを言う。
+物理学において時間発展は微分方程式で与えられるので、
+微分を定義するために
+極限が定義されている必要があるのである。
+
+量子力学において決定論的な時間発展方程式に従う力学自由度は
+Hilbert空間の元である。
+このHilbert空間を状態空間と言い、
+その元を状態vectorと呼ぶ。
+個々の状態vectorの
+時間発展はSchr\"odinger方程式
+\begin{align}
+    i\hbar \dfrac{d}{dt}
+        \ket{\psi(t)}
+    &=
+    \hat{H} \ket{\psi(t)}
+\end{align}
+によって与えられる。
+ここで$\hbar$は換算Planck定数またはDirac定数と呼ばれ、
+Planck定数$h$により
+\begin{align}
+    \hbar := \dfrac{h}{2\pi}
+\end{align}
+と定義される。
+また、
+$\hat{H}$は以下で定義する
+Hamiltonian operatorである。
+
+\subsubsection{正準交換関係（CCR: Canonical Commutation Relation）}
 
 二つのoperator $\hat{A}, \hat{B}$の間の交換関係を
 \begin{align}
@@ -19,14 +159,24 @@ $\hat{A}, \hat{B}$は可換であるという。
 このように全ての量が可換である力学系を
 古典力学系と言い、そこに現れる可換な数を$c$-数という。
 
-ある古典力学系のHamiltonianが知られているとき、
+ある古典力学系のHamiltonian $H(\{q\},\{p\})$
+が知られているとき、
 その正準力学変数$\{q\},\{p\}$を
+正準交換関係：
 \begin{align}
     [ \hat{q}_i , \hat{p}_j ] = i\hbar \delta_{ij}
 \end{align}
-を満たすような演算子の組
+を満たすoperatorの組
 $ \{\hat{q}\} , \{\hat{p}\} $
-で置き換える手続きを正準量子化という。
+で置き換える手続きを正準量子化と呼び、
+\begin{align}
+    \hat{H}
+    &:=
+    H(\{\hat{q}\} , \{\hat{p}\})
+\end{align}
+を得られた量子力学系の
+Hamiltonian operator
+という。
 
 \subsubsection{調和振動子の例}
 
