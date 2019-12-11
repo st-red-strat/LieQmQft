@@ -187,6 +187,7 @@ Euler-Lagrange方程式が形を変えないこと
 0 &= 
 \dfrac{d}{dt}\dfrac{\partial L'}{\partial \dot{q'_i} }
 - \dfrac{\partial L'}{\partial q_i' }
+\label{point transformation}
 \end{align}
 が示される。
 
@@ -445,8 +446,17 @@ $\{q\},\{p\}$で書いたEuler-Lagrange方程式
 (\ref{Hamilton's eom2})を
 Hamiltonの正準方程式という。
 
-Hamiltonの方程式はscalar関数$H$から得られ、
-1階の時間微分のみを含むので、
+Hamiltonの方程式はscalar関数$H$から得られるため
+(\ref{point transformation})
+のような点変換の下でも不変である上、
+より一般に
+正準運動量$\{p\}$をも座標と等価に扱った座標変換
+（正準変換、または接触変換という）
+$q = q(\{q'\}, \{p'\}, t ) ,
+p = p(\{q'\}, \{p'\}, t )
+$
+のもとでも不変である。
+また1階の時間微分のみを含むので、
 望む方程式系が得られたことになる。
 
 \subsubsection{調和振動子の例}

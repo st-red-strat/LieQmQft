@@ -178,6 +178,55 @@ $ \{\hat{q}\} , \{\hat{p}\} $
 Hamiltonian operator
 という。
 
+\subsection{Observablesとhermitian conjugate}
+
+任意のvector $\ket{\psi} \in \mathcal{H}$の
+hermitian conjugate $\ket{\psi}^\dagger$を
+内積を使って
+\begin{align}
+    \ket{\psi}^\dagger
+    :=
+    \cdot\ (\ket{\psi},\ )
+\end{align}
+により定め、$\bra{\psi}$とも書く。
+元の空間の任意の元
+$\ket{\phi} \in \mathcal{H}$
+との内積が
+\begin{align}
+    \ket{\psi}^\dagger \ket{\phi}
+    :=
+    \braket{\psi|\phi}
+    = \cdot\ (\ket{\psi}, \ket{\phi})
+    \in \mathbb{C}
+\end{align}
+のように複素数を与えるため、
+内積の線形性から
+$\bra{\psi}$は$\mathcal{H}$上の
+線形汎関数と見做すことが出来、
+$\bra{\psi}$のなす集合$\mathcal{H}^*$は
+$\mathcal{H}$の（位相的）双対空間となる。
+
+この定義の下でoperator $O$の
+hermitian conjugate $O^\dagger$も、
+任意のvector $\ket{\psi}, \ket{\phi}$に対して
+\begin{align}
+    \bra{\psi}
+    O^\dagger
+    \ket{\phi}
+    =
+    \ket{\psi}^\dagger
+    O^\dagger
+    \ket{\phi}
+    &:=
+    \Big( O \ket{\psi} \Big)^\dagger
+    \ket{\phi}
+    =
+    \Big[
+        \bra{\phi} \Big( O \ket{\psi} \Big)
+    \Big]^*
+\end{align}
+となるoperatorと定めることが出来る。
+
 \subsubsection{調和振動子の例}
 
 調和振動子を正準量子化してみよう。
