@@ -164,6 +164,16 @@ $\hat{A}, \hat{B}$は可換であるという。
 このように全ての量が可換である力学系を
 古典力学系と言い、そこに現れる可換な数を$c$-数という。
 
+任意の関数$F(a)$について、
+演算子$\hat{x}$の関数$\hat{F}(\hat{x})$を
+（$a=0$周りの）Taylor展開により
+\begin{align}
+    \hat{F}(\hat{x}) := \sum_{n=0}^\infty
+        \dfrac{1}{n!}
+        \dfrac{d^nF(a)}{da^n}\bigg|_{a=0}
+        \hat{x}^n
+\end{align}
+と定義する。
 ある古典力学系のHamiltonian $H(\{q\},\{p\})$
 が知られているとき、
 その正準力学変数$\{q\},\{p\}$を
