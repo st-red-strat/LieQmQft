@@ -25,7 +25,7 @@
 形が著しく複雑になるという欠点も持っている。
 これに対し、例えばenergyのようなscalar量は
 座標変換の下でより自然に変換するため、
-様々な力学法則をscalarを用いて表したいというのは自然な要求である。
+様々な力学法則をscalarを用いて表したいというのは自然な要求だろう。
 以下で議論するLagrange力学やHamilton力学はそのような
 記述を与える枠組みの例である。
 
@@ -172,7 +172,22 @@ scalar量$L$によって力学法則を与えたという点で
 確かに目標を達成している。
 実際、$\{q\}$から新しい変数$\{ q'\}$への座標変換
 $q_i = q_i(\{q'\})$
-のもとでEuler-Lagrange方程式が形を変えないことが示される。
+のもとで
+\begin{align}
+  L'(\{q'\}, \{\dot{q'}\}) &:= L(\{q(\{q'\})\}, \{\dot{q}(\{q'\})\})
+\end{align}
+と定めると、
+Euler-Lagrange方程式が形を変えないこと
+\begin{align}
+  0 &= 
+  \dfrac{d}{dt}\dfrac{\partial L}{\partial \dot{q_i} }
+  - \dfrac{\partial L}{\partial q_i }
+\notag\\\Rightarrow
+0 &= 
+\dfrac{d}{dt}\dfrac{\partial L'}{\partial \dot{q'_i} }
+- \dfrac{\partial L'}{\partial q_i' }
+\end{align}
+が示される。
 
 \subsubsection{調和振動子の例}
 
@@ -512,6 +527,15 @@ $\{q\},\{p\}$に対して右辺の符号が異なるという非対称性があ�
     \bigg)
 \end{align}
 で定義すると、
+正準変数同士のPoisson括弧は
+\begin{align}
+   \{q_i, p_j\}_{ \mathrm{P} }
+   = \delta_{ij}
+,\qquad
+   \{p_i, q_j\}_{ \mathrm{P} }
+   = - \delta_{ij}
+\end{align}
+のようになり、
 正準方程式(\ref{Hamilton's eom})は
 \begin{align}
     \begin{cases}
@@ -526,7 +550,7 @@ $\{q\},\{p\}$に対して右辺の符号が異なるという非対称性があ�
 \qquad
     ( r = q_i, p_j \quad\forall i, j )
 \end{align}
-と書ける。
+と$\{q\},\{p\}$の間で対称な形になる。
 より一般に、任意の関数
 $F( \{q\},\{p\} , t )$
 の時間発展が
@@ -536,13 +560,3 @@ $F( \{q\},\{p\} , t )$
 と一つの式にまとまってしまう。
 あらゆる量の時間発展を求める過程が、
 Poisson括弧の計算という一つの操作に統一されたのである。
-
-なお、正準変数同士のPoisson括弧は
-\begin{align}
-   \{q_i, p_j\}_{ \mathrm{P} }
-   = \delta_{ij}
-,\qquad
-   \{p_i, q_j\}_{ \mathrm{P} }
-   = - \delta_{ij}
-\end{align}
-のようになる。
