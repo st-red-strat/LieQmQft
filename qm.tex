@@ -117,11 +117,11 @@ $\cdot\ (\ ,\ ):
 \end{align}
 を満たすものがあることを言う。
 Hilbert空間とは内積空間であって完備な
-（直感的には、極限が定義されている）
+（直感的には、極限が十分に存在する）
 ものを言う。
 物理学において時間発展は微分方程式で与えられるので、
 微分を定義するために
-極限が定義されている必要があるのである。
+極限が存在する必要があるのである。
 
 量子力学において決定論的な時間発展方程式に従う力学自由度は
 Hilbert空間の元である。
@@ -193,10 +193,10 @@ $ \{\hat{q}\} , \{\hat{p}\} $
 Hamiltonian operator
 という。
 
-\subsection{Observablesとhermitian conjugate}
+\subsubsection{ObservablesとHermitian conjugate}
 
 任意のvector $\ket{\psi} \in \mathcal{H}$の
-hermitian conjugate $\ket{\psi}^\dagger$を
+Hermitian conjugate $\ket{\psi}^\dagger$を
 内積を使って
 \begin{align}
     \ket{\psi}^\dagger
@@ -221,26 +221,41 @@ $\bra{\psi}$は$\mathcal{H}$上の
 $\bra{\psi}$のなす集合$\mathcal{H}^*$は
 $\mathcal{H}$の（位相的）双対空間となる。
 
-この定義の下でoperator $O$の
-hermitian conjugate $O^\dagger$も、
+この定義の下でoperator $\hat{O}$の
+Hermitian conjugate $\hat{O}^\dagger$も、
 任意のvector $\ket{\psi}, \ket{\phi}$に対して
 \begin{align}
     \bra{\psi}
-    O^\dagger
+    \hat{O}^\dagger
     \ket{\phi}
     =
     \ket{\psi}^\dagger
-    O^\dagger
+    \hat{O}^\dagger
     \ket{\phi}
     &:=
-    \Big( O \ket{\psi} \Big)^\dagger
+    \Big( \hat{O} \ket{\psi} \Big)^\dagger
     \ket{\phi}
     =
     \Big[
-        \bra{\phi} \Big( O \ket{\psi} \Big)
+        \bra{\phi} \Big( \hat{O} \ket{\psi} \Big)
     \Big]^*
 \end{align}
 となるoperatorと定めることが出来る。
+
+あるoperator $\hat{O}$がHermitianであるとは、
+$\hat{O}$が
+\begin{align}
+    \hat{O} = \hat{O}^\dagger
+\end{align}
+を満たすことを言う。
+量子力学におけるObservable（可換測量）は、
+Hermitian operator で表される。
+
+\subsubsection{Hermitian operatorとその固有状態}
+
+
+
+
 
 \subsubsection{調和振動子の例}
 
@@ -254,9 +269,14 @@ hermitian conjugate $O^\dagger$も、
 \\
     [ \hat{q}_i , \hat{p}_j ] &= i\hbar \delta_{ij}
 \end{align}
-より、公式(\ref{A,BC to B(A,C) + (A,B)C})を使って
+より、$\hat{q} , \hat{p}$がHermitian
+公式(\ref{A,BC to B(A,C) + (A,B)C})を使って
 \begin{align}
     [q_i, H] &= i\hbar \dfrac{ \hat{p}_i }{m} 
 \\
     [p_j, H] &= - i \hbar\ m\omega^2 \hat{q}_j
 \end{align}
+が得られる。
+これらが調和振動子の正準方程式
+(\ref{hamiltonian e.o.m for harmonic oscillator})
+に非常によく類似している事に注意しよう。
