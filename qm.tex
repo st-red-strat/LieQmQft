@@ -2,7 +2,7 @@
 
 量子力学に特徴的な事は、
 物理量が単なる数ではなくHilbert空間に作用する
-非可換なoperatorとなる事である。
+非可換なoperator（演算子、作用素）となる事である。
 観測可能な量はHermitian operatorとなるので、
 我々はoperatorとして専らlinearな
 Hermitianないしunitary operatorを扱う。
@@ -76,17 +76,17 @@ $\{\hat{q}\},\{\hat{p}\}$
 Hilbert空間と呼ばれるvector spaceを用いて与えよう。
 
 vector space $\mathcal{H}$が
-内積$\cdot\ (\ ,\ )$を持つとは、
+内積$\eta$を持つとは、
 $
 \forall \ket{\psi_1}, \ket{\psi_2}
 \in \mathcal{H}
 $
 に対し複素数
 $ \braket{ \psi_1 | \psi_2 }
-:= \cdot\ (\ket{\psi_1}, \ket{\psi_2})
+:= \eta(\ket{\psi_1}, \ket{\psi_2})
 \in \mathbb{C} $
 を与える写像
-$\cdot\ (\ ,\ ): 
+$\eta: 
 \mathcal{H}\times \mathcal{H}
 \to \mathbb{C}$
 であって、
@@ -187,7 +187,7 @@ $ \{\hat{q}\} , \{\hat{p}\} $
 \begin{align}
     \hat{H}
     &:=
-    H(\{\hat{q}\} , \{\hat{p}\})
+    \hat{H}(\{\hat{q}\} , \{\hat{p}\})
 \end{align}
 を得られた量子力学系の
 Hamiltonian operator
@@ -201,7 +201,7 @@ Hermitian conjugate $\ket{\psi}^\dagger$を
 \begin{align}
     \ket{\psi}^\dagger
     :=
-    \cdot\ (\ket{\psi},\ )
+    \eta(\ket{\psi},\ )
 \end{align}
 により定め、$\bra{\psi}$とも書く。
 元の空間の任意の元
@@ -211,7 +211,7 @@ $\ket{\phi} \in \mathcal{H}$
     \ket{\psi}^\dagger \ket{\phi}
     :=
     \braket{\psi|\phi}
-    = \cdot\ (\ket{\psi}, \ket{\phi})
+    = \eta(\ket{\psi}, \ket{\phi})
     \in \mathbb{C}
 \end{align}
 のように複素数を与えるため、
@@ -219,7 +219,7 @@ $\ket{\phi} \in \mathcal{H}$
 $\bra{\psi}$は$\mathcal{H}$上の
 線形汎関数と見做すことが出来、
 $\bra{\psi}$のなす集合$\mathcal{H}^*$は
-$\mathcal{H}$の（位相的）双対空間となる。
+$\mathcal{H}$の（位相的あるいは線形）双対空間となる。
 
 この定義の下でoperator $\hat{O}$の
 Hermitian conjugate $\hat{O}^\dagger$も、
@@ -275,6 +275,31 @@ Hermitian operatorであるが、
 $\hat{O} = \hat{O}^\dagger$のとき
 $E$が実数となることが容易に示される。
 
+\subsubsection{同時固有状態と物理的状態空間}
+
+量子力学的な物理系の状態が
+vector $\ket{\psi}$
+で表されているとき、
+物理量$\hat{O}$の期待値は
+\begin{align}
+    \braket{O} :=
+    \dfrac{
+        \bra{\psi} \hat{O} \ket{\psi}
+    }{
+        \braket{\psi|\psi}
+    }
+\end{align} 
+と表される。
+
+物理的状態は単にHilbert空間の元ではなく、
+射線（ray）と呼ばれるobjectにより表される。
+
+$\hat{H}$の固有状態をenergy固有状態と呼び、
+energy固有状態が持つ固有値をenergyという。
+特に、縮退がない場合はenergy $E$に属する状態が
+一意に定まるため、これを$\ket{E}$と名付ける
+conventionが一般的である。
+
 \subsubsection{調和振動子の例}
 
 調和振動子を正準量子化してみよう。
@@ -288,7 +313,7 @@ $\{\hat{q}\}, \{\hat{p}\}$は可換測な物理量なのでHermitianであるこ
 \\
     [ \hat{q}_i , \hat{p}_j ] &= i\hbar \delta_{ij}
 \end{align}
-より、
+から
 $\hat{H}$のHermiticityも自然に従う。
 公式(\ref{A,BC to B(A,C) + (A,B)C})を使って
 \begin{align}
@@ -374,3 +399,46 @@ $\{\hat{a}\}, \{\hat{a}^\dagger\}$への
     &= + \hbar \omega \hat{a}^\dagger_j
 \end{align}
 が得られる。
+
+興味深いのは、$ \hat{H} $が
+正定値なHilbert空間に作用しているという仮定のみから、
+Hilbert空間にどのようなenergy固有状態が存在するかの
+情報が得られるということである。
+適当なenergy固有状態$ \ket{\psi} \neq 0 $
+\begin{align}
+    \hat{H} \ket{\psi}
+    &=
+    E \ket{\psi}
+\end{align}
+が存在するとしよう。
+状態$\hat{a}_i \ket{\psi}$に$ \hat{H} $
+を作用させると
+\begin{align}
+    \hat{H} \bigg(
+        \hat{a}_i \ket{\psi}
+    \bigg) 
+&=
+    \left(
+        \hat{a}_i \hat{H} 
+    +
+        \left[ \hat{H}, \hat{a}_i \right]
+    \right) \ket{\psi}
+\quad\\&=
+    \left(
+        \hat{a}_i E
+    - \hbar \omega \hat{a}_i
+    \right) \ket{\psi}
+\quad\\&=
+    \left(
+        E - \hbar \omega
+    \right)
+    \hat{a}_i \ket{\psi}
+\end{align}
+が得られ、状態$\hat{a}_i \ket{\psi}$は
+（もし$0$でないならば）
+energy $E - \hbar \omega$に属するenergy固有状態
+であることが分かる。
+ここで
+\begin{align}
+    \bra{\psi} \hat{H} \ket{\psi} &= 
+\end{align}
