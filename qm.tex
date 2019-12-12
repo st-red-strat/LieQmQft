@@ -253,13 +253,32 @@ Hermitian operator で表される。
 
 \subsubsection{Hermitian operatorとその固有状態}
 
-
-
-
+Operatorはvectorに作用して
+再びvectorを与えるので、
+ある$\hat{O}$に対し
+$\ket{\psi} \neq 0$が存在して
+\begin{align}
+    \hat{O}\ket{\psi} \propto \ket{\psi}
+,\quad\text{
+    i.e.   
+    $\exists E\in\mathbb{C}$
+    s.t.
+}\quad
+    \hat{O}\ket{\psi} = E \ket{\psi}
+\end{align}
+となる特別な状況を考えることが出来る。
+このとき、vector $\ket{\psi}$は
+$\hat{O}$の固有状態（eigenstate）であると言い、
+定数$E$を$\ket{\psi}$の固有値（eigenvalue）と呼ぶ。
+我々が特に興味があるのはObservableを表す
+Hermitian operatorであるが、
+$\hat{O} = \hat{O}^\dagger$のとき
+$E$が実数となることが容易に示される。
 
 \subsubsection{調和振動子の例}
 
 調和振動子を正準量子化してみよう。
+$\{\hat{q}\}, \{\hat{p}\}$は可換測な物理量なのでHermitianであることを仮定しており、
 \begin{align}
     \hat{H} &= \sum_k \bigg(
         \dfrac{ \hat{p}_k^2 }{2m} 
@@ -269,14 +288,89 @@ Hermitian operator で表される。
 \\
     [ \hat{q}_i , \hat{p}_j ] &= i\hbar \delta_{ij}
 \end{align}
-より、$\hat{q} , \hat{p}$がHermitian
+より、
+$\hat{H}$のHermiticityも自然に従う。
 公式(\ref{A,BC to B(A,C) + (A,B)C})を使って
 \begin{align}
-    [q_i, H] &= i\hbar \dfrac{ \hat{p}_i }{m} 
+    [\hat{q}_i, H] &= i\hbar \dfrac{ \hat{p}_i }{m} 
 \\
-    [p_j, H] &= - i \hbar\ m\omega^2 \hat{q}_j
+    [\hat{p}_j, H] &= - i \hbar\ m\omega^2 \hat{q}_j
 \end{align}
 が得られる。
 これらが調和振動子の正準方程式
 (\ref{hamiltonian e.o.m for harmonic oscillator})
 に非常によく類似している事に注意しよう。
+
+このままでは議論を進めるのが難しいが、
+必ずしもHermitianではない無次元量への
+変数変換を考えることで見通しが良くなる。
+生成消滅演算子（creation and annihilation operator。昇降(raising and lowering)演算子、はしご(ladder)演算子などとも言う）を
+\begin{align}
+    \hat{a}_i :=\ & 
+    \dfrac{1}{\sqrt{2\hbar}}
+    \left(
+        \sqrt{
+            m\omega
+        }\ \hat{q}_i
+        +
+        \dfrac{i}{\sqrt{m\omega}}
+        \ \hat{p}_i
+    \right)    
+\\
+    \hat{a}^\dagger_i =\ &
+    \dfrac{1}{\sqrt{2\hbar}}
+    \left(
+        \sqrt{
+            m\omega
+        }\ \hat{q}_i
+        -
+        \dfrac{i}{\sqrt{m\omega}}
+        \ \hat{p}_i
+    \right)    
+\end{align}
+で定義しよう。
+これは単に$\{\hat{q}\}, \{\hat{p}\}$から
+$\{\hat{a}\}, \{\hat{a}^\dagger\}$への
+線形変換であり、
+逆変換は
+\begin{align}
+    \hat{q}_i &=
+    \dfrac{1}{2}\sqrt{
+        \dfrac{2\hbar}{m\omega}
+    }
+    \left(
+        \hat{a}_i + \hat{a}^\dagger_i
+    \right)
+\\
+    \hat{p}_i &=
+    \dfrac{1}{2i}\sqrt{
+        2\hbar m\omega
+    }
+    \left(
+        \hat{a}_i - \hat{a}^\dagger_i
+    \right)
+\end{align}
+で与えられる。
+
+元の変数は容易に消去出来て
+\begin{align}
+    \hat{H}
+    &=
+    \dfrac{ \hbar\omega }{ 2 }
+    \sum_k
+    \left(
+        \hat{a}^\dagger_k\hat{a}_k
+        +
+        \hat{a}_k\hat{a}_k^\dagger
+    \right)
+\\
+    [\hat{a}_i, \hat{a}^\dagger_j]
+    &=\delta_{ij}
+\\
+    [\hat{H},\hat{a}_i]
+    &= - \hbar \omega \hat{a}_i
+    \\
+    [\hat{H},\hat{a}^\dagger_j]
+    &= + \hbar \omega \hat{a}^\dagger_j
+\end{align}
+が得られる。
