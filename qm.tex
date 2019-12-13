@@ -265,7 +265,7 @@ $\hat{O}$が
 量子力学におけるObservable（可換測量）は、
 Hermitian operator で表される。
 
-\subsubsection{Hermitian operatorとその固有状態}
+\subsubsection{固有状態とHermitian operator}
 
 Operatorはvectorに作用して
 再びvectorを与えるので、
@@ -275,21 +275,32 @@ $\ket{\psi} \neq 0$が存在して
     \hat{O}\ket{\psi} \propto \ket{\psi}
 ,\quad\text{
     i.e.   
-    $\exists E\in\mathbb{C}$
+    $\exists \lambda\in\mathbb{C}$
     s.t.
 }\quad
-    \hat{O}\ket{\psi} = E \ket{\psi}
+    \hat{O}\ket{\psi} = \lambda \ket{\psi}
 \end{align}
 となる特別な状況を考えることが出来る。
 このとき、vector $\ket{\psi}$は
 $\hat{O}$の固有状態（eigenstate）であると言い、
-定数$E$を$\ket{\psi}$の固有値（eigenvalue）と呼ぶ。
+定数$\lambda$を$\ket{\psi}$の固有値（eigenvalue）と呼ぶ。
 我々が特に興味があるのはObservableを表す
 Hermitian operatorであるが、
 $\hat{O} = \hat{O}^\dagger$のとき
-$E$が実数となることが容易に示される。
+$\lambda$が実数となることが容易に示される。
+例えば
+$\hat{H}$の固有状態をenergy固有状態と呼び、
+energy固有状態が持つ固有値をenergyというが、
+任意のenergyは実数である。
 
-\subsubsection{同時固有状態と物理的状態空間}
+\subsubsection{同時固有状態と状態の命名規則}
+
+特に、縮退がない場合はある固有値
+$\lambda$に属する状態が
+一意に定まるため、これを$\ket{\lambda}$と名付ける
+conventionが一般的である。
+
+\subsubsection{観測値とOperatorの関係、物理的状態空間}
 
 量子力学的な物理系の状態が
 vector $\ket{\psi}$
@@ -364,24 +375,26 @@ $\braket{\psi|\psi} \mapsto |a|^2 \braket{\psi|\psi}$
 実際vectorのnormは物理的情報を持っておらず、
 従ってvector $\ket{\psi}$と$a \ket{\psi}$は
 物理的に区別されるべき異なる状態ではない。
-常に
+よって常に
 $a = \dfrac{1}{\sqrt{ \braket{\psi|\psi} }}$
 による再定義で$\braket{\psi|\psi} = 1$
 としておくのが便利である。
 このようなvectorの再定義を規格化と言い、
 以下では状態vectorは規格化されているものとする。
-
+状態vectorを規格化してもなお、
+$a=e^{i\theta}, \theta\in \mathbb{R}$
+のような場合は$\ket{\psi}$と
+$e^{i\theta}\ket{\psi}$は
+独立な状態を表さない。
+このようなoverallの位相も物理的情報を持たないため、
 物理的状態は単にHilbert空間の元ではなく、
+それらを規格化し、更に位相だけの違いは同一視した
 射線（ray）と呼ばれるobjectにより表される。
-rayの集合を物理的状態空間あるいは単に状態空間（state space）
-と呼ぶことにしよう。
-以下で規格化による同一視を行わないHilbert空間を直接扱うことは無いので、混乱は生じない。
 
-$\hat{H}$の固有状態をenergy固有状態と呼び、
-energy固有状態が持つ固有値をenergyという。
-特に、縮退がない場合はenergy $E$に属する状態が
-一意に定まるため、これを$\ket{E}$と名付ける
-conventionが一般的である。
+改めて、rayの集合を物理的状態空間あるいは単に状態空間（state space）
+と呼ぶことにしよう。
+以下で規格化などによる同一視を行わないHilbert空間を直接扱うことは無いので、
+以前の用語との混乱は生じない。
 
 \subsubsection{調和振動子の例}
 
