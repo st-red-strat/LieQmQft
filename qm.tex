@@ -343,10 +343,10 @@ conventionが一般的である。
 
 \subsubsection{調和振動子の例}
 
-調和振動子を正準量子化してみよう。
+$n$次元調和振動子を正準量子化してみよう。
 $\{\hat{q}\}, \{\hat{p}\}$は可換測な物理量なのでHermitianであることを仮定しており、
 \begin{align}
-    \hat{H} &= \sum_k \bigg(
+    \hat{H} &= \sum_{k=1}^n \bigg(
         \dfrac{ \hat{p}_k^2 }{2m} 
     +
         \dfrac{ m\omega^2 }{2} \hat{q}_k^2
@@ -421,7 +421,8 @@ $\{\hat{a}\}, \{\hat{a}^\dagger\}$への
 元の変数は容易に消去出来て
 \begin{align}
     \hat{H}
-    &=
+%    &
+    =
     \dfrac{ \hbar\omega }{ 2 }
     \sum_k
     \left(
@@ -429,6 +430,18 @@ $\{\hat{a}\}, \{\hat{a}^\dagger\}$への
         +
         \hat{a}_k\hat{a}_k^\dagger
     \right)
+%\\
+    & 
+    =
+    \hbar\omega
+    \sum_k
+    \left(
+        \hat{N}_k
+        +
+        \dfrac{ 1 }{ 2 }
+    \right)
+\\
+    \hat{N}_k &:= \hat{a}^\dagger_k\hat{a}_k
 \\
     [\hat{a}_i, \hat{a}^\dagger_j]
     &=\delta_{ij}
@@ -440,18 +453,16 @@ $\{\hat{a}\}, \{\hat{a}^\dagger\}$への
     &= + \hbar \omega \hat{a}^\dagger_j
 \end{align}
 が得られる。
-
-興味深いのは、$ \hat{H} $が
-正定値なHilbert空間に作用しているという仮定のみから、
-Hilbert空間にどのようなenergy固有状態が存在するかの
-情報が得られるということである。
+ただし、
+$k$番目の自由度のnumber operator
+$\hat{N}_k$を定義した。
 適当なenergy固有状態$ \ket{\psi} \neq 0 $
 \begin{align}
     \hat{H} \ket{\psi}
     &=
     E \ket{\psi}
 \end{align}
-が存在するとしよう。
+が存在するとき、
 状態$\hat{a}_i \ket{\psi}$に$ \hat{H} $
 を作用させると
 \begin{align}
@@ -477,9 +488,91 @@ Hilbert空間にどのようなenergy固有状態が存在するかの
 \end{align}
 が得られ、状態$\hat{a}_i \ket{\psi}$は
 （もし$0$でないならば）
-energy $E - \hbar \omega$に属するenergy固有状態
+energy $E - \hbar \omega$に属する
+energy固有vector
+（ただし規格化されているとは限らない）
 であることが分かる。
-ここで
+全く同様に
 \begin{align}
-    \bra{\psi} \hat{H} \ket{\psi} &= 
+    \hat{H} \bigg(
+        \hat{a}^\dagger_i \ket{\psi}
+    \bigg) 
+&=
+    \left(
+        E + \hbar \omega
+    \right)
+    \hat{a}^\dagger_i \ket{\psi}
 \end{align}
+であり、
+$\hat{a}^\dagger_i, \hat{a}_i$は
+$i$番目の自由度のenergy levelを
+enrgy量子$\hbar\omega$分だけ上下することが分かる。
+これが生成消滅の名の所以である。
+
+$ \hat{H} = \hbar\omega
+\sum_k
+\left(
+    \hat{a}^\dagger_k\hat{a}_k
+    +
+    \dfrac{ 1 }{ 2 }
+\right) $
+に気を付けると
+\begin{align}
+    E &=
+    \bra{\psi} E \ket{\psi}
+    = 
+    \bra{\psi} \hat{H} \ket{\psi}
+    = 
+    \hbar\omega \sum_k
+    \bra{\psi}     
+        \left(
+            \hat{a}^\dagger_k\hat{a}_k
+        +
+            \dfrac{ 1 }{ 2 }
+        \right)
+    \ket{\psi}
+\notag\\&=
+    \hbar\omega \sum_k
+        \left(
+        \bra{\psi}     
+            \hat{a}^\dagger_k\hat{a}_k
+        \ket{\psi}
+            +
+            \dfrac{ 1 }{ 2 }
+        \right)
+\notag\\&=
+    \hbar\omega
+        \left(
+            \sum_k
+            \Big|\Big|
+                \hat{a}_k \ket{\psi}
+            \Big|\Big|^2
+            +
+            \dfrac{ n }{ 2 }
+        \right)
+\ge
+            \dfrac{ n \hbar\omega }{ 2 }
+\end{align}
+が導かれる。ここで内積の正定値性
+$\Big|\Big|
+\hat{a}_k \ket{\psi}
+\Big|\Big|^2 \ge 0
+$
+を使った。
+
+興味深いのは、$ \hat{H} $が
+正定値なHilbert空間に作用しているという仮定のみから、
+Hilbert空間にどのようなenergy固有状態が存在するかの
+情報が得られるということである。
+
+$\hat{a}_i \ket{\psi} \neq 0$ならnormが
+\begin{align}
+    \Big|\Big|
+        \hat{a}_i \ket{\psi}
+    \Big|\Big|^2
+    &=
+    \bra{\psi}     
+            \hat{a}^\dagger_i \hat{a}_i
+    \ket{\psi}
+\end{align}
+であるので、規格化は

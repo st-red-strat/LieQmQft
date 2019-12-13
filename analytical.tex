@@ -133,14 +133,22 @@ actionの変分
     L(\{ q(t) \},
     \{ \dot{q}(t) \} )
   \bigg\}
-\notag\\&\simeq
+\notag\\&=
+  \sum_i
+  \bigg[
+    \delta q_i(t)
+    \dfrac{\partial}{\partial \dot{q_i}}
+    L(\{ q(t) \},
+    \{ \dot{q}(t) \} )
+  \bigg]_{t=t_i}^{t_f}
+\notag\\&\qquad
+  +
 \int dt\ \sum_i
 \delta q_i(t)
 \bigg\{
   \dfrac{\partial}{\partial q_i}
   L(\{ q(t) \},
   \{ \dot{q}(t) \} )
-%  \notag\\&\qquad
 -
   \dfrac{d}{dt}
   \dfrac{\partial}{\partial \dot{q_i}}
@@ -149,10 +157,11 @@ actionの変分
 \bigg\}
 %  \qquad (\ \forall\ \delta q_i(t), i\ )
 \end{align}
-（ここで、部分積分による表面項が現れない事
-$[\cdots]_{t=t_i}^{t_f}=0$
-を仮定した）
-が消えること
+が消える
+（同時に、部分積分による表面項
+$[\cdots]_{t=t_i}^{t_f}$
+も適当な境界条件を課すことにより消える）
+こと
 \begin{align}
   \delta S &= 0
   \qquad (\forall\ \delta q_i(t), i)
@@ -311,16 +320,19 @@ $\dot{q}$に依っていないこと
   - \dfrac{\partial L}{\partial \dot{q_i}}
   \bigg]
 \notag\\&=
-  \bigg[
     p_i
     - \dfrac{\partial L}{\partial \dot{q_i}}
-  \bigg]
 \notag\\
-  &=0
+  &\simeq 0
 \end{align}
 である。
-ただし、偏微分は$\{q\},\{\dot{q}\},\{p\}$の全てを独立な変数と見做して
-行っていることに注意せよ。
+ただし、偏微分を$\{q\},\{\dot{q}\},\{p\}$の全てを独立な変数と見做して
+行ったことに注意せよ。
+最後の等号$\simeq$は、
+独立変数として導入した$p_i$を
+（$\{q\},\{\dot{q}\}$の関数である）
+一般化運動量$p_i(\{q\},\{\dot{q}\})$と同一視すると等号が成り立つ、
+という意味である。
 
 Hamiltonianの$\{q\},\{p\}$による微分は、
 $q(t)$がEuler-Lagrange方程式の解であるとすると
