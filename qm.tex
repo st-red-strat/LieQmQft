@@ -280,16 +280,57 @@ $E$が実数となることが容易に示される。
 量子力学的な物理系の状態が
 vector $\ket{\psi}$
 で表されているとき、
-物理量$\hat{O}$の期待値は
+物理量$\hat{A}$の期待値は
 \begin{align}
-    \braket{O} :=
+    \braket{A} :=
     \dfrac{
-        \bra{\psi} \hat{O} \ket{\psi}
+        \bra{\psi} \hat{A} \ket{\psi}
     }{
         \braket{\psi|\psi}
     }
 \end{align} 
 と表される。
+$\hat{A}$のspectral decompositionを
+連続spectrum と点spectrum に分け、
+対応するspectrumの固有空間への
+projection operator $\hat{P}$を用いて
+\begin{align}
+    \hat{A} &=
+    \sum_n { \hat{P}_n a_n }
+    +
+    \int d \hat{P} (a) a
+\end{align}
+のように書くと、
+単位演算子との関係
+\begin{align}
+    1 = 
+    \sum_n \hat{P}_n
+    +
+    \int d \hat{P} (a)
+\end{align}
+を用いて
+\begin{align}
+    \ket{\psi} = 
+    \sum_n \hat{P}_n \ket{\psi}
+    +
+    \int d \hat{P} (a) \ket{\psi}
+\end{align}
+と書ける。
+実際に観測される結果は演算子$\hat{A}$の
+固有値のいずれかであり、
+全く同一の状態$\ket{\psi}$で表される物理系を
+十分多く用意したときの観測値は
+\begin{enumerate}
+    \item{点spectrum $a_n$が確率
+    $
+    \bra{\psi} \hat{P}_n \ket{\psi}
+    $}
+    \item{連続spectrum $a$が確率密度
+    $
+    \bra{\psi} d \hat{P}(a) \ket{\psi}
+    $}
+\end{enumerate}
+で与えられるのである。
 
 物理的状態は単にHilbert空間の元ではなく、
 射線（ray）と呼ばれるobjectにより表される。
