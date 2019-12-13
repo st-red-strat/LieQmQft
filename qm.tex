@@ -9,7 +9,7 @@ Hermitianないしunitary operatorを扱う。
 
 \subsection{正準量子化}
 
-\subsubsection{状態空間とOperator}
+\subsubsection{Hilbert空間とOperator}
 
 量子力学に現れるoperator $O$とは、
 写像$O: \mathcal{H} \to \mathcal{H}$
@@ -193,6 +193,20 @@ $ \{\hat{q}\} , \{\hat{p}\} $
 Hamiltonian operator
 という。
 
+厳密にはこれだけでは古典的Hamiltonian $H$が
+例えば$qp$のような項を持っていたとき、それを
+$\hat{p}\hat{q}$で置き換えるのか
+$\hat{q}\hat{p} = \hat{p}\hat{q} + i\hbar$で置き換えるのか
+といった問題は残る。
+これを演算子順序の問題といい、
+Hamiltonian operatorのHermiticityや
+量子系の持つべき大域的対称性などから
+一定の解答を与えることは出来るものの、
+異なる演算子順序は物理的に異なる量子系を与えるため
+一般に与えられた古典系に対して量子系を一意に定めることは出来ない。
+ただし特定の文脈で自然な演算子順序は存在し、
+このことは経路積分を扱う際により詳しく議論する。
+
 \subsubsection{ObservablesとHermitian conjugate}
 
 任意のvector $\ket{\psi} \in \mathcal{H}$の
@@ -359,6 +373,9 @@ $a = \dfrac{1}{\sqrt{ \braket{\psi|\psi} }}$
 
 物理的状態は単にHilbert空間の元ではなく、
 射線（ray）と呼ばれるobjectにより表される。
+rayの集合を物理的状態空間あるいは単に状態空間（state space）
+と呼ぶことにしよう。
+以下で規格化による同一視を行わないHilbert空間を直接扱うことは無いので、混乱は生じない。
 
 $\hat{H}$の固有状態をenergy固有状態と呼び、
 energy固有状態が持つ固有値をenergyという。
