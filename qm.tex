@@ -281,24 +281,70 @@ $\ket{\psi} \neq 0$が存在して
     \hat{O}\ket{\psi} = \lambda \ket{\psi}
 \end{align}
 となる特別な状況を考えることが出来る。
-このとき、vector $\ket{\psi}$は
-$\hat{O}$の固有状態（eigenstate）であると言い、
-定数$\lambda$を$\ket{\psi}$の固有値（eigenvalue）と呼ぶ。
+このとき、定数$\lambda$を$\ket{\psi}$の固有値（eigenvalue）と呼び、
+状態vector $\ket{\psi}$は
+$\hat{O}$の固有値$\lambda$に属する
+固有vecctorまたは
+固有状態（eigenstate）であると言う。
+また、上の等式を固有方程式（特性方程式、永年方程式とも）という。
+
+ある固有値$\lambda$に属する線形独立な
+固有vectorが$n$個あるとき
+$n$を$\lambda$の縮退度と呼び、
+$n = 1$ならば縮退がない、
+$n \ge 2$ならば縮退があるという。
+固有値$\lambda$に属する固有vectorの集合は
+vector spaceを為し、これを固有値$\lambda$に対する
+固有空間という。
+
 我々が特に興味があるのはObservableを表す
 Hermitian operatorであるが、
 $\hat{O} = \hat{O}^\dagger$のとき
 $\lambda$が実数となることが容易に示される。
 例えば
-$\hat{H}$の固有状態をenergy固有状態と呼び、
+$\hat{H}$の固有状態をenergy固有状態、
 energy固有状態が持つ固有値をenergyというが、
 任意のenergyは実数である。
 
-\subsubsection{同時固有状態と状態の命名規則}
+\subsubsection{同時固有状態と状態vectorの命名規則}
 
-特に、縮退がない場合はある固有値
-$\lambda$に属する状態が
-一意に定まるため、これを$\ket{\lambda}$と名付ける
-conventionが一般的である。
+互いに可換な$n$個のoperator
+$\hat{A}_1, \hat{A}_2, \dots, \hat{A}_n$
+と、固有値$\lambda_i$に属する
+$\hat{A}_i$の固有vector $\ket{\psi}$
+があるとしよう。
+可換性から
+\begin{align}
+    \lambda_i \hat{A}_j \ket{\psi}
+    &=
+    \hat{A}_j \lambda_i \ket{\psi}
+    =
+    \hat{A}_j \hat{A}_i \ket{\psi}
+    =
+    \hat{A}_i \hat{A}_j \ket{\psi}
+\end{align}
+となるが、この式は
+$\hat{A}_j \ket{\psi}$
+が再び$\hat{A}_i$の固有値$\lambda_i$に対する
+固有空間の元である事を意味する。
+特に、縮退がない場合は
+ある固有値
+$\lambda_i$に属するvectorが定数倍を除いて一意に定まるため、
+$\hat{A}_j \ket{\psi}$も
+$\ket{\psi}$に比例しているはずである。
+すなわち、$\hat{A}_j \ket{\psi}$は
+（$0$でないならば）$\hat{A}_j$の固有vectorになっている。
+$\lambda_i$に縮退がある場合でも、
+固有空間の基底
+$\ket{\psi_1}, \ket{\psi_2}, \dots$
+を適切に取ることにより
+やはり全ての$\ket{\psi_k}$が$\hat{A}_j$の固有vectorになるよう出来る事が知られている
+（ただし、$k$ごとに$\hat{A}_j$の固有値は
+異なって良い）。
+
+このように可換なoperatorは
+
+これを$\ket{\lambda_i}$と名付けるのが普通である。
 
 \subsubsection{観測値とOperatorの関係、物理的状態空間}
 
@@ -386,7 +432,8 @@ $a=e^{i\theta}, \theta\in \mathbb{R}$
 のような場合は$\ket{\psi}$と
 $e^{i\theta}\ket{\psi}$は
 独立な状態を表さない。
-このようなoverallの位相も物理的情報を持たないため、
+このようなoverallの位相も物理的情報を持たない
+（もちろん複数のvectorの相対的な位相は意味を持つが）ため、
 物理的状態は単にHilbert空間の元ではなく、
 それらを規格化し、更に位相だけの違いは同一視した
 射線（ray）と呼ばれるobjectにより表される。
