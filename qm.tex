@@ -318,19 +318,44 @@ projection operator $\hat{P}$を用いて
 と書ける。
 実際に観測される結果は演算子$\hat{A}$の
 固有値のいずれかであり、
-全く同一の状態$\ket{\psi}$で表される物理系を
+全く同一の状態 vector $\ket{\psi}$で表される物理系を
 十分多く用意したときの観測値は
 \begin{enumerate}
-    \item{点spectrum $a_n$が確率
+    \item{点spectrum $a_n$に関しては確率
     $
-    \bra{\psi} \hat{P}_n \ket{\psi}
+    \dfrac{
+        \bra{\psi} \hat{P}_n \ket{\psi}
+    }{
+     \braket{\psi|\psi}   
+    }    
     $}
-    \item{連続spectrum $a$が確率密度
+    \item{連続spectrum $a$に関しては確率密度
     $
-    \bra{\psi} d \hat{P}(a) \ket{\psi}
+    \dfrac{
+        \bra{\psi} d \hat{P}(a) \ket{\psi}
+    }{
+     \braket{\psi|\psi}   
+    }    
     $}
 \end{enumerate}
 で与えられるのである。
+
+これらの規則を見ると、状態vector $\ket{\psi}$を
+定数（たとえば$a \in \mathbb{C}$）倍だけ
+再定義してもnormが伴って
+$\braket{\psi|\psi} \mapsto |a|^2 \braket{\psi|\psi}$
+と変化するため、
+物理法則が予言する個々の観測量の期待値や確率は
+一切変化しない事に気付くであろう。
+実際vectorのnormは物理的情報を持っておらず、
+従ってvector $\ket{\psi}$と$a \ket{\psi}$は
+物理的に区別されるべき異なる状態ではない。
+常に
+$a = \dfrac{1}{\sqrt{ \braket{\psi|\psi} }}$
+による再定義で$\braket{\psi|\psi} = 1$
+としておくのが便利である。
+このようなvectorの再定義を規格化と言い、
+以下では状態vectorは規格化されているものとする。
 
 物理的状態は単にHilbert空間の元ではなく、
 射線（ray）と呼ばれるobjectにより表される。
