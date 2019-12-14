@@ -292,7 +292,7 @@ $\hat{O}$の固有値$\lambda$に属する
 固有vectorが$n$個あるとき
 $n$を$\lambda$の縮退度と呼び、
 $n = 1$ならば縮退がない、
-$n \ge 2$ならば縮退があるという。
+$n \ge 2$ならば$n$重縮退があるという。
 固有値$\lambda$に属する固有vectorの集合は
 vector spaceを為し、これを固有値$\lambda$に対する
 固有空間という。
@@ -311,9 +311,9 @@ energy固有状態が持つ固有値をenergyというが、
 互いに可換な$n$個のoperator
 $\hat{A}_1, \hat{A}_2, \dots, \hat{A}_n$
 と、固有値$\lambda_i$に属する
-$\hat{A}_i$の固有vector $\ket{\psi}$
+$\hat{A}_i$の固有vector $\ket{\psi} \neq 0$
 があるとしよう。
-可換性から
+可換性$[\hat{A}_i, \hat{A}_j] = 0$から
 \begin{align}
     \lambda_i \hat{A}_j \ket{\psi}
     &=
@@ -332,18 +332,23 @@ $\hat{A}_j \ket{\psi}$
 $\lambda_i$に属するvectorが定数倍を除いて一意に定まるため、
 $\hat{A}_j \ket{\psi}$も
 $\ket{\psi}$に比例しているはずである。
-すなわち、$\hat{A}_j \ket{\psi}$は
-（$0$でないならば）$\hat{A}_j$の固有vectorになっている。
-$\lambda_i$に縮退がある場合でも、
+すなわち、$\ket{\psi}$は$\hat{A}_i$だけでなく
+$\hat{A}_j$の固有vectorにもなっている。
+$\lambda_i$に$m$重縮退がある場合でも、
 固有空間の基底
-$\ket{\psi_1}, \ket{\psi_2}, \dots$
+$\ket{\psi_1}, \ket{\psi_2}, \dots, \ket{\psi_m}$
 を適切に取ることにより
-やはり全ての$\ket{\psi_k}$が$\hat{A}_j$の固有vectorになるよう出来る事が知られている
+やはり全ての$\ket{\psi_k}$が
+$\hat{A}_j$の固有vectorにもなるよう出来る事が示される
 （ただし、$k$ごとに$\hat{A}_j$の固有値は
-異なって良い）。
+異なってよい）。
 
-このように可換なoperatorは
-
+このように互いに可換なoperatorのうち一方の固有vectorは
+同時に他方の固有vectorにも取ることができ、
+そのようなvectorを同時（simultaneous）固有vecctorという。
+独立なHermitian operatorのうち可換に取れるものの
+maximalな個数が$n$であるとき、そのような
+一般に、
 これを$\ket{\lambda_i}$と名付けるのが普通である。
 
 \subsubsection{観測値とOperatorの関係、物理的状態空間}
@@ -386,7 +391,7 @@ projection operator $\hat{P}$を用いて
     +
     \int d \hat{P} (a) \ket{\psi}
 \end{align}
-と書ける。
+が成り立つ。
 実際に観測される結果は演算子$\hat{A}$の
 固有値のいずれかであり、
 全く同一の状態 vector $\ket{\psi}$で表される物理系を
@@ -425,7 +430,7 @@ $\braket{\psi|\psi} \mapsto |a|^2 \braket{\psi|\psi}$
 $a = \dfrac{1}{\sqrt{ \braket{\psi|\psi} }}$
 による再定義で$\braket{\psi|\psi} = 1$
 としておくのが便利である。
-このようなvectorの再定義を規格化と言い、
+このようなvectorの再定義を規格化（normalization）と言い、
 以下では状態vectorは規格化されているものとする。
 状態vectorを規格化してもなお、
 $a=e^{i\theta}, \theta\in \mathbb{R}$
@@ -440,8 +445,32 @@ $e^{i\theta}\ket{\psi}$は
 
 改めて、rayの集合を物理的状態空間あるいは単に状態空間（state space）
 と呼ぶことにしよう。
-以下で規格化などによる同一視を行わないHilbert空間を直接扱うことは無いので、
+ある物理的状態とそれを表すrayまたは状態vectorも区別せず、
+これら全てを単に状態と呼ぶことにする。
+以下で規格化などによる同一視を行わないHilbert空間を直接扱うことはなく、
+そのため議論にvectorのnormが関わることもないので、
 以前の用語との混乱は生じない。
+
+\subsubsection{DiracのBracket記法}
+
+これまでは$\ket{\psi}$のような記号を
+単に状態vectorを表すものと扱っていたが、
+Diracはこれを更に便利にする記法を導入した。
+$\hat{A}$の固有値$a_n$に対する
+固有vectorを$\ket{a_n}$と略記し、
+固有空間に$m$重縮退がある場合には
+適当な正規直交基底$\ket{a_n,i}(i=1,\dots,m)$を取る。
+ここで、対応する固有空間へのprojection operatorを
+\begin{align}
+    \hat{P}_k &=: \sum_{i=1}^m \ket{a_n,i}\bra{a_n,i}
+\\
+    \hat{P}(a) &=: da \ket{a}\bra{a}
+\end{align}
+のように書くというのである。
+なお数学的には連続spectrumに対して固有vectorは存在しないが、
+上は単にspectral decompositionの略記法だと思えばよい。
+点spetrumと連続spectrumとを形式的に区別せずに書けるため、
+物理学者には非常に重宝がられている記法である。
 
 \subsubsection{調和振動子の例}
 
