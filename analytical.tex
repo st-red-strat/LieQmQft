@@ -562,9 +562,14 @@ $\{q\},\{p\}$に対して右辺の符号が異なるという非対称性があ�
 正準方程式(\ref{Hamilton's eom})は
 \begin{align}
     \begin{cases}
-        \dot{q_i} = \{q_i, H\}_{ \mathrm{P} }
+        \dot{q_i} 
+        = \dfrac{\partial H}{\partial p_i}
+        = \{q_i, H\}_{ \mathrm{P} }
       \\
-        \dot{p_i} = \{p_i, H\}_{ \mathrm{P} }
+      \\
+        \dot{p_i} 
+        = - \dfrac{\partial H}{\partial q_i}
+        = \{p_i, H\}_{ \mathrm{P} }
       \end{cases}
 \quad
 \therefore
@@ -572,6 +577,7 @@ $\{q\},\{p\}$に対して右辺の符号が異なるという非対称性があ�
     \dot{r} &= \{r, H\}_{ \mathrm{P} }
 \qquad
     ( r = q_i, p_j \quad\forall i, j )
+\label{Hamilton e.o.m. in Poisson bracket}
 \end{align}
 と$\{q\},\{p\}$の間で対称な形になる。
 より一般に、任意の関数

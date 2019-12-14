@@ -165,13 +165,14 @@ $\hat{A}, \hat{B}$は可換であるという。
 古典力学系と言い、そこに現れる可換な数を$c$-数という。
 
 任意の関数$F(a)$について、
-演算子$\hat{x}$の関数$\hat{F}(\hat{x})$を
+演算子$\hat{x}$の関数$F(\hat{x})$を
 （$a=0$周りの）Taylor展開により
 \begin{align}
-    \hat{F}(\hat{x}) := \sum_{n=0}^\infty
+    F(\hat{x}) := \sum_{n=0}^\infty
         \dfrac{1}{n!}
         \dfrac{d^nF(a)}{da^n}\bigg|_{a=0}
         \hat{x}^n
+\label{function of operator}
 \end{align}
 と定義する。
 ある古典力学系のHamiltonian $H(\{q\},\{p\})$
@@ -187,7 +188,7 @@ $ \{\hat{q}\} , \{\hat{p}\} $
 \begin{align}
     \hat{H}
     &:=
-    \hat{H}(\{\hat{q}\} , \{\hat{p}\})
+    H(\{\hat{q}\} , \{\hat{p}\})
 \end{align}
 を得られた量子力学系の
 Hamiltonian operator
@@ -489,9 +490,9 @@ $\{\hat{q}\}, \{\hat{p}\}$は可換測な物理量なのでHermitianであるこ
 $\hat{H}$のHermiticityも自然に従う。
 公式(\ref{A,BC to B(A,C) + (A,B)C})を使って
 \begin{align}
-    [\hat{q}_i, H] &= i\hbar \dfrac{ \hat{p}_i }{m} 
+    [\hat{q}_i, \hat{H}] &= i\hbar \dfrac{ \hat{p}_i }{m} 
 \\
-    [\hat{p}_j, H] &= - i \hbar\ m\omega^2 \hat{q}_j
+    [\hat{p}_j, \hat{H}] &= - i \hbar\ m\omega^2 \hat{q}_j
 \end{align}
 が得られる。
 これらが調和振動子の正準方程式
