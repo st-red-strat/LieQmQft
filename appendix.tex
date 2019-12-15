@@ -34,32 +34,39 @@
 
 正準変数$[\hat{q}_i, \hat{p}_j] = i\hbar\delta_{ij}$
 については興味深い事実が成り立つ。
-$C_n := [\hat{q}^n_i, \hat{p}_j]$について
+$C_n := \dfrac{1}{i\hbar} [\hat{q}^n_i, \hat{p}_j]$について
 \begin{align}
     C_{n+1}
     &=
+    \dfrac{1}{i\hbar}
     [\hat{q}^{n+1}_i, \hat{p}_j]
     =
-    \hat{q}_i [\hat{q}_i^n, \hat{p}_j]
+    \hat{q}_i 
+    \dfrac{1}{i\hbar}
+    [\hat{q}_i^n, \hat{p}_j]
     +
+    \dfrac{1}{i\hbar}
     [\hat{q}_i, \hat{p}_j] \hat{q}_i^n
     =
     \hat{q}_i C_n
     +
-    i\hbar\delta_{ij} \hat{q}_i^n
+    \delta_{ij} \hat{q}_i^n
 \end{align}
 なる漸化式が導けるが、
 これは初期条件
-$C_0  = 0, C_1 = i\hbar\delta_{ij}$のもとで
+$C_0  = 0, C_1 = \delta_{ij}$のもとで
 容易に
 \begin{align}
-    C_{n+1} &= [\hat{q}^{n+1}_i, \hat{p}_j]
-    = i\hbar\delta_{ij} (n+1) \hat{q}^n
+    C_{n+1} &= 
+    \dfrac{1}{i\hbar}
+    [\hat{q}^{n+1}_i, \hat{p}_j]
+    = \delta_{ij} (n+1) \hat{q}^n
 \end{align}
-と解け、多項式の微分の$i\hbar$倍と同じ振る舞いを与える。
+と解け、多項式の微分と同じ振る舞いを与える。
 全く同様に
-$[\hat{q}_i, \hat{p}^{n+1}_j]
-= i\hbar\delta_{ij} (n+1) \hat{p}^n$
+$\dfrac{1}{i\hbar}
+[\hat{q}_i, \hat{p}^{n+1}_j]
+= \delta_{ij} (n+1) \hat{p}^n$
 も示される。
 一般にoperatorの関数$F$の定義
 (\ref{function of operator})
