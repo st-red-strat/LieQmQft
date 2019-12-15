@@ -415,7 +415,9 @@ projection operator $\hat{P}$を用いて
 
 これらの規則を見ると、状態vector $\ket{\psi}$を
 定数（たとえば$a \in \mathbb{C}$）倍だけ
-再定義してもnormが伴って
+再定義
+$\ket{\psi} \mapsto a \ket{\psi}$
+してもnormが伴って
 $\braket{\psi|\psi} \mapsto |a|^2 \braket{\psi|\psi}$
 と変化するため、
 物理法則が予言する個々の観測量の期待値や確率は
@@ -760,18 +762,18 @@ $N_i\pm n_i$に属する固有状態
     &\propto
     \left(
         \hat{a}_i^\dagger
-    \right)^n
+    \right)^{n_i}
     \ket{N_1, N_2,\dots, N_n}
 \\
     \ket{N_1, N_2,\dots,N_i-n_i,\dots, N_n}
     &\propto
     \Big(
         \hat{a}_i
-    \Big)^n
+    \Big)^{n_i}
     \ket{N_1, N_2,\dots, N_n}
 \end{align}
 が構成できる事は明らかであろう。
-この比例係数を、
+この規格化定数を、
 最低固有値$N_i = 0$に属する状態について
 \begin{align}
     \hat{a}_i \ket{N_1, N_2,\dots, N_i = 0,\dots, N_n} = 0
@@ -783,10 +785,143 @@ $N_i\pm n_i$に属する固有状態
 \end{align}
 が成り立つという条件から計算してみよう。
 
-まず$N_i = 1$の場合は、
+一般の状態を
+規格化定数$A_{n_i}$を用いて
 \begin{align}
-    \ket{N_1, N_2,\dots,1,\dots, N_n}
-    &\propto
+    \ket{N_1, N_2,\dots,N_i=n_i,\dots, N_n}
+    &=
+    A_{n_i}
+    \left(
         \hat{a}_i^\dagger
-    \ket{N_1, N_2,\dots, N_i = 0,\dots, N_n}
+    \right)^{n_i}
+    \ket{N_1, N_2,\dots,
+    N_i = 0,
+    \dots, N_n}
 \end{align}
+と書くと、$n_i = 1$の場合には規格化条件
+\begin{align}
+    1 &=
+    \braket{
+        N_1, N_2,\dots,N_i = 1,\dots, N_n
+        |
+        N_1, N_2,\dots,N_i = 1,\dots, N_n
+    }
+\notag\\&=
+    |A_1|^2
+    \bra{N_1, N_2,\dots, N_i = 0,\dots, N_n}
+    \hat{a}_i
+    \hat{a}_i^\dagger
+    \ket{N_1, N_2,\dots, N_i = 0,\dots, N_n}
+\notag\\&=
+    |A_1|^2
+    \bra{N_1, N_2,\dots, N_i = 0,\dots, N_n}
+    \bigg(
+        \hat{a}_i^\dagger
+        \hat{a}_i
+        +
+        [
+        \hat{a}_i
+        ,
+        \hat{a}_i^\dagger
+        ]
+    \bigg)
+    \ket{N_1, N_2,\dots, N_i = 0,\dots, N_n}
+\notag\\&=
+    |A_1|^2
+    \bra{N_1, N_2,\dots, N_i = 0,\dots, N_n}
+    \bigg(
+        \hat{N}_i
+        +
+        1
+    \bigg)
+    \ket{N_1, N_2,\dots, N_i = 0,\dots, N_n}
+\notag\\&=
+    |A_1|^2
+    \bigg(
+        N_i
+            \Big|_{N_i=0}
+        +
+        1
+    \bigg)
+\end{align}
+を課すことで
+$|A_1|^2 = 1$が求まる。
+一般の$n_i$の場合も
+全く同じ議論を繰り返すことで
+\begin{align}
+    1 &=
+    \braket{
+        N_1, N_2,\dots,N_i = n_i + 1 ,\dots, N_n
+        |
+        N_1, N_2,\dots,N_i = n_i + 1 ,\dots, N_n
+    }
+\notag\\&=
+    \dfrac{
+        |A_{n_i + 1}|^2
+    }{
+        |A_{n_i}|^2
+    }
+    \bra{N_1, N_2,\dots, N_i = n_i ,\dots, N_n}
+    \hat{a}_i
+    \hat{a}_i^\dagger
+    \ket{N_1, N_2,\dots, N_i = n_i ,\dots, N_n}
+\notag\\&=
+    \dfrac{
+        |A_{n_i + 1}|^2
+    }{
+        |A_{n_i}|^2
+    }
+    \bigg(
+        N_i
+            \Big|_{N_i=n_i}
+        +
+        1
+    \bigg)
+\\\therefore\qquad
+    |A_{n_i + 1}|^2 &= 
+    \dfrac{1}{
+        n_i + 1
+    }
+    |A_{n_i}|^2
+\end{align}
+なる漸化式が得られ、
+その解は
+$|A_{n_i}|^2 = \dfrac{1}{n_i!}$
+と求まる。
+状態vectorのoverallの位相は情報を持たないのであったから
+$A_{n_i} \in \mathbb{R}_{>0}$と取っても一般性を失わず、
+一般の規格化された状態vectorが
+ただ一つの真空vector
+$\ket{N_1 = 0, N_2 = 0 ,\dots,
+N_i = 0,
+\dots, N_n = 0}$
+を用いて
+\begin{align}
+    \ket{N_1, N_2,\dots,N_i,\dots, N_n}
+    &=
+    \dfrac{
+        \left(
+            \hat{a}_i^\dagger
+        \right)^{N_i}
+    }{\sqrt{N_i!}}
+    \ket{N_1, N_2,\dots,
+    N_i = 0,
+    \dots, N_n}
+\notag\\\therefore
+    \ket{N_1, N_2,\dots,N_i,\dots, N_n}
+    &=
+    \prod_{i=1}^n
+    \left(
+        \dfrac{
+            \left(
+                \hat{a}_i^\dagger
+            \right)^{N_i}
+        }{\sqrt{N_i!}}
+    \right)
+    \ket{N_1 = 0, N_2 = 0 ,\dots,
+    N_i = 0,
+    \dots, N_n = 0}
+\end{align}
+と求まるのである。
+なお、このような真空とそこからの励起で書かれるvectorが張る
+vector spaceをFock spaceと呼ぶ。
