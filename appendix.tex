@@ -61,6 +61,7 @@ $C_0  = 0, C_1 = \delta_{ij}$のもとで
     \dfrac{1}{i\hbar}
     [\hat{q}^{n+1}_i, \hat{p}_j]
     = \delta_{ij} (n+1) \hat{q}^n
+\label{differential by commutator}
 \end{align}
 と解け、多項式の微分と同じ振る舞いを与える。
 全く同様に
@@ -73,25 +74,44 @@ $\dfrac{1}{i\hbar}
 はTaylor展開で与えられていたので、
 \begin{align}
     \dfrac{1}{i\hbar}
-    [F(\{ \hat{q} \},\{ \hat{p} \}, t), \hat{p}_i]
+    [F(\{ \hat{q} \},\{ \hat{p} \}), \hat{p}_i]
     &=
     \dfrac{
-        \partial F(\{ \hat{q} \},\{ \hat{p} \}, t)
+        \partial F(\{ \hat{q} \},\{ \hat{p} \})
     }{
         \partial q_i
     }
 \\
     \dfrac{1}{i\hbar}
-    [F(\{ \hat{q} \},\{ \hat{p} \}, t), \hat{p}_j]
+    [F(\{ \hat{q} \},\{ \hat{p} \}), \hat{p}_j]
     &=
     \dfrac{
-        \partial F(\{ \hat{q} \},\{ \hat{p} \}, t)
+        \partial F(\{ \hat{q} \},\{ \hat{p} \})
     }{
         \partial p_j
     }
 \end{align}
 なる公式が得られる。
 
+任意のoperator $\hat{O}$に対し、
+そのHeisenberg表示（Heisenberg描像、Heisenberg picture）を
+\begin{align}
+    \hat{O}(t)
+    :=
+    \exp\left(
+        -\dfrac{\hat{H} t}{i\hbar}
+    \right)
+        \hat{O}
+    \exp\left(
+        +\dfrac{\hat{H} t}{i\hbar}
+    \right)
+\end{align}
+のように定義する。
+$\hat{H}$のSchr\"odinger描像とHeisenberg描像は
+一致する。
+また、もちろんSchr\"odinger描像で
+$\hat{O}$自身が顕わに$t$に依存している場合も
+Heisenberg描像は同様に定義できる。
 $\hat{H}$との交換関係は
 \begin{align}
     [F(\{ \hat{q} \},\{ \hat{p} \}, t), \hat{H}]

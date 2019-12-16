@@ -116,6 +116,12 @@ $\eta:
 &\text{（正定値性）}
 \end{align}
 を満たすものがあることを言う。
+$2$つのvector $\ket{\psi},\ket{\phi}$の間の
+内積が消える
+$\braket{\psi | \phi} = 0$
+とき、$\ket{\psi}$と$\ket{\phi}$は直交する（normalである）といい、
+$\ket{\psi} \perp \ket{\phi}$などと書く。
+例えば$0$は任意のvectorと直交する。
 Hilbert空間とは内積空間であって完備な
 （直感的には、極限が十分に存在する）
 ものを言う。
@@ -301,13 +307,18 @@ vector spaceを為し、これを固有値$\lambda$に対する
 我々が特に興味があるのはObservableを表す
 Hermitian operatorであるが、
 $\hat{O} = \hat{O}^\dagger$のとき
-$\lambda$が実数となることが容易に示される。
+$\lambda$が実数となること、
+異なる固有値に属する固有vectorが直交すること
+が容易に示される。
 例えば
 $\hat{H}$の固有状態をenergy固有状態、
-energy固有状態が持つ固有値をenergyといい、
-特に最低energyに対応する固有vectorは
-真空（vacuum）と呼ばれるが、
+energy固有状態が持つ固有値をenergyというが、
 任意のenergyは実数である。
+また、特に最低energyに対応する固有vector
+$\ket{0} \neq 0$は
+真空（vacuum）、
+それ以外のenergy固有状態は励起状態（excited state）というが、
+真空と励起状態とは直交する。
 
 \subsubsection{同時固有状態}
 
@@ -492,7 +503,77 @@ $\hat{A}$の固有値$a_n$に対する
 点spetrumと連続spectrumとを形式的に区別せずに書けるため、
 物理学者には非常に重宝がられている記法である。
 
-\subsubsection{調和振動子の例}
+\subsubsection{Hermitian operatorと完全性}
+
+内積空間において、規格化されたvector
+$\ket{e_1},\ket{e_2},\dots$
+が互いに直交する
+\begin{align}
+    \braket{e_i | e_j} &= \delta_{ij}
+\end{align}
+場合、その集合を正規直交系（orthonormal system）という。
+vectorが必ずしも規格化されていない場合は単に直交系(normal system)という。
+あるHilbert空間$\mathcal{H}$の
+互いに線形独立な元による正規直交系
+$\ket{e_1},\ket{e_2},\dots$を取る。
+任意のvector
+$\ket{\psi} \in \mathcal{H}$が
+\begin{align}
+    \ket{\psi}
+    &=\sum_n c_n \ket{e_n}
+\end{align}
+のように一意的に展開できる場合、
+$\ket{e_n}$の集合を$\mathcal{H}$の正規直交完全系という。
+ただし正規直交性から
+\begin{align}
+    c_n &=
+    \sum_m c_m \delta_{nm} 
+    =\sum_m c_m \braket{e_n|e_m}
+    = \bra{e_n} \sum_m c_m \ket{e_m}
+    = \braket{e_n | \psi}
+\end{align}
+が従うため、上の式は
+\begin{align}
+    \ket{\psi}
+    &=\sum_n \ket{e_n} \braket{e_n | \psi}
+    \quad\text{for $\forall \ket{\psi}$}
+\\
+\therefore
+    1
+    &=
+    \sum _n \ket{e_n}\bra{e_n}
+\end{align}
+と書いても同じことである。
+等式はnormに関する収束
+\begin{align}
+    &\lim_{N\to\infty}\bigg|\bigg|
+        \ket{\psi} - \ket{\psi_N}
+    \bigg|\bigg|^2
+    = 0
+\\
+    &\ket{\psi_N}
+    :=
+    \sum_{n=1}^N \ket{e_n} \braket{e_n | \psi}
+\end{align}
+を意味している。
+完全系はvector spaceの基底の概念によく似ているが、
+基底には必要ない内積という付加的な構造を定義に用いており、
+特にvector spaceの基底は$n$について有限和しか許さないのに対し、
+完全系は$n$についての無限和も許している点で相違している。
+
+適当なHermitian operator
+$\hat{O} = \hat{O}^\dagger$
+が与えられたとき、
+その全ての固有vector 
+$\ket{\lambda_n}$の集合が完全系をなす事を仮定する。
+これは、適当な状態$\ket{\psi}$のもとで
+物理量$\hat{O}$を観測した際には、
+必ず固有値$\lambda_n$のいずれかが
+観測される必要があるためである。
+
+\subsubsection{調和振動子の例、
+    生成消滅演算子、
+    Fock space}
 
 $n$次元調和振動子を正準量子化してみよう。
 $\{\hat{q}\}, \{\hat{p}\}$は可換測な物理量なのでHermitianであることを仮定しており、
@@ -599,12 +680,15 @@ $\{\hat{a}\}, \{\hat{a}^\dagger\}$への
 \\
     [\hat{a}_i, \hat{a}^\dagger_j]
     &=\delta_{ij}
+\label{creation annihilation operator}
 \\
     [\hat{H},\hat{a}_i]
     &= - \hbar \omega \hat{a}_i
-    \\
+\label{annihilation operator}
+\\
     [\hat{H},\hat{a}^\dagger_j]
     &= + \hbar \omega \hat{a}^\dagger_j
+\label{creation operator}
 \end{align}
 が得られる。
 ただし、
@@ -728,7 +812,7 @@ $N_i = 0$の状態に対しては
 \label{vacuum of number operator}
 \end{align}
 が成り立つ必要があると分かる。
-すなわち$\forall i$について$N_i \in \mathbb{N}_{\ge 0}$であり、
+すなわち$\forall\ i$について$N_i \in \mathbb{N}_{\ge 0}$であり、
 energy固有値はこれらを用い
 \begin{align}
     E = \hbar\omega
@@ -935,9 +1019,117 @@ N_i = 0,
         }{\sqrt{N_i!}}
     \right)
     \ket{N_1 = 0, N_2 = 0 ,\dots,
-    N_i = 0,
-    \dots, N_n = 0}
+    N_n = 0}
 \end{align}
 と求まるのである。
 なお、このような真空とそこからの励起で書かれるvectorが張る
 vector spaceをFock spaceと呼ぶ。
+
+\subsubsection{Coherent state}
+
+量子力学では全てのobservableは
+Hermitian operatorであったので、
+基本的にはその固有状態に興味があった。
+時にはnon-Hermitian operatorの固有状態も
+興味深い性質を持つので、
+$1$自由度の調和振動子系で
+$\hat{a}^\dagger, \hat{a}$の固有状態を例に取り
+その性質を調べてみよう。
+$n$自由度系への拡張は上の議論から容易である。
+
+調和振動子のcoherent状態を
+\begin{align}
+    \ket{\alpha}
+    &:= \exp(\alpha \hat{a}^\dagger)
+    \ket{N=0}
+\end{align}
+で定義する。
+$\hat{a}^\dagger, \hat{a}$の交換関係
+(\ref{creation annihilation operator}
+)から
+(\ref{differential by commutator})
+を導くのと全く同じ議論を繰り返せて
+\begin{align}
+    [\hat{a},\hat{a}^\dagger]
+    &= 1
+\notag\\
+    C_{n+1}
+    &:=
+    [\hat{a},\left(\hat{a}^\dagger\right)^{n+1}]
+\notag\\
+    &=
+    \hat{a}^\dagger
+    [\hat{a},\left(\hat{a}^\dagger\right)^{n}]
+    +
+    [\hat{a},\hat{a}^\dagger]
+    \left(\hat{a}^\dagger\right)^{n}
+\notag\\
+    &= \hat{a}^\dagger C_n
+     + \left(\hat{a}^\dagger\right)^{n}
+\notag\\
+    \therefore\quad
+    [\hat{a},\left(\hat{a}^\dagger\right)^{n+1}]
+    &=
+    C_{n+1} = 
+    (n+1) \left(\hat{a}^\dagger\right)^{n}
+\end{align}
+が成り立つので、
+$\displaystyle
+\exp(\alpha \hat{a}^\dagger) 
+=
+\sum_{n=0}^\infty
+\dfrac{
+    \left(\alpha \hat{a}^\dagger\right)^n
+}{n!} 
+$
+との間には
+\begin{align}
+    [ \hat{a}, \exp(\alpha \hat{a}^\dagger) ]
+&=
+    \sum_{n=1}^\infty
+    \dfrac{
+        \alpha^n 
+    }{n!} 
+    n \left(\hat{a}^\dagger\right)^{n-1}
+%\notag\\&
+=
+    \sum_{n=1}^\infty
+    \dfrac{
+        \alpha^n 
+    }{(n-1)!} 
+    \left(\hat{a}^\dagger\right)^{n-1}
+\notag\\&=
+    \alpha
+    \sum_{n=0}^\infty
+    \dfrac{
+        \alpha^n 
+    }{n!} 
+    \left(\hat{a}^\dagger\right)^{n}
+%\notag\\&=
+=
+    \alpha
+    \exp(\alpha \hat{a}^\dagger)
+\end{align}
+なる交換関係が成り立つ。
+真空条件を用いるとcoherent stateは
+\begin{align}
+    \hat{a}
+    \ket{\alpha}
+    &= \bigg(
+        \exp(\alpha \hat{a}^\dagger)
+        \cancel{ \hat{a} }
+        +
+        [ \hat{a} , \exp(\alpha \hat{a}^\dagger) ]
+    \bigg)
+    \ket{0}
+\notag\\ &=
+    \alpha\exp(\alpha \hat{a}^\dagger)
+    \ket{0}
+\notag\\ &=
+    \alpha
+    \ket{\alpha}
+\end{align}
+を満たし、
+$\hat{a}$の固有値$\alpha$に属する固有状態であることが分かる。
+$\hat{a}$がnon-Hermitianであることに対応して、
+$\alpha$は実数ではなく任意の複素数でよい事に注意しよう。
