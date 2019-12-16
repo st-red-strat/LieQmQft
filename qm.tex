@@ -269,7 +269,7 @@ $\hat{O}$が
     \hat{O} = \hat{O}^\dagger
 \end{align}
 を満たすことを言う。
-量子力学におけるObservable（可換測量）は、
+量子力学におけるobservable（可換測量）は、
 Hermitian operator で表される。
 
 \subsubsection{固有状態とHermitian operator}
@@ -304,12 +304,51 @@ $n \ge 2$ならば$n$重縮退があるという。
 vector spaceを為し、これを固有値$\lambda$に対する
 固有空間という。
 
-我々が特に興味があるのはObservableを表す
+我々が特に興味があるのはobservableを表す
 Hermitian operatorであるが、
 $\hat{O} = \hat{O}^\dagger$のとき
-$\lambda$が実数となること、
-異なる固有値に属する固有vectorが直交すること
-が容易に示される。
+$\lambda$が実数となること
+\begin{align}
+    &\lambda \braket{\psi | \psi}
+    =
+    \bra{\psi} \hat{O} \ket{\psi}
+    = \bra{\psi} \hat{O}^\dagger \ket{\psi}
+    = \left[ \bra{\psi} \hat{O} \ket{\psi}\right]^*
+    = \lambda^* \braket{\psi | \psi}
+\\
+    &\lambda = \lambda^*
+    \quad\because\quad
+    \ket{\psi} \neq 0
+\end{align}
+および異なる固有値
+$\lambda \neq \theta$
+に属する固有vector
+\begin{align}
+    \hat{O} \ket{\psi} &= \lambda \ket{\psi} 
+\\
+    \hat{O} \ket{\phi} &= \theta \ket{\phi}
+\end{align}
+が直交すること
+\begin{align}
+    \lambda
+    \braket{\psi|\phi}
+    = 
+    \lambda^*
+    \braket{\phi|\psi}^*
+    =
+    \left[
+        \bra{\phi} \hat{O} \ket{\psi}
+    \right]^*
+    &= \bra{\psi} \hat{O}^\dagger \ket{\phi}
+    = \bra{\psi} \hat{O} \ket{\phi}
+    = \theta \braket{\psi|\phi}
+\\\therefore
+    \braket{\psi|\phi}
+    &=\braket{\psi|\phi}
+    =0
+\label{physically distinct states}
+\end{align}
+が示される。
 例えば
 $\hat{H}$の固有状態をenergy固有状態、
 energy固有状態が持つ固有値をenergyというが、
@@ -456,11 +495,15 @@ $e^{i\theta}\ket{\psi}$は
 射線（ray）と呼ばれるobjectにより表される。
 
 物理的に区別できないvectorについては上のように述べたが、
-更に我々は物理的に明確に区別できる
-（つまりあるHermitian operatorについて異なる固有値を持つ）
-状態を表す状態vectorが互いに直交する事を要求する。
-当然、任意のoperatorについて同じ固有値を持つvectorは
+更に我々は任意のoperatorについて同じ固有値を持つvectorは
 どのような物理量ないし実験によっても区別できないため同じ状態と見做す。
+物理的に明確に区別できる
+（つまりあるHermitian operatorについて
+異なる固有値を持つ）
+状態を表す状態vector
+は互いに直交する事を
+(\ref{physically distinct states})
+で示した。
 一般にある量子系において、
 線形独立なHermitian operatorのうち
 可換に取れるもののmaximalな個数が$n$であるとき、
@@ -715,12 +758,12 @@ $\hat{N}_k$を定義した
     +
         \left[ \hat{H}, \hat{a}_i \right]
     \right) \ket{\psi}
-\quad\\&=
+\notag\\&=
     \left(
         \hat{a}_i E
     - \hbar \omega \hat{a}_i
     \right) \ket{\psi}
-\quad\\&=
+\notag\\&=
     \left(
         E - \hbar \omega
     \right)
@@ -1045,8 +1088,7 @@ $n$自由度系への拡張は上の議論から容易である。
 \end{align}
 で定義する。
 $\hat{a}^\dagger, \hat{a}$の交換関係
-(\ref{creation annihilation operator}
-)から
+(\ref{creation annihilation operator})から
 (\ref{differential by commutator})
 を導くのと全く同じ議論を繰り返せて
 \begin{align}
