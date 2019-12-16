@@ -1083,10 +1083,12 @@ $n$自由度系への拡張は上の議論から容易である。
 調和振動子のcoherent状態を
 \begin{align}
     \ket{\alpha}
-    &:= \exp(\alpha \hat{a}^\dagger)
-    \ket{N=0}
+    &:= 
+    \dfrac{1}{A}
+    \exp(\alpha \hat{a}^\dagger)
+    \ket{0}
 \end{align}
-で定義する。
+で定義する。$A$は規格化定数で、後で定める。
 $\hat{a}^\dagger, \hat{a}$の交換関係
 (\ref{creation annihilation operator})から
 (\ref{differential by commutator})
@@ -1157,7 +1159,9 @@ $
 \begin{align}
     \hat{a}
     \ket{\alpha}
-    &= \bigg(
+    &= 
+    \dfrac{1}{A}
+    \bigg(
         \exp(\alpha \hat{a}^\dagger)
         \cancel{ \hat{a} }
         +
@@ -1165,6 +1169,7 @@ $
     \bigg)
     \ket{0}
 \notag\\ &=
+    \dfrac{1}{A}
     \alpha\exp(\alpha \hat{a}^\dagger)
     \ket{0}
 \notag\\ &=
@@ -1175,3 +1180,52 @@ $
 $\hat{a}$の固有値$\alpha$に属する固有状態であることが分かる。
 $\hat{a}$がnon-Hermitianであることに対応して、
 $\alpha$は実数ではなく任意の複素数でよい事に注意しよう。
+
+規格化定数は
+\begin{align}
+    1
+    &=
+    \braket{ \alpha | \alpha }
+    =
+    \dfrac{1}{A^*}    
+    \bra{0}
+    \exp(\alpha^* \hat{a})
+    \ket{\alpha}
+    =
+    \dfrac{1}{A^*}    
+    \bra{0}
+    \exp(\alpha^* \alpha)
+    \ket{\alpha}
+\notag\\&=
+    \dfrac{
+        \exp( |\alpha|^2 )
+    }{|A|^2}
+    \bra{0}
+    \exp(\alpha \hat{a}^\dagger)
+    \ket{0}
+\notag\\&=
+    \dfrac{
+        \exp( |\alpha|^2 )
+    }{|A|^2}
+\notag\\&=
+    \dfrac{
+        \exp( |\alpha|^2 )
+    }{|A|^2}
+\end{align}
+最後の等式では、真空条件
+$\bra{0}\hat{a}^\dagger = 0$
+および真空が規格化されていること
+$\braket{0|0}=1$
+を用いた。
+規格化定数が正の実数
+$A = \exp\left( \dfrac{1}{2} |\alpha|^2 \right)$
+になるよう位相を選んで一般性を失わないので、
+規格化されたcoherent stateは
+\begin{align}
+    \ket{\alpha}
+    &=
+    \exp\left( -\dfrac{1}{2} |\alpha|^2 \right)
+    \exp(\alpha \hat{a}^\dagger)
+    \ket{0}
+\end{align}
+と書けることが分かる。
