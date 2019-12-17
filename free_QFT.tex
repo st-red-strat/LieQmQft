@@ -15,7 +15,32 @@
 量子化される対象となる古典論を用意する必要がある。
 適当な場$\phi(\bm{x})$と
 その空間微分$\partial_i \phi(\bm{x})$
-で書かれたLagrangianを用意しよう。
+で書かれたLagrangian $L$を用意しよう。
+空間$d$次元、時間$1$次元の$D:= d+1$次元時空を考え、
+Lagrangian密度を$\mathcal{L}$と書く。
+当然Lagrangianは$L := \int d^d x \mathcal{L}$である。
+場の変分$\phi \mapsto \phi + \delta \phi$のもとで
+作用の変分は
+\begin{align}
+    \delta S
+    &=
+    \int d^{d+1} x
+    \left[
+        \mathcal{L}(\phi + \delta \phi ,
+        \partial \phi + \partial (\delta \phi))
+        - \mathcal{L}
+    \right]
+\notag\\&=
+    \int d^{d+1} x
+    \left[
+        \delta \phi
+        \dfrac{\delta \mathcal{L}}{\delta \phi}
+        +
+        \partial (\delta \phi)
+        \dfrac{\delta \mathcal{L}}{\delta (\partial\phi)}
+    \right]
+\end{align}
+
 
 \subsection{場の量子化}
 
