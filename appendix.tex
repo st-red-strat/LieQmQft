@@ -34,28 +34,37 @@
 
 Baker-Campbell-Hausdrff formulaは
 \begin{align}
-    e^A e^B
+    e^{\hat{A}} e^{\hat{B}}
     &=
     \exp\left(
-        A + B
-        + \dfrac{1}{2}[A,B]
-        + \dfrac{1}{12}[A - B,[A,B]]
+        \hat{A} + \hat{B}
+        + \dfrac{1}{2}[\hat{A},\hat{B}]
+        + \dfrac{1}{12}[\hat{A} - \hat{B},[\hat{A},\hat{B}]]
         + \cdots
     \right)
 \label{BCH formula}
 \end{align}
-であり、特に交換関係が$c$-数$[A,B]=c$の場合は
+であり、特に交換関係が$c$-数
+$[\hat{A},\hat{B}]=c$の場合は
 交換子を$2$回以上取ると必ず消えるため
 \begin{align}
-    e^A e^B
+    e^{\hat{A}} e^{\hat{A}}
     &=
     \exp\left(
-        A + B
+        \hat{A} + \hat{B}
         + \dfrac{1}{2}c
     \right)
 \label{simpler BCH formula}    
 \end{align}
 となる。
+証明のためには
+$e^{\hat{C}(t)}
+= e^{t\hat{A}} e^{t\hat{B}}$
+すなわち$\hat{C}(t) = \log (
+    e^{t\hat{A}} e^{t\hat{B}}
+)$とおき、
+右辺のTaylor展開を計算した後
+$t=1$とおけばよい。
 
 正準変数$[\hat{q}_i, \hat{p}_j] = i\hbar\delta_{ij}$
 については興味深い事実が成り立つ。
