@@ -32,6 +32,32 @@
     [\hat{B}^\dagger, \hat{A}^\dagger]
 \end{align}
 
+Baker-Campbell-Hausdrff formulaは
+\begin{align}
+    e^A e^B
+    &=
+    \exp\left(
+        A + B
+        + \dfrac{1}{2}[A,B]
+        + \dfrac{1}{12}[A,[A,B]]
+        - \dfrac{1}{12}[B,[A,B]]
+        \dots
+    \right)
+\label{BCH formula}
+\end{align}
+であり、特に交換関係が$c$-数$[A,B]=c$の場合は
+交換子を$2$回以上取ると必ず消えるため
+\begin{align}
+    e^A e^B
+    &=
+    \exp\left(
+        A + B
+        + \dfrac{1}{2}c
+    \right)
+\label{simpler BCH formula}    
+\end{align}
+となる。
+
 正準変数$[\hat{q}_i, \hat{p}_j] = i\hbar\delta_{ij}$
 については興味深い事実が成り立つ。
 $C_n := \dfrac{1}{i\hbar} [\hat{q}^n_i, \hat{p}_j]$について

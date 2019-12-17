@@ -214,7 +214,7 @@ Hamiltonian operatorのHermiticityや
 ただし特定の文脈で自然な演算子順序は存在し、
 このことは経路積分を扱う際により詳しく議論する。
 
-\subsubsection{ObservablesとHermitian conjugate}
+\subsubsection{ObservablesとHermitian conjugate、Unitary operator}
 
 任意のvector $\ket{\psi} \in \mathcal{H}$の
 Hermitian conjugate $\ket{\psi}^\dagger$を
@@ -271,6 +271,27 @@ $\hat{O}$が
 を満たすことを言う。
 量子力学におけるobservable（可換測量）は、
 Hermitian operator で表される。
+
+あるoperator $\hat{O}$の
+inverse operator（逆演算子、逆作用素）
+$\hat{O}^{-1}$
+を
+\begin{align}
+    \hat{O}^{-1} \hat{O} \ket{\psi} &= \ket{\psi}
+    \quad\text{for $\forall \ket{\psi}$}
+\end{align}
+で定義する。
+あるoperator $\hat{U}$がunitaryであるとは、
+$ \hat{U}^\dagger = \hat{U}^{-1} $
+すなわち
+\begin{align}
+    \hat{U}^\dagger \hat{U} \ket{\psi} &= \ket{\psi}
+    \quad\text{for $\forall \ket{\psi}$}
+\end{align}
+が成り立つことを言う。
+例えば、時間発展operator
+$\exp\left( \dfrac{ \hat{H}t }{i\hbar} \right)$
+はunitary operatorの例である。
 
 \subsubsection{固有状態とHermitian operator}
 
@@ -1153,6 +1174,7 @@ $
 =
     \alpha
     \exp(\alpha \hat{a}^\dagger)
+\label{coherent commutator}
 \end{align}
 なる交換関係が成り立つ。
 真空条件を用いるとcoherent stateは
@@ -1229,3 +1251,92 @@ $A = \exp\left( \dfrac{1}{2} |\alpha|^2 \right)$
     \ket{0}
 \end{align}
 と書けることが分かる。
+
+\subsubsection{Displacement operator}
+
+上で定義したcoherent stateは、
+displacement operator $D(\alpha)$を
+\begin{align}
+    D(\alpha) &:=
+   \exp(
+        \alpha\hat{a}^\dagger
+        - \alpha^* \hat{a}
+    )
+\end{align}
+で定義するとより系統的に扱うことが出来る。
+$[\hat{a}, \hat{a}]=0$であるので、
+交換関係
+(\ref{coherent commutator})
+を証明したのと全く同じ方法で
+\begin{align}
+    [\hat{a},\left(
+        \alpha\hat{a}^\dagger
+        - \alpha^* \hat{a}
+    \right)^{n+1}]
+    &=
+    \alpha
+    (n+1) \left(
+        \alpha\hat{a}^\dagger
+        - \alpha^* \hat{a}
+    \right)^{n}
+\\\therefore\qquad
+    [\hat{a}, D(\alpha) ]
+    &=
+    \alpha D(\alpha)
+\end{align}
+が証明でき、
+状態$D(\alpha)\ket{0}$もまた
+$\hat{a}$の固有値$\alpha$に属する固有状態
+\begin{align}
+    \hat{a} D(\alpha)\ket{0}
+    &=
+    \alpha D(\alpha)\ket{0}
+\end{align}
+であることが分かる。
+
+このdisplacement operatorはunitaryである
+\begin{align}
+    D(\alpha)^\dagger D(\alpha) &= 
+    \exp(
+        \alpha^* \hat{a}
+        - \alpha \hat{a}^\dagger
+    )
+    \exp(
+        \alpha\hat{a}^\dagger
+        - \alpha^* \hat{a}
+    )
+\notag\\&=
+    \exp\Big(
+        - (
+        \alpha \hat{a}^\dagger
+        -
+        \alpha^* \hat{a}
+        )
+    \Big)
+    \exp(
+        \alpha\hat{a}^\dagger
+        - \alpha^* \hat{a}
+    )
+\notag\\&=
+    1
+\end{align}
+ため状態$D(\alpha)\ket{0}$は規格化されており、
+実際に
+$[
+    \alpha \hat{a}^\dagger,
+     - \alpha^* \hat{a}
+]
+= |\alpha|^2$から
+BCH formulaの特別な場合
+(\ref{simpler BCH formula})
+が使えて
+\begin{align}
+    D(\alpha) &= \exp\left(
+        - \dfrac{1}{2}|\alpha|^2
+    \right)
+    \exp(\alpha \hat{a}^\dagger)
+    \exp( - \alpha^* \hat{a})
+\\
+    \ket{\alpha} &= D(\alpha) \ket{0}
+\end{align}
+であることが証明できる。
