@@ -44,7 +44,15 @@ Baker-Campbell-Hausdrff formulaは
     \right)
 \label{BCH formula}
 \end{align}
-であり、特に交換関係が$c$-数
+である。証明のためには
+$e^{\hat{C}(t)}
+= e^{t\hat{A}} e^{t\hat{B}}$
+すなわち$\hat{C}(t) = \log (
+    e^{t\hat{A}} e^{t\hat{B}}
+)$とおき、
+右辺のTaylor展開を計算した後
+$t=1$とおけばよい。
+特に交換関係が$c$-数
 $[\hat{A},\hat{B}]=c$の場合は
 交換子を$2$回以上取ると必ず消えるため
 \begin{align}
@@ -57,14 +65,6 @@ $[\hat{A},\hat{B}]=c$の場合は
 \label{simpler BCH formula}    
 \end{align}
 となる。
-証明のためには
-$e^{\hat{C}(t)}
-= e^{t\hat{A}} e^{t\hat{B}}$
-すなわち$\hat{C}(t) = \log (
-    e^{t\hat{A}} e^{t\hat{B}}
-)$とおき、
-右辺のTaylor展開を計算した後
-$t=1$とおけばよい。
 
 正準変数$[\hat{q}_i, \hat{p}_j] = i\hbar\delta_{ij}$
 については興味深い事実が成り立つ。
@@ -146,11 +146,20 @@ $\hat{H}$のSchr\"odinger描像とHeisenberg描像は
 また、もちろんSchr\"odinger描像で
 $\hat{O}$自身が顕わに$t$に依存している場合も
 Heisenberg描像は同様に定義できる。
+Heisenberg描像のoperator
+$F(\{ \hat{q} \},\{ \hat{p} \}, t)$と
 $\hat{H}$との交換関係は
 \begin{align}
+    \dfrac{d}{d t}
+    F(\{ \hat{q} \},\{ \hat{p} \}, t)
+    =
+    \dfrac{1}{i\hbar}
     [F(\{ \hat{q} \},\{ \hat{p} \}, t), \hat{H}]
-    \label{Hamiltonian as time translation generator}
+    + \dfrac{\partial}{\partial t}
+    F(\{ \hat{q} \},\{ \hat{p} \}, t)
+    \label{Heisenberg e.o.m}
 \end{align}
+となり、Heisenberg equation of motionと呼ばれる。
 これはPoisson括弧で書かれた正準方程式(\ref{Hamilton e.o.m. in Poisson bracket})
 ないし任意の関数$F$の時間発展(\ref{time evolution in Poisson bracket})
 と同一の構造であり、

@@ -19,6 +19,12 @@ Hermitianないしunitary operatorを扱う。
 再びvector space の元
 $O\ket{\psi} \in \mathcal{H}$
 を与えるものである。
+例えばidentity operator（恒等演算子、単位演算子）$1$は
+任意のvector $\ket{\psi}$に対し
+\begin{align}
+    1 \ket{\psi} = \ket{\psi}
+\end{align}
+を与える。
 
 あるoperator $O$が$\mathcal{H}$にlinearに作用している、
 あるいはlinearである、とは
@@ -116,6 +122,9 @@ $\eta:
 &\text{（正定値性）}
 \end{align}
 を満たすものがあることを言う。
+$\Big|\Big| \ket{\psi} \Big|\Big|^2
+:= \braket{ \psi | \psi }$
+を$\ket{\psi}$のnormという。
 $2$つのvector $\ket{\psi},\ket{\phi}$の間の
 内積が消える
 $\braket{\psi | \phi} = 0$
@@ -217,7 +226,7 @@ Hamiltonian operatorのHermiticityや
 \subsubsection{ObservablesとHermitian conjugate、Unitary operator}
 
 任意のvector $\ket{\psi} \in \mathcal{H}$の
-Hermitian conjugate $\ket{\psi}^\dagger$を
+Hermitian conjugate（エルミート共役） $\ket{\psi}^\dagger$を
 内積を使って
 \begin{align}
     \ket{\psi}^\dagger
@@ -239,8 +248,11 @@ $\ket{\phi} \in \mathcal{H}$
 内積の線形性から
 $\bra{\psi}$は$\mathcal{H}$上の
 線形汎関数と見做すことが出来、
+Riesz representation theoremから
 $\bra{\psi}$のなす集合$\mathcal{H}^*$は
 $\mathcal{H}$の（位相的あるいは線形）双対空間となる。
+Hilbert空間の元$\ket{\psi}$をket vector、
+その双対空間の元$\bra{\psi}$をbra vectorという。
 
 この定義の下でoperator $\hat{O}$の
 Hermitian conjugate $\hat{O}^\dagger$も、
@@ -262,8 +274,11 @@ Hermitian conjugate $\hat{O}^\dagger$も、
     \Big]^*
 \end{align}
 となるoperatorと定めることが出来る。
+このようなoperatorが一意的に存在することも
+Riesz representation theoremから保証される。
 
-あるoperator $\hat{O}$がHermitianであるとは、
+あるoperator $\hat{O}$が
+Hermitian（自己共役、自己随伴）であるとは、
 $\hat{O}$が
 \begin{align}
     \hat{O} = \hat{O}^\dagger
@@ -447,7 +462,7 @@ projection operator $\hat{P}$を用いて
     \int d \hat{P} (a) a
 \end{align}
 のように書くと、
-単位演算子との関係
+identity operatorとの関係
 \begin{align}
     1 = 
     \sum_n \hat{P}_n
@@ -608,6 +623,7 @@ $\ket{e_n}$の集合を$\mathcal{H}$の正規直交完全系（orthonormal compl
     \sum _n \ket{e_n}\bra{e_n}
 \end{align}
 と書いても同じことである。
+ここで$1$はidentity operatorを意味する。
 等式はnormに関する収束
 \begin{align}
     &\lim_{N\to\infty}\bigg|\bigg|
@@ -663,7 +679,7 @@ $\hat{H}$のHermiticityも自然に従う。
 (\ref{hamiltonian e.o.m for harmonic oscillator})
 に非常によく類似している事に注意しよう
 （より詳しくは
-(\ref{Hamiltonian as time translation generator})
+(\ref{Heisenberg e.o.m})
 を参照）。
 
 このままでは議論を進めるのが難しいが、
@@ -850,7 +866,18 @@ $\hat{N}_i$の期待値を取ると
 \end{align}
 が導かれる。
 最後の不等式は単に内積の正定値性から要求されるのだが、
-$0<N_i<1$が存在するとすると
+最初に気が付くことは$N_i = 0$のときには内積の正定値性から
+真空条件：
+\begin{align}
+    \hat{a}_i \ket{N_1, N_2,\dots, N_i = 0,\dots, N_n} = 0
+\label{vacuum of number operator}
+\end{align}
+が成り立つことである。
+それ以外の固有値$N_i\neq0$に属する状態に$\hat{a}_i$を掛けて得られるvectorはnormが非$0$となるため、
+正定値性はこのvectorが$0$ vectorにはなり得ない事
+$    \hat{a}_i \ket{N_1, N_2,\dots, N_i \neq 0,\dots, N_n} \neq 0$
+も保証する。
+また、$0<N_i<1$が存在するとすると
 $\hat{a}_i$によって$\hat{N}_i$の固有値を下げたとき
 \begin{align}
     \bra{N_1, N_2,\dots, N_n}
@@ -866,16 +893,9 @@ $\hat{a}_i \ket{N_1, N_2,\dots, N_n}$
 同様に適当な$p\in\mathbb{N}_+$に対し
 $p<N_i<p+1$が存在するときも$\hat{a}_i$を$p+1$回以上作用させれば
 正定値性の不等式に矛盾する結果が得られるので、
-$\hat{N}_i$の任意の固有値は（存在するならば）非負整数であり、
-かつ
-$N_i = 0$の状態に対しては
-それ以下の固有値と固有状態が存在しないために
-真空条件：
-\begin{align}
-    \hat{a}_i \ket{N_1, N_2,\dots, N_i = 0,\dots, N_n} = 0
-\label{vacuum of number operator}
-\end{align}
-が成り立つ必要があると分かる。
+$\hat{N}_i$の任意の固有値は（存在するならば）非負整数であること、
+$N_i = 0$の状態に対しては真空条件から
+それ以下の固有値と固有状態を作れないことが分かる。
 すなわち$\forall\ i$について$N_i \in \mathbb{N}_{\ge 0}$であり、
 energy固有値はこれらを用い
 \begin{align}
@@ -936,7 +956,8 @@ $N_i\pm n_i$に属する固有状態
     \Big)^{n_i}
     \ket{N_1, N_2,\dots, N_n}
 \end{align}
-が構成できる事は明らかであろう。
+が構成できる事は明らかであろう
+（$N_i\pm n_1= 0$でない限りこれらのvectorが$0$ vectorとならないことは既に説明した）。
 この規格化定数を、
 最低固有値$N_i = 0$に属する状態について
 \begin{align}
