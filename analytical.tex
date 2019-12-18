@@ -234,6 +234,70 @@ $n$次元調和振動子の場合Lagrangianは
 \end{align}
 となり、確かにNewtonの運動方程式を再現する。
 
+\subsubsection{Noetherの定理と保存電荷}
+
+Euler-Lagrange方程式を導く際、
+我々は任意の変分$\delta q(t)$のもとで
+作用の変分$\delta S$が消えることを要求した。
+作用の変分がある特別な$\delta q(t)$のもとで消える場合、
+この特別な変分$\delta q(t)$は系の対称性である、という。
+より一般に、一定の規則に従って変数変換や
+parameterの置き換えなど何らかの操作を行い、
+考えている力学系から新たな力学系を得ることを変換といい、
+ある変換$T$の下で元と同じ系が得られる
+（系が変換前と全く同じ力学法則によって記述される）とき
+$T$は系の対称性、あるいは不変性であるという。
+
+Noetherの定理は
+系に連続的な対称性が存在するとき、
+必ず対応する保存量（時間に依らず一定であるような量）が
+存在する事を主張する。
+無限小量$\epsilon$を、$\epsilon^2 = 0$かつ
+任意の関数$f(x)$について
+$f(x+\epsilon)=f(x) + \epsilon \dfrac{df(x)}{dx}$
+が厳密に成り立つような量と定義する。
+変換が連続なら、ある変換
+$q(t) \mapsto q'(t)$の十分近傍に$\epsilon$を使って
+$q(t) \mapsto q'(t) + \epsilon\delta q'(t)$
+と書ける変換も存在するはずだ。
+このような変換が系の対称性であるので、
+当然この変換の下で作用が変化してはおかしい。
+作用が変わらないためには、
+適当な関数$F(t)$が存在して作用の変化が
+\begin{align}
+  \delta S
+  &:=
+  S[q'(t) + \epsilon\delta q'(t)]
+  -
+  S[q'(t)]
+\notag\\&=
+  \sum_i
+  \bigg[
+    \delta q_i(t)
+    \dfrac{\partial}{\partial \dot{q_i}}
+    L(\{ q(t) \},
+    \{ \dot{q}(t) \} )
+  \bigg]_{t=t_i}^{t_f}
+\notag\\&\qquad
+  +
+\int dt\ \sum_i
+\delta q_i(t)
+\bigg\{
+  \dfrac{\partial}{\partial q_i}
+  L(\{ q(t) \},
+  \{ \dot{q}(t) \} )
+-
+  \dfrac{d}{dt}
+  \dfrac{\partial}{\partial \dot{q_i}}
+  L(\{ q(t) \},
+  \{ \dot{q}(t) \} )
+\bigg\}
+\notag\\&=
+  \int dt \dfrac{d F(t)}{dt}
+\end{align}
+のように全微分で書けていれば良いだろう。
+ここで、表面項はやはり適切な境界条件により消せると仮定している。
+
 \subsection{Hamilton力学}
 
 一般にEuler-Lagrange方程式は各変数$q_i$の
