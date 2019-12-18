@@ -232,6 +232,7 @@ Hermitian conjugate（エルミート共役） $\ket{\psi}^\dagger$を
     \ket{\psi}^\dagger
     :=
     \eta(\ket{\psi},\ )
+\label{bra vector}
 \end{align}
 により定め、$\bra{\psi}$とも書く。
 元の空間の任意の元
@@ -308,7 +309,7 @@ $ \hat{U}^\dagger = \hat{U}^{-1} $
 $\exp\left( \dfrac{ \hat{H}t }{i\hbar} \right)$
 はunitary operatorの例である。
 
-\subsubsection{固有状態とHermitian operator}
+\subsubsection{離散spectrumの固有状態とHermitian operator}
 
 Operatorはvectorに作用して
 再びvectorを与えるので、
@@ -324,10 +325,11 @@ $\ket{\psi} \neq 0$が存在して
     \hat{O}\ket{\psi} = \lambda \ket{\psi}
 \end{align}
 となる特別な状況を考えることが出来る。
-このとき、定数$\lambda$を$\ket{\psi}$の固有値（eigenvalue）と呼び、
+このとき、定数$\lambda$を$\ket{\psi}$の固有値（eigenvalue）、
+その集合を点spectrumと呼び、
 状態vector $\ket{\psi}$は
 $\hat{O}$の固有値$\lambda$に属する
-固有vecctorまたは
+固有vectorまたは
 固有状態（eigenstate）であると言う。
 また、上の等式を固有方程式（特性方程式、永年方程式とも）という。
 
@@ -394,6 +396,21 @@ $\ket{0} \neq 0$は
 真空（vacuum）、
 それ以外のenergy固有状態は励起状態（excited state）というが、
 真空と励起状態とは直交する。
+
+\subsubsection{連続spectrumの「固有状態」}
+
+与えられたoperatorが連続spectrum（連続固有値）を持つ場合、
+数学的には上の意味での固有vectorを定義できない。
+Gelfand tripleとか呼ばれるものを用いれば
+形式的に「連続固有値に対応する固有vector」を正当化することも可能だが、
+この場合にはHilbert空間とその双対空間に対応が付かなくなり、
+与えられたket vectorに対して
+(\ref{bra vector})のようにbra vectorを与えることも一般には出来なくなる。
+以下ではGelfand tripleなど使わずにあたかも
+連続spectrumの「固有状態」が存在するかのように扱うが、
+数学的にはspectral decomposition
+(\ref{projection operator for continuous spectrum})
+の意味で解釈する。
 
 \subsubsection{同時固有状態}
 
@@ -561,7 +578,7 @@ $\ket{\lambda_1, \lambda_2, \dots , \lambda_n}$
 そのため議論にvectorのnormが関わることもないので、
 以前の用語との混乱は生じない。
 
-\subsubsection{DiracのBracket記法}
+\subsubsection{DiracのBracket記法と連続固有状態の規格化}
 
 これまでは$\ket{\psi}$のような記号を
 単に状態vectorを表すものと扱っていたが、
@@ -574,13 +591,24 @@ $\hat{A}$の固有値$a_n$に対する
 \begin{align}
     \hat{P}_k &=: \sum_{i=1}^m \ket{a_n,i}\bra{a_n,i}
 \\
-    \hat{P}(a) &=: da \ket{a}\bra{a}
+    d \hat{P}(a) &=: da \ket{a}\bra{a}
+\label{projection operator for continuous spectrum}
 \end{align}
 のように書くというのである。
-なお数学的には連続spectrumに対して固有vectorは存在しないが、
+前述の通り数学的には連続spectrumに対して固有vectorは存在しないが、
 上は単にspectral decompositionの略記法だと思えばよい。
 点spetrumと連続spectrumとを形式的に区別せずに書けるため、
 物理学者には非常に重宝がられている記法である。
+
+なお、連続spectrumに属する固有状態は一般にnormが有限でないが、
+この場合は異なる状態$\ket{x}, \ket{y}$の内積が
+\begin{align}
+    \braket{x|y} = \delta(x-y)
+\end{align}
+である事を指して規格化されていると言うことにする。
+ただし、ここに現れたDirac delta関数はもちろん
+(\ref{projection operator for continuous spectrum})に現れる
+spectral measureのもとで積分して$1$を与えるようなものである。
 
 \subsubsection{Hermitian operatorと完全性}
 
@@ -866,15 +894,15 @@ $\hat{N}_i$の期待値を取ると
 \end{align}
 が導かれる。
 最後の不等式は単に内積の正定値性から要求されるのだが、
-最初に気が付くことは$N_i = 0$のときには内積の正定値性から
+もちろん$N_i < 0$の固有値は不等式に矛盾するため
+存在できない。
+$N_i = 0$のときには内積の正定値性から
 真空条件：
 \begin{align}
     \hat{a}_i \ket{N_1, N_2,\dots, N_i = 0,\dots, N_n} = 0
 \label{vacuum of number operator}
 \end{align}
-が成り立つことである。
-もちろん$N_i < 0$の固有値は不等式に矛盾するため
-存在できない。
+が成り立つことにもすぐに気付けるであろう。
 それ以外の固有値$N_i > 0$に属する状態に$\hat{a}_i$を掛けて得られるvectorはnormが非$0$となるため、
 正定値性はこのvectorが$0$ vectorにはなり得ない事
 $    \hat{a}_i \ket{N_1, N_2,\dots, N_i \neq 0,\dots, N_n} \neq 0$
