@@ -156,7 +156,8 @@ Planck定数$h$により
 \begin{align}
     \hbar := \dfrac{h}{2\pi}
 \end{align}
-と定義される。
+と定義されるが、
+$\hbar$も$h$も共にPlanck定数と呼ぶことも多い。
 また、
 $\hat{H}$は以下で定義する
 Hamiltonian operatorである。
@@ -222,6 +223,24 @@ Hamiltonian operatorのHermiticityや
 一般に与えられた古典系に対して量子系を一意に定めることは出来ない。
 ただし特定の文脈で自然な演算子順序は存在し、
 このことは経路積分を扱う際により詳しく議論する。
+
+\subsubsection{Hilbert空間の無次元性}
+
+さて、ここまでoperatorがどのようなHilbert空間$\mathcal{H}$に
+作用しているか考えてこなかった。
+$\mathcal{H}$が無限次元であることは、
+\begin{align}
+    \mathrm{tr} 
+\end{align}
+からすぐに分かる。
+実は複素数列$a_n (n=0,1,\dots)$であって
+$\sum_{n=0}^\infty |a_n|^2$が収束するようなものの集合を
+$l^2$と書くと、
+可分な（つまり加算個の正規直交基底で張れる）
+無限次元Hilbert空間は「$1$つしかない」こと、
+つまりそれらは全て$l^2$に同型であることが知られている。
+
+この他に考えている粒子が持つspin自由度を考える必要もあるが、
 
 \subsubsection{ObservablesとHermitian conjugate、Unitary operator}
 
@@ -455,6 +474,10 @@ $\hat{A}_j$の固有vectorにもなるよう出来る事が示される
 
 \subsubsection{観測値とOperatorの関係、状態vectorの命名規則、物理的状態空間}
 
+ここまで抽象的な状態vectorと
+実際に観測される物理量との関係については
+一切説明していない。
+ここで初めてそれらの関係を与えよう。
 量子力学的な物理系の状態が
 vector $\ket{\psi}$
 で表されているとき、
@@ -485,6 +508,7 @@ identity operatorとの関係
     \sum_n \hat{P}_n
     +
     \int d \hat{P} (a)
+\label{spectral decomposition of identity}
 \end{align}
 を用いて
 \begin{align}
@@ -505,7 +529,7 @@ identity operatorとの関係
         \bra{\psi} \hat{P}_n \ket{\psi}
     }{
      \braket{\psi|\psi}   
-    }    
+    }
     $}
     \item{連続spectrum $a$に関しては確率密度
     $
@@ -547,9 +571,15 @@ $e^{i\theta}\ket{\psi}$は
 それらを規格化し、更に位相だけの違いは同一視した
 射線（ray）と呼ばれるobjectにより表される。
 
-物理的に区別できないvectorについては上のように述べたが、
+物理的に区別できないvectorについて上のように述べたが、
 更に我々は任意のoperatorについて同じ固有値を持つvectorは
 どのような物理量ないし実験によっても区別できないため同じ状態と見做す。
+量子力学の黎明期には
+「実は我々が気付いていないだけで、
+これらの状態は物理的に異なりうるのだ」
+とするhidden variable theoryに基づき
+Einstein-Podolsky-Rosen(EPR) paradoxなどが提案された事もあるが、
+Bell inequalityの破れにより今では実験的に否定されている。
 物理的に明確に区別できる
 （つまりあるHermitian operatorについて
 異なる固有値を持つ）
@@ -589,7 +619,7 @@ $\hat{A}$の固有値$a_n$に対する
 適当な正規直交基底$\ket{a_n,i}(i=1,\dots,m)$を取る。
 ここで、対応する固有空間へのprojection operatorを
 \begin{align}
-    \hat{P}_k &=: \sum_{i=1}^m \ket{a_n,i}\bra{a_n,i}
+    \hat{P}_n &=: \sum_{i=1}^m \ket{a_n,i}\bra{a_n,i}
 \\
     d \hat{P}(a) &=: da \ket{a}\bra{a}
 \label{projection operator for continuous spectrum}
@@ -678,6 +708,49 @@ $\ket{\lambda_n}$の集合が完全系をなす事を仮定する。
 物理量$\hat{O}$を観測した際には、
 必ず固有値$\lambda_n$のいずれかが
 観測される必要があるためである。
+ただしここで言う完全系は$\hat{O}$の連続固有状態まで含めて
+\begin{align}
+    1&=
+    \sum_{\forall n,i=1}^m \ket{a_n,i}\bra{a_n,i}
+    +
+    \int da \ket{a}\bra{a}
+\end{align}
+と書き、上で述べたidentityのspectral decomposition
+(\ref{spectral decomposition of identity})
+の意味で解釈する。
+
+このような記法のもとでは、状態$\ket{\psi}$
+のもとである固有値$a_n$または$a$が観測される確率は
+\begin{enumerate}
+    \item{点spectrum $a_n$対し確率
+    \begin{align}
+        \bra{\psi} \hat{P}_n \ket{\psi}
+        &=
+            \sum_{1\le i \le m}
+        \braket{\psi | a_n,i}
+        \braket{a_n,i | \psi}
+% \notag\\&= 
+        =
+            \sum_{1\le i \le m} 
+            \Big|
+                \braket{a_n,i | \psi}
+            \Big|^2
+    \end{align}
+    }
+    \item{連続spectrum $a$に関しては確率密度
+    \begin{align}
+        \bra{\psi} d \hat{P}(a) \ket{\psi}
+        &=
+        da \braket{\psi | a}\braket{a | \psi}
+    =
+        da 
+            \Big|
+                \braket{a | \psi}
+            \Big|^2
+    \end{align}
+    }
+\end{enumerate}
+のように内積を使って自然に与えられることになる。
 
 \subsubsection{調和振動子の例、
     生成消滅演算子、
