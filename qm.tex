@@ -224,24 +224,6 @@ Hamiltonian operatorのHermiticityや
 ただし特定の文脈で自然な演算子順序は存在し、
 このことは経路積分を扱う際により詳しく議論する。
 
-\subsubsection{Hilbert空間の無次元性}
-
-さて、ここまでoperatorがどのようなHilbert空間$\mathcal{H}$に
-作用しているか考えてこなかった。
-$\mathcal{H}$が無限次元であることは、
-\begin{align}
-    \mathrm{tr} 
-\end{align}
-からすぐに分かる。
-実は複素数列$a_n (n=0,1,\dots)$であって
-$\sum_{n=0}^\infty |a_n|^2$が収束するようなものの集合を
-$l^2$と書くと、
-可分な（つまり加算個の正規直交基底で張れる）
-無限次元Hilbert空間は「$1$つしかない」こと、
-つまりそれらは全て$l^2$に同型であることが知られている。
-
-この他に考えている粒子が持つspin自由度を考える必要もあるが、
-
 \subsubsection{ObservablesとHermitian conjugate、Unitary operator}
 
 任意のvector $\ket{\psi} \in \mathcal{H}$の
@@ -660,8 +642,10 @@ $\ket{\psi} \in \mathcal{H}$が
     &=\sum_n c_n \ket{e_n}
 \end{align}
 のように一意的に展開できる場合、
-$\ket{e_n}$の集合を$\mathcal{H}$の正規直交完全系（orthonormal complete set）という。
-ただし正規直交性から
+$\ket{e_n}$の集合を$\mathcal{H}$の
+正規直交完全系（CONS、orthonormal complete set）
+または正規直交基底という。
+正規直交性から
 \begin{align}
     c_n &=
     \sum_m c_m \delta_{nm} 
@@ -698,6 +682,29 @@ $\ket{e_n}$の集合を$\mathcal{H}$の正規直交完全系（orthonormal compl
 基底には必要ない内積という付加的な構造を定義に用いており、
 特にvector spaceの基底は$n$について有限和しか許さないのに対し、
 完全系は$n$についての無限和も許している点で相違している。
+
+あるoperator $\hat{O}$のtraceは、
+正規直交完全系$\ket{e_n}$を用い
+\begin{align}
+    \mathrm{tr}\ \hat{O}
+    &:=
+    \sum_n\bra{e_n} \hat{O} \ket{e_n}
+\end{align}
+で定義される。
+適当な条件の下で、
+この量は正規直交完全系の選び方によらない。
+また、同様の条件の下で
+traceの巡回性（cyclicality）
+\begin{align}
+    \mathrm{tr}\left(
+        \hat{A}\hat{B}
+    \right)
+    =
+    \mathrm{tr}\left(
+        \hat{B}\hat{A}
+    \right)
+\end{align}
+が成り立つ。
 
 適当なHermitian operator
 $\hat{O} = \hat{O}^\dagger$
@@ -752,40 +759,15 @@ $\ket{\lambda_n}$の集合が完全系をなす事を仮定する。
 \end{enumerate}
 のように内積を使って自然に与えられることになる。
 
-\subsubsection{調和振動子の例、
-    生成消滅演算子、
-    Fock space}
+\subsubsection{生成消滅演算子、Hilbert空間の無次元性}
 
-$n$次元調和振動子を正準量子化してみよう。
-$\{\hat{q}\}, \{\hat{p}\}$は可換測な物理量なのでHermitianであることを仮定しており、
+さて、ここまでoperatorがどのようなHilbert空間$\mathcal{H}$に
+作用しているか意図的に考えてこなかった。
+$n$自由度系で正準交換関係
 \begin{align}
-    \hat{H} &= \sum_{k=1}^n \bigg(
-        \dfrac{ \hat{p}_k^2 }{2m} 
-    +
-        \dfrac{ m\omega^2 }{2} \hat{q}_k^2
-    \bigg)
-\\
     [ \hat{q}_i , \hat{p}_j ] &= i\hbar \delta_{ij}
 \end{align}
-から
-$\hat{H}$のHermiticityも自然に従う。
-公式(\ref{A,BC to B(A,C) + (A,B)C})を使って
-\begin{align}
-    [\hat{q}_i, \hat{H}] &= i\hbar \dfrac{ \hat{p}_i }{m} 
-\\
-    [\hat{p}_j, \hat{H}] &= - i \hbar\ m\omega^2 \hat{q}_j
-\end{align}
-が得られる。
-これらが調和振動子の正準方程式
-(\ref{hamiltonian e.o.m for harmonic oscillator})
-に非常によく類似している事に注意しよう
-（より詳しくは
-(\ref{Heisenberg e.o.m})
-を参照）。
-
-このままでは議論を進めるのが難しいが、
-必ずしもHermitianではない無次元量への
-変数変換を考えることで見通しが良くなる。
+が$\mathcal{H}$上に実現されているとし、
 生成消滅演算子（creation and annihilation operator。昇降(raising and lowering)演算子、はしご(ladder)演算子などとも言う）を
 \begin{align}
     \hat{a}_i :=\ & 
@@ -833,45 +815,125 @@ $\{\hat{a}\}, \{\hat{a}^\dagger\}$への
     \right)
 \end{align}
 で与えられる。
-
-元の変数は容易に消去出来て
+正準交換関係ももちろん
+$\{\hat{a}\}, \{\hat{a}^\dagger\}$
+で書き直すことが出来、
 \begin{align}
-    \hat{H}
-%    &
-    =
-    \dfrac{ \hbar\omega }{ 2 }
-    \sum_k
-    \left(
-        \hat{a}^\dagger_k\hat{a}_k
-        +
-        \hat{a}_k\hat{a}_k^\dagger
-    \right)
-%\\
-    & 
-    =
-    \hbar\omega
-    \sum_k
-    \left(
-        \hat{N}_k
-        +
-        \dfrac{ 1 }{ 2 }
-    \right)
-\\
-    \hat{N}_k &:= \hat{a}^\dagger_k\hat{a}_k
-\\
     [\hat{a}_i, \hat{a}^\dagger_j]
     &=\delta_{ij}
 \label{creation annihilation operator}
-\\
-    [\hat{H},\hat{a}_i]
-    &= - \hbar \omega \hat{a}_i
-\label{annihilation operator}
-\\
-    [\hat{H},\hat{a}^\dagger_j]
-    &= + \hbar \omega \hat{a}^\dagger_j
-\label{creation operator}
 \end{align}
 が得られる。
+$ \mathcal{H} $が有限次元だとすると、
+(\ref{creation annihilation operator})の両辺の
+traceを取ることで
+\begin{align}
+    \delta_{ij}
+    \dim \mathcal{H}
+    &=
+    \mathrm{tr} (\delta_{ij})
+    =
+    \mathrm{tr} \left(
+        [\hat{a}_i, \hat{a}^\dagger_j]
+    \right)
+    =
+    \mathrm{tr} \left(
+        \hat{a}_i \hat{a}^\dagger_j
+    \right)
+    -
+    \mathrm{tr} \left(
+        \hat{a}^\dagger_j \hat{a}_i
+    \right)
+    =
+    \mathrm{tr} \left(
+        \hat{a}_i \hat{a}^\dagger_j
+    \right)
+    -
+    \mathrm{tr} \left(
+        \hat{a}_i \hat{a}^\dagger_j
+    \right)
+    = 0
+\end{align}
+と矛盾が導かれるため、
+正準交換関係が成り立つ限り
+$\mathcal{H}$は無限次元でなければならない。
+実は複素数列$a_n (n=0,1,\dots)$であって
+$\sum_{n=0}^\infty |a_n|^2$が収束するようなものの集合を
+$l^2$と書くと、
+可分な（つまり加算個の正規直交基底で張れる）
+無限次元Hilbert空間は「$1$つしかない」こと、
+つまりそれらは全て$l^2$に同型であることが知られている。
+
+この他に考えている粒子が持つspin自由度を考える必要もあるが、
+これを理解するためには先に角運動量の代数を学ぶ必要があるだろう。
+
+\subsubsection{調和振動子の例、Fock space}
+
+$n$次元調和振動子を正準量子化してみよう。
+$\{\hat{q}\}, \{\hat{p}\}$は可換測な物理量なのでHermitianであることを仮定しており、
+\begin{align}
+    \hat{H} &= \sum_{k=1}^n \bigg(
+        \dfrac{ \hat{p}_k^2 }{2m} 
+    +
+        \dfrac{ m\omega^2 }{2} \hat{q}_k^2
+    \bigg)
+\\
+    [ \hat{q}_i , \hat{p}_j ] &= i\hbar \delta_{ij}
+\end{align}
+から
+$\hat{H}$のHermiticityも自然に従う。
+公式(\ref{A,BC to B(A,C) + (A,B)C})を使って
+\begin{align}
+    [\hat{q}_i, \hat{H}] &= i\hbar \dfrac{ \hat{p}_i }{m} 
+\\
+    [\hat{p}_j, \hat{H}] &= - i \hbar\ m\omega^2 \hat{q}_j
+\end{align}
+が得られる。
+これらが調和振動子の正準方程式
+(\ref{hamiltonian e.o.m for harmonic oscillator})
+に非常によく類似している事に注意しよう
+（より詳しくは
+(\ref{Heisenberg e.o.m})
+を参照）。
+
+このままでは議論を進めるのが難しいが、
+必ずしもHermitianではない無次元量
+$\{\hat{a}\}, \{\hat{a}^\dagger\}$
+への変数変換を考えることで見通しが良くなる。
+元の変数$\{q\},\{p\}$は容易に消去出来て
+\begin{align}
+    \hat{H}
+    %    &
+        =
+        \dfrac{ \hbar\omega }{ 2 }
+        \sum_k
+        \left(
+            \hat{a}^\dagger_k\hat{a}_k
+            +
+            \hat{a}_k\hat{a}_k^\dagger
+        \right)
+    %\\
+        & 
+        =
+        \hbar\omega
+        \sum_k
+        \left(
+            \hat{N}_k
+            +
+            \dfrac{ 1 }{ 2 }
+        \right)    
+\\
+    [\hat{N}_k,\hat{a}_i]
+    &= - \hbar \omega \hat{a}_i\delta_{ik}
+\label{annihilation operator}
+\\
+    [\hat{N}_k,\hat{a}^\dagger_j]
+    &= + \hbar \omega \hat{a}^\dagger_j\delta_{jk}
+\label{creation operator}
+\\
+    \hat{N}_k &:= \hat{a}^\dagger_k\hat{a}_k
+\end{align}
+なる交換関係が得られる。
 ただし、
 $k$番目の自由度のnumber operator
 $\hat{N}_k$を定義した
@@ -978,7 +1040,7 @@ $N_i = 0$のときには内積の正定値性から
 が成り立つことにもすぐに気付けるであろう。
 それ以外の固有値$N_i > 0$に属する状態に$\hat{a}_i$を掛けて得られるvectorはnormが非$0$となるため、
 正定値性はこのvectorが$0$ vectorにはなり得ない事
-$    \hat{a}_i \ket{N_1, N_2,\dots, N_i \neq 0,\dots, N_n} \neq 0$
+$\hat{a}_i \ket{N_1, N_2,\dots, N_i > 0,\dots, N_n} \neq 0$
 も保証する。
 また、$0<N_i<1$が存在するとすると
 $\hat{a}_i$によって$\hat{N}_i$の固有値を下げたとき
@@ -1032,7 +1094,8 @@ $E = \hbar \omega \left(N + \dfrac{n}{2} \right) $
 上の議論から得られるもう一つの非自明な条件である
 真空条件
 (\ref{vacuum of number operator})
-を用いて、今度はその固有状態について議論しよう。
+を用いて、
+今度はその固有状態を具体的に構成してみよう。
 既に説明したように物理的状態は
 線形独立で可換なHermitian operatorをmaximalな個数だけ取ってきたとき、
 それらの同時固有状態として区別される。
@@ -1060,7 +1123,8 @@ $N_i\pm n_i$に属する固有状態
     \ket{N_1, N_2,\dots, N_n}
 \end{align}
 が構成できる事は明らかであろう
-（$N_i - n_i < 0$でない限りこれらのvectorが$0$ vectorとならないことは既に説明した）。
+（$N_i - n_i > 0$である限りこれらのvectorが
+$0$ vectorとならないことは既に説明した）。
 この規格化定数を、
 最低固有値$N_i = 0$に属する状態について
 \begin{align}
@@ -1210,8 +1274,15 @@ N_i = 0,
     N_n = 0}
 \end{align}
 と求まるのである。
-なお、このような真空とそこからの励起で書かれるvectorが張る
+なお、このような真空とそこからの励起で書かれるvectorを
+Fock基底と言い、Fock基底が張る
 vector spaceをFock spaceと呼ぶ。
+また、任意のHermitian operatorの固有状態は
+完全系を為すのであったから、
+$n$次元量子調和振動子を実現する
+無限次元複素Hilbert空間は
+確かに加算個の基底を持ち、
+可分であることが確かめられた。
 
 \subsubsection{Coherent state}
 
@@ -1349,10 +1420,6 @@ $\alpha$は実数ではなく任意の複素数でよい事に注意しよう。
     \bra{0}
     \exp(\alpha \hat{a}^\dagger)
     \ket{0}
-\notag\\&=
-    \dfrac{
-        \exp( |\alpha|^2 )
-    }{|A|^2}
 \notag\\&=
     \dfrac{
         \exp( |\alpha|^2 )
