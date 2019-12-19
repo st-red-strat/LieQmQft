@@ -1244,18 +1244,21 @@ $|A_{n_i}|^2 = \dfrac{1}{n_i!}$
 $A_{n_i} \in \mathbb{R}_{>0}$と取っても一般性を失わず、
 一般の規格化された状態vectorが
 ただ一つの真空vector
-$\ket{N_1 = 0, N_2 = 0 ,\dots,
-N_i = 0,
-\dots, N_n = 0}$
+\begin{align}
+    \ket{0}:=
+    \ket{N_1 = 0, N_2 = 0 ,\dots,
+    N_i = 0,
+    \dots, N_n = 0}
+\end{align}
 を用いて
 \begin{align}
-    \ket{N_1, N_2,\dots,N_i,\dots, N_n}
+    \ket{N_1, N_2,\dots,N_i=n_i,\dots, N_n}
     &=
     \dfrac{
         \left(
             \hat{a}_i^\dagger
-        \right)^{N_i}
-    }{\sqrt{N_i!}}
+        \right)^{n_i}
+    }{\sqrt{n_i!}}
     \ket{N_1, N_2,\dots,
     N_i = 0,
     \dots, N_n}
@@ -1270,8 +1273,7 @@ N_i = 0,
             \right)^{N_i}
         }{\sqrt{N_i!}}
     \right)
-    \ket{N_1 = 0, N_2 = 0 ,\dots,
-    N_n = 0}
+    \ket{0}
 \end{align}
 と求まるのである。
 なお、このような真空とそこからの励起で書かれるvectorを
