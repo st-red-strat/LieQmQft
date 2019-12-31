@@ -78,7 +78,12 @@ scalar potential $\phi(\bm{x})$の組であって
 配位空間（configuration space）という。
 ここで我々の世界がNewtonの運動方程式のように
 決定論的な力学法則に支配されていると信じると、
-これらの力学変数$q_i$は各時刻で完全に決定されているはずなので、
+これらの力学変数$q_i$は各時刻で完全に決定されているはず
+（この時間parameter $t$をGalilean timeと呼ぶ。
+わざわざ名前を付けるということは区別すべき概念が他にも存在するということで、
+実際にNewton力学のような観測者に依らない
+universalな時刻$t$は電磁気学と矛盾するため
+特殊相対論が必要になる）なので、
 時間をparameterとする配位空間上の軌跡$q_i(t)$として与えられている。
 よって時間微分が定義でき、
 $\dot{q}(t) := \dfrac{dq(t)}{dt}$
@@ -281,6 +286,29 @@ $q \mapsto q + \delta^{\mathrm{sym}} q$のもとで
       := -q(t) + q(t-t_0)  
     \end{cases}
   \end{align}
+  \item {座標$q_i$についてのReflection Symmetry（鏡像対称性）}
+  \begin{align}
+    \delta^{\mathrm{sym}} q_j
+    =
+    \delta^{\mathrm{ref.}} q_j
+    := 
+    \begin{cases}
+    - 2 q_i
+    \qquad &(i = j)
+    \\
+    0
+    \qquad &(i\neq j)
+    \end{cases}
+  \end{align}
+  \item {Parity Symmetry（空間反転対称性）}
+  \begin{align}
+      \delta^{\mathrm{sym}} q_i
+      =
+      \delta^{\mathrm{parity}} q_i
+      := - 2 q_i
+  \qquad
+  (\forall\ i)
+  \end{align}
   \item {Translational Symmetry（空間並進対称性）}
   \begin{align}
     \delta^{\mathrm{sym}} q_i
@@ -362,6 +390,12 @@ Noetherの定理は
 系に連続的な対称性が存在するとき、
 必ず対応する保存量（時間に依らず一定であるような量）が
 存在する事を主張する。
+以下ではこれを導く。
+
+連続な変換を、実数parameter $\theta$を用いて
+$q(t) \mapsto q(t) + 
+\delta^{\mathrm{sym}} q (q(t), \dot{q}(t), t, \theta)$
+のように書こう。
 
 \subsection{Hamilton力学}
 
