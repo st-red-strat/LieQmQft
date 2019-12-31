@@ -73,11 +73,13 @@ scalar potential $\phi(\bm{x})$の組であって
 3次元空間に記述したい質点が$n$個あるとすれば、
 これらの質点の状態は
 一般化座標$q_i$$(i=1,2,\dots,3n)$を用いて記述できる。
-これらをまとめて$\{q\} := \{q_i| i=1,2,\dots,3n\}$と書く。
+これらをまとめて$\{q\} := \{q_i| i=1,2,\dots,3n\}$と書き、
+これらのparameterで張られる$3n$次元空間を
+配位空間（configuration space）という。
 ここで我々の世界がNewtonの運動方程式のように
 決定論的な力学法則に支配されていると信じると、
 これらの力学変数$q_i$は各時刻で完全に決定されているはずなので、
-時間の関数$q_i(t)$として与えられている。
+時間をparameterとする配位空間上の軌跡$q_i(t)$として与えられている。
 よって時間微分が定義でき、
 $\dot{q}(t) := \dfrac{dq(t)}{dt}$
 と書く。
@@ -100,9 +102,16 @@ $L(\{q\}, \{\dot{q}\})$との合成関数
 $L(t) := L(\{q(t)\}, \{\dot{q}(t)\})$は時間の$1$変数関数であり、
 時刻$t_i$から時刻$t_f$までの定積分が定義できる：
 \begin{align}
-  S := \int_{t_i}^{t_f}dt\ L(\{q(t)\}, \{\dot{q}(t)\})
+  S[q] := \int_{t_i}^{t_f}dt\ L(\{q(t)\}, \{\dot{q}(t)\})
 \end{align}
 この$S$をaction（作用）と言い、$I$と書くこともある。
+また、作用$S$は時間による定積分で与えられるので
+それ自身は時間の関数ではないが、
+時間の関数$q(t)$を与えると決まる量である、
+という意味で$S[q]$と書いた。
+このように関数$f(x)$を引数に取って
+実数$F[f]$を与えるような写像$F$を
+汎関数（functional）と呼ぶ。
 
 最小作用の原理は、個々の力学変数の時間依存性は
 このactionが停留するような関数形で与えられる事を主張する。
@@ -115,7 +124,7 @@ $L(t) := L(\{q(t)\}, \{\dot{q}(t)\})$は時間の$1$変数関数であり、
 \end{align}
 のように微小に変化させたとき、
 どんな関数$\delta q_i(t)$に対しても
-actionの変分
+actionの変分が微小量の$1$次まで
 \begin{align}
   \delta S &:= \int dt\ L(\{ q_i(t) + \delta q_i(t) \},
   \{ \dot{q}_i(t) + \delta \dot{q_i}(t) \} )
@@ -157,8 +166,9 @@ actionの変分
   \{ \dot{q}(t) \} )
 \bigg\}
 %  \qquad (\ \forall\ \delta q_i(t), i\ )
+\label{variation of action}
 \end{align}
-が消える
+で消える
 （同時に、部分積分による表面項
 $[\cdots]_{t=t_i}^{t_f}$
 も適当な境界条件を課すことにより消える）
@@ -234,69 +244,118 @@ $n$次元調和振動子の場合Lagrangianは
 \end{align}
 となり、確かにNewtonの運動方程式を再現する。
 
-\subsubsection{Noetherの定理と保存電荷}
+\subsubsection{対称性}
 
 Euler-Lagrange方程式を導く際、
 我々は任意の変分$\delta q(t)$のもとで
-作用の変分$\delta S$が消えることを要求した。
-作用の変分がある特別な$\delta q(t)$のもとで消える場合、
-この特別な変分$\delta q(t)$は系の対称性である、という。
+作用の変分$\delta S$が消えることを要求し、
+作用を停留する特別な$q(t)$を得た。
+逆に、力学変数の任意の関数形$\forall q(t)$に対し、
+変分に限らないある特別な変数変換（transformation）
+$q \mapsto q + \delta^{\mathrm{sym}} q$のもとで
+作用が変化しない場合、
+この特別な変数変換$\delta^{\mathrm{sym}} q$は系の対称性（symmetry）である、という。
+多くの系に現れる対称性変換の代表的な例を見てみよう。
+\begin{itemize}
+  \item{Time Reversal Symmetry（時間反転）}
+  \begin{align}
+    \begin{cases}
+      q_0 = t \mapsto -t
+      \\
+      \delta^{\mathrm{sym}} q
+      =
+      \delta^{\mathrm{t.r.}} q [q](t)
+      := -q(t) + q(-t)
+      \\
+      \dot{q} \mapsto -\dot{q}
+    \end{cases}
+  \end{align}
+  \item {Time-Translational Symmetry（時間並進対称性）}
+  \begin{align}
+    \begin{cases}
+      q_0 = t \mapsto t - t_0
+      \\
+      \delta^{\mathrm{sym}} q
+      =
+      \delta^{\mathrm{t.t.}} q[q](t; t_0)
+      := -q(t) + q(t-t_0)  
+    \end{cases}
+  \end{align}
+  \item {Translational Symmetry（空間並進対称性）}
+  \begin{align}
+    \delta^{\mathrm{sym}} q_i
+    &=
+    \delta^{\mathrm{trans}}q_i (\{a\} )
+    := a_i
+    ,\qquad\text{$a_i$: constant for $\forall\ i$}
+  \end{align}
+  \item {Rotational Symmetry（空間回転対称性）}
+  \begin{align}
+    &\quad\delta^{\mathrm{sym}} q_i
+    =
+    \delta^{\mathrm{rot}}q_i ( O )
+    := -q_i + O_i{}^j q_j
+    ,\\
+    &\text{$O$: orthogonal matrix
+    (i.e.
+      $O_i{}^k O_k{}^j = \delta_i^j$)}
+  \end{align}
+\end{itemize}
+ただし表記の簡単化のために
+$q_0 := t$も正準変数のように見做し、
+Einsteinの規約
+（$1$つの項に同じ添え字が$2$度出てきたときには
+その添え字について和を取る）を採用した。
+このように、変換を記述するのに必要な
+parameterの個数は変換ごとに異なり、
+変換によっては$q(t)$の関数形を知らなければ
+記述できないもの
+（すなわち変換が汎関数であるもの。$[q]$と示した）も存在する。
+
 より一般に、一定の規則に従って変数変換や
 parameterの置き換えなど何らかの操作を行い、
 考えている力学系から新たな力学系を得ることを変換といい、
 ある変換$T$の下で元と同じ系が得られる
 （系が変換前と全く同じ力学法則によって記述される）とき
-$T$は系の対称性、あるいは不変性であるという。
+$T$は系の対称性（symmetry）、
+あるいは不変性（invariance）であるという。
+時に、
+\ref{representation of Lorentz group}節で扱うLorentz対称性のように
+見た目は異なるが全く同じ内容の方程式を与えるときはinvariance、
+方程式が全く変わらない場合をsymmetryと区別することもある。
+特に、potentialや作用の形が異なる物理系の間で
+全ての観測量について予言が一致するような
+非自明な例はdualityとして知られており、
+時折symmetryとほぼ区別しない用法で用いられる。
+
+弦理論で特定の極限を取るとT-dualityやD-braneを駆使して
+同じ理論を異なる複数の仕方で記述することが出来、
+複数の異なる理論の間に非自明なdualityを与えられる場合がある。
+例えばAdS/CFT correspondence
+(よりmodernにはgauge/gravity対応とも呼ばれる)
+の代表的な例では
+GKP-Witten relationなどの関係式により
+5次元$\rm{AdS}_5(\times S^5)$時空上の
+古典type-IIB超重力理論の物理量と
+4次元CFTの例である$\mathcal{N}=4$ Super Yang-Mills理論の
+（Large-$N$極限での）物理量とを関係付けることが出来る。
+他にも$2$次元CFTと$4$次元gauge理論との間に対応を与えるAGT correspondenceや、
+異なるgauge群を持つgauge理論が低energy極限で同じ予言をするSeiberg dualityなど、
+様々な形のdualityが具体的に調べられている。
+これらのdualityによると、
+普通の摂動展開では調べることの難しい
+場の理論の強結合領域などを調べることが出来る場合があるため、
+現在でも（十分数学的に）理解されていない
+quarkのconfinement（閉じ込め）の理解、
+black holeの量子論的な性質などを調べるため
+精力的に研究されている。
+
+\subsubsection{連続な対称性とNoetherの定理、保存電荷}
 
 Noetherの定理は
 系に連続的な対称性が存在するとき、
 必ず対応する保存量（時間に依らず一定であるような量）が
 存在する事を主張する。
-無限小量$\epsilon$を、$\epsilon^2 = 0$かつ
-任意の関数$f(x)$について
-$f(x+\epsilon)=f(x) + \epsilon \dfrac{df(x)}{dx}$
-が厳密に成り立つような量と定義する。
-変換が連続なら、ある変換
-$q(t) \mapsto q'(t)$の十分近傍に$\epsilon$を使って
-$q(t) \mapsto q'(t) + \epsilon\delta q'(t)$
-と書ける変換も存在するはずだ。
-このような変換が系の対称性であるので、
-当然この変換の下で作用が変化してはおかしい。
-作用が変わらないためには、
-適当な関数$F(t)$が存在して作用の変化が
-\begin{align}
-  \delta S
-  &:=
-  S[q'(t) + \epsilon\delta q'(t)]
-  -
-  S[q'(t)]
-\notag\\&=
-  \sum_i
-  \bigg[
-    \delta q_i(t)
-    \dfrac{\partial}{\partial \dot{q_i}}
-    L(\{ q(t) \},
-    \{ \dot{q}(t) \} )
-  \bigg]_{t=t_i}^{t_f}
-\notag\\&\qquad
-  +
-\int dt\ \sum_i
-\delta q_i(t)
-\bigg\{
-  \dfrac{\partial}{\partial q_i}
-  L(\{ q(t) \},
-  \{ \dot{q}(t) \} )
--
-  \dfrac{d}{dt}
-  \dfrac{\partial}{\partial \dot{q_i}}
-  L(\{ q(t) \},
-  \{ \dot{q}(t) \} )
-\bigg\}
-\notag\\&=
-  \int dt \dfrac{d F(t)}{dt}
-\end{align}
-のように全微分で書けていれば良いだろう。
-ここで、表面項はやはり適切な境界条件により消せると仮定している。
 
 \subsection{Hamilton力学}
 
@@ -367,6 +426,14 @@ Legendre変換
 右辺には$9n$個の変数$\{q\},\{\dot{q}\},\{p\}$が表れているが、
 $\dot{q}$が消去され
 $\{q\},\{p\}$の$6n$変数関数として表されていることに注意しよう。
+これらparameterで張られる$6n$次元空間を
+相空間（phase space、
+位相空間と訳す場合もあるが
+topological spaceという幾何学の用語との混乱を招くので
+推奨しない）といい、
+以下で構成する新たな運動方程式の解は
+相空間上の軌跡$\{q(t)\},\{p(t)\}$を与える。
+
 関数$H$をHamiltonianというが、
 その著しい性質は$\dot{q}$を消去する直前の表式が
 $\dot{q}$に依っていないこと
