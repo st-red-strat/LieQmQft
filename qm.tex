@@ -38,12 +38,12 @@ $O\ket{\psi} \in \mathcal{H}$
         O\Big(
             a \ket{\psi_1}
             +
-            b \ket{\psi_2}    
+            b \ket{\psi_2}
         \Big)
     =
         a O \ket{\psi_1}
         +
-        b O \ket{\psi_2}    
+        b O \ket{\psi_2}
 \end{align}
 であることを言う。
 例えば時間反転操作に対応するoperator $T$は
@@ -58,12 +58,12 @@ anti-unitary (anti-linearかつunitary)
         T\Big(
             a \ket{\psi_1}
             +
-            b \ket{\psi_2}    
+            b \ket{\psi_2}
         \Big)
     =
         a^* T \ket{\psi_1}
         +
-        b^* T \ket{\psi_2}    
+        b^* T \ket{\psi_2}
 \end{align}
 なoperatorの重要な例であるが、
 以下では専らlinearなものに話を限る。
@@ -92,7 +92,7 @@ $ \braket{ \psi_1 | \psi_2 }
 := \eta(\ket{\psi_1}, \ket{\psi_2})
 \in \mathbb{C} $
 を与える写像
-$\eta: 
+$\eta:
 \mathcal{H}\times \mathcal{H}
 \to \mathbb{C}$
 であって、
@@ -321,7 +321,7 @@ $\ket{\psi} \neq 0$が存在して
 \begin{align}
     \hat{O}\ket{\psi} \propto \ket{\psi}
 ,\quad\text{
-    i.e.   
+    i.e.
     $\exists \lambda\in\mathbb{C}$
     s.t.
 }\quad
@@ -365,7 +365,7 @@ $\lambda$が実数となること
 $\lambda \neq \theta$
 に属する固有vector
 \begin{align}
-    \hat{O} \ket{\psi} &= \lambda \ket{\psi} 
+    \hat{O} \ket{\psi} &= \lambda \ket{\psi}
 \\
     \hat{O} \ket{\phi} &= \theta \ket{\phi}
 \end{align}
@@ -373,7 +373,7 @@ $\lambda \neq \theta$
 \begin{align}
     \lambda
     \braket{\psi|\phi}
-    = 
+    =
     \lambda^*
     \braket{\phi|\psi}^*
     =
@@ -473,7 +473,7 @@ vector $\ket{\psi}$
     }{
         \braket{\psi|\psi}
     }
-\end{align} 
+\end{align}
 と表される。
 $\hat{A}$のspectral decompositionを
 連続spectrum と点spectrum に分け、
@@ -488,7 +488,7 @@ projection operator $\hat{P}$を用いて
 のように書くと、
 identity operatorとの関係
 \begin{align}
-    1 = 
+    1 =
     \sum_n \hat{P}_n
     +
     \int d \hat{P} (a)
@@ -496,7 +496,7 @@ identity operatorとの関係
 \end{align}
 を用いて
 \begin{align}
-    \ket{\psi} = 
+    \ket{\psi} =
     \sum_n \hat{P}_n \ket{\psi}
     +
     \int d \hat{P} (a) \ket{\psi}
@@ -512,7 +512,7 @@ identity operatorとの関係
     \dfrac{
         \bra{\psi} \hat{P}_n \ket{\psi}
     }{
-     \braket{\psi|\psi}   
+     \braket{\psi|\psi}
     }
     $}
     \item{連続spectrum $a$に関しては確率密度
@@ -520,8 +520,8 @@ identity operatorとの関係
     \dfrac{
         \bra{\psi} d \hat{P}(a) \ket{\psi}
     }{
-     \braket{\psi|\psi}   
-    }    
+     \braket{\psi|\psi}
+    }
     $}
 \end{enumerate}
 で与えられるのである。
@@ -596,7 +596,7 @@ $\ket{\lambda_1, \lambda_2, \dots , \lambda_n}$
 
 これまでは$\ket{\psi}$のような記号を
 単に状態vectorを表すものと扱っていたが、
-Diracはこれを更に便利にする記法を導入した。
+sDiracはこれを更に便利にする記法を導入した。
 $\hat{A}$の固有値$a_n$に対する
 固有vectorを$\ket{a_n}$と略記し、
 固有空間に$m$重縮退がある場合には
@@ -650,7 +650,7 @@ $\ket{e_n}$の集合を$\mathcal{H}$の
 正規直交性から
 \begin{align}
     c_n &=
-    \sum_m c_m \delta_{nm} 
+    \sum_m c_m \delta_{nm}
     =\sum_m c_m \braket{e_n|e_m}
     = \bra{e_n} \sum_m c_m \ket{e_m}
     = \braket{e_n | \psi}
@@ -711,7 +711,7 @@ traceの巡回性（cyclicality）
 適当なHermitian operator
 $\hat{O} = \hat{O}^\dagger$
 が与えられたとき、
-その全ての固有vector 
+その全ての固有vector
 $\ket{\lambda_n}$の集合が完全系をなす事を仮定する。
 これは、適当な状態$\ket{\psi}$のもとで
 物理量$\hat{O}$を観測した際には、
@@ -738,9 +738,9 @@ $\ket{\lambda_n}$の集合が完全系をなす事を仮定する。
             \sum_{1\le i \le m}
         \braket{\psi | a_n,i}
         \braket{a_n,i | \psi}
-% \notag\\&= 
+% \notag\\&=
         =
-            \sum_{1\le i \le m} 
+            \sum_{1\le i \le m}
             \Big|
                 \braket{a_n,i | \psi}
             \Big|^2
@@ -752,7 +752,7 @@ $\ket{\lambda_n}$の集合が完全系をなす事を仮定する。
         &=
         da \braket{\psi | a}\braket{a | \psi}
     =
-        da 
+        da
             \Big|
                 \braket{a | \psi}
             \Big|^2
@@ -772,7 +772,7 @@ $n$自由度系で正準交換関係
 が$\mathcal{H}$上に実現されているとし、
 生成消滅演算子（creation and annihilation operator。昇降(raising and lowering)演算子、はしご(ladder)演算子などとも言う）を
 \begin{align}
-    \hat{a}_i :=\ & 
+    \hat{a}_i :=\ &
     \dfrac{1}{\sqrt{2\hbar}}
     \left(
         \sqrt{
@@ -781,7 +781,7 @@ $n$自由度系で正準交換関係
         +
         \dfrac{i}{\sqrt{m\omega}}
         \ \hat{p}_i
-    \right)    
+    \right)
 \\
     \hat{a}^\dagger_i =\ &
     \dfrac{1}{\sqrt{2\hbar}}
@@ -792,7 +792,7 @@ $n$自由度系で正準交換関係
         -
         \dfrac{i}{\sqrt{m\omega}}
         \ \hat{p}_i
-    \right)    
+    \right)
 \end{align}
 で定義しよう。
 これは単に$\{\hat{q}\}, \{\hat{p}\}$から
@@ -868,7 +868,12 @@ $l^2$と書くと、
 無限次元Hilbert空間は「$1$つしかない」こと、
 すなわちそれらは全て$l^2$に同型であることが知られている。
 
-この他に考えている粒子が持つspin自由度を考える必要もあるが、
+この他に、同種粒子を$2$つ以上含む多粒子系では統計性と呼ばれるものを気にする必要があるが、
+当面の間は同種粒子を含まない系のみを扱うことにする。
+例えば次節で扱う$n$次元調和振動子も、
+$d$次元空間に$n/d$個の（互いに種類の異なる）粒子が存在する系、
+あるいは$n$次元空間内に粒子が$1$つだけ存在する系と解釈されたい。
+また、考えている粒子が持つspin自由度を考える必要もあるが、
 これを理解するためには先に
 \ref{subsubsec: angular momentum}節で角運動量の代数を学ぶ必要があるだろう。
 
@@ -878,7 +883,7 @@ $n$次元調和振動子を正準量子化してみよう。
 $\{\hat{q}\}, \{\hat{p}\}$は可換測な物理量なのでHermitianであることを仮定しており、
 \begin{align}
     \hat{H} &= \sum_{k=1}^n \bigg(
-        \dfrac{ \hat{p}_k^2 }{2m} 
+        \dfrac{ \hat{p}_k^2 }{2m}
     +
         \dfrac{ m\omega^2 }{2} \hat{q}_k^2
     \bigg)
@@ -890,7 +895,7 @@ $\hat{H}$のHermiticityも自然に従う。
 公式(\ref{A,BC to B(A,C) + (A,B)C})を使って
 \begin{subequations}
 \begin{align}
-    [\hat{q}_i, \hat{H}] &= i\hbar \dfrac{ \hat{p}_i }{m} 
+    [\hat{q}_i, \hat{H}] &= i\hbar \dfrac{ \hat{p}_i }{m}
 \\
     [\hat{p}_j, \hat{H}] &= - i \hbar\ m\omega^2 \hat{q}_j
 \end{align}
@@ -920,7 +925,7 @@ $\{\hat{a}\}, \{\hat{a}^\dagger\}$
             \hat{a}_k\hat{a}_k^\dagger
         \right)
     %\\
-        & 
+        &
         =
         \hbar\omega
         \sum_k
@@ -928,7 +933,7 @@ $\{\hat{a}\}, \{\hat{a}^\dagger\}$
             \hat{N}_k
             +
             \dfrac{ 1 }{ 2 }
-        \right)    
+        \right)
 \\
     \hat{N}_k &:= \hat{a}^\dagger_k\hat{a}_k
 \end{align}
@@ -974,10 +979,10 @@ $\hat{N}_k$を定義した
 \begin{align}
     \hat{H} \bigg(
         \hat{a}_i \ket{\psi}
-    \bigg) 
+    \bigg)
 &=
     \left(
-        \hat{a}_i \hat{H} 
+        \hat{a}_i \hat{H}
     +
         \left[ \hat{H}, \hat{a}_i \right]
     \right) \ket{\psi}
@@ -1002,7 +1007,7 @@ energy固有vector
 \begin{align}
     \hat{H} \bigg(
         \hat{a}^\dagger_i \ket{\psi}
-    \bigg) 
+    \bigg)
 &=
     \left(
         E + \hbar \omega
@@ -1042,7 +1047,7 @@ $\hat{N}_i$の期待値を取ると
 \notag\\&=
     \bra{N_1, N_2,\dots, N_n} \hat{N}_i \ket{N_1, N_2,\dots, N_n}
 \notag\\&=
-    \bra{N_1, N_2,\dots, N_n}     
+    \bra{N_1, N_2,\dots, N_n}
     \hat{a}^\dagger_i\hat{a}_i
     \ket{N_1, N_2,\dots, N_n}
 \notag\\&=
@@ -1255,7 +1260,7 @@ $|A_1|^2 = 1$が求まる。
         1
     \bigg)
 \\\therefore\qquad
-    |A_{n_i + 1}|^2 &= 
+    |A_{n_i + 1}|^2 &=
     \dfrac{1}{
         n_i + 1
     }
@@ -1347,7 +1352,7 @@ $n$自由度系への拡張は上の議論から容易である。
 調和振動子のcoherent状態を
 \begin{align}
     \ket{\alpha}
-    &:= 
+    &:=
     \dfrac{1}{A}
     \exp(\alpha \hat{a}^\dagger)
     \ket{0}
@@ -1378,18 +1383,18 @@ $\hat{a}^\dagger, \hat{a}$の交換関係
     \therefore\quad
     [\hat{a},\left(\hat{a}^\dagger\right)^{n+1}]
     &=
-    C_{n+1} = 
+    C_{n+1} =
     (n+1) \left(\hat{a}^\dagger\right)^{n}
 \label{creation n-th power commutation}
 \end{align}
 が成り立つので、
 $\displaystyle
-\exp(\alpha \hat{a}^\dagger) 
+\exp(\alpha \hat{a}^\dagger)
 =
 \sum_{n=0}^\infty
 \dfrac{
     \left(\alpha \hat{a}^\dagger\right)^n
-}{n!} 
+}{n!}
 $
 との間には
 \begin{align}
@@ -1397,22 +1402,22 @@ $
 &=
     \sum_{n=1}^\infty
     \dfrac{
-        \alpha^n 
-    }{n!} 
+        \alpha^n
+    }{n!}
     n \left(\hat{a}^\dagger\right)^{n-1}
 %\notag\\&
 =
     \sum_{n=1}^\infty
     \dfrac{
-        \alpha^n 
-    }{(n-1)!} 
+        \alpha^n
+    }{(n-1)!}
     \left(\hat{a}^\dagger\right)^{n-1}
 \notag\\&=
     \alpha
     \sum_{n=0}^\infty
     \dfrac{
-        \alpha^n 
-    }{n!} 
+        \alpha^n
+    }{n!}
     \left(\hat{a}^\dagger\right)^{n}
 %\notag\\&=
 =
@@ -1425,7 +1430,7 @@ $
 \begin{align}
     \hat{a}
     \ket{\alpha}
-    &= 
+    &=
     \dfrac{1}{A}
     \bigg(
         \exp(\alpha \hat{a}^\dagger)
@@ -1453,12 +1458,12 @@ $\alpha$は実数ではなく任意の複素数でよい事に注意しよう。
     &=
     \braket{ \alpha | \alpha }
     =
-    \dfrac{1}{A^*}    
+    \dfrac{1}{A^*}
     \bra{0}
     \exp(\alpha^* \hat{a})
     \ket{\alpha}
     =
-    \dfrac{1}{A^*}    
+    \dfrac{1}{A^*}
     \bra{0}
     \exp(\alpha^* \alpha)
     \ket{\alpha}
@@ -1536,7 +1541,7 @@ $\hat{a}$の固有値$\alpha$に属する固有状態
 
 このdisplacement operatorはunitaryである
 \begin{align}
-    D(\alpha)^\dagger D(\alpha) &= 
+    D(\alpha)^\dagger D(\alpha) &=
     \exp(
         \alpha^* \hat{a}
         - \alpha \hat{a}^\dagger
@@ -1611,8 +1616,7 @@ BCH formulaの特別な場合
     [
         \hat{L}_i, \hat{L}_j
     ]
-    = i \hbar\ 
-    \epsilon_{ijk} \hat{L}_i
+    = i \hbar\ \epsilon_{ijk} \hat{L}_i
 \label{angular momentum algebra}
 \end{align}
 が直ちに従う。
@@ -1632,7 +1636,7 @@ $\mathfrak{su}(2)$代数という。
     i \hat{L}_y
 \\
     \hat{L}_\mp^\dagger
-    &= 
+    &=
     \hat{L}_\pm
 \end{align}
 を定義しておくと都合がよい。
@@ -1659,15 +1663,21 @@ $\pm \hbar$だけ上下することが分かる。
 \begin{align}
     \hat{\bm{L}}^2
     := \sum_i \hat{L}_i^2
-=
+&=
     \dfrac{1}{2}
     \left(
         \hat{L}_+ \hat{L}_-
     +
-        \hat{L}_- \hat{L}_+ 
+        \hat{L}_- \hat{L}_+
     \right)
     +
     \hat{L}_3^2
+\\
+    \hat{L}_\pm \hat{L}_\mp
+    &=
+    \hat{\bm{L}}^2 - \hat{L}_3^2
+    \pm \hbar \hat{L}_3
+\label{angular momentum raising lowering into l^2 and l_3}
 \end{align}
 で定義する。
 $\hat{\bm{L}}^2$は
@@ -1714,30 +1724,80 @@ $\hat{\bm{L}}^2$と$\hat{L}_3$の同時固有状態$\ket{j,m}$が
     \delta_{j, j'} \delta_{m, m'}
 \end{align}
 を満たしているとすると、
+やはり内積の正定値性と
+公式
+(\ref{angular momentum raising lowering into l^2 and l_3})
+から
 \begin{align}
     \hbar^2 j (j+1)
+-
+    \hbar^2 m^2
+\pm \hbar^2 m
 &=
-    \bra{ j, m } \hat{\bm{L}}^2 \ket{ j, m }
+    \bra{ j, m } \left(
+        \hat{\bm{L}}^2
+        -
+        \hat{L}_3^2
+        \pm \hbar
+        \hat{L}_3
+    \right)\ket{ j, m }
 \notag\\&=
-    \sum_{i=1,2}
     \Big|\Big|
-        \hat{L}_i \ket{ j, m }
+        \hat{L}_\mp \ket{ j, m }
     \Big|\Big|^2
-+
-    \Big|\Big|
-        \hat{L}_3 \ket{ j, m }
-    \Big|\Big|^2
-\notag\\&=
-    \sum_{i=1,2}
-    \Big|\Big|
-        \hat{L}_i \ket{ j, m }
-    \Big|\Big|^2
-+
-    \hbar^2 m^2
-\notag\\&\ge
-    \hbar^2 m^2
+\ge
+    0
 \end{align}
 なる不等式が導かれる。
-やはり
+これが
 (\ref{angular momentum creation annihilation})
-により固有値を上下できる事と矛盾しないためには
+により$\hbar m$を$\pm \hbar$だけ上下できる事と矛盾しないためには、
+調和振動子の場合
+(\ref{vacuum of number operator})以下と全く同様の議論
+\begin{enumerate}
+    \item{
+        $\hbar^2 j (j+1) - \hbar^2 m^2 \pm \hbar^2 m < 0$
+        となる固有値$m$が存在してはいけない。
+    }
+    \item{
+        $\hbar^2 j (j+1) - \hbar^2 m^2 \pm \hbar^2 m = 0$
+        の解となる固有値
+        \begin{align}
+            m &= \pm \sqrt{ j (j+1) + \dfrac{1}{4} }
+            \pm \dfrac{1}{2}
+        \notag\\&=
+            \pm \left| j + \dfrac{1}{2} \right|
+            \pm \dfrac{1}{2}
+        \notag\\&=
+            \pm \left( j + \dfrac{1}{2} \right)
+            \pm \dfrac{1}{2}
+        \quad\text{（複号任意、$j \ge 0$）}
+        \notag\\&=
+                j + 1,\ 
+                j,\ 
+                - j,\ 
+                - j - 1\ 
+        \end{align}
+        は存在してよいが、
+        存在する物に関しては
+        上の2番目の複号に応じ
+        $ \hat{L}_\mp \ket{ j, m } $
+        のnormが$0$なので
+        \begin{subequations}
+        \begin{align}
+            0 &=
+            \hat{L}_- \ket{ j, j + 1 }
+        \\
+            0 &=
+            \hat{L}_+ \ket{ j, j }
+        \\
+            0 &=
+            \hat{L}_- \ket{ j, - j }
+        \\
+            0 &=
+            \hat{L}_+ \ket{ j, - j - 1 }
+        \end{align}
+        \end{subequations}
+        が成り立たねばならない。
+    }
+\end{enumerate}
