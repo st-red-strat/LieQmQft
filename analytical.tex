@@ -612,6 +612,7 @@ constant parameter $\theta_a^0$と$\theta_a^0 + \epsilon_a$
     L
   \bigg]
   \bigg)
+\label{action difference under symmetry transformation}
 \end{align}
 繰り返し強調しているように、
 対称性変換は変分
@@ -671,12 +672,91 @@ $t_i, t_f$を特定の値に選んだ時のみならず、
   \dfrac{dF(t)}{dt} = 0
 \end{align}
 が無事導かれたことになる。
-例えば、以下で定義するHamiltonian
+既に見たように、$\delta t = 0$の場合には
+これはLagrangianが変換parameterによらないという条件と同じであることが分かるだろう。
+
+最後に$\delta t$を含めた対称性変換に対応する保存量の例を挙げておこう：以下で定義するHamiltonian
 (\ref{hamiltonian definition})は
 $m=1, \theta_1 = t_0$を変換parameterとする
 時間並進対称性
 $\delta q' = \dot{q}', \delta t \neq 0$ (const.)
 のもとでの保存量と見做すことが出来る。
+
+\subsubsection{対称性のgauge化}
+
+無限小量に値を取る$m$個の時間の関数$\epsilon_a (t)$
+を用意しよう。
+$\delta^a q_i$の定義は
+$\epsilon_a$に依っていなかったので、
+$\epsilon_a(t) \delta^a q_i$は変数変換ではなく無限小の変分と見做せる。
+このようにconstantであった対称性変換のparameterを
+時空に依存する関数（つまり場）に置き換える操作を
+対称性のgauge化（gauging）と言う。
+
+さて、対称性変換のgauge化によって定義される変分のもとで、
+作用がどう変化するか見てみよう。
+基本的には(\ref{action difference under symmetry transformation})
+と同様の計算をすれば良いが、
+今度は$\epsilon_a$の微分は$0$ではないし、
+$\epsilon_a$を積分の外には出せないし、
+作用の変化分が$0$になるとも限らない：
+\begin{align}
+  \delta_{\epsilon(t)} S
+  &:=
+  \int_{t_i}^{t_f} dt
+  \ 
+  \epsilon_a(t)
+  \delta^a q_i
+  \bigg[
+    \dfrac{\partial L}{\partial q_i}
+  -
+  \dfrac{d}{dt}
+    \dfrac{\partial L}{\partial \dot{q}_i}
+  \bigg]
+  +
+  \int_{t_i}^{t_f} dt
+  \ 
+  \dfrac{d}{dt}
+  \bigg[
+    \epsilon_a(t)
+    \delta^a q_i
+    \dfrac{\partial L}{\partial \dot{q}_i}
+  -
+    \epsilon_a(t)
+    \delta^a t
+    \ 
+    L
+  \bigg]
+\notag\\&=
+  \int_{t_i}^{t_f} dt
+  \ 
+  \epsilon_a(t)
+  \delta^a q_i
+  \bigg[
+    \dfrac{\partial L}{\partial q_i}
+  -
+  \dfrac{d}{dt}
+    \dfrac{\partial L}{\partial \dot{q}_i}
+  \bigg]
+  +
+  \int_{t_i}^{t_f} dt
+  \ 
+  \dfrac{d}{dt}
+  \bigg[
+    \epsilon_a(t)
+    F(t)
+  \bigg]
+\end{align}
+単に特別な類の変分を取っただけだから
+第1,2項がEuler-Lagrange方程式に現れる形であるのは当然だが、
+全微分で書かれる
+新たな項が現れているのは興味深い。
+Euler-Lagrange方程式が成り立つ場合であっても、
+これまで無視していた表面項が
+作用の変化に非自明な寄与をし得ることが分かり、
+任意の$\epsilon_a (t)$に対して
+作用の変化が消えることを要求すると
+$F(t)$が運動方程式に現れるのである。
 
 \subsection{Hamilton力学}
 
