@@ -1311,6 +1311,27 @@ $n$次元量子調和振動子を実現する
 確かに加算個の基底を持ち、
 可分であることが確かめられた。
 
+なお、公式(\ref{creation n-th power commutation})
+を使うと
+生成消滅演算子のFock基底に対する作用が
+規格化も含め
+\begin{subequations}
+\begin{align}
+    \hat{a}_i^\dagger
+    \ket{N_1, N_2,\dots,N_i=n_i,\dots, N_n}
+    &=
+    \sqrt{n_i+1}
+    \ket{N_1, N_2,\dots,N_i=n_i+1,\dots, N_n}
+\\
+    \hat{a}_i
+    \ket{N_1, N_2,\dots,N_i=n_i,\dots, N_n}
+    &=
+    \sqrt{n_i}
+    \ket{N_1, N_2,\dots,N_i=n_i-1,\dots, N_n}
+\end{align}
+\end{subequations}
+のような漸化式を与えると分かる。
+
 \subsubsection{Coherent state}
 
 量子力学では全てのobservableは
@@ -1359,6 +1380,7 @@ $\hat{a}^\dagger, \hat{a}$の交換関係
     &=
     C_{n+1} = 
     (n+1) \left(\hat{a}^\dagger\right)^{n}
+\label{creation n-th power commutation}
 \end{align}
 が成り立つので、
 $\displaystyle
@@ -1623,7 +1645,9 @@ $\hat{L}_\pm, \hat{L}_3$で書き直すと
 \\
     [\hat{L}_3, \hat{L}_\pm]
     &= \pm \hbar \hat{L}_\pm
+\label{angular momentum creation annihilation}
 \end{align}
+\label{angular momentum algebra with L_pm}
 \end{subequations}
 となり、
 (\ref{raising and lowering number operator})
@@ -1689,4 +1713,31 @@ $\hat{\bm{L}}^2$と$\hat{L}_3$の同時固有状態$\ket{j,m}$が
     &=
     \delta_{j, j'} \delta_{m, m'}
 \end{align}
-を満たしているとする。
+を満たしているとすると、
+\begin{align}
+    \hbar^2 j (j+1)
+&=
+    \bra{ j, m } \hat{\bm{L}}^2 \ket{ j, m }
+\notag\\&=
+    \sum_{i=1,2}
+    \Big|\Big|
+        \hat{L}_i \ket{ j, m }
+    \Big|\Big|^2
++
+    \Big|\Big|
+        \hat{L}_3 \ket{ j, m }
+    \Big|\Big|^2
+\notag\\&=
+    \sum_{i=1,2}
+    \Big|\Big|
+        \hat{L}_i \ket{ j, m }
+    \Big|\Big|^2
++
+    \hbar^2 m^2
+\notag\\&\ge
+    \hbar^2 m^2
+\end{align}
+なる不等式が導かれる。
+やはり
+(\ref{angular momentum creation annihilation})
+により固有値を上下できる事と矛盾しないためには
