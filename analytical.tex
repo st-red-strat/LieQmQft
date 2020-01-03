@@ -41,7 +41,7 @@ vector値関数、あるいはvector場という。
 物体に働く力$\bm{F}$が保存力である
 \begin{align}
   \mathrm{rot} \bm{F}
-  := 
+  :=
   \nabla \times \bm{F}
   = 0
 \end{align}
@@ -182,7 +182,7 @@ $[\cdots]_{t=t_i}^{t_f}$
   \delta S &= 0
   \qquad (\forall\ \delta q_i(t), i)
 \\\Leftrightarrow\qquad
-  0 &= 
+  0 &=
   \dfrac{d}{dt}\dfrac{\partial L}{\partial \dot{q_i} }
   - \dfrac{\partial L}{\partial q_i }
   \qquad (\ \forall i\ )
@@ -200,17 +200,17 @@ scalar量$L$によって力学法則を与えたという点で
 $q_i = q_i(\{q'\})$
 のもとで
 \begin{align}
-  L'(\{q'\}, \{\dot{q'}\}) &:= L(\{q(\{q'\})\}, \{\dot{q}(\{q'\})\})
+  L'(\{q'\}, \{\dot{q}'\}) &:= L(\{q(\{q'\})\}, \{\dot{q}(\{q'\})\})
 \end{align}
 と定めると、
 Euler-Lagrange方程式が形を変えないこと
 \begin{align}
-  0 &= 
+  0 &=
   \dfrac{d}{dt}\dfrac{\partial L}{\partial \dot{q_i} }
   - \dfrac{\partial L}{\partial q_i }
 \notag\\\Rightarrow
-0 &= 
-\dfrac{d}{dt}\dfrac{\partial L'}{\partial \dot{q'_i} }
+0 &=
+\dfrac{d}{dt}\dfrac{\partial L'}{\partial \dot{q}'_i }
 - \dfrac{\partial L'}{\partial q_i' }
 \label{point transformation}
 \end{align}
@@ -229,7 +229,7 @@ $n$次元調和振動子の場合Lagrangianは
 \end{align}
 であるので、Euler-Lagrange方程式は
 \begin{align}
-  0 &= 
+  0 &=
   \dfrac{d}{dt}\dfrac{\partial L}{\partial \dot{q_i} }
   - \dfrac{\partial L}{\partial q_i }
 \notag\\&=
@@ -237,7 +237,7 @@ $n$次元調和振動子の場合Lagrangianは
   \bigg(
     m\dot{q_i}
   \bigg)
-  - 
+  -
   \bigg(
   -
     m\omega^2 q_i
@@ -249,7 +249,7 @@ $n$次元調和振動子の場合Lagrangianは
 \end{align}
 となり、確かにNewtonの運動方程式を再現する。
 
-\subsubsection{対称性}
+\subsection{対称性}
 
 Euler-Lagrange方程式を導く際、
 我々は任意の変分$\delta q(t)$のもとで
@@ -283,15 +283,16 @@ $q \mapsto q + \delta^{\mathrm{sym}} q$のもとで
       \delta^{\mathrm{sym}} q
       =
       \delta^{\mathrm{t.t.}} q[q](t; t_0)
-      := -q(t) + q(t-t_0)  
+      := -q(t) + q(t-t_0)
     \end{cases}
+  \label{time translation}
   \end{align}
   \item {座標$q_i$についてのReflection Symmetry（鏡像対称性）}
   \begin{align}
     \delta^{\mathrm{sym}} q_j
     =
     \delta^{\mathrm{ref.}} q_j
-    := 
+    :=
     \begin{cases}
     - 2 q_i
     \qquad &(i = j)
@@ -336,7 +337,7 @@ $q \mapsto q + \delta^{\mathrm{sym}} q$のもとで
 \end{itemize}
 ただし表記の簡単化のために
 $q_0 := t$も正準変数のように見做し、
-Einsteinの規約
+Einsteinの和の規約
 （$1$つの項に同じ添え字が$2$度出てきたときには
 その添え字について和を取る）を採用した。
 このように、変換を記述するのに必要な
@@ -390,12 +391,292 @@ Noetherの定理は
 系に連続的な対称性が存在するとき、
 必ず対応する保存量（時間に依らず一定であるような量）が
 存在する事を主張する。
-以下ではこれを導く。
+この保存量をelectric chargeが保存することのanalogyにより
+Noether chargeと呼び、
+電荷と訳す（が、一般にはelectric chargeとは全く関係ない）。
+以下では具体的にNoether chargeを構成しよう。
+ただし、対称性変換がGalilean time $t$
+についてlocal
+（この用語は場の理論からの流用、\ref{locality}を見よ）
+であること、
+すなわち変換後のLagrangianが
+ある時刻$t$の情報$q(t), \dot{q}(t)$のみを用いて書ける事を仮定する。
+例えばtime-translation(\ref{time translation})変換後の
+Lagrangianは同一時刻$t - t_0$の力学変数のみを使って書けるので許されるが、
+変換後のLagrangianに
+$q(t)q(t-t_0)$のような項が現れることは許さない。
 
-連続な変換を、実数parameter $\theta$を用いて
-$q(t) \mapsto q(t) + 
-\delta^{\mathrm{sym}} q (q(t), \dot{q}(t), t, \theta)$
+連続でlocalな変換を、$m$個の実数parameter
+$\theta_a (a=1,\dots,m)$を用いて
+\begin{align}
+  q_i(t) \mapsto q_i(t) +
+  \delta^{\mathrm{sym}} q_i[\{ q \}] (t, \{\theta\})
+\end{align}
 のように書こう。
+ただし今回は$\delta^{\mathrm{sym}} q_i$は変分ではないため、
+微小と仮定する必要はない。
+また、変換前の運動方程式に無かった2階以上の時間微分
+$\ddot{q}, \dddot{q},\dots$が運動方程式に現れるとき
+変換は明らかに対称性ではないので、
+対称性変換の右辺には$q, \dot{q}$しか現れないとして一般性を失わない。
+結局parameter $\theta_a = \theta_a^0$を固定しておく限り、
+対称性変換はlocalityの仮定から
+一般座標変換(\ref{point transformation})と
+time-translation(\ref{time translation})の組み合わせを
+与えるだけだと分かり、
+これらをまとめて
+\begin{align}
+  q'_i( \{ q(t') \}, \{ \dot{q}(t') \} )
+    \Big|_{t' = t - t_0}
+  := q_i(t) +
+  \delta^{\mathrm{sym}} q_i[\{ q \}] (t, \{\theta^0\})
+\end{align}
+と書くことにする。
+
+無限小（infinitesimal）量$\epsilon$を、$\epsilon^2 = 0$かつ
+任意の関数$f(x)$について
+$f(x+\epsilon)=f(x) + \epsilon \dfrac{df(x)}{dx}$
+が厳密に成り立つような量と定義する
+（このような量は数学的には
+超準解析（nonstandard analysis）により正当化されるが、
+ここではこれ以上触れない）。
+対称性変換が連続であることを仮定したので、
+$q'$を与えるparameter $\theta_a^0$に対して
+$\theta_a^0 + \epsilon_a$も対称性変換を与える。
+この新たな変換
+\begin{align}
+  q_i(t) +
+  \delta^{\mathrm{sym}} q_i[\{ q \}] (t, \{\theta^0 + \epsilon\})
+  =:
+  q'_i( \{ q(t') \}, \{ \dot{q}(t') \} )
+    \Big|_{t' = t - t_0}
+  + \epsilon_a \delta^a q'_i
+\end{align}
+によって$\delta^a$を定義しよう。
+次の節で詳しく議論するが、
+右辺の量は全て時刻$t' = t - t_0$で評価している。
+同じことだが、
+\begin{align}
+  \delta^a q'_i :=
+  \dfrac{\partial
+    (\delta^{\mathrm{sym}} q_i)
+  }{
+    \partial \theta_a
+  }
+  \Bigg|_{\{\theta\} = \{\theta^0\}}
+\end{align}
+と定義したと思っても良い。
+$\delta^a = \partial^a \delta^{\mathrm{sym}}$
+（ただし$\partial^a := \dfrac{\partial}{\partial \theta_a}$）
+の定義が
+$\epsilon_a$と独立であることに注意せよ。
+
+さて、ここまで$q(t)$は運動方程式の解に限らない
+任意の時間の関数であった。
+ここで初めて
+$q'$についての運動方程式(\ref{point transformation})を解き、
+その解を改めて$q'(t)$と呼ぶ事にする。
+解$q'(t)$に対し
+$m$個のNoether charge $Q^a(t)$を
+\begin{align}
+  Q^a(t):=
+  \sum_i
+    \delta^a q'_i (t)
+  \dfrac{\partial L}{\partial \dot{q}'_i} (t)
+\end{align}
+で定義すると、
+その時間微分は
+\begin{align}
+  \dfrac{d Q^a(t)}{dt}
+&=
+  \sum_i
+  \bigg\{
+    \delta^a q'_i
+  \dfrac{d}{dt}\dfrac{\partial L}{\partial \dot{q}'_i }
++
+    \delta^a \dot{q}'_i
+    \dfrac{\partial L}{\partial \dot{q}'_i}
+  \bigg\}
+\notag\\&=
+  \sum_i
+  \bigg\{
+      \delta^a q'_i
+    \dfrac{\partial L}{\partial q'_i}
+  +
+      \delta^a \dot{q}'_i
+    \dfrac{\partial L}{\partial \dot{q}'_i}
+  \bigg\}
+\\&\qquad
+    \text{
+      $\because$ Euler-Lagrange equation
+      (\ref{Euler-Lagrange for point masses})
+    }
+\notag\\&=
+  \partial^a L(q'(t),\dot{q}'(t),t)
+  \notag\\&= 0
+\end{align}
+と計算できる。
+ただし$\delta^{\mathrm{sym}}$が対称性であること、
+すなわち作用の不変性からLagrangianが
+変換parameterに依らないこと
+$\partial^a L = 0$
+を使った（この点も次節で議論する）。
+以上で$Q$が保存量であると示せたことになる。
+
+\subsubsection{一般化されたNoetherの定理の証明}
+
+上の議論では無限小の変換$\epsilon_a \delta^a$に伴って
+Galilean time parameter $t$が変化する場合を無視した。
+以下では
+\begin{align}
+  t
+  \mapsto t + \delta t
+  =: t + \epsilon_a \delta^a t
+\end{align}
+のような変化がある
+場合にもNoether chargeに対応する量
+\begin{align}
+  F^a(t):=
+    \delta^a q'_i (t)
+  \dfrac{\partial L}{\partial \dot{q}'_i} (t)
+-
+  \delta^a t
+  \ 
+  L
+\end{align}
+が保存する事を確かめる。
+対称性が連続であったので、
+constant parameter $\theta_a^0$と$\theta_a^0 + \epsilon_a$
+による変換は任意の時間の関数$q(t)$に対し
+同一の作用を与えるはずである：
+\begin{align}
+  0 &=
+  \delta_{\epsilon} S
+\notag\\&:=
+  S\left[ q + \delta^{\mathrm{sym}} q\Big|_{\theta^0 + \epsilon} \right]
+  -
+  S\left[ q + \delta^{\mathrm{sym}} q\Big|_{\theta^0} \right]
+\notag\\&=
+  S\left[ q' + \epsilon_a \delta^a q' \right]
+  -
+  S\left[ q' \right]
+\notag\\&=
+  \int_{t_i + \delta t}^{t_f + \delta t} dt\ 
+    L( q' + \epsilon_a \delta^a q' )
+  -
+  \int_{t_i}^{t_f} dt\ 
+    L( q' )
+\notag\\&=
+  \int_{t_i}^{t_f} dt\ 
+  \bigg[
+    L( q' + \epsilon_a \delta^a q' )
+    - \delta t
+    \dfrac{d}{dt}
+    L( q' + \epsilon_a \delta^a q' )
+  -
+    L( q' )
+  \bigg]
+\notag\\&=
+  \int_{t_i}^{t_f} dt
+  \bigg[
+    \epsilon_a
+    \delta^a q'_i
+    \dfrac{\partial L}{\partial q'_i}
+  +
+  \dfrac{d}{dt}
+    (\epsilon_a
+    \delta^a q'_i)
+    \dfrac{\partial L}{\partial \dot{q}'_i}
+  -
+    \epsilon_a 
+    \delta^a t
+    \ 
+    \dfrac{d}{dt}
+    L
+  \bigg]
+\notag\\&=
+    \epsilon_a
+  \bigg(
+  \int_{t_i}^{t_f} dt
+  \bigg[
+    \delta^a q'_i
+    \dfrac{\partial L}{\partial q'_i}
+  +
+    \dfrac{d}{dt}
+    (\delta^a q'_i)
+    \dfrac{\partial L}{\partial \dot{q}'_i}
+  -
+    \delta^a t
+    \ 
+    \dfrac{d}{dt}
+    L
+  \bigg]
+  \bigg)
+\end{align}
+繰り返し強調しているように、
+対称性変換は変分
+（粒子の位置自体を時間の関数として変化させる）
+ではなく、
+粒子の同じ時間発展を異なる変数によって記述する変数変換である。
+いま議論しているのは
+この変数変換に時間parameter $t$自体の変化も含める場合で、
+それに伴って現れた$\delta t$に比例する項は
+数学的にはLie微分
+（変数変換の前後で、同じ座標『値』における関数の値を比較する）
+を取っていることに相当する。
+変換前の$t$と変換後の$t + \delta t$とは
+物理的には同じ時刻を表すが、
+変換前の$t$と変換後の$t$は物理的に異なる時刻を表すことに注意しよう。
+Lie微分で比較するのは後者である。
+
+さて、$\epsilon_a$の値は
+無限小であるという他は全く任意であるので、
+右辺は$\epsilon_a$の多項式として
+恒等的に消えなければならない。
+また、ここまで$q'(t)$が
+運動方程式の解であることを仮定していないが、
+Euler-Lagrange方程式
+(\ref{Euler-Lagrange for point masses})
+を用いると
+\begin{align}
+  0 &=
+  \int_{t_i}^{t_f} dt
+  \bigg[
+    \delta^a q'_i
+    \dfrac{d}{dt}
+    \dfrac{\partial L}{\partial \dot{q}'_i}
+  +
+    \dfrac{d}{dt}
+    (\delta^a q'_i)
+    \dfrac{\partial L}{\partial \dot{q}'_i}
+  -
+    \delta^a t
+    \ 
+    \dfrac{d}{dt}
+    L
+  \bigg]
+\notag\\&=
+  \int_{t_i}^{t_f} dt
+  \dfrac{dF(t)}{dt}
+\end{align}
+が得られる。
+対称性の定義は任意の時間の関数
+$q'(t)$に対して上の量が消えることであるので、
+当然$q'(t)$が運動方程式の解である場合にも上の量は消えていなければならない。
+また、対称性の定義は
+$t_i, t_f$を特定の値に選んだ時のみならず、
+任意の$t_i, t_f$に対して上の量が消えることを要求する。
+以上から保存則
+\begin{align}
+  \dfrac{dF(t)}{dt} = 0
+\end{align}
+が無事導かれたことになる。
+例えば、以下で定義するHamiltonian
+(\ref{hamiltonian definition})は
+$m=1, \theta_1 = t_0$を変換parameterとする
+時間並進対称性
+$\delta q' = \dot{q}', \delta t \neq 0$ (const.)
+のもとでの保存量と見做すことが出来る。
 
 \subsection{Hamilton力学}
 
@@ -432,7 +713,7 @@ Euler-Lagrange方程式は
   \begin{cases}
     \dot{p_i} = \dfrac{\partial L}{\partial q_i}
 \\    \\
-      p_i = \dfrac{\partial L}{\partial \dot{q_i}}   
+      p_i = \dfrac{\partial L}{\partial \dot{q_i}}
   \end{cases}
 %\quad
 %&\Leftrightarrow
@@ -457,10 +738,11 @@ Legendre変換
   H(\{q\},\{p\})
   :=
   \bigg[
-    \sum_i 
+    \sum_i
       \dot{q_i} p_i
   - L(\{q\}, \{\dot{q}\})
   \bigg]_{\dot{q} = \dot{q}(\{q\},\{p\},t)}
+\label{hamiltonian definition}
 \end{align}
 はそのような構成の例である。
 右辺には$9n$個の変数$\{q\},\{\dot{q}\},\{p\}$が表れているが、
@@ -509,21 +791,21 @@ $\dot{q}$に依っていないこと
 Hamiltonianの$\{q\},\{p\}$による微分は、
 $q(t)$がEuler-Lagrange方程式の解であるとすると
 \begin{align}
-  \dfrac{\partial H}{\partial q_i} 
-  &= 
-  \dfrac{\partial}{\partial q_i} 
+  \dfrac{\partial H}{\partial q_i}
+  &=
+  \dfrac{\partial}{\partial q_i}
   \bigg[
     \sum_j p_j
      \dot{q_j}
      - L(\{q\}, \{\dot{q}\})
   \bigg]_{\dot{q} = \dot{q}(\{q\},\{p\},t)}
-\notag\\  &= 
+\notag\\  &=
   \sum_j    p_j
    \dfrac{\partial \dot{q_j} (\{q\},\{p\},t) }{\partial q_i }
    - \dfrac{\partial L(\{q\}, \{\dot{q}(\{q\},\{p\},t)\} ) }{
      \partial q_i
    }
-\notag\\  &= 
+\notag\\  &=
    \sum_j    p_j
     \dfrac{\partial \dot{q_j} }{\partial q_i}
     - \Bigg[
@@ -537,7 +819,7 @@ $q(t)$がEuler-Lagrange方程式の解であるとすると
         \partial \dot{q_j}
       }\bigg|_{\dot{q} = \dot{q}(\{q\},\{p\},t)}
     \Bigg]
-\notag\\  &= 
+\notag\\  &=
     \sum_j    p_j
      \dfrac{\partial \dot{q_j} }{\partial q_i}
      - \Bigg[
@@ -549,32 +831,32 @@ $q(t)$がEuler-Lagrange方程式の解であるとすると
        \dfrac{\partial \dot{q_j}}{\partial q_i}
        p_j
      \Bigg]
-\notag\\  &= 
-      - 
+\notag\\  &=
+      -
         \dfrac{\partial L(\{q\}, \{\dot{q}\} ) }{
           \partial q_i
         }\bigg|_{\dot{q} = \dot{q}(\{q\},\{p\},t)}
-\notag\\  &= 
-      - 
+\notag\\  &=
+      -
       \dfrac{ d }{ dt }
       \dfrac{\partial L}{
         \partial \dot{q_i}
       }
-    \qquad\because\text{Euler-Lagrange方程式}  
-\notag\\  &= 
-    - 
+    \qquad\because\text{Euler-Lagrange方程式}
+\notag\\  &=
+    -
     \dot{p_i}
 \label{Hamilton's eom1}
 \\
-  \dfrac{\partial H}{\partial p_i} 
-  &= 
-  \dfrac{\partial }{\partial p_i} 
+  \dfrac{\partial H}{\partial p_i}
+  &=
+  \dfrac{\partial }{\partial p_i}
   \bigg[
     \sum_j
       \dot{q_j} p_j
   - L(\{q\}, \{\dot{q}\})
   \bigg]_{\dot{q} = \dot{q}(\{q\},\{p\},t)}
-\notag\\  &= 
+\notag\\  &=
   \sum_j
   \bigg[
     \dfrac{\partial \dot{q_j}(\{q\},\{p\},t)}{
@@ -586,7 +868,7 @@ $q(t)$がEuler-Lagrange方程式の解であるとすると
 - \dfrac{\partial L(\{q\}, \{\dot{q}(\{q\},\{p\},t)\}) }{
   \partial p_i
 }
-\notag\\  &= 
+\notag\\  &=
   \sum_j
     \dfrac{\partial \dot{q_j}}{
       \partial p_i
@@ -601,7 +883,7 @@ $q(t)$がEuler-Lagrange方程式の解であるとすると
     \partial \dot{q_j}
   }
   \bigg|_{\dot{q} = \dot{q}(\{q\},\{p\},t)}
-\notag\\  &= 
+\notag\\  &=
   \sum_j
     \dfrac{\partial \dot{q_j}}{
       \partial p_i
@@ -613,7 +895,7 @@ $q(t)$がEuler-Lagrange方程式の解であるとすると
     \partial p_i
   }
     p_j
-\notag\\  &= 
+\notag\\  &=
     \dot{q_i}
 \label{Hamilton's eom2}
 \end{align}
@@ -625,7 +907,7 @@ $\{q\},\{p\}$で書いたEuler-Lagrange方程式
 (\ref{Euler-Lagrange with p})
 を再現する。
 すなわち両者は微分方程式系として等価であり、
-(\ref{Hamilton's eom1}), 
+(\ref{Hamilton's eom1}),
 (\ref{Hamilton's eom2})を
 Hamiltonの正準方程式という。
 
@@ -659,7 +941,7 @@ Hamiltonianは
     \bigg]_{ \dot{q_i} = \frac{p_i}{m} }
 \notag\\&=
     \sum_i p_i \frac{p_i}{m}
-    - 
+    -
       \sum_i \bigg(
       \dfrac{p_i^2}{2m}
     -
@@ -680,15 +962,16 @@ Hamiltonianは
   \begin{cases}
     \dot{q_i} &= \dfrac{\partial H}{\partial p_i}
     = \dfrac{p_i}{m}
-  \\\\
+  \\
+  \\
     \dot{p_i} &= - \dfrac{\partial H}{\partial q_i}
-    = - m \omega^2 q_i  
+    = - m \omega^2 q_i
   \end{cases}
 \quad
 \Leftrightarrow
 \quad
   \ddot{q_i} &= \dfrac{\dot{p_i}}{m}
-  = \dfrac{- m \omega^2 q_i}{m} 
+  = \dfrac{- m \omega^2 q_i}{m}
   = - \omega^2 q_i
 \label{hamiltonian e.o.m for harmonic oscillator}
 \end{align}
@@ -700,7 +983,8 @@ Hamiltonの正準方程式
 \begin{align}
    \begin{cases}
       \dot{q_i} &= \dfrac{\partial H}{\partial p_i}
-    \\\\
+    \\
+    \\
       \dot{p_i} &= - \dfrac{\partial H}{\partial q_i}
     \end{cases}
 \label{Hamilton's eom}
@@ -734,12 +1018,12 @@ $\{q\},\{p\}$に対して右辺の符号が異なるという非対称性があ�
 正準方程式(\ref{Hamilton's eom})は
 \begin{align}
     \begin{cases}
-        \dot{q_i} 
+        \dot{q_i}
         = \dfrac{\partial H}{\partial p_i}
         = \{q_i, H\}_{ \mathrm{P} }
       \\
       \\
-        \dot{p_i} 
+        \dot{p_i}
         = - \dfrac{\partial H}{\partial q_i}
         = \{p_i, H\}_{ \mathrm{P} }
       \end{cases}
