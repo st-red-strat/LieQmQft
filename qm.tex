@@ -96,6 +96,7 @@ $\eta:
 \mathcal{H}\times \mathcal{H}
 \to \mathbb{C}$
 であって、
+\begin{subequations}
 \begin{align}
     \braket{ \psi | \phi } &= \braket{ \phi | \psi }^*
 &\text{（共役対称性）}
@@ -121,6 +122,7 @@ $\eta:
     \ket{\phi}=0
 &\text{（正定値性）}
 \end{align}
+\end{subequations}
 を満たすものがあることを言う。
 $\Big|\Big| \ket{\psi} \Big|\Big|^2
 := \braket{ \psi | \psi }$
@@ -169,7 +171,7 @@ Hamiltonian operatorである。
     [\hat{A}, \hat{B}] := \hat{A} \hat{B} - \hat{B} \hat{A}
 \end{align}
 で定義し、$[\hat{A}, \hat{B}] = 0$であるとき
-$\hat{A}, \hat{B}$は可換であるという。
+$\hat{A}, \hat{B}$は交換する、または可換であるという。
 全く同様に反交換を
 \begin{align}
     \{\hat{A}, \hat{B}\} := \hat{A} \hat{B} + \hat{B} \hat{A}
@@ -797,6 +799,7 @@ $n$自由度系で正準交換関係
 $\{\hat{a}\}, \{\hat{a}^\dagger\}$への
 線形変換であり、
 逆変換は
+\begin{subequations}
 \begin{align}
     \hat{q}_i &=
     \dfrac{1}{2}\sqrt{
@@ -814,6 +817,7 @@ $\{\hat{a}\}, \{\hat{a}^\dagger\}$への
         \hat{a}_i - \hat{a}^\dagger_i
     \right)
 \end{align}
+\end{subequations}
 で与えられる。
 正準交換関係ももちろん
 $\{\hat{a}\}, \{\hat{a}^\dagger\}$
@@ -884,11 +888,13 @@ $\{\hat{q}\}, \{\hat{p}\}$は可換測な物理量なのでHermitianであるこ
 から
 $\hat{H}$のHermiticityも自然に従う。
 公式(\ref{A,BC to B(A,C) + (A,B)C})を使って
+\begin{subequations}
 \begin{align}
     [\hat{q}_i, \hat{H}] &= i\hbar \dfrac{ \hat{p}_i }{m} 
 \\
     [\hat{p}_j, \hat{H}] &= - i \hbar\ m\omega^2 \hat{q}_j
 \end{align}
+\end{subequations}
 が得られる。
 これらが調和振動子の正準方程式
 (\ref{hamiltonian e.o.m for harmonic oscillator})
@@ -924,17 +930,9 @@ $\{\hat{a}\}, \{\hat{a}^\dagger\}$
             \dfrac{ 1 }{ 2 }
         \right)    
 \\
-    [\hat{N}_k,\hat{a}_i]
-    &= - \hbar \omega \hat{a}_i\delta_{ik}
-\label{annihilation operator}
-\\
-    [\hat{N}_k,\hat{a}^\dagger_j]
-    &= + \hbar \omega \hat{a}^\dagger_j\delta_{jk}
-\label{creation operator}
-\\
     \hat{N}_k &:= \hat{a}^\dagger_k\hat{a}_k
 \end{align}
-なる交換関係が得られる。
+が得られる。
 ただし、
 $k$番目の自由度のnumber operator
 $\hat{N}_k$を定義した
@@ -946,6 +944,24 @@ $\hat{N}_k$を定義した
 粒子数が増減するためには
 正準変数の個数が変化する必要があるが、
 この生成消滅演算子でそれは起こらない）。
+
+生成消滅演算子の交換関係
+(\ref{creation annihilation operator})
+に気を付けると、
+変数変換後のoperatorが
+\begin{subequations}
+\begin{align}
+    [\hat{N}_k,\hat{a}_i]
+    &= - \hat{a}_i\delta_{ik}
+\label{annihilation operator}
+\\
+    [\hat{N}_k,\hat{a}^\dagger_j]
+    &= + \hat{a}^\dagger_j\delta_{jk}
+\label{creation operator}
+\end{align}
+\label{raising and lowering number operator}
+\end{subequations}
+なる交換関係を為すことが分かる。
 適当なenergy固有状態$ \ket{\psi} \neq 0 $
 \begin{align}
     \hat{H} \ket{\psi}
@@ -1114,6 +1130,7 @@ $\ket{N_1, N_2,\dots, N_n}$
 これが存在すれば、
 昇降演算子によって任意の非負整数固有値
 $N_i\pm n_i$に属する固有状態
+\begin{subequations}
 \begin{align}
     \ket{N_1, N_2,\dots,N_i+n_i,\dots, N_n}
     &\propto
@@ -1129,6 +1146,7 @@ $N_i\pm n_i$に属する固有状態
     \Big)^{n_i}
     \ket{N_1, N_2,\dots, N_n}
 \end{align}
+\end{subequations}
 が構成できる事は明らかであろう
 （$N_i - n_i > 0$である限りこれらのvectorが
 zero-vector $0$とならないことは既に説明した）。
@@ -1558,7 +1576,7 @@ BCH formulaの特別な場合
 \end{align}
 と定義され（ただし成分は直交座標系で示した。
 また簡単のため議論は$1$粒子系の場合に限る）、
-系の回転対称性に付随する保存量であった。
+3次元系の回転対称性に付随する保存量であった。
 量子力学で対応する演算子はどのような性質を持つか議論しよう。
 
 角運動量演算子を
@@ -1573,7 +1591,102 @@ BCH formulaの特別な場合
     ]
     = i \hbar\ 
     \epsilon_{ijk} \hat{L}_i
+\label{angular momentum algebra}
 \end{align}
 が直ちに従う。
 これを角運動量の代数、あるいは
 $\mathfrak{su}(2)$代数という。
+
+\subsubsection{角運動量の代数の表現}
+
+この代数が正定値なHilbert空間に作用しているということから
+再び非自明な条件が得られる事を見よう。
+そのためにはnon-hermitianなoperator
+\begin{align}
+    \hat{L}_\pm
+    &:=
+    \hat{L}_x
+    \pm
+    i \hat{L}_y
+\\
+    \hat{L}_\mp^\dagger
+    &= 
+    \hat{L}_\pm
+\end{align}
+を定義しておくと都合がよい。
+(\ref{angular momentum algebra})を
+$\hat{L}_\pm, \hat{L}_3$で書き直すと
+\begin{subequations}
+\begin{align}
+    [\hat{L}_+, \hat{L}_-]
+    &= 2 \hbar \hat{L}_3
+\\
+    [\hat{L}_3, \hat{L}_\pm]
+    &= \pm \hbar \hat{L}_\pm
+\end{align}
+\end{subequations}
+となり、
+(\ref{raising and lowering number operator})
+に続く議論と全く同様に
+$\hat{L}_\pm$が$\hat{L}_3$の固有値を
+$\pm \hbar$だけ上下することが分かる。
+
+角運動量の大きさ$\hat{\bm{L}}^2$を
+\begin{align}
+    \hat{\bm{L}}^2
+    := \sum_i \hat{L}_i^2
+=
+    \dfrac{1}{2}
+    \left(
+        \hat{L}_+ \hat{L}_-
+    +
+        \hat{L}_- \hat{L}_+ 
+    \right)
+    +
+    \hat{L}_3^2
+\end{align}
+で定義する。
+$\hat{\bm{L}}^2$は
+$\hat{L}_\pm, \hat{L}_3$の全てと交換するので、
+$\hat{\bm{L}}^2$と$\hat{L}_3$の同時固有状態が存在する。
+より一般に、
+代数の全ての元と交換するような元の集合を中心（center）といい、
+Lie algebraが与えられたとき
+algebraの元を特定の方法で規格化し二乗和を取ることにより
+カシミール演算子（Casimir operator、quadratic Casimir invariant）と呼ばれる
+（Lie algebraのuniversal enveloping algebra（普遍包絡代数）の）centerの元を
+構成することが出来る。
+
+$\hat{\bm{L}}^2$の固有値を$L^2$と書くと、
+対応する固有状態$\ket{\psi}$による期待値は
+\begin{align}
+    L^2
+&=
+    \bra{\psi} \hat{\bm{L}}^2 \ket{\psi}
+\notag\\&=
+    \sum_i
+    \Big|\Big|
+        \hat{L}_i \ket{\psi}
+    \Big|\Big|^2 \ge 0
+\end{align}
+のように非負であるため、
+無次元の実数parameter $j \ge 0$を用いて
+$L^2 = \hbar^2 j (j+1)$
+とおいて一般性を失わない。
+同様に無次元parameter $m$を用い、
+$\hat{\bm{L}}^2$と$\hat{L}_3$の同時固有状態$\ket{j,m}$が
+\begin{align}
+    \hat{\bm{L}}^2 \ket{j,m}
+    &=
+    \hbar^2 j (j+1) \ket{j,m}
+    \quad( j \ge 0 )
+\\
+    \hat{L}_3 \ket{j,m}
+    &=
+    \hbar m \ket{j,m}
+\\
+    \braket{ j', m' | j, m }
+    &=
+    \delta_{j, j'} \delta_{m, m'}
+\end{align}
+を満たしているとする。

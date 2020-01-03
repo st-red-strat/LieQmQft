@@ -126,6 +126,7 @@ $L(t) := L(\{q(t)\}, \{\dot{q}(t)\})$は時間の$1$変数関数であり、
   \\
   | q_i(t) | & \gg | \delta q_i(t) |
   \qquad (\forall t)
+\notag
 \end{align}
 のように微小に変化させたとき、
 どんな関数$\delta q_i(t)$に対しても
@@ -181,7 +182,7 @@ $[\cdots]_{t=t_i}^{t_f}$
 \begin{align}
   \delta S &= 0
   \qquad (\forall\ \delta q_i(t), i)
-\\\Leftrightarrow\qquad
+\notag\\\Leftrightarrow\qquad
   0 &=
   \dfrac{d}{dt}\dfrac{\partial L}{\partial \dot{q_i} }
   - \dfrac{\partial L}{\partial q_i }
@@ -333,6 +334,7 @@ $q \mapsto q + \delta^{\mathrm{sym}} q$のもとで
       (O^T)^i{}_k O_k{}^j
       =
       \delta^{ij}$)}
+  \notag
   \end{align}
 \end{itemize}
 ただし表記の簡単化のために
@@ -506,7 +508,7 @@ $m$個のNoether charge $Q^a(t)$を
       \delta^a \dot{q}'_i
     \dfrac{\partial L}{\partial \dot{q}'_i}
   \bigg\}
-\\&\qquad
+\notag\\&\qquad
     \text{
       $\because$ Euler-Lagrange equation
       (\ref{Euler-Lagrange for point masses})
@@ -874,6 +876,7 @@ $\dot{q}$に依っていないこと
 
 Hamiltonianの$\{q\},\{p\}$による微分は、
 $q(t)$がEuler-Lagrange方程式の解であるとすると
+\begin{subequations}
 \begin{align}
   \dfrac{\partial H}{\partial q_i}
   &=
@@ -930,7 +933,7 @@ $q(t)$がEuler-Lagrange方程式の解であるとすると
 \notag\\  &=
     -
     \dot{p_i}
-\label{Hamilton's eom1}
+\label{Hamilton's eom for p}
 \\
   \dfrac{\partial H}{\partial p_i}
   &=
@@ -981,18 +984,19 @@ $q(t)$がEuler-Lagrange方程式の解であるとすると
     p_j
 \notag\\  &=
     \dot{q_i}
-\label{Hamilton's eom2}
+\label{Hamilton's eom for q}
 \end{align}
+\end{subequations}
 のようにLagrangianを一切使わずに表せ、
 逆にHamiltonianを再びLegendre変換したものに
-(\ref{Hamilton's eom1}),(\ref{Hamilton's eom2})
+(\ref{Hamilton's eom for p}),(\ref{Hamilton's eom for q})
 の解$\{q(t)\},\{p(t)\}$を代入すると
 $\{q\},\{p\}$で書いたEuler-Lagrange方程式
 (\ref{Euler-Lagrange with p})
 を再現する。
 すなわち両者は微分方程式系として等価であり、
-(\ref{Hamilton's eom1}),
-(\ref{Hamilton's eom2})を
+(\ref{Hamilton's eom for p}),
+(\ref{Hamilton's eom for q})を
 Hamiltonの正準方程式という。
 
 Hamiltonの方程式はscalar関数$H$から得られるため
