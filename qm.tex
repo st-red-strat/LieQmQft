@@ -1554,7 +1554,26 @@ BCH formulaの特別な場合
 \begin{align}
     \bm{L} &:= \bm{r} \times \bm{p}
     \\\therefore
-    L_i &= \epsilon_{ijk} \ r_j \ p_k
+    L_i &= \epsilon_{ijk} \ x_j \ p_k
 \end{align}
-と定義され（ただし成分は直交座標系で示した）、
+と定義され（ただし成分は直交座標系で示した。
+また簡単のため議論は$1$粒子系の場合に限る）、
 系の回転対称性に付随する保存量であった。
+量子力学で対応する演算子はどのような性質を持つか議論しよう。
+
+角運動量演算子を
+\begin{align}
+    \hat{L}_i &= \epsilon_{ijk} \ \hat{q}_j \ \hat{p}_k
+\end{align}
+と定義する。
+正準交換関係から
+\begin{align}
+    [
+        \hat{L}_i, \hat{L}_j
+    ]
+    = i \hbar\ 
+    \epsilon_{ijk} \hat{L}_i
+\end{align}
+が直ちに従う。
+これを角運動量の代数、あるいは
+$\mathfrak{su}(2)$代数という。

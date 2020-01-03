@@ -2,6 +2,41 @@
 \renewcommand{\theequation}{A.\arabic{section}.\arabic{equation}}
 \setcounter{equation}{0}
 
+\section{物理数学}
+
+\subsection{norm}
+
+$\mathbb{R}^n$または
+$\mathbb{C}^n$上の
+$n$次元vector $v$に対し、
+実数$1\le p < \infty$の範囲で
+$L^p$-normを
+\begin{align}
+    ||v||_p
+:=
+    \left(
+        \sum_{i=1}^n
+        |v_i|^p
+    \right)^{ \dfrac{1}{p} }
+\end{align}
+と定義する。
+$p\to\infty$の極限を
+$L^\infty$-normないし最大値normと言い、
+\begin{align}
+    ||v||_\infty
+=
+    \max_i
+    |v_i|
+\end{align}
+に一致する。
+特に$n \to \infty$（つまり無限数列）の場合、
+上の$p$-normを有限にするようなvectorの集合を$l^p$と呼ぶ。
+
+測度空間についても
+和を積分に置き換えることにより同様のnormが定義でき、
+これを有限にする可測関数の集合を
+$L^p$空間と呼ぶ。
+
 \section{量子力学の公式}
 
 \subsection{交換関係・反交換関係の基本的な性質}
