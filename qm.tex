@@ -1704,11 +1704,13 @@ $\hat{\bm{L}}^2$の固有値を$L^2$と書くと、
     \Big|\Big|^2 \ge 0
 \end{align}
 のように非負であるため、
-無次元の実数parameter $j \ge 0$を用いて
+無次元の実数parameter $j \ge 0$
+（軌道角運動量量子数、方位角量子数、azimuthal quantum number）を用いて
 $L^2 = \hbar^2 j (j+1)$
 とおいて一般性を失わない。
-同様に無次元parameter $m$を用い、
+同様に無次元parameter $m$（磁気量子数、magnetic quantum number）を用い、
 $\hat{\bm{L}}^2$と$\hat{L}_3$の同時固有状態$\ket{j,m}$が
+\begin{subequations}
 \begin{align}
     \hat{\bm{L}}^2 \ket{j,m}
     &=
@@ -1723,6 +1725,7 @@ $\hat{\bm{L}}^2$と$\hat{L}_3$の同時固有状態$\ket{j,m}$が
     &=
     \delta_{j, j'} \delta_{m, m'}
 \end{align}
+\end{subequations}
 を満たしているとすると、
 やはり内積の正定値性と
 公式
@@ -1751,17 +1754,20 @@ $\hat{\bm{L}}^2$と$\hat{L}_3$の同時固有状態$\ket{j,m}$が
 なる不等式が導かれる。
 これが
 (\ref{angular momentum creation annihilation})
-により$\hbar m$を$\pm \hbar$だけ上下できる事と矛盾しないためには、
+により$\hbar m$を$\pm \hbar$だけ上下できる事と矛盾しないため、
 調和振動子の場合
-(\ref{vacuum of number operator})以下と全く同様の議論
+(\ref{vacuum of number operator})以下と同様の議論
 \begin{enumerate}
     \item{
         $\hbar^2 j (j+1) - \hbar^2 m^2 \pm \hbar^2 m < 0$
-        となる固有値$m$が存在してはいけない。
-    }
-    \item{
-        $\hbar^2 j (j+1) - \hbar^2 m^2 \pm \hbar^2 m = 0$
-        の解となる固有値
+        とする固有値$m$は、
+        vector $\hat{L}_\mp \ket{ j, m }$のいずれかの
+        normを負にするため存在してはいけない。
+        ここで、
+        \begin{align}
+            \hbar^2 j (j+1) - \hbar^2 m^2 \pm \hbar^2 m = 0
+        \end{align}
+        の解は
         \begin{align}
             m &= \pm \sqrt{ j (j+1) + \dfrac{1}{4} }
             \pm \dfrac{1}{2}
@@ -1778,26 +1784,108 @@ $\hat{\bm{L}}^2$と$\hat{L}_3$の同時固有状態$\ket{j,m}$が
                 - j,\ 
                 - j - 1\ 
         \end{align}
-        は存在してよいが、
-        存在する物に関しては
-        上の2番目の複号に応じ
-        $ \hat{L}_\mp \ket{ j, m } $
+        なので、固有値が存在するならば
+        \begin{align}
+        \begin{cases}
+            - j \le m \le j + 1
+        \\
+            - j - 1 \le m \le j
+        \end{cases}
+        \quad&\Rightarrow\quad
+        - j \le m \le j
+        \label{magnetic quantum number range}
+        \end{align}
+        を満たさなければならないことが分かる。
+    }
+    \item{
+        $\hbar^2 j (j+1) - \hbar^2 m^2 \pm \hbar^2 m = 0$
+        を満たす固有値$-j, j$
+        が存在するならば、
+        $ \hat{L}_\mp \ket{ j, m } $（複号同順）
         のnormが$0$なので
+        真空条件の類似：
         \begin{subequations}
         \begin{align}
-            0 &=
-            \hat{L}_- \ket{ j, j + 1 }
-        \\
-            0 &=
-            \hat{L}_+ \ket{ j, j }
-        \\
             0 &=
             \hat{L}_- \ket{ j, - j }
         \\
             0 &=
-            \hat{L}_+ \ket{ j, - j - 1 }
+            \hat{L}_+ \ket{ j, j }
         \end{align}
         \end{subequations}
         が成り立たねばならない。
+        表現論の言葉では
+        前者をlowest weight condition、
+        後者をhighest weight conditionという。
+    }
+    \item{
+        $\hbar^2 j (j+1) - \hbar^2 m^2 \pm \hbar^2 m > 0$
+        を与えるような固有値$m$に対し、
+        $ \hat{L}_\mp \ket{ j, m } $
+        はnormが非0で$0$ vectorではないので
+        \begin{align}
+            \hat{L}_\mp \ket{ j, m } \propto \ket{ j, m \mp 1 } \neq 0
+        \end{align}
+        が分かる。
+        もし
+        $p, q \in \mathbb{N}_{\ge0}$を用い
+        $- j + p < m < - j + p + 1$または
+        $j - q - 1 < m < j - q$
+        を満たす固有値$m$が存在するとすると、
+        \begin{subequations}
+        \begin{align}
+            \hat{L}_-^{p+1} \ket{ j, m }
+            \propto \ket{ j, m - p - 1}
+        \quad&\Rightarrow\quad
+            - j - 1 < m - p - 1 < -j
+        \\
+            \hat{L}_+^{q+1} \ket{ j, m }
+            \propto \ket{ j, m + q + 1}
+        \quad&\Rightarrow\quad
+            j < m + q + 1 < j + 1
+        \end{align}
+        \end{subequations}
+        のいずれかが条件
+        (\ref{magnetic quantum number range})
+        に矛盾する。
+        結局、固有値$m$は（存在するならば）必ず
+        $p, q \in \mathbb{N}_{\ge0}$を用い
+        $m = - j + p$かつ$ m = j - q$と書けなければならず、
+        従って$ 2j $は非負整数である必要がある。
     }
 \end{enumerate}
+が成り立つ。
+
+Fock基底を構成したのと同じ方法で
+$\hat{L}_3$の全ての固有状態を規格化まで含めて
+highest weight stateまたはlowest weight stateから
+書き下すことが出来、
+\begin{subequations}
+\begin{align}
+    \ket{ j, m }
+    &=
+    \sqrt{\dfrac{
+        (j \pm m)!
+    }{
+        (2j)! (j \mp m)!
+    }}
+    \left(
+        \dfrac{\hat{L}_\mp}{\hbar}
+    \right)^{j \mp m}
+    \ket{ j, \pm j }
+\\
+    \hat{L}_\pm \ket{ j, m }
+    &= \hbar
+    \sqrt{(j \mp m)(j \pm m + 1)}
+    \ket{ j, m \pm 1 }
+\\
+    2j \in \mathbb{N}_{\ge0}
+    &,\quad
+    m = - j, - j + 1, \dots, j - 1, j
+\end{align}
+\end{subequations}
+が得られる。
+恐ろしいことに、整数または半整数$j$を与えれば
+内積の正定値性のみから
+全ての固有値$m$と
+対応する固有状態が求まってしまうのである。
