@@ -2,7 +2,7 @@
 \label{sec: QFT}
 
 場の量子論と言うとFeynman diagram
-（古くはgraphと呼ぶ文献もある）を使った計算に
+（古くはFeynman graphと呼ぶ文献もある）を使った計算に
 皆さん憧れているのだろうが、
 これは摂動計算に現れるものである。
 摂動論は問題を解ける部分とそこからのズレに分けて
@@ -16,10 +16,30 @@
 
 量子化するというからには
 量子化される対象となる古典論を用意する必要がある。
-適当な場$\phi(\bm{x})$と
-その空間微分$\partial_i \phi(\bm{x})$
+空間$d$次元、時間$1$次元の$D:= d+1$次元時空$\mathcal{M}^{1,d}$を考え、
+その座標を$(t, x^1,\dots, x^d)$とする。
+時空$\mathcal{M}^{1,d}$上で定義された
+適当な場$\phi(t, \bm{x})$と
+その空間微分または時間微分
+\begin{align}
+    \partial_\mu \phi(\bm{x})
+    ,\quad
+    \partial_\mu := \dfrac{\partial}{\partial x^\mu}
+    \quad
+    (\mu = 0,\dots,d)
+    ,\quad
+    x^0 := t
+\end{align}
 で書かれたLagrangian $L$を用意しよう。
-空間$d$次元、時間$1$次元の$D:= d+1$次元時空を考え、
+物理学では経験的事実として
+causality（因果律：原因より先に結果が起こってはいけない）
+及びlocality（局所性：遠く離れた地点で起こった事象が、直ちに他の地点の事象に影響を与えてはいけない。
+つまり、情報が速度無限大で伝わってはいけない。）
+を仮定するので、
+ある時刻$t$の物理量と別の時刻$t-t_0$とが直接相互作用すること、つまり
+Lagrangianに$\phi(t) \psi(t-t_0)$のような項が現れることを禁止する。
+Lagrangianに無限階の微分を含めることも
+局所性を破るため禁止する。
 Lagrangian密度を$\mathcal{L}$と書く。
 当然Lagrangianは$L := \int d^d x \mathcal{L}$である。
 場の変分$\phi \mapsto \phi + \delta \phi$のもとで
