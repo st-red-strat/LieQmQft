@@ -31,38 +31,65 @@
     x^0 := t
 \end{align}
 で書かれたLagrangian $L$を用意しよう。
+力学自由度が空間の一点に局在している質点とは異なり、
+場は空間的に広がりを持った自由度であるので
+その相互作用の仕方も質点の場合とは大きく異なる。
 物理学では経験的事実として
-causality（因果律：原因より先に結果が起こってはいけない）
-及びlocality（局所性：遠く離れた地点で起こった事象が、直ちに他の地点の事象に影響を与えてはいけない。
-つまり、情報が速度無限大で伝わってはいけない。）
+\begin{enumerate}
+    \item{causality（因果律）：原因より先に結果が起こってはいけない}
+    \item{locality（局所性）：遠く離れた地点で起こった事象が、直ちに他の地点の事象に影響を与えてはいけない。
+    つまり、情報が速度無限大で伝わってはいけない}
+\end{enumerate}
 を仮定するので、
 ある時刻$t$の物理量と別の時刻$t-t_0$とが直接相互作用すること、つまり
 Lagrangianに$\phi(t) \psi(t-t_0)$のような項が現れることを禁止する。
 Lagrangianに無限階の微分を含めることも
 局所性を破るため禁止する。
 Lagrangian密度を$\mathcal{L}$と書く。
-当然Lagrangianは$L := \int d^d x \mathcal{L}$である。
+当然Lagrangianは$L := \int d^d x \mathcal{L}$、
+作用は$S= \int dt L = \int d^D x \mathcal{L}$である。
 場の変分$\phi \mapsto \phi + \delta \phi$のもとで
 作用の変分は
 \begin{align}
     \delta S
     &=
-    \int d^{d+1} x
+    \int d^D x
     \left[
         \mathcal{L}(\phi + \delta \phi ,
         \partial \phi + \partial (\delta \phi))
         - \mathcal{L}
     \right]
 \notag\\&=
-    \int d^{d+1} x
+    \int d^D x
     \left[
         \delta \phi
         \dfrac{\delta \mathcal{L}}{\delta \phi}
         +
-        \partial (\delta \phi)
-        \dfrac{\delta \mathcal{L}}{\delta (\partial\phi)}
+        \partial_\mu (\delta \phi)
+        \dfrac{\delta \mathcal{L}}{\delta (\partial_\mu \phi)}
     \right]
+\notag\\&=
+    \int d^D x
+    \ 
+    \delta \phi
+    \left[
+        \dfrac{\delta \mathcal{L}}{\delta \phi}
+        -
+        \partial_\mu
+        \dfrac{\delta \mathcal{L}}{\delta (\partial_\mu \phi)}
+    \right]
+    + \text{(surface term)}
 \end{align}
+であり、作用の停留条件$\delta S = 0$から
+場のEuler-Lagrange方程式は
+\begin{align}
+    0 &=
+    \dfrac{\delta \mathcal{L}}{\delta \phi}
+    -
+    \partial_\mu
+    \dfrac{\delta \mathcal{L}}{\delta (\partial_\mu \phi)}
+\end{align}
+と導かれる。
 
 
 \subsection{場の量子化}
