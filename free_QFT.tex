@@ -28,7 +28,9 @@
     \quad
     (\mu = 0,\dots,d)
     ,\quad
-    x^0 := t
+    x^0 := c t
+    \quad
+    \text{(c: the speed of light in vacuum)}
 \end{align}
 で書かれたLagrangian $L$を用意しよう。
 力学自由度が空間の一点に局在している質点とは異なり、
@@ -43,9 +45,38 @@
 を仮定するので、
 ある時刻$t$の物理量と別の時刻$t-t_0$とが直接相互作用すること、つまり
 Lagrangianに$\phi(t) \psi(t-t_0)$のような項が現れることを禁止する。
-Lagrangianに無限階の微分を含めることも
-局所性を破るため禁止する。
-Lagrangian密度を$\mathcal{L}$と書く。
+Lagrangianに、例えば
+\begin{align}
+    \sqrt{\left(\dfrac{
+        m c
+    }{
+        \hbar
+    }\right)^2 + A^{\mu \nu}\partial_\mu \partial_\nu}
+    \ \phi(t,\bm{x})
+&=
+    \dfrac{ m c }{ \hbar }
+    \sqrt{
+        1 + \left(\dfrac{ \hbar }{ m c }\right)^2
+        A^{\mu \nu}\partial_\mu \partial_\nu
+    }
+    \ \phi(t,\bm{x})
+\notag\\&= \dfrac{ m c }{ \hbar }
+    \sum_{n=0}^\infty
+    c_n
+    (A^{\mu \nu}\partial_\mu \partial_\nu)^n
+    \ \phi(t,\bm{x})
+\notag\\&
+\text{($A^{\mu\nu}$: a dimensionless matrix,  $c_n$: constants)}
+\end{align}
+のような無限階の微分を含めることも
+localityを破るため禁止する。
+operatorの関数がTaylor展開で与えられていた事を思い出そう。
+
+さて、上のようなlocalityの制約により、
+Lagrangianは時空上$\mathcal{M}^{1,d}$の
+各点$(t, \bm{x})$の情報の和、ないし積分として書ける筈である。
+この局所的な情報をLagrangian密度と言い、
+$\mathcal{L}$と書く。
 当然Lagrangianは$L := \int d^d x \mathcal{L}$、
 作用は$S= \int dt L = \int d^D x \mathcal{L}$である。
 場の変分$\phi \mapsto \phi + \delta \phi$のもとで
