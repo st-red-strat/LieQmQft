@@ -1,4 +1,4 @@
-\documentclass[dvipdfmx]{jsarticle}
+\documentclass[dvipdfmx, uplatex]{jsarticle}
 \usepackage[dvipdfmx]{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -6,6 +6,9 @@
 \usepackage{mathrsfs}
 \usepackage{bm}
 \usepackage{bbm}
+\usepackage{physics}
+\usepackage{silence}
+\WarningFilter*{hyperref}{Token not allowed in a PDF string}
 \usepackage{braket}
 \usepackage[english]{babel}
 \usepackage{here}
@@ -18,7 +21,6 @@
 %\begin{comment}
 \usetikzlibrary{positioning}
   \makeatletter
-%  \renewcommand{\theequation}{\arabic{chapter}-\arabic{section}-\arabic{equation}}
   \renewcommand{\theequation}{\arabic{section}.\arabic{subsection}.\arabic{equation}}
   \@addtoreset{equation}{section}
   \@addtoreset{equation}{subsection}
