@@ -74,7 +74,7 @@ operatorの関数がTaylor展開で与えられていた事を思い出そう。
 
 さて、上のようなlocalityの制約により、
 Lagrangianは時空上$\mathcal{M}^{1,d}$の
-各点$(t, \bm{x})$の情報の和、ないし積分として書ける筈である。
+各点$(t, \bm{x})$の情報の和ないし積分で書ける筈である。
 この局所的な情報をLagrangian密度と言い、
 $\mathcal{L}$と書く。
 当然Lagrangianは$L := \int d^d x \mathcal{L}$、
@@ -121,6 +121,55 @@ $\mathcal{L}$と書く。
     \dfrac{\delta \mathcal{L}}{\delta (\partial_\mu \phi)}
 \end{align}
 と導かれる。
+
+\subsubsection{Free Scalar Fieldの例}
+
+$n$次元対角行列$A$の$(i,i)$成分が$a_i$であるとき
+\begin{align}
+    A = \mathrm{diag}(a_1, a_2,\dots)
+    =
+    \begin{pmatrix}
+        a_{1} & \cdots & 0 & \cdots & 0 \\
+        \vdots & \ddots &        &        & \vdots \\
+        0      &        & a_{i}  &        & 0      \\
+        \vdots &        &        & \ddots & \vdots \\
+        0      & \cdots & 0      & \cdots & a_{n}
+    \end{pmatrix}
+\end{align}
+と書こう。
+$D$次元Minkowski空間の
+計量（metric tensor）を
+\begin{align}
+    \eta_{\mu\nu}
+    :=
+    \mathrm{diag}(-1, +1, +1, \dots)
+\end{align}
+と定義しておく。
+他にも
+\begin{align}
+    \eta_{\mu\nu}
+    :=
+    \mathrm{diag}(+1, -1, -1, \dots)
+\end{align}
+とする流儀があるため、
+前者をEast coast sign conventionとか
+mostly plus signsと言い、
+後者のWest coast conventionまたは
+mostly minuses conventionと区別することがある。
+複数のconventionがあるのは名前の通り
+太古のAmericaで東海岸と西海岸の間に十分な交流がなかったせいで、
+$(3+1)$次元時空に限って議論すればよい現象論屋の間では
+後者が未だに隆盛を誇っているようであるが、
+mostly minusでは
+Euclid空間への移行$\eta_{\mu\nu} \to \delta_{\mu\nu}$に不便であるし、
+$\det g$の符号が次元によって変わってしまうのも
+一般次元への拡張のためにかなり都合が悪いので、
+数理物理に手を出す人間はmostly plusの計量を用いることが多いようだ。
+物理的に表す内容は全く同じなので好きな方を使えばよいのだが、
+筆者個人としてはmostly minusなどという歴史上の遺物に慣れてしまう前に
+\href{http://www.math.columbia.edu/~woit/wordpress/?p=7773}
+{The West Coast Metric is the Wrong One}
+なども参照することを勧める。
 
 
 \subsection{場の量子化}
