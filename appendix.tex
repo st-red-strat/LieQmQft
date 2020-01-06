@@ -4,7 +4,7 @@
 
 \section{物理数学}
 
-\subsection{norm}
+\subsection{$L^p$-norm}
 
 $\mathbb{R}^n$または
 $\mathbb{C}^n$上の
@@ -42,7 +42,7 @@ $L^p$空間と呼ぶ。
 $\Gamma$関数は$\Re z > 0$の複素数$z$に対し
 \begin{align}
     \Gamma(z)
-    := \int_0^\infty dt t^{z-1} e^{-t}
+    := \int_0^\infty dt\ t^{z-1} e^{-t}
 \end{align}
 により定義され、
 その性質
@@ -75,8 +75,8 @@ $D$内にあって$C_1$を囲むような単純閉曲線$C$を使って
         c_n (z-a)^n
 \\
     c_n
-    &= \dfrac{1}{2 \pi i}
-    \oint_C dz_0 \dfrac{f(z_0)}{z_0 - z}^{n+1}
+    &:= \dfrac{1}{2 \pi i}
+    \oint_C dz_0 \dfrac{f(z_0)}{(z_0 - z)^{n+1}}
 \end{align}
 が成り立つ。
 これをLaurent級数展開という。
@@ -91,26 +91,27 @@ Laurent級数展開
 \end{align}
 において、
 $\Res{f(z)dz, a} := c_{-1}$を点$a$における留数（Residue）という。
-単純閉曲線$C$内に$n$個の孤立特異点$a_1,\dots,a_n$があるとき、
-\begin{align}
-    \oint_C dz\ f(z)
-    =
-    2 \pi i \sum_{k=1}^n
-    \Res{f(z)dz, a_k}
-\end{align}
-が成り立つ。
 特に、
 $f(z)$が$a$を$m$位の極（$m$-th order pole）
 に持つときは
 \begin{align}
-    \Res{f(z)dz, a_m}
+    \Res{f(z)dz, a}
     =
     \lim_{z \to a}
     \dfrac{1}{(m-1)!}
     \dfrac{d^{m-1}}{dz^{m-1}}
     \bigg[
-        f(z-a)^m f(z)
+        (z-a)^m f(z)
     \bigg]
+\end{align}
+が成り立つ。
+$f(z)$が単純閉曲線$C$内で
+$n$個の孤立特異点$a_1,\dots,a_n$を除き正則であるとき
+\begin{align}
+    \oint_C dz\ f(z)
+    =
+    2 \pi i \sum_{k=1}^n
+    \Res{f(z)dz, a_k}
 \end{align}
 が成り立つ。
 
