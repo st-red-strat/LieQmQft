@@ -528,10 +528,10 @@ $\partial^a L = 0$
 例えばLagrangianの変化分が
 \begin{align}
   \delta L &:= L( q' + \epsilon_a \delta^a q' ) - L( q' )
-  = \dfrac{d \mathcal{K}}{dt}
+  = \epsilon_a \dfrac{d \mathcal{K^a}}{dt}
   ,\notag\\
   \delta S &= \int dt \delta L
-  = \int dt \dfrac{d \mathcal{K}}{dt}
+  = \epsilon_a \int dt \dfrac{d \mathcal{K^a}}{dt}
   = \text{(surface term)}
 \end{align}
 のように時間の全微分で書ける場合も、
@@ -545,6 +545,14 @@ $\partial^a L = 0$
   \mathcal{K}
 \end{align}
 と再定義すればNoether chargeは保存量となる。
+対称性の定義は任意の関数$q(t)$に対して
+変換を施した際に
+作用が変化しないことを要求するので、
+Lagrangianに生じ得る変化は
+上の$2$例で尽きている。
+作用はその時間積分なので、
+あとは積分区間に生じ得る変化を次節で議論すれば
+作用の変化への寄与を全て考慮したことになる。
 
 以上で$Q$が保存量であると示せたことになる。
 
@@ -707,10 +715,25 @@ $m=1, \theta_1 = t_0$を変換parameterとする
 $\delta q' = \dot{q}', \delta t \neq 0$ (const.)
 のもとでの保存量と見做すことが出来る。
 あるいは前節の表面項がある場合のNoether chargeで
-$\mathcal{K}=L$としたものと思ってよい
-（が、その場合は作用の積分区間を
-変換後の時間座標でも$(t_i, t_f)$としなければならず、
-作用のLie微分ではなく変分を計算していることになる）。
+$\mathcal{K}=L$としたものと思ってよい。
+（が、その場合は$t$の変換ではなく
+$q(t)$の変分
+\begin{align}
+  q(t) \to q(t-\delta t)
+  = q(t) - \delta t \dot(q)
+\end{align}
+のもとで
+作用のLie微分ではなく変分を計算していることになるので、
+作用の積分区間は
+変換後の時間座標でも$(t_i, t_f)$のままで変わらない。
+Lagrangianが全微分
+$- \delta t \dfrac{d L}{dt}$
+だけ変化するため、
+作用は不変である。
+最初からこの易しい解釈を導入しなかったのは単に、
+scalar場の他にvectorやtensor量も含む
+場の理論におけるNoetherの定理の証明には
+Lie微分を使う方が簡単だからに過ぎない。）
 
 \subsubsection{対称性のgauge化}
 
