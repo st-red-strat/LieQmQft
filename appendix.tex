@@ -37,23 +37,7 @@ $L^\infty$-normないし最大値normと言い、
 これを有限にする可測関数の集合を
 $L^p$空間と呼ぶ。
 
-\subsection{$\Gamma$関数}
-
-$\Gamma$関数は$\Re z > 0$の複素数$z$に対し
-\begin{align}
-    \Gamma(z)
-    := \int_0^\infty dt\ t^{z-1} e^{-t}
-\end{align}
-により定義され、
-その性質
-$\Gamma(1) = 1, \Gamma(z+1) = z\Gamma(z)$
-から階乗
-\begin{align}
-    \Gamma(n+1) &= n!
-\end{align}
-の複素数への一般化を与える。
-
-\subsection{複素関数}
+\subsection{複素関数論}
 
 \subsubsection{Taylor series expansion（テイラー級数展開）}
 
@@ -153,6 +137,9 @@ $f(z)$が$a$を$m\ (>0)$位の極（$m$-th order pole）
 に持つとは、
 $f(z)$のLaurent級数展開が$c_{-m} \neq 0$かつ
 $n>m$に対し$c_{-n}=0$を満たすことを言う。
+特に$1$位の極を単純極（simple pole）、
+$2$位の極を二重極（double pole）、
+$3$位ならtriple pole、などともいう。
 
 Laurent展開の特異部が有限次で切れず
 負べきの項が無限個現れる場合、
@@ -210,6 +197,55 @@ $n$個の孤立特異点$a_1,\dots,a_n$を除き正則であるとき
 \end{align}
 が$D$内の任意の閉曲線$C$に対し成り立つとする。
 このとき$f(z)$は$D$上で正則である。
+
+\subsection{特殊関数}
+
+\subsubsection{$\Gamma$関数}
+
+$\Gamma$関数は$\Re z > 0$の複素数$z$に対し
+\begin{align}
+    \Gamma(z)
+    := \int_0^\infty dt\ t^{z-1} e^{-t}
+\end{align}
+により定義され、
+その性質
+$\Gamma(1) = 1, \Gamma(z+1) = z\Gamma(z)$
+から階乗
+\begin{align}
+    \Gamma(n+1) &= n!
+    \quad
+    (n \in \mathbb{N}_{\ge0})
+\end{align}
+の複素数への一般化を与える。
+$\Gamma$関数は零点を持たないが
+$n \in \mathbb{N}_{\ge0}$に対して
+$x = - n$を$1$位の極に持ち、
+その周りで
+\begin{align}
+    \Gamma(x)
+    =
+    \dfrac{(-1)^n}{n!}
+    \left(
+        \dfrac{1}{x+n} - \gamma
+        + \sum_{k=1}^n \dfrac{1}{k}
+    \right)
+    + \mathcal{O}(x+n)
+\end{align}
+と展開できる。
+ただし$\gamma \simeq 0.5772$は
+Euler-Mascheroni constant（オイラー定数）である。
+
+$\Gamma$関数の$\Re z < 0$への解析接続は
+Euler's reflection formula
+\begin{align}
+    \Gamma(z) \Gamma(1-z)
+    =
+    \dfrac{\pi}{\sin(\pi z)}
+\end{align}
+で与えられ、
+この公式から
+$\Gamma \left(\dfrac{1}{2}\right) = \sqrt{\pi}$
+も分かる。
 
 \section{量子力学の公式}
 
