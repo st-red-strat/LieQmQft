@@ -73,13 +73,35 @@ $D$内にあって$C_1$を囲むような単純閉曲線$C$を使って
     f(z)
     &= \sum_{n=-\infty}^{\infty}
         c_n (z-a)^n
+\label{Laurent series expansion}
 \\
     c_n
     &:= \dfrac{1}{2 \pi i}
-    \oint_C dz_0 \dfrac{f(z_0)}{(z_0 - z)^{n+1}}
+    \oint_C dz_0 \dfrac{f(z_0)}{(z_0 - a)^{n+1}}
 \end{align}
 が成り立つ。
-これをLaurent級数展開という。
+これを$f(z)$の$a$周りでのLaurent級数展開という。
+特に(\ref{Laurent series expansion})の右辺のうち
+$c_{-n}\ (n > 0)$が現れる項を特異部（singular part、主要部、principal part）、
+$c_{n}\ (n \ge 0)$が現れる項を正則部（regular part、analytic part）という。
+
+\subsubsection{極（pole）、真性特異点（essential singularity）、零点（zero）}
+
+極とは、以下に定める孤立特異点の一種である。
+$f(z)$が$a$を$m\ (>0)$位の極（$m$-th order pole）
+に持つとは、
+$f(z)$のLaurent級数展開が$c_{-m} \neq 0$かつ
+$n>m$に対し$c_{-n}=0$を満たすことを言う。
+
+Laurent展開の特異部が有限次で切れず
+負べきの項が無限個現れる場合、
+$a$を真性特異点（essential singularity）という。
+
+$f(z)$が$a$を$m$位の零点（$m$-th order zero）
+に持つとは、
+$f(z)$のTaylor級数展開が$c_{m} \neq 0$かつ
+$n>m>0$に対し$c_{n}=0$を満たすことを言う。
+零点は孤立する。
 
 \subsubsection{留数定理（Residue theorem）}
 
@@ -91,8 +113,11 @@ Laurent級数展開
 \end{align}
 において、
 $\Res{f(z)dz, a} := c_{-1}$を点$a$における留数（Residue）という。
+ただし本来これはRiemann球面$\mathbb{C}P^1$上の
+微分形式に対し定義されるものだと示すため、
+単に$f(z)$ではなく$f(z)dz$と書いた。
 特に、
-$f(z)$が$a$を$m$位の極（$m$-th order pole）
+$f(z)$が$a$を$m$位の極
 に持つときは
 \begin{align}
     \Res{f(z)dz, a}
