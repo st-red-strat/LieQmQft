@@ -454,9 +454,9 @@ $\theta_a^0 + \epsilon_a$も対称性変換を与える。
     \Big|_{t' = t - t_0}
   + \epsilon_a \delta^a q'_i
 \end{align}
-によって$\delta^a$を定義しよう。
-次の節で詳しく議論するが、
-右辺の量は全て時刻$t' = t - t_0$で評価している。
+によって$\delta^a$を定義しよう
+（次の節で詳しく議論するが、
+右辺の量は全て時刻$t' = t - t_0$で評価している）。
 同じことだが、
 \begin{align}
   \delta^a q'_i :=
@@ -478,6 +478,7 @@ $\epsilon_a$と独立であることに注意せよ。
 ここで初めて
 $q'$についての運動方程式(\ref{point transformation})を解き、
 その解を改めて$q'(t)$と呼ぶ事にする。
+Lagrangianが対称性変換のもとで不変であるとき、
 解$q'(t)$に対し
 $m$個のNoether charge $Q^a(t)$を
 \begin{align}
@@ -523,6 +524,28 @@ $m$個のNoether charge $Q^a(t)$を
 変換parameterに依らないこと
 $\partial^a L = 0$
 を使った（この点も次節で議論する）。
+仮に作用は変化しないがLagrangianが変化を受ける場合、
+例えばLagrangianの変化分が
+\begin{align}
+  \delta L &:= L( q' + \epsilon_a \delta^a q' ) - L( q' )
+  = \dfrac{d \mathcal{K}}{dt}
+  ,\notag\\
+  \delta S &= \int dt \delta L
+  = \int dt \dfrac{d \mathcal{K}}{dt}
+  = \text{(surface term)}
+\end{align}
+のように時間の全微分で書ける場合も、
+対応するNoether chargeを
+\begin{align}
+  Q^a(t):=
+  \sum_i
+    \delta^a q'_i (t)
+  \dfrac{\partial L}{\partial \dot{q}'_i} (t)
+  -
+  \mathcal{K}
+\end{align}
+と再定義すればNoether chargeは保存量となる。
+
 以上で$Q$が保存量であると示せたことになる。
 
 \subsubsection{一般化されたNoetherの定理の証明}
@@ -683,6 +706,11 @@ $m=1, \theta_1 = t_0$を変換parameterとする
 時間並進対称性
 $\delta q' = \dot{q}', \delta t \neq 0$ (const.)
 のもとでの保存量と見做すことが出来る。
+あるいは前節の表面項がある場合のNoether chargeで
+$\mathcal{K}=L$としたものと思ってよい
+（が、その場合は作用の積分区間を
+変換後の時間座標でも$(t_i, t_f)$としなければならず、
+作用のLie微分ではなく変分を計算していることになる）。
 
 \subsubsection{対称性のgauge化}
 
