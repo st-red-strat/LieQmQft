@@ -60,10 +60,12 @@ Maclaurin series expansion（マクローリン展開）とも言う。
 Taylor展開が収束し、
 かつ元の関数$f(x)$に一致するとき
 $f(x)$はTaylor展開可能であるという。
-例えば$\exp(1/x^2)$は$x=0$で無限回微分可能であり
+例えば$\exp(-1/x^2)$は$x=0$で無限回微分可能であり
 そのTaylor展開も収束するが、
-恒等的に$0$になって$\exp(1/x^2)$に一致しない。
-従って$\exp(1/x^2)$はTaylor展開可能ではない。
+恒等的に$0$になって$\exp(-1/x^2)$に一致しない。
+従って$\exp(-1/x^2)$は$x=0$まわりでTaylor展開可能ではない
+（このことは、$\exp(-1/x^2)$を複素関数と見たとき
+$x=0$が真性特異点となっている事実を反映している）。
 
 複素関数$f(z)$が領域$D$で正則であるとする。
 点$a$を中心とする領域$D$内の任意の円$C$に対し、
@@ -160,7 +162,8 @@ Laurent級数展開
         c_n (z-a)^n
 \end{align}
 において、
-$\Res{f(z)dz, a} := c_{-1}$を点$a$における留数（Residue）という。
+$\Res{f(z)dz, a} := c_{-1}$を
+$f(z)$の点$z=a$における留数（Residue）という。
 ただし本来これはRiemann球面$\mathbb{C}P^1$上の
 微分形式に対し定義されるものだと示すため、
 単に$f(z)$ではなく$f(z)dz$と書いた。
@@ -190,7 +193,7 @@ $n$個の孤立特異点$a_1,\dots,a_n$を除き正則であるとき
 
 \subsubsection{Morera's theorem（モレラの定理）}
 
-以下の意味で留数定理の成り立つ：
+以下の意味で、Cauchyの積分定理の逆が成り立つ：
 単連結領域$D$で$f(z)$が連続で、
 \begin{align}
     \oint_C dz\ f(z) = 0
@@ -217,22 +220,68 @@ $\Gamma(1) = 1, \Gamma(z+1) = z\Gamma(z)$
     (n \in \mathbb{N}_{\ge0})
 \end{align}
 の複素数への一般化を与える。
+
+重要な応用として、
+Gaussian integral（ガウス積分）
+\begin{align}
+    I :=
+    \int_{-\infty}^{\infty} dx\ e^{-x^2}
+    > 0
+\end{align}
+を求める事を考えよう。
+極座標に書き換えると
+\begin{align}
+    I^2 &=
+    \int_{-\infty}^{\infty} dx
+    \int_{-\infty}^{\infty} dy
+    \ 
+        e^{-(x^2 + y^2)}
+=
+    \int_0^{\infty} dr
+    \int_0^{2\pi} r d\theta
+    \ 
+        e^{-r^2}
+\notag\\&=
+    2 \pi
+    \int_0^{\infty} dr
+    \ r 
+        e^{-r^2}
+=
+    \pi
+    \int_0^{\infty} dt\ e^{-t}
+    \quad(t:=r^2,\ dt = 2 r dr)
+\notag\\&=
+    \pi\Gamma(1)
+    = \pi
+\end{align}
+すなわち$I = \sqrt{\pi}$が求まる。
+
 $\Gamma$関数は零点を持たないが
 $n \in \mathbb{N}_{\ge0}$に対して
 $x = - n$を$1$位の極に持ち、
 その周りで
 \begin{align}
     \Gamma(x)
-    =
+    &=
     \dfrac{(-1)^n}{n!}
     \left(
         \dfrac{1}{x+n} - \gamma
         + \sum_{k=1}^n \dfrac{1}{k}
     \right)
     + \mathcal{O}(x+n)
+\\
+    \gamma
+    &:=
+    \lim_{n\to\infty}
+    \left(
+        \sum_{k=1}^n \dfrac{1}{k} 
+        -
+        \log n
+    \right)
+    \simeq 0.5772
 \end{align}
 と展開できる。
-ただし$\gamma \simeq 0.5772$は
+ただし$\gamma$は
 Euler-Mascheroni constant（オイラー定数）である。
 
 $\Gamma$関数の$\Re z < 0$への解析接続は
