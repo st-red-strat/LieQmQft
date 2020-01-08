@@ -225,8 +225,16 @@ $\Gamma(1) = 1, \Gamma(z+1) = z\Gamma(z)$
 Gaussian integral（ガウス積分）
 \begin{align}
     I :=
+    \Gamma\left(\dfrac{1}{2}\right)
+    =
+    \int_{0}^{\infty} dt\ t^{-1/2}e^{-t}
+    =
+    2
+    \int_{0}^{\infty} dx\ e^{-x^2}
+    =
     \int_{-\infty}^{\infty} dx\ e^{-x^2}
     > 0
+    \quad(t=x^2)
 \end{align}
 を求める事を考えよう。
 極座標に書き換えると
@@ -254,9 +262,25 @@ Gaussian integral（ガウス積分）
     \pi\Gamma(1)
     = \pi
 \end{align}
-すなわち$I = \sqrt{\pi}$が求まる。
+すなわち
+$\Gamma\left(\dfrac{1}{2}\right)
+= I = \sqrt{\pi}$
+が求まる。
 
+$\Gamma$関数の$\Re z < 0$への解析接続は
+Euler's reflection formula
+\begin{align}
+    \Gamma(z) \Gamma(1-z)
+    =
+    \dfrac{\pi}{\sin(\pi z)}
+\label{Euler's reflection formula}
+\end{align}
+で与えられ、
+この公式からも
+$\Gamma \left(\dfrac{1}{2}\right) = \sqrt{\pi}$
+が確かめられる。
 $\Gamma$関数は零点を持たないが
+(\ref{Euler's reflection formula})からも分かるように
 $n \in \mathbb{N}_{\ge0}$に対して
 $x = - n$を$1$位の極に持ち、
 その周りで
@@ -284,17 +308,6 @@ $x = - n$を$1$位の極に持ち、
 ただし$\gamma$は
 Euler-Mascheroni constant（オイラー定数）である。
 
-$\Gamma$関数の$\Re z < 0$への解析接続は
-Euler's reflection formula
-\begin{align}
-    \Gamma(z) \Gamma(1-z)
-    =
-    \dfrac{\pi}{\sin(\pi z)}
-\end{align}
-で与えられ、
-この公式から
-$\Gamma \left(\dfrac{1}{2}\right) = \sqrt{\pi}$
-も分かる。
 
 \section{量子力学の公式}
 
@@ -411,7 +424,7 @@ $\dfrac{1}{i\hbar}
     }
 \\
     \dfrac{1}{i\hbar}
-    [F(\{ \hat{q} \},\{ \hat{p} \}), \hat{p}_j]
+    [\hat{q}_j, F(\{ \hat{q} \},\{ \hat{p} \})]
     &=
     \dfrac{
         \partial F(\{ \hat{q} \},\{ \hat{p} \})
@@ -463,7 +476,8 @@ $\{A, B\}_{ \mathrm{P} }$
 $\dfrac{1}{i\hbar} [\hat{A}, \hat{B}]$
 で置き換える操作である、という
 Bohrの対応原理（correspondence principle）をある意味で正当化する。
-もちろん、既に述べたように一般にある古典力学系に対して
+もちろん\ref{subsubsec: CCR}節で述べたように、
+一般にある古典力学系に対して
 対応する量子力学系は一意に定まらないので
 「古典系を量子化する」という操作はwell-definedではなく、
 現代的にはむしろ
