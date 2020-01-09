@@ -203,6 +203,73 @@ $n$個の孤立特異点$a_1,\dots,a_n$を除き正則であるとき
 
 \subsection{特殊関数}
 
+\subsubsection{指数関数}
+
+指数関数（exponential function）を
+\begin{align}
+    \exp(x)
+    :=
+    \sum_{n=0}^\infty
+    \dfrac{x^n}{n!}
+\end{align}
+により定める。
+この級数は複素平面全体で絶対収束するため、
+$\exp(z)$は整関数
+（entire function、複素平面全体で正則な関数）を与える。
+
+\subsubsection{三角関数、双曲線関数}
+
+余弦（cosine）関数、
+正弦（sine）関数、
+正接（tangent）関数を
+指数関数を用いて
+\begin{align}
+    \cos\theta &:= \dfrac{e^{i\theta} + e^{-i\theta}}{2}
+\\
+    \sin\theta &:= \dfrac{e^{i\theta} - e^{-i\theta}}{2i}
+\\
+    \tan\theta &:= \dfrac{\sin\theta}{\cos\theta}
+\end{align}
+と定義する。
+これらを総称して三角関数
+（trigonometric function、circular function）
+という。
+
+同様に双曲線関数（hyperbolic function）を
+\begin{align}
+    \cosh\theta
+    &:=
+    \dfrac{e^{\theta} + e^{-\theta}}{2}
+    =
+    \cos(-i\theta)
+\\
+    \sinh\theta
+    &:=
+    \dfrac{e^{\theta} - e^{-\theta}}{2}
+    =
+    i\sin(-i\theta)
+\\
+    \tanh\theta
+    &:=
+    \dfrac{\sinh\theta}{\cosh\theta}
+\end{align}
+と定義する。
+それぞれ
+hyperbolic cosine、
+hyperbolic sine、
+hyperbolic tangentと言うが、
+$\cosh, \sinh, \tanh$の記号は
+cosine hyperbolic（またはコッシュ）、
+sine hyperbolic（またはシンチ）、
+tangent hyperbolic（またはタンチ）
+などと発音される。
+native English speakerでも
+シンチとかタンチとか言う人は居るが、
+分かりづらいだけでなく
+はっきり言ってクソダサいので
+cosine hyperbolic、sine hyperbolic
+などという方が良いと思う。
+
 \subsubsection{$\Gamma$関数}
 
 $\Gamma$関数は$\Re z > 0$の複素数$z$に対し
