@@ -301,7 +301,9 @@ Lorentz force（ローレンツ力）
 \end{align}
 を受ける
 （うるさいことを言うと
-制動放射（Bremsstrahlung）という現象があり、
+荷電粒子が存在するだけで
+その周りにCoulomb potentialが生じるし、
+他にも制動放射（Bremsstrahlung）という現象があり、
 荷電粒子が加速すると電磁波を出すので
 $\bm{E}$とか$\bm{B}$も変わってしまうのだが、
 以降の議論ではこのような電磁波が無視できるほど
@@ -316,6 +318,42 @@ $\bm{E}$とか$\bm{B}$も変わってしまうのだが、
   L' = L - q(\phi - \dot{\bm{x}} \cdot \bm{A})
 \end{align}
 で与えられる。
+
+$n$粒子系への拡張は容易である。
+これらの間のCoulomb potentialは
+真空の誘電率$\epsilon_0$を使って単に
+\begin{align}
+  U(\bm{x}_1, \dots, \bm{x}_n)
+  :=
+  \sum_{1 \le i < j \le n}
+  \dfrac{1}{4 \pi \epsilon_0}
+  \dfrac{q_i q_j}{|\bm{x}_i - \bm{x}_j|}
+  =
+  \dfrac{1}{2}
+  \sum_{i \neq j}
+  \dfrac{1}{4 \pi \epsilon_0}
+  \dfrac{q_i q_j}{|\bm{x}_i - \bm{x}_j|}
+\end{align}
+となる。
+各粒子が放射する電磁波は
+無視できるという仮定を置いていたので、
+ある粒子が他の粒子に電磁波を通じて影響を与えることはない。
+従って
+複数の粒子を扱うにも単に同様の項を足し上げればよく、
+各粒子の電荷を$q_i$、位置を$\bm{x}_i$として
+\begin{align}
+  L' = L
+  +
+  U(\bm{x}_1, \dots, \bm{x}_n)
+  -
+  \sum_i
+  q_i\Big[
+    \phi(\bm{x}_i)
+  -
+    \dot{\bm{x}}_i \cdot \bm{A}(\bm{x}_i)
+  \Big]
+\end{align}
+のようにすればよい。
 
 \subsection{対称性}
 
