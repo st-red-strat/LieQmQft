@@ -49,6 +49,7 @@ $L^p$空間と呼ぶ。
     \sum_{n=0}^{\infty}
     \dfrac{ f^{n}(a) }{n!}
     (x-a)^n
+\label{Taylor series expansion}
 \\
     f^{n}(a) := \dfrac{d^nf}{dx^n}\bigg|_{x=a}
 \end{align}
@@ -149,9 +150,12 @@ $a$を真性特異点（essential singularity）という。
 
 $f(z)$が$a$を$m$位の零点（$m$-th order zero）
 に持つとは、
-$f(z)$のTaylor級数展開が$c_{m} \neq 0$かつ
-$n>m>0$に対し$c_{n}=0$を満たすことを言う。
-零点は孤立する。
+$f(z)$のTaylor級数展開
+(\ref{Taylor series expansion})
+が$c_{m} \neq 0$かつ
+$0 \le n < m$に対し$c_{n}=0$を満たすことを言う。
+正則関数の零点は孤立し、
+この事実を零点孤立の原理という。
 
 \subsubsection{留数定理（Residue theorem）}
 
@@ -375,6 +379,80 @@ $x = - n$を$1$位の極に持ち、
 ただし$\gamma$は
 Euler-Mascheroni constant（オイラー定数）である。
 
+
+\subsection{Fourier変換、Fourier級数展開}
+
+周期$2L$の周期関数$f(x)$、
+あるいは区間$(a, a + 2L)$を定義域とする関数$f(x)$を
+周期関数に拡張したものについて
+\begin{subequations}
+\begin{align}
+    \tilde{f}(x)
+    &=
+    \sum_{n=-\infty}^\infty
+    c_n e^{ i\frac{n \pi}{L}x }
+\\
+    c_n
+    &:=
+    \dfrac{1}{2L} \int_{-L}^L dx\ 
+    f(x) e^{ - i\frac{n \pi}{L}x }
+\end{align}
+\end{subequations}
+を複素Fourier級数、
+\begin{subequations}
+\begin{align}
+    \tilde{f}(x)
+    &=
+    \dfrac{a_0}{2}
+    +
+    \sum_{n=1}^\infty
+    \left(
+        a_n \cos \dfrac{n \pi}{L}x
+        +
+        b_n \cos \dfrac{n \pi}{L}x
+    \right)
+\\
+    a_n
+    &:=
+    \dfrac{1}{L} \int_{-L}^L dx\ 
+    f(x) \cos\dfrac{n \pi}{L}x
+\\
+    b_n
+    &:=
+    \dfrac{1}{L} \int_{-L}^L dx\ 
+    f(x) \sin\dfrac{n \pi}{L}x
+\end{align}
+\end{subequations}
+をFourier series（フーリエ級数）などという。
+
+$f(x)$が区分的になめらか、
+つまり$f(x), f'(x)$がともに区分的に連続ならば
+そのFourier級数は
+\begin{align}
+    \tilde{f}(x) = \dfrac{f(x+0) + f(x-0)}{2}
+\end{align}
+に収束する。
+なお、各点での収束先は上で良いものの、
+Fourier級数は
+関数列としては広義一様収束、ないしコンパクト一様収束
+（uniformly convergent on compact sets）
+しかしておらず、
+不連続点$f(x+0) - f(x-0) \neq 0$の付近では
+ギブス現象（Gibbs phenomenon）とか呼ばれる振動が起こる。
+激しく振動する成分はRiemann-Lebesgue lemmaより積分に寄与しないので、
+$L^2$-normで見る限り(\ref{convergence of norm})と全く同様に
+\begin{align}
+    &\lim_{N\to\infty}\bigg|\bigg|
+        f - \tilde{f}_N(x)
+    \bigg|\bigg|^2
+    = 0
+\\
+    \tilde{f}_N(x)
+    &:=
+    \sum_{n=-N}^N
+    c_n e^{ i\frac{n \pi}{L}x }
+\end{align}
+のように収束している、ということである。
 
 \section{量子力学の公式}
 
