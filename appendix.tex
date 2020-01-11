@@ -286,7 +286,7 @@ $\Gamma$関数は$\Re z > 0$の複素数$z$に対し
 により定義され、
 その性質
 $\Gamma(1) = 1, \Gamma(z+1) = z\Gamma(z)$
-から階乗
+から階乗（factorial）
 \begin{align}
     \Gamma(n+1) &= n!
     \quad
@@ -339,6 +339,68 @@ Gaussian integral（ガウス積分）
 $\Gamma\left(\dfrac{1}{2}\right)
 = I = \sqrt{\pi}$
 が求まる。
+初等的な置換積分により
+\begin{align}
+    \int_{-\infty}^{\infty} dx\ e^{-ax^2}
+    =
+    \sqrt{
+        \dfrac{\pi}{a}
+    }
+\end{align}
+もすぐ分かり、より一般に
+$n \in \mathbb{N}_{\ge0}$に対して
+\begin{align}
+    \Gamma\left( n + \dfrac{1}{2} \right)
+    &=
+    \int_0^\infty dt\ t^{n-1/2} e^{-t}
+\notag\\&=
+    \left[
+        \left(
+            -
+            \dfrac{d}{da}
+        \right)^n
+        \int_0^\infty dt\ t^{-1/2} e^{-at}
+    \right]_{a=1}
+\notag\\&=
+    \left[
+    \left(
+        -
+        \dfrac{d}{da}
+    \right)^n
+        a^{-1/2}
+        \int_0^\infty a dt\ (at)^{-1/2} e^{-at}
+    \right]_{a=1}
+\notag\\&=
+    \left[
+    \left(
+        -
+        \dfrac{d}{da}
+    \right)^n
+    \sqrt{
+        \dfrac{\pi}{a}
+    }
+    \right]_{a=1}
+\notag\\&=
+    \dfrac{(2n-1)!!}{2^{n}}\sqrt{\pi}
+\end{align}
+が得られる。
+ただしdouble factorial（二重階乗）を
+偶数、奇数それぞれについて
+\begin{subequations}
+\begin{align}
+    (2n)!!
+    &:=
+    \prod_{i=1}^n (2i)
+    =2\cdot4\cdot6\cdots(2n-2)(2n)
+\\
+    (2n-1)!!
+    &:=
+    \prod_{i=1}^n (2i-1)
+    =
+    1\cdot3\cdot5\cdots(2n-3)(2n-1)
+\end{align}
+\end{subequations}
+と定義した。
 
 $\Gamma$関数の$\Re z < 0$への解析接続は
 Euler's reflection formula
