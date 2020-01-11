@@ -351,24 +351,28 @@ Hermitian operatorであるが、
 $\hat{O} = \hat{O}^\dagger$のとき
 $\lambda$が実数となること
 \begin{align}
-    &\lambda \braket{\psi | \psi}
+    \lambda \braket{\psi | \psi}
     =
     \bra{\psi} \hat{O} \ket{\psi}
-    = \bra{\psi} \hat{O}^\dagger \ket{\psi}
+    &= \bra{\psi} \hat{O}^\dagger \ket{\psi}
     = \left[ \bra{\psi} \hat{O} \ket{\psi}\right]^*
     = \lambda^* \braket{\psi | \psi}
-\\
-    &\lambda = \lambda^*
-    \quad\because\quad
-    \ket{\psi} \neq 0
+\notag\\
+    \lambda &= \lambda^*
+    \quad
+    (\ 
+        \because
+        \ket{\psi} \neq 0
+    \ 
+    )
 \end{align}
 および異なる固有値
 $\lambda \neq \theta$
 に属する固有vector
 \begin{align}
-    \hat{O} \ket{\psi} &= \lambda \ket{\psi}
-\\
-    \hat{O} \ket{\phi} &= \theta \ket{\phi}
+    \hat{O} \ket{\psi} = \lambda \ket{\psi}
+&,\quad
+    \hat{O} \ket{\phi} = \theta \ket{\phi}
 \end{align}
 が直交すること
 \begin{align}
@@ -405,7 +409,8 @@ $\ket{0} \neq 0$は
 
 与えられたoperatorが連続spectrum（連続固有値）を持つ場合、
 数学的には上の意味での固有vectorを定義できない。
-Gelfand tripleとか呼ばれるものを用いれば
+Gelfand triple（Gelfandの$3$つ組）
+とか呼ばれるものを用いれば
 形式的に「連続固有値に対応する固有vector」を正当化することも可能だが、
 この場合にはHilbert空間とその双対空間に対応が付かなくなり、
 与えられたket vectorに対して
@@ -663,7 +668,7 @@ $\ket{e_n}$の集合を$\mathcal{H}$の
     \ket{\psi}
     &=\sum_n \ket{e_n} \braket{e_n | \psi}
     \quad\text{for $\forall \ket{\psi}$}
-\\
+\notag\\
 \therefore
     1
     &=
@@ -672,6 +677,7 @@ $\ket{e_n}$の集合を$\mathcal{H}$の
 と書いても同じことである。
 ここで$1$はidentity operatorを意味する。
 等式はnormに関する収束
+\begin{subequations}
 \begin{align}
     &\lim_{N\to\infty}\bigg|\bigg|
         \ket{\psi} - \ket{\psi_N}
@@ -683,6 +689,7 @@ $\ket{e_n}$の集合を$\mathcal{H}$の
     :=
     \sum_{n=1}^N \ket{e_n} \braket{e_n | \psi}
 \end{align}
+\end{subequations}
 を意味している。
 完全系はvector spaceの基底の概念によく似ているが、
 基底には必要ない内積という付加的な構造を定義に用いており、
@@ -801,7 +808,7 @@ $n$自由度系で正準交換関係
 で定義しよう。
 これは単に$\{\hat{q}\}, \{\hat{p}\}$から
 $\{\hat{a}\}, \{\hat{a}^\dagger\}$への
-線形変換であり、
+線形変換を与え、
 逆変換は
 \begin{subequations}
 \begin{align}
@@ -866,7 +873,8 @@ traceを取ることで
 正準交換関係が成り立つ限り
 $\mathcal{H}$は無限次元でなければならない。
 実は複素数列$a_n (n=0,1,\dots)$であって
-$\sum_{n=0}^\infty |a_n|^2$が収束するようなものの集合を
+$\sum_{n=0}^\infty |a_n|^2$
+が収束するようなものの集合を
 $l^2$と書くと、
 可分な（つまり加算個の正規直交基底で張れる）
 無限次元Hilbert空間は「$1$つしかない」こと、
@@ -917,10 +925,11 @@ $\hat{H}$のHermiticityも自然に従う。
 $\{\hat{a}\}, \{\hat{a}^\dagger\}$
 への変数変換を考えることで見通しが良くなる。
 元の変数$\{q\},\{p\}$は容易に消去出来て
+\begin{subequations}
 \begin{align}
     \hat{H}
     %    &
-        =
+        &=
         \dfrac{ \hbar\omega }{ 2 }
         \sum_k
         \left(
@@ -929,7 +938,6 @@ $\{\hat{a}\}, \{\hat{a}^\dagger\}$
             \hat{a}_k\hat{a}_k^\dagger
         \right)
     %\\
-        &
         =
         \hbar\omega
         \sum_k
@@ -941,6 +949,7 @@ $\{\hat{a}\}, \{\hat{a}^\dagger\}$
 \\
     \hat{N}_k &:= \hat{a}^\dagger_k\hat{a}_k
 \end{align}
+\end{subequations}
 が得られる。
 ただし、
 $k$番目の自由度のnumber operator
@@ -1263,7 +1272,7 @@ $|A_1|^2 = 1$が求まる。
         +
         1
     \bigg)
-\\\therefore\qquad
+\notag\\\therefore\qquad
     |A_{n_i + 1}|^2 &=
     \dfrac{1}{
         n_i + 1
@@ -1540,7 +1549,7 @@ $[\hat{a}, \hat{a}]=0$であるので、
         \alpha\hat{a}^\dagger
         - \alpha^* \hat{a}
     \right)^{n}
-\\\therefore\quad
+\notag\\\therefore\quad
     [\hat{a}, D(\alpha) ]
     &=
     \alpha D(\alpha)
@@ -1597,7 +1606,7 @@ BCH formulaの特別な場合
     \right)
     \exp(\alpha \hat{a}^\dagger)
     \exp( - \alpha^* \hat{a})
-\\
+\notag\\
     \ket{\alpha} &= D(\alpha) \ket{0}
 \end{align}
 であることが証明できる。
@@ -1612,11 +1621,13 @@ BCH formulaの特別な場合
 \label{subsubsec: angular momentum}
 
 Newton力学で角運動量は
+\begin{subequations}
 \begin{align}
     \bm{L} &:= \bm{r} \times \bm{p}
     \\\therefore
     L_i &= \epsilon_{ijk} \ x_j \ p_k
 \end{align}
+\end{subequations}
 と定義され（ただし成分は直交座標系で示した。
 また簡単のため議論は$1$粒子系の場合に限る）、
 3次元系の回転対称性に付随する保存量であった。

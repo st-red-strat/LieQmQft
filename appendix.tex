@@ -45,13 +45,15 @@ $L^p$空間と呼ぶ。
 \begin{subequations}
 \begin{align}
     f(x)
-    =
+    &=
     \sum_{n=0}^{\infty}
     \dfrac{ f^{n}(a) }{n!}
     (x-a)^n
 \label{Taylor series expansion}
 \\
-    f^{n}(a) := \dfrac{d^nf}{dx^n}\bigg|_{x=a}
+    f^{n}(a)
+    &:=
+    \dfrac{d^nf}{dx^n}\bigg|_{x=a}
 \end{align}
 \end{subequations}
 を$f(x)$の$a$周りでのTaylor展開という。
@@ -390,7 +392,7 @@ Euler-Mascheroni constant（オイラー定数）である。
 \begin{subequations}
 \begin{align}
     \tilde{f}(x)
-    &=
+    &:=
     \sum_{n=-\infty}^\infty
     c_n e^{ i\frac{n \pi}{L}x }
 \\
@@ -404,7 +406,7 @@ Euler-Mascheroni constant（オイラー定数）である。
 \begin{subequations}
 \begin{align}
     \tilde{f}(x)
-    &=
+    &:=
     \dfrac{a_0}{2}
     +
     \sum_{n=1}^\infty
@@ -501,7 +503,7 @@ $\dfrac{1}{\sqrt{2\pi}}\int dk\ \tilde{f}(k) e^{+ikx}$
 $\tilde{f}(k)=\int dx\ f(x) e^{+2\pi ikx}$としたり、
 とにかく無数の流儀があるが、本質積な違いは何もない。
 
-上の逆変換はDirac delta関数
+上の逆変換はDirac delta関数のFourier表示
 \begin{align}
     \delta(x-y) = \dfrac{1}{2\pi}\int dk\ e^{ik(x-y)}
 \end{align}

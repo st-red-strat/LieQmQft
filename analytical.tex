@@ -134,9 +134,12 @@ $L(t) := L(\{q(t)\}, \{\dot{q}(t)\})$は時間の$1$変数関数であり、
 どんな関数$\delta q_i(t)$に対しても
 actionの変分が微小量の$1$次まで
 \begin{align}
-  \delta S &:= \int dt\ L(\{ q_i(t) + \delta q_i(t) \},
+  \delta S &:=
+  S[q + \delta q] - S[q]
+\notag\\&=
+  \int dt\ L(\{ q_i(t) + \delta q_i(t) \},
   \{ \dot{q}_i(t) + \delta \dot{q_i}(t) \} )
-  - S
+  - S[q]
 \notag\\&\simeq
   \int dt\ \sum_i
   \bigg\{
@@ -229,6 +232,7 @@ $n$次元調和振動子の場合Lagrangianは
   -
     \dfrac{m\omega^2}{2} q_j
   \bigg)
+\label{harmonic oscillator lagrangian}
 \end{align}
 であるので、Euler-Lagrange方程式は
 \begin{align}
@@ -252,7 +256,7 @@ $n$次元調和振動子の場合Lagrangianは
 \end{align}
 となり、確かにNewtonの運動方程式を再現する。
 
-\subsection{Vector Potential、電磁場中の荷電粒子}
+\subsection{Vector Potential}
 
 Helmholtzの定理(\ref{helmholtz decomposition theorem})によると、
 $3$次元空間上のvector場$\bm{F}(x)$は
@@ -265,6 +269,8 @@ vector potentialで書かれる力を
 なお、以下では専ら磁場を扱うが、
 vector potentialで書かれるより一般の力についても
 以下の議論は同様に成り立つ。
+
+\subsubsection{電磁場中の荷電粒子}
 
 電荷を持つ粒子を荷電粒子というが、
 電荷$+q$の荷電粒子を
@@ -303,17 +309,18 @@ Lorentz force（ローレンツ力）
 （うるさいことを言うと
 荷電粒子が存在するだけで
 その周りにCoulomb potentialが生じるし、
-他にも制動放射（Bremsstrahlung）という現象があり、
+他にも制動放射（bremsstrahlung）という現象があり、
 荷電粒子が加速すると電磁波を出すので
 $\bm{E}$とか$\bm{B}$も変わってしまうのだが、
 以降の議論ではこのような電磁波が無視できるほど
 電磁場$\bm{E}, \bm{B}$が大きいとする。
 このように系の時間発展により影響を受けない
 系外から系への影響を、
-総称して外場（external field）という）
-。
+総称して外場（external field）という）。
 このLorentz力を再現するLagrangian $L'$は、
-電磁場がない場合のLagrangian $L = T - V$を使って
+電磁場がない場合のLagrangian $L = T - V$
+（ただし$V$に静電potential $\phi$は含めていない）
+を使って
 \begin{align}
   L' = L - q(\phi - \dot{\bm{x}} \cdot \bm{A})
 \end{align}
@@ -573,7 +580,8 @@ $\theta_a^0 + \epsilon_a$も対称性変換を与える。
   \Bigg|_{\{\theta\} = \{\theta^0\}}
 \end{align}
 と定義したと思っても良い。
-$\delta^a = \partial^a \delta^{\mathrm{sym}}$
+$\delta^a q'_i
+= \partial^a \delta^{\mathrm{sym}} q'_i$
 （ただし$\partial^a := \dfrac{\partial}{\partial \theta_a}$）
 の定義が
 $\epsilon_a$と独立であることに注意せよ。
@@ -628,15 +636,15 @@ $m$個のNoether charge $Q^a(t)$を
 すなわち作用の不変性からLagrangianが
 変換parameterに依らない場合
 $\partial^a L = 0$
-に話を限った（この点も次節で議論する）。
+に話を限った。
 仮に作用は変化しないがLagrangianが変化を受ける場合、
 例えばLagrangianの変化分が
 \begin{align}
   \delta L &:= L( q' + \epsilon_a \delta^a q' ) - L( q' )
-  = \epsilon_a \dfrac{d \mathcal{K^a}}{dt}
+  = \epsilon_a \dfrac{d \mathcal{K}^a}{dt}
   ,\notag\\
   \delta S &= \int dt \delta L
-  = \epsilon_a \int dt \dfrac{d \mathcal{K^a}}{dt}
+  = \epsilon_a \int dt \dfrac{d \mathcal{K}^a}{dt}
   = \text{(surface term)}
 \end{align}
 のように時間の全微分で書ける場合も、
@@ -647,17 +655,18 @@ $\partial^a L = 0$
     \delta^a q'_i (t)
   \dfrac{\partial L}{\partial \dot{q}'_i} (t)
   -
-  \mathcal{K}
+  \mathcal{K}^a
 \end{align}
-と再定義すればNoether chargeは保存量となる。
+と再定義すればこれは保存量となる。
 対称性の定義は任意の関数$q(t)$に対して
 変換を施した際に
 作用が変化しないことを要求するので、
 Lagrangianに生じ得る変化は
-上の$2$例で尽きている。
+上の$2$例で尽きている
+（のか？最も一般の場合にどうかは知らない）。
 作用はその時間積分なので、
 あとは積分区間に生じ得る変化を次節で議論すれば
-作用の変化への寄与を全て考慮したことになる。
+作用の変化への寄与を全て考慮できている。
 
 以上で$Q$が保存量であると示せたことになる。
 
@@ -1170,13 +1179,15 @@ $
 
 \subsubsection{調和振動子の例}
 
-$n$次元調和振動子の一般化運動量は
+$n$次元調和振動子のLagrangianは
+(\ref{harmonic oscillator lagrangian})であったので、
+一般化運動量は
 \begin{align}
   p_i &= \dfrac{\partial L}{\partial \dot{q_i}}
 =
   m \dot{q_i}
 \end{align}
-と通常の運動量の定義に一致するので、
+と通常の運動量の定義に一致する。
 Hamiltonianは
 \begin{align}
   H &= \bigg[
@@ -1204,17 +1215,17 @@ Hamiltonianは
 正準方程式は
 \begin{align}
   \begin{cases}
-    \dot{q_i} &= \dfrac{\partial H}{\partial p_i}
+    \dot{q_i} = \dfrac{\partial H}{\partial p_i}
     = \dfrac{p_i}{m}
   \\
   \\
-    \dot{p_i} &= - \dfrac{\partial H}{\partial q_i}
+    \dot{p_i} = - \dfrac{\partial H}{\partial q_i}
     = - m \omega^2 q_i
   \end{cases}
 \quad
-\Leftrightarrow
+&\Rightarrow
 \quad
-  \ddot{q_i} &= \dfrac{\dot{p_i}}{m}
+  \ddot{q_i} = \dfrac{\dot{p_i}}{m}
   = \dfrac{- m \omega^2 q_i}{m}
   = - \omega^2 q_i
 \label{hamiltonian e.o.m for harmonic oscillator}
@@ -1226,10 +1237,10 @@ Hamiltonianは
 Hamiltonの正準方程式
 \begin{align}
    \begin{cases}
-      \dot{q_i} &= \dfrac{\partial H}{\partial p_i}
+      \dot{q_i} = \dfrac{\partial H}{\partial p_i}
     \\
     \\
-      \dot{p_i} &= - \dfrac{\partial H}{\partial q_i}
+      \dot{p_i} = - \dfrac{\partial H}{\partial q_i}
     \end{cases}
 \label{Hamilton's eom}
 \end{align}
@@ -1284,7 +1295,31 @@ $\{q\},\{p\}$に対して右辺の符号が異なるという非対称性があ�
 $F( \{q\},\{p\} , t )$
 の時間発展が
 \begin{align}
-    \dfrac{ d F }{ dt } &= \dfrac{ \partial F }{ \partial t } + \{F, H\}_{ \mathrm{P} }
+  \dfrac{ d F }{ dt }
+  &=
+  \dfrac{ \partial F }{ \partial t }
+  +
+  \sum_i
+  \bigg(
+    \dfrac{ d q_i }{ dt }
+    \dfrac{ \partial F }{ \partial q_i }
+  +
+    \dfrac{ d p_i }{ dt }
+    \dfrac{ \partial F }{ \partial p_i }
+  \bigg)
+\notag\\&=
+  \dfrac{ \partial F }{ \partial t }
+  +
+  \sum_i
+  \bigg(
+    \dfrac{\partial H}{\partial p_i}
+    \dfrac{ \partial F }{ \partial q_i }
+  -
+    \dfrac{\partial H}{\partial q_i}
+    \dfrac{ \partial F }{ \partial p_i }
+  \bigg)
+\notag\\&=
+  \dfrac{ \partial F }{ \partial t } + \{F, H\}_{ \mathrm{P} }
 \label{time evolution in Poisson bracket}
 \end{align}
 と一つの式にまとまってしまう。
