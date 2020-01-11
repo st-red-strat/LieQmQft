@@ -54,12 +54,14 @@ vector値関数、あるいはvector場という。
 
 我々の主たる興味は空間が3次元である場合にあるが、
 この場合にはより一般的な結果が知られている：
-Helmholtzの分解定理は任意の
+Helmholtzの分解定理
+（Helmholtz decomposition theorem）は任意の
 3次元vector場$\bm{F}(\bm{x})$に対し
 vector potential $\bm{A}(\bm{x})$と
 scalar potential $\phi(\bm{x})$の組であって
 \begin{align}
   \bm{F}(\bm{x}) = \nabla \times \bm{A} - \nabla \phi
+\label{helmholtz decomposition theorem}
 \end{align}
 なるものが存在する事を主張する。
 つまり、物体に働く力が場である
@@ -249,6 +251,71 @@ $n$次元調和振動子の場合Lagrangianは
     m\omega^2 q_i
 \end{align}
 となり、確かにNewtonの運動方程式を再現する。
+
+\subsection{Vector Potential、電磁場中の荷電粒子}
+
+Helmholtzの定理(\ref{helmholtz decomposition theorem})によると、
+$3$次元空間上のvector場$\bm{F}(x)$は
+vector potentialとscalar potentialにより書けるのであった。
+scalar potential $V(\bm{x})$で書かれる
+保存力の下での運動は既に定式化したので、
+次は話を$3$次元に限り、
+vector potentialで書かれる力を
+解析力学の枠組みで扱うことにしよう。
+なお、以下では専ら磁場を扱うが、
+vector potentialで書かれるより一般の力についても
+以下の議論は同様に成り立つ。
+
+電荷を持つ粒子を荷電粒子というが、
+電荷$+q$の荷電粒子を
+電場$\bm{E} (t, \bm{x})
+= - \dfrac{\partial \bm{A}}{\partial t} (t, \bm{x})
+- \nabla \phi (t, \bm{x})$
+および
+磁場$\bm{B} (t, \bm{x})
+= \nabla \times \bm{A} (t, \bm{x})$
+の中に置くと
+Lorentz force（ローレンツ力）
+\begin{align}
+  \bm{F}
+  &=
+  q
+  \Big[
+    \bm{E}
+  +
+   \dot{\bm{x}}
+    \times
+    \bm{B}
+  \Big]
+\notag\\&=
+  q
+  \Big[
+    - \nabla\phi
+  +
+   \dot{\bm{x}}
+    \times
+    \Big(
+      \nabla \times \bm{A}
+    \Big)
+  \Big]
+\end{align}
+を受ける
+（うるさいことを言うと
+制動放射（Bremsstrahlung）という現象があり、
+荷電粒子が加速すると電磁波を出すので
+$\bm{E}$とか$\bm{B}$も変わってしまうのだが、
+以降の議論ではこのような電磁波が無視できるほど
+電磁場$\bm{E}, \bm{B}$が大きいとする。
+このように系の時間発展により影響を受けない
+系外から系への影響を、
+総称して外場（external field）という）
+。
+このLorentz力を再現するLagrangian $L'$は、
+電磁場がない場合のLagrangian $L = T - V$を使って
+\begin{align}
+  L' = L - q(\phi - \dot{\bm{x}} \cdot \bm{A})
+\end{align}
+で与えられる。
 
 \subsection{対称性}
 
