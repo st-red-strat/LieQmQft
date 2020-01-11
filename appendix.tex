@@ -427,16 +427,16 @@ Euler-Mascheroni constant（オイラー定数）である。
 
 $f(x)$が区分的になめらか、
 つまり$f(x), f'(x)$がともに区分的に連続ならば
-そのFourier級数は
+そのFourier級数は各点収束し、収束先は
 \begin{align}
     \tilde{f}(x) = \dfrac{f(x+0) + f(x-0)}{2}
 \end{align}
-に収束する。
-なお、各点での収束先は上で良いものの、
-Fourier級数は
-関数列としては広義一様収束、ないしコンパクト一様収束
+で与えられる。
+$f(x)$が連続ならさらに強くFourier級数は関数列として一様収束するが、
+不連続関数のFourier級数は一様収束せず、
+広義一様収束、ないしコンパクト一様収束
 （uniformly convergent on compact sets）
-しかしておらず、
+しかしない。
 不連続点$f(x+0) - f(x-0) \neq 0$の付近では
 ギブス現象（Gibbs phenomenon）とか呼ばれる振動が起こる。
 激しく振動する成分はRiemann-Lebesgue lemmaより積分に寄与しないので、
