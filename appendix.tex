@@ -382,6 +382,8 @@ Euler-Mascheroni constant（オイラー定数）である。
 
 \subsection{Fourier変換、Fourier級数展開}
 
+\subsubsection{Fourier級数展開}
+
 周期$2L$の周期関数$f(x)$、
 あるいは区間$(a, a + 2L)$を定義域とする関数$f(x)$を
 周期関数に拡張したものについて
@@ -398,7 +400,7 @@ Euler-Mascheroni constant（オイラー定数）である。
     f(x) e^{ - i\frac{n \pi}{L}x }
 \end{align}
 \end{subequations}
-を複素Fourier級数、
+を複素Fourier series（フーリエ級数）、
 \begin{subequations}
 \begin{align}
     \tilde{f}(x)
@@ -423,7 +425,11 @@ Euler-Mascheroni constant（オイラー定数）である。
     f(x) \sin\dfrac{n \pi}{L}x
 \end{align}
 \end{subequations}
-をFourier series（フーリエ級数）などという。
+をFourier seriesなどという。
+特に$\forall n$に対して
+$a_n = 0$のときFourier正弦展開、
+$b_n = 0$のときFourier余弦展開
+などということもある。
 
 $f(x)$が区分的になめらか、
 つまり$f(x), f'(x)$がともに区分的に連続ならば
@@ -437,15 +443,20 @@ $f(x)$が連続ならさらに強くFourier級数は関数列として一様収�
 広義一様収束、ないしコンパクト一様収束
 （uniformly convergent on compact sets）
 しかしない。
-不連続点$\mathrm{Disc}(f,x) := f(x+0) - f(x-0) \neq 0$の付近では
-振幅$\mathrm{Disc}(f,x) \times 0.08949\dots$程度の振動が起こり、
+不連続点$x = a$ s.t.
+$\mathrm{Disc}(f,a) := f(a+0) - f(a-0) \neq 0$の付近では
+振幅$\mathrm{Disc}(f,a) \times 0.08949\dots$程度の振動が起こり、
 ギブス現象（Gibbs phenomenon）とか呼ばれる。
 激しく振動する成分はRiemann-Lebesgue lemmaより積分に寄与しないので、
 $L^2$-normで見る限り(\ref{convergence of norm})と全く同様に
+\begin{subequations}
 \begin{align}
-    &\lim_{N\to\infty}\bigg|\bigg|
-        f - \tilde{f}_N(x)
+    \lim_{N\to\infty}\bigg|\bigg|
+        f(x) - \tilde{f}_N(x)
     \bigg|\bigg|^2
+    &=
+    \lim_{N\to\infty}\int dx
+    \Big| f(x) - \tilde{f}_N(x) \Big|^2
     = 0
 \\
     \tilde{f}_N(x)
@@ -453,7 +464,51 @@ $L^2$-normで見る限り(\ref{convergence of norm})と全く同様に
     \sum_{n=-N}^N
     c_n e^{ i\frac{n \pi}{L}x }
 \end{align}
+\end{subequations}
 のように収束している、ということである。
+
+\subsubsection{Fourier変換}
+
+周期関数でないより一般の関数もFourier級数と同様に
+三角関数で展開したいというのは自然な要求だろう。
+特にこれは微分方程式を解くために役立つ。
+急減少関数$f(x)$のFourier transform（フーリエ変換）$\tilde{f}(k)$
+および
+inverse Fourier transform（逆フーリエ変換）を
+\begin{subequations}
+\begin{align}
+    \tilde{f}(k)
+    &:=
+    \int dx\ f(x) e^{-ikx}
+\\
+    f(x)
+    &=
+    \dfrac{1}{2\pi}\int dk\ 
+    \tilde{f}(k) e^{+ikx}
+\end{align}
+\end{subequations}
+で定める。
+$\dfrac{1}{2\pi}$を
+Fourier変換（逆変換でなく）の定義に付けて
+$\tilde{f}(k)=\dfrac{1}{2\pi}\int dx\ f(x) e^{-ikx}$
+としたり、
+$k$の符号を逆にして
+$\tilde{f}(k)=\int dx\ f(x) e^{+ikx}$としたり、
+波動関数の規格化を気にする量子力学では
+$\dfrac{1}{\sqrt{2\pi}}\int dk\ \tilde{f}(k) e^{+ikx}$
+のように$\dfrac{1}{\sqrt{2\pi}}$が変換と逆変換の両方に現れたり、
+数値計算や結晶学では角周波数でなく周波数を用いて
+$\tilde{f}(k)=\int dx\ f(x) e^{+2\pi ikx}$としたり、
+とにかく無数の流儀があるが、本質積な違いは何もない。
+
+上の逆変換はDirac delta関数
+\begin{align}
+    \delta(x-y) = \dfrac{1}{2\pi}\int dk\ e^{ik(x-y)}
+\end{align}
+により正当化される。
+
+Fourier変換は不確定性関係という良くない性質を持つため、
+画像処理などの分野ではwavelet解析という拡張を考えることがある。
 
 \section{量子力学の公式}
 
