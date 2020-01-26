@@ -4,13 +4,15 @@
 
 \section{物理数学}
 
-\subsection{行列式、余因子行列と逆行列}
+\subsection{線形代数}
 
-$n$階の完全反対称テンソル（completely antisymmetric tensor、
+\subsubsection{完全反対称tensorとvectorの外積、ベクトル解析の公式}
+
+$n$階の完全反対称tensor（completely antisymmetric tensor、
 \footnote{反対称（anti-symmetric）と
 歪対称（skew-symmetric）は同じ意味。}
 Levi-Civita symbol、
-エディントンのイプシロンと呼ばれる事もあるが
+エディントンのepsilonと呼ばれる事もあるが
 Edington's epsilonと洋書に書いてあることは少ない）を
 \begin{align}
     \epsilon_{i_1,\dots,i_n} =
@@ -38,6 +40,105 @@ Edington's epsilonと洋書に書いてあることは少ない）を
 特に$(i_1,\dots,t_n)$が$(1,\dots,n)$の置換$\sigma$であるとき、
 明らかにこれは置換の符号
 $\mathrm{sign}(\sigma)$に一致する。
+
+縮約されている添え字は
+和を取るためだけに使っているダミーの添え字
+（$\sum_i a_i = \sum_j a_j$のように、
+文字を変えても式の意味は変わらない）
+であることに気を付けると
+\begin{align}
+    \epsilon_{ijk}
+    \partial_i \partial_j
+    &=
+    \epsilon_{jik}
+    \partial_j \partial_i
+    =
+    - \epsilon_{ijk}
+    \partial_i \partial_j
+\notag\\\therefore
+    \epsilon_{ijk}
+    \partial_i \partial_j
+    &=
+    0
+\end{align}
+のように$\epsilon$と対称tensorを潰すと必ず$0$になることが分かる。
+より一般に、$\epsilon$に限らない反対称tensorと
+対称tensorとの足を$2$つ以上縮約すると
+必ず$0$になることも明らかだろう。
+
+$3$階の完全反対称tensorについては公式
+\begin{align}
+    \epsilon_{ijk}\epsilon_{ilm}
+    =
+    \delta_{jl}\delta_{km}
+    -
+    \delta_{jm}\delta_{kl}
+\label{3rd order epsilon to delta2 formula}
+\end{align}
+が成り立つ。
+$3$次元直交座標系でvectorを成分表示すると、
+外積は
+\begin{align}
+    (\bm{a} \times \bm{b})_i
+    =
+    \epsilon_{ijk}
+    a_j b_k
+\label{cross product}
+\end{align}
+と書け、$\epsilon$の反対称性から
+ベクトル解析の公式
+\begin{subequations}
+\begin{align}
+    \bm{a} \cdot (\bm{b} \times \bm{c})
+    &=
+    \bm{b} \cdot (\bm{c} \times \bm{a})
+    =
+    \bm{c} \cdot (\bm{a} \times \bm{b})
+\\
+    \bm{a} \times (\bm{b} \times \bm{c})
+    &=
+    \bm{b} (\bm{a} \cdot \bm{c})
+    -
+    (\bm{a} \cdot \bm{b}) \bm{c}
+\\
+    \nabla \times (\nabla \times \bm{c})
+    &=
+    \mathrm{rot}(\mathrm{rot}\ \bm{c})
+    =
+    \mathrm{grad}(\mathrm{div}\ \bm{c})
+    -
+    \Delta\ \bm{c}
+    =
+    \nabla (\nabla \cdot \bm{c})
+    -
+    (\nabla \cdot \nabla) \bm{c}
+\\
+    \nabla \times (\nabla \phi)
+    &=
+    \mathrm{rot}(\mathrm{grad}\ \phi)
+    = 0
+\\
+    \nabla \cdot (\nabla \times \bm{A})
+    &=
+    \mathrm{div}(\mathrm{rot}\bm{A})
+    = 0
+\end{align}
+\end{subequations}
+は簡単に示せる。
+
+\subsubsection{外積とAxial Vector}
+
+実は(\ref{cross product})は外積の性質ではなく、
+その定義である。
+ここで使われている$\epsilon_{ijk}$は
+非相対論的な$3$次元空間$\mathbb{R}$の回転群$SO(3)$の不変tensorであり、
+得られた外積はvecctorのように見えるが
+実は空間反転の下で負号を出すという意味で真のvectorではない。
+
+順を追って説明していこう。
+vector spaceに何らかの群$G$が作用しているとする。
+
+\subsubsection{行列式、余因子行列と逆行列}
 
 $D$次元正方行列$g_{\mu\nu}$の行列式（determinant）は、
 抽象的には
@@ -119,7 +220,7 @@ $g_{\mu\nu}$を分解して出来る$D$個のvector
 行列の成分を完全反対称テンソルで潰したもの
 \begin{align}
     \det(g_{\mu\nu})
-    =
+    :=
     \sum_{i_1,\dots,i_D}
     \epsilon_{i_1,\dots,i_D}
     g_{1, i_1}
@@ -169,7 +270,7 @@ $g_{\mu\nu}$の逆行列はCramer's rule
 \end{align}
 で書ける事が知られている。
 
-\subsection{$L^p$-norm}
+\subsubsection{$L^p$-norm}
 
 $\mathbb{R}^n$または
 $\mathbb{C}^n$上の

@@ -1642,16 +1642,174 @@ Newton力学で角運動量は
     \hat{L}_i &= \epsilon_{ijk} \ \hat{q}_j \ \hat{p}_k
 \end{align}
 と定義する。
-正準交換関係から
+正準交換関係と公式
+(\ref{3rd order epsilon to delta2 formula}),
+(\ref{A,BC to B(A,C) + (A,B)C})
+を使うと
 \begin{align}
+    &\qquad\qquad\qquad\qquad
+    \qquad\qquad
     [
         \hat{L}_i, \hat{L}_j
     ]
-    = i \hbar\ \epsilon_{ijk} \hat{L}_i
+    = i \hbar\ \epsilon_{ijk} \hat{L}_k
 \label{angular momentum algebra}
+\\&\because\quad
+    [
+        \hat{L}_i, \hat{L}_j
+    ]
+    =
+    [
+        \epsilon_{ikl} \ \hat{q}_k \hat{p}_l
+        ,
+        \epsilon_{jnm} \ \hat{q}_n \hat{p}_m
+    ]
+    =
+    \epsilon_{ikl} \epsilon_{jnm}
+    [
+        \hat{q}_k \hat{p}_l
+        ,
+        \hat{q}_n \hat{p}_m
+    ]
+\notag\\&=
+    \epsilon_{ikl} \epsilon_{jnm}
+    \bigg(
+        \hat{q}_k
+        [
+            \hat{p}_l
+            ,
+            \hat{q}_n \hat{p}_m
+        ]
+    +
+        [
+            \hat{q}_k
+            ,
+            \hat{q}_n \hat{p}_m
+        ]
+        \hat{p}_l
+    \bigg)
+=
+    \epsilon_{ikl} \epsilon_{jnm}
+    \bigg(
+        \hat{q}_k
+        [
+            \hat{p}_l
+            ,
+            \hat{q}_n
+        ]
+        \hat{p}_m
+    +
+        \hat{q}_n
+        [
+            \hat{q}_k
+            ,
+            \hat{p}_m
+        ]
+        \hat{p}_l
+    \bigg)
+\notag\\&=
+    i \hbar
+    \epsilon_{ikl} \epsilon_{jnm}
+    \bigg(
+        -
+        \hat{q}_k
+        \hat{p}_m
+        \delta_{ln}
+    +
+        \hat{q}_n
+        \hat{p}_l
+        \delta_{km}
+    \bigg)
+=
+    i \hbar
+    \bigg(
+        -
+        \epsilon_{ikl} \epsilon_{jlm}\ 
+        \hat{q}_k
+        \hat{p}_m
+    +
+        \epsilon_{ikl} \epsilon_{jnk}\ 
+        \hat{q}_n
+        \hat{p}_l
+    \bigg)
+\notag\\&=
+    i \hbar
+    \bigg(
+        -
+        \epsilon_{lki} \epsilon_{ljm}\ 
+        \hat{q}_k
+        \hat{p}_m
+    +
+        \epsilon_{kil} \epsilon_{knj}\ 
+        \hat{q}_n
+        \hat{p}_l
+    \bigg)
+=
+    i \hbar
+    \bigg(
+        -
+        \bigg[
+            \delta_{kj}\delta_{im}
+            -
+            \delta_{km}\delta_{ij}
+        \bigg]
+        \hat{q}_k
+        \hat{p}_m
+    +
+        \bigg[
+            \delta_{in}\delta_{lj}
+            -
+            \delta_{ij}\delta_{ln}
+        \bigg]
+        \hat{q}_n
+        \hat{p}_l
+    \bigg)
+\notag\\&=
+    i \hbar
+    \bigg(
+        -
+        \hat{q}_j
+        \hat{p}_i
+        +
+        \hat{q}_m
+        \hat{p}_m
+        \delta_{ij}
+    +
+        \hat{q}_i
+        \hat{p}_j
+        -
+        \hat{q}_l
+        \hat{p}_l
+        \delta_{ij}
+    \bigg)
+=
+    i \hbar
+    \bigg(
+        \hat{q}_i
+        \hat{p}_j
+    -
+        \hat{q}_j
+        \hat{p}_i
+    \bigg)
+=
+    i \hbar
+    \bigg(
+        \delta_{in}\delta_{jm}
+    -
+        \delta_{jn}\delta_{im}
+    \bigg)
+    \hat{q}_n
+    \hat{p}_m
+\notag\\&=
+    i \hbar \epsilon_{kij} \epsilon_{knm}
+    \hat{q}_n
+    \hat{p}_m
+= i \hbar\ \epsilon_{ijk} \hat{L}_k
+\notag
 \end{align}
-が直ちに従う。
-これを角運動量の代数（angular momentum algebra）、あるいは
+が従う。
+(\ref{angular momentum algebra})を
+角運動量の代数（angular momentum algebra）、あるいは
 $\mathfrak{su}(2)$代数という。
 
 \subsubsection{角運動量の代数の表現}
