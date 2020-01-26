@@ -4,6 +4,171 @@
 
 \section{物理数学}
 
+\subsection{行列式、余因子行列と逆行列}
+
+$n$階の完全反対称テンソル（completely antisymmetric tensor、
+\footnote{反対称（anti-symmetric）と
+歪対称（skew-symmetric）は同じ意味。}
+Levi-Civita symbol、
+エディントンのイプシロンと呼ばれる事もあるが
+Edington's epsilonと洋書に書いてあることは少ない）を
+\begin{align}
+    \epsilon_{i_1,\dots,i_n} =
+    \begin{cases}
+        + 1
+        &\text{
+            $(i_1,\dots,t_n)$が
+            $(1,\dots,n)$の偶置換
+        }
+    \\
+        - 1
+        &\text{
+            $(i_1,\dots,t_n)$が
+            $(1,\dots,n)$の奇置換
+        }
+    \\
+        0
+        &\text{
+            else
+        }
+    \end{cases}
+\label{completely antisymmetric tensor}
+\end{align}
+で定義する。
+特に$(i_1,\dots,t_n)$が$(1,\dots,n)$の置換$\sigma$であるとき、
+明らかにこれは置換の符号
+$\mathrm{sign}(\sigma)$に一致する。
+
+$D$次元正方行列$g_{\mu\nu}$の行列式（determinant）は、
+抽象的には
+$g_{\mu\nu}$を分解して出来る$D$個のvector
+\footnote{
+    うるさいことを言うと
+    vectorを太字にする流儀では
+    行列は太字の大文字で書くのが普通であるが、
+    物理では大文字小文字の使い分けにも意味がある場合が多いので、
+    行列（というか$2$階のtensor）は必ずしも大文字にも太字にもしない。
+}
+\begin{align*}
+    \bm{a}_1 :=
+    \begin{pmatrix}
+        g_{11}
+    \\
+        g_{21}
+    \\
+        \vdots
+    \\
+        g_{D1}
+    \end{pmatrix}
+    ,
+    \dots,
+    \bm{a}_D :=
+    \begin{pmatrix}
+        g_{1D}
+    \\
+        g_{2D}
+    \\
+        \vdots
+    \\
+        g_{DD}
+    \end{pmatrix}
+\end{align*}
+の関数
+\begin{align}
+    \det(g_{\mu\nu})
+    :=
+    \det(\bm{a}_1,\dots,\bm{a}_D)
+\end{align}
+であって、
+以下の3つの性質を満たすもの：
+\begin{subequations}
+\begin{enumerate}
+\renewcommand{\labelenumi}{(\roman{enumi})}
+    \item 反対称性：
+    \\
+    どの$2$つのvectorの入れ替えのもとでも反対称
+    \begin{align}
+        \det(\bm{a}_1,\dots,\bm{a}_i,\dots,\bm{a}_j\dots,\bm{a}_D)
+        =
+        -
+        \det(\bm{a}_1,\dots,\bm{a}_j,\dots,\bm{a}_i\dots,\bm{a}_D)
+    \end{align}
+    \item 多重線形性：
+    \\
+    どのvectorについても線形
+    \begin{align}
+        \det(\bm{a}_1,\dots,c\bm{a}_i+d\bm{b}_i\dots,\bm{a}_D)
+        =
+        c
+        \det(\bm{a}_1,\dots,\bm{a}_i\dots,\bm{a}_D)
+        +
+        d
+        \det(\bm{a}_1,\dots,\bm{b}_i\dots,\bm{a}_D)
+    \end{align}
+    \item 規格化条件：
+    \\
+    単位行列$\mathbbm{1}$に対して$1$を与える
+    \begin{align}
+        \det(\mathbbm{1}) = 1
+    \end{align}
+\end{enumerate}
+\end{subequations}
+と定義される。
+
+等価であるが、より具体的には
+行列の成分を完全反対称テンソルで潰したもの
+\begin{align}
+    \det(g_{\mu\nu})
+    =
+    \sum_{i_1,\dots,i_D}
+    \epsilon_{i_1,\dots,i_D}
+    g_{1, i_1}
+    \cdots
+    g_{D, i_D}
+\end{align}
+とも定義され、$\det(g) = |g|$とも書く。
+$g$の逆行列$g^{-1}$の$(\mu,\nu)$成分を
+$g^{\mu\nu}$と書くことにすると
+\begin{align}
+    \dfrac{\partial \det(g)}{\partial g_{\mu\nu}}
+    =
+    g^{\mu\nu}
+\end{align}
+が成り立つ。
+
+行列$g_{\mu\nu}$の$i$行と$j$列を除いたものの行列式の$(-1)^{i+j}$倍
+\begin{align}
+    \Delta(i,j) :=
+    (-1)^{i+j}
+    \begin{vmatrix}
+        g_{1,1} & \dots & g_{1,j-1} & g_{1,j+1} & \dots & g_{1,D}
+    \\
+        \vdots & \ddots & \vdots & \vdots & \ddots & \vdots
+    \\
+        g_{i-1,1} & \dots & g_{i-1,j-1} & g_{i-1,j+1} & \dots & g_{i-1,D}
+    \\
+        g_{i+1,1} & \dots & g_{i+1,j-1} & g_{i+1,j+1} & \dots & g_{i+1,D}
+    \\
+        \vdots & \ddots & \vdots & \vdots & \ddots & \vdots
+    \\
+        g_{D,1} & \dots & g_{D,j-1} & g_{D,j+1} & \dots & g_{D,D}
+    \end{vmatrix}
+\end{align}
+を余因子（cofactor）と呼ぶ。
+余因子行列（cofactor matrix）はその$(i,j)$成分が$(j,i)$余因子で与えられるような行列$\Delta$
+\begin{align}
+    (\Delta)_{i,j} := \det(\Delta(j,i))
+\end{align}
+と定義され、
+$g_{\mu\nu}$の逆行列はCramer's rule
+\begin{align}
+    (g^{-1})_{i,j}
+    = ( g^{i,j} = )
+    \dfrac{ (\Delta)_{i,j} }
+    { \det(g_{\mu\nu}) }
+\end{align}
+で書ける事が知られている。
+
 \subsection{$L^p$-norm}
 
 $\mathbb{R}^n$または
