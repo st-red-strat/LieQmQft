@@ -14,6 +14,8 @@
 
 \subsection{自由場の古典論、場の解析力学}
 
+\subsubsection{場のLagrangianとLagrange形式}
+
 量子化するというからには
 量子化される対象となる古典論を用意する必要がある。
 空間$d$次元、時間$1$次元の$D:= d+1$次元時空$\mathcal{M}^{1,d}$を考え、
@@ -121,6 +123,50 @@ $\mathcal{L}$と書く。
     \dfrac{\delta \mathcal{L}}{\delta (\partial_\mu \phi)}
 \end{align}
 と導かれる。
+
+\subsubsection{Hamilton形式}
+
+場の正準共役量（運動量と呼ばないのは、
+これ以外に場の理論の意味でmomentumと呼ばれるべき適切な量、
+つまりenergy-momentum tensor (\ref{energy-momentum})があるからだ）は
+\begin{align}
+    \pi(t, x) := \dfrac{\partial \mathcal{L}}{\partial \dot{\phi}}
+\end{align}
+で定義される。
+Hamiltonianも解析力学の場合と全く同様に
+\begin{subequations}
+\begin{align}
+    H
+    &:=
+    \int d^D x\ \mathcal{H}
+\\
+    \mathcal{H}
+    &:=
+    \pi(t, \bm{x}) \dot{\phi}(t, \bm{x})
+    -
+    \mathcal{L}(t, \bm{x})
+\end{align}
+\end{subequations}
+と定義される。
+
+\subsubsection{Energy-Momentum Tensor}
+
+Noetherの定理は場の理論にも拡張できる。
+
+Energy-momentum tensor（stress-energy tensor、stress tensor、エネルギー運動量テンソル）は
+計量tensor $g_{\mu\nu}$を用いて
+\begin{align}
+    T^{\mu\nu}
+    :=
+    \dfrac{2}{\sqrt{|g|} }
+    \dfrac{\partial L_{\mathrm{matter}}}{\partial g_{\mu\nu}}
+\label{energy-momentum}
+\end{align}
+で定義される。
+ただし、一般相対論まで行くと重力場そのものの作用も
+気にしなければならないので、
+今はLagrangianの中に重力を表すEinstein-Hilbert項を含めていないと示すため
+$L_{\mathrm{matter}}$と書いた。
 
 \subsubsection{Free Scalar Fieldの例}
 
