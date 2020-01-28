@@ -45,7 +45,13 @@ $O\ket{\psi} \in \mathcal{H}$
         +
         b O \ket{\psi_2}
 \end{align}
-であることを言う。
+であることを言い、
+代数学の言葉では
+$\hat{ \mathcal{O} } \in \mathrm{End}(\mathcal{H})
+= \mathrm{Hom}(\mathcal{H}, \mathcal{H}) $
+あるいは
+$\xymatrix{\mathcal{H}\ar@(dl,dr)[]_{ \hat{\mathcal{O}} } }$
+などと書く。
 例えば時間反転操作に対応するoperator $T$は
 anti-unitary (anti-linearかつunitary)
 \begin{align}
@@ -254,7 +260,9 @@ $\ket{\phi} \in \mathcal{H}$
 $\bra{\psi}$は$\mathcal{H}$上の
 線形汎関数と見做すことが出来、
 Riesz representation theoremから
-$\bra{\psi}$のなす集合$\mathcal{H}^*$は
+$\bra{\psi}$のなす集合
+$\mathcal{H}^* = \mathrm{Hom} (\mathcal{H}, \mathbb{C})$
+は
 $\mathcal{H}$の（位相的あるいは線形）双対空間となる。
 Hilbert空間の元$\ket{\psi}$をket vector、
 その双対空間の元$\bra{\psi}$をbra vectorという。
@@ -1071,6 +1079,7 @@ $\hat{N}_i$の期待値を取ると
     \Big|\Big|
         \hat{a}_i \ket{N_1, N_2,\dots, N_n}
     \Big|\Big|^2 \ge 0
+\label{positive definiteness of number operator}
 \end{align}
 が導かれる。
 最後の不等式は単に内積の正定値性から要求されるのだが、
@@ -1132,6 +1141,12 @@ $E = \hbar \omega \left(N + \dfrac{n}{2} \right) $
     \dfrac{(N+n-1)!}{N!\ (n-1)!}
 \end{align}
 である。
+\footnote{
+    高校数学で習うように、
+    非負整数$N$を$n$個の非負整数の組$\{N_i\}$に分割する方法の数は、
+    $N$個の区別できないもの（例えば石）を$n-1$個の区別できない仕切り（例えば棒）
+    で区切る場合にありうる並べ方の数と同じである。
+}
 
 さて、$\hat{N}_i$の固有値は（存在するならば）非負整数であり、
 これらの同時固有状態がHamiltonian $\hat{H}$の
@@ -1939,6 +1954,7 @@ $\hat{\bm{L}}^2$と$\hat{L}_3$の同時固有状態$\ket{j,m}$が
     \Big|\Big|^2
 \ge
     0
+\label{positive definiteness of angular momentuum}
 \end{align}
 なる不等式が導かれる。
 これが
@@ -2079,3 +2095,26 @@ highest weight stateまたはlowest weight stateから
 内積の正定値性のみから
 $2j +1$個の固有値$m$と
 対応する固有状態が全て求まってしまうのである。
+
+\subsection{Operatorの代数とその表現}
+
+調和振動子(\ref{positive definiteness of number operator})や
+角運動量(\ref{positive definiteness of angular momentuum})の
+例からも分かることだが、
+\begin{enumerate}
+    \item operatorの集合があって特定の交換関係を満たすこと
+    \item それらのoperatorの、
+        正定置なvector spaceへの作用が定まっていること
+\end{enumerate}
+の2つは全く異なり、
+交換関係を満たしながらvector spaceに作用する為には
+vector spaceが様々な条件
+（非整数固有値に対応する固有vectorがないなど）を満たす必要がある。
+実際にそのような条件を満たすvector spaceを見付け、
+そのvector space上でのoperatorの作用を定める事を、
+『operator algeraの表現を構成する』と言う。
+以下ではもう少し数学的な定義からこれを見てみよう。
+
+\subsubsection{環（ring）と代数（algebra）}
+
+集合
