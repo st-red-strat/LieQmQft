@@ -318,11 +318,14 @@ $ \hat{U}^\dagger = \hat{U}^{-1} $
 \begin{align}
     \hat{U}^\dagger \hat{U} \ket{\psi} &= \ket{\psi}
     \quad\text{for $\forall \ket{\psi}$}
+\label{unitary operator}
 \end{align}
 が成り立つことを言う。
+一般にHermitian operator $\hat{O} = \hat{O}^\dagger$に対し
+$\exp( i a \hat{O})$（ただし$a \in \mathbb{R}$）はunitaryであり、
 例えば、時間発展operator
 $\exp\left( \dfrac{ \hat{H}t }{i\hbar} \right)$
-はunitary operatorの例である。
+はunitary operatorの代表的な例である。
 
 \subsubsection{離散spectrumの固有状態とHermitian operator}
 
@@ -1835,7 +1838,7 @@ $\mathfrak{su}(2)$代数という。
 
 この代数が正定値なHilbert空間に作用しているということから
 再び非自明な条件が得られる事を見よう。
-そのためにはnon-hermitianなoperator
+そのためにはnon-Hermitianなoperator
 \begin{align}
     \hat{L}_\pm
     &:=

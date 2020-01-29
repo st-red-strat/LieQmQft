@@ -844,11 +844,19 @@ Fourier変換は不確定性関係という良くない性質を持つため、
 
 \section{量子力学の公式}
 
-\subsection{交換関係・反交換関係の基本的な性質}
+記号が煩雑になるのを避けるため、
+以下では誤解の恐れがない場合は
+適宜operatorを表す$\hat{}$を省略する。
+
+\subsection{Operatorの基本的な性質}
+
+\subsubsection{交換関係・反交換関係}
 
 証明は読者の演習問題とする。
 \begin{align}
     [\hat{A}, \hat{B}] &= - [\hat{B}, \hat{A}]
+\\
+    \{\hat{A}, \hat{B}\} &= \{\hat{B}, \hat{A}\}
 \\
     [\hat{A}, \hat{B}\hat{C}]
    &=
@@ -871,6 +879,19 @@ Fourier変換は不確定性関係という良くない性質を持つため、
     &=
     [\hat{B}^\dagger, \hat{A}^\dagger]
 \end{align}
+特に(\ref{A,BC to B(A,C) + (A,B)C})は
+繰り返し使うことにより
+\begin{align}
+    [\hat{A}, \hat{B}_1\hat{B}_2\cdots\hat{B}_n]
+   &=
+   \sum_{i=1}^n
+   \hat{B}_1\cdots\hat{B}_{i-1}
+   [\hat{A}, \hat{B}_i]
+   \hat{B}_{i+1}\cdots\hat{B}_n
+\end{align}
+と拡張できる。
+
+\subsubsection{Baker-Campbell-Hausdrff formula}
 
 Baker-Campbell-Hausdrff formulaは
 \begin{align}
@@ -891,7 +912,9 @@ $e^{\hat{C}(t)}
     e^{t\hat{A}} e^{t\hat{B}}
 )$とおき、
 右辺のTaylor展開を計算した後
-$t=1$とおけばよい。
+$t=1$とおけばよい
+（\ref{proof for unitary transf formula for operator}
+も参照のこと）。
 特に交換関係が$c$-数
 $[\hat{A},\hat{B}]=c$の場合は
 交換子を$2$回以上取ると必ず消えるため
@@ -906,8 +929,193 @@ $[\hat{A},\hat{B}]=c$の場合は
 \end{align}
 となる。
 
+\subsection{Unitary Transformation}
+
+(\ref{BCH formula})を示すのと全く同様の論法で、
+Hermitianとは限らない任意のoperator $A, B$に対して
+\begin{align}
+    e^A B e^{-A}
+    &=
+    B + [A,B] + \dfrac{1}{2!}[A,[A,B]]
+    +
+    \dfrac{1}{3!}[A,[A,[A,B]]]
+    +
+    \cdots
+\label{unitary transf formula for operator}
+\end{align}
+が示せるが、ここでは一応証明を載せておこう。
+
+\subsubsection{Taylor展開を用いた証明}
+\label{proof for unitary transf formula for operator}
+
+記号$C_i$を漸化式
+\begin{align}
+    \mathrm{C}_0(A,B)
+    :=
+    B
+,\qquad
+    \mathrm{C}_{n+1}(A,B)
+    :=
+    [A,\mathrm{C}_{n}(A,B)]
+\end{align}
+で定義すると、示すべき式
+(\ref{unitary transf formula for operator})は
+\begin{align}
+    e^{A} B e^{-A}
+    &=
+    \sum_{n=0}^\infty
+    \dfrac{1}{n!}
+    \mathrm{C}_{n}(A,B)
+\label{rewrite of unitary transf of operator}
+\end{align}
+となる。
+これを示すために実parameter $s$を導入し、
+左辺を$s=0$の周りで展開する:
+\begin{subequations}
+\begin{align}
+    e^{sA} B e^{-sA}
+    &=
+    e^{sA} \mathrm{C}_{0}(A,B)e^{-sA}
+\\
+    \dfrac{d}{ds}\bigg[
+        e^{sA} B e^{-sA}
+    \bigg]
+    &=
+    Ae^{sA} B e^{-sA}
+    -
+    e^{sA} B A e^{-sA}
+    =
+    e^{sA} [A,B]e^{-sA}
+    =
+    e^{sA} \mathrm{C}_{1}(A,B) e^{-sA}
+\end{align}
+\end{subequations}
+ここで$k \ge 0$について
+\begin{align}
+    \dfrac{d^k}{ds^k}\bigg[
+        e^{sA} B e^{-sA}
+    \bigg]
+    =
+    e^{sA} \mathrm{C}_{k}(A,B) e^{-sA}
+\end{align}
+を仮定すると
+\begin{align}
+    \dfrac{d^{k+1}}{ds^{k+1}}
+    \bigg[
+        e^{sA} B e^{-sA}
+    \bigg]
+&=
+    \dfrac{d}{ds}\bigg[
+        e^{sA} \mathrm{C}_{k}(A,B) e^{-sA}
+    \bigg]
+\notag\\&=
+    A e^{sA} \mathrm{C}_{k}(A,B) e^{-sA}
+    -
+    e^{sA} \mathrm{C}_{k}(A,B) Ae^{-sA}
+\notag\\&=
+    e^{sA} [A,\mathrm{C}_{k}(A,B)] e^{-sA}
+\notag\\&=
+    e^{sA}  \mathrm{C}_{k+1}(A,B) e^{-sA}
+\end{align}
+を得るため、帰納法から任意の$n$について
+\begin{align}
+    \dfrac{d^n}{ds^n}\bigg[
+        e^{sA} B e^{-sA}
+    \bigg]
+    =
+    e^{sA} \mathrm{C}_{n}(A,B) e^{-sA}
+\end{align}
+が示された。
+これにより、左辺の$s=0$周りのTaylor級数を得る:
+\begin{align}
+    e^{sA} B e^{-sA}
+&=
+    \sum_{n=0}^\infty
+        \dfrac{1}{n!}
+    \bigg[
+        \dfrac{d^n}{ds'^n}
+        \bigg(
+            e^{s'A} B e^{-s'A}
+        \bigg)
+    \bigg]_{s'=0}
+    s^n
+\notag\\&=
+    \sum_{n=0}^\infty
+        \dfrac{1}{n!}
+    \bigg[
+        \mathrm{C}_{n}(A,B)
+    \bigg]
+    s^n
+\notag\\&=
+    \sum_{n=0}^\infty
+        \dfrac{s^n}{n!}
+    \mathrm{C}_{n}(A,B)
+\end{align}
+最後に$s=1$と置けば
+\footnote{
+与えられた$A, B$に対し、
+この級数展開の収束半径が$1$より大きいことは仮定する。
+もともとoperatorの関数はTaylor展開
+(\ref{function of operator})
+で定義されていたので、
+Taylor展開出来ない場合を考える必要はない。
+}、
+左辺の展開が右辺に一致したことになり、
+望む公式
+(\ref{rewrite of unitary transf of operator})
+を得る。
+
+\subsubsection{特殊な場合}
+
+特に交換関係が$c$-数の場合$[\hat{A}, \hat{B}] = c$には
+\begin{align}
+    e^{ \hat{A} } \hat{B} e^{ - \hat{A} }
+    &=
+    \hat{B} + c
+\label{finite translation of operator}
+\end{align}
+が得られ、
+operatorの固有値の原点をずらす操作になっていることが分かる。
+また、(\ref{unitary operator})の直下で指摘したように
+Hermitian operator $\hat{O} = \hat{O}^\dagger$を使って
+$\hat{A} = i \hat{O}$と取った場合は
+$ e^{ \hat{A} } \hat{B} e^{ - \hat{A} } $
+は$\hat{B}$のunitary transformationとなっている。
+
+以上の2つの事実を合わせると、
+例えば正準変数
+$[\hat{q}_i, \hat{p}_j] = i\hbar\delta_{ij}$
+について$\hat{A} = - \dfrac{a}{i\hbar} \hat{p}_j,
+\hat{B} = \hat{q}_i$
+として公式を使うことで
+\begin{align}
+    e^{ - \frac{a}{i\hbar} \hat{p}_j }
+        \hat{q}_i
+    e^{ \frac{a}{i\hbar} \hat{p}_i }
+    &=
+    \hat{q}_i + a \delta_{ij}
+\end{align}
+が言える。
+これは運動量が並進対称性に対応する保存量であることを反映しており、
+より一般の対称性変換に対応する保存量についても
+類似の結果が知られている。
+
+\subsection{保存電荷と対称性変換の生成子}
+
+\begin{align}
+    \ket{ \bm{x} + \bm{a} }
+    &=
+    \exp\left(
+        \dfrac{ \bm{a} \cdot \hat{\bm{p}} }
+        { i\hbar }
+    \right)
+    \ket{ \bm{x} }
+\end{align}
+
+\subsubsection{Ehrenfest Theorem}
+
 正準変数$[\hat{q}_i, \hat{p}_j] = i\hbar\delta_{ij}$
-については興味深い事実が成り立つ。
+についてはさらに興味深い事実が成り立つ。
 $C_n := \dfrac{1}{i\hbar} [\hat{q}^n_i, \hat{p}_j]$について
 \begin{align}
     C_{n+1}
