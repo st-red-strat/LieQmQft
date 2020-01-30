@@ -5,6 +5,7 @@
 皆さんが良く知っているNewtonの運動方程式
 \begin{align}
   \bm{F} = m\ddot{\bm{x}}
+\label{newton eom}
 \end{align}
 は解析力学に比べて最も一般的な運動方程式の形で、
 例えば摩擦力が働くなどenergy散逸のある系や
@@ -17,10 +18,206 @@
 であるので、Newton運動方程式は
 \begin{align}
   m\ddot{x} = - k x
+\label{newton harm osci eom}
 \end{align}
 となる。
 
-ただし、この方程式はvectorで記述されているため、
+\subsubsection{空間Vectorの性質とScalar、Tensor}
+
+数学はvectorとはvector spaceの元であり、
+vector spaceの定義は\ref{Axioms of Vector Space}
+のように与えられていた。
+ところが物理におけるvectorは
+多くの場合は空間vectorと呼ばれるべきものであり、
+抽象的には回転群の表現と定義される。
+以下では具体的な例を見ながら、その性質について考えよう。
+
+$D$次元空間$\mathbb{R}^D$上の点は
+$D$次元vector $\bm{r}$で表され、
+直交座標系（orthogonal coordinate system、Cartesian coordinates、デカルト座標などとも）
+$(x_1, x_2, \dots, x_D)$方向の単位ベクトル
+$\bm{e}_1, \bm{e}_2, \dots, \bm{e}_D$を使って
+\begin{align}
+  \bm{r} = \sum_{i = 1}^D r_i \bm{e}_i
+\end{align}
+のように一意に展開できるのであった。
+例として$D = 2$の場合を考えると、
+$(x,y) := (x_1, x_2)$として
+\begin{align}
+  \bm{r} = r_x \bm{e}_x + r_y \bm{e}_y
+\end{align}
+となる。
+さて、物理ではCoulomb力のように、
+力が角度には依存せず物体の距離だけに依存するような場合がある。
+例えば、原点$(0, 0)$に点電荷が固定されていて
+位置$\bm{r}$にある質点の受ける力や運動を計算したいときは、
+$(x, y)$よりも極座標
+\begin{align}
+  \begin{cases}
+    r(x, y) := \sqrt{x^2 + y^2}
+  \\
+    \theta(x, y)
+    =
+    \mathrm{sgn} (y) \mathrm{Arccos}
+    \dfrac{x}{ \sqrt{x^2 + y^2} }
+    =
+    \arctan \dfrac{y}{x}
+  \end{cases}
+&&\Leftrightarrow&&
+  \begin{cases}
+    x(r, \theta) = r \cos\theta
+  \\
+    y(r, \theta) = r \sin\theta
+  \end{cases}
+\end{align}
+を使うのが便利であろう。
+
+このような非直交座標系$(x_1,\dots,x_D)$では
+座標軸の向きが空間上で一定ではない。
+$i$番目の座標軸とは他の座標を固定して
+$x_i$だけを変化させたときに
+点$(x_1,\dots,x_D)$が描く軌跡のことであるので、
+空間$\mathbb{R}^D$の各点$\bm{r}$ごとに
+座標軸$i$方向の単位vectorを
+「$i$番目の座標値を変化させたときに
+位置vector $\bm{r}$が動く方向」、つまり
+\begin{subequations}
+\begin{align}
+  \bm{e}_i (r, \theta)
+  &:=
+  \dfrac{ \tilde{\bm{e}}_i }
+  { \big|\big| \tilde{\bm{e}}_i \big|\big| }
+\\
+  \tilde{\bm{e}}_i (r, \theta)
+  &:=
+  \dfrac{\partial \bm{r}}{\partial x_i}
+\end{align}
+\end{subequations}
+と定義しよう。
+今や単位vector $\bm{e}_i (r, \theta)$は
+座標$(r, \theta)$の関数であり、
+座標が変わるごとに単位vectorの向きも変わってしまう。
+例えば、位置$(x, y) = (a,0), (0,b)$
+すなわち$(r, \theta) = (a, 0), (b, \frac{\pi}{2})$
+を表すvectorは
+\begin{subequations}
+\begin{align}
+  a \bm{e}_x
+  = a \bm{e}_r (r=a, \theta = 0)
+\\
+  b \bm{e}_y
+  = b \bm{e}_r (r=b, \theta = \frac{\pi}{2})
+\end{align}
+\end{subequations}
+と書かれる。
+より一般の位置$\bm{r}$も常に
+\begin{align}
+  \bm{r} = r \bm{e}_r
+  = x \bm{e}_x + y \bm{e}_y
+  &&
+  \begin{cases}
+    \bm{e}_r
+  =
+    \cos \theta \bm{e}_x
+  +
+    \sin \theta \bm{e}_y
+  \\
+    \bm{e}_\theta
+  =
+    - \sin \theta \bm{e}_x
+  +
+    \cos \theta \bm{e}_y
+  \end{cases}
+\end{align}
+と書ける事は明らかであろう。
+
+Newtonの運動方程式(\ref{newton eom})は
+位置vectorの時間微分を含んでいた。
+時刻$t$での粒子の位置座標$(r(t), \theta(t))$を使って、
+これを書き下してみるとどうなるだろうか。
+単位vectorも位置依存性を通して
+$t$に陰に依存していることに注意すると
+\begin{subequations}
+\begin{align}
+  \dot{ \bm{e} }_r
+  &=
+  \dot{ \theta }(
+    - \sin \theta \bm{e}_x
+    + \cos \theta \bm{e}_y
+  )
+  = \dot{ \theta } \bm{e}_\theta
+\\
+  \dot{ \bm{e} }_\theta
+  &=
+  \dot{ \theta }(
+    - \cos \theta \bm{e}_x
+    - \sin \theta \bm{e}_y
+  )
+  = - \dot{ \theta } \bm{e}_r
+\end{align}
+\end{subequations}
+が得られるから、
+\begin{subequations}
+\begin{align}
+  \dot{ \bm{r} }
+  &=
+  \dot{r} \bm{e}_r
+  +
+  r \dot{ \bm{e} }_r
+  =
+  \dot{r} \bm{e}_r
+  +
+  r \dot{\theta} \bm{e}_\theta
+\\
+  \ddot{ \bm{r} }
+  &=
+  \left(
+    \ddot{r} \bm{e}_r
+  +
+    \dot{r} \dot{ \bm{e} }_r
+  \right)
+  +
+  \left(
+    \dot{r} \dot{\theta} \bm{e}_\theta
+  +
+    r \ddot{\theta} \bm{e}_\theta
+  +
+    r \dot{\theta} \dot{ \bm{e} }_\theta
+  \right)
+\notag\\&=
+  \left(
+    \ddot{r}
+  -
+    r \dot{\theta}^2
+  \right)
+  \bm{e}_r
+  +
+  \left(
+    2 \dot{r} \dot{\theta}
+  +
+    r \ddot{\theta}
+  \right)
+  \bm{e}_\theta
+\end{align}
+\end{subequations}
+だと分かる。
+従ってこの座標系でのNewton方程式は
+\begin{align}
+  \dfrac{ F_r }{m}
+  &=
+    \ddot{r}
+  -
+    r \dot{\theta}^2
+\\
+  \dfrac{ F_\theta }{m}
+  &=
+    2 \dot{r} \dot{\theta}
+  +
+    r \ddot{\theta}  
+\end{align}
+であり、整然とした直交座標での表式とは似ても似つかない。
+
+Newton方程式はvectorで記述されているため、
 例えば極座標のような直交座標系以外の座標を用いると
 形が著しく複雑になるという欠点も持っている。
 これに対し、例えばenergyのようなscalar量は
@@ -267,7 +464,8 @@ $n$次元調和振動子の場合Lagrangianは
   +
     m\omega^2 q_i
 \end{align}
-となり、確かにNewtonの運動方程式を再現する。
+となり、確かにNewtonの運動方程式
+(\ref{newton harm osci eom})を再現する。
 
 \subsection{Vector Potential}
 
@@ -1273,7 +1471,8 @@ Hamiltonianは
   = - \omega^2 q_i
 \label{hamiltonian e.o.m for harmonic oscillator}
 \end{align}
-となって、やはりNewtonの方程式を再現する。
+となって、やはりNewtonの方程式
+(\ref{newton harm osci eom})を再現する。
 
 \subsubsection{Poisson括弧}
 

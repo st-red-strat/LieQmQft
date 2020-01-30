@@ -6,6 +6,123 @@
 
 \subsection{線形代数}
 
+\subsubsection{体}
+
+体(field)とは実数$\mathbb{R}$や
+複素数$\mathbb{C}$など、
+その集合の中で四則演算が可能な集合である。
+このように集合の元に演算が定義されているとき、
+演算した結果も再び同じ集合の元となることを
+「集合が演算のもとで閉じている」という。
+つまり、体は加減乗除のもとで閉じている集合の事である。
+
+例えば有理数$\mathbb{Q}$は体だが、
+整数数$\mathbb{Z}$は除算のもとで閉じていない
+（整数どうしの比は必ずしも整数にならない）ため体ではない。
+
+\subsubsection{Axioms of Vector Space}
+\label{Axioms of Vector Space}
+
+$K$を体として集合$V$に
+\begin{enumerate}
+  \item 和
+  \begin{align}
+    \bm{u} + \bm{v} \in V
+    \qquad
+    (\forall \bm{u}, \bm{v}\in V)
+  \end{align}
+
+  \item scalar倍
+  \begin{align}
+    a \bm{u} \in V
+    \qquad
+    (\forall \bm{u} \in V
+    ,\ 
+    \forall a \in K)
+  \end{align}
+\end{enumerate}
+の2つの演算が定義されていて、
+しかも
+$ \forall \bm{u}, \bm{v}, \bm{w} \in V $
+および
+$ \forall a, b \in K $
+について
+vector spaceの公理と呼ばれる性質
+\begin{tcbraster}[raster columns=2,raster equal height]
+\begin{subequations}
+
+  \begin{tcolorbox}[title=\thetcbrasternum. 和の可換性]
+    \begin{align}
+      \bm{u} + \bm{v}
+    =
+      \bm{v} + \bm{u}
+    \end{align}
+\end{tcolorbox}
+\begin{tcolorbox}[title=\thetcbrasternum. 和の結合性]
+  \begin{align}
+    (\bm{u} + \bm{v}) + \bm{w}
+  =
+    \bm{u} + (\bm{v} + \bm{w})
+  \end{align}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=\thetcbrasternum. 加法零元$\bm{0}$の存在]
+  \begin{align}
+    \exists \bm{0}
+  \text{  s.t.  }
+    \bm{u} + \bm{0}
+  =
+    \bm{0} + \bm{u}
+  =
+    \bm{u}
+  \end{align}
+\end{tcolorbox}
+\begin{tcolorbox}[title=\thetcbrasternum. scalar倍の結合性]
+  \begin{align}
+    a ( b \bm{u} )
+  =
+    ( a b ) \bm{u}
+  \end{align}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=\thetcbrasternum. scalar倍の分配性]
+  \begin{align}
+    (a + b) \bm{u}
+  =
+    a \bm{u} + b \bm{u}
+  \end{align}
+\end{tcolorbox}
+\begin{tcolorbox}[title=\thetcbrasternum. 加法の分配性]
+  \begin{align}
+    a ( \bm{u} + \bm{v} )
+  =
+    a \bm{u} + a \bm{v}
+  \end{align}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=\thetcbrasternum. 乗法単位元$1$の存在]
+  \begin{align}
+    \exists 1
+    \text{  s.t.  }
+    1 \bm{u}
+  =
+    \bm{u}
+  \end{align}
+\end{tcolorbox}
+\begin{tcolorbox}[title=\thetcbrasternum. 乗法零元$0$の存在]
+  \begin{align}
+    \exists 0
+    \text{  s.t.  }
+    0 \bm{u}
+  =
+    \bm{0}
+  \end{align}
+\end{tcolorbox}
+\end{subequations}
+\end{tcbraster}
+が成り立つときに
+$V$をvector spaceと呼ぶ。
+
 \subsubsection{完全反対称tensorとvectorの外積、ベクトル解析の公式}
 
 $n$階の完全反対称tensor（completely antisymmetric tensor、
