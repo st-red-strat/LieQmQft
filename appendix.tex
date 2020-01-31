@@ -298,7 +298,7 @@ $g_{\mu\nu}$を分解して出来る$D$個のvector
     \det(\bm{a}_1,\dots,\bm{a}_D)
 \end{align}
 であって、
-以下の3つの性質を満たすもの：
+以下の3つの性質：
 \begin{subequations}
 \begin{enumerate}
 \renewcommand{\labelenumi}{(\roman{enumi})}
@@ -331,7 +331,7 @@ $g_{\mu\nu}$を分解して出来る$D$個のvector
     \end{align}
 \end{enumerate}
 \end{subequations}
-と定義される。
+を満たすものと定義される。
 
 等価であるが、より具体的には
 行列の成分を完全反対称テンソルで潰したもの
@@ -986,6 +986,16 @@ Fourier変換は不確定性関係という良くない性質を持つため、
    &=
    \hat{A}\{\hat{B}, \hat{C}\}
 -
+    \{\hat{A}, \hat{C}\} \hat{B}
+\\
+    \{ \hat{A}\hat{B}, \hat{C} \}
+   &=
+   \hat{A}\{\hat{B}, \hat{C}\}
+-
+    [ \hat{A}, \hat{C} ] \hat{B}
+\notag\\&=
+   \hat{A} [ \hat{B}, \hat{C} ]
++
     \{\hat{A}, \hat{C}\} \hat{B}
 \\
     \left(\hat{A}\hat{B}\right)^\dagger
