@@ -2140,7 +2140,7 @@ $\phi_f(\bm{x}) := \delta(\bm{x} - \bm{x}_f)$
 時間発展operator
 (\ref{time evolution operator})を使って
 \begin{align}
-    K( t_f, \bm{x}_f ; t_i, \bm{x}_f )
+    K( t_f, \bm{x}_f ; t_i, \bm{x}_i )
 &:=
     \braket{ \phi_f | \psi(t_f) }
 =
@@ -2186,7 +2186,7 @@ $\psi_F( \bm{x} ) = \braket{ \bm{x} | \psi_F }$
 当然これを計算したくなるだろう。
 定義式から
 \begin{align}
-    K( t, \bm{x} ; t_i, \bm{x}_f )
+    K( t, \bm{x} ; t_i, \bm{x}_i )
 &=
     \bra{ \bm{x} }
         \hat{U}(t, t_i)
@@ -2231,7 +2231,7 @@ Hamiltonianの固有状態に関して
 完全性関係
 (\ref{complete set of wave function})を使って
 \begin{align}
-    K( t, \bm{x} ; t_i, \bm{x}_f )
+    K( t, \bm{x} ; t_i, \bm{x}_i )
     &=
     \exp\left(
         \dfrac{ t - t_i }{ i\hbar }
@@ -2267,7 +2267,7 @@ Hamiltonianの固有状態に関して
         \bra{ \bm{x}_i }
 $を挟むこと
 \begin{align}
-    K( t_f, \bm{x}_f ; t_i, \bm{x}_f )
+    K( t_f, \bm{x}_f ; t_i, \bm{x}_i )
 &=
     \bra{ \bm{x}_f }
         \exp\left(
@@ -2386,7 +2386,7 @@ $\delta t$は非常に小さいので、
 上式が成り立つとして問題ないだろう。
 このとき
 \begin{align}
-    K( t_f, \bm{x}_f ; t_i, \bm{x}_f )
+    K( t_f, \bm{x}_f ; t_i, \bm{x}_i )
     &=
     \lim_{ N \to \infty }
     \left[
@@ -2408,7 +2408,7 @@ $\delta t$は非常に小さいので、
 を得る。
 さて、運動量についても同様に完全系を挟んで
 \begin{align}
-    K( t_f, \bm{x}_f ; t_i, \bm{x}_f )
+    K( t_f, \bm{x}_f ; t_i, \bm{x}_i )
     &=
     \lim_{ N \to \infty }
     \left[
@@ -2495,7 +2495,7 @@ $\hat{\bm{p}}$の固有状態の$\bm{x}$-表示
 を使った。
 以上をまとめると
 \begin{align}
-    K( t_f, \bm{x}_f ; t_i, \bm{x}_f )
+    K( t_f, \bm{x}_f ; t_i, \bm{x}_i )
     =
     \lim_{ N \to \infty }
         \int
@@ -2666,7 +2666,7 @@ Hamiltonian経路積分という。
 \end{align}
 からFeynman kernelの$x$積分のみの表式
 \begin{align}
-    K( t_f, \bm{x}_f ; t_i, \bm{x}_f )
+    K( t_f, \bm{x}_f ; t_i, \bm{x}_i )
     &=
     \lim_{ N \to \infty }
     \left[
@@ -2866,7 +2866,7 @@ $\bm{x}$が$t$の連続関数だと思うと
 のように変形が出来るから、
 Feynman kernelは
 \begin{align}
-    K( t_f, \bm{x}_f ; t_i, \bm{x}_f )
+    K( t_f, \bm{x}_f ; t_i, \bm{x}_i )
     &=
     \lim_{ N \to \infty }
     \left(
@@ -3055,7 +3055,7 @@ $x$で書き直したLagrangianは
     J(t)
 \notag\\&=
     \frac{1}{2}m
-    \dot{q_{cl}}^2
+    \dot{q}_{cl}^2
     -
     \frac{1}{2}m\omega^2
         q_{cl}^2
@@ -3064,7 +3064,7 @@ $x$で書き直したLagrangianは
         J(t)
     +
     \frac{1}{2}m(
-        2 \dot{q_{cl}} \dot{x}
+        2 \dot{q}_{cl} \dot{x}
         +
         \dot{x}^2
     )
@@ -3086,7 +3086,7 @@ $x$で書き直したLagrangianは
     \right)
     +
     \left(
-        m\dot{q_{cl}} \dot{x}
+        m\dot{q}_{cl} \dot{x}
         -
         m\omega^2 q_{cl}
         x + x J(t)
@@ -3110,7 +3110,7 @@ $x$で書き直したLagrangianは
     +
     \int_{t_i}^{t_f}dt
     \left(
-        m \dot{q_{cl}} \dot{x}
+        m \dot{q}_{cl} \dot{x}
         -
         m\omega^2q_{cl} x
         +
@@ -3121,22 +3121,22 @@ $x$で書き直したLagrangianは
 \begin{align}
     \int_{t_i}^{t_f}dt
     \left(
-        m\dot{q_{cl}}\dot{x}
+        m\dot{q}_{cl} \dot{x}
     \right)
 &=
     \bigg[
-        m \dot{q_{cl}} x
+        m \dot{q}_{cl} x
     \bigg]_{t=t_i}^{t=t_f}
     -
     \int_{t_i}^{t_f} dt
     \left(
-        m \ddot{q_{cl}} x
+        m \ddot{q}_{cl} x
     \right)
 =
     -
     \int_{t_i}^{t_f} dt
     \left(
-        m \ddot{q_{cl}} x
+        m \ddot{q}_{cl} x
     \right)
 \end{align}
 できて、
@@ -3157,9 +3157,9 @@ $0 = m \ddot{q}_{cl} + m \omega^2 q_{cl} - J(t)$
     -
     \int_{t_i}^{t_f} dt
     \left(
-        m\ddot{q_{cl}}
+        m \ddot{q}_{cl}
         +
-        m\omega^2q_{cl}
+        m \omega^2 q_{cl}
         -
         J(t)
     \right)
@@ -3167,65 +3167,237 @@ $0 = m \ddot{q}_{cl} + m \omega^2 q_{cl} - J(t)$
 \notag\\&=
     S_{cl}
     +
+    \frac{1}{2} m
     \int_{t_i}^{t_f} dt
     \left(
-        \frac{1}{2} m \dot{x}^2
+        \dot{x}^2
         -
-        \frac{1}{2} m \omega^2 x^2
+        \omega^2 x^2
     \right)
 \end{align}
-と書き直せる。
-
-さて、書き直したLagrangian
-$
-    L
-    =
-    L_{cl}
-    +
-    \frac{1}{2} m \dot{x}^2
-    -
-    \frac{1}{2} m \omega^2 x^2
-$
-からHamiltonianを求めると、
-$
-    p
-    :=
-    \dfrac{\partial L}{\partial \dot{x}}
-    =
-    m \dot{x}
-$
-に注意して
-\begin{subequations}
+と書き直せ、
+$S_{cl}$の部分も
 \begin{align}
-    H
+    S_{cl}
     &=
-    p\dot{x} - L
-\notag\\&=
-    p \frac{p}{m}
-    -
+    \int_{t_i}^{t_f} dt
     \left[
-        \frac{1}{2} m
-        \left(
-            \frac{p}{m}
-        \right)^2
-        -
-        \frac{1}{2} m \omega^2 x^2 
-    \right]
+        \frac{1}{2}m
+        \dot{q}_{cl}^2
     -
-    L_{cl}
-\notag\\&=
-    \frac{p^2}{2m}
+        \frac{1}{2} m \omega^2
+        q_{cl}^2
     +
-    V(x)
+        q_{cl}
+        J(t)
+    \right]
+\notag\\&=
+    \left[
+        \frac{1}{2}m
+        q_{cl}
+        \dot{q}_{cl}
+    \right]_{t_i}^{t_f}
+    +
+    \int_{t_i}^{t_f} dt\ 
+    q_{cl}
+    \left[
     -
-    L_{cl}
-\\
-    V(x)
-    &:=
-    \frac{1}{2} m \omega^2 x^2
+        \frac{1}{2} m
+        \ddot{q}_{cl}
+    -
+        \frac{1}{2} m \omega^2
+        q_{cl}
+    +
+        J(t)
+    \right]
+\notag\\&=
+    \frac{1}{2} m
+    \bigg(
+        q_f
+        \dot{q}_{cl}(t_f)
+    -
+        q_i
+        \dot{q}_{cl}(t_i)
+    \bigg)
+    +
+    \int_{t_i}^{t_f} dt\ 
+        q_{cl}
+        \frac{1}{2}
+        J(t)
 \end{align}
-\end{subequations}
-となる。
+と計算できる。
+
+求めるFeynman kernelの経路積分表示は
+\begin{align}
+    K( t_f, q_f ; t_i, q_i )
+    &=
+    \int_{q(t_i) = q_i}^{q(t_f) = q_f}
+        Dq(t)
+    \exp\left(
+        \dfrac{i}{\hbar} S
+    \right)
+\notag\\&=
+    \exp\left(
+        \dfrac{i}{\hbar} S_{cl}
+    \right)
+    \int_{x(t_i) = 0}^{x(t_f) = 0}
+        Dx(t)
+    \exp\left(
+        -
+        \dfrac{ i m }{2\hbar}
+        \int_{t_i}^{t_f} dt\ 
+        x
+        \left[
+            \left(
+                \dfrac{d}{dt}
+            \right)^2
+            +
+            \omega^2
+        \right]
+        x
+    \right)
+\end{align}
+となるが、
+operator $
+    \left(
+        \dfrac{d}{dt}
+    \right)^2
++
+    \omega^2
+$の固有関数
+\begin{align}
+    \left[
+        \left(
+            \dfrac{d}{dt}
+        \right)^2
+        +
+        \omega^2
+    \right]
+    \phi_n(t)
+    =
+    \lambda_n
+    \phi_n(t)
+\end{align}
+であって
+境界条件$x(t_i) = 0, x(t_f) = 0$を満たすものは
+\begin{align}
+    \phi_n(t)
+    &=
+    \sqrt{ 
+        \dfrac{
+            2
+        }{
+            t_f - t_i
+        }
+    }
+    \sin \omega_n (t - t_i)
+    ,
+    &&
+    \omega_n
+    =
+    \dfrac{n \pi}{t_f - t_i}
+    &&
+    (n = 1, 2, \dots)
+    &&
+    \lambda_n
+    =
+    \omega^2
+    -
+    \omega_n^2
+\end{align}
+であるので、これで$x(t)$を展開し
+\begin{align}
+    x(t)
+    =
+    a_n
+    \phi_n(t)
+\end{align}
+と書こう。
+明らかに
+\begin{align}
+    \int_{t_i}^{t_f} dt\ 
+    x
+    \left[
+        \left(
+            \dfrac{d}{dt}
+        \right)^2
+        +
+        \omega^2
+    \right]
+    x
+    &=
+    \sum_{n,m}
+    \int_{t_i}^{t_f} dt\ 
+    a_n \phi_n
+    \bigg[
+        \lambda_m
+    \bigg]
+    a_m \phi_m
+\notag\\&=
+    \sum_{n,m}
+        a_n a_m
+        \lambda_m
+    \int_{t_i}^{t_f} dt\ 
+    \phi_n
+    \phi_m
+\notag\\&=
+    \sum_{n,m}
+        a_n a_m
+        \lambda_m
+    \delta_{nm}
+    =
+    \sum_{n}
+    a_n^2
+    \lambda_n
+\end{align}
+より、
+任意の関数についての積分は、
+この係数$a_n$についての積分
+\begin{align}
+    K( t_f, q_f ; t_i, q_i )
+    &=
+    \exp\left(
+        \dfrac{i}{\hbar} S_{cl}
+    \right)
+        J(t_f,t_i)
+    \prod_{n=1}^\infty
+    \left[
+        \int d a_n
+    \right]
+    \exp\left(
+        -
+        \dfrac{ i m }{2\hbar}
+        \sum_{n}
+        a_n^2
+        \lambda_n
+    \right)
+\notag\\&=
+    \exp\left(
+        \dfrac{i}{\hbar} S_{cl}
+    \right)
+        J(t_f,t_i)
+    \prod_{n=1}^\infty
+    \left[
+        \int d a_n
+        \exp\left(
+            -
+            \dfrac{ i m }{2\hbar}
+            a_n^2
+            \lambda_n
+        \right)
+    \right]
+\notag\\&=
+    \exp\left(
+        \dfrac{i}{\hbar} S_{cl}
+    \right)
+        J(t_f,t_i)
+    \prod_{n=1}^\infty
+    \sqrt{
+        \dfrac{2 \pi \hbar}{i m \lambda_n}
+    }
+\end{align}
+として実現できるだろう。
+ここで$J$は変数変換によるJacobianである。
 
 \subsection{量子力学における対称性と保存量}
 
