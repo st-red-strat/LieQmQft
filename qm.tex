@@ -2059,7 +2059,45 @@ $\hat{p}$を作用させた結果なども全く同じ式で与えられる。
 このような表式をoperatorの位置表示、
 または$\bm{x}$-表示という。
 
-例えば適当なoperatorの固有状態
+例として運動量の固有状態を
+$\bm{x}$-表示で求めると
+\begin{align}
+    - i \hbar
+    \dfrac{\partial}{\partial x_i}
+    \braket{ \bm{x} | \bm{p} }
+    &=
+    \bra{ \bm{x} }
+    \hat{p}_i
+    \ket{ \bm{p} }
+    =
+    p_i
+    \braket{ \bm{x} | \bm{p} }
+\notag\\\therefore
+    \braket{ \bm{x} | \bm{p} }
+    &=
+    \dfrac{
+        \exp\left(
+            -
+            \dfrac{1}{i\hbar}
+            \bm{p} \cdot \bm{x}
+        \right)
+    }{ (2 \pi \hbar)^{D/2} }
+\label{plain wave in qm}
+\end{align}
+となる。
+ただし規格化定数は規格化条件
+\begin{align}
+    \delta( \bm{p} - \bm{p}' )
+    =
+    \braket{ \bm{p} | \bm{p}' }
+    =
+    \int d^D x
+    \braket{ \bm{p} | \bm{x} }
+    \braket{ \bm{x} | \bm{p}' }
+\end{align}
+を満たすよう与えた。
+
+また、適当なoperatorの固有状態
 $\ket{n}$に関する
 完全性関係
 (\ref{spectral decomposition of identity})
@@ -2219,7 +2257,7 @@ Hamiltonianの固有状態に関して
 などと計算する事も出来るであろうが、
 以下では別の方法を考える。
 
-\subsubsection{Feynman Path Integral}
+\subsubsection{Hamiltonian Path Integral}
 
 粒子の位置観測の間隔を$T := t_f - t_i$として、
 時間$\delta t := \dfrac{ T }{ N }$ごとに
@@ -2227,7 +2265,7 @@ Hamiltonianの固有状態に関して
     1 = \int d^D {x_i}
         \ket{ \bm{x}_i }
         \bra{ \bm{x}_i }
-$を挟むことを考える。
+$を挟むこと
 \begin{align}
     K( t_f, \bm{x}_f ; t_i, \bm{x}_f )
 &=
@@ -2279,7 +2317,8 @@ $を挟むことを考える。
     \exp\left(
         \dfrac{1}{i\hbar}
         \int_{t_i + \delta t}
-        ^{t_i + 2 \delta t}dt H
+        ^{t_i + 2 \delta t}
+        dt \hat{H}
     \right)
     \int d^D x_1
         \ket{ \bm{x}_1 }
@@ -2289,7 +2328,7 @@ $を挟むことを考える。
         \dfrac{1}{i\hbar}
         \int_{t_i}
         ^{t_i + \delta t}
-        dt H
+        dt \hat{H}
     \right)
     \ket{ \bm{x}_i }
 \notag\\&=
@@ -2304,11 +2343,12 @@ $を挟むことを考える。
             \dfrac{1}{i\hbar}
             \int_{t_i + m \delta t}
             ^{t_i + (m+1) \delta t}
-            dt H
+            dt \hat{H}
         \right)
         \ket{ \bm{x}_m }
     \right]
 \end{align}
+を考える。
 ただし$x_0 := x_i,\ x_N := x_f$とした。
 ここで、被積分関数に現れる因子
 $\bra{ \bm{x}_{m+1} }
@@ -2316,38 +2356,34 @@ $\bra{ \bm{x}_{m+1} }
         \dfrac{1}{i\hbar}
         \int_{t_i + m \delta t}
         ^{t_i + (m+1) \delta t}
-        dt H
+        dt \hat{H}
     \right)
 \ket{ \bm{x}_m }$
 はbra-ketで挟まれており、
 単なる複素数であるから、
 積の順番を気にする必要はない。
 
-$N\rightarrow\infty$の極限では$\delta t$は非常に小さいので、
-Taylor展開の一次まで取って
+また、$\hat{H}$が$t$に顕わに依存しない場合は
 \begin{align}
     \exp\left(
         \dfrac{1}{i\hbar}
         \int_{t_i + m \delta t}
         ^{t_i + (m+1) \delta t}
-        dt H
+        dt \hat{H}
     \right)
 &=
     \exp\left(
         \dfrac{
             \delta t
         }{i\hbar}
-        H
+        \hat{H}
     \right)
-\simeq
-    1
-    +
-    \dfrac{
-        \delta t
-    }{i\hbar}
-    H
 \end{align}
-としても問題ないだろう。
+が成り立つが、
+$t$に顕わに依存する場合でも
+$N\rightarrow\infty$の極限では
+$\delta t$は非常に小さいので、
+上式が成り立つとして問題ないだろう。
 このとき
 \begin{align}
     K( t_f, \bm{x}_f ; t_i, \bm{x}_f )
@@ -2360,32 +2396,158 @@ Taylor展開の一次まで取って
     \left[
         \prod_{m=0}^{N-1}
         \bra{ \bm{x}_{m+1} }
-        \left(
-            1
-        +
+        \exp\left(
             \dfrac{
                 \delta t
             }{i\hbar}
-            H
+            \hat{H}
         \right)
         \ket{ \bm{x}_m }
     \right]
 \end{align}
 を得る。
-すなわち、微小時間
-$\delta t = \dfrac{T}{N}$
-の時間発展を$N$回繰り返すことで
-時間$T$の時間発展を記述しようとしているのである。
-指数関数の定義の一つに
+さて、運動量についても同様に完全系を挟んで
 \begin{align}
-    e^x
-    :=
-    \lim_{n \to \infty}
-    \left(
-        1 + \frac{x}{n}
-    \right)^n
+    K( t_f, \bm{x}_f ; t_i, \bm{x}_f )
+    &=
+    \lim_{ N \to \infty }
+    \left[
+        \prod_{n=1}^{N-1}
+        \int
+            d^D x_n
+    \right]
+    \left[
+        \prod_{m=0}^{N-1}
+        \int d^D p_m
+        \bra{ \bm{x}_{m+1} }
+        \exp\left(
+            \dfrac{
+                \delta t
+            }{i\hbar}
+            \hat{H}
+        \right)
+        \ket{ \bm{p}_m }
+        \braket{ \bm{p}_m | \bm{x}_m }
+    \right]
 \end{align}
-があったことを思い出そう。
+となるが、
+（非相対論的で、電磁場と相互作用のない粒子の）
+Hamiltonianが
+$H =
+    \dfrac{ \bm{p}^2 }{ 2m }
+    +
+    V( \bm{x} )$
+の形に書けていたことを思い出すと、
+固有vectorに掛かるoperatorを
+固有値で置き換えることが出来て
+\begin{align}
+    &
+    \int d^D p_m
+    \bra{ \bm{x}_{m+1} }
+        \exp\left(
+            \dfrac{
+                \delta t
+            }{i\hbar}
+            \hat{H}
+        \right)
+    \ket{ \bm{p}_m }
+    \braket{ \bm{p}_m | \bm{x}_m }
+\notag\\&=
+    \int d^D p_m
+    \braket{ \bm{x}_{m+1} | \bm{p}_m }
+    \exp\left[
+        \dfrac{
+            \delta t
+        }{i\hbar}
+        \left(
+            \dfrac{ \bm{p}^2_m }{ 2m }
+            +
+            V( \bm{x}_{m+1} )        
+        \right)
+    \right]
+    \braket{ \bm{p}_m | \bm{x}_m }
+\notag\\&=
+    \int
+    \dfrac{ d^D p_m }{ (2 \pi \hbar)^{D} }
+    \exp\left[
+        \dfrac{ 1 }{i\hbar}
+        \left\{
+            \delta t
+            \left(
+                \dfrac{ \bm{p}^2_m }{ 2m }
+            +
+                V( \bm{x}_{m+1} )        
+            \right)
+            +
+            \bm{p}_m \cdot
+            \left(
+                \bm{x}_{m}
+                -
+                \bm{x}_{m+1}
+            \right)
+        \right\}
+    \right]
+\end{align}
+と分かる。
+ここで
+$\hat{\bm{p}}$の固有状態の$\bm{x}$-表示
+(\ref{plain wave in qm})
+を使った。
+以上をまとめると
+\begin{align}
+    K( t_f, \bm{x}_f ; t_i, \bm{x}_f )
+    &=
+    \lim_{ N \to \infty }
+        \int
+        \dfrac{ d^D p_0 }{ (2 \pi \hbar)^{D} }
+    \exp\left[
+        \dfrac{ 1 }{i\hbar}
+        \left\{
+            \delta t
+            \left(
+                \dfrac{ \bm{p}^2_0 }{ 2m }
+            +
+                V( \bm{x}_{1} )
+            \right)
+            +
+            \bm{p}_0 \cdot
+            \left(
+                \bm{x}_{0}
+                -
+                \bm{x}_{1}
+            \right)
+        \right\}
+    \right]
+\notag\\&\times
+    \prod_{n=1}^{N-1}
+    \int
+    \dfrac{ d^D x_n d^D p_n }{ (2 \pi \hbar)^{D} }
+    \exp\left[
+        \dfrac{ 1 }{i\hbar}
+        \left\{
+            \delta t
+            \left(
+                \dfrac{ \bm{p}^2_n }{ 2m }
+            +
+                V( \bm{x}_{n+1} )
+            \right)
+            +
+            \bm{p}_n \cdot
+            \left(
+                \bm{x}_{n}
+                -
+                \bm{x}_{n+1}
+            \right)
+        \right\}
+    \right]    
+\end{align}
+を得る。
+
+この方法で
+正準量子化で鬱陶しかった変数の非可換性は完全に除かれ、
+$c$-数のみによる遷移振幅の表式を得たことになる。
+この$p$と$x$の積分を含む表式の経路積分を
+Hamiltonian経路積分という。
 
 \subsection{量子力学における対称性と保存量}
 

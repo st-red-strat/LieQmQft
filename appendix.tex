@@ -943,9 +943,16 @@ $\tilde{f}(k)=\dfrac{1}{2\pi}\int dx\ f(x) e^{-ikx}$
 としたり、
 $k$の符号を逆にして
 $\tilde{f}(k)=\int dx\ f(x) e^{+ikx}$としたり、
+(\ref{plain wave in qm})のように
 波動関数の規格化を気にする量子力学では
-$\dfrac{1}{\sqrt{2\pi}}\int dk\ \tilde{f}(k) e^{+ikx}$
-のように$\dfrac{1}{\sqrt{2\pi}}$が変換と逆変換の両方に現れたり、
+$
+    \braket{ x | f }
+    =
+    \dfrac{1}{\sqrt{2\pi}}
+    \int dk\ \tilde{f}(k) e^{+ikx}
+$
+のように$\dfrac{1}{\sqrt{2\pi}}$が
+変換と逆変換の両方に現れたり、
 数値計算や結晶学では角周波数でなく周波数を用いて
 $\tilde{f}(k)=\int dx\ f(x) e^{+2\pi ikx}$としたり、
 とにかく無数の流儀があるが、本質積な違いは何もない。
@@ -1321,11 +1328,13 @@ $\dfrac{1}{i\hbar}
     \hat{U} (t; t_0)
     =
     \exp\left(
-        -\dfrac{\hat{H} (t - t_0)}{i\hbar}
+        -\dfrac{ (t - t_0) }{i\hbar}
+        \hat{H}
     \right)
         \hat{O}
     \exp\left(
-        +\dfrac{\hat{H} (t - t_0)}{i\hbar}
+        +\dfrac{ (t - t_0) }{i\hbar}
+        \hat{H}
     \right)
 \end{align}
 と定義する。
