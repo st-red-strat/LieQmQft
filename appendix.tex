@@ -952,7 +952,12 @@ $\tilde{f}(k)=\int dx\ f(x) e^{+2\pi ikx}$としたり、
 
 上の逆変換はDirac delta関数のFourier表示
 \begin{align}
-    \delta(x-y) = \dfrac{1}{2\pi}\int dk\ e^{ik(x-y)}
+    \delta(x-y)
+    =
+    \int
+    \dfrac{dk}{2\pi}
+    e^{ik(x-y)}
+\label{dirac delta fourier}
 \end{align}
 により正当化される。
 

@@ -742,6 +742,7 @@ $\braket{ a' | \psi_a(t) }$を
 固有状態$\ket{x}, \ket{y}$の内積が
 \begin{align}
     \braket{x|y} = \delta(x-y)
+\label{continuous spectrum normalization}
 \end{align}
 である事を指して規格化されていると言うことにする。
 ただし、ここに現れたDirac delta関数はもちろん
@@ -1758,7 +1759,6 @@ BCH formulaの特別な場合
 位置operator $\hat{ q_i }$
 （$D$を空間次元として、$i = 1,\dots,D$）の
 固有値$x_i$に属する同時固有状態である。
-
 $n$粒子系を考える場合も、
 異なる粒子の位置operatorは交換するため
 これらの同時固有状態を取ることが出来、
@@ -1769,6 +1769,294 @@ $n$粒子系を考える場合も、
     \braket{ \bm{x}_1, \dots, \bm{x}_n | \psi }
 \end{align}
 と容易に拡張される。
+任意の$\bm{x}_i$について波動関数を求めることが出来れば、
+完全性関係
+(\ref{spectral decomposition of identity})
+を使うことにより
+\begin{align}
+    \ket{ \psi }
+    =
+    \int \prod_{i = 1}^n
+    \left(
+        d^D x_i
+    \right)
+    \ket{ \bm{x}_1, \dots, \bm{x}_n }
+    \braket{ \bm{x}_1, \dots, \bm{x}_n | \psi }
+    =
+    \int \prod_{i = 1}^n
+    \left(
+        d^D x_i
+    \right)
+    \ket{ \bm{x}_1, \dots, \bm{x}_n }
+    \psi( \bm{x}_1, \dots, \bm{x}_n )
+\end{align}
+と元の状態vectorが復元できるため、
+波動関数を位置$\bm{x}_i$の関数として求めることは
+状態vectorを求めることと同じである。
+
+波動関数へのoperatorの作用を考えよう。
+vector $\hat{q}_i \ket{\psi}$の波動関数は、
+$\hat{q}_i$のHermiticityに気を付けると
+\begin{align}
+    \bra{ \bm{x} } \hat{q}_i \ket{\psi}
+    =
+    \bra{ \bm{x} } x_i \ket{\psi}
+    =
+    x_i \psi( \bm{x} )
+\end{align}
+と求まる。
+$\hat{p}_i \ket{\psi}$の波動関数を求めるには、
+連続spectrumに対応する状態が
+(\ref{continuous spectrum normalization})
+と規格化されていた事を思い出して
+\begin{align}
+    ( x_i - y_i )
+        \bra{ \bm{x} }
+        \hat{p}_i
+        \ket{ \bm{y} }
+&=
+    \bra{ \bm{x} }
+        x_i
+        \hat{p}_i
+    \ket{ \bm{y} }
+    -
+    \bra{ \bm{x} }
+        \hat{p}_i
+        y_i
+    \ket{ \bm{y} }
+    \quad
+    \text{（$i$について和は取らない）}
+\notag\\&=
+    \bra{ \bm{x} }
+    [ \hat{q}_i, \hat{p}_i ]
+    \ket{ \bm{y} }
+=
+    i \hbar
+    \braket{ \bm{x} | \bm{y} }
+=
+    i \hbar
+    \delta( \bm{x} - \bm{y} )
+\notag\\&=
+        i \hbar
+    \int
+    \dfrac{
+        d^{D} k\ 
+    }{
+        (2 \pi \hbar)^{D}
+    }
+        e^{
+            \frac{1}{i\hbar}
+            \bm{k} \cdot ( \bm{x} - \bm{y} )
+        }
+    \quad
+    \text{
+        (
+            $\because$
+            Dirac deltaのFourier表示
+            (\ref{dirac delta fourier})
+        )
+    }
+\notag\\&=
+    -
+        i \hbar
+    \int
+    \dfrac{
+        d^{D} k\ 
+    }{
+        (2 \pi \hbar)^{D}
+    }
+    \dfrac{ x_i - y_i }{ i\hbar }
+        e^{
+            \frac{1}{i\hbar}
+            \bm{k} \cdot ( \bm{x} - \bm{y} )
+        }
+    k_i
+    \quad(\because \text{
+        部分積分、
+        $i$について和は取らない
+    } )
+\notag\\&=
+    -
+    ( x_i - y_i )
+    \int
+    \dfrac{
+        d^{D} k
+    }{
+        (2 \pi \hbar)^{D}
+    }
+        e^{
+            \frac{1}{i\hbar}
+            \bm{k} \cdot ( \bm{x} - \bm{y} )
+        }
+    k_i
+\end{align}
+に気付けばよい。
+従って
+\begin{align}
+    \bra{ \bm{x} }
+        \hat{p}_i
+    \ket{ \bm{y} }
+    =
+    -
+    \int
+    \dfrac{
+        d^{D} k
+    }{
+        (2 \pi \hbar)^{D}
+    }
+        e^{
+            \frac{1}{i\hbar}
+            \bm{k} \cdot ( \bm{x} - \bm{y} )
+        }
+    k_i
+\end{align}
+である。
+\footnote{
+    $ x_i - y_i $による除算が定義されているのは
+    最初と最後の表式だけで、
+    途中の式変形についてはこれは定義されていない事に注意しよう。
+    例えば、Dirac deltaの性質
+    $f(x) \delta(x-a) = f(a) \delta(x-a)$
+    を使うと
+    $\dfrac{ \delta( \bm{x} - \bm{y} ) }{ x_i - y_i } = \infty$
+    となって等式が意味を持たなくなってしまう。
+
+    また、
+    左辺で$\hat{p}_i$を$\hat{p}_j$に置き換えると
+    \begin{align}
+        ( x_i - y_i )
+        \bra{ \bm{x} }
+        \hat{p}_j
+        \ket{ \bm{y} }
+    &=
+        -
+        ( x_i - y_i )
+        \delta_{ij}
+        \int
+        \dfrac{
+            d^{D} k
+        }{
+            (2 \pi \hbar)^{D}
+        }
+        e^{
+            \frac{1}{i\hbar}
+            \bm{k} \cdot ( \bm{x} - \bm{y} )
+        }
+        k_j
+    \end{align}
+    が得られ（Kronecker deltaが掛かっているので
+    右辺の$i$と$j$は勝手に入れ替えてよい）、
+    両辺を$ x_i - y_i $で割ると
+    右辺は$\delta_{ij}$に比例するが
+    左辺は$i$に依存しないという矛盾が生じる。
+    これも上と本質的に同じ理由で、
+    本文の式変形では
+    そもそも$i$によらずDirac deltaであった右辺を
+    部分積分する際に$k_i$の$i$を恣意的に選ぶことにより
+    この矛盾を誤魔化している。
+}
+従って
+一般の状態への$\hat{p}_j$の作用は
+\begin{align}
+    \bra{ \bm{x} }
+    \hat{p}_j
+    \ket{ \psi }
+&=
+    \int d^D y
+    \bra{ \bm{x} }
+    \hat{p}_j
+    \ket{ \bm{y} }
+    \braket{ \bm{y} | \psi }
+\notag\\&=
+    -
+    \int d^D y
+    \int
+    \dfrac{
+        d^{D} k
+    }{
+        (2 \pi \hbar)^{D}
+    }
+        e^{
+            \frac{1}{i\hbar}
+            \bm{k} \cdot ( \bm{x} - \bm{y} )
+        }
+    k_j
+    \psi( \bm{y} )
+\notag\\&=
+    +
+    \int d^D y
+    \int
+    \dfrac{
+        d^{D} k
+    }{
+        (2 \pi \hbar)^{D}
+    }
+        i \hbar
+        \dfrac{ \partial }{ \partial y_i }
+        e^{
+            \frac{1}{i\hbar}
+            \bm{k} \cdot ( \bm{x} - \bm{y} )
+        }
+        \psi( \bm{y} )
+\notag\\&=
+    -
+    i \hbar
+    \int d^D y
+        \dfrac{ \partial }{ \partial y_j }
+        \psi( \bm{y} )
+    \int
+    \dfrac{
+        d^{D} k
+    }{
+        (2 \pi \hbar)^{D}
+    }
+        e^{
+            \frac{1}{i\hbar}
+            \bm{k} \cdot ( \bm{x} - \bm{y} )
+        }
+    \quad(\because \text{部分積分} )
+\notag\\&=
+    -
+        i \hbar
+    \int d^D y
+        \dfrac{ \partial }{ \partial y_j }
+        \psi( \bm{y} )
+    \delta( \bm{x} - \bm{y} )
+\notag\\&=
+    -
+        i \hbar
+        \dfrac{ \partial }{ \partial x_j }
+        \psi( \bm{x} )
+\end{align}
+と与えられる。
+上の証明は任意のvector
+$\ket{\psi}$について成り立つので、
+例えば$\ket{\psi} = \hat{x} \ket{\phi}$に
+$\hat{p}$を作用させた結果なども全く同じ式で与えられる。
+結局一般のoperatorも
+\begin{subequations}
+\begin{align}
+    \hat{x}_i
+    &\mapsto
+    x_i
+\\
+    \hat{p}_j
+    &\mapsto
+    - i \hbar
+    \dfrac{\partial}{\partial x_j}
+\\
+    f( \hat{x}, \hat{p} )
+    &\mapsto
+    f
+    \left( x, 
+        - i \hbar
+        \dfrac{\partial}{\partial x_j}
+    \right)
+\end{align}
+\end{subequations}
+のように置き換えればよいことが分かり、
+このような表式をoperatorの位置表示、
+または$\bm{x}$-表示という。
 
 \subsubsection{Feynman Kernel}
 
@@ -1777,7 +2065,7 @@ $ \ket{ \psi(t_i) } = \ket{ \bm{x}_i }$
 すなわち
 \begin{align}
     \psi(t_i, \bm{x})
-    :=
+    =
     \braket{ \bm{x} | \psi(t_i) }
     =
     \delta( \bm{x} - \bm{x}_i )
@@ -1798,9 +2086,9 @@ $\phi_f(\bm{x}) := \delta(\bm{x} - \bm{x}_f)$
 \end{align}
 と書ける。
 一般の始状態（initial state）
-$\psi_I( \bm{x} ) := \braket{ \bm{x} | \psi_I }$と
+$\psi_I( \bm{x} ) = \braket{ \bm{x} | \psi_I }$と
 終状態（final state）
-$\psi_F( \bm{x} ) := \braket{ \bm{x} | \psi_F }$
+$\psi_F( \bm{x} ) = \braket{ \bm{x} | \psi_F }$
 についても、
 遷移振幅は
 \begin{align}
