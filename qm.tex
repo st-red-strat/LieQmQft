@@ -160,6 +160,7 @@ Hilbert空間の元である。
         \ket{\psi(t)}
     &=
     \hat{H} \ket{\psi(t)}
+\label{Schrodinger eq}
 \end{align}
 によって与えられる。
 ここで$\hbar$は換算Planck定数またはDirac定数と呼ばれ、
@@ -172,6 +173,37 @@ $\hbar$も$h$も共にPlanck定数と呼ぶことも多い。
 また、
 $\hat{H}$は以下で定義する
 Hamiltonian operatorである。
+
+Hamiltonian $\hat{H}$が
+時刻$t$に顕わに依存（explicitly dependent）
+しないとき、
+初期条件$\ket{ \psi(t_0) }$のもとでの
+Schr\"odinger方程式(\ref{Schrodinger eq})
+の一般解は
+時間発展（time evolution）operator
+\begin{align}
+    \hat{U}(t;t')
+    :=
+    \exp\left(
+        \dfrac{1}{i \hbar}
+        \int_{t'}^{t}dt
+        \hat{H}
+    \right)
+    =
+    \exp\left(
+        \dfrac{t - t'}{i \hbar}
+        \hat{H}
+    \right)
+\label{time evolution operator}
+\end{align}
+を使って
+\begin{align}
+    \ket{ \psi(t) }
+    =
+    \hat{U} (t;t_0)
+    \ket{ \psi(t_0) }
+\end{align}
+と書ける。
 
 \subsubsection{正準交換関係（CCR: Canonical Commutation Relation）}
 \label{subsubsec: CCR}
@@ -324,7 +356,7 @@ $ \hat{U}^\dagger = \hat{U}^{-1} $
 一般にHermitian operator $\hat{O} = \hat{O}^\dagger$に対し
 $\exp( i a \hat{O})$（ただし$a \in \mathbb{R}$）はunitaryであり、
 例えば、時間発展operator
-$\exp\left( \dfrac{ \hat{H}t }{i\hbar} \right)$
+(\ref{time evolution operator})
 はunitary operatorの代表的な例である。
 
 \subsubsection{離散spectrumの固有状態とHermitian operator}
@@ -527,7 +559,7 @@ identity operatorとの関係
 全く同一の状態 vector $\ket{\psi}$で表される物理系を
 十分多く用意したときの観測値は
 \begin{enumerate}
-    \item{点spectrum $a_n$に関しては確率
+    \item{点spectrum $a_n$が確率
     $
     \dfrac{
         \bra{\psi} \hat{P}_n \ket{\psi}
@@ -535,7 +567,7 @@ identity operatorとの関係
      \braket{\psi|\psi}
     }
     $}
-    \item{連続spectrum $a$に関しては確率密度
+    \item{連続spectrum $a$が確率密度
     $
     \dfrac{
         \bra{\psi} d \hat{P}(a) \ket{\psi}
@@ -586,6 +618,7 @@ Einstein-Podolsky-Rosen(EPR) paradoxなどが提案された事もあるが、
 Aspect（アラン・アスペ）の実験などで
 Bell inequalityの破れが実証されたことにより
 hidden variable theoryは今では明確に否定されている。
+
 物理的に明確に区別できる
 （つまりあるHermitian operatorについて
 異なる固有値を持つ）
@@ -605,6 +638,10 @@ $\ket{\lambda_1, \lambda_2, \dots , \lambda_n}$
 と名付けるのが普通であり、
 このvectorに対応するrayが
 （互いに独立な）物理的状態を表すのである。
+連続spectrumに対しては前述の通り固有vectorは存在しないが、
+後述のように
+(\ref{projection operator for continuous spectrum})
+にて類似の記法の正当化を与える。
 
 改めてrayの集合を物理的状態空間あるいは単に状態空間（state space）
 と呼ぶことにしよう。
@@ -618,7 +655,7 @@ $\ket{\lambda_1, \lambda_2, \dots , \lambda_n}$
 
 これまでは$\ket{\psi}$のような記号を
 単に状態vectorを表すものと扱っていたが、
-sDiracはこれを更に便利にする記法を導入した。
+Diracはこれを更に便利にする記法を導入した。
 $\hat{A}$の固有値$a_n$に対する
 固有vectorを$\ket{a_n}$と略記し、
 固有空間に$m$重縮退がある場合には
@@ -636,8 +673,73 @@ $\hat{A}$の固有値$a_n$に対する
 点spetrumと連続spectrumとを形式的に区別せずに書けるため、
 物理学者には非常に重宝がられている記法である。
 
+この記法を用いると、ある
+点spectrum $a_n$
+または
+連続spectrum $a$
+が観測される確率または確率密度は
+\begin{subequations}
+\begin{align}
+    \bra{ \psi }
+        \hat{P}_n
+    \ket{ \psi }
+    &=
+    \sum_i
+    \braket{ \psi | a_n, i }
+    \braket{ a_n, i | \psi }
+    =
+    \sum_i
+    \bigg|
+        \braket{ a_n, i | \psi }
+    \bigg|^2
+\\
+    \bra{ \psi }
+        d \hat{P}
+    \ket{ \psi }
+    &=
+    d a
+    \braket{ \psi | a }
+    \braket{ a | \psi }
+    =
+    d a
+    \Big|
+        \braket{ a | \psi }
+    \Big|^2
+\end{align}
+\end{subequations}
+と書ける。
+$\braket{ a_n | \psi },
+\braket{ a | \psi }$の様な量を
+確率振幅（probability amplitude）と呼ぶ。
+一般にあるoperator $\hat{A}$の
+固有状態$\ket{a}$は
+対応する固有値$a$を確率$1$で与えるが、
+例えば$\hat{A}$が
+Hamiltionian operator $\hat{H}$と
+交換しない場合や、
+交換するHamiltonianに対してであっても
+摂動が加わった場合などは、
+対応する固有値$a$が得られる確率は時間発展と共に
+$1$から変化していく。
+これは$\ket{a}$を初期条件とする
+Schr\"odinger方程式(\ref{Schrodinger eq})の解
+$\ket{\psi_a(t)}$が
+再び$\hat{A}$の固有値$a$に属する固有状態になるとは限らないからで、
+この場合は時刻$t$に固有値$a'$が観測される確率は
+$\Big| \braket{ a' | \psi_a(t) } \Big|^2$
+で与えられる。
+これは物理的には$a$に属する固有状態$\ket{a}$が
+時間発展によって別の固有値$a'$に属する
+固有状態$\ket{a'}$に遷移する確率
+（遷移確率、transition probability）と
+解釈することが出来、
+従ってこの文脈では
+$\braket{ a' | \psi_a(t) }$を
+遷移振幅（transition amplitude）と呼ぶ。
+
 なお、連続spectrumに属する固有状態は一般にnormが有限でないが、
-この場合は異なる状態$\ket{x}, \ket{y}$の内積が
+この場合は異なる固有値$x, y$に属する
+固有状態$\ket{x}, \ket{y}$の内積が
 \begin{align}
     \braket{x|y} = \delta(x-y)
 \end{align}
@@ -1637,6 +1739,95 @@ BCH formulaの特別な場合
 \end{align}
 であることが証明できる。
 ただし最後の等式は真空条件$\hat{a}\ket{0}=0$から従う。
+
+\subsection{経路積分量子化}
+
+\subsubsection{波動関数}
+
+ここまで状態vectorとoperatorだけで一切の議論を展開してきた。
+しかし、古典論で最も基本的な量であった
+粒子の位置$\bm{x}$を中心的に扱って
+量子力学を展開したいという向きもあるだろう。
+そこで、ある状態$\ket{ \psi }$が与えられたとき
+波動関数（wave function）と呼ばれる量を
+\begin{align}
+    \psi(\bm{x}) := \braket{ \bm{x} | \psi }
+\end{align}
+で定義する。
+ここでもちろん$\ket{ \bm{x} }$は
+位置operator $\hat{ q_i }$
+（$D$を空間次元として、$i = 1,\dots,D$）の
+固有値$x_i$に属する同時固有状態である。
+
+$n$粒子系を考える場合も、
+異なる粒子の位置operatorは交換するため
+これらの同時固有状態を取ることが出来、
+上の定義は
+\begin{align}
+    \psi(\bm{x}_1, \dots, \bm{x}_n)
+    &:=
+    \braket{ \bm{x}_1, \dots, \bm{x}_n | \psi }
+\end{align}
+と容易に拡張される。
+
+\subsubsection{Feynman Kernel}
+
+時刻$t_i$に位置$\bm{x}_i$で観測され
+$ \ket{ \psi(t_i) } = \ket{ \bm{x}_i }$
+すなわち
+\begin{align}
+    \psi(t_i, \bm{x})
+    :=
+    \braket{ \bm{x} | \psi(t_i) }
+    =
+    \delta( \bm{x} - \bm{x}_i )
+\end{align}
+を満たす量子力学的粒子が、
+時刻$t_f$に位置$\bm{x}_f$で観測され
+$\phi_f(\bm{x}) := \delta(\bm{x} - \bm{x}_f)$
+となる遷移振幅をFeynman kernel
+（ファインマン核）といい、
+\begin{align}
+    K( t_f, \bm{x}_f ; t_i, \bm{x}_f )
+&:=
+    \braket{ \phi_f | \psi(t_f) }
+=
+    \bra{ \bm{x}_f }
+    \hat{U}(t_f, t_i)
+    \ket{ \bm{x}_i }
+\end{align}
+と書ける。
+一般の始状態（initial state）
+$\psi_I( \bm{x} ) := \braket{ \bm{x} | \psi_I }$と
+終状態（final state）
+$\psi_F( \bm{x} ) := \braket{ \bm{x} | \psi_F }$
+についても、
+遷移振幅は
+\begin{align}
+    \qquad P_{FI}
+    &=
+    \bra{\psi_F}
+        \hat{U} ( t_f ; t_i )
+    \ket{\psi_I}
+\notag\\&=
+    \bra{\psi_F}
+        \int d^D y
+        \ket{ \bm{y} }
+        \bra{ \bm{y} }
+    \hat{U} ( t_f ; t_i )
+        \int d^D z
+        \ket{ \bm{z} }
+    \braket{ \bm{z} | \psi_I}
+\notag\\&=
+    \int d^D y\ 
+        d^D z\ 
+    \psi_F^*( \bm{y} )
+        K( t_f, \bm{y} ; t_i, \bm{z} )
+    \psi_I  ( \bm{z} )
+\end{align}
+と書ける。
+この意味で、Feynman kernelは
+積分変換のkernelになっている。
 
 \subsection{量子力学における対称性と保存量}
 

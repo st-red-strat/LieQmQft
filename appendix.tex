@@ -125,7 +125,7 @@ $V$をvector spaceと呼ぶ。
 
 \subsubsection{完全反対称tensorとvectorの外積、ベクトル解析の公式}
 
-$n$階の完全反対称tensor（completely antisymmetric tensor、
+$n$階の完全反対称tensor（completely anti-symmetric tensor、
 \footnote{反対称（anti-symmetric）と
 歪対称（skew-symmetric）は同じ意味。}
 Levi-Civita symbol、
@@ -1302,20 +1302,28 @@ $\dfrac{1}{i\hbar}
 \end{align}
 なる公式が得られる。
 
+時刻$t_0$で定義された
 任意のoperator $\hat{O}$に対し、
 そのHeisenberg表示（Heisenberg描像、Heisenberg picture）を
+時間発展operator
+(\ref{time evolution operator})
+を用いて
 \begin{align}
     \hat{O}(t)
     :=
+    \hat{U} (t; t_0)^\dagger
+        \hat{O}
+    \hat{U} (t; t_0)
+    =
     \exp\left(
-        -\dfrac{\hat{H} t}{i\hbar}
+        -\dfrac{\hat{H} (t - t_0)}{i\hbar}
     \right)
         \hat{O}
     \exp\left(
-        +\dfrac{\hat{H} t}{i\hbar}
+        +\dfrac{\hat{H} (t - t_0)}{i\hbar}
     \right)
 \end{align}
-のように定義する。
+と定義する。
 $\hat{H}$のSchr\"odinger描像とHeisenberg描像は
 一致する。
 また、もちろんSchr\"odinger描像で
