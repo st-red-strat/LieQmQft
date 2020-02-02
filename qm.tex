@@ -2881,6 +2881,7 @@ Feynman kernelは
         }
     \right]
     \exp\left(\dfrac{i}{\hbar}S \right)
+\notag\\&
     =:
     \int_{x(t_i) = x_i}^{x(t_f) = x_f}
         Dx(t)
@@ -2897,6 +2898,334 @@ $\bm{x} = \bm{x}_f, \bm{x}_f$
 を満たす全てに渡って
 因子$\exp\left(\dfrac{i}{\hbar}S \right)$
 を足し上げればよいということが分かる。
+
+\subsubsection{調和振動子の例}
+
+source項を持つ$1$次元調和振動子のLagrangian
+\begin{align}
+    L_{cl}
+    &:=
+    \frac{1}{2}m\dot{q}^2
+    -
+    \frac{1}{2}m\omega^2q^2
+    +
+    qJ(t)
+\end{align}
+を考える。
+対応する古典運動方程式は
+\begin{align}
+    0
+    &=
+    \frac{d}{dt}
+    \frac{\partial L_{cl}}{\partial \dot{q}}
+    -
+    \frac{\partial L_{cl}}{\partial q}
+\notag\\&=
+    \frac{d}{dt}
+    \left(
+        m\dot{q}
+    \right)
+    -
+    \left(
+        -
+        m\omega^2q
+        +
+        J(t)
+    \right)
+\notag\\&=
+    m\ddot{q}
+    +
+    m\omega^2q
+    -
+    J(t)
+\end{align}
+なので、
+斉次方程式$0 = m \ddot{q} + m \omega^2 q$
+の一般解
+$q(t) = A \sin \omega (t - \alpha)$
+に
+特別解$
+    q(t) = \int_{t_i}^t
+    d\tau
+    \dfrac{ \sin \omega (t-\tau) }{
+        m \omega
+    }
+    J(\tau)
+$
+\footnote{
+    これは
+    \begin{align}
+        \dot{q}
+    &=
+        \dfrac{ \sin \omega (t-t) }{ m \omega }
+        J(t)
+        +
+        \int_{t_i}^t d\tau
+            \dfrac{ \cos \omega (t-\tau) }{ m }
+            J(\tau)
+    =
+        \int_{t_i}^t d\tau
+            \dfrac{ \cos \omega (t-\tau) }{ m }
+            J(\tau)    
+    \end{align}
+    より
+    \begin{align}
+        \ddot{q}
+        &=
+        \dfrac{ \cos \omega (t-t) }{ m }
+        J(t)
+        +
+        \int_{t_i}^t d\tau
+        \dfrac{ - \omega \sin \omega (t-\tau) }{m}
+        J(\tau)
+    \notag\\&=
+        \dfrac{J(t)}{m}
+        -
+        \omega^2\int_{t_i}^t d\tau
+        \dfrac{ \sin \omega (t-\tau) }{m \omega}
+        J(\tau)
+    \notag\\&=
+        \dfrac{ J(t) }{m}
+        -
+        \omega^2 q
+    \end{align}
+    を確かに満たす。
+}
+を足して、一般解は
+\begin{align}
+    q_{cl}(t)
+    &=
+    A \sin \omega (t-\alpha)
+    +
+    \int_{t_i}^t d\tau
+    \dfrac{ \sin \omega (t-\tau) }{m\omega}
+    J(\tau)
+\end{align}
+と与えられる。
+
+振動子が$t=t_i$で位置$q=q_i$、
+$t=t_f$で位置$q=q_f$にあったならば、
+定数$A, \alpha$を求めて
+\begin{align}
+    q_{cl}(t)
+    &=
+    \frac{
+        q_f \sin \omega (t - t_i)
+        +
+        q_i \sin \omega (t_f - t)
+    }{ \sin \omega (t_f - t_i) }
+    -
+    \frac{ \sin \omega (t - t_i) }{
+        \sin \omega(t_f - t_i)
+    }
+    \int_{t_i}^{t_f} d\tau
+    \frac{ \sin \omega (t_f-\tau) }{m\omega}
+    J(\tau)
+\notag\\&\qquad
+    +
+    \int_{t_i}^t d\tau
+    \frac{ \sin \omega (t-\tau)}{m\omega}
+    J(\tau)
+\end{align}
+と書けることが分かる。
+右辺の第$1, 2$項の和は角の合成により$A\sin\omega (t-\alpha)$の形で書けるためである。
+
+さて、この系を経路積分で量子化し、
+Feynman kernelを求めることを考える。
+新しい変数として古典解からのずれ
+$x := q - q_{cl}$
+を導入すると話が簡単になる。
+$x$は$t=t_i, t_f$でそれぞれ$x=0$を満たし、
+$x$で書き直したLagrangianは
+\begin{align}
+    L
+    &:=
+    \frac{1}{2}m
+    \left[
+        \frac{d(q_{cl}+x)}{dt}
+    \right]^2
+    -
+    \frac{1}{2}m\omega^2(
+        q_{cl} + x
+    )^2
+    +
+    (
+        q_{cl} + x
+    )
+    J(t)
+\notag\\&=
+    \frac{1}{2}m
+    \dot{q_{cl}}^2
+    -
+    \frac{1}{2}m\omega^2
+        q_{cl}^2
+    +
+        q_{cl}
+        J(t)
+    +
+    \frac{1}{2}m(
+        2 \dot{q_{cl}} \dot{x}
+        +
+        \dot{x}^2
+    )
+    -
+    \frac{1}{2}m\omega^2(
+        2q_{cl}x + x^2
+    )
+    +
+    xJ(t)
+\notag\\&=
+    L_{cl}
+    +
+    \left(
+        \frac{1}{2}m
+        \dot{x}^2
+        -
+        \frac{1}{2}m
+        \omega^2x^2
+    \right)
+    +
+    \left(
+        m\dot{q_{cl}} \dot{x}
+        -
+        m\omega^2 q_{cl}
+        x + x J(t)
+    \right)
+\end{align}
+のようになる。
+ここで、作用
+\begin{align}
+    S
+    &:=
+    \int_{t_i}^{t_f}dt\ L
+\notag\\&=
+    S_{cl}
+    +
+    \int_{t_i}^{t_f} dt
+    \left(
+        \frac{1}{2} m \dot{x}^2
+        -
+        \frac{1}{2} m \omega^2 x^2
+    \right)
+    +
+    \int_{t_i}^{t_f}dt
+    \left(
+        m \dot{q_{cl}} \dot{x}
+        -
+        m\omega^2q_{cl} x
+        +
+        xJ(t)
+    \right)
+\end{align}
+は境界条件（$x$は$t=t_i, t_f$でそれぞれ$x=0$）より部分積分
+\begin{align}
+    \int_{t_i}^{t_f}dt
+    \left(
+        m\dot{q_{cl}}\dot{x}
+    \right)
+&=
+    \bigg[
+        m \dot{q_{cl}} x
+    \bigg]_{t=t_i}^{t=t_f}
+    -
+    \int_{t_i}^{t_f} dt
+    \left(
+        m \ddot{q_{cl}} x
+    \right)
+=
+    -
+    \int_{t_i}^{t_f} dt
+    \left(
+        m \ddot{q_{cl}} x
+    \right)
+\end{align}
+できて、
+$q_{cl}$が運動方程式
+$0 = m \ddot{q}_{cl} + m \omega^2 q_{cl} - J(t)$
+を満たすことより
+\begin{align}
+    S
+    &=
+    S_{cl}
+    +
+    \int_{t_i}^{t_f} dt
+    \left(
+        \frac{1}{2} m \dot{x}^2
+        -
+        \frac{1}{2} m \omega^2 x^2
+    \right)
+    -
+    \int_{t_i}^{t_f} dt
+    \left(
+        m\ddot{q_{cl}}
+        +
+        m\omega^2q_{cl}
+        -
+        J(t)
+    \right)
+    x
+\notag\\&=
+    S_{cl}
+    +
+    \int_{t_i}^{t_f} dt
+    \left(
+        \frac{1}{2} m \dot{x}^2
+        -
+        \frac{1}{2} m \omega^2 x^2
+    \right)
+\end{align}
+と書き直せる。
+
+さて、書き直したLagrangian
+$
+    L
+    =
+    L_{cl}
+    +
+    \frac{1}{2} m \dot{x}^2
+    -
+    \frac{1}{2} m \omega^2 x^2
+$
+からHamiltonianを求めると、
+$
+    p
+    :=
+    \dfrac{\partial L}{\partial \dot{x}}
+    =
+    m \dot{x}
+$
+に注意して
+\begin{subequations}
+\begin{align}
+    H
+    &=
+    p\dot{x} - L
+\notag\\&=
+    p \frac{p}{m}
+    -
+    \left[
+        \frac{1}{2} m
+        \left(
+            \frac{p}{m}
+        \right)^2
+        -
+        \frac{1}{2} m \omega^2 x^2 
+    \right]
+    -
+    L_{cl}
+\notag\\&=
+    \frac{p^2}{2m}
+    +
+    V(x)
+    -
+    L_{cl}
+\\
+    V(x)
+    &:=
+    \frac{1}{2} m \omega^2 x^2
+\end{align}
+\end{subequations}
+となる。
 
 \subsection{量子力学における対称性と保存量}
 
