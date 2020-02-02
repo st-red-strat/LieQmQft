@@ -2381,7 +2381,7 @@ $\bra{ \bm{x}_{m+1} }
 \end{align}
 が成り立つが、
 $t$に顕わに依存する場合でも
-$N\rightarrow\infty$の極限では
+$N \to \infty$の極限では
 $\delta t$は非常に小さいので、
 上式が成り立つとして問題ないだろう。
 このとき
@@ -2673,6 +2673,7 @@ Hamiltonian経路積分という。
         \prod_{n=1}^{N-1}
         \int d^D x_n
     \right]
+\notag\\&\qquad
     \prod_{n=0}^{N-1}
     \left(
         \dfrac{m}{ 2 \pi i \hbar \delta t }
@@ -2705,6 +2706,7 @@ Hamiltonian経路積分という。
             \dfrac{m}{2 \pi i \hbar \delta t}
         }
     \right]
+\notag\\&\qquad
     \prod_{n=0}^{N-1}
     \exp\left[
         \dfrac{ i \delta t }{\hbar}
@@ -2736,6 +2738,165 @@ $(\text{長さ})^{-D}$の次元を持っている。
 $p$についての積分を済ませてしまった場合の
 この表示をLagrangian経路積分や
 Feynman経路積分と呼ぶ。
+
+\subsubsection{Path Integralの実行}
+
+さて、さらに計算を進める上で、
+もし$x_{m+1} - x_{m}$が有限の大きさを
+持っていたらどうなるだろうか。
+$N$を無限大に飛ばす極限で
+$\delta t$は$0$になるから、
+$
+    \dfrac{m}{2}
+    \left[
+        \dfrac{
+            \bm{x}_{m+1} - \bm{x}_{m}
+        }{\delta t}
+    \right]^2
+$
+という項は非常に大きくなってしまう。
+これに係数$i$が掛かって
+指数関数の肩に乗っているのだから、
+被積分関数は$N \to \infty$の極限で
+非常に激しく振動してしまい、
+積分値は$0$となるだろう
+（Riemann-Lebesgue lemmaを想像して欲しい）。
+
+よって$\bm{x}_{m+1} - \bm{x}_{m}$
+が有限の大きさを持つような場合は
+積分値に寄与せず、
+$\bm{x}_{m+1} - \bm{x}_{m}$が無限小、
+$
+    \dfrac{m}{2}
+    \left[
+        \dfrac{
+            \bm{x}_{m+1} - \bm{x}_{m}
+        }{\delta t}
+    \right]^2
+$
+が有限の場合のみを考えなければいけないことが分かる。
+$\bm{x}_{m}$はただの完全系展開のparameterであったので、
+本来は時間変数$t$とは全く関係がない筈なのだが、
+この観点に加えて
+$\bm{x}_{m}$の完全系が時刻
+$t = t_i + m \delta t$
+の位置に挿入されていたことを思い出すと、
+$\bm{x}_{m}$を
+時間$t = t_i + m \delta t$の連続関数
+$\bm{x}(t)$と見做し、
+$\dfrac{
+    \bm{x}_{m+1} - \bm{x}_{m}
+}{\delta t}
+$を
+$\bm{x}(t)$の時間微分$\dot{\bm{x}}$
+と見做すこともやぶさかではない筈だ。
+古典的に作用を無限大にする
+（kinetic energyが無限大となる）ような経路は、
+量子論的にも禁じられるのである。
+
+同様に、$V(\bm{x}_{m})$も
+時間変数$t$の滑らかな関数である$\bm{x}(t)$
+に対して定義された関数$V(\bm{x}(t))$
+であると思うことが出来る。
+$V$が$\bm{x}_{m}$と$\bm{x}_{m+1}$に対して
+非対称に定義されていることが気になる場合は、
+$\bm{p}$の完全系を挟むより前に
+potentialを
+$V = \dfrac{1}{2} V + \dfrac{1}{2} V $
+のように半分に分け、
+一方の項だけ
+中の演算子を
+$\dfrac{1}{2}V(\bm{x}_{m})$
+と固有値に置き換えてしまえばよい。
+
+あるいは、
+正準交換関係をうまく使って
+演算子の積の順番を変えることができる。
+特に、Weyl順序と呼ばれる演算子順序を取ることで
+$V(\bm{x}) := V
+\left(
+    \dfrac{ \bm{x}_m + \bm{x}_{m+1} }{2}
+\right)$
+となるように$V$を定義することが出来る。
+これを中点処方と言い、
+$N \to \infty$
+の連続極限を考える上では最も自然な定義だと言える。
+fermionの場合には
+正規順序や反正規順序を取っても良い。
+
+$\bm{x}$が$t$の連続関数だと思うと
+\begin{align}
+    &
+    \prod_{n=0}^{N-1}
+    \exp\left[
+        \dfrac{ i \delta t }{\hbar}
+        \left(
+            \dfrac{m}{2}
+            \left[
+                \dfrac{
+                    \bm{x}_{n+1}
+                -
+                    \bm{x}_{n}    
+                }{\delta t}
+            \right]^2
+        -
+            V( \bm{x}_{n+1} )
+        \right)
+    \right]
+\notag\\&=
+    \exp\left[
+        \sum_{n=0}^{N-1}
+        \dfrac{ i \delta t }{\hbar}
+        \left(
+            \dfrac{m}{2}
+            \dot{ \bm{x} }^2
+        -
+            V( \bm{x} )
+        \right)
+    \right]
+\notag\\&=
+    \exp\left[
+        \dfrac{ i }{\hbar}
+        \int_{t_i}^{t_f} dt
+        L
+    \right]
+\notag\\&=
+    \exp\left(\dfrac{i}{\hbar}S \right)
+\end{align}
+のように変形が出来るから、
+Feynman kernelは
+\begin{align}
+    K( t_f, \bm{x}_f ; t_i, \bm{x}_f )
+    &=
+    \lim_{ N \to \infty }
+    \left(
+        \dfrac{m}{ 2 \pi i \hbar \delta t }
+    \right)^{\frac{D}{2}}
+    \left[
+        \prod_{n=1}^{N-1}
+        \int
+        d^D x_n
+        \sqrt{
+            \dfrac{m}{2 \pi i \hbar \delta t}
+        }
+    \right]
+    \exp\left(\dfrac{i}{\hbar}S \right)
+    =:
+    \int_{x(t_i) = x_i}^{x(t_f) = x_f}
+        Dx(t)
+    \exp\left(\dfrac{i}{\hbar}S \right)
+\end{align}
+のように書ける。
+ここでもちろん、$L, S$はそれぞれ
+古典的Lagrangianと作用である。
+
+結局、経路積分では時間の連続関数
+$\bm{x}(t)$のうち、
+境界条件$t = t_i, t_f$で
+$\bm{x} = \bm{x}_f, \bm{x}_f$
+を満たす全てに渡って
+因子$\exp\left(\dfrac{i}{\hbar}S \right)$
+を足し上げればよいということが分かる。
 
 \subsection{量子力学における対称性と保存量}
 
