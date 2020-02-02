@@ -2496,10 +2496,11 @@ $\hat{\bm{p}}$の固有状態の$\bm{x}$-表示
 以上をまとめると
 \begin{align}
     K( t_f, \bm{x}_f ; t_i, \bm{x}_f )
-    &=
+    =
     \lim_{ N \to \infty }
         \int
         \dfrac{ d^D p_0 }{ (2 \pi \hbar)^{D} }
+    &
     \exp\left[
         \dfrac{ 1 }{i\hbar}
         \left\{
@@ -2518,10 +2519,11 @@ $\hat{\bm{p}}$の固有状態の$\bm{x}$-表示
             \right)
         \right\}
     \right]
-\notag\\&\times
+\notag\\\times
     \prod_{n=1}^{N-1}
     \int
     \dfrac{ d^D x_n d^D p_n }{ (2 \pi \hbar)^{D} }
+    &
     \exp\left[
         \dfrac{ 1 }{i\hbar}
         \left\{
@@ -2539,7 +2541,7 @@ $\hat{\bm{p}}$の固有状態の$\bm{x}$-表示
                 \bm{x}_{n+1}
             \right)
         \right\}
-    \right]    
+    \right]
 \end{align}
 を得る。
 
@@ -2548,6 +2550,192 @@ $\hat{\bm{p}}$の固有状態の$\bm{x}$-表示
 $c$-数のみによる遷移振幅の表式を得たことになる。
 この$p$と$x$の積分を含む表式の経路積分を
 Hamiltonian経路積分という。
+
+\subsubsection{Feynman Path Integral}
+
+さて、Fresnel積分(\ref{fresnel integral})により
+この$p$積分を実行することも出来て、
+\begin{align}
+    &\int
+    \dfrac{ d^D p_n }{ (2 \pi \hbar)^{D} }
+    \exp\left[
+        \dfrac{ 1 }{i\hbar}
+        \left\{
+            \delta t
+            \left(
+                \dfrac{ \bm{p}^2_n }{ 2m }
+            +
+                V( \bm{x}_{n+1} )
+            \right)
+            +
+            \bm{p}_n \cdot
+            \left(
+                \bm{x}_{n}
+                -
+                \bm{x}_{n+1}
+            \right)
+        \right\}
+    \right]
+\notag\\=
+    &\int
+    \dfrac{ d^D p_n }{ (2 \pi \hbar)^{D} }
+    \exp\left[
+        \dfrac{ \delta t }{i\hbar}
+        \left(
+            \dfrac{ \bm{p}^2_n }{ 2m }
+        +
+            V( \bm{x}_{n+1} )
+        +
+            \bm{p}_n \cdot
+            \dfrac{ 1 }{\delta t}
+            \left(
+                \bm{x}_{n}
+            -
+                \bm{x}_{n+1}
+            \right)
+        \right)
+    \right]
+\notag\\=
+    &\int
+    \dfrac{ d^D p_n }{ (2 \pi \hbar)^{D} }
+    \exp\left[
+        - i
+        \dfrac{ \delta t }{\hbar}
+        \left(
+            \dfrac{ 1 }{ 2m }
+            \left\{
+                \bm{p}_n
+            +
+                \dfrac{ m }{\delta t}
+                \left(
+                    \bm{x}_{n}
+                -
+                    \bm{x}_{n+1}
+                \right)
+            \right\}^2
+        +
+            V( \bm{x}_{n+1} )
+        -
+            \dfrac{ m }{2 \delta t^2}
+            \left(
+                \bm{x}_{n+1}
+            -
+                \bm{x}_{n}
+            \right)^2
+        \right)
+    \right]
+\notag\\=
+    &
+    \dfrac{ 1 }{ (2 \pi \hbar)^{D} }
+    \left(
+        \dfrac{2 \pi \hbar m}{ i \delta t }
+    \right)^{\frac{D}{2}}
+    \exp\left[
+        \dfrac{ \delta t }{i\hbar}
+        \left(
+            V( \bm{x}_{n+1} )
+            -
+            \dfrac{ m }{2 \delta t^2}
+            \left(
+                \bm{x}_{n+1}
+            -
+                \bm{x}_{n}
+            \right)^2                
+        \right)
+    \right]
+\notag\\=
+    &
+    \left(
+        \dfrac{m}{ 2 \pi i \hbar \delta t }
+    \right)^{\frac{D}{2}}
+    \exp\left[
+        \dfrac{ i \delta t }{\hbar}
+        \left(
+            \dfrac{m}{2}
+            \left[
+                \dfrac{
+                    \bm{x}_{n+1}
+                -
+                    \bm{x}_{n}    
+                }{\delta t}
+            \right]^2
+        -
+            V( \bm{x}_{n+1} )
+        \right)
+    \right]
+\end{align}
+からFeynman kernelの$x$積分のみの表式
+\begin{align}
+    K( t_f, \bm{x}_f ; t_i, \bm{x}_f )
+    &=
+    \lim_{ N \to \infty }
+    \left[
+        \prod_{n=1}^{N-1}
+        \int d^D x_n
+    \right]
+    \prod_{n=0}^{N-1}
+    \left(
+        \dfrac{m}{ 2 \pi i \hbar \delta t }
+    \right)^{\frac{D}{2}}
+    \exp\left[
+        \dfrac{ i \delta t }{\hbar}
+        \left(
+            \dfrac{m}{2}
+            \left[
+                \dfrac{
+                    \bm{x}_{n+1}
+                -
+                    \bm{x}_{n}    
+                }{\delta t}
+            \right]^2
+        -
+            V( \bm{x}_{n+1} )
+        \right)
+    \right]
+\notag\\&=
+    \lim_{ N \to \infty }
+    \left(
+        \dfrac{m}{ 2 \pi i \hbar \delta t }
+    \right)^{\frac{D}{2}}
+    \left[
+        \prod_{n=1}^{N-1}
+        \int
+        d^D x_n
+        \sqrt{
+            \dfrac{m}{2 \pi i \hbar \delta t}
+        }
+    \right]
+    \prod_{n=0}^{N-1}
+    \exp\left[
+        \dfrac{ i \delta t }{\hbar}
+        \left(
+            \dfrac{m}{2}
+            \left[
+                \dfrac{
+                    \bm{x}_{n+1}
+                -
+                    \bm{x}_{n}    
+                }{\delta t}
+            \right]^2
+        -
+            V( \bm{x}_{n+1} )
+        \right)
+    \right]
+\end{align}
+が得られる。
+測度
+$d^D x_n
+\sqrt{
+    \dfrac{m}{2 \pi i \hbar \delta t}
+}
+$
+は無次元であり、
+位置についての確率密度を与える
+Feynman kernelは、全体としては
+$(\text{長さ})^{-D}$の次元を持っている。
+$p$についての積分を済ませてしまった場合の
+この表示をLagrangian経路積分や
+Feynman経路積分と呼ぶ。
 
 \subsection{量子力学における対称性と保存量}
 

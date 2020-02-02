@@ -731,6 +731,7 @@ $\Gamma\left(\dfrac{1}{2}\right)
     \sqrt{
         \dfrac{\pi}{a}
     }
+\label{gaussian integral}
 \end{align}
 もすぐ分かり、より一般に
 $n \in \mathbb{N}_{\ge0}$に対して
@@ -828,6 +829,24 @@ $x = - n$を$1$位の極に持ち、
 ただし$\gamma$は
 Euler-Mascheroni constant（オイラー定数）である。
 
+\subsubsection{Fresnel integral}
+
+Fresnel integral（フレネル積分）は
+Gauss積分
+(\ref{gaussian integral})の
+$\alpha \in \mathbb{C}$への拡張であり、
+\begin{align}
+    \int_{-\infty}^{\infty}
+    dx\ e^{- \alpha x^2}
+    =
+    \sqrt{
+        \dfrac{\pi}{\alpha}
+    }
+    \quad
+    \text{ for $\Re \alpha \ge 0$}
+\label{fresnel integral}
+\end{align}
+と求まる。
 
 \subsection{Fourier変換、Fourier級数展開}
 
