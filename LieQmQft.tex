@@ -12,6 +12,14 @@
 \usepackage{silence}
 \WarningFilter*{hyperref}{Token not allowed in a PDF string}
 
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+\usepackage{url}
+\pdfstringdefDisableCommands{\renewcommand*{\bm}[1]{#1}}
+\pdfstringdefDisableCommands{\renewcommand*{\dot}[1]{#1}}
+\pdfstringdefDisableCommands{\renewcommand*{\ddot}[1]{#1}}
+\pdfstringdefDisableCommands{\renewcommand*{\hat}[1]{#1}}
+
 \usepackage[english]{babel}
 
 \usepackage{here}
@@ -39,9 +47,6 @@
   \makeatother
   \usepackage[left=25truemm,top=20truemm,bottom=20truemm,right=25truemm]{geometry}
 
-\usepackage[dvipdfmx]{hyperref}
-\usepackage{pxjahyper}
-\usepackage{url}
 \title{Lie代数から学ぶ量子力学と場の量子論}
 \author{東京大学大学院 Kavli IPMU 立川研究室 \hspace{15pt}Shin TOITA（戸板 真太郎）
 \thanks{e-mail: shintaro.toita\_at\_ipmu.jp}}

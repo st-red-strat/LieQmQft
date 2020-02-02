@@ -539,6 +539,7 @@ projection operator $\hat{P}$を用いて
 \end{align}
 のように書くと、
 identity operatorとの関係
+（これを完全性関係という）
 \begin{align}
     1 =
     \sum_n \hat{P}_n
@@ -1743,7 +1744,7 @@ BCH formulaの特別な場合
 
 \subsection{経路積分量子化}
 
-\subsubsection{波動関数}
+\subsubsection{波動関数とoperatorの$\bm{x}$-表示}
 
 ここまで状態vectorとoperatorだけで一切の議論を展開してきた。
 しかし、古典論で最も基本的な量であった
@@ -2058,6 +2059,29 @@ $\hat{p}$を作用させた結果なども全く同じ式で与えられる。
 このような表式をoperatorの位置表示、
 または$\bm{x}$-表示という。
 
+例えば適当なoperatorの固有状態
+$\ket{n}$に関する
+完全性関係
+(\ref{spectral decomposition of identity})
+の$\bm{x}$-表示は、
+$\ket{n}$の波動関数を$\psi_n( \bm{x} )$として
+\begin{align}
+    \delta(\bm{x} - \bm{y})
+    =
+    \braket{ \bm{x} | \bm{y} }
+    =
+    \bra{ \bm{x} }
+        \sum_n
+        \ket{n}
+        \braket{ n | \bm{y} }
+    =
+    \sum_n
+    \psi_n( \bm{x} )
+    \psi_n^*( \bm{y} )
+\label{complete set of wave function}
+\end{align}
+となる。
+
 \subsubsection{Feynman Kernel}
 
 時刻$t_i$に位置$\bm{x}_i$で観測され
@@ -2163,7 +2187,205 @@ $\psi_F( \bm{x} ) = \braket{ \bm{x} | \psi_F }$
 指数関数から出る
 $\dfrac{\partial}{\partial x}$の無限乗が
 Dirac deltaに掛かるような計算は極力したくない。
-そこで以下では別の方法を考える。
+例えば、もしHamiltonianの全ての
+固有値と固有状態が分かっているなら、
+Hamiltonianの固有状態に関して
+完全性関係
+(\ref{complete set of wave function})を使って
+\begin{align}
+    K( t, \bm{x} ; t_i, \bm{x}_f )
+    &=
+    \exp\left(
+        \dfrac{ t - t_i }{ i\hbar }
+        H
+        \left(
+            x,
+            -i \hbar
+            \dfrac{\partial}{\partial x}
+        \right)
+    \right)
+    \sum_n
+    \psi_n( \bm{x} )
+    \psi_n^*( \bm{x}_i )
+\notag\\&=
+    \sum_n
+    \psi_n^*( \bm{x}_i )
+    \exp\left(
+        \dfrac{ t - t_i }{ i\hbar }
+        E_n
+    \right)
+    \psi_n( \bm{x} )
+\end{align}
+などと計算する事も出来るであろうが、
+以下では別の方法を考える。
+
+\subsubsection{Feynman Path Integral}
+
+粒子の位置観測の間隔を$T := t_f - t_i$として、
+時間$\delta t := \dfrac{ T }{ N }$ごとに
+完全系$
+    1 = \int d^D {x_i}
+        \ket{ \bm{x}_i }
+        \bra{ \bm{x}_i }
+$を挟むことを考える。
+\begin{align}
+    K( t_f, \bm{x}_f ; t_i, \bm{x}_f )
+&=
+    \bra{ \bm{x}_f }
+        \exp\left(
+            \dfrac{ 1 }{ i\hbar }
+            \int_{t_i}^{t_f}dt
+            \hat{H}
+        \right)
+    \ket{ \bm{x}_i }
+\notag\\&=
+    \bra{ \bm{x}_f }
+    \exp\left(
+        \dfrac{1}{i\hbar}
+        \int_{t_i + (N-1) \delta t}
+            ^{t_f = t_i + N \delta t}
+        dt \hat{H}
+    \right)
+    \int d^D x_{N-1}
+        \ket{ \bm{x}_{N-1} }
+        \bra{ \bm{x}_{N-1} }
+\notag\\&\qquad\qquad
+    \exp\left(
+        \dfrac{1}{i\hbar}
+        \int_{t_i + (N-2) \delta t}
+            ^{t_i + (N-1) \delta t}
+        dt \hat{H}
+    \right)
+    \int d^D x_{N-2}
+        \ket{ \bm{x}_{N-2} }
+        \bra{ \bm{x}_{N-2} }
+\notag\\&\dots
+    \int d^D x_{n+1}
+        \ket{ \bm{x}_{n+1} }
+        \bra{ \bm{x}_{n+1} }
+    \exp\left(
+        \dfrac{1}{i\hbar}
+        \int_{t_i + n \delta t}
+            ^{t_i + (n+1) \delta t}
+        dt \hat{H}
+    \right)
+    \int d^D x_n
+        \ket{ \bm{x}_n }
+        \bra{ \bm{x}_n }
+\notag\\&\qquad\dots
+    \int d^D x_2
+        \ket{ \bm{x}_2 }
+        \bra{ \bm{x}_2 }
+    \exp\left(
+        \dfrac{1}{i\hbar}
+        \int_{t_i + \delta t}
+        ^{t_i + 2 \delta t}dt H
+    \right)
+    \int d^D x_1
+        \ket{ \bm{x}_1 }
+\notag\\&\qquad
+        \bra{ \bm{x}_1 }
+    \exp\left(
+        \dfrac{1}{i\hbar}
+        \int_{t_i}
+        ^{t_i + \delta t}
+        dt H
+    \right)
+    \ket{ \bm{x}_i }
+\notag\\&=
+    \left[
+        \prod_{n=1}^{N-1}
+        \int d^D x_n
+    \right]
+    \left[
+        \prod_{m=0}^{N-1}
+        \bra{ \bm{x}_{m+1} }
+        \exp\left(
+            \dfrac{1}{i\hbar}
+            \int_{t_i + m \delta t}
+            ^{t_i + (m+1) \delta t}
+            dt H
+        \right)
+        \ket{ \bm{x}_m }
+    \right]
+\end{align}
+ただし$x_0 := x_i,\ x_N := x_f$とした。
+ここで、被積分関数に現れる因子
+$\bra{ \bm{x}_{m+1} }
+    \exp\left(
+        \dfrac{1}{i\hbar}
+        \int_{t_i + m \delta t}
+        ^{t_i + (m+1) \delta t}
+        dt H
+    \right)
+\ket{ \bm{x}_m }$
+はbra-ketで挟まれており、
+単なる複素数であるから、
+積の順番を気にする必要はない。
+
+$N\rightarrow\infty$の極限では$\delta t$は非常に小さいので、
+Taylor展開の一次まで取って
+\begin{align}
+    \exp\left(
+        \dfrac{1}{i\hbar}
+        \int_{t_i + m \delta t}
+        ^{t_i + (m+1) \delta t}
+        dt H
+    \right)
+&=
+    \exp\left(
+        \dfrac{
+            \delta t
+        }{i\hbar}
+        H
+    \right)
+\simeq
+    1
+    +
+    \dfrac{
+        \delta t
+    }{i\hbar}
+    H
+\end{align}
+としても問題ないだろう。
+このとき
+\begin{align}
+    K( t_f, \bm{x}_f ; t_i, \bm{x}_f )
+    &=
+    \lim_{ N \to \infty }
+    \left[
+        \prod_{n=1}^{N-1}
+        \int d^D x_n
+    \right]
+    \left[
+        \prod_{m=0}^{N-1}
+        \bra{ \bm{x}_{m+1} }
+        \left(
+            1
+        +
+            \dfrac{
+                \delta t
+            }{i\hbar}
+            H
+        \right)
+        \ket{ \bm{x}_m }
+    \right]
+\end{align}
+を得る。
+すなわち、微小時間
+$\delta t = \dfrac{T}{N}$
+の時間発展を$N$回繰り返すことで
+時間$T$の時間発展を記述しようとしているのである。
+指数関数の定義の一つに
+\begin{align}
+    e^x
+    :=
+    \lim_{n \to \infty}
+    \left(
+        1 + \frac{x}{n}
+    \right)^n
+\end{align}
+があったことを思い出そう。
 
 \subsection{量子力学における対称性と保存量}
 
