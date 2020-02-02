@@ -2036,7 +2036,7 @@ $\hat{p}$を作用させた結果なども全く同じ式で与えられる。
 結局一般のoperatorも
 \begin{subequations}
 \begin{align}
-    \hat{x}_i
+    \hat{q}_i
     &\mapsto
     x_i
 \\
@@ -2045,7 +2045,7 @@ $\hat{p}$を作用させた結果なども全く同じ式で与えられる。
     - i \hbar
     \dfrac{\partial}{\partial x_j}
 \\
-    f( \hat{x}, \hat{p} )
+    f( \hat{q}, \hat{p} )
     &\mapsto
     f
     \left( x, 
@@ -2075,6 +2075,8 @@ $ \ket{ \psi(t_i) } = \ket{ \bm{x}_i }$
 $\phi_f(\bm{x}) := \delta(\bm{x} - \bm{x}_f)$
 となる遷移振幅をFeynman kernel
 （ファインマン核）といい、
+時間発展operator
+(\ref{time evolution operator})を使って
 \begin{align}
     K( t_f, \bm{x}_f ; t_i, \bm{x}_f )
 &:=
@@ -2116,6 +2118,52 @@ $\psi_F( \bm{x} ) = \braket{ \bm{x} | \psi_F }$
 と書ける。
 この意味で、Feynman kernelは
 積分変換のkernelになっている。
+
+さて、Feynman kernelを具体的に求めれば
+任意の遷移振幅が積分変換で分かるとなれば、
+当然これを計算したくなるだろう。
+定義式から
+\begin{align}
+    K( t, \bm{x} ; t_i, \bm{x}_f )
+&=
+    \bra{ \bm{x} }
+        \hat{U}(t, t_i)
+    \ket{ \bm{x}_i }
+\notag\\&=
+    \bra{ \bm{x} }
+        \exp\left(
+            \dfrac{ t - t_i }{ i\hbar }
+            \hat{H}(\hat{q}, \hat{p})
+        \right)
+    \ket{ \bm{x}_i }
+\notag\\&=
+    \exp\left(
+        \dfrac{ t - t_i }{ i\hbar }
+        H
+        \left(
+            x,
+            -i \hbar
+            \dfrac{\partial}{\partial x}
+        \right)
+    \right)
+    \braket{ \bm{x} | \bm{x}_i }
+\notag\\&=
+    \exp\left(
+        \dfrac{ t - t_i }{ i\hbar }
+        H
+        \left(
+            x,
+            -i \hbar
+            \dfrac{\partial}{\partial x}
+        \right)
+    \right)
+    \delta( \bm{x} - \bm{x}_i )
+\end{align}
+が分かるが、
+指数関数から出る
+$\dfrac{\partial}{\partial x}$の無限乗が
+Dirac deltaに掛かるような計算は極力したくない。
+そこで以下では別の方法を考える。
 
 \subsection{量子力学における対称性と保存量}
 
