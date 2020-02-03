@@ -3566,6 +3566,10 @@ classical action
 $\omega = 0$のFeynman kernelは自由粒子のそれ
 (\ref{feynman kernel for free particle})
 で境界条件を$x_i = x_f = 0$と置いたもの
+（$Jac$は$x(t)$と$a_n$の変数変換から現れるもので、
+$q_i, q_f$とは関係ない事に注意しよう。
+どのような$q_i, q_f$に対しても、
+$x(t)$の定義は必ず$x_i = x_f = 0$を与える）
 に一致しなければならないので
 \begin{align}
     Jac
@@ -3623,6 +3627,55 @@ $\omega = 0$のFeynman kernelは自由粒子のそれ
     \right)^{\frac{1}{2}}
 \end{align}
 である。
+
+\subsubsection{Euclidean経路積分}
+
+どのような経路が経路積分に寄与するかについて、
+上ではRiemann-Lebesgue lemmaなど持ち出して
+怪しい議論をしたが、
+虚時間$\tau := i t$を導入することで
+もう少し厳密な議論が可能となる。
+Euclid化されたLagrangianと作用を
+\begin{subequations}
+\begin{align}
+    L_E
+    &:=
+    - L \Big|_{t = - i \tau}
+    =
+    \left(
+        \dfrac{ d q }{ d \tau }
+    \right)^2
+    +
+    V(q)
+\\
+    S
+    &=
+    \int dt L
+    =
+    i \int d\tau L_E
+    =: i S_E
+\end{align}
+\end{subequations}
+としておくと、経路積分は
+\begin{align}
+    K( t_f, q_f ; t_i, q_i )
+    &=
+    \int_{q(t_i) = q_i}^{q(t_f) = q_f}
+        Dq(t)
+    \exp\left(
+        \dfrac{i}{\hbar} S
+    \right)
+=
+    \int_{q(t_i) = q_i}^{q(t_f) = q_f}
+        Dq(t)
+    \exp\left(
+        -
+        \dfrac{ S_E }{\hbar}
+    \right)
+\end{align}
+となり、potentialが$q$の$2$次以上なら
+Gaussian積分より早く収束するため、
+数学的に厳密に定義できる。
 
 \subsection{量子力学における対称性と保存量}
 

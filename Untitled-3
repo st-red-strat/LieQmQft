@@ -1,0 +1,111 @@
+すなわち、微小時間
+$\delta t = \dfrac{T}{N}$
+の時間発展を$N$回繰り返すことで
+時間$T$の時間発展を記述しようとしているのである。
+指数関数の定義の一つに
+\begin{align}
+    e^x
+    :=
+    \lim_{n \to \infty}
+    \left(
+        1 + \frac{x}{n}
+    \right)^n
+\end{align}
+があったことを思い出そう。
+
+$N\rightarrow\infty$の極限で$\delta t$が小さくなるために非常に大きくなり、その$\frac{N}{2}$乗は無限大となる。
+すなわち
+\begin{align}
+    \lim_{N\rightarrow\infty}
+    \left(
+        \frac{ m}{2i\pi\hbar\delta t}
+    \right)^\frac{N}{2}
+    =\infty
+\end{align}
+しかし、定数倍の任意性は後述する演算子順序の話やポテンシャルの原点の任意性などから色々な所に出てくるので、あまり気にしない。
+
+記号を整理しよう。
+\begin{align}
+    \int Dq(t)
+    &:=
+    \lim_{N\to\infty}
+    \left(
+        \prod^{N-1}_{i=1}
+        \int dx_i
+    \right)
+\\
+    C
+    &:=
+    \lim_{N\to\infty}
+    \left(
+        \frac{m}{2 i \pi \hbar \delta t}
+    \right)^\frac{N}{2}
+\\
+    \delta t
+    &:=
+    \frac{T}{N}
+\\
+    \dot{x}
+    &:=
+    \frac{x_{j+1}-x_j}{\delta t}
+\\
+    \braket{t'';x''|t';x'}
+    &=
+    \bra{x_N}e^{-i\hat{H}T}\ket{x_0}
+\\&=
+    C\int Dq(t)
+    \exp\left(
+        \dfrac{i}{\hbar}S
+    \right)
+\\&=
+    C\int Dq(t)
+    \mathrm{exp}\left[
+        \dfrac{i}{\hbar}\int_{t'}^{t''}dt
+        \left\{
+            \frac{1}{2} m \dot{x}^2
+            -
+            \frac{1}{2} m \omega^2 x^2
+            +
+            L_{cl}
+        \right\}
+    \right]
+\\&=
+    C\exp\left(
+        \dfrac{iS_{cl}}{\hbar}
+    \right)
+    \int Dq(t)
+    \mathrm{exp}\left[
+        \dfrac{i}{\hbar}\int_{t'}^{t''}dt
+        \left\{
+            \frac{m}{2}
+            \dot{x}^2
+            -
+            \frac{m\omega^2}{2}
+            x^2
+        \right\}
+    \right]
+\end{align}
+である。
+
+何度も言うように、色々な所で定数倍の任意性は吸収できるので、極限の取り方はかなり雑である。
+というか、先ほども説明した通り$C=\infty$などに至っては収束すらしていない。
+
+この積分を実行する方針もいろいろあって、例えば境界条件から$\dot{x}$を部分積分すれば指数関数の肩は
+\begin{align}
+\int_{t'}^{t''}dt
+\left\{x
+\left(-\frac{m}{2}\frac{d^2}{dt^2}-\frac{m\omega^2}{2}\right)x
+\right\}
+\end{align}
+量子力学を思い出すと演算子は無限次元の行列であったから、これは演算子
+$-\frac{m}{2}\frac{d^2}{dt^2}-\frac{m\omega^2}{2}$
+の対角成分の和、つまりトレースだと思うことが出来る。\\
+トレースは固有値$\lambda_i$を使って$tr A= \sum_i \lambda_i$、\\
+行列式は固有値$\lambda_i$を使って$\det A=\prod_i \lambda_i$\\
+と書けるから、$e^A$の固有値が$e^\lambda$となることを思い出すと二つの間には$\log\det e^A =\log \left(\prod_i e^{\lambda_i}\right) =\sum_i \log e^{\lambda_i} =\sum_i \lambda_i = tr A$、
+すなわち$\det e^A =e^{ tr A}$なる関係が成り立っている。
+この関係を使うと、求める積分は汎関数行列式とか呼ばれるものを使って書けることが分かる。\\
+
+他には、$x$は境界条件を満たすのでフーリエ$\sin$展開できるはずで、全経路についての積分はその展開係数についての積分と考えることも出来る。
+（というか任意の境界条件のもとで、その両端点を通る直線$x=at+b$を展開に加えることでやはりフーリエ$\sin$展開に帰着できる。）
+
