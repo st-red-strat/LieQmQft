@@ -614,6 +614,7 @@ $\exp(z)$は整関数
 正弦（sine）関数、
 正接（tangent）関数を
 指数関数を用いて
+\begin{subequations}
 \begin{align}
     \cos\theta &:= \dfrac{e^{i\theta} + e^{-i\theta}}{2}
 \\
@@ -621,12 +622,14 @@ $\exp(z)$は整関数
 \\
     \tan\theta &:= \dfrac{\sin\theta}{\cos\theta}
 \end{align}
+\end{subequations}
 と定義する。
 これらを総称して三角関数
 （trigonometric function、circular function）
 という。
 
 同様に双曲線関数（hyperbolic function）を
+\begin{subequations}
 \begin{align}
     \cosh\theta
     &:=
@@ -644,6 +647,7 @@ $\exp(z)$は整関数
     &:=
     \dfrac{\sinh\theta}{\cosh\theta}
 \end{align}
+\end{subequations}
 と定義する。
 それぞれ
 hyperbolic cosine、
@@ -660,6 +664,46 @@ native English speakerでも
 はっきり言ってクソダサいので
 cosine hyperbolic、sine hyperbolic
 などという方が良いと思う。
+
+\subsubsection{無限乗積展開}
+
+三角関数、双曲線関数について
+\begin{subequations}
+\begin{align}
+    \sin \pi x
+    &=
+    \pi x
+    \prod_{n=1}^\infty
+    \left(
+        1 - \dfrac{x^2}{n^2}
+    \right)
+\label{infinite product of sine}
+\\
+    \sinh \pi x
+    &=
+    \pi x
+    \prod_{n=1}^\infty
+    \left(
+        1 + \dfrac{x^2}{n^2}
+    \right)
+\label{infinite product of sine hyperbolic}
+\\
+    \cos \dfrac{\pi x}{2}
+    &=
+    \prod_{n=1}^\infty
+    \left(
+        1 - \dfrac{x^2}{(2n-1)^2}
+    \right)
+\\
+    \cosh \dfrac{\pi x}{2}
+    &=
+    \prod_{n=1}^\infty
+    \left(
+        1 + \dfrac{x^2}{(2n-1)^2}
+    \right)
+\end{align}
+\end{subequations}
+が成り立つ。
 
 \subsubsection{$\Gamma$関数}
 

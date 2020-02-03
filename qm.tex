@@ -2254,7 +2254,101 @@ Hamiltonianの固有状態に関して
     \right)
     \psi_n( \bm{x} )
 \end{align}
-などと計算する事も出来るであろうが、
+などと計算する事も出来る
+\footnote{
+    自由粒子$H = \dfrac{p^2}{2m}$の場合であれば
+    平面波
+    (\ref{plain wave in qm})がそのまま
+    Hamiltonianの固有状態にもなっているので、
+    単にFresnel積分(\ref{fresnel integral})
+    を実行すればよくて
+    \begin{align}
+        K( t, \bm{x} ; t_i, \bm{x}_i )
+    &=
+        \int d^D p\ 
+        \psi_p^*( \bm{x}_i )
+        \exp\left(
+            \dfrac{ t - t_i }{ i\hbar }
+            E_p
+        \right)
+        \psi_p( \bm{x} )
+    =
+        \int d^D p\ 
+        \dfrac{
+            \exp\left(
+                +
+                \dfrac{1}{i\hbar}
+                \bm{p} \cdot \bm{x}_i
+            \right)
+        }{ (2 \pi \hbar)^{D/2} }
+            \exp\left(
+            \dfrac{ t - t_i }{ i\hbar }
+            \dfrac{ \bm{p}^2 }{ 2m }
+        \right)
+        \dfrac{
+            \exp\left(
+                -
+                \dfrac{1}{i\hbar}
+                \bm{p} \cdot \bm{x}
+            \right)
+        }{ (2 \pi \hbar)^{D/2} }
+    \notag\\&=
+        \int 
+        \dfrac{
+            d^D p
+        }{ (2 \pi \hbar)^{D} }
+            \exp\left(
+                -
+                \dfrac{ i ( t - t_i ) }{ 2 m \hbar }
+                \bm{p}^2
+            -
+                \dfrac{1}{i\hbar}
+                \bm{p} \cdot (\bm{x} - \bm{x}_i)
+            \right)
+    \notag\\&=
+        \int 
+        \dfrac{
+            d^D p
+        }{ (2 \pi \hbar)^{D} }
+            \exp\left(
+                -
+                \dfrac{ i ( t - t_i ) }{ 2 m \hbar }
+                \left[
+                    \bm{p}
+                -
+                    \dfrac{ m }{ ( t - t_i ) }
+                    (\bm{x} - \bm{x}_i)
+                \right]^2
+                -
+                \dfrac{ m }{ 2 i \hbar (t - t_i) }
+                (\bm{x} - \bm{x}_i)^2
+            \right)
+    \notag\\&=
+        \dfrac{ 1 }{ (2 \pi \hbar)^{D} }
+        \left(
+            \dfrac{ 2 \pi \hbar m }{ i ( t - t_i ) }
+        \right)^{\frac{D}{2}}
+        \exp\left(
+            -
+            \dfrac{ m }{ 2 i \hbar (t - t_i) }
+            (\bm{x} - \bm{x}_i)^2
+        \right)
+    \notag\\&=
+        \left(
+            \dfrac{ m }{ 2 \pi i \hbar ( t - t_i ) }
+        \right)^{\frac{D}{2}}
+        \exp\left(
+            -
+            \dfrac{ m }{ 2 i \hbar (t - t_i) }
+            (\bm{x} - \bm{x}_i)^2
+        \right)
+    \label{feynman kernel for free particle}
+    \end{align}
+    と求まる。
+    Schr\"odinger方程式の形を考えると当然だが、
+    これは拡散方程式のGreen関数と同じ形をしている。
+}
+であろうが、
 以下では別の方法を考える。
 
 \subsubsection{Hamiltonian Path Integral}
@@ -2966,7 +3060,8 @@ $
     =
         \int_{t_i}^t d\tau
             \dfrac{ \cos \omega (t-\tau) }{ m }
-            J(\tau)    
+            J(\tau)
+    \label{time derivative of classical solution of harm osci with source}
     \end{align}
     より
     \begin{align}
@@ -3224,6 +3319,7 @@ $S_{cl}$の部分も
         q_{cl}
         \frac{1}{2}
         J(t)
+\label{classical action of harm osci with source}
 \end{align}
 と計算できる。
 
@@ -3359,7 +3455,7 @@ $の固有関数
     \exp\left(
         \dfrac{i}{\hbar} S_{cl}
     \right)
-        J(t_f,t_i)
+        Jac
     \prod_{n=1}^\infty
     \left[
         \int d a_n
@@ -3375,7 +3471,7 @@ $の固有関数
     \exp\left(
         \dfrac{i}{\hbar} S_{cl}
     \right)
-        J(t_f,t_i)
+        Jac
     \prod_{n=1}^\infty
     \left[
         \int d a_n
@@ -3390,14 +3486,143 @@ $の固有関数
     \exp\left(
         \dfrac{i}{\hbar} S_{cl}
     \right)
-        J(t_f,t_i)
+        Jac
     \prod_{n=1}^\infty
     \sqrt{
         \dfrac{2 \pi \hbar}{i m \lambda_n}
     }
+\notag\\&=
+    \exp\left(
+        \dfrac{i}{\hbar} S_{cl}
+    \right)
+        Jac
+    \sqrt{
+        \prod_{n=1}^\infty
+        \dfrac{2 \pi i \hbar}{
+            m \omega_n^2 \left(
+                1 - \dfrac{ \omega^2 }{ \omega_n^2 }
+            \right)
+        }
+    }
 \end{align}
 として実現できるだろう。
-ここで$J$は変数変換によるJacobianである。
+ここで$Jac$は$x(t)$から$a_n$への変数変換による
+Jacobianである。
+さて、公式
+(\ref{infinite product of sine})
+より
+\begin{align}
+    \prod_{n=1}^\infty
+    \left(
+        1 - \dfrac{ \omega^2 }{ \omega_n^2 }
+    \right)
+    =
+    \prod_{n=1}^\infty
+    \left(
+        1
+        -
+        \dfrac{
+            \omega^2 (t_f - t_i)^2
+        }{ \pi^2 n^2 }
+    \right)
+    =
+    \dfrac{
+        \sin \omega (t_f - t_i)
+    }{ \omega (t_f - t_i) }
+\end{align}
+であるので、
+\begin{align}
+    K( t_f, q_f ; t_i, q_i )
+    &=
+    \exp\left(
+        \dfrac{i}{\hbar} S_{cl}
+    \right)
+        Jac
+    \sqrt{
+        \dfrac{
+            \omega (t_f - t_i)
+        }{
+            \sin \omega (t_f - t_i)
+        }
+        \prod_{n=1}^\infty
+        \dfrac{
+            2 \pi i \hbar
+        }{
+            m \omega_n^2
+        }
+    }
+\end{align}
+を得る。
+
+最後に$Jac$を求める。
+明らかに$Jac$は$J(t)$にも$\omega$にもよらないので、
+$J(t) = 0, \omega = 0$の場合の$Jac$を求めればよい。
+$\dot{q}_{cl}$
+(\ref{time derivative of classical solution of harm osci with source})
+や
+classical action
+(\ref{classical action of harm osci with source})
+が$J(t) = 0$で消えることに気を付けると、
+$\omega = 0$のFeynman kernelは自由粒子のそれ
+(\ref{feynman kernel for free particle})
+で境界条件を$x_i = x_f = 0$と置いたもの
+に一致しなければならないので
+\begin{align}
+    Jac
+    \sqrt{
+        \prod_{n=1}^\infty
+        \dfrac{
+            2 \pi i \hbar
+        }{
+            m \omega_n^2
+        }
+    }
+    =
+    \left(
+        \dfrac{ m }{ 2 \pi i \hbar ( t_f - t_i ) }
+    \right)^{\frac{1}{2}}
+    \exp\left(
+        -
+        \dfrac{ m }{ 2 i \hbar (t - t_i) }
+        (x_f - x_i)^2
+    \right)
+    =
+    \left(
+        \dfrac{ m }{ 2 \pi i \hbar ( t_f - t_i ) }
+    \right)^{\frac{1}{2}}
+\end{align}
+と求まり、
+結局調和振動子のFeynman kernelは
+\begin{align}
+    K( t_f, q_f ; t_i, q_i )
+    &=
+    \exp\left(
+        \dfrac{i}{\hbar} S_{cl}
+    \right)
+    \sqrt{
+        \dfrac{
+            \omega (t_f - t_i)
+        }{
+            \sin \omega (t_f - t_i)
+        }
+    }
+    \left(
+        \dfrac{ m }{ 2 \pi i \hbar ( t - t_i ) }
+    \right)^{\frac{1}{2}}
+\notag\\&=
+    \exp\left(
+        \dfrac{i}{\hbar} S_{cl}
+    \right)
+    \left(
+        \dfrac{ 
+            m \omega
+        }{
+            2 \pi i \hbar
+            \sin \omega (t_f - t_i)
+        }
+    \right)^{\frac{1}{2}}
+\end{align}
+である。
 
 \subsection{量子力学における対称性と保存量}
 
