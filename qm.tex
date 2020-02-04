@@ -706,9 +706,20 @@ $\hat{A}$の固有値$a_n$に対する
     \Big|
         \braket{ a | \psi }
     \Big|^2
+\label{probability density for continuous spectrum}
 \end{align}
 \end{subequations}
 と書ける。
+連続に分布する実数の中から
+ある一つの値を選び出す確率は
+常に$0$であることに注意しよう。
+従って連続spectrumの中から
+ちょうど実数$a$だけが観測される確率も$0$であり、
+(\ref{probability density for continuous spectrum})
+における$da$は区間$(a, a + da)$に含まれる
+いずれかの実数が観測される確率、
+の意で解釈するべきである。
+
 $\braket{ a_n | \psi },
 \braket{ a | \psi }$の様な量を
 確率振幅（probability amplitude）と呼ぶ。
@@ -904,6 +915,7 @@ $n$自由度系で正準交換関係
 アナイレーションと発音してくれ。
 昇降演算子（raising and lowering operator）、
 はしご演算子（ladder operator）などとも言う）を
+\begin{subequations}
 \begin{align}
     \hat{a}_i :=\ &
     \dfrac{1}{\sqrt{2\hbar}}
@@ -915,6 +927,7 @@ $n$自由度系で正準交換関係
         \dfrac{i}{\sqrt{m\omega}}
         \ \hat{p}_i
     \right)
+\label{annihilation operator definition}
 \\
     \hat{a}^\dagger_i =\ &
     \dfrac{1}{\sqrt{2\hbar}}
@@ -927,6 +940,7 @@ $n$自由度系で正準交換関係
         \ \hat{p}_i
     \right)
 \end{align}
+\end{subequations}
 で定義しよう。
 これは単に$\{\hat{q}\}, \{\hat{p}\}$から
 $\{\hat{a}\}, \{\hat{a}^\dagger\}$への
@@ -1447,6 +1461,7 @@ $A_{n_i} \in \mathbb{R}_{>0}$と取っても一般性を失わず、
         }{\sqrt{N_i!}}
     \right)
     \ket{0}
+\label{fock basis of harmonic oscillator}
 \end{align}
 と求まるのである。
 なお、このような真空とそこからの励起で書かれるvectorを
@@ -1794,6 +1809,21 @@ $n$粒子系を考える場合も、
 と元の状態vectorが復元できるため、
 波動関数を位置$\bm{x}_i$の関数として求めることは
 状態vectorを求めることと同じである。
+以下では状態vectorと対応する状態の波動関数を特に区別しない。
+
+波動関数の物理的意味は、
+連続固有値を持つoperator $\bm{q}$の
+固有値$\bm{x}$が観測される確率密度が
+(\ref{probability density for continuous spectrum})
+で与えられていた事から明らかだろう。
+すなわち、粒子が位置$\bm{x}$まわりの
+微小体積$d^D x$で観測される確率密度は
+\begin{align}
+    d^D x\ 
+    \psi^*(\bm{x}) \psi(\bm{x})
+\end{align}
+で与えられ、
+波動関数$\psi(\bm{x})$はその確率振幅である。
 
 波動関数へのoperatorの作用を考えよう。
 vector $\hat{q}_i \ket{\psi}$の波動関数は、
@@ -2120,6 +2150,85 @@ $\ket{n}$の波動関数を$\psi_n( \bm{x} )$として
 \end{align}
 となる。
 
+\subsubsection{調和振動子の例}
+
+$1$次元調和振動子のenergy固有状態の
+波動関数を求めてみよう。
+真空条件(\ref{vacuum of number operator})を
+annihilation operatorの定義
+(\ref{annihilation operator definition})を
+使って
+$\bm{x}$-表示で書き下してみると、
+\begin{subequations}
+\begin{align}
+    0
+    &=
+    a \psi_0(x)
+\\
+    a
+    &=
+    \dfrac{1}{\sqrt{2\hbar}}
+    \left[
+        \sqrt{
+            m\omega
+        }\ x
+        +
+        \dfrac{i}{\sqrt{m\omega}}
+        \left(
+            - i \hbar \dfrac{d}{dx}
+        \right)
+    \right]
+\end{align}
+\end{subequations}
+という一階線形微分方程式が得られる。
+もちろんこれは簡単に解けて、
+規格化された解は
+\begin{subequations}
+\begin{align}
+    \psi_0 (x)
+    &=
+    \left(
+        \dfrac{m \omega}{\pi \hbar}        
+    \right)^{\frac{1}{4}}
+    \exp(- \dfrac{m \omega}{2 \hbar} x^2)
+\\
+    1
+    &=
+    \int dx\ 
+        \psi_0 ^* (x)
+        \psi_0    (x)
+\end{align}
+\end{subequations}
+と与えられる。
+$n$番目の励起状態の
+（規格化された）波動関数も、
+Fock基底の定義
+(\ref{fock basis of harmonic oscillator})
+から
+\begin{subequations}
+\begin{align}
+    \psi_n (x)
+    &=
+    \dfrac{ (a^\dagger)^n }{ \sqrt{n!} }
+    \psi_0 (x)
+\\
+    a^\dagger
+    &=
+    \dfrac{1}{\sqrt{2\hbar}}
+    \left[
+        \sqrt{
+            m\omega
+        }\ x
+        -
+        \dfrac{i}{\sqrt{m\omega}}
+        \left(
+            - i \hbar \dfrac{d}{dx}
+        \right)
+    \right]
+\end{align}
+\end{subequations}
+と容易に求まる。
+
 \subsubsection{Feynman Kernel}
 
 時刻$t_i$に位置$\bm{x}_i$で観測され
@@ -2156,17 +2265,17 @@ $\psi_F( \bm{x} ) = \braket{ \bm{x} | \psi_F }$
 についても、
 遷移振幅は
 \begin{align}
-    A_{FI}
+    A_{FI}(t)
     &=
     \bra{\psi_F}
-        \hat{U} ( t_f ; t_i )
+        \hat{U} ( t_i + t ; t_i )
     \ket{\psi_I}
 \notag\\&=
     \bra{\psi_F}
         \int d^D y
         \ket{ \bm{y} }
         \bra{ \bm{y} }
-    \hat{U} ( t_f ; t_i )
+    \hat{U} ( t_i + t ; t_i )
         \int d^D z
         \ket{ \bm{z} }
     \braket{ \bm{z} | \psi_I}
@@ -2174,7 +2283,7 @@ $\psi_F( \bm{x} ) = \braket{ \bm{x} | \psi_F }$
     \int d^D y\ 
         d^D z\ 
     \psi_F^*( \bm{y} )
-        K( t_f, \bm{y} ; t_i, \bm{z} )
+        K( t_i + t, \bm{y} ; t_i, \bm{z} )
     \psi_I  ( \bm{z} )
 \label{transition amplitude with feynman kernel}
 \end{align}
@@ -3930,11 +4039,12 @@ $t \to \infty$の時間発展を考えることを
 与えられた始状態$\ket{ \phi_I }$
 と
 終状態$\ket{ \phi_F }$に対し、
-生成汎関数$W_{FI}[J]$を
+生成汎関数（generating functional）
+$W_{FI}[J](t)$を
 source付きのFeynman kernel
 $K[J](t_i + t, \bm{x}; t_i, \bm{x}_i)$を用いて
 \begin{align}
-    W_{FI}[J]
+    W_{FI}[J](t)
     :=
     \int d^D x_f d^D x_i\ 
         \phi_F^*(  t_f  , \bm{x}_f)
@@ -3946,13 +4056,23 @@ Feynman kernelを用いた遷移振幅の表式
 (\ref{transition amplitude with feynman kernel})
 と見比べることで、
 特に$J(t)=0$と置いた場合には
-始状態$\phi_I$から終状態$\phi_F$への遷移振幅
-$W_{FI}[J=0] = A_{FI}$と
+時間$t$で始状態$\phi_I$から終状態$\phi_F$へ遷移する
+確率振幅
+$W_{FI}[J=0](t) = A_{FI}(t)$と
 解釈できることが分かるだろう。
 
 調和振動子の場合にはsource付きのFeynman kernelを
 (\ref{feynman kernel of harmonic oscillator with source})
 で求めていた。
+これを使ってゼロ温度極限$t \to \infty$での
+真空から真空への遷移に関する生成汎関数
+\begin{align}
+    W[J]
+    :=
+    \lim_{t \to \infty}
+    W_{00}[J](t)
+\end{align}
+を求めよう。
 
 \subsection{量子力学における対称性と保存量}
 
