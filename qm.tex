@@ -817,7 +817,7 @@ $\ket{e_n}$の集合を$\mathcal{H}$の
 あるoperator $\hat{O}$のtraceは、
 正規直交完全系$\ket{e_n}$を用い
 \begin{align}
-    \mathrm{tr}\ \hat{O}
+    \tr\ \hat{O}
     &:=
     \sum_n\bra{e_n} \hat{O} \ket{e_n}
 \end{align}
@@ -827,11 +827,11 @@ $\ket{e_n}$の集合を$\mathcal{H}$の
 また、同様の条件の下で
 traceの巡回性（cyclicality）
 \begin{align}
-    \mathrm{tr}\left(
+    \tr\left(
         \hat{A}\hat{B}
     \right)
     =
-    \mathrm{tr}\left(
+    \tr\left(
         \hat{B}\hat{A}
     \right)
 \end{align}
@@ -969,25 +969,25 @@ traceを取ることで
     \dim \mathcal{H}
     &=
     \delta_{ij}
-    \mathrm{tr} (1)
+    \tr (1)
     =
-    \mathrm{tr} \left(
+    \tr \left(
         [\hat{a}_i, \hat{a}^\dagger_j]
     \right)
     =
-    \mathrm{tr} \left(
+    \tr \left(
         \hat{a}_i \hat{a}^\dagger_j
     \right)
     -
-    \mathrm{tr} \left(
+    \tr \left(
         \hat{a}^\dagger_j \hat{a}_i
     \right)
     =
-    \mathrm{tr} \left(
+    \tr \left(
         \hat{a}_i \hat{a}^\dagger_j
     \right)
     -
-    \mathrm{tr} \left(
+    \tr \left(
         \hat{a}_i \hat{a}^\dagger_j
     \right)
     = 0
@@ -2032,7 +2032,7 @@ $\hat{p}_i \ket{\psi}$の波動関数を求めるには、
 と与えられる。
 上の証明は任意のvector
 $\ket{\psi}$について成り立つので、
-例えば$\ket{\psi} = \hat{x} \ket{\phi}$に
+例えば$\ket{\psi} = \hat{q} \ket{\phi}$に
 $\hat{p}$を作用させた結果なども全く同じ式で与えられる。
 結局一般のoperatorも
 \begin{subequations}
@@ -2046,12 +2046,12 @@ $\hat{p}$を作用させた結果なども全く同じ式で与えられる。
     - i \hbar
     \dfrac{\partial}{\partial x_j}
 \\
-    f( \hat{q}, \hat{p} )
+    f( \hat{\bm{q}}, \hat{\bm{p}} )
     &\mapsto
     f
-    \left( x, 
+    \left( \bm{x}, 
         - i \hbar
-        \dfrac{\partial}{\partial x_j}
+        \nabla
     \right)
 \end{align}
 \end{subequations}
@@ -2220,6 +2220,7 @@ $\psi_F( \bm{x} ) = \braket{ \bm{x} | \psi_F }$
         \right)
     \right)
     \delta( \bm{x} - \bm{x}_i )
+\label{feynman kernel w.r.t. wave function complete set}
 \end{align}
 が分かるが、
 指数関数から出る
@@ -3671,7 +3672,8 @@ Euclid化されたLagrangianと作用を
     =: i S_E
 \end{align}
 \end{subequations}
-としておくと、経路積分は
+としておくと、
+Feynman kernelの経路積分は
 \begin{align}
     K( t_f, q_f ; t_i, q_i )
     &=
@@ -3698,6 +3700,223 @@ Feynman kernelが$t_f - t_i$の解析関数ならば
 Wick回転は一種の解析接続と考えることが出来るが、
 多くの場合には実時間$t$での経路積分がそもそも実行可能でないため、
 虚時間における経路積分によって実時間での量子力学が定められていると考えたほうが良い。
+
+\subsubsection{
+    Euclidean Feynman Kernel、
+    時間発展、
+    分配関数、
+    統計力学系との関係
+}
+
+さて、operator formalismでFeynman kernelを見てみよう。
+(\ref{feynman kernel w.r.t. wave function complete set})
+と同じことを波動関数ではなく状態vectorの完全系で行っても
+\begin{align}
+    K(t + t_i, \bm{x}; t_i, \bm{x}_i)
+    &=
+    \bra{ \bm{x} }
+        \hat{U} (t + t_i, t_i)
+    \ket{ \bm{x}_i }
+    =
+    \bra{ \bm{x} }
+        \sum_n
+            \ket{n}
+            \bra{n}
+        \exp(
+            \dfrac{ t }{ i \hbar }
+            \hat{ H }
+        )
+    \ket{ \bm{x}_i }
+\notag\\&
+    =
+    \sum_n
+    \psi_n( \bm{x} )
+        \exp(
+            \dfrac{ t }{ i \hbar }
+            E_n
+        )
+    \psi_n^*( \bm{x}_i )
+\end{align}
+と当然同じ結果を与えるが、
+ここで虚時間$\tau = i t$に移ると何が起こるだろうか。
+\begin{align}
+    K(t + t_i, \bm{x}; t_i, \bm{x}_i)
+    &=
+    \sum_n
+    \psi_n( \bm{x} )
+        \exp(
+            -
+            \dfrac{ \tau }{ \hbar }
+            E_n
+        )
+    \psi_n^*( \bm{x}_i )
+    =:
+    K_E ( \tau; \bm{x}, \bm{x}_i )
+\end{align}
+となり、時間発展$t \to \infty$と共に
+基底状態$ E = E_0 $以外Feynman kernelへの寄与は
+指数関数的に小さくなることが分かる。
+
+特に興味がある量の一つは
+分配関数（canonical partition function）$Z$で、
+虚時間$\tau$とBoltzmann constant $k_B$を使って
+温度$T := \dfrac{\hbar}{k_B \tau}$
+及び
+逆温度$ \beta := \dfrac{1}{k_B T}
+= \dfrac{\tau}{\hbar} $
+を定義することにより
+\begin{align}
+    Z( \beta )
+    &:=
+    \tr
+    \hat{U} (t + t_i, t_i)
+    =
+    \int d^D x
+    \bra{ \bm{x} }
+        \hat{U} (t + t_i, t_i)
+    \ket{ \bm{x} }
+\notag\\&
+    =
+    \sum_n
+    \int d^D x
+    \braket{ \bm{x} | n }
+        \exp(
+            -
+            \dfrac{ \tau }{ \hbar }
+            E_n
+        )
+    \braket{ n | \bm{x} }
+\notag\\&
+    =
+    \int d^D x
+    K_E ( \tau; \bm{x}_f = \bm{x},
+        \bm{x}_i = \bm{x} )
+\end{align}
+と定義される。
+周期的境界条件（periodic boundary condition、P.B.C.）
+$\bm{x}_f = \bm{x}(t_f) = \bm{x}(t_i) = \bm{x}_i$
+を課して
+時間$\tau$だけ時間発展させたFeynman kernelの空間積分が
+逆温度$\beta = \dfrac{\tau}{\hbar}$での
+canonical ensemble（カノニカル分布）
+分配関数と一致する事が見て取れる。
+もちろん
+他の表式ではFeynman kernelとの関係を見にくいというだけで、
+空間的に周期境界条件が課されていることを
+明示することに拘らなければ、
+最初から
+Hamiltonianの固有状態を使ってtraceを取ることで
+\begin{align}
+    Z( \beta )
+    &=
+    \tr
+        \exp(
+            - \beta \hat{H}
+        )
+    =
+    \sum_n
+    \bra{n}
+        \exp(
+            -
+            \beta E_n
+        )
+    \ket{n}
+    =
+    \sum_n
+    \exp(
+        -
+        \beta E_n
+    )
+\end{align}
+のように書くこともできる。
+この意味で、Hamiltonian $\hat{H}$と
+虚時間周期$\tau$を持つ
+量子力学系の時間発展を求めることと、
+同じHamiltonian $\hat{H}$を持ち
+逆温度$\beta = \dfrac{\tau}{\hbar}$の熱浴に接した
+有限温度統計力学系のcanonical分配関数を求めることは
+実は等価である。
+このため、量子力学系で無限に長い時間
+$t \to \infty$の時間発展を考えることを
+ゼロ温度極限（zero-temperature limit）と言ったり、
+逆に周期境界条件を課して有限時間だけ時間発展させた系を
+有限温度系（finite-temperature system）と言ったりする。
+この文脈では、
+自由energy（Helmholtz free energy）
+\begin{align}
+    F
+    :=
+    -
+    \dfrac{1}{\beta}
+        \log Z
+\end{align}
+や内部energy（internal energy）
+\begin{align}
+    U
+    &:=
+    \dfrac{\partial}
+        { \partial \beta }
+        ( \beta F )
+    =
+    -
+    \dfrac{\partial}
+        { \partial \beta }
+        \log Z
+    =
+    k_B T^2
+    \dfrac{\partial}
+        { \partial T }
+        \log Z
+\notag\\&
+    =
+    -
+    \dfrac{1}{Z}
+    \dfrac{\partial}{\partial \beta}
+    \sum_n
+    \exp(
+        -
+        \beta E_n
+    )
+    =
+    -
+    \dfrac{1}{Z}
+    \sum_n
+    E_n
+    \exp(
+        -
+        \beta E_n
+    )
+\end{align}
+あるいは、
+およそcanonical ensemble統計力学に対して定義できる
+全ての熱力学量
+\begin{subequations}
+\begin{align}
+    S &:= - \dfrac{\partial F}{\partial T}
+        \bigg|_V
+    &&\text{エントロピー（entropy）}
+\\
+    P &:= - \dfrac{\partial F}{\partial V}
+        \bigg|_T
+    &&\text{圧力（pressure）}
+\\
+    C_V &:= \dfrac{\partial U}{\partial T}
+        \bigg|_V
+    =
+    \dfrac{\partial }{\partial T}
+    \left[
+        k_B T^2
+        \dfrac{\partial}
+            { \partial T }
+            \log Z
+    \right]_V
+    &&\text{定積比熱（specific heat at constant volume）}
+\end{align}
+\end{subequations}
+などを量子系に対して定義することができる。
+ここで$V$はもちろん、粒子が存在できる空間の体積である。
+特に、ゼロ温度極限$\tau \to \infty$で
+内部energy $U$が基底energy $E_0$に近づく事は重要だろう。
 
 \subsubsection{Generating FunctionalとSource Term}
 \label{with source term}

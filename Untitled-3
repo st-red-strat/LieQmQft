@@ -13,10 +13,10 @@ $\delta t = \dfrac{T}{N}$
 \end{align}
 があったことを思い出そう。
 
-$N\rightarrow\infty$の極限で$\delta t$が小さくなるために非常に大きくなり、その$\frac{N}{2}$乗は無限大となる。
+$N \to \infty$の極限で$\delta t$が小さくなるために非常に大きくなり、その$\frac{N}{2}$乗は無限大となる。
 すなわち
 \begin{align}
-    \lim_{N\rightarrow\infty}
+    \lim_{N \to \infty}
     \left(
         \frac{ m}{2i\pi\hbar\delta t}
     \right)^\frac{N}{2}
