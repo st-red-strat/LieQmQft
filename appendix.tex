@@ -875,6 +875,34 @@ $x = - n$を$1$位の極に持ち、
 ただし$\gamma$は
 Euler-Mascheroni constant（オイラー定数）である。
 
+なお、上で与えた$\Gamma$関数の解析接続や
+極周りでの展開は
+Euler-Mascheroni constantを使って
+\begin{subequations}
+\begin{align}
+    \dfrac{
+        e^{- \gamma x}
+    }{
+        \Gamma(x+1)
+    }
+    &=
+    \prod_{n=1}^\infty
+    \left(
+        1 + \dfrac{x}{n}
+    \right)
+    e^{- x / n}
+\\
+    \dfrac{\sin \pi x}{\pi x}
+    &=
+    \prod_{n = - \infty}^\infty
+    \left(
+        1 + \dfrac{x}{n}
+    \right)
+    e^{- x / n}
+\end{align}
+\end{subequations}
+なる無限乗積展開から正当化される。
+
 \subsubsection{Fresnel integral}
 
 Fresnel integral（フレネル積分）は
