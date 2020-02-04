@@ -1171,7 +1171,12 @@ $
     \braket{ x | f }
     =
     \dfrac{1}{\sqrt{2\pi}}
-    \int dk\ \tilde{f}(k) e^{+ikx}
+    \int dk\ \braket{k | f} e^{+ikx}
+    ,
+    \braket{ k | f }
+    =
+    \dfrac{1}{\sqrt{2\pi}}
+    \int dx\ \braket{x | f} e^{-ikx}
 $
 のように$\dfrac{1}{\sqrt{2\pi}}$が
 変換と逆変換の両方に現れたり、
