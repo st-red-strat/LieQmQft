@@ -952,7 +952,7 @@ $n$自由度系で正準交換関係
 が$\mathcal{H}$上に実現されているとし、
 生成消滅演算子（creation and annihilation operator、
 頼むからannihilationはアニヒレーションではなく
-アナイレーションと発音してくれ。
+アナイレーションと発音して欲しい。
 昇降演算子（raising and lowering operator）、
 はしご演算子（ladder operator）などとも言う）を
 \begin{subequations}
@@ -1533,6 +1533,7 @@ $n$次元量子調和振動子を実現する
     \sqrt{n_i}
     \ket{N_1, N_2,\dots,N_i=n_i-1,\dots, N_n}
 \end{align}
+\label{Fock basis recurrence relation}
 \end{subequations}
 のような漸化式を与えると分かる。
 
@@ -2246,7 +2247,7 @@ $\bm{x}$-表示で書き下してみると、
     &=
     \left(
         \dfrac{m \omega}{\pi \hbar}        
-    \right)^{\frac{1}{4}}
+    \right)^{1/4}
     \exp(- \dfrac{m \omega}{2 \hbar} x^2)
 \\
     1
@@ -2286,7 +2287,77 @@ Fock基底の定義
 \end{subequations}
 と容易に求まる。
 \ref{hermite polynomial}で扱う
-Hermite多項式との関係を具体的に求めてみよ。
+Hermite多項式との関係を具体的に求めることもでき、
+直交性(\ref{normality of hermite polynomial})から
+\begin{align}
+    h_n(y)
+    :=
+    \dfrac{1}{ \sqrt{n!} (2\pi)^{1/4}}
+    H_n(y) \exp(- y^2 / 4)
+\end{align}
+が正規直交関数系となっている事に気付けば
+ただちに
+\begin{align}
+    \phi_n(x)
+    =
+    \left(
+            \dfrac{2 m \omega}{\hbar}
+    \right)^{1/4}
+    h_n
+    \left(
+        y =
+        \left(
+            \dfrac{2 m \omega}{\hbar}
+        \right)^{1/2} x
+    \right)
+    =
+    \dfrac{1}{ \sqrt{n!} }
+    \left(
+            \dfrac{m \omega}{\pi \hbar}
+    \right)^{1/4}
+    H_n(y) \exp(- y^2 / 4)
+    \bigg|_{
+        y =
+        \left(
+            \dfrac{2 m \omega}{\hbar}
+        \right)^{1/2}
+        x
+    }
+\end{align}
+が得られる。
+ただし先頭の係数は置換積分から出る
+$dx = dy \dfrac{dx}{dy}$
+を打ち消して正規直交性が保たれるように導入した。
+特に、生成消滅演算子
+\begin{subequations}
+\begin{align}
+    a
+    &=
+    \dfrac{1}{2}
+    y
+    +
+    \dfrac{d}{dy}
+\\
+    a^\dagger
+    &=
+    \dfrac{1}{2}
+    y
+    -
+    \dfrac{d}{dy}
+\end{align}
+\end{subequations}
+の作用は漸化式
+(\ref{hermite polynomial recurrence relation})
+を使うと
+\begin{align}
+    a h_n &= \sqrt{n}\ h_{n-1}
+\\
+    a^\dagger h_n
+    &= \sqrt{n + 1}\ h_{n+1}
+\end{align}
+すなわち
+(\ref{Fock basis recurrence relation})
+に帰着することが分かる。
 
 調和振動子のenergy spectrumは
 (\ref{energy spectrum of harmonic oscillator})
