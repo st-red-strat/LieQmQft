@@ -447,7 +447,7 @@ energy固有状態が持つ固有値をenergyというが、
 任意のenergyは実数である。
 また、特に最低energyに対応する固有vector
 $\ket{0} \neq 0$は
-真空（vacuum）、
+真空（vacuum）または基底状態、
 それ以外のenergy固有状態は励起状態（excited state）というが、
 真空と励起状態とは直交する。
 
@@ -2156,7 +2156,7 @@ $\psi_F( \bm{x} ) = \braket{ \bm{x} | \psi_F }$
 についても、
 遷移振幅は
 \begin{align}
-    \qquad P_{FI}
+    A_{FI}
     &=
     \bra{\psi_F}
         \hat{U} ( t_f ; t_i )
@@ -2176,6 +2176,7 @@ $\psi_F( \bm{x} ) = \braket{ \bm{x} | \psi_F }$
     \psi_F^*( \bm{y} )
         K( t_f, \bm{y} ; t_i, \bm{z} )
     \psi_I  ( \bm{z} )
+\label{transition amplitude with feynman kernel}
 \end{align}
 と書ける。
 この意味で、Feynman kernelは
@@ -3641,6 +3642,7 @@ $x(t)$の定義は必ず$x_i = x_f = 0$を与える）
             \sin \omega (t_f - t_i)
         }
     \right)^{\frac{1}{2}}
+\label{feynman kernel of harmonic oscillator with source}
 \end{align}
 である。
 
@@ -3910,6 +3912,10 @@ $t \to \infty$の時間発展を考えることを
             { \partial T }
             \log Z
     \right]_V
+\notag\\&
+    =
+    T \dfrac{\partial S}{\partial T}
+        \bigg|_V
     &&\text{定積比熱（specific heat at constant volume）}
 \end{align}
 \end{subequations}
@@ -3920,6 +3926,33 @@ $t \to \infty$の時間発展を考えることを
 
 \subsubsection{Generating FunctionalとSource Term}
 \label{with source term}
+
+与えられた始状態$\ket{ \phi_I }$
+と
+終状態$\ket{ \phi_F }$に対し、
+生成汎関数$W_{FI}[J]$を
+source付きのFeynman kernel
+$K[J](t_i + t, \bm{x}; t_i, \bm{x}_i)$を用いて
+\begin{align}
+    W_{FI}[J]
+    :=
+    \int d^D x_f d^D x_i\ 
+        \phi_F^*(  t_f  , \bm{x}_f)
+        \phi_I  (t_f + t, \bm{x}_i)
+        K[J](t_i + t, \bm{x}_f; t_i, \bm{x}_i)
+\end{align}
+と定義する。
+Feynman kernelを用いた遷移振幅の表式
+(\ref{transition amplitude with feynman kernel})
+と見比べることで、
+特に$J(t)=0$と置いた場合には
+始状態$\phi_I$から終状態$\phi_F$への遷移振幅
+$W_{FI}[J=0] = A_{FI}$と
+解釈できることが分かるだろう。
+
+調和振動子の場合にはsource付きのFeynman kernelを
+(\ref{feynman kernel of harmonic oscillator with source})
+で求めていた。
 
 \subsection{量子力学における対称性と保存量}
 
