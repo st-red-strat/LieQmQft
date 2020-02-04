@@ -202,6 +202,7 @@ Schr\"odinger方程式(\ref{Schrodinger eq})
     =
     \hat{U} (t;t_0)
     \ket{ \psi(t_0) }
+\label{time dependent solution for Schrodinger eq}
 \end{align}
 と書ける。
 
@@ -382,6 +383,44 @@ $\hat{O}$の固有値$\lambda$に属する
 固有vectorまたは
 固有状態（eigenstate）であると言う。
 また、上の等式を固有方程式（特性方程式、永年方程式とも）という。
+例えば、Hamiltonianの固有値$E_n$に属する
+固有vector $\ket{n}$の時間発展
+(\ref{time dependent solution for Schrodinger eq})
+は
+\begin{align}
+    \hat{U}(t_i + t, t_i) \ket{n}
+    =
+    \exp\left(
+        \dfrac{t}{i\hbar} E_n
+    \right)
+    \ket{n}
+\end{align}
+と与えられ、
+自分自身の位相倍となることが分かる。
+特に、あとで
+(\ref{complete set of operator eigen vectors})
+で議論するように
+\begin{align}
+    1 = \sum_n \ket{n} \bra{n}
+\end{align}
+が成り立つので、
+任意のvector $\ket{\psi}$を初期条件とする時間発展は
+\begin{align}
+    \ket{\psi(t)}
+    :=
+    \hat{U}(t_i + t, t_i)
+    \ket{\psi}
+    =
+    \sum_n \ket{n}
+    \exp\left(
+        \dfrac{t}{i\hbar} E_n
+    \right)
+    \braket{ n | \psi }
+\label{eigen decomposition of time independent solution}
+\end{align}
+で与えられることが分かる。
+ただしもちろん、この公式を使うためには
+全てのenergy固有vectorを求める必要がある。
 
 ある固有値$\lambda$に属する線形独立な
 固有vectorが$n$個あるとき
@@ -863,6 +902,7 @@ $\ket{\lambda_n}$の集合が完全系をなす事を仮定する。
     \sum_{\forall n,i=1}^m \ket{a_n,i}\bra{a_n,i}
     +
     \int da \ket{a}\bra{a}
+\label{complete set of operator eigen vectors}
 \end{align}
 と書き、上で述べたidentityのspectral decomposition
 (\ref{spectral decomposition of identity})
@@ -1250,6 +1290,7 @@ energy固有値はこれらを用い
     +
         \dfrac{ n }{ 2 }
     \right)
+\label{energy spectrum of harmonic oscillator}
 \end{align}
 と表されることが内積の正定値性のみから導かれたのである。
 なお$N = \sum_k N_k$とおくと
@@ -2152,8 +2193,7 @@ $\ket{n}$の波動関数を$\psi_n( \bm{x} )$として
 
 \subsubsection{調和振動子の例}
 
-$1$次元調和振動子のenergy固有状態の
-波動関数を求めてみよう。
+$1$次元調和振動子のHamiltonianの固有関数を求めてみよう。
 真空条件(\ref{vacuum of number operator})を
 annihilation operatorの定義
 (\ref{annihilation operator definition})を
@@ -2228,6 +2268,36 @@ Fock基底の定義
 \end{align}
 \end{subequations}
 と容易に求まる。
+
+調和振動子のenergy spectrumは
+(\ref{energy spectrum of harmonic oscillator})
+で、
+Schr\"odinger方程式の一般解は
+(\ref{time dependent solution for Schrodinger eq})
+で与えられていたので、
+調和振動子の時間依存する解は
+\begin{align}
+    \exp( \dfrac{t E_n}{i\hbar} )
+    \psi_n (x)
+    =
+    \exp\left[
+        \dfrac{t}{i\hbar}
+        \hbar \omega
+        \left( n + \dfrac{1}{2} \right)
+    \right]
+    \psi_n (x)
+    =
+    \exp\left[
+        - i t \omega
+        \left( n + \dfrac{1}{2} \right)
+    \right]
+    \psi_n (x)
+\end{align}
+と与えられる。
+特に、任意の初期条件の下での
+調和振動子の時間依存解は
+(\ref{eigen decomposition of time independent solution})
+で与えられる。
 
 \subsubsection{Feynman Kernel}
 
