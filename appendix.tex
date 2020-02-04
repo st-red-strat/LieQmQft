@@ -594,7 +594,7 @@ $n$個の孤立特異点$a_1,\dots,a_n$を除き正則であるとき
 このとき$f(z)$は$D$上で正則である。
 
 \newpage
-\subsection{特殊関数}
+\subsection{初等関数および特殊関数}
 
 \subsubsection{指数関数}
 
@@ -893,6 +893,134 @@ $\alpha \in \mathbb{C}$への拡張であり、
 \label{fresnel integral}
 \end{align}
 と求まる。
+
+\subsubsection{
+    超幾何関数
+    （confluent hyper-geometric function）
+}
+
+Pochhammer symbolを
+\begin{align}
+    (x)_n
+    &:=
+    \dfrac{\Gamma(x+n)}{\Gamma(x)}
+\end{align}
+で定義する。
+一般化された超幾何関数
+（generalized hyper-geometric function）は
+$|z| < 1$で収束するべき級数
+\begin{align}
+    {}_r F_s
+    (
+        a_1, \dots, a_r;
+        b_1, \dots, a_s;
+        z
+    )
+    &:=
+    \sum_{n=0}^{\infty}
+    \dfrac{ (a_1)_n \cdots (a_r)_n }{
+      (b_1)_n \cdots (b_s)_n
+    }
+    \dfrac{z^n}{n!}  
+\end{align}
+で定義される解析関数で、
+$a_1, \dots, a_r$同士、
+または$b_1, \dots, b_s$同士を交換しても
+全く同じ関数を与える。
+
+このうち、特に
+\begin{align}
+    F(a, b c; z)
+    :=
+    {}_2 F_1 (a, b, c; z)
+\end{align}
+をGaussの超幾何関数、
+\begin{align}
+    F(a, b; z)
+    :=
+    {}_1 F_1(a, b; z)
+\end{align}
+を合流型超幾何関数
+（confluent hyper-geometric function）、
+あるいは
+Kummerの関数などという。
+
+\subsubsection{Sturm-Liouville equation}
+
+任意の$2$階線形微分方程式は
+Sturm-Liouville equation
+（スツルム・リウビル型微分方程式）
+に変形できる。
+その解についてはかなり一般論
+（離散固有値を持つ、
+直交性を満たす、
+多くの場合Rodrigues' formula
+（ロドリゲス表示、ロドリグ公式など）で書けるなど）
+が存在し、
+Sturm-Liouville理論と呼ばれる。
+
+\subsubsection{Hermite多項式}
+\label{hermite polynomial}
+
+Hermite多項式はHermite微分方程式
+\begin{align}
+    y'' + x y' + n y = 0
+\end{align}
+の解であり、
+$H_0(x) = 1, H_1(x) = x$として次の漸化式
+\begin{subequations}
+\begin{align}
+    0
+    &=
+    H_{n+1}(x)
+    -
+    x H_n(x)
+    +
+    n H_{n-1}(x)
+\\
+    H_n'(x)
+    &=
+    n H_{n-1}(x)
+\end{align}
+\end{subequations}
+および直交性
+\begin{subequations}
+\begin{align}
+    \int dx H_n(x) H_m(x) e^{-x^2/2}
+    =
+    n! \sqrt{2 \pi}
+    \delta_{nm}
+\end{align}
+\end{subequations}
+を満たす。
+
+Rodrigues' formulaは
+\begin{align}
+    H_n(x)
+    =
+    (-1)^n e^{ + x^2 / 2 }
+    \dfrac{d^n}{dx^n}
+    e^{ - x^2 / 2 }
+\label{hermite rodrigues formula}
+\end{align}
+と与えられ、
+合流型超幾何関数$F$を使って
+\begin{subequations}
+\begin{align}
+    H_{2n}(x)
+    :=
+        (-1)^n
+        (2 n - 1)!!
+    F(-n, 1/2; x^2/2)
+\\
+    H_{2n+1}(x)
+    :=
+        (-1)^n
+        (2 n + 1)!!
+    F(-n, 3/2; x^2/2)
+\end{align}
+\end{subequations}
+とも書かれる。
 
 \newpage
 \subsection{Fourier級数展開、Fourier変換}
