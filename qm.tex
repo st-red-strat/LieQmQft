@@ -4338,7 +4338,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     J(t)
 \end{align}
 が得られる。
-時間依存する場合の真空の波動関数
+時間依存する真空の波動関数
 (\ref{vacuum solution of harmonic oscillator})
 \footnote{
     source関数$J(t)$は単に古典的な$c$-数関数なので、
@@ -4377,7 +4377,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
             2 \pi i \hbar
             \sin \omega t
         }
-    \right)^{\frac{1}{2}}
+    \right)^{1 / 2}
     \int d x_f d x_i\ 
         \phi_0^*( t_i + t, q_f)
         \phi_0  ( t_i    , q_i)
@@ -4393,7 +4393,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
             2 \pi i \hbar
             \sin \omega t
         }
-    \right)^{\frac{1}{2}}
+    \right)^{1 / 2}
     \int d x_f d x_i\ 
         \left(
             \dfrac{m \omega}{\pi \hbar}        
@@ -4411,8 +4411,91 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
         \exp\left(
             \dfrac{i}{\hbar} S_{cl} [J]
         \right)
+\notag\\&
+    =
+    \dfrac{m \omega}{
+        \pi \hbar
+        ( 2 i \sin \omega t )^{1 / 2}
+    }
+    \exp\left(
+        \dfrac{i t \omega}{2}
+    \right)
+    \int d x_f d x_i\ 
+        \exp\left(
+            - \dfrac{m \omega}{2 \hbar}
+            \bigg[
+                (q_i + A)^2
+                +
+                (q_f + B)^2
+            \bigg]
+            +
+            C
+        \right)
 \end{align}
-であり、
+と書ける。
+ただし定数は
+\begin{subequations}
+\begin{align}
+    A
+    &:=
+    -
+    \dfrac{\hbar}{m \omega}
+    \dfrac{i}{\hbar}
+    \frac{1}{2}
+    \int_{t_i}^{t_i + t} d\tau
+    \bigg[
+        \frac{
+            \sin \omega (t_i + t - \tau)
+        }{ \sin \omega t }
+    \bigg]
+    J(\tau)
+\\
+    B
+    &:=
+    -
+    \dfrac{\hbar}{m \omega}
+    \dfrac{i}{\hbar}
+    \frac{1}{2}
+    \int_{t_i}^{t_i + t} d\tau
+    \bigg[
+        \cos \omega (t_i + t - \tau)
+    +
+        \frac{
+            \sin \omega (\tau - t_i)
+        }{ \sin \omega t }
+    \bigg]
+    J(\tau)
+\\
+    C
+    &:=
+    \dfrac{m \omega}{2 \hbar}
+    \bigg[
+        A^2
+    +
+        B^2
+    \bigg]
+\\&\qquad
+\notag
+    +
+    \dfrac{i}{\hbar}
+    \frac{1}{2}
+    \int_{t_i}^{t_i + t} d\tau
+    \bigg[
+        \int_{t_i}^\tau d\tau'
+        \frac{ \sin \omega (\tau - \tau')}{m\omega}
+        J(\tau')
+    -
+        \frac{ \sin \omega (\tau - t_i) }{
+            \sin \omega t
+        }
+        \int_{t_i}^{t_i + t} d\tau'
+        \frac{ \sin \omega (t_i + t - \tau') }{m\omega}
+        J(\tau')
+    \bigg]
+    J(\tau)
+\end{align}
+\end{subequations}
+と定義した。
 
 \subsection{量子力学における対称性と保存量}
 
