@@ -2249,6 +2249,7 @@ $\bm{x}$-表示で書き下してみると、
         \dfrac{m \omega}{\pi \hbar}        
     \right)^{1/4}
     \exp(- \dfrac{m \omega}{2 \hbar} x^2)
+\label{vacuum solution of harmonic oscillator}
 \\
     1
     &=
@@ -2365,7 +2366,7 @@ $dx = dy \dfrac{dx}{dy}$
 Schr\"odinger方程式の一般解は
 (\ref{time dependent solution for Schrodinger eq})
 で与えられていたので、
-調和振動子の時間依存する解は
+調和振動子の時間依存するenergy固有状態は
 \begin{align}
     \exp( \dfrac{t E_n}{i\hbar} )
     \psi_n (x)
@@ -2385,7 +2386,7 @@ Schr\"odinger方程式の一般解は
 \end{align}
 と与えられる。
 特に、任意の初期条件の下での
-調和振動子の時間依存解は
+調和振動子の時間依存解はその線形結合
 (\ref{eigen decomposition of time independent solution})
 で与えられる。
 
@@ -3396,9 +3397,14 @@ $t=t_f$で位置$q=q_f$にあったならば、
     \int_{t_i}^t d\tau
     \frac{ \sin \omega (t-\tau)}{m\omega}
     J(\tau)
+\label{classical solution to harmonic oscillator with source}
 \end{align}
 と書けることが分かる。
-右辺の第$1, 2$項の和は角の合成により$A\sin\omega (t-\alpha)$の形で書けるためである。
+右辺の$\sin\omega(t_f - t)$は
+角の合成の逆を使って
+$a \sin \omega(t - t_i) + b \cos \omega(t - t_i)$
+の形に分解できるので、
+第$1, 2$項の和は角の合成により$A\sin\omega (t-\alpha)$の形で書けるためである。
 
 さて、この系を経路積分で量子化し、
 Feynman kernelを求めることを考える。
@@ -4233,6 +4239,180 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     W_{00}[J](t)
 \end{align}
 を求めよう。
+まず、古典解
+(\ref{classical solution to harmonic oscillator with source})
+\begin{align}
+    q_{cl}(t)
+    &=
+    \frac{
+        q_f \sin \omega (t - t_i)
+        +
+        q_i \sin \omega (t_f - t)
+    }{ \sin \omega (t_f - t_i) }
+    -
+    \frac{ \sin \omega (t - t_i) }{
+        \sin \omega(t_f - t_i)
+    }
+    \int_{t_i}^{t_f} d\tau
+    \frac{ \sin \omega (t_f-\tau) }{m\omega}
+    J(\tau)
+\notag\\&\qquad
+    +
+    \int_{t_i}^t d\tau
+    \frac{ \sin \omega (t-\tau)}{m\omega}
+    J(\tau)
+\end{align}
+を古典的作用
+(\ref{classical action of harm osci with source})
+に代入すると、
+古典解の時間微分
+(\ref{time derivative of classical solution of harm osci with source})
+が$t = t_i$で消える事に気を付けて
+\begin{align}
+    S_{cl} [J]
+    &=
+    \frac{1}{2} m
+    \bigg(
+        q_f
+        \dot{q}_{cl}(t_f)
+    -
+        q_i
+        \dot{q}_{cl}(t_i)
+    \bigg)
+    +
+    \int_{t_i}^{t_f} dt\ 
+        q_{cl}(t)
+        \frac{1}{2}
+        J(t)
+\notag\\&
+    =
+    \frac{1}{2} m
+    \bigg[
+        q_f
+        \int_{t_i}^{t_f} dt
+            \dfrac{ \cos \omega (t_f - t) }{ m }
+            J(t)
+    \bigg]
+    +
+    \int_{t_i}^{t_f} dt\ 
+        q_{cl}(t)
+        \frac{1}{2}
+        J(t)
+\notag\\&
+    =
+    \frac{1}{2}
+    \int_{t_i}^{t_f} dt
+    \bigg[
+        q_f
+        \cos \omega (t_f - t)
+    +
+        q_{cl}(t)
+    \bigg]
+    J(t)
+\notag\\&
+    =
+    \frac{1}{2}
+    \int_{t_i}^{t_f} dt
+    \bigg[
+        q_f
+        \cos \omega (t_f - t)
+    +
+        \int_{t_i}^t d\tau
+        \frac{ \sin \omega (t-\tau)}{m\omega}
+        J(\tau)
+    \notag\\&\qquad
+    +
+        \frac{
+            q_f \sin \omega (t - t_i)
+        +
+            q_i \sin \omega (t_f - t)
+        }{ \sin \omega (t_f - t_i) }
+    -
+        \frac{ \sin \omega (t - t_i) }{
+            \sin \omega(t_f - t_i)
+        }
+        \int_{t_i}^{t_f} d\tau
+        \frac{ \sin \omega (t_f-\tau) }{m\omega}
+        J(\tau)
+    \bigg]
+    J(t)
+\end{align}
+が得られる。
+時間依存する場合の真空の波動関数
+(\ref{vacuum solution of harmonic oscillator})
+\footnote{
+    source関数$J(t)$は単に古典的な$c$-数関数なので、
+    Hamiltonianにsource項を加えても
+    Hamiltonianの固有関数は変更を受けない。
+    従って$J(t) = 0$の場合の真空解を使って問題ない。
+}
+は
+\begin{align}
+    \phi_0  (t, q)
+    &=
+    \left(
+        \dfrac{m \omega}{\pi \hbar}        
+    \right)^{1/4}
+    \exp(
+        - \dfrac{m \omega}{2 \hbar} q^2
+        - i t \omega
+        \dfrac{1}{2}
+    )
+\end{align}
+であったから、
+真空間の遷移振幅は
+\begin{align}
+    W_{00}[J](t)
+    &=
+    \int d x_f d x_i\ 
+        \phi_0^*( t_i + t, q_f)
+        \phi_0  ( t_i    , q_i)
+    K[J](t_i + t, q_f; t_i, q_i)
+\notag\\&
+    =
+    \left(
+        \dfrac{ 
+            m \omega
+        }{
+            2 \pi i \hbar
+            \sin \omega t
+        }
+    \right)^{\frac{1}{2}}
+    \int d x_f d x_i\ 
+        \phi_0^*( t_i + t, q_f)
+        \phi_0  ( t_i    , q_i)
+    \exp\left(
+        \dfrac{i}{\hbar} S_{cl} [J]
+    \right)
+\notag\\&
+    =
+    \left(
+        \dfrac{ 
+            m \omega
+        }{
+            2 \pi i \hbar
+            \sin \omega t
+        }
+    \right)^{\frac{1}{2}}
+    \int d x_f d x_i\ 
+        \left(
+            \dfrac{m \omega}{\pi \hbar}        
+        \right)^{1/2}
+        \exp(
+            - \dfrac{m \omega}{2 \hbar}
+            \bigg[
+                q_i^2
+                +
+                q_f^2
+            \bigg]
+            +
+            \dfrac{i t \omega}{2}
+        )
+        \exp\left(
+            \dfrac{i}{\hbar} S_{cl} [J]
+        \right)
+\end{align}
+であり、
 
 \subsection{量子力学における対称性と保存量}
 
