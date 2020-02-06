@@ -4518,6 +4518,16 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     と変えなければならないはずであるが、
     operatorであるはずの$q$を時間の実数関数と扱っている
     $q(\tau)$をどう解釈すれば良いかはよく分からない。
+    $\tau \neq t$であるにも関わらず、
+    $\hat{q}$と同じoperatorであるとして
+    $\bm{x}$-表示して良いのだろうか。
+
+    あまりにもこれが気になる読者は、
+    時間依存する波動関数ではなく
+    単にHamiltonianの固有関数を用いて
+    以下に続く計算を行ってよい。
+    単に位相$\exp(i t \omega / 2)$分
+    結果が変わるだけである。
 }
 から、
 真空間の遷移振幅は
@@ -4579,17 +4589,15 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     }
     \exp\left(
         \dfrac{i t \omega}{2}
+        +
+        E
     \right)
     \int d q_f d q_i\ 
         \exp\left(
-            - \dfrac{m \omega}{2 \hbar}
-            \bigg[
-                (q_i + A)^2
-                +
-                (q_f + B)^2
-            \bigg]
-            +
-            C
+            - A (q_i^2 + q_f^2)
+            - 2 B q_i q_f
+            - 2 C q_f
+            - 2 D q_i
         \right)
 \notag\\&
     =
@@ -4599,11 +4607,19 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     }
     \exp\left(
         \dfrac{i t \omega}{2}
+        +
+        E
     \right)
-    \left(
-        \dfrac{2 \pi \hbar}{m \omega}
-    \right)
-    e^C
+    \sqrt{
+        \dfrac{\pi}{A}
+    }
+    \int d q_i\ 
+        \exp\left(
+            - A q_i^2
+            - 2 D q_i
+            + \dfrac{(B q_i + C)^2}{A}
+        \right)
+\notag\\&
     \qquad
     \text{
         $\because$
@@ -4612,132 +4628,162 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     }
 \notag\\&
     =
-    \left(
-        \dfrac{2}{
-            i \sin \omega t
-        }
-    \right)^{1 / 2}
+    \dfrac{m \omega}{
+        \pi \hbar
+        ( 2 i \sin \omega t )^{1 / 2}
+    }
     \exp\left(
         \dfrac{i t \omega}{2}
+        +
+        E
     \right)
-    e^C
+    \sqrt{
+        \dfrac{\pi}{A}
+    }
+    \sqrt{
+        \dfrac{\pi}{ A - \dfrac{B^2}{A} }
+    }
+    \exp\left(
+        \dfrac{C^2}{A}
+        +
+        \dfrac{
+            \left(
+                D - \dfrac{BC}{A}
+            \right)^2
+        }{
+            A - \dfrac{B^2}{A}
+        }
+    \right)
+\notag\\&
+    \qquad
+    \text{
+        $\because$
+        再び
+        Fresnel積分
+        (\ref{fresnel integral})
+    }
+\notag\\&
+    =
+    \dfrac{m \omega}{
+        \hbar
+        ( 2 i \sin \omega t )^{1 / 2}
+    }
+    \dfrac{1}{ \sqrt{A^2 - B^2} }
+    \exp\left(
+        \dfrac{i t \omega}{2}
+        +
+        E
+        +
+        \dfrac{C^2}{A}
+        +
+        \dfrac{
+            \left(
+                AD - BC
+            \right)^2
+        }{
+            A^2 - B^2
+        }
+    \right)
 \end{align}
 と書ける。
-ただし$A, B, C$は
+ただし$A, B, C, D, E$は
 \begin{subequations}
 \begin{align}
     A(t)
     &:=
+    \dfrac{m \omega}{2 \hbar}
     -
-    \dfrac{\hbar}{m \omega}
     \dfrac{i}{\hbar}
-    \frac{1}{2}
-    \int_{t_i}^{t_i + t} d\tau
+    \dfrac{m \omega \cos \omega t}{2 \sin \omega t}
+=
+    \dfrac{m \omega}{2 \hbar}
     \bigg[
-        \frac{
-            \sin \omega (t_i + t - \tau)
-        }{ \sin \omega t }
+        1
+    -
+        i
+        \dfrac{\cos \omega t}{\sin \omega t}
     \bigg]
-    J(\tau)
+=
+    \dfrac{m \omega}{2 \hbar}
+    \dfrac{- i e^{\omega t} }{\sin \omega t}
 \\
     B(t)
     &:=
     -
-    \dfrac{\hbar}{m \omega}
+    \dfrac{1}{2}
     \dfrac{i}{\hbar}
-    \frac{1}{2}
-    \int_{t_i}^{t_i + t} d\tau
-    \bigg[
-        \cos \omega (t_i + t - \tau)
-    +
-        \frac{
-            \sin \omega (\tau - t_i)
-        }{ \sin \omega t }
-    \bigg]
-    J(\tau)
+    \dfrac{- m \omega}{\sin \omega t}
+    =
+    \dfrac{m \omega}{2 \hbar}
+    \dfrac{ i }{\sin \omega t}
 \\
     C(t)
     &:=
-    \dfrac{m \omega}{2 \hbar}
-    \bigg[
-        A^2
-    +
-        B^2
-    \bigg]
-\\&\qquad
-\notag
-    +
-    \dfrac{i}{\hbar}
+    -
     \frac{1}{2}
+    \dfrac{i}{\hbar}
+    \dfrac{1}{2}
     \int_{t_i}^{t_i + t} d\tau
-    \bigg[
-        \int_{t_i}^\tau d\tau'
-        \frac{ \sin \omega (\tau - \tau')}{m\omega}
-        J(\tau')
-    -
-        \frac{ \sin \omega (\tau - t_i) }{
-            \sin \omega t
-        }
-        \int_{t_i}^{t_i + t} d\tau'
-        \frac{ \sin \omega (t_i + t - \tau') }{m\omega}
-        J(\tau')
-    \bigg]
-    J(\tau)
-\\\notag&=
-    -
-    \dfrac{1}{8 \hbar m \omega}
-    \int_{t_i}^{t_i + t} d\tau
-    \int_{t_i}^{t_i + t} d\tau'
-    \bigg[
-        \frac{
-            \sin \omega (t_i + t - \tau)
-        }{ \sin \omega t }
-        \frac{
-            \sin \omega (t_i + t - \tau')
-        }{ \sin \omega t }
-\\&\qquad\qquad
-\notag
+    \left\{
+        \dfrac{m \omega}{\sin \omega t}
+            \dfrac{
+                \sin \omega (t_i + t - \tau)
+            }{m \omega}
+        \cos \omega t
     +
         \cos \omega (t_i + t - \tau)
-        \cos \omega (t_i + t - \tau')
     +
-        \frac{
-            \sin \omega (\tau - t_i)
-        }{ \sin \omega t }
-        \frac{
-            \sin \omega (\tau' - t_i)
-        }{ \sin \omega t }
-\\&\qquad\qquad
-\notag
-        \cos \omega (t_i + t - \tau')
-        \frac{
-            \sin \omega (\tau - t_i)
-        }{ \sin \omega t }
-    +
-        \cos \omega (t_i + t - \tau)
-        \frac{
-            \sin \omega (\tau' - t_i)
-        }{ \sin \omega t }
-    \bigg]
+        \dfrac{\sin \omega (\tau - t_i)}{\sin \omega t}
+    \right\}
     J(\tau)
-    J(\tau')
-\\&\qquad
-\notag
-    +
-    \dfrac{i}{2 \hbar m \omega}
-    \int_{t_i}^{t_i + t} d\tau
-    \bigg[
-        \int_{t_i}^\tau d\tau'
-        \sin \omega (\tau - \tau')
+\notag\\&=
     -
-        \frac{ \sin \omega (\tau - t_i) }{
-            \sin \omega t
-        }
-        \int_{t_i}^{t_i + t} d\tau'
-        \sin \omega (t_i + t - \tau')
-    \bigg]
+    \dfrac{i}{4 \hbar}
+    \int_{t_i}^{t_i + t} d\tau
+    \dfrac{
+        \sin \omega (t_i + t - \tau)
+        \cos \omega t
+    +
+        \sin \omega t
+        \cos \omega (t_i + t - \tau)
+    +
+        \sin \omega (\tau - t_i)
+    }{\sin \omega t}
     J(\tau)
-    J(\tau')
+\notag\\&=
+    \dfrac{1}{4 i \hbar}
+    \int_{t_i}^{t_i + t} d\tau
+    \dfrac{
+        \sin \omega (t_i + 2 t - \tau)
+    +
+        \sin \omega (\tau - t_i)
+    }{\sin \omega t}
+    J(\tau)
+\notag\\&=
+    \dfrac{1}{2 \hbar}
+    \dfrac{
+        e^{- i \omega t_i} F^+(t)
+    -
+        e^{i \omega t_i} F^-(t)
+    }{\sin \omega t}
+\\
+    D(t)
+    &:=
+    -
+    \dfrac{1}{2}
+    \dfrac{i}{\hbar}
+    \int_{t_i}^{t_i + t} d \tau
+    \dfrac{
+        \sin \omega (t_i + t - \tau)
+    }{\sin \omega t}
+    J(\tau)
+\\
+    F^\pm(t)
+    &:=
+    \dfrac{1}{2i}
+    \int_{t_i}^{t_i + t} d\tau\ 
+        e^{\pm i \omega \tau}
+        J(\tau)
 \end{align}
 \end{subequations}
 と定義した。
