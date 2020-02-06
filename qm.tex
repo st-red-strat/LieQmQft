@@ -3337,7 +3337,6 @@ $
         \int_{t_i}^t d\tau
             \dfrac{ \cos \omega (t-\tau) }{ m }
             J(\tau)
-    \label{time derivative of classical solution of harm osci with source}
     \end{align}
     より
     \begin{align}
@@ -3552,6 +3551,95 @@ $0 = m \ddot{q}_{cl} + m \omega^2 q_{cl} - J(t)$
     \right)
 \end{align}
 と書き直せ、
+さらに古典解
+(\ref{classical solution to harmonic oscillator with source})
+の時間微分
+\begin{align}
+    \dot{q}_{cl}(t)
+    &=
+    \omega
+    \frac{
+        q_f \cos \omega (t - t_i)
+        -
+        q_i \cos \omega (t_f - t)
+    }{ \sin \omega (t_f - t_i) }
+    -
+    \omega
+    \frac{ \cos \omega (t - t_i) }{
+        \sin \omega(t_f - t_i)
+    }
+    \int_{t_i}^{t_f} d\tau
+    \frac{ \sin \omega (t_f-\tau) }{m\omega}
+    J(\tau)
+\notag\\&\qquad
+    +
+    \omega
+    \int_{t_i}^t d\tau
+    \frac{ \cos \omega (t-\tau)}{m\omega}
+    J(\tau)
+\notag\\&=
+    \frac{ \omega }{ \sin \omega (t_f - t_i) }
+    \left[
+    \left(
+        q_f
+    +
+        \int_{t_i}^{t_f} d\tau
+        \frac{ \sin \omega (t_f-\tau) }{m\omega}
+        J(\tau)
+    \right)
+    \cos \omega (t - t_i)
+    -
+        q_i \cos \omega (t_f - t)
+    \right]
+\notag\\&\qquad
+    +
+    \int_{t_i}^t d\tau
+    \frac{ \cos \omega (t-\tau)}{m}
+    J(\tau)
+\label{time derivative of classical solution of harm osci with source}
+\end{align}
+すなわち
+\begin{subequations}
+\begin{align}
+    \dot{q}_{cl} (t_i)
+    &=
+    \dfrac{ \omega }{ \sin \omega (t_f - t_i) }
+    \left[
+    \left(
+        q_f
+    +
+        \int_{t_i}^{t_f} d\tau
+        \frac{ \sin \omega (t_f-\tau) }{m\omega}
+        J(\tau)
+    \right)
+    -
+        q_i \cos \omega (t_f - t_i)
+    \right]
+\\
+    \dot{q}_{cl} (t_f)
+    &=
+    \frac{ \omega }{ \sin \omega (t_f - t_i) }
+    \left[
+    \left(
+        q_f
+    +
+        \int_{t_i}^{t_f} d\tau
+        \frac{ \sin \omega (t_f-\tau) }{m\omega}
+        J(\tau)
+    \right)
+    \cos \omega (t_f - t_i)
+    -
+        q_i
+    \right]
+\notag\\&\qquad
+    +
+    \int_{t_i}^{t_f} d\tau
+    \frac{ \cos \omega (t_f - \tau)}{m}
+    J(\tau)
+\end{align}
+\label{boundary value of time derivative of classical solution of harm osci with source}
+\end{subequations}
+を使って
 $S_{cl} [J]$の部分も
 \begin{align}
     S_{cl} [J]
@@ -3849,9 +3937,6 @@ $\dfrac{ \partial ( x(t) ) }{ \partial (a_n) }$
 $J(t) = 0, \omega = 0$の場合の
 $\dfrac{ \partial ( x(t) ) }{ \partial (a_n) }$
 を求めればよい。
-$\dot{q}_{cl}$
-(\ref{time derivative of classical solution of harm osci with source})
-や
 classical action
 (\ref{classical action of harm osci with source})
 が$J(t) = 0$で消えることに気を付けると、
@@ -4262,12 +4347,50 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     \frac{ \sin \omega (t-\tau)}{m\omega}
     J(\tau)
 \end{align}
+およびその時間微分
+(\ref{boundary value of time derivative of classical solution of harm osci with source})
+\begin{subequations}
+\begin{align}
+    \dot{q}_{cl} (t_i)
+    &=
+    \dfrac{ \omega }{ \sin \omega t }
+    \left[
+    \left(
+        q_f
+    +
+        \int_{t_i}^{t_i + t} d\tau
+        \frac{ \sin \omega (t_i + t - \tau) }{m\omega}
+        J(\tau)
+    \right)
+    -
+        q_i \cos \omega t
+    \right]
+\\
+    \dot{q}_{cl} (t_f = t_i + t)
+    &=
+    \frac{ \omega }{ \sin \omega t }
+    \left[
+    \left(
+        q_f
+    +
+        \int_{t_i}^{t_i + t} d\tau
+        \frac{ \sin \omega (t_i + t - \tau) }{m\omega}
+        J(\tau)
+    \right)
+    \cos \omega t
+    -
+        q_i
+    \right]
+\notag\\&\qquad
+    +
+    \int_{t_i}^{t_i + t} d\tau
+    \frac{ \cos \omega (t_i + t - \tau)}{m}
+    J(\tau)
+\end{align}
+\end{subequations}
 を古典的作用
 (\ref{classical action of harm osci with source})
 に代入すると、
-古典解の時間微分
-(\ref{time derivative of classical solution of harm osci with source})
-が$t = t_i$で消える事に気を付けて
 \begin{align}
     S_{cl} [J]
     &=
@@ -4280,72 +4403,77 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
         \dot{q}_{cl}(t_i)
     \bigg)
     +
-    \int_{t_i}^{t_f} dt\ 
-        q_{cl}(t)
+    \int_{t_i}^{t_i + t} d\tau\ 
+        q_{cl}(\tau)
         \frac{1}{2}
-        J(t)
-\notag\\&
-    =
-    \frac{1}{2} m
-    \bigg[
-        q_f
-        \int_{t_i}^{t_f} dt
-            \dfrac{ \cos \omega (t_f - t) }{ m }
-            J(t)
-    \bigg]
-    +
-    \int_{t_i}^{t_f} dt\ 
-        q_{cl}(t)
-        \frac{1}{2}
-        J(t)
-\notag\\&
-    =
-    \frac{1}{2}
-    \int_{t_i}^{t_f} dt
-    \bigg[
-        q_f
-        \cos \omega (t_f - t)
-    +
-        q_{cl}(t)
-    \bigg]
-    J(t)
-\notag\\&
-    =
-    \frac{1}{2}
-    \int_{t_i}^{t_f} dt
-    \bigg[
-        q_f
-        \cos \omega (t_f - t)
-    +
-        \int_{t_i}^t d\tau
-        \frac{ \sin \omega (t-\tau)}{m\omega}
         J(\tau)
-    \notag\\&\qquad
-    +
-        \frac{
-            q_f \sin \omega (t - t_i)
-        +
-            q_i \sin \omega (t_f - t)
-        }{ \sin \omega (t_f - t_i) }
+\notag\\&
+    =
+    \frac{1}{2}
+    \frac{ m \omega }{ \sin \omega t }
+    \bigg(
+        q_f
+        \left[
+            \left(
+                q_f
+            +
+                \int_{t_i}^{t_i + t} d\tau
+                \frac{ \sin \omega (t_i + t - \tau) }{m\omega}
+                J(\tau)
+            \right)
+            \cos \omega t
+        -
+            q_i
+        \right]
+\notag\\&\qquad\qquad
     -
-        \frac{ \sin \omega (t - t_i) }{
-            \sin \omega(t_f - t_i)
-        }
-        \int_{t_i}^{t_f} d\tau
-        \frac{ \sin \omega (t_f-\tau) }{m\omega}
+        q_i
+        \left[
+            \left(
+                q_f
+            +
+                \int_{t_i}^{t_i + t} d\tau
+                \frac{ \sin \omega (t_i + t - \tau) }{m\omega}
+                J(\tau)
+            \right)
+        -
+            q_i \cos \omega t
+        \right]
+    \bigg)
+\notag\\&\qquad
+    +
+        \frac{q_f}{2}
+        \int_{t_i}^{t_i + t} d\tau
+        \cos \omega (t_i + t - \tau)
         J(\tau)
+\notag\\&\qquad
+    +
+    \frac{1}{2}
+    \int_{t_i}^{t_i + t} d\tau\ 
+    \bigg[
+        \frac{
+            q_f \sin \omega (\tau - t_i)
+        +
+            q_i \sin \omega (t_i + t - \tau)
+        }{ \sin \omega t }
+    -
+        \frac{ \sin \omega (\tau - t_i) }{
+            \sin \omega t
+        }
+        \int_{t_i}^{t_i + t} d\tau'
+        \frac{ \sin \omega (t_i + t - \tau') }{m\omega}
+        J(\tau')
+\notag\\&\qquad\qquad
+    +
+        \int_{t_i}^\tau d\tau'
+        \frac{ \sin \omega (\tau - \tau')}{m\omega}
+        J(\tau')
     \bigg]
-    J(t)
+    J(\tau)
 \end{align}
 が得られる。
-時間依存する真空の波動関数
+真空の波動関数
 (\ref{vacuum solution of harmonic oscillator})
-\footnote{
-    source関数$J(t)$は単に古典的な$c$-数関数なので、
-    Hamiltonianにsource項を加えても
-    Hamiltonianの固有関数は変更を受けない。
-    従って$J(t) = 0$の場合の真空解を使って問題ない。
-}
 は
 \begin{align}
     \phi_0  (t, q)
@@ -4355,16 +4483,48 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     \right)^{1/4}
     \exp(
         - \dfrac{m \omega}{2 \hbar} q^2
-        - i t \omega
-        \dfrac{1}{2}
+        -
+        \dfrac{i t \omega}{2}
     )
 \end{align}
-であったから、
+であった
+\footnote{
+    ここではSchr\"odinger方程式を解くための
+    波動関数の境界条件を指定しているだけであり、
+    Feynman kernelが時間発展operatorの役割をするので
+    本来ここに時間依存性を入れる必要はない。
+    実際、以下では$t = t_i, t_f$の2つの時刻での
+    波動関数しか使わない。
+
+    そもそも、任意の時間での波動関数を知っていなければならないとすると
+    source項によってHamiltonianに$-qJ$の項が加わる事を考慮して解の形を
+    \begin{align}
+        \phi_0  (t, q)
+        &=
+        \left(
+            \dfrac{m \omega}{\pi \hbar}        
+        \right)^{1/4}
+        \exp(
+            - \dfrac{m \omega}{2 \hbar} q^2
+            -
+            \dfrac{i t \omega}{2}
+        -
+            \dfrac{1}{i \hbar}
+            \int_{t_i}^t d\tau
+            q(\tau)
+            J(\tau)
+        )
+    \end{align}
+    と変えなければならないはずであるが、
+    operatorであるはずの$q$を時間の実数関数と扱っている
+    $q(\tau)$をどう解釈すれば良いかはよく分からない。
+}
+から、
 真空間の遷移振幅は
 \begin{align}
     W_{00}[J](t)
     &=
-    \int d x_f d x_i\ 
+    \int d q_f d q_i\ 
         \phi_0^*( t_i + t, q_f)
         \phi_0  ( t_i    , q_i)
     K[J](t_i + t, q_f; t_i, q_i)
@@ -4378,7 +4538,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
             \sin \omega t
         }
     \right)^{1 / 2}
-    \int d x_f d x_i\ 
+    \int d q_f d q_i\ 
         \phi_0^*( t_i + t, q_f)
         \phi_0  ( t_i    , q_i)
     \exp\left(
@@ -4394,7 +4554,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
             \sin \omega t
         }
     \right)^{1 / 2}
-    \int d x_f d x_i\ 
+    \int d q_f d q_i\ 
         \left(
             \dfrac{m \omega}{\pi \hbar}        
         \right)^{1/2}
@@ -4420,7 +4580,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     \exp\left(
         \dfrac{i t \omega}{2}
     \right)
-    \int d x_f d x_i\ 
+    \int d q_f d q_i\ 
         \exp\left(
             - \dfrac{m \omega}{2 \hbar}
             \bigg[
@@ -4431,12 +4591,42 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
             +
             C
         \right)
+\notag\\&
+    =
+    \dfrac{m \omega}{
+        \pi \hbar
+        ( 2 i \sin \omega t )^{1 / 2}
+    }
+    \exp\left(
+        \dfrac{i t \omega}{2}
+    \right)
+    \left(
+        \dfrac{2 \pi \hbar}{m \omega}
+    \right)
+    e^C
+    \qquad
+    \text{
+        $\because$
+        Fresnel積分
+        (\ref{fresnel integral})
+    }
+\notag\\&
+    =
+    \left(
+        \dfrac{2}{
+            i \sin \omega t
+        }
+    \right)^{1 / 2}
+    \exp\left(
+        \dfrac{i t \omega}{2}
+    \right)
+    e^C
 \end{align}
 と書ける。
-ただし定数は
+ただし$A, B, C$は
 \begin{subequations}
 \begin{align}
-    A
+    A(t)
     &:=
     -
     \dfrac{\hbar}{m \omega}
@@ -4450,7 +4640,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     \bigg]
     J(\tau)
 \\
-    B
+    B(t)
     &:=
     -
     \dfrac{\hbar}{m \omega}
@@ -4466,7 +4656,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     \bigg]
     J(\tau)
 \\
-    C
+    C(t)
     &:=
     \dfrac{m \omega}{2 \hbar}
     \bigg[
@@ -4493,6 +4683,61 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
         J(\tau')
     \bigg]
     J(\tau)
+\\\notag&=
+    -
+    \dfrac{1}{8 \hbar m \omega}
+    \int_{t_i}^{t_i + t} d\tau
+    \int_{t_i}^{t_i + t} d\tau'
+    \bigg[
+        \frac{
+            \sin \omega (t_i + t - \tau)
+        }{ \sin \omega t }
+        \frac{
+            \sin \omega (t_i + t - \tau')
+        }{ \sin \omega t }
+\\&\qquad\qquad
+\notag
+    +
+        \cos \omega (t_i + t - \tau)
+        \cos \omega (t_i + t - \tau')
+    +
+        \frac{
+            \sin \omega (\tau - t_i)
+        }{ \sin \omega t }
+        \frac{
+            \sin \omega (\tau' - t_i)
+        }{ \sin \omega t }
+\\&\qquad\qquad
+\notag
+        \cos \omega (t_i + t - \tau')
+        \frac{
+            \sin \omega (\tau - t_i)
+        }{ \sin \omega t }
+    +
+        \cos \omega (t_i + t - \tau)
+        \frac{
+            \sin \omega (\tau' - t_i)
+        }{ \sin \omega t }
+    \bigg]
+    J(\tau)
+    J(\tau')
+\\&\qquad
+\notag
+    +
+    \dfrac{i}{2 \hbar m \omega}
+    \int_{t_i}^{t_i + t} d\tau
+    \bigg[
+        \int_{t_i}^\tau d\tau'
+        \sin \omega (\tau - \tau')
+    -
+        \frac{ \sin \omega (\tau - t_i) }{
+            \sin \omega t
+        }
+        \int_{t_i}^{t_i + t} d\tau'
+        \sin \omega (t_i + t - \tau')
+    \bigg]
+    J(\tau)
+    J(\tau')
 \end{align}
 \end{subequations}
 と定義した。
