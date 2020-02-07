@@ -4623,6 +4623,8 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     \qquad
     \text{
         $\because$
+        $\Re A \ge 0$
+        より
         Fresnel積分
         (\ref{fresnel integral})
     }
@@ -4658,7 +4660,8 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     \qquad
     \text{
         $\because$
-        再び
+        $\Re (A^2 - B^2) \ge 0 $
+        より再び
         Fresnel積分
         (\ref{fresnel integral})
     }
@@ -4705,7 +4708,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     \bigg]
 =
     \dfrac{m \omega}{2 \hbar}
-    \dfrac{- i e^{\omega t} }{\sin \omega t}
+    \dfrac{- i e^{i \omega t} }{\sin \omega t}
 \\
     B(t)
     &:=
@@ -4716,6 +4719,17 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     =
     \dfrac{m \omega}{2 \hbar}
     \dfrac{ i }{\sin \omega t}
+\\\notag
+    A^2 - B^2
+    &=
+    \left(
+        \dfrac{m \omega}{2 \hbar}
+        \dfrac{1}{\sin \omega t}
+    \right)^2
+    \left[
+        1
+        - e^{2 i \omega t}
+    \right]
 \\
     C(t)
     &:=
@@ -4763,7 +4777,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     }{\sin \omega t}
     J(\tau)
 \notag\\&=
-    \dfrac{1}{2 \hbar}
+    \dfrac{1}{2 i \hbar}
     \dfrac{
         1
     }{\sin \omega t}
@@ -4773,7 +4787,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
         e^{+ i \omega t_i} F(t)^*
     }{ 2i }
 =
-    \dfrac{1}{2 \hbar}
+    \dfrac{1}{2 i \hbar}
     \dfrac{
         \Im[ e^{- i \omega t_i} F(t) ]
     }{\sin \omega t}
@@ -4783,10 +4797,55 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     -
     \dfrac{1}{2}
     \dfrac{i}{\hbar}
+    \dfrac{1}{2}
     \int_{t_i}^{t_i + t} d \tau
-    \dfrac{
-        \sin \omega (t_i + t - \tau)
-    }{\sin \omega t}
+    \left\{
+        \dfrac{m \omega}{\sin \omega t}
+        \dfrac{
+            \sin \omega (t_i + t - \tau)
+        }{m \omega}
+    +
+        \dfrac{
+            \sin \omega (t_i + t - \tau)
+        }{\sin \omega t}
+    \right\}
+    J(\tau)
+\notag\\&=
+    \dfrac{1}{2 i \hbar}
+    \int_{t_i}^{t_i + t} d \tau
+        \dfrac{
+            \sin \omega (t_i + t - \tau)
+        }{\sin \omega t}
+    J(\tau)
+=
+    \dfrac{1}{2 i \hbar}
+    \Im[ e^{i \omega (t_i + t)} F(t)^* ]
+\\
+    E(t)
+    &:=
+    \dfrac{1}{2}
+    \int_{t_i}^{t_i + t} d\tau
+    \left\{
+    -
+    \int_{t_i}^{t_i + t} d\tau'
+        \dfrac{\sin \omega (\tau - t_i)}{\sin \omega t}
+        \dfrac{\sin \omega (t_i + t - \tau')}{m \omega}
+    +
+    \int_{t_i}^{\tau} d\tau'
+        \dfrac{\sin \omega (\tau - \tau')}{m \omega}
+    \right\}
+    J(\tau) J(\tau')
+\notag\\&
+    =
+    \dfrac{1}{2 m \omega}
+    \int_{t_i}^{t_i + t} d\tau
+    \left\{
+    -
+        \dfrac{\sin \omega (\tau - t_i)}{\sin \omega t}
+        \Im[ e^{i \omega (t_i + t)} F(t)^* ]
+    +
+        \Im[ e^{i \omega \tau} F(\tau - t_i)^* ]
+    \right\}
     J(\tau)
 \\
     F(t)
