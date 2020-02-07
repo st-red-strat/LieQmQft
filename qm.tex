@@ -4725,6 +4725,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     \dfrac{1}{2}
     \int_{t_i}^{t_i + t} d\tau
     \left\{
+    -
         \dfrac{m \omega}{\sin \omega t}
             \dfrac{
                 \sin \omega (t_i + t - \tau)
@@ -4741,6 +4742,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     \dfrac{i}{4 \hbar}
     \int_{t_i}^{t_i + t} d\tau
     \dfrac{
+    -
         \sin \omega (t_i + t - \tau)
         \cos \omega t
     +
@@ -4754,7 +4756,8 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     \dfrac{1}{4 i \hbar}
     \int_{t_i}^{t_i + t} d\tau
     \dfrac{
-        \sin \omega (t_i + 2 t - \tau)
+    -
+        \sin \omega (t_i - \tau)
     +
         \sin \omega (\tau - t_i)
     }{\sin \omega t}
@@ -4762,9 +4765,17 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
 \notag\\&=
     \dfrac{1}{2 \hbar}
     \dfrac{
-        e^{- i \omega t_i} F^+(t)
-    -
-        e^{i \omega t_i} F^-(t)
+        1
+    }{\sin \omega t}
+    \dfrac{
+        e^{- i \omega t_i} F(t)
+        -
+        e^{+ i \omega t_i} F(t)^*
+    }{ 2i }
+=
+    \dfrac{1}{2 \hbar}
+    \dfrac{
+        \Im[ e^{- i \omega t_i} F(t) ]
     }{\sin \omega t}
 \\
     D(t)
@@ -4778,11 +4789,10 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     }{\sin \omega t}
     J(\tau)
 \\
-    F^\pm(t)
+    F(t)
     &:=
-    \dfrac{1}{2i}
     \int_{t_i}^{t_i + t} d\tau\ 
-        e^{\pm i \omega \tau}
+        e^{i \omega \tau}
         J(\tau)
 \end{align}
 \end{subequations}
