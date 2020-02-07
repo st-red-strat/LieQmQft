@@ -4897,10 +4897,13 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     J(\tau)
 =
     \dfrac{1}{2 i \hbar}
-    \Im[ e^{i \omega (t_i + t)} F(t)^* ]
+    \dfrac{
+        \Im[ e^{i \omega (t_i + t)} F(t)^* ]
+    }{\sin \omega t}
 \\
     E(t)
     &:=
+    \dfrac{i}{\hbar}
     \dfrac{1}{2}
     \int_{t_i}^{t_i + t} d\tau
     \left\{
@@ -4915,30 +4918,104 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     J(\tau) J(\tau')
 \notag\\&
     =
-    \dfrac{1}{2 m \omega}
+    \dfrac{i}{2 \hbar m \omega}
     \int_{t_i}^{t_i + t} d\tau
-    \left\{
+    J(\tau) J(\tau')
+    \bigg\{
+    \int_{t_i}^{\tau} d\tau'
+        \sin \omega (\tau - \tau')
+\notag\\&\qquad
     -
-        \dfrac{\sin \omega (\tau - t_i)}{\sin \omega t}
-        \Im[ e^{i \omega (t_i + t)} F(t)^* ]
+    \dfrac{
+        \int_{\tau}^{t_i + t} d\tau'
+            \sin \omega (\tau - t_i)
+            \sin \omega (t_i + t - \tau')
     +
-        \Im[ e^{i \omega \tau} F(\tau - t_i)^* ]
-    \right\}
-    J(\tau)
+        \int_{t_i}^{\tau} d\tau'
+            \sin \omega (\tau - t_i)
+            \sin \omega (t_i + t - \tau')
+    }{\sin \omega t}
+    \bigg\}
 \notag\\&
     =
-    \dfrac{1}{2 m \omega}
-    \left\{
-    -
-        \dfrac{
-            \Im[ e^{i \omega (t_i + t)} F(t)^* ]
-            \Im[ e^{- i \omega t_i} F(t) ]    
-        }{\sin \omega t}
+    \dfrac{i}{2 \hbar m \omega}
+    \int_{t_i < \tau' < \tau < t_i + t}
+        d\tau d\tau'
+    J(\tau) J(\tau')
+\notag\\&\qquad
+    \dfrac{
+            \sin \omega (\tau - \tau')
+            \sin \omega t
+        -
+            \sin \omega (\tau - t_i)
+            \sin \omega (t_i + t - \tau')
+        -
+            \sin \omega (\tau' - t_i)
+            \sin \omega (t_i + t - \tau)
+    }{\sin \omega t}
+\notag\\&
+    =
+    \dfrac{i}{2 \hbar m \omega}
+    \int_{t_i < \tau' < \tau < t_i + t}
+        d\tau d\tau'
+    J(\tau) J(\tau')
+    \bigg\{
+    \dfrac{
+        -
+            \cos \omega (\tau - \tau' + t)
+        +
+            \cos \omega (\tau - \tau' - t)
+    }{2 \sin \omega t}
+\notag\\&\qquad
     +
-    \int_{t_i}^{t_i + t} d\tau
-        \Im[ e^{i \omega \tau} F(\tau - t_i)^* ]
-        J(\tau)
-    \right\}
+    \dfrac{
+            \cos \omega (\tau + t - \tau')
+        -
+            \cos \omega (\tau - 2 t_i - t + \tau')
+    }{2 \sin \omega t}
+\notag\\&\qquad
+    +
+    \dfrac{
+            \cos \omega (\tau' + t - \tau)
+        -
+            \cos \omega (\tau' - 2 t_i - t + \tau)
+    }{2 \sin \omega t}
+    \bigg\}
+\notag\\&
+    =
+    \dfrac{i}{2 \hbar m \omega}
+    \int_{t_i < \tau' < \tau < t_i + t}
+        d\tau d\tau'
+    J(\tau) J(\tau')
+    \bigg\{
+    \dfrac{
+            2 \cos \omega (\tau - \tau' - t)
+        -
+            2 \cos \omega (\tau' - 2 t_i - t + \tau)
+    }{2 \sin \omega t}
+    \bigg\}
+\notag\\&
+    =
+    \dfrac{1}{i \hbar m \omega}
+    \int_{t_i < \tau' < \tau < t_i + t}
+        d\tau d\tau'
+    J(\tau) J(\tau')
+    \bigg\{
+    \dfrac{
+        \sin \omega (\tau - t_i - t)
+        \sin \omega (t_i - \tau')
+    }{\sin \omega t}
+    \bigg\}
+\notag\\&
+    =
+    \dfrac{1}{i \hbar m \omega}
+    \int_{t_i < \tau' < \tau < t_i + t}
+        d\tau d\tau'
+    J(\tau) J(\tau')
+    \dfrac{
+        \sin \omega (t_i + t - \tau)
+        \sin \omega (\tau' - t_i)
+    }{\sin \omega t}
 \\
     F(t)
     &:=
