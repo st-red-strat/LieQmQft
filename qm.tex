@@ -4730,6 +4730,59 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
         1
         - e^{2 i \omega t}
     \right]
+=
+    \left(
+        \dfrac{m \omega}{2 \hbar}
+    \right)^2
+    \dfrac{1}{\sin^2 \omega t}
+    \left[
+        1
+    -
+        e^{i \omega t}
+    \right]
+    \left[
+        1
+    +
+        e^{i \omega t}
+    \right]
+\notag\\&=
+    \left(
+        \dfrac{m \omega}{\hbar}
+    \right)^2
+    \dfrac{
+        i
+        e^{i \omega t}
+    }{\sin^2 \omega t}
+    \dfrac{
+            e^{- i \omega t/2}
+        -
+            e^{  i \omega t/2}
+    }{2 i}
+    \dfrac{
+        e^{i \omega t/2}
+    +
+        e^{- i \omega t/2}
+    }{2}
+\notag\\&=
+    \left(
+        \dfrac{m \omega}{\hbar}
+    \right)^2
+    \dfrac{
+    -
+        i
+        e^{i \omega t}
+    }{\sin^2 \omega t}
+    \sin \dfrac{\omega t}{2}
+    \cos \dfrac{\omega t}{2}
+=
+    \left(
+        \dfrac{m \omega}{\hbar}
+    \right)^2
+    \dfrac{
+    -
+        i
+        e^{i \omega t}
+    }{2 \sin \omega t}
 \\
     C(t)
     &:=
@@ -4847,6 +4900,20 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
         \Im[ e^{i \omega \tau} F(\tau - t_i)^* ]
     \right\}
     J(\tau)
+\notag\\&
+    =
+    \dfrac{1}{2 m \omega}
+    \left\{
+    -
+        \dfrac{
+            \Im[ e^{i \omega (t_i + t)} F(t)^* ]
+            \Im[ e^{- i \omega t_i} F(t) ]    
+        }{\sin \omega t}
+    +
+    \int_{t_i}^{t_i + t} d\tau
+        \Im[ e^{i \omega \tau} F(\tau - t_i)^* ]
+        J(\tau)
+    \right\}
 \\
     F(t)
     &:=
