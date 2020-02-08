@@ -5134,21 +5134,49 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
         e^{- i \omega t}
         | F(t) |^2
     \bigg]
-\notag\\&
-    =
+\end{align}
+\end{subequations}
+の関係式を満たすから、
+\begin{align}
+    A (C^2 + D^2) - 2 BCD
+    &=
+    \dfrac{m \omega}{2 \hbar}
+    \dfrac{- i e^{i \omega t} }{\sin \omega t}
+    \dfrac{1}{4 \hbar^2 \sin^2 \omega t}
+    \dfrac{
+        \bigg(
+            1
+        -
+            e^{- 2 i \omega t}
+        \bigg) 
+        e^{- 2 i \omega t_i}
+        F(t)^2
+    +
+        \bigg(
+            1
+        -
+            e^{2 i \omega t}
+        \bigg) 
+        e^{+ 2 i \omega t_i} {F(t)^*}^2
+    +
+        4 | F(t) |^2
+    }{4}
+    - 2
     \dfrac{m \omega}{32 \hbar^3}
     \dfrac{ i }{\sin^3 \omega t}
     \bigg[
-        2
-        \cos \omega t
+        e^{i \omega t}
         | F(t) |^2
     -
         e^{- i \omega (2 t_i + t)} F(t)^2
     -
         e^{i \omega (2 t_i + t)} {F(t)^*}^2
+    +
+        e^{- i \omega t}
+        | F(t) |^2
     \bigg]
 \end{align}
-\end{subequations}
+であって、
 
 \subsection{量子力学における対称性と保存量}
 
