@@ -5412,7 +5412,29 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
         A^2 - B^2
     }
     &=
-    \dots
+    \dfrac{i}{16 \hbar m \omega \sin \omega t}
+    \bigg\{
+    8 i
+    \int_{t_i}^{t_i + t}
+        d\tau
+    \int_{t_i}^{t_i + t}
+        d\tau'
+    J(\tau) J(\tau')
+    \theta(\tau - \tau')
+        e^{ i \omega (\tau' - \tau) }
+    \sin \omega t
+\notag\\&\qquad\qquad
+    -
+    2
+        e^{ i \omega (2 t_i + t) }
+        { F(t)^* }^2
+    - 2
+        e^{ i \omega ( - 2 t_i - t) }
+        F(t)^2
+    + 4
+        e^{ - i \omega t }
+        | F(t) |^2
+    \bigg\}
 \notag\\&\qquad
         +
         \dfrac{
@@ -5425,6 +5447,42 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
         +
             e^{+ 2 i \omega (t_i + t)} {F(t)^*}^2
         - 2
+        | F(t) |^2
+    \bigg\}
+\notag\\&
+    =
+    \dfrac{i}{16 \hbar m \omega \sin \omega t}
+    \bigg\{
+    8 i
+    \int_{t_i}^{t_i + t}
+        d\tau
+    \int_{t_i}^{t_i + t}
+        d\tau'
+    J(\tau) J(\tau')
+    \theta(\tau - \tau')
+        e^{ i \omega (\tau' - \tau) }
+    \sin \omega t
+\notag\\&\qquad\qquad
+    -
+    2
+        e^{ i \omega (2 t_i + t) }
+        { F(t)^* }^2
+    - 2
+        e^{ i \omega ( - 2 t_i - t) }
+        F(t)^2
+    + 4
+        e^{ - i \omega t }
+        | F(t) |^2
+\notag\\&\qquad
+        +
+            2
+            e^{i \omega (t - 2 t_i)}
+            F(t)^2
+        +
+            2
+            e^{i \omega (2 t_i + 3 t)} {F(t)^*}^2
+        - 4
+            e^{i \omega t}
         | F(t) |^2
     \bigg\}
 \end{align}
