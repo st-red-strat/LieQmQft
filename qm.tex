@@ -5228,6 +5228,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
         \bigg)
         e^{- 2 i \omega t_i}
         F(t)^2
+\notag\\&\qquad
     +
         \bigg(
             e^{2 i \omega t}
@@ -5243,8 +5244,96 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
         \bigg)
         | F(t) |^2
     \bigg\}
+\notag\\&
+    =
+    \dfrac{
+            1
+        -
+            e^{- 2 i \omega t}
+    }{16 \hbar m \omega \sin^2 \omega t}
+    \bigg\{
+        e^{- 2 i \omega t_i}
+        F(t)^2
+    +
+        e^{+ 2 i \omega (t_i + t)} {F(t)^*}^2
+    - 2
+        | F(t) |^2
+    \bigg\}
+\notag\\&
+    =
+    \dfrac{
+        2 i
+        e^{i \omega t}
+    }{16 \hbar m \omega \sin \omega t}
+    \bigg\{
+        e^{- 2 i \omega t_i}
+        F(t)^2
+    +
+        e^{+ 2 i \omega (t_i + t)} {F(t)^*}^2
+    - 2
+        | F(t) |^2
+    \bigg\}
+\notag\\
+    E
+    +
+    \dfrac{
+        A ( C^2 + D^2 )
+    -
+        2 BCD
+    }{
+        A^2 - B^2
+    }
+    &=
+    \dots
+\notag\\&\qquad
+        +
+        \dfrac{
+            2 i
+            e^{i \omega t}
+        }{16 \hbar m \omega \sin \omega t}
+        \bigg\{
+            e^{- 2 i \omega t_i}
+            F(t)^2
+        +
+            e^{+ 2 i \omega (t_i + t)} {F(t)^*}^2
+        - 2
+        | F(t) |^2
+    \bigg\}
 \end{align}
 であって、
+結局求めたかった散乱振幅は
+\begin{align}
+    W_{00}[J](t)
+    &=
+    \dfrac{m \omega}{
+        \hbar
+        [
+            2 i \sin \omega t 
+            (A^2 - B^2)
+        ]^{1 / 2}
+    }
+    \exp\left(
+        \dfrac{i t \omega}{2}
+        +
+        E
+        +
+        \dfrac{
+            A
+            \left(
+                C^2 + D^2
+            \right)
+        -
+            2 BCD
+        }{
+            A^2 - B^2
+        }
+    \right)
+\notag\\&
+    =
+    e^{ - i \omega t / 2 }
+    \exp\bigg(
+    \bigg)
+\end{align}
 
 \subsection{量子力学における対称性と保存量}
 
