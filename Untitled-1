@@ -1,0 +1,67 @@
+\begin{align}
+    S_{cl}[J]
+    &=
+    \frac{1}{2} m
+    \bigg(
+        q_f
+        \dot{q}_{cl}(t_f)
+    -
+        q_i
+        \dot{q}_{cl}(t_i)
+    \bigg)
+    +
+    \int_{t_i}^{t_f} dt\ 
+        q_{cl}(t)
+        \frac{1}{2}
+        J(t)
+\notag\\&
+    =
+    \frac{1}{2} m
+        q_f
+        \int_{t_i}^{t_f} dt
+            \dfrac{ \cos \omega (t_f - t) }{ m }
+            J(t)
+    +
+    \int_{t_i}^{t_f} dt\ 
+        q_{cl}(t)
+        \frac{1}{2}
+        J(t)
+\notag\\&
+    =
+    \frac{1}{2}
+    \int_{t_i}^{t_f} dt
+    \bigg[
+        q_f
+        \cos \omega (t_f - t)
+    +
+        q_{cl}(t)
+    \bigg]
+    J(t)
+\notag\\&
+    =
+    \frac{1}{2}
+    \int_{t_i}^{t_f} dt
+    \bigg[
+        q_f
+        \cos \omega (t_f - t)
+    +
+        \int_{t_i}^t d\tau
+        \frac{ \sin \omega (t - \tau)}{m\omega}
+        J(\tau)
+    \notag\\&\qquad
+    +
+        \frac{
+            q_f \sin \omega (t - t_i)
+        +
+            q_i \sin \omega (t_f - t)
+        }{ \sin \omega (t_f - t_i) }
+    -
+        \frac{ \sin \omega (t - t_i) }{
+            \sin \omega(t_f - t_i)
+        }
+        \int_{t_i}^{t_f} d\tau
+        \frac{ \sin \omega (t_f-\tau) }{m\omega}
+        J(\tau)
+    \bigg]
+    J(\tau)
+\end{align}

@@ -4944,14 +4944,34 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     \bigg\}
 \notag\\&
     =
-    \dfrac{1}{i \hbar m \omega}
-    \int_{t_i < \tau' < \tau < t_i + t}
-        d\tau d\tau'
+    \dfrac{1}{i \hbar m \omega \sin \omega t}
+    \int_{t_i}^{t_i + t}
+        d\tau
+    \int_{t_i}^{t_i + t}
+        d\tau'
+    \theta(\tau - \tau')
     J(\tau) J(\tau')
-    \dfrac{
         \sin \omega (t_i + t - \tau)
         \sin \omega (\tau' - t_i)
-    }{\sin \omega t}
+\notag\\&
+    =
+    \dfrac{1}{i \hbar m \omega \sin \omega t}
+    \int_{t_i}^{t_i + t}
+        d\tau
+    \int_{t_i}^{t_i + t}
+        d\tau'
+    \theta(\tau - \tau')
+    J(\tau) J(\tau')
+    \dfrac{
+        e^{ i \omega (t_i + t - \tau) }
+    -
+        e^{ - i \omega (t_i + t - \tau) }
+    }{2 i}
+    \dfrac{
+        e^{ i \omega (\tau' - t_i) }
+    -
+        e^{ - i \omega (\tau' - t_i) }
+    }{2 i}
 \\
     F(t)
     &:=
