@@ -5391,7 +5391,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     =
     \dfrac{
         2 i
-        e^{i \omega t}
+        e^{- i \omega t}
     }{16 \hbar m \omega \sin \omega t}
     \bigg\{
         e^{- 2 i \omega t_i}
@@ -5439,7 +5439,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
         +
         \dfrac{
             2 i
-            e^{i \omega t}
+            e^{- i \omega t}
         }{16 \hbar m \omega \sin \omega t}
         \bigg\{
             e^{- 2 i \omega t_i}
@@ -5476,20 +5476,19 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
 \notag\\&\qquad
         +
             2
-            e^{i \omega (t - 2 t_i)}
+            e^{i \omega (- t - 2 t_i)}
             F(t)^2
         +
             2
-            e^{i \omega (2 t_i + 3 t)} {F(t)^*}^2
+            e^{i \omega (2 t_i + t)} {F(t)^*}^2
         - 4
-            e^{i \omega t}
+            e^{- i \omega t}
         | F(t) |^2
     \bigg\}
 \notag\\&
     =
-    \dfrac{i}{16 \hbar m \omega \sin \omega t}
-    \bigg\{
-    8 i
+    -
+    \dfrac{1}{2 \hbar m \omega}
     \int_{t_i}^{t_i + t}
         d\tau
     \int_{t_i}^{t_i + t}
@@ -5497,22 +5496,6 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     J(\tau) J(\tau')
     \theta(\tau - \tau')
         e^{ i \omega (\tau' - \tau) }
-    \sin \omega t
-\notag\\&\qquad\qquad
-    + 2
-        e^{ - 2 i \omega t_i }
-        F(t)^2
-    2 i
-    \sin \omega t
-\notag\\&\qquad\qquad
-        +
-            2
-            e^{i \omega (2 t_i + 2 t)} {F(t)^*}^2
-            2 i \sin \omega t
-        - 8 i 
-        \sin \omega t
-        | F(t) |^2
-    \bigg\}
 \end{align}
 であって、
 結局求めたかった散乱振幅は
@@ -5546,8 +5529,43 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     =
     e^{ - i \omega t / 2 }
     \exp\bigg(
+        \dfrac{i t \omega}{2}
+        -
+        \dfrac{1}{2 \hbar m \omega}
+        \int_{t_i}^{t_i + t}
+            d\tau
+        \int_{t_i}^{t_i + t}
+            d\tau'
+        J(\tau) J(\tau')
+        \theta(\tau - \tau')
+            e^{ i \omega (\tau' - \tau) }
+    \bigg)
+\notag\\&
+    =
+    \exp\bigg(
+        \dfrac{1}{4 i \hbar}
+        \int_{t_i}^{t_i + t}
+            d\tau
+        \int_{t_i}^{t_i + t}
+            d\tau'
+        J(\tau) J(\tau')
+            D_+ (\tau - \tau')
     \bigg)
 \end{align}
+と書ける。
+ここで
+\begin{align}
+    D_+ (\tau - \tau')
+    &:=
+    \dfrac{
+        \theta(\tau - \tau')
+        e^{ - i \omega (\tau - \tau') }
+    +
+        \theta(\tau' - \tau)
+        e^{ i \omega (\tau - \tau') }    
+    }{i m \omega}
+\end{align}
+はpropagator（伝播関数）と呼ばれる量である。
 
 \subsection{量子力学における対称性と保存量}
 
