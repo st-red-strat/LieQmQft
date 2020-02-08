@@ -5087,7 +5087,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
 \end{align}
 \end{subequations}
 と定義した。
-ただし$\theta(\tau)$は階段関数
+$\theta(\tau)$は階段関数
 (\ref{definition of step function})である。
 これらは
 \begin{subequations}
@@ -5543,29 +5543,44 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
 \notag\\&
     =
     \exp\bigg(
-        \dfrac{1}{4 i \hbar}
+        \dfrac{i}{4 \hbar}
         \int_{t_i}^{t_i + t}
             d\tau
         \int_{t_i}^{t_i + t}
             d\tau'
         J(\tau) J(\tau')
-            D_+ (\tau - \tau')
+            D_F (\tau - \tau')
     \bigg)
 \end{align}
 と書ける。
 ここで
 \begin{align}
-    D_+ (\tau - \tau')
+    D_F (\tau - \tau')
     &:=
-    \dfrac{
+    \dfrac{ i }{m \omega}
+    \bigg[
         \theta(\tau - \tau')
         e^{ - i \omega (\tau - \tau') }
     +
         \theta(\tau' - \tau)
-        e^{ i \omega (\tau - \tau') }    
-    }{i m \omega}
+        e^{ i \omega (\tau - \tau') }
+    \bigg]
 \end{align}
-はpropagator（伝播関数）と呼ばれる量である。
+はFeynman propagator（ファインマン伝播関数）
+と呼ばれる量であって、
+調和振動子の運動方程式のGreen関数
+\begin{align}
+    \dfrac{m}{2}
+    \left(
+        \dfrac{d^2}{dt^2}
+        +
+        \omega^2
+    \right)
+    D_F (\tau - \tau')
+    =
+    \delta (\tau - \tau')
+\end{align}
+となっている。
 
 \subsection{量子力学における対称性と保存量}
 
