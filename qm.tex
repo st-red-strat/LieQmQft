@@ -4744,70 +4744,6 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     =
     \dfrac{m \omega}{2 \hbar}
     \dfrac{ i }{\sin \omega t}
-\\\notag
-    A^2 - B^2
-    &=
-    \left(
-        \dfrac{m \omega}{2 \hbar}
-        \dfrac{1}{\sin \omega t}
-    \right)^2
-    \left[
-        1
-        - e^{2 i \omega t}
-    \right]
-=
-    \left(
-        \dfrac{m \omega}{2 \hbar}
-    \right)^2
-    \dfrac{1}{\sin^2 \omega t}
-    \left[
-        1
-    -
-        e^{i \omega t}
-    \right]
-    \left[
-        1
-    +
-        e^{i \omega t}
-    \right]
-\notag\\&=
-    \left(
-        \dfrac{m \omega}{\hbar}
-    \right)^2
-    \dfrac{
-        i
-        e^{i \omega t}
-    }{\sin^2 \omega t}
-    \dfrac{
-            e^{- i \omega t/2}
-        -
-            e^{  i \omega t/2}
-    }{2 i}
-    \dfrac{
-        e^{i \omega t/2}
-    +
-        e^{- i \omega t/2}
-    }{2}
-\notag\\&=
-    \left(
-        \dfrac{m \omega}{\hbar}
-    \right)^2
-    \dfrac{
-    -
-        i
-        e^{i \omega t}
-    }{\sin^2 \omega t}
-    \sin \dfrac{\omega t}{2}
-    \cos \dfrac{\omega t}{2}
-=
-    \left(
-        \dfrac{m \omega}{\hbar}
-    \right)^2
-    \dfrac{
-    -
-        i
-        e^{i \omega t}
-    }{2 \sin \omega t}
 \\
     C(t)
     &:=
@@ -5025,6 +4961,133 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
 \end{align}
 \end{subequations}
 と定義した。
+これらは
+\begin{subequations}
+\begin{align}
+    A^2 - B^2
+    &=
+    \left(
+        \dfrac{m \omega}{2 \hbar}
+        \dfrac{1}{\sin \omega t}
+    \right)^2
+    \left[
+        1
+        - e^{2 i \omega t}
+    \right]
+=
+    \left(
+        \dfrac{m \omega}{2 \hbar}
+    \right)^2
+    \dfrac{1}{\sin^2 \omega t}
+    \left[
+        1
+    -
+        e^{i \omega t}
+    \right]
+    \left[
+        1
+    +
+        e^{i \omega t}
+    \right]
+\notag\\&=
+    \left(
+        \dfrac{m \omega}{\hbar}
+    \right)^2
+    \dfrac{
+        i
+        e^{i \omega t}
+    }{\sin^2 \omega t}
+    \dfrac{
+            e^{- i \omega t/2}
+        -
+            e^{  i \omega t/2}
+    }{2 i}
+    \dfrac{
+        e^{i \omega t/2}
+    +
+        e^{- i \omega t/2}
+    }{2}
+\notag\\&=
+    \left(
+        \dfrac{m \omega}{\hbar}
+    \right)^2
+    \dfrac{
+    -
+        i
+        e^{i \omega t}
+    }{\sin^2 \omega t}
+    \sin \dfrac{\omega t}{2}
+    \cos \dfrac{\omega t}{2}
+=
+    \left(
+        \dfrac{m \omega}{\hbar}
+    \right)^2
+    \dfrac{
+    -
+        i
+        e^{i \omega t}
+    }{2 \sin \omega t}
+\\
+    C^2 + D^2
+    &:=
+    -
+    \dfrac{1}{4 \hbar^2 \sin^2 \omega t}
+    \bigg\{
+        \bigg(
+            \dfrac{
+            e^{- i \omega t_i} F(t)
+        -
+            e^{+ i \omega t_i} F(t)^*
+        }{ 2i }
+        \bigg)^2
+    +
+        \bigg(
+            \dfrac{
+            e^{i \omega (t_i + t)} F(t)^*
+        -
+            e^{- i \omega (t_i + t)} F(t)
+        }{ 2i }
+        \bigg)^2
+    \bigg\}
+\notag\\&
+    =
+    \dfrac{1}{4 \hbar^2 \sin^2 \omega t}
+    \dfrac{
+            e^{- 2 i \omega t_i} F(t)^2
+        +
+            2 | F(t) |^2
+        +
+            e^{+ 2 i \omega t_i} {F(t)^*}^2
+    +
+            e^{2 i \omega (t_i + t)} {F(t)^*}^2
+        +
+            2 | F(t) |^2
+        -
+            e^{- 2 i \omega (t_i + t)} F(t)^2
+    }{4}
+\notag\\&
+    =
+    \dfrac{1}{4 \hbar^2 \sin^2 \omega t}
+    \dfrac{
+        \bigg(
+            1
+        -
+            e^{- 2 i \omega t}
+        \bigg) 
+        e^{- 2 i \omega t_i}
+        F(t)^2
+    +
+        \bigg(
+            1
+        -
+            e^{2 i \omega t}
+        \bigg) 
+        e^{+ 2 i \omega t_i} {F(t)^*}^2
+    +
+        4 | F(t) |^2
+    }{4}
+\end{align}
+\end{subequations}
 
 \subsection{量子力学における対称性と保存量}
 
