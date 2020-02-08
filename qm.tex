@@ -5086,6 +5086,67 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     +
         4 | F(t) |^2
     }{4}
+\\
+    BCD
+    &=
+    \dfrac{m \omega}{2 \hbar}
+    \dfrac{ i }{\sin \omega t}
+\times
+    \dfrac{1}{2 i \hbar \sin \omega t}
+    \dfrac{
+        e^{- i \omega t_i} F(t)
+    -
+        e^{i \omega t_i} F(t)^*
+    }{2 i}
+\times
+    \dfrac{1}{2 i \hbar \sin \omega t}
+    \dfrac{
+        e^{i \omega (t_i + t)} F(t)^*
+    -
+        e^{- i \omega (t_i + t)} F(t)
+    }{2 i}
+\notag\\&
+    =
+    \dfrac{m \omega}{32 \hbar^3}
+    \dfrac{ i }{\sin^3 \omega t}
+    \bigg[
+        e^{- i \omega t_i} F(t)
+    -
+        e^{i \omega t_i} F(t)^*
+    \bigg]
+    \bigg[
+        e^{i \omega (t_i + t)} F(t)^*
+    -
+        e^{- i \omega (t_i + t)} F(t)
+    \bigg]
+\notag\\&
+    =
+    \dfrac{m \omega}{32 \hbar^3}
+    \dfrac{ i }{\sin^3 \omega t}
+    \bigg[
+        e^{i \omega t}
+        | F(t) |^2
+    -
+        e^{- i \omega (2 t_i + t)} F(t)^2
+    -
+        e^{i \omega (2 t_i + t)} {F(t)^*}^2
+    +
+        e^{- i \omega t}
+        | F(t) |^2
+    \bigg]
+\notag\\&
+    =
+    \dfrac{m \omega}{32 \hbar^3}
+    \dfrac{ i }{\sin^3 \omega t}
+    \bigg[
+        2
+        \cos \omega t
+        | F(t) |^2
+    -
+        e^{- i \omega (2 t_i + t)} F(t)^2
+    -
+        e^{i \omega (2 t_i + t)} {F(t)^*}^2
+    \bigg]
 \end{align}
 \end{subequations}
 
