@@ -4986,11 +4986,11 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     \bigg[
         e^{ i \omega (t + \tau' - \tau) }
     -
-        e^{ - i \omega (2 t_i + t - \tau' - \tau) }
+        e^{ i \omega (2 t_i + t - \tau' - \tau) }
     -
         e^{ i \omega (\tau' + \tau - t - 2 t_i) }
-    -
-        e^{ - i \omega (\tau' - \tau + t) }
+    +
+        e^{ i \omega (\tau - \tau' - t) }
     \bigg]
 \notag\\&
     =
@@ -5007,14 +5007,77 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     \bigg(
         e^{ i \omega (t + \tau' - \tau) }
     -
-        e^{ - i \omega (2 t_i + t - \tau' - \tau) }
+        e^{ i \omega (2 t_i + t - \tau' - \tau) }
     -
         e^{ i \omega (\tau' + \tau - t - 2 t_i) }
     \bigg)
-    -
+    +
     [ 1 - \theta(\tau' - \tau) ]
-        e^{ - i \omega (\tau' - \tau + t) }
+        e^{ i \omega (\tau - \tau' - t) }
     \bigg]
+\notag\\&
+    =
+    \dfrac{i}{4 \hbar m \omega \sin \omega t}
+    \bigg\{
+    \int_{t_i}^{t_i + t}
+        d\tau
+    \int_{t_i}^{t_i + t}
+        d\tau'
+    J(\tau) J(\tau')
+    \theta(\tau - \tau')
+        e^{ i \omega (\tau' - \tau) }
+    \dfrac{
+        e^{ i \omega t }
+    -
+        e^{ - i \omega t }
+    }{2 i}
+    2 i
+\notag\\&\qquad\qquad
+    +
+    \int_{t_i}^{t_i + t}
+        d\tau
+    \int_{t_i}^{t_i + t}
+        d\tau'
+    J(\tau) J(\tau')
+    \bigg[
+    -
+    \dfrac{1}{2}
+    \bigg(
+        e^{ i \omega (2 t_i + t - \tau' - \tau) }
+    +
+        e^{ i \omega ( - 2 t_i - t + \tau' + \tau) }
+    \bigg)
+    +
+        e^{ i \omega (\tau - \tau' - t) }
+    \bigg]
+    \bigg\}
+\notag\\&
+    =
+    \dfrac{i}{4 \hbar m \omega \sin \omega t}
+    \bigg\{
+    2 i
+    \int_{t_i}^{t_i + t}
+        d\tau
+    \int_{t_i}^{t_i + t}
+        d\tau'
+    J(\tau) J(\tau')
+    \theta(\tau - \tau')
+        e^{ i \omega (\tau' - \tau) }
+    \sin \omega t
+\notag\\&\qquad\qquad
+    -
+    \dfrac{1}{2}
+    \bigg(
+        e^{ i \omega (2 t_i + t) }
+        { F(t)^* }^2
+    +
+        e^{ i \omega ( - 2 t_i - t) }
+        F(t)^2
+    \bigg)
+    +
+        e^{ - i \omega t }
+        | F(t) |^2
+    \bigg\}
 \\
     F(t)
     &:=
@@ -5024,7 +5087,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
 \end{align}
 \end{subequations}
 と定義した。
-ただし$\theta(\tau)$は
+ただし$\theta(\tau)$は階段関数
 (\ref{definition of step function})である。
 これらは
 \begin{subequations}
