@@ -5054,15 +5054,15 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     \dfrac{1}{4 \hbar^2 \sin^2 \omega t}
     \dfrac{
             e^{- 2 i \omega t_i} F(t)^2
-        +
+        -
             2 | F(t) |^2
         +
             e^{+ 2 i \omega t_i} {F(t)^*}^2
     +
             e^{2 i \omega (t_i + t)} {F(t)^*}^2
-        +
-            2 | F(t) |^2
         -
+            2 | F(t) |^2
+        +
             e^{- 2 i \omega (t_i + t)} F(t)^2
     }{4}
 \notag\\&
@@ -5071,7 +5071,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     \dfrac{
         \bigg(
             1
-        -
+        +
             e^{- 2 i \omega t}
         \bigg) 
         e^{- 2 i \omega t_i}
@@ -5079,11 +5079,11 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     +
         \bigg(
             1
-        -
+        +
             e^{2 i \omega t}
         \bigg) 
         e^{+ 2 i \omega t_i} {F(t)^*}^2
-    +
+    -
         4 | F(t) |^2
     }{4}
 \\
@@ -5146,7 +5146,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     \dfrac{
         \bigg(
             1
-        -
+        +
             e^{- 2 i \omega t}
         \bigg) 
         e^{- 2 i \omega t_i}
@@ -5154,13 +5154,14 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     +
         \bigg(
             1
-        -
+        +
             e^{2 i \omega t}
         \bigg) 
         e^{+ 2 i \omega t_i} {F(t)^*}^2
-    +
+    -
         4 | F(t) |^2
     }{4}
+\notag\\&\qquad
     - 2
     \dfrac{m \omega}{32 \hbar^3}
     \dfrac{ i }{\sin^3 \omega t}
@@ -5175,6 +5176,73 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
         e^{- i \omega t}
         | F(t) |^2
     \bigg]
+\notag\\&
+    =
+    \dfrac{m \omega}{32 \hbar^3}
+    \dfrac{ - i e^{i \omega t} }{\sin^3 \omega t}
+    \bigg\{
+        \bigg(
+            1
+        +
+            e^{- 2 i \omega t}
+        \bigg)
+        e^{- 2 i \omega t_i}
+        F(t)^2
+    +
+        \bigg(
+            1
+        +
+            e^{2 i \omega t}
+        \bigg) 
+        e^{+ 2 i \omega t_i} {F(t)^*}^2
+    -
+        4 | F(t) |^2
+    \notag\\&\qquad
+    + 2
+        \bigg[
+            | F(t) |^2
+        -
+            e^{- 2 i \omega (t_i + t)} F(t)^2
+        -
+            e^{2 i \omega t_i} {F(t)^*}^2
+        +
+            e^{- 2 i \omega t}
+            | F(t) |^2
+        \bigg]
+    \bigg\}
+\notag\\
+    \dfrac{
+        A ( C^2 + D^2 )
+    -
+        2 BCD
+    }{
+        A^2 - B^2
+    }
+    &=
+    \dfrac{1}{16 \hbar m \omega \sin^2 \omega t}
+    \bigg\{
+        \bigg(
+            1
+    -
+            e^{- 2 i \omega t}
+        \bigg)
+        e^{- 2 i \omega t_i}
+        F(t)^2
+    +
+        \bigg(
+            e^{2 i \omega t}
+        -
+            1
+        \bigg) 
+        e^{+ 2 i \omega t_i} {F(t)^*}^2
+    - 2
+        \bigg(
+            1
+        -
+            e^{- 2 i \omega t}
+        \bigg)
+        | F(t) |^2
+    \bigg\}
 \end{align}
 であって、
 
