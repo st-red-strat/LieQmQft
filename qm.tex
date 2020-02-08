@@ -4972,6 +4972,26 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     -
         e^{ - i \omega (\tau' - t_i) }
     }{2 i}
+\notag\\&
+    =
+    \dfrac{i}{4 \hbar m \omega \sin \omega t}
+    \int_{t_i}^{t_i + t}
+        d\tau
+    \int_{t_i}^{t_i + t}
+        d\tau'
+    \theta(\tau - \tau')
+    J(\tau) J(\tau')
+\notag\\&\qquad\qquad
+    \times
+    \bigg[
+        e^{ i \omega (t + \tau' - \tau) }
+    -
+        e^{ - i \omega (2 t_i + t - \tau' - \tau) }
+    -
+        e^{ i \omega (\tau' + \tau - t - 2 t_i) }
+    -
+        e^{ - i \omega (\tau' - \tau + t) }
+    \bigg]
 \\
     F(t)
     &:=
