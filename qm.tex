@@ -4992,6 +4992,29 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     -
         e^{ - i \omega (\tau' - \tau + t) }
     \bigg]
+\notag\\&
+    =
+    \dfrac{i}{4 \hbar m \omega \sin \omega t}
+    \int_{t_i}^{t_i + t}
+        d\tau
+    \int_{t_i}^{t_i + t}
+        d\tau'
+    J(\tau) J(\tau')
+\notag\\&\qquad\qquad
+    \times
+    \bigg[
+    \theta(\tau - \tau')
+    \bigg(
+        e^{ i \omega (t + \tau' - \tau) }
+    -
+        e^{ - i \omega (2 t_i + t - \tau' - \tau) }
+    -
+        e^{ i \omega (\tau' + \tau - t - 2 t_i) }
+    \bigg)
+    -
+    [ 1 - \theta(\tau' - \tau) ]
+        e^{ - i \omega (\tau' - \tau + t) }
+    \bigg]
 \\
     F(t)
     &:=
@@ -5001,6 +5024,8 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
 \end{align}
 \end{subequations}
 と定義した。
+ただし$\theta(\tau)$は
+(\ref{definition of step function})である。
 これらは
 \begin{subequations}
 \begin{align}

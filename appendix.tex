@@ -1050,6 +1050,58 @@ Rodrigues' formulaは
 \end{subequations}
 とも書かれる。
 
+\subsubsection{Diracの$\delta$関数}
+
+$f(x)$はなめらかで$|x| \to \infty$で十分早く
+$0$に収束する関数
+（急減少ないし緩増加関数、より一般には
+コンパクト台（compact support）を持つ関数）
+であるとする。
+そのような任意の$f(x)$に対して
+\begin{align}
+    \int dx f(x) \delta(x - a)
+    =
+    f(a)
+\end{align}
+を満たす$\delta$を
+Diracのdelta関数（Dirac delta function）
+という。
+特に、$a$を含まない任意の区間で$\delta(x - a)$を
+積分しても$0$になってしまう。
+
+明らかに、普通の実関数は上のような性質を満たすことは出来ない。
+Diracのdeltaは超関数
+（Schwartz distributionまたはgeneralized function）
+として定式化され、
+あるいは佐藤超関数（hyperfunction）として
+定式化することもできる。
+
+Dirac deltaの微分は部分積分によって定義される。
+
+\subsubsection{階段関数}
+
+ヘヴィサイドの階段関数（Heaviside step function）は
+\begin{align}
+    \theta(x)
+    :=
+    \begin{cases}
+        1 & (x > 0)
+    \\
+        0 & (x < 0)
+    \end{cases}
+\label{definition of step function}
+\end{align}
+と定義される。
+明らかに$\theta(- x) = 1 - \theta(x)$が成り立つ。
+その著しい性質として、
+微分がDirac deltaとなること
+\begin{align}
+    \delta(x)
+    =
+    \dfrac{d \theta(x)}{dx}
+\end{align}
+が挙げられる。
+
 \newpage
 \subsection{Fourier級数展開、Fourier変換}
 
