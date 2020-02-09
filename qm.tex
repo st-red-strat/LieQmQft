@@ -5627,13 +5627,12 @@ $\theta(\tau)$は階段関数
             e^{ - i \omega' (\tau - \tau') }
         }{\omega'^2 - (\omega - i \epsilon)^2}
 \notag\\&=
-    -
     \dfrac{2}{m}
     \int
         \dfrac{d \omega'}{2 \pi}
         \dfrac{
             e^{ - i \omega' (\tau - \tau') }
-        }{\omega'^2 - \omega^2 + i \epsilon}
+        }{- \omega'^2 + \omega^2 - i \epsilon}
 \end{align}
 はFeynman propagator（ファインマン伝播関数）
 と呼ばれる量であり、
@@ -5655,7 +5654,6 @@ Dirac deltaのFourier表示
     \right)
     D_F (t)
 =
-    -
     \left(
         \dfrac{d^2}{dt^2}
         +
@@ -5665,9 +5663,8 @@ Dirac deltaのFourier表示
         \dfrac{d \omega'}{2 \pi}
         \dfrac{
             e^{ - i \omega' t }
-        }{\omega'^2 - \omega^2 + i \epsilon}
+        }{- \omega'^2 + \omega^2 - i \epsilon}
 =
-    -
     \int
         \dfrac{d \omega'}{2 \pi}
         \dfrac{
@@ -5675,7 +5672,7 @@ Dirac deltaのFourier表示
             \omega'^2
         +
             \omega^2
-        }{\omega'^2 - \omega^2 + i \epsilon}
+        }{- \omega'^2 + \omega^2 - i \epsilon}
         e^{ - i \omega' t }
 = 
     \delta (t)
