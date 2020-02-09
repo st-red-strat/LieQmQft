@@ -1076,6 +1076,17 @@ Diracのdeltaは超関数
 あるいは佐藤超関数（hyperfunction）として
 定式化することもできる。
 
+Dirac delta関数のFourier表示は
+\begin{align}
+    \delta(x-y)
+    =
+    \int
+    \dfrac{dk}{2\pi}
+    e^{ik(x-y)}
+\label{dirac delta fourier representation}
+\end{align}
+のように与えられる。
+
 Dirac deltaの微分は部分積分によって定義される。
 
 \subsubsection{階段関数}
@@ -1093,24 +1104,44 @@ Dirac deltaの微分は部分積分によって定義される。
 \end{align}
 と定義される。
 明らかに$\theta(- x) = 1 - \theta(x)$が成り立つ。
-その著しい性質として、
-微分がDirac deltaとなること
-\begin{align}
-    \delta(x)
-    =
-    \dfrac{d \theta(x)}{dx}
-\end{align}
-が挙げられ、
 階段関数のFourier変換は
-正の無限小量$\delta$を使って
+正の無限小量$\epsilon$を使って
 \begin{align}
   \theta(t)
   &=
     - \int\dfrac{d \omega'}{2 \pi i}
-    \dfrac{e^{- i \omega' t}}{\omega' + i \delta}
+    \dfrac{e^{- i \omega' t}}{\omega' + i \epsilon}
 \label{fourier transformation of step function}
 \end{align}
-と書ける。
+と書け、
+その著しい性質として
+微分がDirac delta
+(\ref{dirac delta fourier representation})
+となること
+\begin{align}
+    \left(
+        \dfrac{d}{dt}
+        +
+        \epsilon
+    \right)
+    \theta(t)
+=
+    - \int\dfrac{d \omega'}{2 \pi i}
+    \dfrac{
+        - i \omega' + \epsilon
+    }{\omega' + i \epsilon}
+    e^{- i \omega' t}
+=
+    - \int\dfrac{d \omega'}{2 \pi i}
+    e^{- i \omega' t}
+    ( - i)
+=
+    \delta(x)
+\end{align}
+が挙げられる。
+すなわち、$\theta(t)$は
+微分operator $\dfrac{d}{dt}$の
+Green関数になっている。
 
 \newpage
 \subsection{Fourier級数展開、Fourier変換}
@@ -1221,6 +1252,9 @@ inverse Fourier transform（逆フーリエ変換）を
 \end{align}
 \end{subequations}
 で定める。
+特に、逆変換はDirac delta関数のFourier表示
+(\ref{dirac delta fourier representation})
+により正当化される。
 $\dfrac{1}{2\pi}$を
 Fourier変換（逆変換でなく）の定義に付けて
 $\tilde{f}(k)=\dfrac{1}{2\pi}\int dx\ f(x) e^{-ikx}$
@@ -1245,17 +1279,6 @@ $
 数値計算や結晶学では角周波数でなく周波数を用いて
 $\tilde{f}(k)=\int dx\ f(x) e^{+2\pi ikx}$としたり、
 とにかく無数の流儀があるが、本質積な違いは何もない。
-
-上の逆変換はDirac delta関数のFourier表示
-\begin{align}
-    \delta(x-y)
-    =
-    \int
-    \dfrac{dk}{2\pi}
-    e^{ik(x-y)}
-\label{dirac delta fourier}
-\end{align}
-により正当化される。
 
 Fourier変換は不確定性関係という良くない性質を持つため、
 画像処理などの分野ではwavelet解析という拡張を考えることがある。
