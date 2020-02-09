@@ -1100,7 +1100,17 @@ Dirac deltaの微分は部分積分によって定義される。
     =
     \dfrac{d \theta(x)}{dx}
 \end{align}
-が挙げられる。
+が挙げられ、
+階段関数のFourier変換は
+正の無限小量$\delta$を使って
+\begin{align}
+  \theta(t)
+  &=
+    - \int\dfrac{d \omega'}{2 \pi i}
+    \dfrac{e^{- i \omega' t}}{\omega' + i \delta}
+\label{fourier transformation of step function}
+\end{align}
+と書ける。
 
 \newpage
 \subsection{Fourier級数展開、Fourier変換}
