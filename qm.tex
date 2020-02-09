@@ -3709,9 +3709,10 @@ $S_{cl} [J]$の部分も
         Dx(t)
     \exp\left(
         -
-        \dfrac{ i m }{2\hbar}
+        \dfrac{ i }{\hbar}
         \int_{t_i}^{t_f} dt\ 
         x
+        \dfrac{ m }{2}
         \left[
             \left(
                 \dfrac{d}{dt}
@@ -3721,16 +3722,21 @@ $S_{cl} [J]$の部分も
         \right]
         x
     \right)
+\label{harmonic oscillator action operator matrix}
 \end{align}
 となるが、
 operator $
+    \dfrac{ m }{2}
+    \left[
     \left(
         \dfrac{d}{dt}
     \right)^2
 +
     \omega^2
+    \right]
 $の固有関数
 \begin{align}
+    \dfrac{ m }{2}
     \left[
         \left(
             \dfrac{d}{dt}
@@ -3766,9 +3772,12 @@ $の固有関数
     &&
     \lambda_n
     =
-    \omega^2
+    \dfrac{ m }{2}
+    (
+        \omega^2
     -
-    \omega_n^2
+        \omega_n^2
+    )
 \end{align}
 であるので、これで$x(t)$を展開し
 \begin{align}
@@ -3782,6 +3791,7 @@ $の固有関数
 \begin{align}
     \int_{t_i}^{t_f} dt\ 
     x
+    \dfrac{ m }{2}
     \left[
         \left(
             \dfrac{d}{dt}
@@ -3817,7 +3827,8 @@ $の固有関数
 \end{align}
 より、
 任意の関数についての積分は、
-この係数$a_n$についての積分
+この係数$a_n$についてのFresnel積分
+(\ref{fresnel integral})
 \begin{align}
     K[J]( t_f, q_f ; t_i, q_i )
     &=
@@ -3832,7 +3843,7 @@ $の固有関数
     \right]
     \exp\left(
         -
-        \dfrac{ i m }{2\hbar}
+        \dfrac{ i }{\hbar}
         \sum_{n}
         a_n^2
         \lambda_n
@@ -3848,7 +3859,7 @@ $の固有関数
         \int d a_n
         \exp\left(
             -
-            \dfrac{ i m }{2\hbar}
+            \dfrac{ i }{\hbar}
             a_n^2
             \lambda_n
         \right)
@@ -3861,7 +3872,7 @@ $の固有関数
             { \partial (a_n) }
     \prod_{n=1}^\infty
     \sqrt{
-        \dfrac{2 \pi \hbar}{i m \lambda_n}
+        \dfrac{\pi \hbar}{i \lambda_n}
     }
 \notag\\&=
     \exp\left(
@@ -5565,10 +5576,76 @@ $\theta(\tau)$は階段関数
         \theta(\tau' - \tau)
         e^{ i \omega (\tau - \tau') }
     \bigg]
+\notag\\&=
+    -
+    \dfrac{ i }{m \omega}
+    \int
+        \dfrac{d \omega'}{2 \pi i}
+    \bigg[
+        \dfrac{
+            e^{ - i (\omega + \omega') (\tau - \tau') }
+        }{\omega' + i \epsilon}
+    +
+        \dfrac{
+            e^{ i (\omega + \omega') (\tau - \tau') }
+        }{\omega' + i \epsilon}
+    \bigg]
+\notag\\&=
+    -
+    \dfrac{ i }{m \omega}
+    \int
+        \dfrac{d \omega'}{2 \pi i}
+    \bigg[
+        \dfrac{
+            e^{ - i \omega' (\tau - \tau') }
+        }{\omega' - \omega + i \epsilon}
+    +
+        \dfrac{
+            e^{ - i \omega' (\tau - \tau') }
+        }{- \omega' - \omega + i \epsilon}
+    \bigg]
+\notag\\&=
+    \dfrac{ i }{m \omega}
+    \int
+        \dfrac{d \omega'}{2 \pi i}
+        \dfrac{
+            e^{ - i \omega' (\tau - \tau') }
+        }{\omega'^2 - (- \omega + i \epsilon)^2}
+    \bigg[
+        (- \omega' - \omega + i \epsilon)
+    +
+        (\omega' - \omega + i \epsilon)
+    \bigg]
+\notag\\&=
+    \dfrac{ 2 i }{m \omega}
+    \bigg[
+        - \omega + i \epsilon
+    \bigg]
+    \int
+        \dfrac{d \omega'}{2 \pi i}
+        \dfrac{
+            e^{ - i \omega' (\tau - \tau') }
+        }{\omega'^2 - (\omega - i \epsilon)^2}
+\notag\\&=
+    -
+    \dfrac{2}{m}
+    \int
+        \dfrac{d \omega'}{2 \pi}
+        \dfrac{
+            e^{ - i \omega' (\tau - \tau') }
+        }{\omega'^2 - \omega^2 + i \epsilon}
 \end{align}
 はFeynman propagator（ファインマン伝播関数）
-と呼ばれる量であって、
-調和振動子の運動方程式のGreen関数
+と呼ばれる量であり、
+2つ目の等号には階段関数のFourier表示
+(\ref{fourier transformation of step function})
+を用いた。
+Dirac deltaのFourier表示
+(\ref{dirac delta fourier representation})
+に気を付けると、
+これは調和振動子の作用に現れるoperator
+(\ref{harmonic oscillator action operator matrix})
+のGreen関数
 \begin{align}
     \dfrac{m}{2}
     \left(
@@ -5576,9 +5653,32 @@ $\theta(\tau)$は階段関数
         +
         \omega^2
     \right)
-    D_F (\tau - \tau')
-    =
-    \delta (\tau - \tau')
+    D_F (t)
+=
+    -
+    \left(
+        \dfrac{d^2}{dt^2}
+        +
+        \omega^2
+    \right)
+    \int
+        \dfrac{d \omega'}{2 \pi}
+        \dfrac{
+            e^{ - i \omega' t }
+        }{\omega'^2 - \omega^2 + i \epsilon}
+=
+    -
+    \int
+        \dfrac{d \omega'}{2 \pi}
+        \dfrac{
+        -
+            \omega'^2
+        +
+            \omega^2
+        }{\omega'^2 - \omega^2 + i \epsilon}
+        e^{ - i \omega' t }
+= 
+    \delta (t)
 \end{align}
 となっている。
 
