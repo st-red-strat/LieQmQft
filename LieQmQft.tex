@@ -20,6 +20,7 @@
 \pdfstringdefDisableCommands{\renewcommand*{\dot}[1]{#1}}
 \pdfstringdefDisableCommands{\renewcommand*{\ddot}[1]{#1}}
 \pdfstringdefDisableCommands{\renewcommand*{\hat}[1]{#1}}
+\pdfstringdefDisableCommands{\renewcommand*{\mathbb}[1]{#1}}
 
 \usepackage[english]{babel}
 
@@ -40,7 +41,12 @@
 %\begin{comment}
   \usetikzlibrary{positioning}
   \makeatletter
+  \renewcommand{\prepartname}{Part }
+  \renewcommand{\postpartname}{}
+  \@addtoreset{section}{part}
+    \renewcommand{\thepart}{\arabic{part}}
   \renewcommand{\theequation}{\arabic{section}.\arabic{subsection}.\arabic{equation}}
+  \@addtoreset{equation}{part}
   \@addtoreset{equation}{section}
   \@addtoreset{equation}{subsection}
 %\end{comment}
