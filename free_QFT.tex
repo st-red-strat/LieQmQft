@@ -133,23 +133,128 @@ Lagrangianを
     \mathcal{L}_{\rm real}
     &:=
     -
-    \dfrac{ \eta^{\mu\nu} }{2}
-        \partial_\mu \phi
-        \partial_\nu \phi
+    \dfrac{ \eta^{\rho\sigma} }{2}
+        \partial_\rho \phi
+        \partial_\sigma \phi
     -
     \dfrac{m^2}{2} \phi^2
 \\
     \mathcal{L}_{\rm complex}
     &:=
     -
-    \eta^{\mu\nu}
-        \partial_\mu \varphi^*
-        \partial_\nu \varphi
+    \eta^{\rho\sigma}
+        \partial_\rho \varphi^*
+        \partial_\sigma \varphi
     -
     m^2 |\varphi|^2
 \end{align}
 で与える。
 ここで$\eta$は無次元の定数行列である。
+
+これらの運動方程式は
+d'Alembert operator
+（ダランベール演算子、
+d'Alembertian、ダランベルシアン、
+古い文献ではd'Alemberian、ダランベーリアンとも）
+$\Box := \eta^{\mu \sigma}
+    \partial_\mu
+    \partial_\sigma$
+を用いて
+\begin{align}
+    0 &=
+    \dfrac{\delta \mathcal{L}_{\rm real}}
+        {\delta \phi}
+    -
+    \partial_\mu
+    \dfrac{\delta \mathcal{L}_{\rm real}}
+        {\delta (\partial_\mu \phi)}
+    =
+    - \dfrac{m^2}{2}2 \phi
+    -
+    \partial_\mu
+    \left[
+        -
+        \dfrac{ \eta^{\rho \sigma} }{2}
+        \left(
+            \delta_\rho^\mu
+            \partial_\sigma \phi
+        +
+            \partial_\rho \phi
+            \delta_\sigma^\mu
+        \right)
+    \right]
+\notag\\&
+    =
+    - m^2 \phi
+    +
+    \partial_\mu
+    \left[
+        \dfrac{
+            \eta^{\mu \sigma}
+            \partial_\sigma \phi
+        +
+            \eta^{\rho \mu}
+            \partial_\rho \phi
+        }{2}
+    \right]
+    =
+    - m^2 \phi
+    +
+    \eta^{\mu \sigma}
+        \partial_\mu
+        \partial_\sigma
+    \phi
+\notag\\&
+    =
+    (\Box - m^2) \phi
+\end{align}
+および
+\begin{subequations}
+\begin{align}
+    0 &=
+    \dfrac{\delta \mathcal{L}_{\rm complex}}
+        {\delta \varphi^*}
+    -
+    \partial_\mu
+    \dfrac{\delta \mathcal{L}_{\rm complex}}
+        {\delta (\partial_\mu \varphi^*)}
+    =
+    -
+    m^2 \varphi
+    -
+    \partial_\mu
+    \left(
+        -
+        \eta^{\rho\sigma}
+        \delta_\rho^\mu
+        \partial_\sigma \varphi        
+    \right)
+\notag\\&
+    =
+    -
+    m^2 \varphi
+    +
+    \eta^{\mu\sigma}
+        \partial_\mu
+        \partial_\sigma
+        \varphi
+    =
+    (\Box - m^2)
+    \varphi
+\\
+    0 &=
+    \dfrac{\delta \mathcal{L}_{\rm complex}}
+        {\delta \varphi^*}
+    -
+    \partial_\mu
+    \dfrac{\delta \mathcal{L}_{\rm complex}}
+        {\delta (\partial_\mu \varphi^*)}
+    =
+    (\Box - m^2)
+    \varphi^*
+\end{align}
+\end{subequations}
+と得られる。
 
 \subsubsection{Hamilton形式}
 
@@ -172,6 +277,15 @@ Hamiltonianも解析力学の場合と全く同様に
     \pi(t, \bm{x}) \dot{\phi}(t, \bm{x})
     -
     \mathcal{L}(t, \bm{x})
+    =
+    m^2 \phi
+    -
+    \partial_\mu
+    \left(
+        - \eta^{\rho \sigma}
+        \delta_\rho^\mu
+        \partial_\sigma \phi
+    \right)
 \end{align}
 \end{subequations}
 と定義される。
