@@ -466,7 +466,7 @@ $n$次元調和振動子の場合Lagrangianは
     m\omega^2 q_i
   \bigg)
 \notag\\&=
-    m\ddot{q_i}
+    m\ddot{q}_i
   +
     m\omega^2 q_i
 \end{align}
@@ -595,7 +595,7 @@ $U$に相当する項はその中に入れていない）。
 各粒子の電荷を$q_i$、位置を$\bm{x}_i$として
 \begin{align}
   L' = L
-  +
+  -
   U(\bm{x}_1, \dots, \bm{x}_n)
   -
   \sum_i
@@ -1488,7 +1488,7 @@ Hamiltonianは
 \quad
 &\Rightarrow
 \quad
-  \ddot{q_i} = \dfrac{\dot{p}_i}{m}
+  \ddot{q}_i = \dfrac{\dot{p}_i}{m}
   = \dfrac{- m \omega^2 q_i}{m}
   = - \omega^2 q_i
 \label{hamiltonian e.o.m for harmonic oscillator}
@@ -1614,7 +1614,7 @@ $\dot{x}$には依存していないので、
   \dfrac{\partial}{\partial (\dot{x_n})_i}
   \left(
     L
-  +
+  -
     U(\bm{x}_1, \dots, \bm{x}_n)
   -
     \sum_m
@@ -1649,10 +1649,9 @@ $\dot{x}$には依存していないので、
   p'_i = p_i + (q A)_i
 \end{align}
 である。
-
 この運動量を用いて
 Hamiltonian
-(\ref{hamiltonian definition})を定義すると、
+(\ref{hamiltonian definition})を定義すると
 \begin{align}
   H'
   &=
@@ -1672,7 +1671,7 @@ Hamiltonian
   -
   \left(
     L
-  +
+  -
     U(\bm{x}_1, \dots, \bm{x}_n)
   -
     \sum_m
@@ -1683,26 +1682,39 @@ Hamiltonian
       \dot{\bm{x}}_m \cdot \bm{A}(\bm{x}_m)
     \Big]
   \right)
-  \right]_{\dot{q} = \dot{q}(\{q\},\{p'\},t)}
+  \right]_{
+    \dot{x}
+    =
+    \dot{x}(\{x\},\{p + qA\},t)
+  }
 \notag\\&
   =
-  H
-  +
   \left[
     \sum_i
-      \dot{q}_i
-      (q A)_i
-  -
-  \left(
+      \dot{x}_i
+      p_i
+    -
+      L
+  +
     U(\bm{x}_1, \dots, \bm{x}_n)
-  -
+  +
     \sum_m
     q_m
-    \Big[
       \phi(\bm{x}_m)
-    -
-      \dot{\bm{x}}_m \cdot \bm{A}(\bm{x}_m)
-    \Big]
-  \right)
-  \right]_{\dot{q} = \dot{q}(\{q\},\{p'\},t)}
+  \right]_{
+    \dot{x}
+    =
+    \dot{x}(\{x\},\{p + qA\},t)
+  }
+\notag\\&
+  =
+    H(\{x\},\{p + qA\})
+  +
+    U
+  +
+  \sum_m
+    q_m
+    \phi(\bm{x}_m)
 \end{align}
+を得、電場はenergyを、
+磁場はmomentumをsiftする事が分かる。
