@@ -257,9 +257,9 @@ $\Box := \eta^{\mu \sigma}
 \end{subequations}
 と得られる。
 
-\subsubsection{Massive自由Vector場の場合}
+\subsubsection{Massive自由Vector場の例}
 
-$\eta_{\mu\nu}$を無次元の対称行列、
+$\eta_{\mu\nu}$を無次元の定数対称行列、
 $\eta^{\mu\nu}$をその逆行列
 $\eta_{\mu\lambda} \eta^{\lambda \nu} = \delta_\mu^\nu$として、
 vector場$A^\mu$に対し
@@ -271,21 +271,145 @@ $F_{\mu\nu} :=
 を定義する。
 $F_{\mu\nu}$を場の強さテンソル
 （field strength tensor）
-という。
+といい、
+以下では同様に添え字の上げ下げを$\eta$で行う。
 Lagrangianを
 \begin{align}
     \mathcal{L}
     :=
-    \eta^{\mu\rho}
-    \eta^{\nu\sigma}
+    -
+    \dfrac{1}{4}
+        \eta^{\mu\rho}
+        \eta^{\nu\sigma}
     F_{\mu\nu} F_{\rho\sigma}
     -
     \dfrac{m^2}{2}
         \eta_{\mu \nu}
         A^\mu A^\nu
+=
+    - \dfrac{1}{4}
+    F_{\mu\nu} F^{\mu\nu}
+    -
+    \dfrac{m^2}{2}
+        A^\mu A_\mu
 \end{align}
 で与えるとき、
+\begin{align}
+    \dfrac{\delta}
+    {\delta (\partial_\sigma A_\rho)}
+    F_{\mu\nu}
+    &=
+    \dfrac{\delta}
+    {\delta (\partial_\sigma A_\rho)}
+    \left[
+        \partial_\mu A_\nu
+        - \partial_\nu A_\mu
+    \right]
+    =
+    \delta_\mu^\sigma
+    \delta_\nu^\rho
+    -
+    \delta_\nu^\sigma
+    \delta_\mu^\rho
+\\
+    F_{\mu\nu} &= - F_{\nu\mu}
+\end{align}
+に気を付けると
 Euler-Lagrange方程式(\ref{field EL eq})は
+\begin{align}
+    0
+    &=
+    \dfrac{\delta \mathcal{L}}
+        {\delta A_\rho}
+    -
+    \partial_\sigma
+    \dfrac{\delta \mathcal{L}}
+        {\delta (\partial_\sigma A_\rho)}
+    =
+    -
+    \dfrac{m^2}{2}
+        \eta_{\mu \nu}
+        \left(
+            A^\mu \eta^{\nu\rho}
+        +
+            \eta^{\mu\rho} A^\nu
+        \right)
+    -
+    \partial_\sigma
+    \dfrac{\delta}
+        {\delta (\partial_\sigma A_\rho)}
+        \left[
+            - \dfrac{1}{4}
+            F_{\mu\nu} F^{\mu\nu}
+        \right]
+\notag\\&
+    =
+    -
+    \dfrac{m^2}{2}
+        \left(
+            A^\mu \delta_\mu^{\rho}
+        +
+            \delta_{\nu}^\rho A^\nu
+        \right)
+    +
+    \dfrac{1}{4}
+    \partial_\sigma
+    \bigg\{
+        F_{\mu\nu}
+        \left[
+            \eta^{\mu \sigma}
+            \eta^{\nu \rho}
+        -
+            \eta^{\nu\sigma}
+            \eta^{\mu \rho}
+        \right]
+    +
+        \left[
+            \delta_\mu^\sigma
+            \delta_\nu^\rho
+            -
+            \delta_\nu^\sigma
+            \delta_\mu^\rho        
+        \right]
+        F^{\mu\nu}
+    \bigg\}
+\notag\\&
+    =
+    -
+    m^2
+    A^\rho
+    +
+    \dfrac{1}{4}
+    \partial_\sigma
+    \bigg\{
+        F^{\sigma\rho}
+    -
+        F^{\rho\sigma}
+    +
+        F^{\sigma\rho}
+    -
+        F^{\rho\sigma}
+    \bigg\}
+=
+    -
+    m^2
+    A^\rho
+    +
+    \partial_\sigma
+        F^{\sigma\rho}
+\notag\\&
+=
+    -
+    m^2
+    A^\rho
+    +
+    \Box A^\rho
+    -
+    \eta^{\rho \lambda}
+    \partial_\sigma \partial_\lambda
+    A^\sigma
+\end{align}
+と得られる。
 
 \subsubsection{Hamilton形式}
 
