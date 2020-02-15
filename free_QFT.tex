@@ -121,6 +121,7 @@ $\mathcal{L}$と書く。
     -
     \partial_\mu
     \dfrac{\delta \mathcal{L}}{\delta (\partial_\mu \phi)}
+\label{field EL eq}
 \end{align}
 と導かれる。
 
@@ -151,7 +152,7 @@ Lagrangianを
 で与える。
 ここで$\eta$は無次元の定数行列である。
 
-これらの運動方程式は
+これらの運動方程式(\ref{field EL eq})は
 d'Alembert operator
 （ダランベール演算子、
 d'Alembertian、ダランベルシアン、
@@ -255,6 +256,36 @@ $\Box := \eta^{\mu \sigma}
 \end{align}
 \end{subequations}
 と得られる。
+
+\subsubsection{Massive自由Vector場の場合}
+
+$\eta_{\mu\nu}$を無次元の対称行列、
+$\eta^{\mu\nu}$をその逆行列
+$\eta_{\mu\lambda} \eta^{\lambda \nu} = \delta_\mu^\nu$として、
+vector場$A^\mu$に対し
+$A_\mu := \eta_{\mu\nu} A^\nu$
+および
+$F_{\mu\nu} :=
+\partial_\mu A_\nu
+- \partial_\nu A_\mu$
+を定義する。
+$F_{\mu\nu}$を場の強さテンソル
+（field strength tensor）
+という。
+Lagrangianを
+\begin{align}
+    \mathcal{L}
+    :=
+    \eta^{\mu\rho}
+    \eta^{\nu\sigma}
+    F_{\mu\nu} F_{\rho\sigma}
+    -
+    \dfrac{m^2}{2}
+        \eta_{\mu \nu}
+        A^\mu A^\nu
+\end{align}
+で与えるとき、
+Euler-Lagrange方程式(\ref{field EL eq})は
 
 \subsubsection{Hamilton形式}
 
