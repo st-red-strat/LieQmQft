@@ -90,58 +90,9 @@ $\{\hat{q}\},\{\hat{p}\}$
 以下ではこの方法を
 Hilbert空間と呼ばれるvector spaceを用いて与えよう。
 
-vector space $\mathcal{H}$が
-内積$\eta$を持つとは、
-$
-\forall \ket{\psi_1}, \ket{\psi_2}
-\in \mathcal{H}
-$
-に対し複素数
-$ \braket{ \psi_1 | \psi_2 }
-:= \eta(\ket{\psi_1}, \ket{\psi_2})
-\in \mathbb{C} $
-を与える写像
-$\eta:
-\mathcal{H}\times \mathcal{H}
-\to \mathbb{C}$
-であって、
-\begin{subequations}
-\begin{align}
-    \braket{ \psi | \phi } &= \braket{ \phi | \psi }^*
-&\text{（共役対称性）}
-\\
-            \bra{\phi}\Big(
-            a \ket{\psi_1}
-        +
-            b \ket{\psi_2}
-        \Big)
-    &=
-        a \braket{\phi|\psi_1}
-    +
-        b \braket{\phi|\psi_2}
-    \qquad
-    \text{ for } \forall
-    a,b\in \mathbb{C}
-&\text{（線形性）}
-\\
-    \braket{ \psi | \psi } \ge 0
-    ,\quad&\text{and}\quad
-    \braket{ \phi | \phi } = 0
-    \Leftrightarrow
-    \ket{\phi}=0
-&\text{（正定値性）}
-\end{align}
-\end{subequations}
-を満たすものがあることを言う。
-$\Big|\Big| \ket{\psi} \Big|\Big|^2
-:= \braket{ \psi | \psi }$
-を$\ket{\psi}$のnormという。
-$2$つのvector $\ket{\psi},\ket{\phi}$の間の
-内積が消える
-$\braket{\psi | \phi} = 0$
-とき、$\ket{\psi}$と$\ket{\phi}$は直交する（normalである）といい、
-$\ket{\psi} \perp \ket{\phi}$などと書く。
-例えば$0$は任意のvectorと直交する。
+内積空間の定義を
+\ref{subsubsec: inner product}
+で与えた。
 Hilbert空間とは内積空間であって完備な
 （直感的には、極限が十分に存在する）
 ものを言う。

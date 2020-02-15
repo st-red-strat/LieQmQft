@@ -22,17 +22,9 @@
 \end{align}
 となる。
 
-\subsubsection{空間Vectorの性質とScalar、Tensor}
+\subsubsection{極座標の場合}
 
-数学はvectorとはvector spaceの元であり、
-vector spaceの定義は\ref{Axioms of Vector Space}
-のように与えられていた。
-ところが物理におけるvectorは
-多くの場合は空間vectorと呼ばれるべきものであり、
-抽象的には回転群の表現と定義される。
-以下では具体的な例を見ながら、その性質について考えよう。
-
-$D$次元空間$\mathbb{R}^D$上の点は
+$D$次元Euclid空間$\mathbb{R}^D$上の点は
 $D$次元vector $\bm{r}$で表され、
 直交座標系（orthogonal coordinate system、Cartesian coordinates、デカルト座標などとも）
 $(x_1, x_2, \dots, x_D)$方向の単位ベクトル
@@ -96,10 +88,11 @@ $x_i$だけを変化させたときに
 と定義しよう。
 今や単位vector $\bm{e}_i (r, \theta)$は
 座標$(r, \theta)$の関数であり、
-座標が変わるごとに単位vectorの向きも変わってしまう。
+空間の各点で（つまり座標が変わるごとに）
+単位vectorの向きも変わってしまう。
 例えば、位置$(x, y) = (a,0), (0,b)$
 すなわち$(r, \theta) = (a, 0), (b, \frac{\pi}{2})$
-を表すvectorは
+を表すvectorはそれぞれ
 \begin{subequations}
 \begin{align}
   a \bm{e}_x
@@ -216,6 +209,19 @@ $t$に陰に依存していることに注意すると
     r \ddot{\theta}  
 \end{align}
 であり、整然とした直交座標での表式とは似ても似つかない。
+
+\subsubsection{空間Vectorの性質とScalar、Tensor}
+
+数学はvectorとはvector spaceの元であり、
+vector spaceの定義は\ref{Axioms of Vector Space}
+のように与えられていた。
+ところが物理におけるvectorは
+多くの場合は座標変換のもとでの変換性により特徴付けられ、
+空間vectorと呼ばれるべきものである。
+これらは抽象的には多様体上の接ベクトル、
+ないし回転群の表現と定義される。
+上の極座標における例と見比べながら、
+その性質について考えよう。
 
 Newton方程式はvectorで記述されているため、
 例えば極座標のような直交座標系以外の座標を用いると
@@ -348,7 +354,7 @@ actionの変分が微小量の$1$次まで
   S[q + \delta q] - S[q]
 \notag\\&=
   \int dt\ L(\{ q_i(t) + \delta q_i(t) \},
-  \{ \dot{q}_i(t) + \delta \dot{q_i}(t) \} )
+  \{ \dot{q}_i(t) + \delta \dot{q}_i(t) \} )
   - S[q]
 \notag\\&\simeq
   \int dt\ \sum_i
@@ -359,8 +365,8 @@ actionの変分が微小量の$1$次まで
     \{ \dot{q}(t) \} )
 %  \notag\\&\qquad
 +
-    \delta \dot{q_i}(t)
-    \dfrac{\partial}{\partial \dot{q_i}}
+    \delta \dot{q}_i(t)
+    \dfrac{\partial}{\partial \dot{q}_i}
     L(\{ q(t) \},
     \{ \dot{q}(t) \} )
   \bigg\}
@@ -368,7 +374,7 @@ actionの変分が微小量の$1$次まで
   \sum_i
   \bigg[
     \delta q_i(t)
-    \dfrac{\partial}{\partial \dot{q_i}}
+    \dfrac{\partial}{\partial \dot{q}_i}
     L(\{ q(t) \},
     \{ \dot{q}(t) \} )
   \bigg]_{t=t_i}^{t_f}
@@ -382,7 +388,7 @@ actionの変分が微小量の$1$次まで
   \{ \dot{q}(t) \} )
 -
   \dfrac{d}{dt}
-  \dfrac{\partial}{\partial \dot{q_i}}
+  \dfrac{\partial}{\partial \dot{q}_i}
   L(\{ q(t) \},
   \{ \dot{q}(t) \} )
 \bigg\}
@@ -399,7 +405,7 @@ $[\cdots]_{t=t_i}^{t_f}$
   \qquad (\forall\ \delta q_i(t), i)
 \notag\\\Leftrightarrow\qquad
   0 &=
-  \dfrac{d}{dt}\dfrac{\partial L}{\partial \dot{q_i} }
+  \dfrac{d}{dt}\dfrac{\partial L}{\partial \dot{q}_i }
   - \dfrac{\partial L}{\partial q_i }
   \qquad (\ \forall i\ )
 \label{Euler-Lagrange for point masses}
@@ -422,7 +428,7 @@ $q_i = q_i(\{q'\})$
 Euler-Lagrange方程式が形を変えないこと
 \begin{align}
   0 &=
-  \dfrac{d}{dt}\dfrac{\partial L}{\partial \dot{q_i} }
+  \dfrac{d}{dt}\dfrac{\partial L}{\partial \dot{q}_i }
   - \dfrac{\partial L}{\partial q_i }
 \notag\\\Rightarrow
 0 &=
@@ -438,7 +444,7 @@ $n$次元調和振動子の場合Lagrangianは
 \begin{align}
   L = \sum_{j=1}^n
   \bigg(
-    \dfrac{m}{2}\dot{q_j}^2
+    \dfrac{m}{2}\dot{q}_j^2
   -
     \dfrac{m\omega^2}{2} q_j
   \bigg)
@@ -447,12 +453,12 @@ $n$次元調和振動子の場合Lagrangianは
 であるので、Euler-Lagrange方程式は
 \begin{align}
   0 &=
-  \dfrac{d}{dt}\dfrac{\partial L}{\partial \dot{q_i} }
+  \dfrac{d}{dt}\dfrac{\partial L}{\partial \dot{q}_i }
   - \dfrac{\partial L}{\partial q_i }
 \notag\\&=
   \dfrac{d}{dt}
   \bigg(
-    m\dot{q_i}
+    m\dot{q}_i
   \bigg)
   -
   \bigg(
@@ -488,9 +494,10 @@ $\bm{C}(\bm{x})$
 \end{align}
 を扱っているわけではない事に注意されたい。
 
-\subsubsection{電磁場中の荷電粒子}
+\subsubsection{電磁場中の荷電粒子のLagrangian}
 
-電荷を持つ粒子を荷電粒子というが、
+電荷を持つ粒子を
+荷電粒子（charged particle）というが、
 電荷$+q$の荷電粒子を
 電場$\bm{E} (t, \bm{x})
 = - \dfrac{\partial \bm{A}}{\partial t} (t, \bm{x})
@@ -535,9 +542,9 @@ $\bm{E}$とか$\bm{B}$も変わってしまうのだが、
 \footnote{
   もっとうるさいことを言うと、
   この輻射（粒子自身が出す電磁波）の影響を取り入れて計算すると
-  Abraham-Lorentz-Dirac方程式とか言われる
-  時間の3階微分を含むヤバそうな運動方程式が得られる。
-  実際これは相対論的な共変性とか因果律を破り、
+  Abraham-Lorentz-Dirac方程式と呼ばれる
+  時間の3階微分を含む運動方程式が得られる。
+  これは相対論的な共変性とか因果律を破り、
   外場がないのに増大する訳の分からない解（runaway solution）を持つ。
   特殊な状況下ではLandau-Lifshitz方程式という
   ある程度振る舞いのいい運動方程式に帰着するものの、
@@ -553,11 +560,12 @@ $\bm{E}$とか$\bm{B}$も変わってしまうのだが、
 を使って
 \begin{align}
   L' = L - q(\phi - \dot{\bm{x}} \cdot \bm{A})
+\label{point particle lagrangian with ele-mag potential}
 \end{align}
 で与えられる。
 
 $n$粒子系への拡張は容易である。
-これらの間のCoulomb potentialは
+これらの荷電粒子間のCoulomb potentialは
 真空の誘電率$\epsilon_0$を使って単に
 \begin{align}
   U(\bm{x}_1, \dots, \bm{x}_n)
@@ -571,9 +579,14 @@ $n$粒子系への拡張は容易である。
   \dfrac{1}{4 \pi \epsilon_0}
   \dfrac{q_i q_j}{|\bm{x}_i - \bm{x}_j|}
 \end{align}
-となる（我々のconventionでは
+となる
+（全ての$i, j$の組について足し上げると
+同じ項が必ず$2$回ずつ現れてしまう事を考慮し、
+和の範囲を制限した。
+また、我々のconventionでは
 $\phi$はあくまで外場なので、
-その中に$U$に相当する項は入れていない）。
+dynamicalな粒子が作るpotential
+$U$に相当する項はその中に入れていない）。
 また、各粒子が放射する電磁波は
 無視できるという仮定を置いていたので、
 ある粒子が他の粒子に電磁波を通じて影響を与えることはない。
@@ -591,6 +604,7 @@ $\phi$はあくまで外場なので、
   -
     \dot{\bm{x}}_i \cdot \bm{A}(\bm{x}_i)
   \Big]
+\label{many point particle lagrangian with ele-mag potential}
 \end{align}
 のようにすればよい。
 
@@ -706,13 +720,15 @@ $T$は系の対称性（symmetry）、
 特に、potentialや作用の形が異なる物理系の間で
 全ての観測量について予言が一致するような
 非自明な例はdualityとして知られており、
+弦理論に現れるmirror symmetryのように
 時折symmetryとほぼ区別しない用法で用いられる。
 
 弦理論でnear-horizon極限のような特定の極限を取るとT-dualityやD-braneを駆使して
 同じ理論を異なる複数の仕方で記述することが出来、
 複数の異なる理論の間に非自明なdualityを与えられる場合がある。
 例えばAdS/CFT correspondence
-(よりmodernにはgauge/gravity対応とも呼ばれる)
+(AdS/CFT対応、
+よりmodernにはgauge/gravity対応とも呼ばれる)
 の代表的な例では
 GKP-Witten relationなどの関係式により
 5次元$\rm{AdS}_5(\times S^5)$時空上の
@@ -907,7 +923,9 @@ $\partial^a L = 0$
 作用が変化しないことを要求するので、
 Lagrangianに生じ得る変化は
 上の$2$例で尽きている
-（のか？最も一般の場合にどうかは知らない）。
+（ように思われる。
+最も一般の場合にこれ以外の変化が許されるか、
+考えてみよ）。
 作用はその時間積分なので、
 あとは積分区間に生じ得る変化を次節で議論すれば
 作用の変化への寄与を全て考慮できている。
@@ -1091,7 +1109,7 @@ $- \delta t \dfrac{d L}{dt}$
 最初からこの易しい解釈を導入しなかったのは単に、
 scalar場の他にvectorやtensor量も含む
 場の理論におけるNoetherの定理の証明には
-Lie微分を使う方が簡単だからに過ぎない。）
+Lie微分を使う方が簡単だからである。）
 
 \subsubsection{対称性のgauge化}
 
@@ -1186,29 +1204,29 @@ Euler-Lagrange方程式と等価な微分方程式系を得ることを考えよ
 
 一般化運動量を
 \begin{align}
-  p_i := \dfrac{\partial L}{\partial \dot{q_i}}
+  p_i := \dfrac{\partial L}{\partial \dot{q}_i}
 \label{generalized momentum}
 \end{align}
 で定義する。
-一般に$\det \dfrac{\partial^2 L}{\partial \dot{q_i} \partial \dot{q_j} } \neq 0 $
+一般に$\det \dfrac{\partial^2 L}{\partial \dot{q}_i \partial \dot{q}_j } \neq 0 $
 であれば
-$p$の定義式を$\dot{q_i}$について
+$p$の定義式を$\dot{q}_i$について
 \begin{align}
-  \dot{q_i} = \dot{q_i}(\{q\},\{p\},t)
+  \dot{q}_i = \dot{q}_i(\{q\},\{p\},t)
 \end{align}
 のように解く事が出来、
 \footnote{
   このような逆解きが出来ない力学系を
   特異Lagrange系と呼ぶ。
-  gauge理論などは場の量子論における特異系の例である。
+  gauge理論などは場の理論における特異系の例である。
 }
-従って$\dot{q_i}$を方程式系から消去できる。
+従って$\dot{q}_i$を方程式系から消去できる。
 Euler-Lagrange方程式は
 \begin{align}
   \begin{cases}
-    \dot{p_i} = \dfrac{\partial L}{\partial q_i}
+    \dot{p}_i = \dfrac{\partial L}{\partial q_i}
 \\    \\
-      p_i = \dfrac{\partial L}{\partial \dot{q_i}}
+      p_i = \dfrac{\partial L}{\partial \dot{q}_i}
   \end{cases}
 %\quad
 %&\Leftrightarrow
@@ -1217,7 +1235,8 @@ Euler-Lagrange方程式は
 \end{align}
 となるが、
 Lagrangianそのものから$\{\dot{q}\}$を消去し
-$\{q\},\{p\}$の$6n$変数関数として書き直すと
+$\{q\},\{p\}$の$6n$変数関数として書き直すと、
+$L$を$\dot{q}$で微分することが出来なくなるため
 (\ref{generalized momentum})の右辺を表現する方法がなくなってしまう。
 そこで別のアプローチを考えよう。
 
@@ -1234,13 +1253,13 @@ Legendre変換
   :=
   \bigg[
     \sum_i
-      \dot{q_i} p_i
+      \dot{q}_i p_i
   - L(\{q\}, \{\dot{q}\})
   \bigg]_{\dot{q} = \dot{q}(\{q\},\{p\},t)}
 \label{hamiltonian definition}
 \end{align}
 はそのような構成の例である。
-右辺には$9n$個の変数$\{q\},\{\dot{q}\},\{p\}$が表れているが、
+右辺には$9n$個の変数$\{q\},\{\dot{q}\},\{p\}$が現れているが、
 $\dot{q}$が消去され
 $\{q\},\{p\}$の$6n$変数関数として表されていることに注意しよう。
 これらparameterで張られる$6n$次元空間を
@@ -1255,10 +1274,10 @@ topological spaceという幾何学の用語との混乱を招くので
 その著しい性質は$\dot{q}$を消去する直前の表式が
 $\dot{q}$に依っていないこと
 \begin{align}
-  \dfrac{\partial}{\partial \dot{q_i}}
+  \dfrac{\partial}{\partial \dot{q}_i}
   \bigg[
     \sum_j
-      \dot{q_j} p_j
+      \dot{q}_j p_j
   - L(\{q\}, \{\dot{q}\})
   \bigg]
   &=
@@ -1266,11 +1285,11 @@ $\dot{q}$に依っていないこと
     \sum_j\bigg(
       \delta_{ij} p_j
     \bigg)
-  - \dfrac{\partial L}{\partial \dot{q_i}}
+  - \dfrac{\partial L}{\partial \dot{q}_i}
   \bigg]
 \notag\\&=
     p_i
-    - \dfrac{\partial L}{\partial \dot{q_i}}
+    - \dfrac{\partial L}{\partial \dot{q}_i}
 \notag\\
   &\simeq 0
 \end{align}
@@ -1292,39 +1311,39 @@ $q(t)$がEuler-Lagrange方程式の解であるとすると
   \dfrac{\partial}{\partial q_i}
   \bigg[
     \sum_j p_j
-     \dot{q_j}
+     \dot{q}_j
      - L(\{q\}, \{\dot{q}\})
   \bigg]_{\dot{q} = \dot{q}(\{q\},\{p\},t)}
 \notag\\  &=
   \sum_j    p_j
-   \dfrac{\partial \dot{q_j} (\{q\},\{p\},t) }{\partial q_i }
+   \dfrac{\partial \dot{q}_j (\{q\},\{p\},t) }{\partial q_i }
    - \dfrac{\partial L(\{q\}, \{\dot{q}(\{q\},\{p\},t)\} ) }{
      \partial q_i
    }
 \notag\\  &=
    \sum_j    p_j
-    \dfrac{\partial \dot{q_j} }{\partial q_i}
+    \dfrac{\partial \dot{q}_j }{\partial q_i}
     - \Bigg[
       \dfrac{\partial L(\{q\}, \{\dot{q}\} ) }{
         \partial q_i
       }\bigg|_{\dot{q} = \dot{q}(\{q\},\{p\},t)}
       +
       \sum_j
-      \dfrac{\partial \dot{q_j}}{\partial q_i}
+      \dfrac{\partial \dot{q}_j}{\partial q_i}
       \dfrac{\partial L(\{q\}, \{\dot{q}\} ) }{
-        \partial \dot{q_j}
+        \partial \dot{q}_j
       }\bigg|_{\dot{q} = \dot{q}(\{q\},\{p\},t)}
     \Bigg]
 \notag\\  &=
     \sum_j    p_j
-     \dfrac{\partial \dot{q_j} }{\partial q_i}
+     \dfrac{\partial \dot{q}_j }{\partial q_i}
      - \Bigg[
        \dfrac{\partial L(\{q\}, \{\dot{q}\} ) }{
          \partial q_i
        }\bigg|_{\dot{q} = \dot{q}(\{q\},\{p\},t)}
        +
        \sum_j
-       \dfrac{\partial \dot{q_j}}{\partial q_i}
+       \dfrac{\partial \dot{q}_j}{\partial q_i}
        p_j
      \Bigg]
 \notag\\  &=
@@ -1336,12 +1355,12 @@ $q(t)$がEuler-Lagrange方程式の解であるとすると
       -
       \dfrac{ d }{ dt }
       \dfrac{\partial L}{
-        \partial \dot{q_i}
+        \partial \dot{q}_i
       }
     \qquad\because\text{Euler-Lagrange方程式}
 \notag\\  &=
     -
-    \dot{p_i}
+    \dot{p}_i
 \label{Hamilton's eom for p}
 \\
   \dfrac{\partial H}{\partial p_i}
@@ -1349,50 +1368,50 @@ $q(t)$がEuler-Lagrange方程式の解であるとすると
   \dfrac{\partial }{\partial p_i}
   \bigg[
     \sum_j
-      \dot{q_j} p_j
+      \dot{q}_j p_j
   - L(\{q\}, \{\dot{q}\})
   \bigg]_{\dot{q} = \dot{q}(\{q\},\{p\},t)}
 \notag\\  &=
   \sum_j
   \bigg[
-    \dfrac{\partial \dot{q_j}(\{q\},\{p\},t)}{
+    \dfrac{\partial \dot{q}_j(\{q\},\{p\},t)}{
       \partial p_i
     } p_j
   +
-  \dot{q_j}(\{q\},\{p\},t) \delta_{ij}
+  \dot{q}_j(\{q\},\{p\},t) \delta_{ij}
   \bigg]
 - \dfrac{\partial L(\{q\}, \{\dot{q}(\{q\},\{p\},t)\}) }{
   \partial p_i
 }
 \notag\\  &=
   \sum_j
-    \dfrac{\partial \dot{q_j}}{
+    \dfrac{\partial \dot{q}_j}{
       \partial p_i
     } p_j
   +
-  \dot{q_i}
+  \dot{q}_i
   - \sum_j
-  \dfrac{\partial \dot{q_j} }{
+  \dfrac{\partial \dot{q}_j }{
     \partial p_i
   }
   \dfrac{\partial L(\{q\}, \{\dot{q}\}) }{
-    \partial \dot{q_j}
+    \partial \dot{q}_j
   }
   \bigg|_{\dot{q} = \dot{q}(\{q\},\{p\},t)}
 \notag\\  &=
   \sum_j
-    \dfrac{\partial \dot{q_j}}{
+    \dfrac{\partial \dot{q}_j}{
       \partial p_i
     } p_j
   +
-  \dot{q_i}
+  \dot{q}_i
   - \sum_j
-  \dfrac{\partial \dot{q_j} }{
+  \dfrac{\partial \dot{q}_j }{
     \partial p_i
   }
     p_j
 \notag\\  &=
-    \dot{q_i}
+    \dot{q}_i
 \label{Hamilton's eom for q}
 \end{align}
 \end{subequations}
@@ -1427,17 +1446,17 @@ $n$次元調和振動子のLagrangianは
 (\ref{harmonic oscillator lagrangian})であったので、
 一般化運動量は
 \begin{align}
-  p_i &= \dfrac{\partial L}{\partial \dot{q_i}}
+  p_i &= \dfrac{\partial L}{\partial \dot{q}_i}
 =
-  m \dot{q_i}
+  m \dot{q}_i
 \end{align}
 と通常の運動量の定義に一致する。
 Hamiltonianは
 \begin{align}
   H &= \bigg[
-    \sum_i p_i \dot{q_i}
+    \sum_i p_i \dot{q}_i
     - L
-    \bigg]_{ \dot{q_i} = \frac{p_i}{m} }
+    \bigg]_{ \dot{q}_i = \frac{p_i}{m} }
 \notag\\&=
     \sum_i p_i \frac{p_i}{m}
     -
@@ -1459,17 +1478,17 @@ Hamiltonianは
 正準方程式は
 \begin{align}
   \begin{cases}
-    \dot{q_i} = \dfrac{\partial H}{\partial p_i}
+    \dot{q}_i = \dfrac{\partial H}{\partial p_i}
     = \dfrac{p_i}{m}
   \\
   \\
-    \dot{p_i} = - \dfrac{\partial H}{\partial q_i}
+    \dot{p}_i = - \dfrac{\partial H}{\partial q_i}
     = - m \omega^2 q_i
   \end{cases}
 \quad
 &\Rightarrow
 \quad
-  \ddot{q_i} = \dfrac{\dot{p_i}}{m}
+  \ddot{q_i} = \dfrac{\dot{p}_i}{m}
   = \dfrac{- m \omega^2 q_i}{m}
   = - \omega^2 q_i
 \label{hamiltonian e.o.m for harmonic oscillator}
@@ -1482,10 +1501,10 @@ Hamiltonianは
 Hamiltonの正準方程式
 \begin{align}
    \begin{cases}
-      \dot{q_i} = \dfrac{\partial H}{\partial p_i}
+      \dot{q}_i = \dfrac{\partial H}{\partial p_i}
     \\
     \\
-      \dot{p_i} = - \dfrac{\partial H}{\partial q_i}
+      \dot{p}_i = - \dfrac{\partial H}{\partial q_i}
     \end{cases}
 \label{Hamilton's eom}
 \end{align}
@@ -1518,12 +1537,12 @@ $\{q\},\{p\}$に対して右辺の符号が異なるという非対称性があ�
 正準方程式(\ref{Hamilton's eom})は
 \begin{align}
     \begin{cases}
-        \dot{q_i}
+        \dot{q}_i
         = \dfrac{\partial H}{\partial p_i}
         = \{q_i, H\}_{ \mathrm{P} }
       \\
       \\
-        \dot{p_i}
+        \dot{p}_i
         = - \dfrac{\partial H}{\partial q_i}
         = \{p_i, H\}_{ \mathrm{P} }
       \end{cases}
@@ -1570,3 +1589,120 @@ $F( \{q\},\{p\} , t )$
 と一つの式にまとまってしまう。
 あらゆる量の時間発展を求める過程が、
 Poisson括弧の計算という一つの操作に統一されたのである。
+
+\subsubsection{電磁場中の荷電粒子のHamiltonian}
+
+電磁場中の荷電粒子のLagrangianは
+(\ref{point particle lagrangian with ele-mag potential})
+や
+(\ref{many point particle lagrangian with ele-mag potential})
+で与えられていた。
+このような系のHamiltonianはどのように与えられるだろうか。
+$(x_n)_i$を$n$番目の粒子の位置vectorの
+第$i$成分だとする。
+粒子の運動により生じる電磁波を無視する限り
+相互作用potential $U$も
+Coulomb potential $\phi$も
+$\dot{x}$には依存していないので、
+一般化運動量の定義から、
+電磁場が導入される前後で
+\begin{align}
+  (p_n')_i
+  &=
+  \dfrac{\partial L'}{\partial (\dot{x}_n)_i}
+  =
+  \dfrac{\partial}{\partial (\dot{x_n})_i}
+  \left(
+    L
+  +
+    U(\bm{x}_1, \dots, \bm{x}_n)
+  -
+    \sum_m
+    q_m
+    \Big[
+      \phi(\bm{x}_m)
+    -
+      \dot{\bm{x}}_m \cdot \bm{A}(\bm{x}_m)
+    \Big]
+  \right)
+\notag\\&
+  =
+  (p_n)_i
+  +
+  \sum_m
+    q_m
+    \Big[
+      \delta_{nm} A_i(\bm{x}_m)
+    \Big]
+=
+  (p_n)_i
+  +
+  q_n
+  A_i(\bm{x}_n)
+\end{align}
+のようにvector potentialの分だけ
+正準運動量がsiftすることが分かる。
+面倒なので$(n,i)$のlabelを
+まとめて$i$と書き直す事にすると、
+電磁場中の正準運動量は
+\begin{align}
+  p'_i = p_i + (q A)_i
+\end{align}
+である。
+
+この運動量を用いて
+Hamiltonian
+(\ref{hamiltonian definition})を定義すると、
+\begin{align}
+  H'
+  &=
+  \bigg[
+    \sum_i
+      \dot{x}_i p'_i
+  - L'
+  \bigg]_{\dot{x} = \dot{x}(\{x\},\{p'\},t)}
+\notag\\&
+  =
+  \left[
+    \sum_i
+      \dot{x}_i
+    \bigg(
+      p_i + (q A)_i
+    \bigg)
+  -
+  \left(
+    L
+  +
+    U(\bm{x}_1, \dots, \bm{x}_n)
+  -
+    \sum_m
+    q_m
+    \Big[
+      \phi(\bm{x}_m)
+    -
+      \dot{\bm{x}}_m \cdot \bm{A}(\bm{x}_m)
+    \Big]
+  \right)
+  \right]_{\dot{q} = \dot{q}(\{q\},\{p'\},t)}
+\notag\\&
+  =
+  H
+  +
+  \left[
+    \sum_i
+      \dot{q}_i
+      (q A)_i
+  -
+  \left(
+    U(\bm{x}_1, \dots, \bm{x}_n)
+  -
+    \sum_m
+    q_m
+    \Big[
+      \phi(\bm{x}_m)
+    -
+      \dot{\bm{x}}_m \cdot \bm{A}(\bm{x}_m)
+    \Big]
+  \right)
+  \right]_{\dot{q} = \dot{q}(\{q\},\{p'\},t)}
+\end{align}
