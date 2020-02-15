@@ -125,7 +125,7 @@ $\mathcal{L}$と書く。
 \end{align}
 と導かれる。
 
-\subsubsection{自由scalar場の例}
+\subsubsection{Free Scalar場の例}
 
 $\phi(t, \bm{x}), \varphi(t, \bm{x})$を
 それぞれ実および複素scalar場とし、
@@ -150,7 +150,25 @@ Lagrangianを
     m^2 |\varphi|^2
 \end{align}
 で与える。
-ここで$\eta$は無次元の定数行列である。
+ここで$\eta$は無次元の実定数対称行列である。
+
+Lagrangianや運動方程式に$\phi, \varphi$自身しか現れないため
+これらの理論で$\phi, \varphi$は
+他の場と相互作用をしていないことが分かり、
+特にLagrangianが$\phi, \varphi$の$3$次以上の項
+（自己相互作用項、self-interaction term）
+を持たないため
+下記の運動方程式は$\phi, \varphi$について$1$次、
+つまり線形となる。
+このような線形微分方程式はFourier変換などを用いて
+容易に解くことが出来るため、
+このようにLagrangianに場の$2$次までの項しか現れない理論を
+free field theory（自由場の理論）という。
+自由場の理論の場合、Lagrangianに場の$1$次の項があっても
+適切に平方完成し場を再定義する事により
+上のLagrangianに帰着することが出来る。
+Lagrangian中の場の$2$次の項をmass term（質量項）、
+その係数に現れる$|m| > 0$を場の質量と呼ぶ。
 
 これらの運動方程式(\ref{field EL eq})は
 d'Alembert operator
@@ -257,22 +275,33 @@ $\Box := \eta^{\mu \sigma}
 \end{subequations}
 と得られる。
 
-\subsubsection{Massive自由Vector場の例}
+\subsubsection{Massive Free Vector場の例}
 
-$\eta_{\mu\nu}$を無次元の定数対称行列、
+$\eta_{\mu\nu}$を無次元の実定数対称行列、
 $\eta^{\mu\nu}$をその逆行列
 $\eta_{\mu\lambda} \eta^{\lambda \nu} = \delta_\mu^\nu$として、
 vector場$A^\mu$に対し
 $A_\mu := \eta_{\mu\nu} A^\nu$
 および
+場の強さテンソル
+（field strength tensor）
 $F_{\mu\nu} :=
 \partial_\mu A_\nu
 - \partial_\nu A_\mu$
 を定義する。
-$F_{\mu\nu}$を場の強さテンソル
-（field strength tensor）
-といい、
-以下では同様に添え字の上げ下げを$\eta$で行う。
+明らかに、一度添え字を下げたvector $A_\nu$の
+添え字を逆行列$\eta^{\mu\nu}$で上げると元に戻る
+\begin{align}
+    \eta^{\mu\nu} A_\nu
+    =
+    \eta^{\mu\nu} \eta_{\nu \rho} A^\rho
+    =
+    \delta^\mu_\rho A^\rho
+    =
+    A^\mu
+\end{align}
+ため、以下では任意のvectorおよびtensorについて
+同様に添え字の上げ下げを$\eta$で行う。
 Lagrangianを
 \begin{align}
     \mathcal{L}_{\rm massvec}
@@ -459,7 +488,7 @@ vector場はmassを持てないことが分かる。
 \subsubsection{Hamilton形式}
 
 場の正準共役量（運動量と呼ばないのは、
-これ以外に場の理論の意味でmomentumと呼ばれるべき適切な量、
+これ以外に場の理論の意味でmomentumと呼ばれるべき量、
 つまりenergy-momentum tensor (\ref{energy-momentum})があるからだ）は
 \begin{align}
     \pi(t, x) := \dfrac{\partial \mathcal{L}}{\partial \dot{\phi}}
@@ -511,7 +540,7 @@ energy-momentum tensor（stress-energy tensor、stress tensor、エネルギー�
 今はLagrangianの中に重力を表すEinstein-Hilbert項を含めていないと示すため
 $L_{\mathrm{matter}}$と書いた。
 
-\subsubsection{Free Scalar Fieldの例}
+\subsubsection{特殊相対論とMinkowski Metric}
 
 $n$次元対角行列$A$の$(i,i)$成分が$a_i$であるとき
 \begin{align}
@@ -594,7 +623,9 @@ $\det g$の符号が次元によって変わってしまうのも
 \section{摂動展開と繰り込み}
 
 \subsection{一般の相互作用が満たすべき性質}
-Wightman axioms、Haag's theorem、Coleman–Mandula theorem、Haag-\L{}opusza\'nski-Sohnius theorem、
+Wightman axioms、Haag's theorem、
+Coleman-Mandula theorem、
+Haag-\L{}opusza\'nski-Sohnius theorem、
 locality
 \label{locality}
 、
