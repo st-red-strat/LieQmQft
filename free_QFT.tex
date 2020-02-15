@@ -275,7 +275,7 @@ $F_{\mu\nu}$を場の強さテンソル
 以下では同様に添え字の上げ下げを$\eta$で行う。
 Lagrangianを
 \begin{align}
-    \mathcal{L}
+    \mathcal{L}_{\rm massvec}
     :=
     -
     \dfrac{1}{4}
@@ -319,11 +319,11 @@ Euler-Lagrange方程式(\ref{field EL eq})は
 \begin{align}
     0
     &=
-    \dfrac{\delta \mathcal{L}}
+    \dfrac{\delta \mathcal{L}_{\rm massvec}}
         {\delta A_\rho}
     -
     \partial_\sigma
-    \dfrac{\delta \mathcal{L}}
+    \dfrac{\delta \mathcal{L}_{\rm massvec}}
         {\delta (\partial_\sigma A_\rho)}
     =
     -
@@ -408,8 +408,53 @@ Euler-Lagrange方程式(\ref{field EL eq})は
     \eta^{\rho \lambda}
     \partial_\sigma \partial_\lambda
     A^\sigma
+=
+    \bigg[
+        \delta^\rho_\sigma
+        (\Box - m^2)
+    -
+        \eta^{\rho \lambda}
+        \partial_\sigma \partial_\lambda
+    \bigg]
+    A^\sigma
 \end{align}
 と得られる。
+
+特に、$F_{\mu\nu}$は
+gauge transformation（ゲージ変換）
+$A'^\mu = A^\mu + \partial^\mu \Lambda$
+のもとで不変
+\begin{align}
+    F'_{\mu\nu}
+&=
+    \partial_\mu A'_\nu
+    -
+    \partial_\nu A'_\mu
+=
+    \partial_\mu (A_\nu + \partial_\nu \Lambda)
+    -
+    \partial_\nu (A_\mu + \partial_\mu \Lambda)
+\notag\\&
+=
+    \partial_\mu A_\nu
+    -
+    \partial_\nu A_\mu
+    + (
+        \partial_\mu \partial_\nu
+    -
+        \partial_\nu \partial_\mu
+    )\Lambda
+=
+    F_{\mu\nu}
+\end{align}
+である事に注意しよう。
+従って作用が$F_{\mu\nu}$のみを使って書かれる
+massless $m^2 = 0$の場合のみ
+作用および運動方程式はgauge symmetry
+（ゲージ対称性）を持つ。
+逆の言い方をすると、
+理論の作用がgauge symmetryを持つよう要請する場合
+vector場はmassを持てないことが分かる。
 
 \subsubsection{Hamilton形式}
 
