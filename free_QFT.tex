@@ -96,20 +96,22 @@ $\mathcal{L}$と書く。
     \int d^D x
     \left[
         \delta \phi
-        \dfrac{\delta \mathcal{L}}{\delta \phi}
+        \dfrac{\partial \mathcal{L}}
+            {\partial \phi}
         +
         \partial_\mu (\delta \phi)
-        \dfrac{\delta \mathcal{L}}{\delta (\partial_\mu \phi)}
+        \dfrac{\partial \mathcal{L}}
+            {\partial (\partial_\mu \phi)}
     \right]
 \notag\\&=
     \int d^D x
     \ 
     \delta \phi
     \left[
-        \dfrac{\delta \mathcal{L}}{\delta \phi}
+        \dfrac{\partial \mathcal{L}}{\partial \phi}
         -
         \partial_\mu
-        \dfrac{\delta \mathcal{L}}{\delta (\partial_\mu \phi)}
+        \dfrac{\partial \mathcal{L}}{\partial (\partial_\mu \phi)}
     \right]
     + \text{(surface term)}
 \end{align}
@@ -117,10 +119,12 @@ $\mathcal{L}$と書く。
 場のEuler-Lagrange方程式は
 \begin{align}
     0 &=
-    \dfrac{\delta \mathcal{L}}{\delta \phi}
+    \dfrac{\partial \mathcal{L}}
+        {\partial \phi}
     -
     \partial_\mu
-    \dfrac{\delta \mathcal{L}}{\delta (\partial_\mu \phi)}
+    \dfrac{\partial \mathcal{L}}
+        {\partial (\partial_\mu \phi)}
 \label{field EL eq}
 \end{align}
 と導かれる。
@@ -181,12 +185,12 @@ $\Box := \eta^{\mu \sigma}
 を用いて
 \begin{align}
     0 &=
-    \dfrac{\delta \mathcal{L}_{\rm real}}
-        {\delta \phi}
+    \dfrac{\partial \mathcal{L}_{\rm real}}
+        {\partial \phi}
     -
     \partial_\mu
-    \dfrac{\delta \mathcal{L}_{\rm real}}
-        {\delta (\partial_\mu \phi)}
+    \dfrac{\partial \mathcal{L}_{\rm real}}
+        {\partial (\partial_\mu \phi)}
     =
     - \dfrac{m^2}{2}2 \phi
     -
@@ -231,12 +235,12 @@ $\Box := \eta^{\mu \sigma}
 \begin{subequations}
 \begin{align}
     0 &=
-    \dfrac{\delta \mathcal{L}_{\rm complex}}
-        {\delta \varphi^*}
+    \dfrac{\partial \mathcal{L}_{\rm complex}}
+        {\partial \varphi^*}
     -
     \partial_\mu
-    \dfrac{\delta \mathcal{L}_{\rm complex}}
-        {\delta (\partial_\mu \varphi^*)}
+    \dfrac{\partial \mathcal{L}_{\rm complex}}
+        {\partial (\partial_\mu \varphi^*)}
     =
     -
     m^2 \varphi
@@ -262,12 +266,12 @@ $\Box := \eta^{\mu \sigma}
     \varphi
 \\
     0 &=
-    \dfrac{\delta \mathcal{L}_{\rm complex}}
-        {\delta \varphi}
+    \dfrac{\partial \mathcal{L}_{\rm complex}}
+        {\partial \varphi}
     -
     \partial_\mu
-    \dfrac{\delta \mathcal{L}_{\rm complex}}
-        {\delta (\partial_\mu \varphi)}
+    \dfrac{\partial \mathcal{L}_{\rm complex}}
+        {\partial (\partial_\mu \varphi)}
     =
     (\Box - m^2)
     \varphi^*
@@ -324,12 +328,12 @@ Lagrangianを
 \end{align}
 で与えるとき、
 \begin{align}
-    \dfrac{\delta}
-    {\delta (\partial_\sigma A_\rho)}
+    \dfrac{\partial}
+        {\partial (\partial_\sigma A_\rho)}
     F_{\mu\nu}
     &=
-    \dfrac{\delta}
-    {\delta (\partial_\sigma A_\rho)}
+    \dfrac{\partial}
+        {\partial (\partial_\sigma A_\rho)}
     \left[
         \partial_\mu A_\nu
         - \partial_\nu A_\mu
@@ -348,12 +352,12 @@ Euler-Lagrange方程式(\ref{field EL eq})は
 \begin{align}
     0
     &=
-    \dfrac{\delta \mathcal{L}_{\rm massvec}}
-        {\delta A_\rho}
+    \dfrac{\partial \mathcal{L}_{\rm massvec}}
+        {\partial A_\rho}
     -
     \partial_\sigma
-    \dfrac{\delta \mathcal{L}_{\rm massvec}}
-        {\delta (\partial_\sigma A_\rho)}
+    \dfrac{\partial \mathcal{L}_{\rm massvec}}
+        {\partial (\partial_\sigma A_\rho)}
     =
     -
     \dfrac{m^2}{2}
