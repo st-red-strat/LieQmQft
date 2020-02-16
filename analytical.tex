@@ -1649,6 +1649,19 @@ $\dot{x}$には依存していないので、
   p'_i = p_i + (q A)_i
 \end{align}
 である。
+電磁場を導入する前の正準運動量の定義を
+逆解きして
+$\dot{x}_i = \dot{x}_i(\{x\},\{p\},t)$のような
+関係式が得られるとすると、
+$\dot{x}_i$を
+新たな正準運動量$p'_i$について逆解きした式は
+上の関係から
+\begin{align}
+  \dot{x}_i = \dot{x}_i(\{x\},\{p\},t)
+  =
+  \dot{x}_i(\{x\},\{p' - q A\},t)
+\end{align}
+となるはずなので、
 この運動量を用いて
 Hamiltonian
 (\ref{hamiltonian definition})を定義すると
@@ -1659,15 +1672,16 @@ Hamiltonian
     \sum_i
       \dot{x}_i p'_i
   - L'
-  \bigg]_{\dot{x} = \dot{x}(\{x\},\{p'\},t)}
+  \bigg]_{
+    \dot{x} =
+    \dot{x}(\{x\},\{p' - q A\},t)
+  }
 \notag\\&
   =
   \left[
     \sum_i
       \dot{x}_i
-    \bigg(
-      p_i + (q A)_i
-    \bigg)
+      p_i'
   -
   \left(
     L
@@ -1685,15 +1699,17 @@ Hamiltonian
   \right]_{
     \dot{x}
     =
-    \dot{x}(\{x\},\{p + qA\},t)
+    \dot{x}(\{x\},\{p' - qA\},t)
   }
 \notag\\&
   =
   \left[
     \sum_i
       \dot{x}_i
-      p_i
-    -
+      \bigg(
+        p_i' - (q A)_i
+      \bigg)
+      -
       L
   +
     U(\bm{x}_1, \dots, \bm{x}_n)
@@ -1704,11 +1720,11 @@ Hamiltonian
   \right]_{
     \dot{x}
     =
-    \dot{x}(\{x\},\{p + qA\},t)
+    \dot{x}(\{x\},\{p' - qA\},t)
   }
 \notag\\&
   =
-    H(\{x\},\{p + qA\})
+    H(\{x\},\{p' - qA\})
   +
     U
   +
