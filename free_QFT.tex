@@ -351,6 +351,7 @@ Lagrangianを
 \end{align}
 に気を付けると
 Euler-Lagrange方程式(\ref{field EL eq})は
+\begin{subequations}
 \begin{align}
     0
     &=
@@ -432,7 +433,7 @@ Euler-Lagrange方程式(\ref{field EL eq})は
     +
     \partial_\sigma
         F^{\sigma\rho}
-\notag\\&
+\\&
 =
     -
     m^2
@@ -454,6 +455,7 @@ Euler-Lagrange方程式(\ref{field EL eq})は
     \bigg]
     A^\sigma
 \end{align}
+\end{subequations}
 と得られる。
 
 特に、$F_{\mu\nu}$は
@@ -491,6 +493,29 @@ massless $m^2 = 0$の場合のみ
 逆の言い方をすると、
 理論の作用がgauge symmetryを持つよう要請する場合
 vector場はmassを持てないことが分かる。
+
+更に興味深い事実として、
+$F_{\mu \nu}$の反対称性からも明らかなことだが
+この運動方程式は$A^0$の$x^0 = ct$微分を含まない。
+これは$A^0$という変数が
+実は物理的な自由度ではない事を暗示している。
+実際、
+作用がgauge不変でない場合$m^2 \neq 0$は
+$A^0$やその空間微分は$A^i$を使って書けてしまうし、
+作用がgauge不変である場合$m^2 = 0$には
+この運動方程式の任意の解は
+$\Lambda =
+    - \int_{t_0}^t dt'
+        A^0(t', \bm{x})$
+と取るgauge変換によって
+temporal gauge $A^0 = 0$
+に移り変わる事が出来る。
+
+このように$A^0$という非物理的な自由度が
+Lagrangianに現れる事により
+vector場を含む系は一般に拘束系となり、
+その量子化はscalar場の場合と比べて
+格段に複雑になる。
 
 \subsubsection{Hamilton形式}
 
