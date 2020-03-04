@@ -2086,9 +2086,14 @@ $\bm{x} \neq 0$では
 =
     \dfrac{C}{(n - 2) r^{n-2}}
     + D
+\label{n dim green func of laplace (const unfixed)}
 \end{align}
 を得る。
-最後に全空間での積分から
+最後に無限遠での境界条件
+$\lim_{r \to \infty}
+    G^{(n)}(\bm{x}) = 0$
+及び
+全空間での積分の規格化から
 定数を決定すると
 \begin{align}
     \int d^n x\ 
@@ -2200,7 +2205,13 @@ $\epsilon \to 0$の極限を取るのである。
 \end{align}
 と、無限大の定数項を除いて
 正しいGreen関数が得られることが分かる。
-定数項は微分には効かないので無視する事にすると、
+定数項は微分には効かないので無視する事にする
+（(\ref{n dim green func of laplace (const unfixed)})
+において積分定数を
+$D = \dfrac{1}
+    {\epsilon S_{2 + \epsilon}}$
+と取り発散を打ち消したと思っても良い）
+と、
 $n \ge 3$の場合の表式は
 実は任意の次元で成り立っているのである。
 
