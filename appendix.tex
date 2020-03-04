@@ -1114,7 +1114,9 @@ $0$に収束する関数
 （急減少ないし緩増加関数、より一般には
 コンパクト台（compact support）を持つ関数）
 であるとする。
-そのような任意の$f(x)$に対して
+このように適当なよい性質を持つ関数を
+試行関数（test function）と言い、
+任意の試行関数$f(x)$に対して
 \begin{align}
     \int dx f(x) \delta(x - a)
     =
@@ -1131,7 +1133,68 @@ Diracのdeltaは超関数
 （Schwartz distributionまたはgeneralized function）
 として定式化され、
 あるいは佐藤超関数（hyperfunction）として
-定式化することもできる。
+$x = x_0$で正則な関数に対し
+\begin{align}
+    \delta(x - x_0)
+:=
+    \pm
+    \dfrac{1}{\pi}
+    \Im
+    \dfrac{1}{x - x_0 \mp i \epsilon}
+=
+    \pm
+    \dfrac{1}{2 \pi i}
+    \left[
+        \dfrac{1}{x - x_0 \mp i \epsilon}
+        -
+        \dfrac{1}{x - x_0 \pm i \epsilon}
+    \right]
+\end{align}
+のように定式化することもできる。
+$x = x_0$で正則な関数$f(x)$について
+$f(x) \delta(x - x_0)$の実軸上での積分は
+\begin{align}
+    \int dx
+    f(x) \delta(x - x_0)
+&=
+    \pm
+    \int
+    \dfrac{dx}{2 \pi i}
+    f(x)
+    \left[
+        \dfrac{1}{x - x_0 \mp i \epsilon}
+        -
+        \dfrac{1}{x - x_0 \pm i \epsilon}
+    \right]
+\notag\\&
+=
+    \pm
+    \dfrac{1}{2 \pi i}
+    \left[
+    \int_{- \infty \mp i \epsilon}
+        ^{+ \infty \mp i \epsilon}
+        dx
+    -
+    \int_{- \infty \pm i \epsilon}
+        ^{+ \infty \pm i \epsilon}
+        dx
+    \right]
+    \dfrac{f(x)}{x - x_0}
+\notag\\&
+=
+    \dfrac{1}{2 \pi i}
+    \oint_{\text{around } x_0}
+        dx
+    \dfrac{f(x)}{x - x_0}
+\notag\\&
+=
+    f(x_0)
+\end{align}
+とDirac Delta関数の定義を満たすことが確かめられる。
+特に係数の$\pm$は
+$\oint dx$が$x_0$の周りを
+反時計まわりに回るよう定義されている事により
+吸収された。
 
 Dirac delta関数のFourier表示は
 \begin{align}
@@ -1145,6 +1208,25 @@ Dirac delta関数のFourier表示は
 のように与えられる。
 
 Dirac deltaの微分は部分積分によって定義される。
+すなわち、
+$\dfrac{d \delta}{dx}
+    (x - x_0)$は
+任意の滑らかな関数$f(x)$に対し
+\begin{align}
+    \int dx
+    f(x)
+    \dfrac{d \delta}{dx}
+    (x - x_0)
+=
+    -
+    \int dx
+    \dfrac{d f(x)}{dx}
+    \delta(x - x_0)
+=
+    -
+    \dfrac{d f(x_0)}{dx}
+\end{align}
+を与える関数である。
 
 \subsubsection{階段関数}
 
