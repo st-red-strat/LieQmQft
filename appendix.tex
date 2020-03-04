@@ -130,7 +130,7 @@ $n$階の完全反対称tensor（completely anti-symmetric tensor、
 歪対称（skew-symmetric）は同じ意味。}
 Levi-Civita symbol、
 エディントンのepsilonと呼ばれる事もあるが
-Edington's epsilonと洋書に書いてあることは少ない）を
+Edington's epsilonと洋書に書いてあることは少ないようだ）を
 \begin{align}
     \epsilon_{i_1,\dots,i_n} =
     \begin{cases}
@@ -159,7 +159,7 @@ Edington's epsilonと洋書に書いてあることは少ない）を
 $\mathrm{sign}(\sigma)$に一致する。
 
 縮約されている添え字は
-和を取るためだけに使っているダミーの添え字
+和を取るためだけに使っているdummyの添え字
 （$\sum_i a_i = \sum_j a_j$のように、
 文字を変えても式の意味は変わらない）
 であることに気を付けると
@@ -475,7 +475,7 @@ $L^\infty$-normないし最大値normと言い、
 測度空間についても
 和を積分に置き換えることにより同様のnormが定義でき、
 これを有限にする可測関数の集合を
-$L^p$空間（エルピー空間、あるいはLebesgue space）
+$L^p$空間（エルピー空間、まれにLebesgue spaceとも）
 と呼ぶ。
 
 \newpage
@@ -1383,7 +1383,7 @@ $f(x)$によらず決まるという意味であり、
 関数$\psi_1(x) = \braket{x | \psi_1},
 \psi_2(x) = \braket{x | \psi_2}$
 に作用して
-(\ref{linearlity of an operator})
+(\ref{linearity of an operator})
 の意味で線形性を持つと言っても
 同じことである。
 例として$\dfrac{d}{dx} + \sin x$や
@@ -1420,7 +1420,8 @@ $D f(x) = \left(
     -
     \delta(x - x')
 \end{align*}
-のように符号違いで$G$を定義する事もある。
+のように符号違いで$G$を定義する事もあるが、
+本質的な違いはない。
 もし$G(x, x')$が求まれば、
 非斉次項付きの線形微分方程式
 \begin{align}
@@ -1467,7 +1468,18 @@ $D f(x) = \left(
 \label{definition of step function}
 \end{align}
 と定義される。
-明らかに$\theta(- x) = 1 - \theta(x)$が成り立つ。
+明らかに
+\begin{subequations}
+\begin{align}
+    \theta(- x) &= 1 - \theta(x)
+\\
+    \mathrm{sgn}(x)
+    &=
+    2 \theta(x) - 1
+\label{step function and sign}
+\end{align}
+\end{subequations}
+が成り立つ。
 階段関数のFourier変換は
 正の無限小量$\epsilon$を使って
 \begin{align}
@@ -1501,11 +1513,178 @@ $D f(x) = \left(
     ( - i)
 =
     \delta(x)
+\label{derivative of step function}
 \end{align}
 が挙げられる。
 すなわち、$\theta(t)$は
 微分operator $\dfrac{d}{dt}$の
 Green関数になっている。
+
+\subsubsection{$n$次元LaplacianのGreen関数}
+
+$n$次元Laplacian
+（Laplace operator、Laplace演算子）
+\begin{align}
+    \Delta_{(n)}
+    :=
+    \sum_{i=1}^n
+    \left(
+        \dfrac{\partial}{\partial x^i}
+    \right)^2
+    =
+    \partial_i^2
+\end{align}
+のGreen関数を求めよう。
+
+$1$次元の場合、
+\begin{align}
+    \dfrac{d}{dx}
+    |x - x_0|
+=
+    \mathrm{sgn}
+    (x - x_0)
+\end{align}
+に気が付けば、
+階段関数の性質
+(\ref{step function and sign})
+及びその微分
+(\ref{derivative of step function})
+から
+\begin{subequations}
+\begin{align}
+    &
+    \Delta_{(1)}
+    |x - x_0|
+=
+    \dfrac{d^2}{dx^2}
+    |x - x_0|
+=
+    \dfrac{d}{dx}
+    \mathrm{sgn}
+    (x - x_0)
+=
+    \dfrac{d}{dx}
+    2 \theta (x - x_0)
+=
+    2 \delta (x - x_0)
+\\\therefore
+&\qquad
+    \Delta_{(1)}
+    \dfrac{1}{2}|x - x_0|
+    =
+    \delta (x - x_0)
+\end{align}
+\end{subequations}
+が得られる。
+
+$2$次元の場合は極座標
+$r := \sqrt{x^2 + y^2}$
+を使うと話が簡単で、
+$n$次元では
+$\displaystyle
+\delta_{ii}
+= \sum_{i=1}^n 1
+= n$
+が成り立つことに気を付けると、
+$r \neq 0$では明らかに
+\begin{subequations}
+\begin{align}
+    \partial_i
+    \log r
+&=
+    \dfrac{x_i}{r}
+    \dfrac{1}{r}
+=
+    \dfrac{x_i}{r^2}
+\\
+    \Delta_{(2)}
+    \log r
+&=
+    \partial_i^2
+    \log r
+=
+    \partial_i
+    \dfrac{x_i}{r^2}
+=
+    \dfrac{
+        \delta_{ii} r^2
+    -
+        x_i (2 r)
+        \dfrac{x_i}{r}
+    }{r^4}
+=
+    \dfrac{
+        2 r^2
+    -
+        r^2 (2 r)
+        \dfrac{1}{r}
+    }{r^4}
+= 0
+\end{align}
+\end{subequations}
+が成り立つ。
+ただし原点$r = 0$では振る舞いが特異的で、
+半径$r = R$の円の外向き
+面素vector（と言っているが、
+今の場合円周$S^1$に垂直な
+$1$次元vector）が
+$dS = R d \theta$
+すなわち
+\begin{align}
+    d \bm{S}
+=
+    \left(
+        \dfrac{x}{R}
+    ,
+        \dfrac{y}{R}
+    \right)
+    R d \theta
+\end{align}
+となることに気を付けて
+Gaussの定理を使うと
+\begin{align}
+    \int d^2 x\ 
+        \Delta_{(2)}
+        \log r
+&=
+    \lim_{R \to \infty}
+    \oint_{r = R} d \bm{S}
+        \cdot
+        \nabla
+        \log r
+=
+    \lim_{R \to \infty}
+    \oint_{r = R}
+        d \theta
+    R
+    \left[
+        \dfrac{x}{R}
+        \dfrac{x}{R^2}
+    +
+        \dfrac{y}{R}
+        \dfrac{y}{R^2}
+    \right]
+\notag\\&
+=
+    \lim_{R \to \infty}
+    \oint
+        d \theta
+=
+    2 \pi
+\end{align}
+が得られるので、
+求めるGreen関数
+\begin{align}
+    \Delta_{(2)}
+    \dfrac{1}{2 \pi}
+    \log \sqrt{x^2 + y^2}
+=
+    \delta(x)
+    \delta(y)
+=
+    \delta(\bm{x})
+\end{align}
+を得る。
 
 \newpage
 \section{量子力学の公式}
