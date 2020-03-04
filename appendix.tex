@@ -1107,263 +1107,6 @@ Rodrigues' formulaは
 \end{subequations}
 とも書かれる。
 
-\subsubsection{Diracの$\delta$関数}
-
-$f(x)$はなめらかで$|x| \to \infty$で十分早く
-$0$に収束する関数
-（急減少ないし緩増加関数、より一般には
-コンパクト台（compact support）を持つ関数）
-であるとする。
-このように適当なよい性質を持つ関数を
-試行関数（test function）と言い、
-任意の試行関数$f(x)$に対して
-\begin{align}
-    \int dx f(x) \delta(x - a)
-    =
-    f(a)
-\end{align}
-を満たす$\delta$を
-Diracのdelta関数（Dirac delta function）
-という。
-特に、$a$を含まない任意の区間で$\delta(x - a)$を
-積分しても$0$になってしまう。
-
-明らかに、普通の実関数は上のような性質を満たすことは出来ない。
-Diracのdeltaは超関数
-（Schwartz distributionまたはgeneralized function）
-として定式化され、
-あるいは佐藤超関数（hyperfunction）として
-$x = x_0$で正則な関数に対し
-\begin{align}
-    \delta(x - x_0)
-:=
-    \pm
-    \dfrac{1}{\pi}
-    \Im
-    \dfrac{1}{x - x_0 \mp i \epsilon}
-=
-    \pm
-    \dfrac{1}{2 \pi i}
-    \left[
-        \dfrac{1}{x - x_0 \mp i \epsilon}
-        -
-        \dfrac{1}{x - x_0 \pm i \epsilon}
-    \right]
-\end{align}
-のように定式化することもできる。
-$x = x_0$で正則な関数$f(x)$について
-$f(x) \delta(x - x_0)$の実軸上での積分は
-\begin{align}
-    \int dx
-    f(x) \delta(x - x_0)
-&=
-    \pm
-    \int
-    \dfrac{dx}{2 \pi i}
-    f(x)
-    \left[
-        \dfrac{1}{x - x_0 \mp i \epsilon}
-        -
-        \dfrac{1}{x - x_0 \pm i \epsilon}
-    \right]
-\notag\\&
-=
-    \pm
-    \dfrac{1}{2 \pi i}
-    \left[
-    \int_{- \infty \mp i \epsilon}
-        ^{+ \infty \mp i \epsilon}
-        dx
-    -
-    \int_{- \infty \pm i \epsilon}
-        ^{+ \infty \pm i \epsilon}
-        dx
-    \right]
-    \dfrac{f(x)}{x - x_0}
-\notag\\&
-=
-    \dfrac{1}{2 \pi i}
-    \oint_{\text{around } x_0}
-        dx
-    \dfrac{f(x)}{x - x_0}
-\notag\\&
-=
-    f(x_0)
-\end{align}
-とDirac Delta関数の定義を満たすことが確かめられる。
-特に係数の$\pm$は
-$\oint dx$が$x_0$の周りを
-反時計まわりに回るよう定義されている事により
-吸収された。
-
-Dirac delta関数のFourier表示は
-\begin{align}
-    \delta(x-y)
-    =
-    \int
-    \dfrac{dk}{2\pi}
-    e^{ik(x-y)}
-\label{dirac delta fourier representation}
-\end{align}
-のように与えられる。
-
-Dirac deltaの微分は部分積分によって定義される。
-すなわち、
-$\dfrac{d \delta}{dx}
-    (x - x_0)$は
-任意の滑らかな関数$f(x)$に対し
-\begin{align}
-    \int dx
-    f(x)
-    \dfrac{d \delta}{dx}
-    (x - x_0)
-=
-    -
-    \int dx
-    \dfrac{d f(x)}{dx}
-    \delta(x - x_0)
-=
-    -
-    \dfrac{d f(x_0)}{dx}
-\end{align}
-を与える関数である。
-
-\subsubsection{Green関数（Green's function）}
-
-適当な線形微分operator $D(x)$を考える。
-ただし、微分operatorが線形（linear）であるとは
-その関数$f(x)$への作用が
-$f(x)$によらず決まるという意味であり、
-作用が$x$に依っていてもよい。
-あるいはoperator $\hat{O}$
-（の$\bm{x}$-表示）が
-関数$\psi_1(x) = \braket{x | \psi_1},
-\psi_2(x) = \braket{x | \psi_2}$
-に作用して
-(\ref{linearlity of an operator})
-の意味で線形性を持つと言っても
-同じことである。
-例として$\dfrac{d}{dx} + \sin x$や
-$\exp( i a \dfrac{d}{dx}) + x^3$
-などは線形operatorであり、
-$D f(x) = \left(
-    \dfrac{d f}{dx}
-\right)^2$
-すなわち$D[f] = \dfrac{d f}{dx}
-    \dfrac{d}{dx}$
-は線形operatorではない。
-
-与えられた線形operator $D(x)$に対し、
-適当な境界条件及び
-\begin{align}
-    D(x) G(x, x')
-    =
-    \delta(x - x')
-\end{align}
-を満たす関数$G(x, x')$を$D(x)$の
-グリーン関数（Green's function）と言う。
-数学の微分方程式論の分野では
-方程式の全ての項を左辺に寄せて書く
-古い流儀があった名残として
-\begin{align*}
-    D(x) G(x, x')
-    +
-    \delta(x - x')
-&=
-    0
-\\\therefore
-    D(x) G(x, x')
-&=
-    -
-    \delta(x - x')
-\end{align*}
-のように符号違いで$G$を定義する事もある。
-もし$G(x, x')$が求まれば、
-非斉次項付きの線形微分方程式
-\begin{align}
-    D(x) f(x)
-    =
-    \rho(x)
-\end{align}
-の（$G$に対応する境界条件のもとでの）
-解は
-\begin{align}
-    f(x) =
-    \int dx'\ 
-        G(x, x')
-        \rho(x')
-\end{align}
-と書ける事が直接の計算
-\begin{align}
-    D(x) f(x)
-&=
-    \int dx'\ 
-        \rho(x')
-    D(x)
-        G(x, x')
-=
-    \int dx'\ 
-        \rho(x')
-    \delta (x - x')
-=
-    \rho(x)
-\end{align}
-から分かる。
-
-\subsubsection{階段関数}
-
-ヘヴィサイドの階段関数（Heaviside step function）は
-\begin{align}
-    \theta(x)
-    :=
-    \begin{cases}
-        1 & (x > 0)
-    \\
-        0 & (x < 0)
-    \end{cases}
-\label{definition of step function}
-\end{align}
-と定義される。
-明らかに$\theta(- x) = 1 - \theta(x)$が成り立つ。
-階段関数のFourier変換は
-正の無限小量$\epsilon$を使って
-\begin{align}
-  \theta(t)
-  &=
-    - \int\dfrac{d \omega'}{2 \pi i}
-    \dfrac{e^{- i \omega' t}}{\omega' + i \epsilon}
-\label{fourier transformation of step function}
-\end{align}
-と書け、
-その著しい性質として
-微分がDirac delta
-(\ref{dirac delta fourier representation})
-となること
-\begin{align}
-    \left(
-        \dfrac{d}{dt}
-        +
-        \epsilon
-    \right)
-    \theta(t)
-=
-    - \int\dfrac{d \omega'}{2 \pi i}
-    \dfrac{
-        - i \omega' + \epsilon
-    }{\omega' + i \epsilon}
-    e^{- i \omega' t}
-=
-    - \int\dfrac{d \omega'}{2 \pi i}
-    e^{- i \omega' t}
-    ( - i)
-=
-    \delta(x)
-\end{align}
-が挙げられる。
-すなわち、$\theta(t)$は
-微分operator $\dfrac{d}{dt}$の
-Green関数になっている。
-
 \newpage
 \subsection{Fourier級数展開、Fourier変換}
 
@@ -1503,6 +1246,266 @@ $\tilde{f}(k)=\int dx\ f(x) e^{+2\pi ikx}$としたり、
 
 Fourier変換は不確定性関係という良くない性質を持つため、
 画像処理などの分野ではwavelet解析という拡張を考えることがある。
+
+\newpage
+\subsection{Dirac DeltaとGreen関数}
+
+\subsubsection{Diracの$\delta$関数}
+
+$f(x)$はなめらかで$|x| \to \infty$で十分早く
+$0$に収束する関数
+（急減少ないし緩増加関数、より一般には
+コンパクト台（compact support）を持つ関数）
+であるとする。
+このように適当なよい性質を持つ関数を
+試行関数（test function）と言い、
+任意の試行関数$f(x)$に対して
+\begin{align}
+    \int dx f(x) \delta(x - a)
+    =
+    f(a)
+\end{align}
+を満たす$\delta$を
+Diracのdelta関数（Dirac delta function）
+という。
+特に、$a$を含まない任意の区間で$\delta(x - a)$を
+積分しても$0$になってしまう。
+
+明らかに、普通の実関数は上のような性質を満たすことは出来ない。
+Diracのdeltaは超関数
+（Schwartz distributionまたはgeneralized function）
+として定式化され、
+あるいは佐藤超関数（hyperfunction）として
+$x = x_0$で正則な関数に対し
+\begin{align}
+    \delta(x - x_0)
+:=
+    \pm
+    \dfrac{1}{\pi}
+    \Im
+    \dfrac{1}{x - x_0 \mp i \epsilon}
+=
+    \pm
+    \dfrac{1}{2 \pi i}
+    \left[
+        \dfrac{1}{x - x_0 \mp i \epsilon}
+        -
+        \dfrac{1}{x - x_0 \pm i \epsilon}
+    \right]
+\end{align}
+のように定式化することもできる。
+$x = x_0$で正則な関数$f(x)$について
+$f(x) \delta(x - x_0)$の実軸上での積分は
+\begin{align}
+    \int dx
+    f(x) \delta(x - x_0)
+&=
+    \pm
+    \int
+    \dfrac{dx}{2 \pi i}
+    f(x)
+    \left[
+        \dfrac{1}{x - x_0 \mp i \epsilon}
+        -
+        \dfrac{1}{x - x_0 \pm i \epsilon}
+    \right]
+\notag\\&
+=
+    \pm
+    \dfrac{1}{2 \pi i}
+    \left[
+    \int_{- \infty \mp i \epsilon}
+        ^{+ \infty \mp i \epsilon}
+        dx
+    -
+    \int_{- \infty \pm i \epsilon}
+        ^{+ \infty \pm i \epsilon}
+        dx
+    \right]
+    \dfrac{f(x)}{x - x_0}
+\notag\\&
+=
+    \dfrac{1}{2 \pi i}
+    \oint_{\text{around } x_0}
+        dx
+    \dfrac{f(x)}{x - x_0}
+\notag\\&
+=
+    f(x_0)
+\end{align}
+とDirac Delta関数の定義を満たすことが確かめられる。
+特に係数の$\pm$は
+$\oint dx$が$x_0$の周りを
+反時計まわりに回るよう定義されている事により
+吸収された。
+
+Dirac delta関数のFourier表示は
+\begin{align}
+    \delta(x-y)
+    =
+    \int
+    \dfrac{dk}{2\pi}
+    e^{ik(x-y)}
+\label{dirac delta fourier representation}
+\end{align}
+のように与えられる。
+
+Dirac deltaの微分は部分積分によって定義される。
+すなわち、
+$\dfrac{d \delta}{dx}
+    (x - x_0)$は
+任意の滑らかな関数$f(x)$に対し
+\begin{align}
+    \int dx
+    f(x)
+    \dfrac{d \delta}{dx}
+    (x - x_0)
+=
+    -
+    \int dx
+    \dfrac{d f(x)}{dx}
+    \delta(x - x_0)
+=
+    -
+    \dfrac{d f(x_0)}{dx}
+\end{align}
+を与える関数である。
+
+\subsubsection{Green関数の定義}
+
+適当な線形微分operator $D(x)$を考える。
+ただし、微分operatorが線形（linear）であるとは
+その関数$f(x)$への作用が
+$f(x)$によらず決まるという意味であり、
+作用が$x$に依っていてもよい。
+あるいはoperator $\hat{O}$
+（の$\bm{x}$-表示）が
+関数$\psi_1(x) = \braket{x | \psi_1},
+\psi_2(x) = \braket{x | \psi_2}$
+に作用して
+(\ref{linearlity of an operator})
+の意味で線形性を持つと言っても
+同じことである。
+例として$\dfrac{d}{dx} + \sin x$や
+$\exp( i a \dfrac{d}{dx}) + x^3$
+などは線形operatorであり、
+$D f(x) = \left(
+    \dfrac{d f}{dx}
+\right)^2$
+すなわち$D[f] = \dfrac{d f}{dx}
+    \dfrac{d}{dx}$
+は線形operatorではない。
+
+与えられた線形operator $D(x)$に対し、
+適当な境界条件及び
+\begin{align}
+    D(x) G(x, x')
+    =
+    \delta(x - x')
+\end{align}
+を満たす関数$G(x, x')$を$D(x)$の
+グリーン関数（Green's function）と言う。
+数学の微分方程式論の分野では
+方程式の全ての項を左辺に寄せて書く
+古い流儀があった名残として
+\begin{align*}
+    D(x) G(x, x')
+    +
+    \delta(x - x')
+&=
+    0
+\\\therefore
+    D(x) G(x, x')
+&=
+    -
+    \delta(x - x')
+\end{align*}
+のように符号違いで$G$を定義する事もある。
+もし$G(x, x')$が求まれば、
+非斉次項付きの線形微分方程式
+\begin{align}
+    D(x) f(x)
+    =
+    \rho(x)
+\end{align}
+の（$G$に対応する境界条件のもとでの）
+解は
+\begin{align}
+    f(x) =
+    \int dx'\ 
+        G(x, x')
+        \rho(x')
+\end{align}
+と書ける事が直接の計算
+\begin{align}
+    D(x) f(x)
+&=
+    \int dx'\ 
+        \rho(x')
+    D(x)
+        G(x, x')
+=
+    \int dx'\ 
+        \rho(x')
+    \delta (x - x')
+=
+    \rho(x)
+\end{align}
+から分かる。
+
+\subsubsection{階段関数}
+
+ヘヴィサイドの階段関数（Heaviside step function）は
+\begin{align}
+    \theta(x)
+    :=
+    \begin{cases}
+        1 & (x > 0)
+    \\
+        0 & (x < 0)
+    \end{cases}
+\label{definition of step function}
+\end{align}
+と定義される。
+明らかに$\theta(- x) = 1 - \theta(x)$が成り立つ。
+階段関数のFourier変換は
+正の無限小量$\epsilon$を使って
+\begin{align}
+  \theta(t)
+  &=
+    - \int\dfrac{d \omega'}{2 \pi i}
+    \dfrac{e^{- i \omega' t}}{\omega' + i \epsilon}
+\label{fourier transformation of step function}
+\end{align}
+と書け、
+その著しい性質として
+微分がDirac delta
+(\ref{dirac delta fourier representation})
+となること
+\begin{align}
+    \left(
+        \dfrac{d}{dt}
+        +
+        \epsilon
+    \right)
+    \theta(t)
+=
+    - \int\dfrac{d \omega'}{2 \pi i}
+    \dfrac{
+        - i \omega' + \epsilon
+    }{\omega' + i \epsilon}
+    e^{- i \omega' t}
+=
+    - \int\dfrac{d \omega'}{2 \pi i}
+    e^{- i \omega' t}
+    ( - i)
+=
+    \delta(x)
+\end{align}
+が挙げられる。
+すなわち、$\theta(t)$は
+微分operator $\dfrac{d}{dt}$の
+Green関数になっている。
 
 \newpage
 \section{量子力学の公式}
