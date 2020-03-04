@@ -1248,6 +1248,80 @@ Fourier変換は不確定性関係という良くない性質を持つため、
 画像処理などの分野ではwavelet解析という拡張を考えることがある。
 
 \newpage
+\subsection{微分幾何学}
+
+\subsubsection{$n$次元極座標}
+
+一般の$n$次元の極座標
+（polar coordinates、
+球座標、spherical coordinates）
+$(r, \theta_1, \theta_2,
+\dots, \theta_{n-1})$
+は直交座標
+$(x_1, \dots, x_n)$を用いて
+\begin{subequations}
+\begin{align}
+    r :=& \sqrt{
+        \sum_{i=1}^n
+        (x_i)^2
+    }
+&
+    (0 \le\ &r < \infty)
+\\
+    x_n
+    =:&\ 
+    r \cos \theta_1
+&
+    (0 \le\ &\theta_1 < 2 \pi)
+\\
+    x_{n-1}
+    =:&\ 
+    r \sin \theta_1
+    \cos \theta_2
+&
+    (0 \le\ &\theta_2 \le \pi)
+\\\notag
+    &
+    \vdots
+    &
+    \vdots
+\\
+    x_{n-i}
+    =:&\ 
+    r
+    \cos \theta_{i+1}
+    \prod_{j=1}^{i}
+    \sin \theta_j
+&
+    (0 \le\ &\theta_{i+1} \le \pi)
+\\\notag
+    &
+    \vdots
+    &
+    \vdots
+\\
+    x_{2}
+    =:&\ 
+    r
+    \cos \theta_{n-1}
+    \prod_{j=1}^{n-2}
+    \sin \theta_j
+&
+    (0 \le\ &\theta_{n-1} \le \pi)
+\\
+    x_{1}
+    =:&\ 
+    r
+    \prod_{j=1}^{n-1}
+    \sin \theta_j
+\end{align}
+\label{n dimensional spherical coordinates}
+\end{subequations}
+と定義される。
+
+\subsubsection{微分形式}
+
+\newpage
 \subsection{Dirac DeltaとGreen関数}
 
 \subsubsection{Diracの$\delta$関数}
