@@ -281,6 +281,10 @@ $\Box := \eta^{\mu \sigma}
 \end{subequations}
 と得られる。
 
+$\eta$を
+(\ref{mostly plus minkowski metric})
+で与え、運動方程式を実際にFourier変換で解くと
+
 \subsubsection{Massive Free Vector場の例}
 
 $\eta_{\mu\nu}$を無次元の実定数対称行列、
@@ -571,59 +575,6 @@ energy-momentum tensor（stress-energy tensor、stress tensor、エネルギー�
 気にしなければならないので、
 今はLagrangianの中に重力を表すEinstein-Hilbert項を含めていないと示すため
 $L_{\mathrm{matter}}$と書いた。
-
-\subsubsection{特殊相対論とMinkowski Metric}
-
-$n$次元対角行列$A$の$(i,i)$成分が$a_i$であるとき
-\begin{align}
-    A = \mathrm{diag}(a_1, a_2,\dots)
-    =
-    \begin{pmatrix}
-        a_{1}  & \cdots & 0      & \cdots & 0
-        \\
-        \vdots & \ddots &        &        & \vdots
-        \\
-        0      &        & a_{i}  &        & 0
-        \\
-        \vdots &        &        & \ddots & \vdots
-        \\
-        0      & \cdots & 0      & \cdots & a_{n}
-    \end{pmatrix}
-\end{align}
-と書こう。
-$D$次元Minkowski空間の
-計量（metric tensor）を
-\begin{align}
-    \eta_{\mu\nu}
-    :=
-    \mathrm{diag}(-1, +1, +1, \dots)
-\end{align}
-と定義しておく。
-他にも
-\begin{align}
-    \eta_{\mu\nu}
-    :=
-    \mathrm{diag}(+1, -1, -1, \dots)
-\end{align}
-とする流儀があるため、
-前者をEast coast sign conventionとか
-mostly plus signsと言い、
-後者のWest coast conventionまたは
-mostly minuses conventionと区別することがある。
-複数のconventionがあるのは名前の通り
-太古のAmericaで東海岸と西海岸の間に十分な交流がなかったせいで、
-$(3+1)$次元時空に限って議論すればよい現象論屋の間では
-後者が未だに隆盛を誇っているようであるが、
-mostly minusでは
-Euclid空間への移行$\eta_{\mu\nu} \to \delta_{\mu\nu}$に不便であるし、
-$\det g$の符号が次元によって変わってしまうのも
-一般次元への拡張のためにかなり都合が悪いので、
-数理物理に手を出す人間はmostly plusの計量を用いることが多いようだ。
-物理的に表す内容は全く同じなので好きな方を使えばよいのだが、
-筆者個人としてはmostly minusなどという歴史上の遺物に慣れてしまう前に
-\href{http://www.math.columbia.edu/~woit/wordpress/?p=7773}
-{The West Coast Metric is the Wrong One}
-なども参照することを勧める。
 
 \subsection{場の量子化}
 

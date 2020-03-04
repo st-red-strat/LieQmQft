@@ -1821,7 +1821,7 @@ $D f(x) = \left(
 =
     \rho(x)
 \end{align}
-から分かる。
+から確かめられる。
 
 \subsubsection{階段関数}
 
@@ -2139,6 +2139,7 @@ $n$次元球の表面を掃く
         \dfrac{1}{(n - 2) S_n r^{n-2}}
     &(n \ge 3)
     \end{cases}
+\label{green function of n dim laplacian}
 \end{align}
 となる。
 特に、$n = 1$では$S_1 = 2$なので
@@ -2206,7 +2207,8 @@ $\epsilon \to 0$の極限を取るのである。
 と、無限大の定数項を除いて
 正しいGreen関数が得られることが分かる。
 定数項は微分には効かないので無視する事にする
-（(\ref{n dim green func of laplace (const unfixed)})
+（あるいは
+(\ref{n dim green func of laplace (const unfixed)})
 において積分定数を
 $D = \dfrac{1}
     {\epsilon S_{2 + \epsilon}}$
@@ -2622,3 +2624,59 @@ Bohrの対応原理（correspondence principle）をある意味で正当化す�
 現代的にはむしろ
 量子力学を十分低energyでmacroscopicな系に適用すると
 古典力学を再現する、という理解が正しい。
+
+\newpage
+\section{特殊相対論}
+
+\subsection{Minkowski Metric}
+
+$n$次元対角行列$A$の$(i,i)$成分が$a_i$であるとき
+\begin{align}
+    A = \mathrm{diag}(a_1, a_2,\dots)
+    =
+    \begin{pmatrix}
+        a_{1}  & \cdots & 0      & \cdots & 0
+        \\
+        \vdots & \ddots &        &        & \vdots
+        \\
+        0      &        & a_{i}  &        & 0
+        \\
+        \vdots &        &        & \ddots & \vdots
+        \\
+        0      & \cdots & 0      & \cdots & a_{n}
+    \end{pmatrix}
+\end{align}
+と書こう。
+$D$次元Minkowski空間の
+計量（metric tensor）を
+\begin{align}
+    \eta_{\mu\nu}
+    :=
+    \mathrm{diag}(-1, +1, +1, \dots)
+\label{mostly plus minkowski metric}
+\end{align}
+と定義しておく。
+他にも
+\begin{align}
+    \eta_{\mu\nu}
+    :=
+    \mathrm{diag}(+1, -1, -1, \dots)
+\end{align}
+とする流儀があるため、
+前者をEast coast sign conventionとか
+mostly plus signsと言い、
+後者のWest coast conventionまたは
+mostly minuses conventionと区別することがある。
+複数のconventionがあるのは名前の通り
+太古のAmericaで東海岸と西海岸の間に十分な交流がなかったせいで、
+$(3+1)$次元時空に限って議論すればよい現象論屋の間では
+後者が未だに隆盛を誇っているようであるが、
+mostly minusでは
+Euclid空間への移行$\eta_{\mu\nu} \to \delta_{\mu\nu}$に不便であるし、
+$\det g$の符号が次元によって変わってしまうのも
+一般次元への拡張のためにかなり都合が悪いので、
+数理物理に手を出す人間はmostly plusの計量を用いることが多いようだ。
+物理的に表す内容は全く同じなので好きな方を使えばよいのだが、
+筆者個人としてはmostly minusなどという歴史上の遺物に慣れてしまう前に
+\cite{The West Coast Metric is the Wrong One}
+なども参照することを勧める。
