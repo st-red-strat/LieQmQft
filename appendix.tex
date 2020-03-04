@@ -871,6 +871,7 @@ $n \in \mathbb{N}_{\ge0}$に対して
     \right]_{a=1}
 \notag\\&=
     \dfrac{(2n-1)!!}{2^{n}}\sqrt{\pi}
+\label{Gamma function at half integer}
 \end{align}
 が得られる。
 ただしdouble factorial（二重階乗）を
@@ -1272,7 +1273,7 @@ $(x_1, \dots, x_n)$を用いて
     =:&\ 
     r \cos \theta_1
 &
-    (0 \le\ &\theta_1 < 2 \pi)
+    (0 \le\ &\theta_1 \le \pi)
 \\
     x_{n-1}
     =:&\ 
@@ -1307,7 +1308,7 @@ $(x_1, \dots, x_n)$を用いて
     \prod_{j=1}^{n-2}
     \sin \theta_j
 &
-    (0 \le\ &\theta_{n-1} \le \pi)
+    (0 \le\ &\theta_{n-1} < 2 \pi)
 \\
     x_{1}
     =:&\ 
@@ -1318,6 +1319,275 @@ $(x_1, \dots, x_n)$を用いて
 \label{n dimensional spherical coordinates}
 \end{subequations}
 と定義される。
+例えば$1$次元極座標は
+（連続な角度変数が取れないため特殊で）
+$(r, \mathrm{sgn}(x)) = (|x|, \pm 1)$
+で、
+$2$次元極座標は
+$(x, y) = (r \cos \theta, r \sin \theta)$
+で、
+$3$次元球座標は
+$(x, y, x)
+=
+    (r \sin \theta \sin \phi,
+    r \sin \theta \cos \phi,
+    r \cos \theta)$
+で与えられる。
+
+特に、
+$\dfrac
+    { x_{1} }
+    { x_{2} }
+=
+    \tan \theta_{n-1}
+$
+及び
+$(1 \le i \le n - 2)$に対して
+$
+\dfrac
+    { x_{n - i} }
+    { x_{n - (i - 1)} }
+=
+    \tan \theta_{i}
+    \cos \theta_{i+1}
+$
+が成り立つ。
+これを使うと
+\begin{subequations}
+\begin{align}
+    2 r d r
+&=
+    2 x_i d x_i
+\\
+    d x_1
+&=
+    \dfrac{x_2}
+        {\cos^2 \theta_{n-1}}
+    d \theta_{n-1}
++
+    \tan \theta_{n-1}
+    d x_2
+\\
+    d x_{n-i}
+&=
+    x_{n - (i - 1)}
+    \dfrac{\cos \theta_{i+1}}
+        {\cos^2 \theta_{i}}
+    d \theta_i
+-
+    x_{n - (i - 1)}
+    \tan \theta_{i}
+    \sin \theta_{i+1}
+    d \theta_{i+1}
++
+    \tan \theta_{i}
+    \sin \theta_{i+1}
+    d x_{n - (i - 1)}
+\end{align}
+\end{subequations}
+すなわち
+\begin{subequations}
+\begin{align}
+    \dfrac{\partial x_i}
+        {\partial r}
+&=
+    \dfrac{r}{x_i}
+=
+    \begin{cases}
+    \displaystyle
+        \prod_{j=1}^{n - 1}
+        \sin^{-1} \theta_j
+    &(i = 1)
+    \\
+    \displaystyle
+        \cos^{-1} \theta_{n - i + 1}
+        \prod_{j=1}^{n - i}
+        \sin^{-1} \theta_j
+    &(2 \le i \le n - 1)
+    \\
+    \displaystyle
+        \cos^{-1} \theta_{1}
+    &(i = n)
+    \end{cases}
+\\
+    \dfrac{\partial x_1}
+        {\partial \theta_{n-1}}
+&=
+    \dfrac{x_2}
+        {\cos^2 \theta_{n-1}}
++
+    \tan \theta_{n-1}
+    \dfrac{\partial x_2}
+        {\partial \theta_{n-1}}
+=
+    r
+    \cos^{-1} \theta_{n-1}
+    \prod_{j=1}^{n-2}
+    \sin \theta_j
++
+    \tan \theta_{n-1}
+    \dfrac{\partial x_2}
+        {\partial \theta_{n-1}}
+\\
+    \dfrac{\partial x_{n-i}}
+        {\partial \theta_i}
+&=
+    x_{n - (i - 1)}
+    \dfrac{\cos \theta_{i+1}}
+        {\cos^2 \theta_{i}}
++
+    \tan \theta_{i}
+    \sin \theta_{i+1}
+    \dfrac{\partial x_{n - (i - 1)}}
+        {\partial \theta_i}
+\\
+    \dfrac{\partial x_{n-i}}
+        {\partial \theta_{i+1}}
+&=
+    -
+    x_{n - (i - 1)}
+    \tan \theta_{i}
+    \sin \theta_{i+1}
++
+    \tan \theta_{i}
+    \sin \theta_{i+1}
+    \dfrac{\partial x_{n - (i - 1)}}
+        {\partial \theta_{i+1}}
+\end{align}
+\end{subequations}
+が分かる。
+
+$n (\ge 2)$次元における体積要素は
+Jacobian
+$\displaystyle
+\frac{\partial(x_1, x_2, \cdots, x_n)}
+    {\partial(r, \theta_1, \cdots, \theta_{n-1})}
+=
+    r^{n-1}
+    \prod_{j = 1}^{n-2}
+    \sin^{n - j - 1} \theta_j
+$に気を付けて
+\begin{align}
+    d^n x
+&=
+    \prod_{i = 1}^n
+    d x_i
+=
+    (dr)
+    (r d \theta_1)
+    (r \sin \theta_1 d \theta_2)
+\cdots
+    (r \prod_{j = 1}^i
+    \sin \theta_j d \theta_i)
+\cdots
+    (r \prod_{j = 1}^n
+    \sin \theta_j d \theta_n)
+\notag\\&
+=
+    d r d \theta_1
+        \cdots d \theta_{n-1}
+    r^{n-1}
+    \prod_{j = 1}^{n-2}
+    \sin^{n - j - 1} \theta_j
+\end{align}
+で与えられ、
+特に半径$R$の$n$次元球の体積は
+\begin{align}
+    V_n(R)
+&:=
+    \int_{r \le R} d^n x
+=
+    \int_0^R
+        dr
+    \int_0^{2 \pi}
+        d \theta_{n-1}
+    \prod_{i=1}^{n-2}
+    \left[
+        \int_0^{\pi}
+            d \theta_i
+    \right]
+    r^{n-1}
+    \prod_{j = 1}^{n-2}
+    \sin^{n - j - 1} \theta_j
+\notag\\&
+=
+    \int_0^R
+        dr\ 
+    r^{n-1}
+    \int_0^{2 \pi}
+        d \theta_{n-1}
+    \prod_{i=1}^{n-2}
+    \left[
+        \int_0^{\pi}
+            d \theta_i
+        \sin^{n - i - 1} \theta_i
+    \right]
+\notag\\&
+=
+    \dfrac{R^n}{n}
+    2 \pi
+    \prod_{i=1}^{n-2}
+    \left[
+        \sqrt{\pi}
+        \dfrac{\Gamma(\frac{n - i}{2})}
+        {\Gamma(\frac{n - i + 1}{2})}
+    \right]
+\notag\\&
+=
+    \dfrac{R^n}{n}
+    S_d
+\end{align}
+と求まる。
+ここで$S_d$は$n$次元単位球面の面積で、
+$\Gamma$関数の半整数での値
+(\ref{Gamma function at half integer})
+を用いて
+\begin{align}
+    S_d
+&=
+    \int_{r = 1}
+        d^{n-1} x
+=
+    2 \pi
+    \prod_{i=1}^{n-2}
+    \left[
+        \sqrt{\pi}
+        \dfrac{\Gamma(\frac{n - i}{2})}
+        {\Gamma(\frac{n - i + 1}{2})}
+    \right]
+=
+    2 \pi
+    \pi^{(n-2)/2}
+    \dfrac{
+        \cancel{
+            \Gamma(\frac{n - 1}{2})
+        }
+    }
+        {\Gamma(\frac{n}{2})}
+    \dfrac{
+        \cancel{
+            \Gamma(\frac{n - 2}{2})
+        }
+    }
+        {\cancel{
+            \Gamma(\frac{n - 1}{2})
+        }}
+    \cdots
+    \dfrac{\Gamma(\frac{n - (n-2)}{2})}
+        {\cancel{
+            \Gamma(\frac{n - (n-2) + 1}{2})
+        }}
+\notag\\&
+=
+    2
+    \pi^{n/2}
+    \dfrac{\Gamma(1)}
+        {\Gamma(\frac{n}{2})}
+=
+    \dfrac{ 2 \pi^{n/2} }
+        {\Gamma(\frac{n}{2})}
+\end{align}
+と書ける。
 
 \subsubsection{微分形式}
 
