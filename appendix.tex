@@ -1228,14 +1228,15 @@ $\dfrac{d \delta}{dx}
 \end{align}
 を与える関数である。
 
-\subsubsection{Green関数}
+\subsubsection{Green関数（Green's function）}
 
-適当な線形微分演算子$D$を考える。
-ただし、微分演算子が線形であるとは
+適当な線形微分operator $D(x)$を考える。
+ただし、微分operatorが線形（linear）であるとは
 その関数$f(x)$への作用が
 $f(x)$によらず決まるという意味であり、
-その作用が$x$に依っていてもよい。
-あるいは微分演算子$O$が
+作用が$x$に依っていてもよい。
+あるいはoperator $\hat{O}$
+（の$\bm{x}$-表示）が
 関数$\psi_1(x) = \braket{x | \psi_1},
 \psi_2(x) = \braket{x | \psi_2}$
 に作用して
@@ -1244,12 +1245,70 @@ $f(x)$によらず決まるという意味であり、
 同じことである。
 例として$\dfrac{d}{dx} + \sin x$や
 $\exp( i a \dfrac{d}{dx}) + x^3$
-などは線形演算子であり、
+などは線形operatorであり、
 $D f(x) = \left(
     \dfrac{d f}{dx}
 \right)^2$
 すなわち$D[f] = \dfrac{d f}{dx}
-    \dfrac{d}{dx}$は線形演算子ではない。
+    \dfrac{d}{dx}$
+は線形operatorではない。
+
+与えられた線形operator $D(x)$に対し、
+適当な境界条件及び
+\begin{align}
+    D(x) G(x, x')
+    =
+    \delta(x - x')
+\end{align}
+を満たす関数$G(x, x')$を$D(x)$の
+グリーン関数（Green's function）と言う。
+数学の微分方程式論の分野では
+方程式の全ての項を左辺に寄せて書く
+古い流儀があった名残として
+\begin{align*}
+    D(x) G(x, x')
+    +
+    \delta(x - x')
+&=
+    0
+\\\therefore
+    D(x) G(x, x')
+&=
+    -
+    \delta(x - x')
+\end{align*}
+のように符号違いで$G$を定義する事もある。
+もし$G(x, x')$が求まれば、
+非斉次項付きの線形微分方程式
+\begin{align}
+    D(x) f(x)
+    =
+    \rho(x)
+\end{align}
+の（$G$に対応する境界条件のもとでの）
+解は
+\begin{align}
+    f(x) =
+    \int dx'\ 
+        G(x, x')
+        \rho(x')
+\end{align}
+と書ける事が直接の計算
+\begin{align}
+    D(x) f(x)
+&=
+    \int dx'\ 
+        \rho(x')
+    D(x)
+        G(x, x')
+=
+    \int dx'\ 
+        \rho(x')
+    \delta (x - x')
+=
+    \rho(x)
+\end{align}
+から分かる。
 
 \subsubsection{階段関数}
 
