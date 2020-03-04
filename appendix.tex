@@ -1440,6 +1440,18 @@ $
     \sin \theta_{i+1}
     \dfrac{\partial x_{n - (i - 1)}}
         {\partial \theta_i}
+\notag\\
+&=
+    r
+    \cos^{-1} \theta_{i}
+    \cos \theta_{i+1}
+    \prod_{j=1}^{i-1}
+    \sin \theta_j
++
+    \tan \theta_{i}
+    \sin \theta_{i+1}
+    \dfrac{\partial x_{n - (i - 1)}}
+        {\partial \theta_i}
 \\
     \dfrac{\partial x_{n-i}}
         {\partial \theta_{i+1}}
@@ -1448,6 +1460,18 @@ $
     x_{n - (i - 1)}
     \tan \theta_{i}
     \sin \theta_{i+1}
++
+    \tan \theta_{i}
+    \sin \theta_{i+1}
+    \dfrac{\partial x_{n - (i - 1)}}
+        {\partial \theta_{i+1}}
+\notag\\&=
+    -
+    r
+    \sin \theta_{i}
+    \sin \theta_{i+1}
+    \prod_{j=1}^{i-1}
+    \sin \theta_j
 +
     \tan \theta_{i}
     \sin \theta_{i+1}
@@ -1535,15 +1559,15 @@ $に気を付けて
 \notag\\&
 =
     \dfrac{R^n}{n}
-    S_d
+    S_n
 \end{align}
 と求まる。
-ここで$S_d$は$n$次元単位球面の面積で、
+ここで$S_n$は$n$次元単位球面の面積で、
 $\Gamma$関数の半整数での値
 (\ref{Gamma function at half integer})
 を用いて
 \begin{align}
-    S_d
+    S_n
 &=
     \int_{r = 1}
         d^{n-1} x
@@ -1586,6 +1610,7 @@ $\Gamma$関数の半整数での値
 =
     \dfrac{ 2 \pi^{n/2} }
         {\Gamma(\frac{n}{2})}
+\label{surface area of n dimensional sphere}
 \end{align}
 と書ける。
 
@@ -2029,6 +2054,155 @@ Gaussの定理を使うと
     \delta(\bm{x})
 \end{align}
 を得る。
+
+$n \ge 3$でのGreen関数
+$G^{(n)}(\bm{x})$は、
+$\delta(\bm{x})$が$r$にしか依らないため
+Laplacianの作用も簡単になり、
+$\bm{x} \neq 0$では
+\begin{align}
+    \Delta_{(n)}
+    G^{(n)}(\bm{x})
+=
+    \dfrac{1}{r^{n-1}}
+    \dfrac{\partial}{\partial r}
+    \left(
+        r^{n-1}
+        \dfrac{\partial}{\partial r}
+        G^{(n)}(\bm{x})
+    \right)
+= 0
+\end{align}
+となる。
+これは容易に解けて
+\begin{align}
+    &r^{n-1}
+    \dfrac{\partial}{\partial r}
+    G^{(n)}(\bm{x})
+=
+    - C
+\notag\\
+    &G^{(n)}(\bm{x})
+=
+    \dfrac{C}{(n - 2) r^{n-2}}
+    + D
+\end{align}
+を得る。
+最後に全空間での積分から
+定数を決定すると
+\begin{align}
+    \int d^n x\ 
+    \Delta_{(n)}
+    G^{(n)}(\bm{x})
+=
+    \int d \bm{S}
+        \cdot
+        \nabla
+    G^{(n)}(\bm{x})
+=
+    \int d \Omega\ 
+        r^{n-1}
+        \dfrac{d}{dr}
+    G^{(n)}(\bm{x})
+=
+    - C S_n
+=    1
+\end{align}
+から$n$次元球の表面積
+(\ref{surface area of n dimensional sphere})
+を用い
+$C = - \dfrac{1}{S_n}, D = 0$
+を得る。
+ただし$d \Omega$は
+$n$次元球の表面を掃く
+立体角である。
+結局、求めるLaplacianのGreen関数は
+\begin{align}
+    G^{(n)}(\bm{x})
+=
+    \begin{cases}
+        \dfrac{1}{2}|x|
+    &(n = 1)
+    \\
+    \\
+        \dfrac{1}{2 \pi}
+        \log \sqrt{x^2 + y^2}    
+    &(n = 2)
+    \\
+    \\
+        -
+        \dfrac{1}{(n - 2) S_n r^{n-2}}
+    &(n \ge 3)
+    \end{cases}
+\end{align}
+となる。
+特に、$n = 1$では$S_1 = 2$なので
+$n \ge 3$の場合の公式を用いて表せる。
+
+さて、$n = 2$と$n \neq 2$で
+振る舞いが大きく異なることについて
+考えてみよう。
+その1つの理由は、
+低次元$(n = 1,2)$では無限遠で
+Green関数が十分早く減衰していない事にある。
+境界条件が異なるため、
+Green関数の振る舞いも異なるのである。
+もう1つの考察として、
+次元正則化
+（dimensional regularization）
+を行ってみよう。
+上の表式の
+$n = 2 + \epsilon$
+への解析接続を考えた後、
+$\epsilon \to 0$の極限を取るのである。
+すると
+\begin{align}
+    G^{(2)}_{\rm reg}(\bm{x})
+&:=
+    \lim_{\epsilon \to 0}
+    G^{(2 + \epsilon)}(\bm{x})
+=
+    -
+    \lim_{\epsilon \to 0}
+    \dfrac{1}{
+        \epsilon
+        S_{2 + \epsilon}
+    }
+    r^{- \epsilon}
+=
+    -
+    \lim_{\epsilon \to 0}
+    \dfrac{1}{
+        \epsilon
+        S_{2 + \epsilon}
+    }
+    (1 - \epsilon \log r)
+=
+    -
+    \lim_{\epsilon \to 0}
+    \dfrac{1}{
+        S_{2 + \epsilon}
+    }
+    \left(
+        \dfrac{1}{\epsilon}
+    -
+        \log r
+    \right)
+\notag\\&=
+    \dfrac{1}{
+        2 \pi
+    }
+        \log r
+    + (\text{const.})
+=
+    G^{(2)}(\bm{x})
+    + (\text{const.})
+\end{align}
+と、無限大の定数項を除いて
+正しいGreen関数が得られることが分かる。
+定数項は微分には効かないので無視する事にすると、
+$n \ge 3$の場合の表式は
+実は任意の次元で成り立っているのである。
 
 \newpage
 \section{量子力学の公式}
