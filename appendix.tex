@@ -1439,9 +1439,92 @@ $(1 \le i \le n - 2)$
         \sin \theta_p
         \prod_{q=1 (\neq l)}^{n-1}
         \sin \theta_q
+    \Bigg\}
+\notag\\&\qquad\qquad
+    +
+    \sum_{k, l = 1}^{n - 2}
+    d \theta_k
+    d \theta_l
+    \Bigg\{
+    \sum_{i = 2}^{n - k}
+    \sum_{i = 2}^{n - l}
+        r^2 \cos^2 \theta_{n - i + 1}
+        \cos \theta_k
+        \cos \theta_l
+        \prod_{p=1 (\neq k)}^{n - i}
+        \sin \theta_p
+        \prod_{q=1 (\neq l)}^{n - i}
+        \sin \theta_q
+    \Bigg\}
+\notag\\&\qquad\qquad
+    +
+    \sum_{k, l = 2}^{n - 1}
+    d \theta_k
+    d \theta_l
+    \Bigg\{
+        r^2 \sin \theta_{k}
+        \sin \theta_{l}
+        \prod_{p=1}^{k - 1}
+        \sin \theta_p
+        \prod_{q=1}^{l - 1}
+        \sin \theta_q
+    \Bigg\}
+\notag\\&
+=
+    d r^2
+    +
+    d \theta_1^2
+    \bigg\{
+        r^2 \cos^2 \theta_1
+        \prod_{p=2}^{n-1}
+        \sin^2 \theta_p
+    +
+    \sum_{i = 2}^{n - 1}
+    \sum_{i = 2}^{n - 1}
+        r^2 \cos^2 \theta_{n - i + 1}
+        \cos^2 \theta_1
+        \prod_{p=2}^{n - i}
+        \sin^2 \theta_p
+    \bigg\}
+\notag\\&\qquad
+    +
+    2 \sum_{l = 1}^{n - 2}
+    d \theta_1 d \theta_l
+    \bigg\{
+        r^2 \cos \theta_1
+        \cos \theta_l
+        \prod_{p=2}^{n-1}
+        \sin \theta_p
+        \prod_{q=1 (\neq l)}^{n-1}
+        \sin \theta_q
 \notag\\&\qquad\qquad
     +
     \sum_{i = 2}^{n - 1}
+    \sum_{i = 2}^{n - l}
+        r^2 \cos^2 \theta_{n - i + 1}
+        \cos \theta_1
+        \cos \theta_l
+        \prod_{p=2}^{n - i}
+        \sin \theta_p
+        \prod_{q=1 (\neq l)}^{n - i}
+        \sin \theta_q
+    \bigg\}
+\notag\\&\qquad
+    +
+    \sum_{k, l=2}^{n - 2}
+    d \theta_k
+    d \theta_l
+    \Bigg\{
+        r^2 \cos \theta_k
+        \cos \theta_l
+        \prod_{p=1 (\neq k)}^{n-1}
+        \sin \theta_p
+        \prod_{q=1 (\neq l)}^{n-1}
+        \sin \theta_q
+\notag\\&\qquad\qquad
+    +
+    \sum_{i = 2}^{n - k}
+    \sum_{i = 2}^{n - l}
         r^2 \cos^2 \theta_{n - i + 1}
         \cos \theta_k
         \cos \theta_l
@@ -1451,13 +1534,16 @@ $(1 \le i \le n - 2)$
         \sin \theta_q
 \notag\\&\qquad\qquad
     +
-        r^2 \sin^2 \theta_{n - i + 1}
-        \prod_{p=1}^{n - i}
-        \sin^2 \theta_p
-    \bigg)
-\notag\\&
-=
-    d r^2
+        r^2 \sin \theta_{k}
+        \sin \theta_{l}
+        \prod_{p=1}^{k - 1}
+        \sin \theta_p
+        \prod_{q=1}^{l - 1}
+        \sin \theta_q
+    \Bigg\}
+\notag\\&\qquad
+    +
+    \cdots
 \end{align}
 
 $n (\ge 2)$次元における体積要素は
