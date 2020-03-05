@@ -1455,6 +1455,22 @@ $(1 \le i \le n - 2)$
         \sin \theta_q
     \Bigg\}
 \notag\\&\qquad\qquad
+    -
+    \sum_{k = 1}^{n - 2}
+    \sum_{l = 2}^{n - 1}
+    d \theta_k
+    d \theta_l
+    \sum_{i (= n - l + 1) = 2}^{n - j}
+    \Bigg\{
+        r \cos \theta_{n - i + 1}
+        \cos \theta_k
+        \prod_{p=1 (\neq k)}^{n - i}
+        \sin \theta_p
+        r \sin \theta_{n - i + 1}
+        \prod_{q=1}^{n - i}
+        \sin \theta_q
+    \Bigg\}
+\notag\\&\qquad\qquad
     +
     \sum_{k, l = 1}^{n - 2}
     d \theta_k
@@ -1580,19 +1596,21 @@ $(1 \le i \le n - 2)$
     +
     \sum_{i = 2}^{n - l}
         \cos^2 \theta_{n - i + 1}
-        \prod_{p=1}^{n - i (\ge l)}
+        \prod_{p=1}^{n - i}
         \sin^2 \theta_p
     \bigg)
     }}
 }{\underline{
     +
-    \sum_{i = 2}^{\min(n - 1, n - l)}
+    \sum_{i = 2}^{
+        \min(n - 1, n - l) = n - l
+    }
         r^2 \cos^2 \theta_{n - i + 1}
         \cos \theta_1
         \cos \theta_l
         \prod_{p=2}^{n - i}
         \sin \theta_p
-        \prod_{q=1 (\neq l)}^{n - i}
+        \prod_{q=1 (\neq l)}^{n - i(\ge l)}
         \sin \theta_q
     \bigg\}
 }}
