@@ -1403,6 +1403,15 @@ $(1 \le i \le n - 2)$
     \displaystyle
         0
     &(2 \le n-j+1 \le i - 1 < i \le n - 1)
+    \\
+    \displaystyle
+        -
+        r \sin \theta_1
+    &(1 = j \le i = n)
+    \\
+    \displaystyle
+        0
+    &(1 < j \le i = n)
     \end{cases}
 \end{align}
 \end{subequations}
@@ -1451,8 +1460,7 @@ $(1 \le i \le n - 2)$
     d \theta_k
     d \theta_l
     \Bigg\{
-    \sum_{i = 2}^{n - k}
-    \sum_{i = 2}^{n - l}
+    \sum_{i = 2}^{\min(n - k, n - l)}
         r^2 \cos^2 \theta_{n - i + 1}
         \cos \theta_k
         \cos \theta_l
@@ -1474,27 +1482,77 @@ $(1 \le i \le n - 2)$
         \prod_{q=1}^{l - 1}
         \sin \theta_q
     \Bigg\}
+\notag\\&\qquad
+    +
+    d \theta_1^2
+        r^2 \cos^2 \theta_1
 \notag\\&
 =
     d r^2
+\underset{
+\displaystyle
+    = 1
+}{\underline{
+    \left(
+        \prod_{j=1}^{n - 1}
+        \sin^2 \theta_j
+    +
+    \sum_{i = 2}^{n-1}
+        \cos^2 \theta_{i}
+        \prod_{j=1}^{i - 1}
+        \sin^2 \theta_j
+    +
+        \cos^2 \theta_{1}
+    \right)
+}}
+\notag\\&\qquad
     +
     d \theta_1^2
+\underset{
+\displaystyle
+    =
+    r^2
+    \cos^2 \theta_1
+    \bigg(
+    \underset{
+    \displaystyle
+        \text{
+        $dr^2$の項と同様に計算すると
+        $1$
+        }
+    }{\underline{
+        \prod_{p = 2}^{n - 1}
+        \sin^2 \theta_p
+    +
+    \sum_{i = 2}^{n - 1}
+        \cos^2 \theta_{n - i + 1}
+        \prod_{p = 2}^{n - i}
+        \sin^2 \theta_p
+    }}
+    \bigg)
+    +
+        r^2 \sin^2 \theta_1
+    = r^2
+}{\underline{
     \bigg\{
         r^2 \cos^2 \theta_1
         \prod_{p=2}^{n-1}
         \sin^2 \theta_p
     +
     \sum_{i = 2}^{n - 1}
-    \sum_{i = 2}^{n - 1}
         r^2 \cos^2 \theta_{n - i + 1}
         \cos^2 \theta_1
         \prod_{p=2}^{n - i}
         \sin^2 \theta_p
+    +
+        r^2 \sin^2 \theta_1
     \bigg\}
+}}
 \notag\\&\qquad
     +
     2 \sum_{l = 1}^{n - 2}
     d \theta_1 d \theta_l
+    \underline{
     \bigg\{
         r^2 \cos \theta_1
         \cos \theta_l
@@ -1502,10 +1560,33 @@ $(1 \le i \le n - 2)$
         \sin \theta_p
         \prod_{q=1 (\neq l)}^{n-1}
         \sin \theta_q
+    }
 \notag\\&\qquad\qquad
+\underset{
+\displaystyle
+    =
+    r^2
+    \tan^{-1} \theta_1
+    \tan^{-1} \theta_l
+    \underset{
+    \displaystyle
+        \text{
+            $dr^2$の項と同様に計算すると$1$
+        }
+    }{\underline{
+    \bigg(
+        \prod_{p=1}^{n - 1}
+        \sin^2 \theta_p
     +
-    \sum_{i = 2}^{n - 1}
     \sum_{i = 2}^{n - l}
+        \cos^2 \theta_{n - i + 1}
+        \prod_{p=1}^{n - i (\ge l)}
+        \sin^2 \theta_p
+    \bigg)
+    }}
+}{\underline{
+    +
+    \sum_{i = 2}^{\min(n - 1, n - l)}
         r^2 \cos^2 \theta_{n - i + 1}
         \cos \theta_1
         \cos \theta_l
@@ -1514,6 +1595,7 @@ $(1 \le i \le n - 2)$
         \prod_{q=1 (\neq l)}^{n - i}
         \sin \theta_q
     \bigg\}
+}}
 \notag\\&\qquad
     +
     \sum_{k, l=2}^{n - 2}
