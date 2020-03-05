@@ -1413,6 +1413,11 @@ $(1 \le i \le n - 2)$
     ds^2
 =
     g_{ij} dx^i dx^j
+:=
+    \delta_{ab}
+    \dfrac{\partial x^a}{\partial \phi^i}
+    \dfrac{\partial x^b}{\partial \phi^j}
+    d \phi^i d\phi^j
 \notag\\&
 =
     d r^2
@@ -1543,14 +1548,74 @@ $(1 \le i \le n - 2)$
     \Bigg\}
 \notag\\&\qquad
     +
-    \cdots
+    d \theta_{n-1}^2
+    \Bigg\{
+        r^2 \cos^2 \theta_{n-1}
+        \prod_{p=1}^{n-2}
+        \sin^2 \theta_p
+    +
+        r^2 \sin^2 \theta_{n-1}
+        \prod_{p=1}^{n - 2}
+        \sin^2 \theta_p
+    \Bigg\}
+\notag\\&\qquad
+    +
+    2
+    \sum_{k = 1}^{n - 1}
+    d \theta_k
+    d \theta_{n-1}
+    \Bigg\{
+        r^2 \cos \theta_k
+        \cos \theta_{n-1}
+        \prod_{p=1 (\neq k)}^{n-1}
+        \sin \theta_p
+        \prod_{q=1}^{n-2}
+        \sin \theta_q
+\notag\\&\qquad\qquad
+    +
+        r^2 \sin \theta_{k}
+        \sin \theta_{n-1}
+        \prod_{p=1}^{k - 1}
+        \sin \theta_p
+        \prod_{q=1}^{n-2}
+        \sin \theta_q
+    \Bigg\}
+\notag\\&\qquad
+    +
+    2
+    d \theta_1
+    d \theta_{n-1}
+    \Bigg\{
+        r^2 \cos \theta_1
+        \cos \theta_{n-1}
+        \prod_{p=2}^{n-1}
+        \sin \theta_p
+        \prod_{q=1}^{n-2}
+        \sin \theta_q
+    \Bigg\}
+\notag\\&
+    =
+    d r^2
++
+    r^2
+\left(
+        d \theta_1^2
+    +
+    \sum_{i=2}^{n-1}
+        d\theta_i^2
+    \prod_{k=1}^{i-1}
+        \sin^2 \theta_k
+\right)
 \end{align}
+と計算できる。
 
 $n (\ge 2)$次元における体積要素は
 Jacobian
 $\displaystyle
 \frac{\partial(x_1, x_2, \cdots, x_n)}
     {\partial(r, \theta_1, \cdots, \theta_{n-1})}
+=
+    \det g_{ij}
 =
     r^{n-1}
     \prod_{j = 1}^{n-2}
