@@ -1253,6 +1253,21 @@ Fourier変換は不確定性関係という良くない性質を持つため、
 
 \subsubsection{$n$次元極座標}
 
+$1$次元極座標は
+（連続な角度変数が取れないため特殊で）
+$(r, \mathrm{sgn}(x)) = (|x|, \pm 1)$
+で、
+$2$次元極座標は
+$(x, y) = (r \cos \theta, r \sin \theta)$
+で、
+$3$次元球座標は
+$(x, y, x)
+=
+    (r \sin \theta \sin \phi,
+    r \sin \theta \cos \phi,
+    r \cos \theta)$
+で与えられる。
+
 一般の$n$次元の極座標
 （polar coordinates、
 球座標、spherical coordinates）
@@ -1319,21 +1334,6 @@ $(x_1, \dots, x_n)$を用いて
 \label{n dimensional spherical coordinates}
 \end{subequations}
 と定義される。
-例えば$1$次元極座標は
-（連続な角度変数が取れないため特殊で）
-$(r, \mathrm{sgn}(x)) = (|x|, \pm 1)$
-で、
-$2$次元極座標は
-$(x, y) = (r \cos \theta, r \sin \theta)$
-で、
-$3$次元球座標は
-$(x, y, x)
-=
-    (r \sin \theta \sin \phi,
-    r \sin \theta \cos \phi,
-    r \cos \theta)$
-で与えられる。
-
 特に、
 $\dfrac
     { x_{1} }
@@ -1342,7 +1342,6 @@ $\dfrac
     \tan \theta_{n-1}
 $
 及び
-$(1 \le i \le n - 2)$に対して
 $
 \dfrac
     { x_{n - i} }
@@ -1351,132 +1350,60 @@ $
     \tan \theta_{i}
     \cos \theta_{i+1}
 $
+$(1 \le i \le n - 2)$
 が成り立つ。
-これを使うと
-\begin{subequations}
-\begin{align}
-    2 r d r
-&=
-    2 x_i d x_i
-\\
-    d x_1
-&=
-    \dfrac{x_2}
-        {\cos^2 \theta_{n-1}}
-    d \theta_{n-1}
-+
-    \tan \theta_{n-1}
-    d x_2
-\\
-    d x_{n-i}
-&=
-    x_{n - (i - 1)}
-    \dfrac{\cos \theta_{i+1}}
-        {\cos^2 \theta_{i}}
-    d \theta_i
--
-    x_{n - (i - 1)}
-    \tan \theta_{i}
-    \sin \theta_{i+1}
-    d \theta_{i+1}
-+
-    \tan \theta_{i}
-    \sin \theta_{i+1}
-    d x_{n - (i - 1)}
-\end{align}
-\end{subequations}
-すなわち
+
+明らかに
 \begin{subequations}
 \begin{align}
     \dfrac{\partial x_i}
         {\partial r}
 &=
-    \dfrac{r}{x_i}
-=
     \begin{cases}
     \displaystyle
         \prod_{j=1}^{n - 1}
-        \sin^{-1} \theta_j
+        \sin \theta_j
     &(i = 1)
     \\
     \displaystyle
-        \cos^{-1} \theta_{n - i + 1}
+        \cos \theta_{n - i + 1}
         \prod_{j=1}^{n - i}
-        \sin^{-1} \theta_j
+        \sin \theta_j
     &(2 \le i \le n - 1)
     \\
     \displaystyle
-        \cos^{-1} \theta_{1}
+        \cos \theta_{1}
     &(i = n)
     \end{cases}
 \\
-    \dfrac{\partial x_1}
-        {\partial \theta_{n-1}}
+    \dfrac{\partial x_i}
+        {\partial \theta_j}
 &=
-    \dfrac{x_2}
-        {\cos^2 \theta_{n-1}}
-+
-    \tan \theta_{n-1}
-    \dfrac{\partial x_2}
-        {\partial \theta_{n-1}}
-=
-    r
-    \cos^{-1} \theta_{n-1}
-    \prod_{j=1}^{n-2}
-    \sin \theta_j
-+
-    \tan \theta_{n-1}
-    \dfrac{\partial x_2}
-        {\partial \theta_{n-1}}
-\\
-    \dfrac{\partial x_{n-i}}
-        {\partial \theta_i}
-&=
-    x_{n - (i - 1)}
-    \dfrac{\cos \theta_{i+1}}
-        {\cos^2 \theta_{i}}
-+
-    \tan \theta_{i}
-    \sin \theta_{i+1}
-    \dfrac{\partial x_{n - (i - 1)}}
-        {\partial \theta_i}
-\notag\\
-&=
-    r
-    \cos^{-1} \theta_{i}
-    \cos \theta_{i+1}
-    \prod_{j=1}^{i-1}
-    \sin \theta_j
-+
-    \tan \theta_{i}
-    \sin \theta_{i+1}
-    \dfrac{\partial x_{n - (i - 1)}}
-        {\partial \theta_i}
-\\
-    \dfrac{\partial x_{n-i}}
-        {\partial \theta_{i+1}}
-&=
-    -
-    x_{n - (i - 1)}
-    \tan \theta_{i}
-    \sin \theta_{i+1}
-+
-    \tan \theta_{i}
-    \sin \theta_{i+1}
-    \dfrac{\partial x_{n - (i - 1)}}
-        {\partial \theta_{i+1}}
-\notag\\&=
-    -
-    r
-    \sin \theta_{i}
-    \sin \theta_{i+1}
-    \prod_{j=1}^{i-1}
-    \sin \theta_j
-+
-    \tan \theta_{i}
-    \sin \theta_{i+1}
-    \dfrac{\partial x_{n - (i - 1)}}
-        {\partial \theta_{i+1}}
+    \begin{cases}
+    \displaystyle
+        r \cos \theta_j
+        \prod_{k=1 (\neq j)}^{n-1}
+        \sin \theta_k
+    &(i = 1 \le j \le n - 1)
+    \\
+    \displaystyle
+        r \cos \theta_{n - i + 1}
+        \cos \theta_j
+        \prod_{k=1 (\neq j)}^{n - i}
+        \sin \theta_k
+    &(2 \le i \le n - j \le n - 1)
+    \\
+    \displaystyle
+        -
+        r \sin \theta_{n - i + 1}
+        \prod_{k=1}^{n - i}
+        \sin \theta_k
+    &(2 \le i = n - j + 1 \le n - 1)
+    \\
+    \displaystyle
+        0
+    &(2 \le n-j+1 \le i - 1 < i \le n - 1)
+    \end{cases}
 \end{align}
 \end{subequations}
 が分かる。
@@ -2143,7 +2070,7 @@ $n$次元球の表面を掃く
 \end{align}
 となる。
 特に、$n = 1$では$S_1 = 2$なので
-$n \ge 3$の場合の公式を用いて表せる。
+$n \ge 3$の場合と同じ公式を用いて表せる。
 
 \subsubsection{次元正則化}
 
