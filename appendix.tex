@@ -1447,8 +1447,9 @@ $(1 \le i \le n - 2)$
     d r^2
 \underset{
 \displaystyle
+\color{blue}
     =
-    \left(
+    \Bigg(
     \underset{
     \displaystyle
     = \sin^2 \theta_1
@@ -1463,7 +1464,7 @@ $(1 \le i \le n - 2)$
     }}
     +
         \cos^2 \theta_{1}
-    \right)
+    \Bigg)
     = 1
 }{\underline{
     \left(
@@ -1483,6 +1484,7 @@ $(1 \le i \le n - 2)$
     (dr d\theta_1 + d\theta_1 dr)
 \underset{
 \displaystyle
+\color{blue}
     =
     r \sin \theta_1
     \cos \theta_1
@@ -1529,13 +1531,71 @@ $(1 \le i \le n - 2)$
     \sum_{k=2}^{n-1}
     (dr d\theta_k + d\theta_k dr)
     \Bigg(
-        \prod_{j=1}^{n - 1}
-        \sin \theta_j
-        r \cos \theta_k
-        \prod_{p=1 (\neq k)}^{n-1}
+\underline{
+        \prod_{p=1}^{n - 1}
         \sin \theta_p
+        r \cos \theta_k
+        \prod_{q=1 (\neq k)}^{n-1}
+        \sin \theta_q
     +
+    \sum_{i = 2}^{n-k}
+        \cos^2 \theta_{n - i + 1}
+        \prod_{p=1}^{n - i}
+        \sin \theta_p
+        r
+        \cos \theta_k
+        \prod_{q=1 (\neq k)}^{n - i(\ge k)}
+        \sin \theta_q
+}
+\notag\\&\qquad\qquad
+\underset{
+\displaystyle
+\color{blue}
+    =
+    r \tan^{-1} \theta_k
+    \bigg(
+    \underset{
+    \displaystyle
+        = \sin^2 \theta_1
+        -
+        \sum_{i = 2}^k
+        \cos^2 \theta_{i}
+        \prod_{p=1}^{i - 1}
+        \sin^2 \theta_p
+    =
+        \sin^2 \theta_1
+        -
+        \bigg(
+            \prod_{p=1}^{i - 1}
+            \sin^2 \theta_p
+        -
+            \sin^2 \theta_1
+        \bigg)
+    }{\underline{
+        \prod_{p=1}^{n - 1}
+        \sin^2 \theta_p
+    +
+    \sum_{i = k+1}^{n - 1}
+        \cos^2 \theta_{i}
+        \prod_{p=1}^{i - 1}
+        \sin^2 \theta_p
+    }}
+    -
+        \sin^2 \theta_k
+        \prod_{p=1}^{k - 1}
+        \sin^2 \theta_p
+    \bigg)
+}{\underline{
+    -
+        \cos \theta_{k}
+        \prod_{p=1}^{k - 1}
+        \sin \theta_p
+        r
+        \sin \theta_{k}
+        \prod_{q=1}^{k - 1}
+        \sin \theta_q
     \Bigg)
+}}
 \notag\\&\qquad
     +
     \sum_{k, l = 1}^{n - 1}
