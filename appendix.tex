@@ -1554,24 +1554,7 @@ $(1 \le i \le n - 2)$
     =
     r \tan^{-1} \theta_k
     \bigg(
-    \underset{
-    \displaystyle
-        = \sin^2 \theta_1
-        -
-        \sum_{i = 2}^k
-        \cos^2 \theta_{i}
-        \prod_{p=1}^{i - 1}
-        \sin^2 \theta_p
-    =
-        \sin^2 \theta_1
-        -
-        \bigg(
-            \prod_{p=1}^{i - 1}
-            \sin^2 \theta_p
-        -
-            \sin^2 \theta_1
-        \bigg)
-    }{\underline{
+    \underbrace{
         \prod_{p=1}^{n - 1}
         \sin^2 \theta_p
     +
@@ -1579,12 +1562,39 @@ $(1 \le i \le n - 2)$
         \cos^2 \theta_{i}
         \prod_{p=1}^{i - 1}
         \sin^2 \theta_p
+    }_{\substack{
+    \displaystyle
+    = \sin^2 \theta_1
+        -
+        \sum_{i = 2}^k
+        \cos^2 \theta_{i}
+        \prod_{p=1}^{i - 1}
+        \sin^2 \theta_p
+    \\
+    \displaystyle
+    =
+        \sin^2 \theta_1
+        -
+        \bigg(
+            \sin^2 \theta_1
+        -
+            \prod_{p=1}^{k}
+            \sin^2 \theta_p
+        \bigg)
     }}
     -
+    \underbrace{
         \sin^2 \theta_k
         \prod_{p=1}^{k - 1}
         \sin^2 \theta_p
+    }_{\substack{
+    \displaystyle
+        =
+        \prod_{p=1}^{k}
+        \sin^2 \theta_p
+    }}
     \bigg)
+    = 0
 }{\underline{
     -
         \cos \theta_{k}
