@@ -1691,9 +1691,15 @@ $(1 \le i \le n - 2)$
     \Bigg\}
 \notag\\&\qquad
     + d \theta_{n-1}^2
+    \bigg\{
+        r^2 \cos^2 \theta_{n-1}
+        \prod_{p=1}^{n-2}
+        \sin^2 \theta_p
+    +
         r^2 \sin^2 \theta_{n-1}
         \prod_{p=1}^{n-2}
-        \sin^2 \theta_q
+        \sin^2 \theta_p
+    \bigg\}
     -
     \sum_{k = 1}^{n - 1}
 \underbrace{
@@ -1721,12 +1727,11 @@ $(1 \le i \le n - 2)$
     d \theta_1^2
 +
     r^2
-    \sum_{k= 2}^{n - 2}
+    \sum_{k = 2}^{n - 1}
     d \theta_k^2
         \prod_{p=1}^{k-1}
         \sin^2 \theta_p
-\notag\\&
-    =
+=
     d r^2
 +
     r^2
@@ -1740,19 +1745,41 @@ $(1 \le i \le n - 2)$
 \right)
 \end{align}
 と計算できる。
+特に、$g_{ij}$が対角なことから
+\begin{align}
+    \det ( g_{ij} )
+=
+    1 \cdot (r^2)^{n-1}
+    \prod_{k=2}^{n-1}
+    \prod_{p=1}^{k-1}
+        \sin^2 \theta_p
+=
+    r^{2(n-1)}
+    \prod_{j = 1}^{n-2}
+    \sin^{2(n - j - 1)} \theta_j
+\end{align}
+がすぐに分かる。
 
 $n (\ge 2)$次元における体積要素は
 Jacobian
-$\displaystyle
-\frac{\partial(x_1, x_2, \cdots, x_n)}
+\begin{align}
+    \frac{\partial(x_1, x_2, \cdots, x_n)}
     {\partial(r, \theta_1, \cdots, \theta_{n-1})}
 =
-    \det g_{ij}
+    \det
+\left(
+    \dfrac{\partial x_i}{\partial \phi_j}
+\right)
+=
+    \sqrt{
+        \det g_{ij}
+    }
 =
     r^{n-1}
     \prod_{j = 1}^{n-2}
     \sin^{n - j - 1} \theta_j
-$に気を付けて
+\end{align}
+に気を付けて
 \begin{align}
     d^n x
 &=
