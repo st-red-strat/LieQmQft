@@ -1608,239 +1608,87 @@ $(1 \le i \le n - 2)$
 }}
 \notag\\&\qquad
     +
-    \sum_{k, l = 1}^{n - 1}
-    d \theta_k
-    d \theta_l
+    \sum_{k= 1}^{n - 1}
+    d \theta_k^2
+\underbrace{
     \Bigg\{
-        r^2 \cos \theta_k
-        \cos \theta_l
+        r^2 \cos^2 \theta_k
         \prod_{p=1 (\neq k)}^{n-1}
-        \sin \theta_p
-        \prod_{q=1 (\neq l)}^{n-1}
-        \sin \theta_q
-    \Bigg\}
-\notag\\&\qquad\qquad
-    -
-    \sum_{k = 1}^{n - 2}
-    \sum_{l = 2}^{n - 1}
-    d \theta_k
-    d \theta_l
-    \sum_{i (= n - l + 1) = 2}^{n - k}
-    \Bigg\{
-        r \cos \theta_{n - i + 1}
-        \cos \theta_k
-        \prod_{p=1 (\neq k)}^{n - i}
-        \sin \theta_p
-        r \sin \theta_{n - i + 1}
-        \prod_{q=1}^{n - i}
-        \sin \theta_q
-    \Bigg\}
-\notag\\&\qquad\qquad
-    +
-    \sum_{k, l = 1}^{n - 2}
-    d \theta_k
-    d \theta_l
-    \Bigg\{
-    \sum_{i = 2}^{\min(n - k, n - l)}
-        r^2 \cos^2 \theta_{n - i + 1}
-        \cos \theta_k
-        \cos \theta_l
-        \prod_{p=1 (\neq k)}^{n - i}
-        \sin \theta_p
-        \prod_{q=1 (\neq l)}^{n - i}
-        \sin \theta_q
-    \Bigg\}
-\notag\\&\qquad\qquad
-    +
-    \sum_{k, l = 2}^{n - 1}
-    d \theta_k
-    d \theta_l
-    \Bigg\{
-        r^2 \sin \theta_{k}
-        \sin \theta_{l}
-        \prod_{p=1}^{k - 1}
-        \sin \theta_p
-        \prod_{q=1}^{l - 1}
-        \sin \theta_q
-    \Bigg\}
-\notag\\&\qquad
-    +
-    d \theta_1^2
-        r^2 \cos^2 \theta_1
-\notag\\&
-=
-    d r^2
-    +
-    d \theta_1^2
-\underset{
-\displaystyle
-    =
-    r^2
-    \cos^2 \theta_1
-    \bigg(
-    \underset{
-    \displaystyle
-        \text{
-        $dr^2$の項と同様に計算すると
-        $1$
-        }
-    }{\underline{
-        \prod_{p = 2}^{n - 1}
         \sin^2 \theta_p
-    +
-    \sum_{i = 2}^{n - 1}
-        \cos^2 \theta_{n - i + 1}
-        \prod_{p = 2}^{n - i}
-        \sin^2 \theta_p
-    }}
-    \bigg)
-    +
-        r^2 \sin^2 \theta_1
-    = r^2
-}{\underline{
-    \bigg\{
-        r^2 \cos^2 \theta_1
-        \prod_{p=2}^{n-1}
-        \sin^2 \theta_p
-    +
-    \sum_{i = 2}^{n - 1}
-        r^2 \cos^2 \theta_{n - i + 1}
-        \cos^2 \theta_1
-        \prod_{p=2}^{n - i}
-        \sin^2 \theta_p
-    +
-        r^2 \sin^2 \theta_1
-    \bigg\}
-}}
-\notag\\&\qquad
-    +
-    2 \sum_{l = 1}^{n - 2}
-    d \theta_1 d \theta_l
-    \underline{
-    \bigg\{
-        r^2 \cos \theta_1
-        \cos \theta_l
-        \prod_{p=2}^{n-1}
-        \sin \theta_p
-        \prod_{q=1 (\neq l)}^{n-1}
-        \sin \theta_q
-    }
-\notag\\&\qquad\qquad
-\underset{
-\displaystyle
-    =
-    r^2
-    \tan^{-1} \theta_1
-    \tan^{-1} \theta_l
-    \underset{
-    \displaystyle
-        \text{
-            $dr^2$の項と同様に計算すると$1$
-        }
-    }{\underline{
-    \bigg(
-        \prod_{p=1}^{n - 1}
-        \sin^2 \theta_p
-    +
-    \sum_{i = 2}^{n - l}
-        \cos^2 \theta_{n - i + 1}
-        \prod_{p=1}^{n - i}
-        \sin^2 \theta_p
-    \bigg)
-    }}
-}{\underline{
-    +
-    \sum_{i = 2}^{
-        \min(n - 1, n - l) = n - l
-    }
-        r^2 \cos^2 \theta_{n - i + 1}
-        \cos \theta_1
-        \cos \theta_l
-        \prod_{p=2}^{n - i}
-        \sin \theta_p
-        \prod_{q=1 (\neq l)}^{n - i(\ge l)}
-        \sin \theta_q
-    \bigg\}
-}}
-\notag\\&\qquad
-    +
-    \sum_{k, l=2}^{n - 2}
-    d \theta_k
-    d \theta_l
-    \Bigg\{
-        r^2 \cos \theta_k
-        \cos \theta_l
-        \prod_{p=1 (\neq k)}^{n-1}
-        \sin \theta_p
-        \prod_{q=1 (\neq l)}^{n-1}
-        \sin \theta_q
-\notag\\&\qquad\qquad
     +
     \sum_{i = 2}^{n - k}
-    \sum_{i = 2}^{n - l}
         r^2 \cos^2 \theta_{n - i + 1}
-        \cos \theta_k
-        \cos \theta_l
-        \prod_{p=1 (\neq k)}^{n - i}
-        \sin \theta_p
-        \prod_{q=1 (\neq l)}^{n - i}
-        \sin \theta_q
+        \cos^2 \theta_{k}
+        \prod_{p=1 (\neq k)}^{n-i}
+        \sin^2 \theta_p
+}_{\substack{
+\displaystyle
+\color{blue}
+    = r^2 \tan^{-2} \theta_k
+    \Bigg(
+\underbrace{
+        \prod_{p=1}^{n-1}
+        \sin^2 \theta_p
+    +
+    \sum_{i = k+1}^{n - 1}
+        \cos^2 \theta_{i}
+        \prod_{p=1}^{i-1}
+        \sin^2 \theta_p
+}_{\substack{
+\displaystyle
+\color{blue}
+    \text{
+        $dr d\theta_k$の項と同様に
+        $\displaystyle
+        \prod_{p=1}^{k}
+        \sin^2 \theta_p
+        $
+    }
+}}
+    \Bigg)
+    = r^2 \cos^2 \theta_k
+    \prod_{p=1}^{k-1}
+    \sin^2 \theta_p
+\\
+}}
 \notag\\&\qquad\qquad
     +
-        r^2 \sin \theta_{k}
-        \sin \theta_{l}
-        \prod_{p=1}^{k - 1}
-        \sin \theta_p
-        \prod_{q=1}^{l - 1}
-        \sin \theta_q
+\underbrace{
+        r^2 \sin^2 \theta_{k}
+        \prod_{p=1}^{k-1}
+        \sin^2 \theta_q
+    +   r^2 \sin^2 \theta_1
+}_{\substack{
+\displaystyle
+\color{blue}
+    =
+    r^2 \bigg(
+        \prod_{p=1}^{k}
+        \sin^2 \theta_q
+    +   \sin^2 \theta_1
+    \bigg)
+}}
     \Bigg\}
-\notag\\&\qquad
-    +
-    d \theta_{n-1}^2
-    \Bigg\{
-        r^2 \cos^2 \theta_{n-1}
-        \prod_{p=1}^{n-2}
-        \sin^2 \theta_p
-    +
-        r^2 \sin^2 \theta_{n-1}
-        \prod_{p=1}^{n - 2}
-        \sin^2 \theta_p
-    \Bigg\}
-\notag\\&\qquad
-    +
-    2
+% \notag\\&\qquad\qquad
+    -
     \sum_{k = 1}^{n - 1}
+\underbrace{
+    \sum_{l \neq k}
     d \theta_k
-    d \theta_{n-1}
-    \Bigg\{
-        r^2 \cos \theta_k
-        \cos \theta_{n-1}
-        \prod_{p=1 (\neq k)}^{n-1}
-        \sin \theta_p
-        \prod_{q=1}^{n-2}
-        \sin \theta_q
-\notag\\&\qquad\qquad
-    +
-        r^2 \sin \theta_{k}
-        \sin \theta_{n-1}
-        \prod_{p=1}^{k - 1}
-        \sin \theta_p
-        \prod_{q=1}^{n-2}
-        \sin \theta_q
-    \Bigg\}
-\notag\\&\qquad
-    +
-    2
-    d \theta_1
-    d \theta_{n-1}
-    \Bigg\{
-        r^2 \cos \theta_1
-        \cos \theta_{n-1}
-        \prod_{p=2}^{n-1}
-        \sin \theta_p
-        \prod_{q=1}^{n-2}
-        \sin \theta_q
-    \Bigg\}
+    d \theta_l
+}_{\substack{\displaystyle
+\color{blue} = 
+    2 \sum_{l > k}
+    d \theta_k
+    d \theta_l
+}}
+    \underbrace{
+    \bigg\{
+        \cdots
+    \bigg\}
+    }_{\substack{\displaystyle
+        \color{blue} = 0
+    }}
 \notag\\&
     =
     d r^2
