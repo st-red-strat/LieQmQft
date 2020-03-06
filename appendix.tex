@@ -1292,8 +1292,8 @@ $(x_1, \dots, x_n)$を用いて
 \\
     x_{n-1}
     =:&\ 
-    r \sin \theta_1
-    \cos \theta_2
+    r \cos \theta_2
+    \sin \theta_1
 &
     (0 \le\ &\theta_2 \le \pi)
 \\\notag
@@ -1334,6 +1334,21 @@ $(x_1, \dots, x_n)$を用いて
 \label{n dimensional spherical coordinates}
 \end{subequations}
 と定義される。
+ただし、
+$1 \le i \le n-2$に対して
+$x_{n-i+1}$の表式に
+$\cos \theta_i$が$1$回だけ現れるため、
+この因子が左辺の符号を決める
+（つまり$\sin \theta_i$が正の値しか取れない）よう
+$\theta_i$の取り得る範囲を選んだ。
+こうしておけば
+$(x_1, \dots, x_n)$と
+$(r, \theta_1, \dots, \theta_{n-1})$
+が一対一で対応するためである。
+$i = n - 1$の時だけが特殊で、
+$x_1, x_2$が任意の実数を動くためには
+$\cos \theta_{n-1}$だけでなく
+$\sin \theta_{n-1}$も正負の値を動けなければならない事に注意せよ。
 特に、
 $\dfrac
     { x_{1} }
@@ -1430,6 +1445,22 @@ $(1 \le i \le n - 2)$
 \notag\\&
 =
     d r^2
+\underset{
+\displaystyle
+    =
+    \left(
+        \prod_{j=1}^{n - 1}
+        \sin^2 \theta_j
+    +
+    \sum_{i = 2}^{n-1}
+        \cos^2 \theta_{i}
+        \prod_{j=1}^{i - 1}
+        \sin^2 \theta_j
+    +
+        \cos^2 \theta_{1}
+    \right)
+    = 1
+}{\underline{
     \left(
         \prod_{j=1}^{n - 1}
         \sin^2 \theta_j
@@ -1441,6 +1472,44 @@ $(1 \le i \le n - 2)$
     +
         \cos^2 \theta_{1}
     \right)
+}}
+\notag\\&\qquad
+    +
+    (dr d\theta_1 + d\theta_1 dr)
+\underset{
+    =
+}{\underline{
+    \Bigg(
+        \prod_{p=1}^{n - 1}
+        \sin \theta_p
+        r \cos \theta_1
+        \prod_{q=2}^{n-1}
+        \sin \theta_q
+    +
+    \sum_{i = 2}^{n - 1}
+        \cos^2 \theta_{n - i + 1}
+        \prod_{p=1}^{n - i}
+        \sin \theta_p
+        r \cos \theta_1
+        \prod_{q=2}^{n - i}
+        \sin \theta_q
+    -
+        \cos \theta_1
+        r \sin \theta_1
+    \Bigg)
+}}
+\notag\\&\qquad
+    +
+    \sum_{k=2}^{n-1}
+    (dr d\theta_k + d\theta_k dr)
+    \Bigg(
+        \prod_{j=1}^{n - 1}
+        \sin \theta_j
+        r \cos \theta_k
+        \prod_{p=1 (\neq k)}^{n-1}
+        \sin \theta_p
+    +
+    \Bigg)
 \notag\\&\qquad
     +
     \sum_{k, l = 1}^{n - 1}
@@ -1505,29 +1574,13 @@ $(1 \le i \le n - 2)$
 \notag\\&
 =
     d r^2
-\underset{
-\displaystyle
-    = 1
-}{\underline{
-    \left(
-        \prod_{j=1}^{n - 1}
-        \sin^2 \theta_j
-    +
-    \sum_{i = 2}^{n-1}
-        \cos^2 \theta_{i}
-        \prod_{j=1}^{i - 1}
-        \sin^2 \theta_j
-    +
-        \cos^2 \theta_{1}
-    \right)
-}}
-\notag\\&\qquad
     +
     d \theta_1^2
 \underset{
 \displaystyle
     =
     r^2
+    +
     \cos^2 \theta_1
     \bigg(
     \underset{
