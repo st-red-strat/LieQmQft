@@ -1608,7 +1608,7 @@ $(1 \le i \le n - 2)$
 }}
 \notag\\&\qquad
     +
-    \sum_{k= 1}^{n - 1}
+    \sum_{k = 2}^{n - 2}
     d \theta_k^2
 \underbrace{
     \Bigg\{
@@ -1619,7 +1619,7 @@ $(1 \le i \le n - 2)$
     \sum_{i = 2}^{n - k}
         r^2 \cos^2 \theta_{n - i + 1}
         \cos^2 \theta_{k}
-        \prod_{p=1 (\neq k)}^{n-i}
+        \prod_{p=1 (\neq k)}^{n-i(\ge k)}
         \sin^2 \theta_p
 }_{\substack{
 \displaystyle
@@ -1656,20 +1656,43 @@ $(1 \le i \le n - 2)$
 \underbrace{
         r^2 \sin^2 \theta_{k}
         \prod_{p=1}^{k-1}
-        \sin^2 \theta_q
-    +   r^2 \sin^2 \theta_1
+        \sin^2 \theta_p
 }_{\substack{
 \displaystyle
 \color{blue}
     =
     r^2 \bigg(
         \prod_{p=1}^{k}
-        \sin^2 \theta_q
-    +   \sin^2 \theta_1
+        \sin^2 \theta_p
     \bigg)
 }}
     \Bigg\}
-% \notag\\&\qquad\qquad
+    + d \theta_1^2
+    \bigg\{
+\underbrace{
+        r^2 \cos^2 \theta_{1}
+        \prod_{p=2}^{n-1}
+        \sin^2 \theta_p
+    +
+    \sum_{i = 2}^{n-1}
+        r^2 \cos^2 \theta_{n - i + 1}
+        \cos^2 \theta_1
+        \prod_{p=2}^{n-i}
+        \sin^2 \theta_p
+}_{\substack{
+    \displaystyle
+    \color{blue}\text{
+    $dr d\theta_1$の項と同様に
+    $r^2 \cos^2 \theta_1$
+}}}
+    +
+        r^2 \sin^2 \theta_1
+    \bigg\}
+\notag\\&\qquad
+    + d \theta_{n-1}^2
+        r^2 \sin^2 \theta_{n-1}
+        \prod_{p=1}^{n-2}
+        \sin^2 \theta_q
     -
     \sum_{k = 1}^{n - 1}
 \underbrace{
@@ -1689,6 +1712,25 @@ $(1 \le i \le n - 2)$
     }_{\substack{\displaystyle
         \color{blue} = 0
     }}
+\notag\\&
+    =
+    d r^2
++
+    r^2
+    d \theta_1^2
++
+    r^2
+    \sum_{k= 2}^{n - 2}
+    d \theta_k^2
+    \Bigg\{
+        \cos^2 \theta_k
+        \prod_{p=1}^{k-1}
+        \sin^2 \theta_p
+    +
+        \prod_{p=1}^{k}
+        \sin^2 \theta_q
+    +   \sin^2 \theta_1
+    \Bigg\}
 \notag\\&
     =
     d r^2
