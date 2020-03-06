@@ -1701,14 +1701,22 @@ $(1 \le i \le n - 2)$
         \sin^2 \theta_p
     \bigg\}
     -
-    \sum_{k = 1}^{n - 1}
 \underbrace{
+    \sum_{k = 1}^{n - 1}
     \sum_{l \neq k}
     d \theta_k
     d \theta_l
-}_{\substack{\displaystyle
-\color{blue} = 
-    2 \sum_{l > k}
+}_{\substack{
+\displaystyle
+\color{blue} =
+    2 \sum_{k = 1}^{n - 1}
+    \sum_{l > k}
+    d \theta_k
+    d \theta_l
+%\\ \displaystyle \color{blue}
+=
+    2 \sum_{k = 1}^{n - 1}
+    \sum_{l = k+1}^{n-1}
     d \theta_k
     d \theta_l
 }}
@@ -1720,17 +1728,6 @@ $(1 \le i \le n - 2)$
         \color{blue} = 0
     }}
 \notag\\&
-    =
-    d r^2
-+
-    r^2
-    d \theta_1^2
-+
-    r^2
-    \sum_{k = 2}^{n - 1}
-    d \theta_k^2
-        \prod_{p=1}^{k-1}
-        \sin^2 \theta_p
 =
     d r^2
 +
@@ -1744,7 +1741,8 @@ $(1 \le i \le n - 2)$
         \sin^2 \theta_p
 \right)
 \end{align}
-と計算できる。
+と計算できる
+（$l>k$の項が消えることを確かめてみよ）。
 特に、$g_{ij}$が対角なことから
 \begin{align}
     \det ( g_{ij} )
@@ -1786,6 +1784,19 @@ Jacobian
     \prod_{i = 1}^n
     d x_i
 =
+    \frac{\partial(x_1, x_2, \cdots, x_n)}
+    {\partial(r, \theta_1, \cdots, \theta_{n-1})}
+    \prod_{i = 1}^n
+    d \phi_i
+=
+    d r d \theta_1
+        \cdots d \theta_{n-1}
+    r^{n-1}
+    \prod_{j = 1}^{n-2}
+    \sin^{n - j - 1} \theta_j
+\\\notag&
+\bigg(
+=
     (dr)
     (r d \theta_1)
     (r \sin \theta_1 d \theta_2)
@@ -1795,13 +1806,7 @@ Jacobian
 \cdots
     (r \prod_{j = 1}^n
     \sin \theta_j d \theta_n)
-\notag\\&
-=
-    d r d \theta_1
-        \cdots d \theta_{n-1}
-    r^{n-1}
-    \prod_{j = 1}^{n-2}
-    \sin^{n - j - 1} \theta_j
+\bigg)
 \end{align}
 で与えられ、
 特に半径$R$の$n$次元球の体積は
