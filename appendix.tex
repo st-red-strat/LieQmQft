@@ -1422,11 +1422,11 @@ $(1 \le i \le n - 2)$
     \displaystyle
         -
         r \sin \theta_1
-    &(1 = j \le i = n)
+    &(1 = j < i = n)
     \\
     \displaystyle
         0
-    &(1 < j \le i = n)
+    &(1 < j < i = n)
     \end{cases}
 \end{align}
 \end{subequations}
@@ -1449,6 +1449,10 @@ $(1 \le i \le n - 2)$
 \displaystyle
     =
     \left(
+    \underset{
+    \displaystyle
+    = \sin^2 \theta_1
+    }{\underline{
         \prod_{j=1}^{n - 1}
         \sin^2 \theta_j
     +
@@ -1456,6 +1460,7 @@ $(1 \le i \le n - 2)$
         \cos^2 \theta_{i}
         \prod_{j=1}^{i - 1}
         \sin^2 \theta_j
+    }}
     +
         \cos^2 \theta_{1}
     \right)
@@ -1477,7 +1482,28 @@ $(1 \le i \le n - 2)$
     +
     (dr d\theta_1 + d\theta_1 dr)
 \underset{
+\displaystyle
     =
+    r \sin \theta_1
+    \cos \theta_1
+    \Bigg(
+    \underset{
+    \displaystyle
+        \text{$dr^2$の項と同様に計算すると$1$}
+    }{\underline{
+        \prod_{q=2}^{n-1}
+        \sin^2 \theta_q
+    +
+    \sum_{i = 2}^{n - 1}
+        \cos^2 \theta_{i}
+        r \cos \theta_1
+        \prod_{q=2}^{i-1}
+        \sin^2 \theta_q
+    }}
+    -
+        1
+    \Bigg)
+    = 0
 }{\underline{
     \Bigg(
         \prod_{p=1}^{n - 1}
@@ -1580,7 +1606,6 @@ $(1 \le i \le n - 2)$
 \displaystyle
     =
     r^2
-    +
     \cos^2 \theta_1
     \bigg(
     \underset{
