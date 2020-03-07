@@ -1857,14 +1857,14 @@ $(1 \le i \le n - 2)$
 }_{\substack{
 \displaystyle
 \color{blue} =
-    2 \sum_{k = 1}^{n - 1}
-    \sum_{l > k}
+    2
+    \sum_{l < k}
     d \theta_k
     d \theta_l
 %\\ \displaystyle \color{blue}
 =
-    2 \sum_{k = 1}^{n - 1}
-    \sum_{l = k+1}^{n-1}
+    2 \sum_{k = 2}^{n - 1}
+    \sum_{l = 1}^{k-1}
     d \theta_k
     d \theta_l
 }}
@@ -1891,7 +1891,7 @@ $(1 \le i \le n - 2)$
 \label{n dim spherical coord metric}
 \end{align}
 と計算できる
-（$l>k$の項が消えることを確かめてみよ）。
+（$l \neq k$の項が消えることを確かめてみよ）。
 特に、$g_{ij}$が対角なことから
 \begin{align}
     g =
