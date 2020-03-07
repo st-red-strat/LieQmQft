@@ -672,6 +672,9 @@ $C_{0}, C_{\infty}$
     \left( \dfrac{1}{u} \right)
 =
     \sum_{n=-\infty}^{\infty}
+        c_{n} u^{-n}
+=
+    \sum_{n=-\infty}^{\infty}
         a_n u^n
 \\
     a_n
@@ -681,20 +684,19 @@ $C_{0}, C_{\infty}$
     \dfrac{1}{2 \pi i}
     \oint_{- C_\infty}
         dz_0
-        \dfrac{1}{z_0^2}
+        \dfrac{- 1}{z_0^2}
         \dfrac{
             f ( z_0 )
         }{z_0^{-n-1}}
 \notag\\&
 =
-    -
     \dfrac{1}{2 \pi i}
     \oint_{C_\infty}
         dz_0
         \dfrac{
             f ( z_0 )
         }{z_0^{-n+1}}
-    = - c_{-n}
+    = c_{-n}
 \\
     \Res{f(z)dz, \infty}
 & = c_{-1} =
@@ -703,11 +705,15 @@ $C_{0}, C_{\infty}$
 =
     \dfrac{1}{2 \pi i}
     \oint_{- C_{0}} du
-    \dfrac{ g(u) }{u^2}
-= - a_1
+    \dfrac{ -1 }{u^2}
+    g(u)
+=   a_1
 \end{align}
 \end{subequations}
 と書ける。
+因子$\dfrac{-1}{u^2}$まで含める事で、
+$f(z)$のLaurent展開と$g(z)$のそれが
+矛盾なく座標変換で結び付くことが分かる。
 
 \subsubsection{Morera's theorem（モレラの定理）}
 
