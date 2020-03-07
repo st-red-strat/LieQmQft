@@ -136,13 +136,13 @@ Edington's epsilonと洋書に書いてあることは少ないようだ）を
     \begin{cases}
         + 1
         &\text{
-            $(i_1,\dots,t_n)$が
+            $(i_1,\dots,i_n)$が
             $(1,\dots,n)$の偶置換
         }
     \\
         - 1
         &\text{
-            $(i_1,\dots,t_n)$が
+            $(i_1,\dots,i_n)$が
             $(1,\dots,n)$の奇置換
         }
     \\
@@ -639,6 +639,75 @@ $n$個の孤立特異点$a_1,\dots,a_n$を除き正則であるとき
     \Res{f(z)dz, a_k}
 \end{align}
 が成り立つ。
+
+座標変換$u := \dfrac{1}{z}$のもとで
+$    g(u)
+:=
+    f
+    \left( \dfrac{1}{u} \right)
+$と定義すると、
+微分形域は
+\begin{align}
+    f(z) dz
+    =
+    f
+    \left( \dfrac{1}{u} \right)
+    \dfrac{\partial z}{\partial u}
+    du
+    =
+    - \dfrac{ g (u) }{u^2}
+    du
+\end{align}
+のように変換するため、
+無限遠点$z = \infty$での留数および
+その周りのLaurent展開は
+$C_{0}, C_{\infty}$
+を原点、無限遠点を囲む
+反時計回りの円とし
+\begin{subequations}
+\begin{align}
+    g(u)
+&=
+    f
+    \left( \dfrac{1}{u} \right)
+=
+    \sum_{n=-\infty}^{\infty}
+        a_n u^n
+\\
+    a_n
+    &:= \dfrac{1}{2 \pi i}
+    \oint_{C_0} du_0 \dfrac{g(u_0)}{u_0^{n+1}}
+=
+    \dfrac{1}{2 \pi i}
+    \oint_{- C_\infty}
+        dz_0
+        \dfrac{1}{z_0^2}
+        \dfrac{
+            f ( z_0 )
+        }{z_0^{-n-1}}
+\notag\\&
+=
+    -
+    \dfrac{1}{2 \pi i}
+    \oint_{C_\infty}
+        dz_0
+        \dfrac{
+            f ( z_0 )
+        }{z_0^{-n+1}}
+    = - c_{-n}
+\\
+    \Res{f(z)dz, \infty}
+& = c_{-1} =
+    \dfrac{1}{2 \pi i}
+    \oint_{C_{\infty}} dz\ f(z)
+=
+    \dfrac{1}{2 \pi i}
+    \oint_{- C_{0}} du
+    \dfrac{ g(u) }{u^2}
+= - a_1
+\end{align}
+\end{subequations}
+と書ける。
 
 \subsubsection{Morera's theorem（モレラの定理）}
 
