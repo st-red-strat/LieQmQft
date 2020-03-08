@@ -6107,7 +6107,8 @@ $2j +1$個の固有値$m$と
 対応する固有状態が全て求まってしまうのである。
 
 角運動量operator
-(\ref{angular momentum definition})を位置表示すると
+(\ref{angular momentum definition})
+を位置表示すると
 \begin{align}
     L_i
 =
@@ -6124,8 +6125,15 @@ $2j +1$個の固有値$m$と
 角運動量の大きさ
 (\ref{the square of the magnitude of the orbital angular momentum})
 は
+完全反対称tensorの性質
+(\ref{3rd order epsilon to delta2 formula})
+を使うと
+（微分が$L^2$の後に来るであろう
+波動関数にも作用するため、
+積の微分法を使わなければならない事に気を付けて）
 \begin{align}
-    L^2 = L_i L_i
+    L^2
+    &= L_i L_i
 =
     (- i \hbar\ 
     \epsilon_{ijk}\ 
@@ -6135,6 +6143,44 @@ $2j +1$個の固有値$m$と
     x_n\ \partial_m)
 =
     - \hbar^2
+    \epsilon_{ijk}
+    \epsilon_{inm}
+    x_j\ \partial_k
+    (x_n\ \partial_m)
+\notag\\&
+=
+    - \hbar^2
+    (\delta_{jn} \delta_{km}
+    - \delta_{jm} \delta_{kn})
+    x_j \partial_k
+    (x_n \partial_m)
+=
+    - \hbar^2
+    [
+        x_j \partial_k
+        (x_j \partial_k)
+    -
+        x_j \partial_k
+        (x_k \partial_j)
+    ]
+\notag\\&
+=
+    - \hbar^2
+    [
+        x_j
+        (
+            \delta_{jk} \partial_k
+        +
+            x_j \partial_k \partial_k
+        )
+    -
+        x_j
+        (
+            \delta_{kk} \partial_j
+        +
+            x_k \partial_j \partial_k
+        )
+    ]
 \end{align}
 
 \subsection{Operatorの代数とその表現}
