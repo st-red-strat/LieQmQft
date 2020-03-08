@@ -6401,7 +6401,44 @@ $
     r \dfrac{\partial}{\partial r}
 \end{align}
 が成り立つ。
-従って角運動量operatorは
+従って角運動量operatorとLaplacianの間に
+\begin{align}
+    - \dfrac{L^2}{\hbar^2}
+&=
+    r^2 \Delta
+    -
+        r \dfrac{\partial}{\partial r}
+    -
+        \left(
+            r \dfrac{\partial}{\partial r}
+        \right)^2
+=
+    r^2 \Delta
+    -
+        2 r
+        \dfrac{\partial}{\partial r}
+    -
+        r^2
+        \dfrac{\partial^2}{\partial r^2}
+\notag\\\therefore
+\quad
+    \Delta
+&=
+    \dfrac{\partial^2}{\partial r^2}
+    +
+    \dfrac{2}{r}
+    \dfrac{\partial}{\partial r}
+    +
+    \dfrac{1}{r^2}
+    \left[
+        - \dfrac{L^2}{\hbar^2}
+    \right]
+\end{align}
+の関係があり、
+$- \dfrac{L^2}{\hbar^2}$は
+球Laplacian
+(\ref{spherical Laplacian})
+に他ならないことが分かる。
 
 \subsection{Operatorの代数とその表現}
 
