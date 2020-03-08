@@ -2167,6 +2167,22 @@ Laplacianは
         f
 \end{align}
 と書けることが分かる。
+第$1$項は
+$    \dfrac{1}{
+    \displaystyle
+        r^{n-1}
+    }
+    \partial_r
+    \left(
+        r^{n-1}
+        \partial_r
+    \right)
+=
+    \partial_r^2
+    +
+    \dfrac{n-1}{ r }
+        \partial_r
+$と書いても同じことである。
 ただし、角度方向つまり
 球面$S^{n-1}$上のLaplace-Beltrami operator
 （ラプラス・ベルトラミ作用素）を
@@ -2222,6 +2238,94 @@ Laplacianは
 と定義した。
 この微分作用素は球Laplacian
 （spherical Laplacian）と呼ばれる事もある。
+なお、この結果は$n = 2,3$で
+\begin{align}
+    \Delta_{(2)}
+    &=
+    \dfrac{1}{r}
+        \partial_r
+        (r \partial_r)
+    +
+    \dfrac{1}{r^2}
+    \Delta_{S^1}
+\notag\\&
+=
+    \dfrac{1}{r}
+        r \partial_r^2
+    +
+    \dfrac{1}{r}
+        \partial_r
+    +
+    \dfrac{1}{r^2}
+    \dfrac{1}{\sin^2 \theta}
+    \dfrac{1}{\sin^{2-1-3} \theta}
+    \partial_\theta
+    (\sin^{2-1-1} \theta \partial_\theta)
+\notag\\&
+=
+        \partial_r^2
+    +
+        \dfrac{1}{r}
+        \partial_r
+    +
+    \dfrac{1}{r^2}
+    \partial_\theta^2
+\\
+    \Delta_{(3)}
+    &=
+    \dfrac{1}{r^2}
+        \partial_r
+        (r^2 \partial_r)
+    +
+    \dfrac{1}{r^2}
+    \Delta_{S^2}
+\notag\\&
+=
+    \partial_r^2
+    +
+    \dfrac{2}{r}
+        \partial_r
+    +
+    \dfrac{1}{r^2}
+    \left[
+        \dfrac{1}{\sin^2 \theta}
+        \dfrac{1}{\sin^{3-1-3} \theta}
+        \partial_\theta
+        \left(
+            \sin^{3-1-1} \theta
+            \partial_\theta
+        \right)
+    +
+        \dfrac{1}{\sin^2 \theta}
+        \dfrac{1}{\sin^2 \phi}
+        \dfrac{1}{\sin^{3-2-3} \phi}
+        \partial_\phi
+        \left(
+            \sin^{3-2-1} \phi
+            \partial_\phi
+        \right)
+    \right]
+\notag\\&
+=
+    \partial_r^2
+    +
+    \dfrac{2}{r}
+        \partial_r
+    +
+    \dfrac{1}{r^2}
+    \left[
+        \dfrac{1}{\sin \theta}
+        \partial_\theta
+        \left(
+            \sin \theta
+            \partial_\theta
+        \right)
+    +
+        \dfrac{1}{\sin^2 \theta}
+        \partial_\phi^2
+    \right]
+\end{align}
+のように知られた結果を再現する。
 
 \subsubsection{微分形式}
 
