@@ -2080,7 +2080,7 @@ $\hat{p}$を作用させた結果なども全く同じ式で与えられる。
 \end{align}
 \end{subequations}
 のように置き換えればよいことが分かり、
-このような表式をoperatorの位置表示、
+このような表式をoperatorの座標表示、位置表示、
 または$\bm{x}$-表示という。
 
 例として運動量の固有状態を
@@ -5640,12 +5640,15 @@ Dirac deltaのFourier表示
 \subsubsection{角運動量の代数}
 \label{subsubsec: angular momentum}
 
-Newton力学で角運動量は
+Newton力学で角運動量
+（angular momentum、
+軌道角運動量、orbital angular momentum）は
 \begin{subequations}
 \begin{align}
     \bm{L} &:= \bm{r} \times \bm{p}
     \\\therefore
     L_i &= \epsilon_{ijk} \ x_j \ p_k
+\label{angular momentum definition}
 \end{align}
 \end{subequations}
 と定義され（ただし成分は直交座標系で示した。
@@ -5864,7 +5867,9 @@ $\hat{L}_\pm, \hat{L}_3$で書き直すと
 $\hat{L}_\pm$が$\hat{L}_3$の固有値を
 $\pm \hbar$だけ上下することが分かる。
 
-角運動量の大きさ$\hat{\bm{L}}^2$を
+角運動量の大きさ
+（the square of the magnitude of the orbital angular momentum）
+$\hat{\bm{L}}^2$を
 \begin{align}
     \hat{\bm{L}}^2
     := \sum_i \hat{L}_i^2
@@ -5877,6 +5882,7 @@ $\pm \hbar$だけ上下することが分かる。
     \right)
     +
     \hat{L}_3^2
+\label{the square of the magnitude of the orbital angular momentum}
 \\
     \hat{L}_\pm \hat{L}_\mp
     &=
@@ -6022,8 +6028,8 @@ $\hat{\bm{L}}^2$と$\hat{L}_3$の同時固有状態$\ket{j,m}$が
         が成り立たねばならない。
         表現論の言葉では
         前者をhighest weight condition、
-        後者をlowest weight conditionという。
-        $\ket{ j, - j }$をangular momentum algebraのhighest weight stateともいう。
+        後者をlowest weight conditionといい、
+        $\ket{ j, \pm j }$をangular momentum algebraのhighest (lowest) weight stateと呼ぶ。
     }
     \item{
         $\hbar^2 j (j+1) - \hbar^2 m^2 \pm \hbar^2 m > 0$
@@ -6092,10 +6098,44 @@ highest weight stateまたはlowest weight stateから
 \end{align}
 \end{subequations}
 が得られる。
-恐ろしいことに、整数または半整数$j$を与えれば
+恐ろしいことに、
 内積の正定値性のみから
+$j$が整数または半整数でなければならない
+ことが分かるのみならず、
+逆に整数または半整数$j$を与えれば
 $2j +1$個の固有値$m$と
 対応する固有状態が全て求まってしまうのである。
+
+角運動量operator
+(\ref{angular momentum definition})を位置表示すると
+\begin{align}
+    L_i
+=
+    \epsilon_{ijk}
+    x_j \left(
+        - i \hbar \dfrac{\partial}{\partial x_k}
+    \right)
+=
+    - i \hbar\ 
+    \epsilon_{ijk}\ 
+    x_j\ \partial_k
+\end{align}
+となるのは明らかである。
+角運動量の大きさ
+(\ref{the square of the magnitude of the orbital angular momentum})
+は
+\begin{align}
+    L^2 = L_i L_i
+=
+    (- i \hbar\ 
+    \epsilon_{ijk}\ 
+    x_j\ \partial_k)
+    (- i \hbar\ 
+    \epsilon_{inm}\ 
+    x_n\ \partial_m)
+=
+    - \hbar^2
+\end{align}
 
 \subsection{Operatorの代数とその表現}
 
