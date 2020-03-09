@@ -81,6 +81,8 @@ Lagrangianは時空上$\mathcal{M}^{1,d}$の
 各点$(t, \bm{x})$の情報の和ないし積分で書ける筈である。
 この局所的な情報をLagrangian密度と言い、
 $\mathcal{L}$と書く。
+用語の乱用であるが、
+Lagrangian密度のことをLagrangianと呼ぶ事も多い。
 当然Lagrangianは$L := \int d^d x \mathcal{L}$、
 作用は$S= \int dt L = \int d^D x \mathcal{L}$である。
 場の変分$\phi \mapsto \phi + \delta \phi$のもとで
@@ -523,11 +525,16 @@ vector場を含む系は一般に拘束系となり、
 
 \subsubsection{Hamilton形式}
 
+$N$種類の場$\phi^a$（$a = 1, \dots, N$）
+で書かれたLagrangian
+$\mathcal{L}(\{ \phi \})$が与えられたとき、
 場の正準共役量（運動量と呼ばないのは、
 これ以外に場の理論の意味でmomentumと呼ばれるべき量、
 つまりenergy-momentum tensor (\ref{energy-momentum})があるからだ）は
 \begin{align}
-    \pi(t, x) := \dfrac{\partial \mathcal{L}}{\partial \dot{\phi}}
+    \pi_a (t, x)
+    := \dfrac{\partial \mathcal{L}}
+        {\partial \dot{\phi}^a}
 \end{align}
 で定義される。
 Hamiltonianも解析力学の場合と全く同様に
@@ -539,21 +546,67 @@ Hamiltonianも解析力学の場合と全く同様に
 \\
     \mathcal{H}
     &:=
-    \pi(t, \bm{x}) \dot{\phi}(t, \bm{x})
+    \sum_{a = 1}^N
+        \pi_a (t, \bm{x})
+        \dot{\phi}^a (t, \bm{x})
     -
     \mathcal{L}(t, \bm{x})
-    =
-    m^2 \phi
-    -
-    \partial_\mu
-    \left(
-        - \eta^{\rho \sigma}
-        \delta_\rho^\mu
-        \partial_\sigma \phi
-    \right)
 \end{align}
 \end{subequations}
 と定義される。
+
+\subsubsection{自由scalar場の例}
+
+$\eta$を
+(\ref{mostly plus minkowski metric})
+で与えた場合の
+自由実scalar場のHamiltonianは、
+$i, j = 1, \dots, d = D-1$を
+空間成分のみ走る添え字として
+\begin{subequations}
+\begin{align}
+    \pi(t, \bm{x})
+&=
+    \dfrac{ \partial \mathcal{L} }
+        { \partial( c \partial_0 \phi) }
+=
+    - \dfrac{1}{2 c}
+        2 \partial^0 \phi
+=   \dfrac{1}{c}
+    \partial_0 \phi
+\\
+    \mathcal{H}
+&=
+    \pi\ 
+        c
+        \partial_0 \phi
+    -
+    \mathcal{L}
+=
+    c^2 \pi^2
+    -
+    \left[
+        \dfrac{ c^2 }{2}
+            \pi^2
+        -
+        \dfrac{ 1 }{2}
+            \partial_i \phi
+            \partial_i \phi
+        -
+        \dfrac{m^2}{2} \phi^2
+    \right]
+\notag\\&
+=
+    \dfrac{ c^2 }{2} \pi^2
+    +
+        \dfrac{ 1 }{2}
+            \partial_i \phi
+            \partial_i \phi
+    +
+        \dfrac{m^2}{2} \phi^2
+\end{align}
+\end{subequations}
+と得られる。
 
 \subsubsection{Energy-Momentum Tensor}
 
