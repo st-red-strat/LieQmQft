@@ -738,6 +738,11 @@ scalar potential $\phi$
 \end{align}
 \end{subequations}
 となる。
+静的な場合には
+電場の方程式と磁場の方程式が
+完全に分離しており、
+それぞれ独立に解くことが可能であることに
+注意しよう。
 
 $3$次元LaplacianのGreen関数
 $ - \dfrac{1}{4 \pi r} $
@@ -769,8 +774,10 @@ $ - \dfrac{1}{4 \pi r} $
     }
 \end{align}
 と書けることが分かる。
-実際、例えば電荷$q$を持つ点電荷
-$\rho(\bm{x}) = q \delta(\bm{x})$
+実際、例えば電荷$q$を持ち
+位置$\bm{y}$に固定された点電荷
+$\rho(\bm{x})
+= q \delta(\bm{x} - \bm{y})$
 の場合にこの解は良く知られた
 Coulomb potential
 \begin{align}
@@ -778,14 +785,15 @@ Coulomb potential
 &=
   \int d^3 x'
     \dfrac{
-      q \delta(\bm{x}')
+      q \delta(\bm{x}' - \bm{y})
     }{
       4 \pi \epsilon_0
       |\bm{x} - \bm{x}'|
     }
 =
     \dfrac{ 1 }{
-      4 \pi \epsilon_0 |\bm{x}|
+      4 \pi \epsilon_0
+      |\bm{x} - \bm{y}|
     }
 \end{align}
 を確かに再現する。
