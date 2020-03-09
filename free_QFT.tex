@@ -540,13 +540,14 @@ $\mathcal{L}(\{ \phi \})$が与えられたとき、
 \end{align}
 で定義される。
 Hamiltonianも解析力学の場合と全く同様に
+（もちろん時間積分は行わず）
 \begin{subequations}
 \begin{align}
-    H
+    H (t)
     &:=
-    \int d^D x\ \mathcal{H}
+    \int d^d x\ \mathcal{H}
 \\
-    \mathcal{H}
+    \mathcal{H} (t, \bm{x})
     &:=
     \sum_{a = 1}^N
         \pi_a (t, \bm{x})
@@ -556,6 +557,29 @@ Hamiltonianも解析力学の場合と全く同様に
 \end{align}
 \end{subequations}
 と定義される。
+
+正準方程式
+(\ref{Hamilton's eom})は
+場の理論の場合にも全く同様に、
+$N$種類の場$\phi^a$及び
+対応する共役量$\pi_a$が存在するとき
+\begin{align}
+    \begin{cases}
+        \dot{\phi}^a =
+        \dfrac{\partial \mathcal{H}}
+            {\partial \pi_a}
+      \\
+      \\
+        \dot{\pi}_a =
+        - \dfrac{\partial \mathcal{H}}
+            {\partial \phi^a}
+      \end{cases}
+    \label{hamilton eom for fields}    
+\end{align}
+と書ける。
+Poisson括弧
+(\ref{poisson bracket definition})
+を使ってまとめることもできる。
 
 \subsubsection{自由scalar場の例}
 

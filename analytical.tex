@@ -336,8 +336,13 @@ $L(t) := L(\{q(t)\}, \{\dot{q}(t)\})$は時間の$1$変数関数であり、
 実数$F[f]$を与えるような写像$F$を
 汎関数（functional）と呼ぶ。
 
-最小作用の原理は、個々の力学変数の時間依存性は
-このactionが停留するような関数形で与えられる事を主張する。
+Hamiltonの最小作用の原理
+（Hamilton’s principle of least action）は、
+個々の力学変数の時間依存性が
+このactionが停留する
+（一般には作用が最小であるとは限らず、
+最大や鞍点であってもよい）
+ような関数形で与えられる事を主張する。
 つまり、$q_i(t)$を時間の関数と見做したときの関数形を
 \begin{align}
   q_i(t) &\mapsto (q_i+\delta q_i)(t) := q_i(t) + \delta q_i(t)
@@ -1500,12 +1505,16 @@ Hamiltonianは
 
 Hamiltonの正準方程式
 \begin{align}
-   \begin{cases}
-      \dot{q}_i = \dfrac{\partial H}{\partial p_i}
-    \\
-    \\
-      \dot{p}_i = - \dfrac{\partial H}{\partial q_i}
-    \end{cases}
+  \begin{cases}
+    \dot{q}_i
+    = \dfrac{\partial H}
+      {\partial p_i}
+  \\
+  \\
+    \dot{p}_i
+    = - \dfrac{\partial H}
+      {\partial q_i}
+  \end{cases}
 \label{Hamilton's eom}
 \end{align}
 は$\{q\},\{p\}$のいずれについても
@@ -1523,6 +1532,7 @@ $\{q\},\{p\}$に対して右辺の符号が異なるという非対称性があ�
         \dfrac{ \partial B }{ \partial q_i }
         \dfrac{ \partial A }{ \partial q_i }
     \bigg)
+\label{poisson bracket definition}
 \end{align}
 で定義すると、
 正準変数同士のPoisson括弧は
