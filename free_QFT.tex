@@ -262,6 +262,7 @@ $\Box := \eta^{\mu \sigma}
 \notag\\&
     =
     (\Box - m^2) \phi
+\label{free real scalar eom}
 \end{align}
 および
 \begin{subequations}
@@ -308,6 +309,7 @@ $\Box := \eta^{\mu \sigma}
     (\Box - m^2)
     \varphi^*
 \end{align}
+\label{free complex scalar eom}
 \end{subequations}
 と得られる。
 
@@ -662,6 +664,39 @@ $i, j = 1, \dots, d = D-1$を
 \end{align}
 \end{subequations}
 と得られる。
+運動方程式は
+\begin{subequations}
+\begin{align}
+    \dot{\phi}
+&=
+    \dfrac{
+        \partial \mathcal{H}_{\rm real}
+    }{ \partial \pi}
+=
+    c^2 \pi
+\\
+    \dot{\pi}
+&=
+    -
+    \dfrac{
+        \partial \mathcal{H}_{\rm real}
+    }{ \partial \phi}
+=
+    - \left[
+    -
+        \partial_i^2 \phi
+    +
+        m^2 \phi
+    \right]
+=
+        \partial_i^2 \phi
+    -
+        m^2 \phi
+\end{align}
+\end{subequations}
+となり、$\pi$を消去することで
+Lagrange形式の結果
+(\ref{free real scalar eom})を再現する。
 
 自由複素scalar場のHamiltonianも全く同様に
 Lagrangian
@@ -716,7 +751,66 @@ Lagrangian
         m^2 |\varphi|^2
 \end{align}
 \end{subequations}
-と導かれる。
+と導かれ、
+運動方程式は
+やはり(\ref{free complex scalar eom})
+と等価な
+\begin{subequations}
+\begin{align}
+    \dot{\varphi}
+&=
+    \dfrac{
+        \partial \mathcal{H}_{\rm complex}
+    }{ \partial \pi}
+=
+    c^2 \overline{\pi}
+\\
+    \dot{\varphi}^*
+&=
+    \dfrac{
+        \partial \mathcal{H}_{\rm complex}
+    }{ \partial \overline{\pi}}
+=
+    c^2 \pi
+\\
+    \dot{\pi}
+&=
+    -
+    \dfrac{
+        \partial \mathcal{H}_{\rm complex}
+    }{ \partial \varphi}
+=
+    - \left[
+    -
+        \partial_i^2 \varphi^*
+    +
+        m^2 \varphi^*
+    \right]
+=
+        \partial_i^2 \varphi^*
+    -
+        m^2 \varphi^*
+\\
+    \dot{\overline{\pi}}
+&=
+    -
+    \dfrac{
+        \partial \mathcal{H}_{\rm complex}
+    }{ \partial \varphi^*}
+=
+    - \left[
+    -
+        \partial_i^2 \varphi
+    +
+        m^2 \varphi
+    \right]
+=
+        \partial_i^2 \varphi
+    -
+        m^2 \varphi
+\end{align}
+\end{subequations}
+となる。
 
 \subsubsection{Energy-Momentum Tensor}
 

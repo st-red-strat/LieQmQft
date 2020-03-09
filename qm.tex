@@ -6387,7 +6387,7 @@ $
             \cos \theta
     \right]
     \dfrac{\partial}{\partial \theta}
-\notag\\&\qquad
+% \notag\\&\qquad
     +
     \left[
         - \cos \phi
@@ -6432,17 +6432,29 @@ $
     +
     \dfrac{1}{r^2}
     \left(
+        -
         \dfrac{\bm{L}}{i \hbar}
     \right)^2
 \end{align}
 の関係があり、
-$\bm{x}$-表示の
-$\left(
-    \dfrac{\bm{L}}{i \hbar}
-\right)^2$は
+$\bm{x}$-表示の角運動量は
 球Laplacian $\Delta_{S^2}$
 (\ref{spherical Laplacian})
-に他ならないことが分かる。
+に他ならないこと
+\begin{align}
+    \Delta_{S^2}
+=
+    \left(
+        -
+        \dfrac{\bm{L}}{i \hbar}
+    \right)^2
+=
+    \epsilon_{ijk}
+    x_j \partial_k
+    (\epsilon_{inm}
+    x_n \partial_m)
+\end{align}
+が分かる。
 
 \subsection{Operatorの代数とその表現}
 
