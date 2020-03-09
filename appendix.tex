@@ -229,16 +229,19 @@ $3$次元直交座標系でvectorを成分表示すると、
     \nabla (\nabla \cdot \bm{c})
     -
     (\nabla \cdot \nabla) \bm{c}
+\label{rot rot = grad div - laplacian}
 \\
     \nabla \times (\nabla \phi)
     &=
     \mathrm{rot}(\mathrm{grad}\ \phi)
     = 0
+\label{rot grad = 0}
 \\
     \nabla \cdot (\nabla \times \bm{A})
     &=
     \mathrm{div}(\mathrm{rot}\bm{A})
     = 0
+\label{div rot = 0}
 \end{align}
 \end{subequations}
 は簡単に示せる。
@@ -2387,6 +2390,7 @@ Diracのdeltaは超関数
 として定式化され、
 あるいは佐藤超関数（hyperfunction）として
 $x = x_0$で正則な関数に対し
+Plemeljの公式
 \begin{align}
     \delta(x - x_0)
 :=
@@ -2403,7 +2407,7 @@ $x = x_0$で正則な関数に対し
         \dfrac{1}{x - x_0 \pm i \epsilon}
     \right]
 \end{align}
-のように定式化することもできる。
+により定式化することもできる。
 $x = x_0$で正則な関数$f(x)$について
 $f(x) \delta(x - x_0)$の実軸上での積分は
 \begin{align}

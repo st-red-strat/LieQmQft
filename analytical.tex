@@ -481,6 +481,232 @@ $n$次元調和振動子の場合Lagrangianは
 \ref{classical analysis of harmonic oscillator}節
 で詳説する。
 
+\subsection{古典電磁気学}
+
+\subsubsection{Maxwell方程式と  
+  Scalar Potential、
+  Vector Potential}
+
+古典電磁気学によると、
+電荷密度$\rho$および
+電流密度$\bm{j}$の存在下で
+電場（electric field、
+工学の分野では電界とも）
+$\bm{E}$
+および
+磁場（magnetic field、磁束密度、
+工学では磁界とも）
+$\bm{B}$は
+Maxwell方程式
+\begin{subequations}
+\begin{align}
+&\text{電場に関するGaussの法則}:
+  &&\nabla \cdot \bm{E}
+=
+  \frac{\rho}{\epsilon_0}
+\label{eq:maxwell-divE}
+\\
+&\text{磁場に関するGaussの法則}:
+  &&\nabla \cdot \bm{B}
+= 0
+\label{eq:maxwell-divB}
+\\
+&\text{Faradayの電磁誘導の法則}:
+  &&\nabla \times \bm{E}
+=
+  - \frac{\partial \bm{B}}
+    {\partial t}
+\label{eq:maxwell-rot E}
+\\
+&\text{Amp\'ereの法則}:
+  &&\nabla \times \bm{B}
+=
+  \mu_0 \bm{j}
+  +
+  \mu_0 \epsilon_0
+    \frac{\partial \bm{E}}
+      {\partial t}
+\label{eq:maxwell-rot B}
+\end{align}
+\end{subequations}
+に従う。
+定数
+$\epsilon_0, \mu_0$をそれぞれ
+真空中の誘電率、真空中の透磁率と呼ぶ。
+なお、電磁気学においては
+媒質中でないこと、
+またはそれに加えて
+$\rho = \bm{j} = 0$であることを指して
+真空という。
+Poincar\'eの補題により
+(\ref{eq:maxwell-divB})は
+（少なくとも局所的に）
+vector potentialの存在
+\begin{align}
+  {}^\exists
+  \bm{A}
+\quad
+\text{ s.t. }
+\quad
+  \nabla \times \bm{A}
+=
+  \bm{B}
+\end{align}
+を保証し、
+逆に$\bm{A}$を使う限り
+(\ref{eq:maxwell-divB})
+$\nabla \cdot \bm{B}
+= \nabla \cdot
+(\nabla \times \bm{A})
+= 0$
+はベクトル解析の恒等式
+(\ref{div rot = 0})から常に成り立つ。
+
+次に
+(\ref{eq:maxwell-rot E})は
+$\bm{A}$を使って
+\begin{align}
+  0 =
+  \nabla \times \bm{E}
+  +
+  \frac{\partial \bm{B}}
+    {\partial t}
+=
+  \nabla \times
+  \left(
+    \bm{E}
+    +
+    \frac{\partial \bm{A}}
+      {\partial t}      
+  \right)
+\end{align}
+となるので、再びPoincar\'eの補題により
+scalar potential
+\begin{align}
+  {}^\exists \phi
+\quad
+\text{ s.t. }
+\quad
+  - \nabla \phi
+=
+  \bm{E}
+  +
+  \frac{\partial \bm{A}}
+    {\partial t}
+\end{align}
+が局所的に存在し、
+(\ref{eq:maxwell-rot E})
+も
+$\nabla \times
+\left(
+  \bm{E} +
+  \dfrac{\partial \bm{A}}
+    {\partial t}
+\right)
+= - \nabla \times \nabla \phi
+= 0$
+の形になるため
+恒等式(\ref{rot grad = 0})
+から自明に成り立つ。
+
+まとめると、vector potential
+$\bm{A}$および
+scalar potential $\phi$
+を用いて電磁場は
+\begin{subequations}
+\begin{align}
+  \bm{E} (t, \bm{x})
+&=
+  - \nabla \phi (t, \bm{x})
+  - \dfrac{\partial \bm{A}}
+    {\partial t} (t, \bm{x})
+\\
+  \bm{B} (t, \bm{x})
+&=
+  \nabla \times
+  \bm{A} (t, \bm{x})
+\end{align}
+\end{subequations}
+と書け、これらの従うMaxwell方程式は
+公式
+(\ref{rot rot = grad div - laplacian})
+を使って
+\begin{subequations}
+\begin{align}
+  \mu_0 \bm{j}
+&=
+  \nabla \times \bm{B}
+  -
+  \mu_0 \epsilon_0
+    \frac{\partial \bm{E}}
+      {\partial t}
+=
+  \nabla \times
+    (\nabla \times \bm{A})
+  -
+  \mu_0 \epsilon_0
+    \frac{\partial}{\partial t}
+  \left[
+    - \nabla \phi (t, \bm{x})
+    - \dfrac{\partial \bm{A}}
+      {\partial t} (t, \bm{x})
+  \right]
+\notag\\&
+=
+  \nabla
+    (\nabla \cdot \bm{A} (t, \bm{x}))
+  -
+    \Delta \bm{A} (t, \bm{x})
+  +
+  \mu_0 \epsilon_0
+  \left[
+    \nabla
+    \frac{\partial \phi (t, \bm{x})}
+      {\partial t}
+  +
+    \dfrac{\partial^2 \bm{A}}
+      {\partial t^2} (t, \bm{x})
+  \right]
+\notag\\&
+=
+  \nabla
+  \left[
+    \mu_0 \epsilon_0
+    \frac{\partial \phi (t, \bm{x})}
+      {\partial t}
+  +
+    \nabla \cdot
+      \bm{A} (t, \bm{x})
+  \right]
+  -
+  \left[
+    - \mu_0 \epsilon_0
+    \dfrac{\partial^2}{\partial t^2}
+  +
+    \Delta
+  \right]
+    \bm{A} (t, \bm{x})
+\\
+  - \frac{\rho}{\epsilon_0}
+&=
+  - \nabla \cdot \bm{E}
+=
+  - \nabla \cdot
+  \left[
+    - \nabla \phi (t, \bm{x})
+    - \dfrac{\partial \bm{A}}
+      {\partial t} (t, \bm{x})
+  \right]
+=
+  \Delta \phi (t, \bm{x})
+  +
+    \nabla \cdot
+    \dfrac{\partial \bm{A}}
+      {\partial t} (t, \bm{x})
+\end{align}
+\end{subequations}
+の$2$本に集約される。
+
 \subsection{Vector Potential}
 
 Helmholtzの定理(\ref{helmholtz decomposition theorem})によると、
@@ -504,12 +730,7 @@ $\bm{C}(\bm{x})$
 電荷を持つ粒子を
 荷電粒子（charged particle）というが、
 電荷$+q$の荷電粒子を
-電場$\bm{E} (t, \bm{x})
-= - \dfrac{\partial \bm{A}}{\partial t} (t, \bm{x})
-- \nabla \phi (t, \bm{x})$
-および
-磁場$\bm{B} (t, \bm{x})
-= \nabla \times \bm{A} (t, \bm{x})$
+電磁場
 の中に置くと
 Lorentz force（ローレンツ力）
 \begin{align}
