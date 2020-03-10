@@ -791,12 +791,39 @@ Coulomb potential
       |\bm{x} - \bm{x}'|
     }
 =
-    \dfrac{ 1 }{
+    \dfrac{ q }{
       4 \pi \epsilon_0
       |\bm{x} - \bm{y}|
     }
 \end{align}
 を確かに再現する。
+
+\subsubsection{真空中の電磁波解}
+
+真空中$\rho = \bm{j} = 0$の
+Maxwell方程式
+\begin{subequations}
+\begin{align}
+  &\nabla \cdot \bm{E}
+=
+  0
+\\
+  &\nabla \cdot \bm{B}
+= 0
+\\
+  &\nabla \times \bm{E}
+=
+  - \frac{\partial \bm{B}}
+    {\partial t}
+\\
+  &\nabla \times \bm{B}
+=
+  \mu_0 \epsilon_0
+    \frac{\partial \bm{E}}
+      {\partial t}
+\end{align}
+\end{subequations}
+を考えよう。
 
 \subsection{Vector Potential}
 
@@ -821,7 +848,7 @@ $\bm{C}(\bm{x})$
 電荷を持つ粒子を
 荷電粒子（charged particle）というが、
 電荷$+q$の荷電粒子を
-電磁場
+電磁場(\ref{maxwell eq of potentials})
 の中に置くと
 Lorentz force（ローレンツ力）
 \begin{align}
