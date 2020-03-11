@@ -676,6 +676,23 @@ scalar potential $\phi$
 を使って
 \begin{subequations}
 \begin{align}
+  - \frac{\rho}{\epsilon_0}
+&=
+  - \nabla \cdot \bm{E}
+=
+  - \nabla \cdot
+  \left[
+    - \nabla \phi (t, \bm{x})
+    - \dfrac{\partial \bm{A}}
+      {\partial t} (t, \bm{x})
+  \right]
+=
+  \Delta \phi (t, \bm{x})
+  +
+    \nabla \cdot
+    \dfrac{\partial \bm{A}}
+      {\partial t} (t, \bm{x})
+\\
   \mu_0 \bm{j}
 &=
   \nabla \times \bm{B}
@@ -729,23 +746,6 @@ scalar potential $\phi$
     \Delta
   \right]
     \bm{A} (t, \bm{x})
-\\
-  - \frac{\rho}{\epsilon_0}
-&=
-  - \nabla \cdot \bm{E}
-=
-  - \nabla \cdot
-  \left[
-    - \nabla \phi (t, \bm{x})
-    - \dfrac{\partial \bm{A}}
-      {\partial t} (t, \bm{x})
-  \right]
-=
-  \Delta \phi (t, \bm{x})
-  +
-    \nabla \cdot
-    \dfrac{\partial \bm{A}}
-      {\partial t} (t, \bm{x})
 \end{align}
 \label{maxwell eq of potentials}
 \end{subequations}
@@ -754,7 +754,7 @@ scalar potential $\phi$
 \subsubsection{静電磁気学}
 
 力学系や方程式系が時刻$t$に依存しない場合を
-静的（static、time-independent）という。
+静的（static、time-independent、定常とも）という。
 静電磁場の従う方程式を得るには
 単に
 (\ref{maxwell eq of potentials})
@@ -1054,20 +1054,20 @@ $I = \int_{S'} d \bm{S}' \cdot \bm{j}(\bm{x}')$
 Maxwell方程式
 \begin{subequations}
 \begin{align}
-  &\nabla \cdot \bm{E}
-=
+  \nabla \cdot \bm{E}
+&=
   0
 \\
-  &\nabla \cdot \bm{B}
-= 0
+  \nabla \cdot \bm{B}
+&= 0
 \\
-  &\nabla \times \bm{E}
-=
+  \nabla \times \bm{E}
+&=
   - \frac{\partial \bm{B}}
     {\partial t}
 \\
-  &\nabla \times \bm{B}
-=
+  \nabla \times \bm{B}
+&=
   \mu_0 \epsilon_0
     \frac{\partial \bm{E}}
       {\partial t}
@@ -1148,6 +1148,8 @@ Lorentz force（ローレンツ力）
   q
   \Big[
     - \nabla\phi
+    - \dfrac{\partial \bm{A}}
+      {\partial t}
   +
    \dot{\bm{x}}
     \times
@@ -1155,6 +1157,7 @@ Lorentz force（ローレンツ力）
       \nabla \times \bm{A}
     \Big)
   \Big]
+\label{lorentz force for charged point particle}
 \end{align}
 を受ける
 （うるさいことを言うと
@@ -1189,6 +1192,160 @@ $\bm{E}$とか$\bm{B}$も変わってしまうのだが、
 \label{point particle lagrangian with ele-mag potential}
 \end{align}
 で与えられる。
+実際、このときのEuler-Lagrange方程式は
+\begin{align}
+  0
+&=
+  \dfrac{d}{dt}
+    \dfrac{\partial L'}{\partial \dot{x}_i}
+  -
+    \dfrac{\partial L'}{\partial x_i}
+=
+  \dfrac{d}{dt}
+    \dfrac{\partial L}{\partial \dot{x}_i}
+  -
+    \dfrac{\partial L}{\partial x_i}
+- \left[
+  \dfrac{d}{dt}
+    \dfrac{\partial}{\partial \dot{x}_i}
+    \left\{
+      q(\phi - \dot{x}_j A_j)
+    \right\}
+  -
+    \dfrac{\partial}{\partial x_i}
+    \left\{
+      q(\phi - \dot{x}_k A_k)
+    \right\}
+\right]
+\label{EL eq for charged point particle}
+\end{align}
+であり、新しく現れた項は
+potentialが位置$\bm{x}$のみに依存し
+速度$\dot{\bm{x}}$には依存しない事に気を付けると
+\begin{align}
+  &
+- \left[
+  \dfrac{d}{dt}
+    \dfrac{\partial}{\partial \dot{x}_i}
+    \left\{
+      q(\phi - \dot{x}_j A_j)
+    \right\}
+  -
+    \dfrac{\partial}{\partial x_i}
+    \left\{
+      q(\phi - \dot{x}_k A_k)
+    \right\}
+\right]
+=
+- q \left[
+  - \dfrac{d}{dt}
+    \delta_{ij} A_j
+  -
+    \left\{
+      \dfrac{\partial \phi}{\partial x_i}
+    -
+      \dot{x}_k
+      \dfrac{\partial A_k}{\partial x_i}
+    \right\}
+\right]
+\notag\\&
+=
++ q \left[
+  \dfrac{d A_i}{dt}
+  +
+    \left\{
+      \dfrac{\partial \phi}{\partial x_i}
+    -
+      \dot{x}_k
+      \dfrac{\partial A_k}{\partial x_i}
+    \right\}
+\right]
+=
+q \left[
+    \dfrac{\partial A_i}{\partial t}
+  +
+    \dot{x}_k
+    \dfrac{\partial A_i}{\partial x_k}
+  +
+    \dfrac{\partial \phi}{\partial x_i}
+  -
+    \dot{x}_k
+    \dfrac{\partial A_k}{\partial x_i}
+\right]
+\notag\\&
+=
+q \left[
+    - E_i
+  +
+    \dot{x}_k
+    \left(
+      \dfrac{\partial A_i}{\partial x_k}
+    -
+      \dfrac{\partial A_k}{\partial x_i}
+    \right)
+\right]
+\end{align}
+と書ける。
+最後に公式
+(\ref{3rd order epsilon to delta2 formula})
+を使うと
+\begin{align}
+  \dot{x}_k
+  \left(
+    \dfrac{\partial A_i}{\partial x_k}
+  -
+    \dfrac{\partial A_k}{\partial x_i}
+  \right)
+&=
+  \dot{x}_k
+  \left(
+    \delta_{ij} \delta_{kl}
+  -
+    \delta_{il} \delta_{jk}
+  \right)
+  \dfrac{\partial A_j}{\partial x_l}
+=
+  \dot{x}_k
+    \epsilon_{nki}
+    \epsilon_{nlj}
+  \dfrac{\partial A_j}{\partial x_l}
+=
+  - \epsilon_{ikn}
+    \dot{x}_k
+  (\nabla \times \bm{A})_n
+\notag\\&
+=
+  \big(
+    \dot{\bm{x}}
+      \times
+    (\nabla \times \bm{A})
+  \big)_i
+=
+  \big(
+    \dot{\bm{x}} \times \bm{B}
+  \big)_i
+\end{align}
+が分かるので、Euler-Lagrange方程式
+(\ref{EL eq for charged point particle})
+は
+\begin{align}
+  0
+&=
+  \dfrac{d}{dt}
+    \dfrac{\partial L}{\partial \dot{x}_i}
+  -
+    \dfrac{\partial L}{\partial x_i}
++ q \left[
+  - E_i
+  +
+    \big(
+      \dot{\bm{x}} \times \bm{B}
+    \big)_i
+\right]
+\end{align}
+のように正しくLorentz力
+(\ref{lorentz force for charged point particle})
+を再現している。
 
 $n$粒子系への拡張は容易である。
 これらの荷電粒子間のCoulomb potentialは
