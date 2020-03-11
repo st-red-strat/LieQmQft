@@ -536,8 +536,51 @@ $\epsilon_0, \mu_0$をそれぞれ
 なお、電磁気学においては
 媒質中でないこと、
 またはそれに加えて
-$\rho = \bm{j} = 0$であることを指して
-真空という。
+$\rho = 0, \bm{j} = \bm{0}$
+であることを指して真空という。
+Maxwell方程式を組み合わせ、
+滑らかな関数に対して
+偏微分の順序を入れ替えてよい事
+および公式
+(\ref{div rot = 0})を使うと
+\begin{align}
+  \dfrac{\partial \rho}{\partial t}
++
+  \nabla \cdot \bm{j}
+=
+  \epsilon_0
+  \nabla \cdot
+  \dfrac{\partial \bm{E}}{\partial t}
++
+  \dfrac{1}{\mu_0}
+  \nabla \cdot
+  \left[
+    \nabla \times \bm{B}
+  -
+    \mu_0 \epsilon_0
+    \frac{\partial \bm{E}}
+      {\partial t}
+  \right]
+= 0
+\label{electric charge conservation}
+\end{align}
+が示せる。
+この方程式はある点における電荷密度の時間変化
+$\dfrac{\partial \rho}{\partial t}$
+が、その点に流入する電流
+$- \nabla \cdot \bm{j}$
+（数学では普通ある領域の境界（これは閉曲面となる）
+における法線vectorについて、
+領域に対して外向きを正と取る。
+ここではそれに合わせて
+電流が流入ではなく流出する向きを正に取ったため、
+先頭に負号が現れている）
+に等しいこと、つまり電荷の保存則
+（charge conservation、
+the law of conservation of charge、
+連続の式（equation of continuity）とも）
+を表している。
+
 Poincar\'eの補題により
 (\ref{eq:maxwell-divB})は
 （少なくとも局所的に）
@@ -731,6 +774,7 @@ scalar potential $\phi$
 =
   \nabla \times
     (\nabla \times \bm{A})
+\label{static eq for ele-mag vector potential}
 \\
   - \frac{\rho}{\epsilon_0}
 &=
@@ -752,8 +796,9 @@ $ - \dfrac{1}{4 \pi r} $
 公式
 (\ref{convolution representation of green function solution})
 に代入することで
-（無限遠で十分早く$0$となる境界条件のもと）
-静電場の方程式の解は
+（Green関数により決まる、
+無限遠で十分早く$0$となるという境界条件のもと）
+静電場のscalar potentialは
 \begin{align}
   \phi (\bm{x})
 &=
@@ -797,6 +842,112 @@ Coulomb potential
     }
 \end{align}
 を確かに再現する。
+
+一方で、
+vector potentialの従う方程式
+(\ref{static eq for ele-mag vector potential})
+を解くためには、第$1$項を落とした方程式
+\begin{align}
+  \mu_0 \bm{j}
+&=
+  -
+    \Delta
+    \bm{C}
+\end{align}
+がscalar potentialと同様にすると
+簡単に解けて、
+解が
+\begin{align}
+  \bm{C} (\bm{x})
+&=
+  \int d^3 x'
+  \left[
+    - \dfrac{1}{
+      4 \pi |\bm{x} - \bm{x}'|
+    }
+  \right]
+  \left[
+    - \mu_0
+    \bm{j} (\bm{x}')
+  \right]
+=
+  \int d^3 x'
+    \dfrac{
+      \mu_0 \bm{j} (\bm{x}')
+    }{
+      4 \pi
+      |\bm{x} - \bm{x}'|
+    }
+\end{align}
+となる事を使うとよい。
+$\bm{x}$に対する微分を$\nabla$、
+$\bm{x}'$に対する微分を$\nabla'$と書くと、
+部分積分により
+\begin{align}
+  \nabla \cdot \bm{C}(\bm{x})
+&=
+  \int d^3 x'
+    \nabla \cdot
+    \dfrac{
+      \mu_0 \bm{j} (\bm{x}')
+    }{
+      4 \pi
+      |\bm{x} - \bm{x}'|
+    }
+=
+  \int d^3 x'
+    \bm{j} (\bm{x}')
+  \cdot
+    \nabla
+    \dfrac{ \mu_0 }{
+      4 \pi
+      |\bm{x} - \bm{x}'|
+    }
+\notag\\&
+=
+  \int d^3 x'
+    \bm{j} (\bm{x}')
+  \cdot
+    \nabla'
+    \dfrac{ -\mu_0 }{
+      4 \pi
+      |\bm{x} - \bm{x}'|
+    }
+\notag\\&
+=
+  \int d^3 x'
+    \dfrac{ \mu_0 }{
+      4 \pi
+      |\bm{x} - \bm{x}'|
+    }
+    \nabla' \cdot \bm{j} (\bm{x}')
+\end{align}
+となるが、
+電荷の保存則
+(\ref{electric charge conservation})
+は静的な場合には単に
+$\nabla \cdot \bm{j} = 0$
+であるので$\nabla \cdot \bm{C} = 0$
+が分かる。
+すなわち$\bm{C}$は実は
+vector potentialの満たすべき方程式
+(\ref{static eq for ele-mag vector potential})
+を満たしており、
+静的な電流の作る磁場は
+\begin{align}
+  \bm{A} (\bm{x})
+&=
+  \bm{C} (\bm{x})
+=
+  \int d^3 x'
+    \dfrac{
+      \mu_0 \bm{j} (\bm{x}')
+    }{
+      4 \pi
+      |\bm{x} - \bm{x}'|
+    }
+\end{align}
+と求まるのである。
 
 \subsubsection{真空中の電磁波解}
 
