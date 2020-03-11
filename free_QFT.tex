@@ -490,6 +490,7 @@ Euler-Lagrange方程式(\ref{field EL eq})は
         \partial_\sigma
     \bigg]
     A^\sigma
+\label{free massive vector field EL eq}
 \end{align}
 \end{subequations}
 と得られる。
@@ -520,6 +521,7 @@ $A'^\mu = A^\mu + \partial^\mu \Lambda$
     )\Lambda
 =
     F_{\mu\nu}
+\label{gauge invariance of vector field strength}
 \end{align}
 である事に注意しよう。
 従って作用が$F_{\mu\nu}$のみを使って書かれる
@@ -532,7 +534,8 @@ vector場はmassを持てないことが分かる。
 
 更に興味深い事実として、
 $F_{\mu \nu}$の反対称性からも明らかなことだが
-この運動方程式は$A^0$の$x^0 = ct$微分を含まない。
+この運動方程式は$A^0$の
+$x^0 = ct$による$2$階微分を含まない。
 これは$A^0$という変数が
 実は物理的な自由度ではない事を暗示している。
 実際、
@@ -552,6 +555,306 @@ Lagrangianに現れる事により
 vector場を含む系は一般に拘束系となり、
 その量子化はscalar場の場合と比べて
 格段に複雑になる。
+
+$\eta$を
+(\ref{mostly plus minkowski metric})
+で与えた場合の運動方程式
+(\ref{free massive vector field EL eq})
+を、$\rho = 0$の場合と
+$\rho = i$（ただし$i = 1, 2, \dots, d$）
+の場合に分けて実際に解いてみよう。
+解きたい方程式は
+\begin{subequations}
+\begin{align}
+    0
+&=
+    \bigg[
+        \delta^0_\sigma
+        (\Box - m^2)
+    -
+        \eta^{0 \lambda}
+        \partial_\lambda
+        \partial_\sigma
+    \bigg]
+    A^\sigma
+=
+    (\Box - m^2)
+    A^0
++
+    \partial_0
+    (\partial_\sigma A^\sigma)
+\notag\\&
+=
+    \left(
+        - \partial_0^2
+        + \partial_j^2
+        - m^2
+    \right)
+    A^0
++
+    \partial_0
+    (\partial_0 A^0
+    + \partial_k A^k)
+=
+    \left(
+        \partial_j^2
+        - m^2
+    \right)
+    A^0
++
+    \partial_0
+    \partial_p A^p
+\\
+    0
+&=
+    \bigg[
+        \delta^i_\sigma
+        (\Box - m^2)
+    -
+        \eta^{i \lambda}
+        \partial_\lambda
+        \partial_\sigma
+    \bigg]
+    A^\sigma
+=
+    \left(
+        - \partial_0^2
+        + \partial_l^2
+        - m^2
+    \right)
+    A^i
+-
+    \partial_i
+    (\partial_0 A^0
+    + \partial_q A^q)
+\end{align}
+\end{subequations}
+で、上で既に述べたように
+$A^0$の$x^0$による$2$階微分は
+方程式のどこにも現れない。
+この方程式をFourier変換
+(\ref{fourier transf})
+する（ただし面倒なので、
+いちいち$A$のFourier変換を
+$\tilde{A}$などと書くことはせず、
+単に$A(k)$などと書く）と、
+微分$\partial_i$は$- i k_i$倍に置き換わる
+（Fourier変換の定義の仕方によっては
+$+ i k_i$となるが、
+得られる解に違いはない）
+ため、
+\begin{subequations}
+\begin{align}
+    0
+&=
+    \left(
+        - k_j^2
+        - m^2
+    \right)
+    A^0 (t, k)
+-
+    i \partial_0
+    k_p A^p (t, k)
+\label{fourier transf of vector eom; time component}
+\\
+    0
+&=
+    \left(
+        - \partial_0^2
+        - k_l^2
+        - m^2
+    \right)
+    A^i (t, k)
++
+    i k_i
+    (\partial_0 A^0
+    - i k_q A^q)
+\end{align}
+\end{subequations}
+が従う。
+第$1$式に$i k_i \partial_0$を、
+第$2$式に$k_j^2 + m^2$を掛けて
+両辺の和を取ることで$A^0$は簡単に消去出来て、
+$E_k := \sqrt{\bm{k}^2 + m^2}$を使って
+\begin{align}
+    0
+&=
+    (k_j^2 + m^2)
+    \left(
+        - \partial_0^2
+        - k_l^2
+        - m^2
+    \right)
+    A^i (t, k)
++
+    k_i k_p
+    \partial_0^2
+    A^p (t, k)
++
+    (k_j^2 + m^2)
+    k_i k_q
+    A^q (t, k)
+\notag\\&
+=
+    - E_k^2
+    \left(
+        \partial_0^2
+        + E_k^2
+    \right)
+    A^i (t, k)
++
+    k_i
+    \bigg[
+        \partial_0^2
+    +
+        E_k^2
+    \bigg]
+    k_p A^p (t, k)
+=
+    \bigg[
+        \partial_0^2
+    +
+        E_k^2
+    \bigg]
+    \bigg(
+        k_i
+        k_p A^p (t, k)
+    -
+        E_k^2
+        A^i (t, k)
+    \bigg)
+\end{align}
+となるので、一般解は
+$t$に依存しない$2$つの任意vector
+$\bm{B}^\pm (k)$を使って
+\begin{align}
+    k_i
+    k_p A^p (t, k)
+-
+    E_k^2
+    A^i (t, k)
+&=
+    (B^+)_i (k) e^{i E_k t}
++
+    (B^-)_i (k) e^{i E_k t}
+\end{align}
+と得られる。
+ここで$A^i$を、$k_i$に平行な成分と
+それに直交する成分$\bm{A}_\perp$
+（$\bm{A}_\perp \cdot \bm{k} = 0$）に分けて
+$\bm{A} = - i \lambda (t, k) \bm{k}
++ \bm{A}_\perp(t, k)$
+と書こう。
+$\bm{k}$は$t$とは独立なので
+$k_p A^p = - i \lambda \bm{k}^2$
+は時刻によらず成り立たせることが出来、
+\begin{align}
+    &
+    (B^+)_i (k) e^{i E_k t}
++
+    (B^-)_i (k) e^{i E_k t}
+=
+    k_i k_p A^p
+-
+    E_k^2
+    A^i
+=
+    - i k_i
+    \lambda \bm{k}^2
+-
+    (\bm{k}^2 + m^2)
+    (- i \lambda k_i
+    + (A_\perp)_i )
+\notag\\&
+=
+    i m^2
+    \lambda (k) k_i
+    -
+    (\bm{k}^2 + m^2)
+    (A_\perp)_i
+\end{align}
+が得られる。
+\begin{enumerate}
+\renewcommand{\labelenumi}{(\roman{enumi})}
+\item {massless $m^2 = 0$の場合}
+
+    この場合は方程式から
+    $\lambda(t, k)$が消えてしまい、
+    $\lambda(t, k)$は従うべき条件を持たない
+    任意関数となる。
+    またこのとき$E_k = ||\bm{k}||$より
+    \begin{align}
+        - \bm{k}^2
+        (A_\perp)_i
+    =
+        (B^+)_i (k) e^{i ||\bm{k}|| t}
+    +
+        (B^-)_i (k) e^{i ||\bm{k}|| t}
+    \end{align}
+    となる。
+    vector $\bm{B}^\pm$は
+    （
+        $(A_\perp)_i$は$\bm{k}$に直交するため、
+        これらも$\bm{k}$に直交していなければならない
+        という他は
+    ）
+    任意で、
+    適当な再定義のもとで
+    \begin{align}
+        \bm{A}_\perp
+    =
+        \bm{B}^+ (k) e^{i ||\bm{k}|| t}
+    +
+        \bm{B}^- (k) e^{i ||\bm{k}|| t}
+    \end{align}
+    としても同じことである。
+    時間成分は
+    (\ref{fourier transf of vector eom; time component})
+    から
+    \begin{align}
+        A^0 (t, k)
+    =
+        - \dfrac{i \partial_0}
+            {\bm{k}^2}
+        ( - i \lambda \bm{k}^2)
+    =
+        - \partial_0 \lambda (t, k)
+    \end{align}
+    と求まり、
+    $\bm{A}
+    = - i \bm{k} \lambda
+        + \bm{A}_\perp$
+    と合わせて逆Fourier変換することで
+    求める解が
+    \begin{subequations}
+    \begin{align}
+        A^0 (t, x)
+    &=
+        - \partial_0 \lambda (t, x)
+    \\
+        \bm{A}
+    &=
+        \bm{A}_\perp
+    +
+        \nabla \lambda(t, x)
+    =
+        \int d^d k
+        \left(
+            \bm{B}^+ (k) e^{i ||\bm{k}|| t}
+        +
+            \bm{B}^- (k) e^{i ||\bm{k}|| t}
+        \right)
+    +
+        \nabla \lambda(t, x)
+    \end{align}
+    \end{subequations}
+    と求まる。
+    特に、任意関数$\lambda(t, x)$は
+    (\ref{gauge invariance of vector field strength})
+    で議論したgauge自由度に他ならない。
+
+\item {massive $m^2 \neq 0$の場合}
+\end{enumerate}
 
 \subsubsection{Hamilton形式}
 
