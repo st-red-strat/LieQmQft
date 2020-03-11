@@ -638,9 +638,9 @@ $A^0$の$x^0$による$2$階微分は
 いちいち$A$のFourier変換を
 $\tilde{A}$などと書くことはせず、
 単に$A(k)$などと書く）と、
-微分$\partial_i$は$- i k_i$倍に置き換わる
+微分$\partial_i$は$i k_i$倍に置き換わる
 （Fourier変換の定義の仕方によっては
-$+ i k_i$となるが、
+$- i k_i$となるが、
 得られる解に違いはない）
 ため、
 \begin{subequations}
@@ -652,7 +652,7 @@ $+ i k_i$となるが、
         - m^2
     \right)
     A^0 (t, k)
--
++
     i \partial_0
     k_p A^p (t, k)
 \label{fourier transf of vector eom; time component}
@@ -665,14 +665,14 @@ $+ i k_i$となるが、
         - m^2
     \right)
     A^i (t, k)
-+
+-
     i k_i
     (\partial_0 A^0
-    - i k_q A^q)
+    + i k_q A^q)
 \end{align}
 \end{subequations}
 が従う。
-第$1$式に$i k_i \partial_0$を、
+第$1$式に$- i k_i \partial_0$を、
 第$2$式に$k_j^2 + m^2$を掛けて
 両辺の和を取ることで$A^0$は簡単に消去出来て、
 $E_k := \sqrt{\bm{k}^2 + m^2}$を使って
@@ -734,95 +734,101 @@ $\bm{B}^\pm (k)$を使って
     E_k^2
     A^i (t, k)
 &=
-    (B^+)_i (k) e^{i E_k t}
-+
-    (B^-)_i (k) e^{i E_k t}
+    - \bm{k}^2
+    \left[
+        (B^+)_i (k) e^{i E_k t}
+    +
+        (B^-)_i (k) e^{- i E_k t}
+    \right]
 \end{align}
 と得られる。
 ここで$A^i$を、$k_i$に平行な成分と
 それに直交する成分$\bm{A}_\perp$
 （$\bm{A}_\perp \cdot \bm{k} = 0$）に分けて
-$\bm{A} = - i \lambda (t, k) \bm{k}
+$\bm{A} = i \lambda (t, k) \bm{k}
 + \bm{A}_\perp(t, k)$
 と書こう。
 $\bm{k}$は$t$とは独立なので
-$k_p A^p = - i \lambda \bm{k}^2$
+$k_p A^p = i \lambda \bm{k}^2$
 は時刻によらず成り立たせることが出来、
 \begin{align}
     &
-    (B^+)_i (k) e^{i E_k t}
-+
-    (B^-)_i (k) e^{i E_k t}
+    - \bm{k}^2
+    \left[
+        (B^+)_i (k) e^{i E_k t}
+    +
+        (B^-)_i (k) e^{- i E_k t}
+    \right]
 =
     k_i k_p A^p
 -
     E_k^2
     A^i
+\notag\\&
 =
-    - i k_i
+    i k_i
     \lambda \bm{k}^2
 -
     (\bm{k}^2 + m^2)
-    (- i \lambda k_i
+    (i \lambda k_i
     + (A_\perp)_i )
-\notag\\&
 =
-    i m^2
-    \lambda (k) k_i
+    - i m^2
+    \lambda k_i
     -
     (\bm{k}^2 + m^2)
     (A_\perp)_i
+\label{free vec field eom general sol decomposed}
 \end{align}
 が得られる。
+
 \begin{enumerate}
 \renewcommand{\labelenumi}{(\roman{enumi})}
 \item {massless $m^2 = 0$の場合}
 
-    この場合は方程式から
-    $\lambda(t, k)$が消えてしまい、
+    この場合は
+    (\ref{free vec field eom general sol decomposed})
+    から$\lambda(t, k)$が消えてしまい、
     $\lambda(t, k)$は従うべき条件を持たない
     任意関数となる。
     またこのとき$E_k = ||\bm{k}||$より
     \begin{align}
         - \bm{k}^2
         (A_\perp)_i
-    =
+    &=
+    - \bm{k}^2
+    \left[
         (B^+)_i (k) e^{i ||\bm{k}|| t}
     +
-        (B^-)_i (k) e^{i ||\bm{k}|| t}
-    \end{align}
-    となる。
-    vector $\bm{B}^\pm$は
-    （
-        $(A_\perp)_i$は$\bm{k}$に直交するため、
-        これらも$\bm{k}$に直交していなければならない
-        という他は
-    ）
-    任意で、
-    適当な再定義のもとで
-    \begin{align}
+        (B^-)_i (k) e^{- i ||\bm{k}|| t}
+    \right]
+    \notag\\\therefore\quad
         \bm{A}_\perp
-    =
+    &=
         \bm{B}^+ (k) e^{i ||\bm{k}|| t}
     +
-        \bm{B}^- (k) e^{i ||\bm{k}|| t}
+        \bm{B}^- (k) e^{- i ||\bm{k}|| t}
     \end{align}
-    としても同じことである。
+    となる。
+    $(A_\perp)_i$は$\bm{k}$に直交する成分なので
+    vector $\bm{B}^\pm$も
+    $\bm{k}$に直交していなければならないが、
+    その条件のほかは任意である。
     時間成分は
     (\ref{fourier transf of vector eom; time component})
     から
     \begin{align}
         A^0 (t, k)
     =
-        - \dfrac{i \partial_0}
+        \dfrac{i \partial_0}
             {\bm{k}^2}
-        ( - i \lambda \bm{k}^2)
+        (i \lambda \bm{k}^2)
     =
         - \partial_0 \lambda (t, k)
     \end{align}
     と求まり、
     $\bm{A}
-    = - i \bm{k} \lambda
+    = i \bm{k} \lambda
         + \bm{A}_\perp$
     と合わせて逆Fourier変換することで
     求める解が
@@ -831,6 +837,8 @@ $k_p A^p = - i \lambda \bm{k}^2$
         A^0 (t, x)
     &=
         - \partial_0 \lambda (t, x)
+    =
+        \partial^0 \lambda (t, x)
     \\
         \bm{A}
     &=
@@ -838,11 +846,12 @@ $k_p A^p = - i \lambda \bm{k}^2$
     +
         \nabla \lambda(t, x)
     =
-        \int d^d k
+        \int d^d k\ 
+        e^{i \bm{k} \cdot \bm{x}}
         \left(
             \bm{B}^+ (k) e^{i ||\bm{k}|| t}
         +
-            \bm{B}^- (k) e^{i ||\bm{k}|| t}
+            \bm{B}^- (k) e^{- i ||\bm{k}|| t}
         \right)
     +
         \nabla \lambda(t, x)
@@ -851,9 +860,235 @@ $k_p A^p = - i \lambda \bm{k}^2$
     と求まる。
     特に、任意関数$\lambda(t, x)$は
     (\ref{gauge invariance of vector field strength})
-    で議論したgauge自由度に他ならない。
+    で議論したgauge自由度に他ならないことが見て取れる。
 
 \item {massive $m^2 \neq 0$の場合}
+
+    この場合は
+    (\ref{free vec field eom general sol decomposed})
+    の両辺と$\bm{k}$との内積を取ることで
+    $\lambda(t, k)$が求まってしまい、
+    \begin{align}
+        - i m^2
+        \lambda \bm{k}^2
+    &=
+    (- \bm{k}^2)
+    \bm{k} \cdot \left[
+        \bm{B}^+ (k) e^{i E_k t}
+    +
+        \bm{B}^- (k) e^{- i E_k t}
+    \right]
+    \notag\\\therefore\quad
+        i \lambda
+    &=
+    \dfrac{ \bm{k} }{ m^2 }
+    \cdot \left[
+        \bm{B}^+ (k) e^{i E_k t}
+    +
+        \bm{B}^- (k) e^{- i E_k t}
+    \right]
+    \end{align}
+    となる。
+    一方、これを使って
+    (\ref{free vec field eom general sol decomposed})
+    から$\bm{A}_\perp$を求めると
+    \begin{align}
+        \bm{A}_\perp
+    &=
+        \dfrac{ \bm{k}^2 }{ E_k^2 }
+        \left[
+            \bm{B}^+ (k) e^{i E_k t}
+        +
+            \bm{B}^- (k) e^{- i E_k t}
+        \right]
+    -
+        \dfrac{i m^2 \lambda \bm{k}}
+            { E_k^2 }
+    \notag\\&
+    =
+        \dfrac{ \bm{k}^2 }{ E_k^2 }
+        \left[
+            \bm{B}^+ (k) e^{i E_k t}
+        +
+            \bm{B}^- (k) e^{- i E_k t}
+        \right]
+    -
+        \dfrac{\bm{k}}
+            { E_k^2 }
+        \bm{k}
+        \cdot \left[
+            \bm{B}^+ (k) e^{i E_k t}
+        +
+            \bm{B}^- (k) e^{- i E_k t}
+        \right]
+    \end{align}
+    となり、確かに$\bm{k}$と直交している。
+    $\bm{A} = i \lambda \bm{k} + \bm{A}_\perp$
+    よりまとめると
+    \begin{align}
+        \bm{A} (t, k)
+    &=
+        \bm{k}
+        \dfrac{ \bm{k} }{ m^2 }
+        \cdot \left[
+            \bm{B}^+ (k) e^{i E_k t}
+        +
+            \bm{B}^- (k) e^{- i E_k t}
+        \right]
+    \notag\\&\qquad
+    +
+            \dfrac{ \bm{k}^2 }{ E_k^2 }
+        \left[
+            \bm{B}^+ (k) e^{i E_k t}
+        +
+            \bm{B}^- (k) e^{- i E_k t}
+        \right]
+    -
+        \dfrac{\bm{k}}
+            { E_k^2 }
+        \bm{k}
+        \cdot \left[
+            \bm{B}^+ (k) e^{i E_k t}
+        +
+            \bm{B}^- (k) e^{- i E_k t}
+        \right]
+    \notag\\&
+    =
+        \bm{k}
+        \left(
+            \dfrac{ 1 }{ m^2 }
+        -
+        \dfrac{ 1 }
+            { E_k^2 }
+        \right)
+        \bm{k} \cdot \left[
+            \bm{B}^+ (k) e^{i E_k t}
+        +
+            \bm{B}^- (k) e^{- i E_k t}
+        \right]
+    +
+            \dfrac{ \bm{k}^2 }{ E_k^2 }
+        \left[
+            \bm{B}^+ (k) e^{i E_k t}
+        +
+            \bm{B}^- (k) e^{- i E_k t}
+        \right]
+    \notag\\&
+    =
+        \bm{k}
+        \dfrac{
+            \bm{k}^2
+        }{ m^2 E_k^2 }
+        \bm{k} \cdot \left[
+            \bm{B}^+ (k) e^{i E_k t}
+        +
+            \bm{B}^- (k) e^{- i E_k t}
+        \right]
+    +
+            \dfrac{ \bm{k}^2 }{ E_k^2 }
+        \left[
+            \bm{B}^+ (k) e^{i E_k t}
+        +
+            \bm{B}^- (k) e^{- i E_k t}
+        \right]
+    \end{align}
+
+    最後に時間成分は
+    (\ref{fourier transf of vector eom; time component})
+    から
+    \begin{align}
+        A^0 (t, k)
+    &=
+        \dfrac{
+            i \partial_0
+            k_p A^p (t, k)    
+        }{ E_k^2 }
+    =
+        \dfrac{
+            i \partial_0
+            (i \lambda \bm{k}^2)
+        }{ E_k^2 }
+    \notag\\&
+    =
+        i \partial_0
+        \dfrac{ \bm{k}^2 }
+            { E_k^2 }
+        \dfrac{ \bm{k} }{ m^2 }
+        \cdot \left[
+            \bm{B}^+ (k) e^{i E_k t}
+        +
+            \bm{B}^- (k) e^{- i E_k t}
+        \right]
+    \notag\\&
+    =
+        - \dfrac{ \bm{k}^2 }
+            { E_k }
+        \dfrac{ \bm{k} }{ m^2 }
+        \cdot \left[
+            \bm{B}^+ (k) e^{i E_k t}
+        -
+            \bm{B}^- (k) e^{- i E_k t}
+        \right]
+    \end{align}
+    が分かるので、
+    逆Fourier変換して求める解
+    \begin{subequations}
+    \begin{align}
+        A^0 (t, x)
+    &=
+        - \int d^d k\ 
+        e^{i\bm{k} \cdot \bm{x}}
+        \dfrac{ \bm{k}^2 }
+            { E_k }
+        \dfrac{ \bm{k} }{ m^2 }
+        \cdot \left[
+            \bm{B}^+ (k) e^{i E_k t}
+        -
+            \bm{B}^- (k) e^{- i E_k t}
+        \right]
+    \\
+        \bm{A} (t, k)
+    &=
+        \int d^d k\ 
+        e^{i\bm{k} \cdot \bm{x}}
+    \dfrac{ \bm{k}^2 }{ E_k^2 }
+    \bigg\{
+        \dfrac{ \bm{k} }{ m^2 }
+        \bm{k} \cdot \left[
+            \bm{B}^+ (k) e^{i E_k t}
+        +
+            \bm{B}^- (k) e^{- i E_k t}
+        \right]
+    \notag\\&\qquad
+    +
+        \left[
+            \bm{B}^+ (k) e^{i E_k t}
+        +
+            \bm{B}^- (k) e^{- i E_k t}
+        \right]
+    \bigg\}
+    \end{align}
+    \end{subequations}
+    が得られる。
+
+    なお、今の場合
+    $0 = \partial_\mu A^\mu
+    = \partial_0 A^0 + \nabla \cdot \bm{A}$
+    が勝手に成立することに注意しよう。
+    従ってmassiveの場合、
+    vector場の運動方程式は
+    \begin{subequations}
+    \begin{align}
+        0
+    &=
+        (\Box - m^2) A^\mu
+    \\
+        0
+    &=
+        \partial_\mu A^\mu
+    \end{align}
+    \begin{subequations}
+    の独立な$2$式に分離する。
 \end{enumerate}
 
 \subsubsection{Hamilton形式}
