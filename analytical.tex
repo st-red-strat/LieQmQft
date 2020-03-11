@@ -948,6 +948,105 @@ vector potentialの満たすべき方程式
     }
 \end{align}
 と求まるのである。
+実際、
+この解はよく知られた
+Biot-Savartの法則
+\begin{align}
+  \bm{B}
+&=
+  \nabla \times \bm{A}
+=
+  \int d^3 x'
+  \nabla \times
+    \dfrac{
+      \mu_0 \bm{j} (\bm{x}')
+    }{
+      4 \pi
+      |\bm{x} - \bm{x}'|
+    }
+=
+  \int d^3 x'
+  \bm{j} (\bm{x}') \times
+  \nabla
+    \dfrac{
+      - \mu_0
+    }{
+      4 \pi
+      |\bm{x} - \bm{x}'|
+    }
+% \notag\\&
+=
+  \int d^3 x'
+  \bm{j} (\bm{x}') \times
+    \dfrac{
+      \mu_0
+      (\bm{x} - \bm{x}')
+    }{
+      4 \pi
+      |\bm{x} - \bm{x}'|^3
+    }
+\end{align}
+あるいは
+$\bm{j}(\bm{x}')$に平行で同じ向きの
+線素$d \bm{l}'$および
+それに垂直な微小曲面$dS'$に対応する
+面素$d \bm{S}'$を用いて
+$d^3 x' = d \bm{l}' \cdot d \bm{S}'$
+かつ
+$I = \int_{S'} d \bm{S}' \cdot \bm{j}(\bm{x}')$
+（$I$は面$S'$を貫く電流）
+に注意すると、微小形で
+\begin{align}
+  d \bm{B}
+&=
+  \left[
+    d \bm{l}' \cdot
+    \int_{S'} d \bm{S}'
+  \right]
+  \nabla \times
+    \dfrac{
+      \mu_0 \bm{j} (\bm{x}')
+    }{
+      4 \pi
+      |\bm{x} - \bm{x}'|
+    }
+=
+  \left[
+    d \bm{l}' \cdot
+    \int_{S'} d \bm{S}'
+  \right]
+  \bm{j} (\bm{x}') \times
+    \dfrac{
+      \mu_0
+      (\bm{x} - \bm{x}')
+    }{
+      4 \pi
+      |\bm{x} - \bm{x}'|^3
+    }
+\notag\\&
+=
+  \int_{S'}
+    [d \bm{S}' \cdot \bm{j} (\bm{x}')]
+  d \bm{l}' \times
+    \dfrac{
+      \mu_0
+      (\bm{x} - \bm{x}')
+    }{
+      4 \pi
+      |\bm{x} - \bm{x}'|^3
+    }
+=
+  I d \bm{l}'
+  \times
+    \dfrac{
+      \mu_0
+      (\bm{x} - \bm{x}')
+    }{
+      4 \pi
+      |\bm{x} - \bm{x}'|^3
+    }
+\end{align}
+を再現する。
 
 \subsubsection{真空中の電磁波解}
 
