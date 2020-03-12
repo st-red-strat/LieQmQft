@@ -840,6 +840,7 @@ Coulomb potential
       4 \pi \epsilon_0
       |\bm{x} - \bm{y}|
     }
+\label{coulomb potential of point charge}
 \end{align}
 を確かに再現する。
 
@@ -1348,8 +1349,9 @@ q \left[
 を再現している。
 
 $n$粒子系への拡張は容易である。
-これらの荷電粒子間のCoulomb potentialは
-真空の誘電率$\epsilon_0$を使って単に
+これらの荷電粒子間のCoulomb potential
+(\ref{coulomb potential of point charge})
+は真空の誘電率$\epsilon_0$を使って単に
 \begin{align}
   U(\bm{x}_1, \dots, \bm{x}_n)
   :=
@@ -1366,6 +1368,24 @@ $n$粒子系への拡張は容易である。
 （全ての$i, j$の組について足し上げると
 同じ項が必ず$2$回ずつ現れてしまう事を考慮し、
 和の範囲を制限した。
+\footnote{
+  いずれにしても$i = j$の和は取らない。
+  点電荷の作るCoulomb potentialは原点で特異的なので、
+  点電荷自身には無限大の斥力が掛かっている事になる。
+  $i = j$に対応するのはこの斥力を表す項であり、
+  （無限大ではあるが）定数なのでLagrangianに加えても加えなくても
+  運動方程式の形を変えないため無視してよい。
+  あるいは別の解釈として、
+  点電荷がこの斥力により「飛び散って」しまわないよう
+  点電荷にPoincar\'e応力（Poincar\'e stress）
+  と呼ばれる電子を「固める」力が働いていると思ってもよい。
+  この立場では、Poincar\'e応力の項が
+  $i = j$の項を逆符号で打ち消している。
+
+  何にせよ、矛盾にも思えるこの古典的な描像は
+  場の量子論に移ることで自然に解決されるので、
+  深く気にする必要はない。
+}
 また、我々のconventionでは
 $\phi$はあくまで外場なので、
 dynamicalな粒子が作るpotential
