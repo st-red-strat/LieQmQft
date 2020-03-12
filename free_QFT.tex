@@ -111,7 +111,11 @@ $\mathcal{L}$と書く。
 Lagrangian密度のことをLagrangianと呼ぶ事も多い。
 当然Lagrangianは$L := \int d^d x \mathcal{L}$、
 作用は$S= \int dt L = \int d^D x \mathcal{L}$である。
-場の変分$\phi \mapsto \phi + \delta \phi$のもとで
+$N$種類の場$\phi^a$（$a = 1, \dots, N$）
+で書かれたLagrangian
+$\mathcal{L}(\{ \phi \})$が与えられたとき、
+場の変分$\phi^a \mapsto
+\phi^a + \delta \phi^a$のもとで
 作用の変分は
 \begin{align}
     \delta S
@@ -124,24 +128,27 @@ Lagrangian密度のことをLagrangianと呼ぶ事も多い。
     \right]
 \notag\\&=
     \int d^D x
+        \sum_{a = 1}^N
     \left[
-        \delta \phi
+        \delta \phi^a
         \dfrac{\partial \mathcal{L}}
-            {\partial \phi}
+            {\partial \phi^a}
         +
-        \partial_\mu (\delta \phi)
+        \partial_\mu (\delta \phi^a)
         \dfrac{\partial \mathcal{L}}
-            {\partial (\partial_\mu \phi)}
+            {\partial (\partial_\mu \phi^a)}
     \right]
 \notag\\&=
     \int d^D x
-    \ 
-    \delta \phi
+        \sum_{a = 1}^N
+    \delta \phi^a
     \left[
-        \dfrac{\partial \mathcal{L}}{\partial \phi}
+        \dfrac{\partial \mathcal{L}}
+            {\partial \phi^a}
         -
         \partial_\mu
-        \dfrac{\partial \mathcal{L}}{\partial (\partial_\mu \phi)}
+        \dfrac{\partial \mathcal{L}}
+            {\partial (\partial_\mu \phi^a)}
     \right]
     + \text{(surface term)}
 \end{align}
@@ -150,14 +157,17 @@ Lagrangian密度のことをLagrangianと呼ぶ事も多い。
 \begin{align}
     0 &=
     \dfrac{\partial \mathcal{L}}
-        {\partial \phi}
+        {\partial \phi^a}
     -
     \partial_\mu
     \dfrac{\partial \mathcal{L}}
-        {\partial (\partial_\mu \phi)}
+        {\partial (\partial_\mu \phi^a)}
 \label{field EL eq}
 \end{align}
 と導かれる。
+Lagrange形式では
+全ての座標$(t, \bm{x})$が
+等価に扱われている事が分かる。
 
 \subsubsection{Free Scalar場の例}
 
@@ -752,9 +762,9 @@ $\bm{B}^\pm (k)$を使って
 &=
     - \bm{k}^2
     \left[
-        (B^+)_i (k) e^{i E_k t}
+        (B^+)_i (k) e^{i E_k c t}
     +
-        (B^-)_i (k) e^{- i E_k t}
+        (B^-)_i (k) e^{- i E_k c t}
     \right]
 \end{align}
 と得られる。
@@ -771,9 +781,9 @@ $k_p A^p = i \lambda \bm{k}^2$
     &
     - \bm{k}^2
     \left[
-        (B^+)_i (k) e^{i E_k t}
+        (B^+)_i (k) e^{i E_k c t}
     +
-        (B^-)_i (k) e^{- i E_k t}
+        (B^-)_i (k) e^{- i E_k c t}
     \right]
 =
     k_i k_p A^p
@@ -814,16 +824,16 @@ $k_p A^p = i \lambda \bm{k}^2$
     &=
     - \bm{k}^2
     \left[
-        (B^+)_i (k) e^{i ||\bm{k}|| t}
+        (B^+)_i (k) e^{i ||\bm{k}|| c t}
     +
-        (B^-)_i (k) e^{- i ||\bm{k}|| t}
+        (B^-)_i (k) e^{- i ||\bm{k}|| c t}
     \right]
     \notag\\\therefore\quad
         \bm{A}_\perp
     &=
-        \bm{B}^+ (k) e^{i ||\bm{k}|| t}
+        \bm{B}^+ (k) e^{i ||\bm{k}|| c t}
     +
-        \bm{B}^- (k) e^{- i ||\bm{k}|| t}
+        \bm{B}^- (k) e^{- i ||\bm{k}|| c t}
     \end{align}
     となる。
     $(A_\perp)_i$は$\bm{k}$に直交する成分なので
@@ -865,9 +875,9 @@ $k_p A^p = i \lambda \bm{k}^2$
         \int d^d k\ 
         e^{i \bm{k} \cdot \bm{x}}
         \left(
-            \bm{B}^+ (k) e^{i ||\bm{k}|| t}
+            \bm{B}^+ (k) e^{i ||\bm{k}|| c t}
         +
-            \bm{B}^- (k) e^{- i ||\bm{k}|| t}
+            \bm{B}^- (k) e^{- i ||\bm{k}|| c t}
         \right)
     +
         \nabla \lambda(t, x)
@@ -876,7 +886,8 @@ $k_p A^p = i \lambda \bm{k}^2$
     と求まる。
     特に、任意関数$\lambda(t, x)$は
     (\ref{gauge invariance of vector field strength})
-    で議論したgauge自由度に他ならないことが見て取れる。
+    で議論したgauge自由度$\Lambda$に
+    他ならないことが見て取れる。
 
     物理的な自由度は$\bm{k}$に垂直な
     $2$つの複素vector $\bm{B}^\pm$で、
@@ -896,18 +907,18 @@ $k_p A^p = i \lambda \bm{k}^2$
     &=
     (- \bm{k}^2)
     \bm{k} \cdot \left[
-        \bm{B}^+ (k) e^{i E_k t}
+        \bm{B}^+ (k) e^{i E_k c t}
     +
-        \bm{B}^- (k) e^{- i E_k t}
+        \bm{B}^- (k) e^{- i E_k c t}
     \right]
     \notag\\\therefore\quad
         i \lambda
     &=
     \dfrac{ \bm{k} }{ m^2 }
     \cdot \left[
-        \bm{B}^+ (k) e^{i E_k t}
+        \bm{B}^+ (k) e^{i E_k c t}
     +
-        \bm{B}^- (k) e^{- i E_k t}
+        \bm{B}^- (k) e^{- i E_k c t}
     \right]
     \end{align}
     となる。
@@ -919,9 +930,9 @@ $k_p A^p = i \lambda \bm{k}^2$
     &=
         \dfrac{ \bm{k}^2 }{ E_k^2 }
         \left[
-            \bm{B}^+ (k) e^{i E_k t}
+            \bm{B}^+ (k) e^{i E_k c t}
         +
-            \bm{B}^- (k) e^{- i E_k t}
+            \bm{B}^- (k) e^{- i E_k c t}
         \right]
     -
         \dfrac{i m^2 \lambda \bm{k}}
@@ -930,18 +941,18 @@ $k_p A^p = i \lambda \bm{k}^2$
     =
         \dfrac{ \bm{k}^2 }{ E_k^2 }
         \left[
-            \bm{B}^+ (k) e^{i E_k t}
+            \bm{B}^+ (k) e^{i E_k c t}
         +
-            \bm{B}^- (k) e^{- i E_k t}
+            \bm{B}^- (k) e^{- i E_k c t}
         \right]
     -
         \dfrac{\bm{k}}
             { E_k^2 }
         \bm{k}
         \cdot \left[
-            \bm{B}^+ (k) e^{i E_k t}
+            \bm{B}^+ (k) e^{i E_k c t}
         +
-            \bm{B}^- (k) e^{- i E_k t}
+            \bm{B}^- (k) e^{- i E_k c t}
         \right]
     \end{align}
     となり、確かに$\bm{k}$と直交している。
@@ -953,26 +964,26 @@ $k_p A^p = i \lambda \bm{k}^2$
         \bm{k}
         \dfrac{ \bm{k} }{ m^2 }
         \cdot \left[
-            \bm{B}^+ (k) e^{i E_k t}
+            \bm{B}^+ (k) e^{i E_k c t}
         +
-            \bm{B}^- (k) e^{- i E_k t}
+            \bm{B}^- (k) e^{- i E_k c t}
         \right]
     \notag\\&\qquad
     +
             \dfrac{ \bm{k}^2 }{ E_k^2 }
         \left[
-            \bm{B}^+ (k) e^{i E_k t}
+            \bm{B}^+ (k) e^{i E_k c t}
         +
-            \bm{B}^- (k) e^{- i E_k t}
+            \bm{B}^- (k) e^{- i E_k c t}
         \right]
     -
         \dfrac{\bm{k}}
             { E_k^2 }
         \bm{k}
         \cdot \left[
-            \bm{B}^+ (k) e^{i E_k t}
+            \bm{B}^+ (k) e^{i E_k c t}
         +
-            \bm{B}^- (k) e^{- i E_k t}
+            \bm{B}^- (k) e^{- i E_k c t}
         \right]
     \notag\\&
     =
@@ -984,16 +995,16 @@ $k_p A^p = i \lambda \bm{k}^2$
             { E_k^2 }
         \right)
         \bm{k} \cdot \left[
-            \bm{B}^+ (k) e^{i E_k t}
+            \bm{B}^+ (k) e^{i E_k c t}
         +
-            \bm{B}^- (k) e^{- i E_k t}
+            \bm{B}^- (k) e^{- i E_k c t}
         \right]
     +
             \dfrac{ \bm{k}^2 }{ E_k^2 }
         \left[
-            \bm{B}^+ (k) e^{i E_k t}
+            \bm{B}^+ (k) e^{i E_k c t}
         +
-            \bm{B}^- (k) e^{- i E_k t}
+            \bm{B}^- (k) e^{- i E_k c t}
         \right]
     \notag\\&
     =
@@ -1002,16 +1013,16 @@ $k_p A^p = i \lambda \bm{k}^2$
             \bm{k}^2
         }{ m^2 E_k^2 }
         \bm{k} \cdot \left[
-            \bm{B}^+ (k) e^{i E_k t}
+            \bm{B}^+ (k) e^{i E_k c t}
         +
-            \bm{B}^- (k) e^{- i E_k t}
+            \bm{B}^- (k) e^{- i E_k c t}
         \right]
     +
             \dfrac{ \bm{k}^2 }{ E_k^2 }
         \left[
-            \bm{B}^+ (k) e^{i E_k t}
+            \bm{B}^+ (k) e^{i E_k c t}
         +
-            \bm{B}^- (k) e^{- i E_k t}
+            \bm{B}^- (k) e^{- i E_k c t}
         \right]
     \end{align}
 
@@ -1037,9 +1048,9 @@ $k_p A^p = i \lambda \bm{k}^2$
             { E_k^2 }
         \dfrac{ \bm{k} }{ m^2 }
         \cdot \left[
-            \bm{B}^+ (k) e^{i E_k t}
+            \bm{B}^+ (k) e^{i E_k c t}
         +
-            \bm{B}^- (k) e^{- i E_k t}
+            \bm{B}^- (k) e^{- i E_k c t}
         \right]
     \notag\\&
     =
@@ -1047,9 +1058,9 @@ $k_p A^p = i \lambda \bm{k}^2$
             { E_k }
         \dfrac{ \bm{k} }{ m^2 }
         \cdot \left[
-            \bm{B}^+ (k) e^{i E_k t}
+            \bm{B}^+ (k) e^{i E_k c t}
         -
-            \bm{B}^- (k) e^{- i E_k t}
+            \bm{B}^- (k) e^{- i E_k c t}
         \right]
     \end{align}
     が分かるので、
@@ -1064,9 +1075,9 @@ $k_p A^p = i \lambda \bm{k}^2$
             { E_k }
         \dfrac{ \bm{k} }{ m^2 }
         \cdot \left[
-            \bm{B}^+ (k) e^{i E_k t}
+            \bm{B}^+ (k) e^{i E_k c t}
         -
-            \bm{B}^- (k) e^{- i E_k t}
+            \bm{B}^- (k) e^{- i E_k c t}
         \right]
     \\
         \bm{A} (t, k)
@@ -1077,16 +1088,16 @@ $k_p A^p = i \lambda \bm{k}^2$
     \bigg\{
         \dfrac{ \bm{k} }{ m^2 }
         \bm{k} \cdot \left[
-            \bm{B}^+ (k) e^{i E_k t}
+            \bm{B}^+ (k) e^{i E_k c t}
         +
-            \bm{B}^- (k) e^{- i E_k t}
+            \bm{B}^- (k) e^{- i E_k c t}
         \right]
     \notag\\&\qquad
     +
         \left[
-            \bm{B}^+ (k) e^{i E_k t}
+            \bm{B}^+ (k) e^{i E_k c t}
         +
-            \bm{B}^- (k) e^{- i E_k t}
+            \bm{B}^- (k) e^{- i E_k c t}
         \right]
     \bigg\}
     \end{align}
@@ -1113,6 +1124,9 @@ $k_p A^p = i \lambda \bm{k}^2$
     \end{align}
     \end{subequations}
     の独立な$2$式に分離する。
+    前者は実scalar場の運動方程式
+    (\ref{free real scalar eom})を
+    $D = d + 1$本集めただけのものだ。
 
     独立な自由度は$2$つの複素vector $\bm{B}^\pm$で、
     今度は$\bm{k}$に直交する必要はないので
@@ -1146,7 +1160,8 @@ Hamiltonianも解析力学の場合と全く同様に
 \begin{align}
     H (t)
     &:=
-    \int d^d x\ \mathcal{H}
+    \int d^d x\ 
+        \mathcal{H} (t, \bm{x})
 \\
     \mathcal{H} (t, \bm{x})
     &:=
@@ -1155,25 +1170,98 @@ Hamiltonianも解析力学の場合と全く同様に
         \dot{\phi}^a (t, \bm{x})
     -
     \mathcal{L}(t, \bm{x})
+    \bigg|_{
+        \pi(t, \bm{x})
+        = \pi[\dot{\phi}]
+    }
 \end{align}
 \end{subequations}
 と定義される。
+Hamiltonian $H$が
+$t$積分されていない事、
+$\phi$の$t$微分を含まない事からも明らかであるが、
+Lagrange形式(\ref{field EL eq})と異なり
+Hamilton形式では時間が露わに特別扱いされている。
+
+関数$f(\bm{x})$の汎関数$F[f]$が与えられたとき、
+汎関数微分（functional derivative）を
+\begin{align}
+    \dfrac{ \delta F }
+        {\delta f(\bm{a})}
+&:=
+    \lim_{ \epsilon \to 0 }
+    \dfrac{
+        F[ f + \epsilon
+            \delta(\bm{x} - \bm{a}) ]
+    -
+        F[ f ]
+    }
+        {\epsilon}
+\end{align}
+で定義する。
+例えば滑らかな関数$P(x)$を使って
+汎関数が
+$\displaystyle
+F[f] = \int d^d x P(f(\bm{x}))$
+と与えられていた場合には、
+その汎関数微分は$P$の導関数$P'$を使い
+$\displaystyle
+    \dfrac{\delta F}{\delta f(\bm{x})}
+=
+    \int d^d y
+    P'( f(\bm{y}) )
+    \delta(\bm{y} - \bm{x})
+=
+    P'( f(\bm{x}) )$
+と書ける。
+また、
+$\displaystyle
+\dfrac{\delta f(\bm{x})}
+    {\delta f(\bm{y})}
+= \lim_{\epsilon \to 0}
+\dfrac{
+    f(\bm{x})
+    + \epsilon \delta(\bm{x} - \bm{y})
+    - f(\bm{x})
+}{\epsilon}
+= \delta(\bm{x} - \bm{y})$
+も明らかであろう。
+注意として、汎関数$F[f]$の定義に
+$f$の微分が含まれていた場合には
+Dirac deltaの微分が
+部分積分によって定義されている事
+(\ref{derivative of delta function})
+を思い出さねばならない。
+例えば関数$g(\bm{x})$を使って
+$\displaystyle
+\bm{F}[f] = \int d^d x\ 
+    g(\bm{x}) \nabla f(\bm{x})$
+であるならば、
+$\displaystyle
+\dfrac{ \delta \bm{F} }
+    {\delta f(\bm{x})}
+= \int d^d y\ 
+g(\bm{y}) \nabla_y
+    \delta(\bm{y} - \bm{x})
+= - \nabla g(\bm{x})$
+が成り立つ。
 
 正準方程式
 (\ref{Hamilton's eom})は
+汎関数微分を使うと
 場の理論の場合にも全く同様に、
 $N$種類の場$\phi^a$及び
 対応する共役量$\pi_a$が存在するとき
 \begin{align}
     \begin{cases}
-        \dot{\phi}^a =
-        \dfrac{\partial \mathcal{H}}
-            {\partial \pi_a}
+        \dot{\phi}^a (t, \bm{x}) =
+        \dfrac{\partial H (t)}
+            {\partial \pi_a (t, \bm{x})}
       \\
       \\
-        \dot{\pi}_a =
-        - \dfrac{\partial \mathcal{H}}
-            {\partial \phi^a}
+        \dot{\pi}_a (t, \bm{x}) =
+        - \dfrac{\partial H (t)}
+            {\partial \phi^a(t, \bm{x})}
       \end{cases}
     \label{hamilton eom for fields}    
 \end{align}
@@ -1243,7 +1331,7 @@ $i, j = 1, \dots, d = D-1$を
     \dot{\phi}
 &=
     \dfrac{
-        \partial \mathcal{H}_{\rm real}
+        \partial H_{\rm real}
     }{ \partial \pi}
 =
     c^2 \pi
@@ -1252,7 +1340,7 @@ $i, j = 1, \dots, d = D-1$を
 &=
     -
     \dfrac{
-        \partial \mathcal{H}_{\rm real}
+        \partial H_{\rm real}
     }{ \partial \phi}
 =
     - \left[
@@ -1333,7 +1421,7 @@ Lagrangian
     \dot{\varphi}
 &=
     \dfrac{
-        \partial \mathcal{H}_{\rm complex}
+        \partial H_{\rm complex}
     }{ \partial \pi}
 =
     c^2 \overline{\pi}
@@ -1341,7 +1429,7 @@ Lagrangian
     \dot{\varphi}^*
 &=
     \dfrac{
-        \partial \mathcal{H}_{\rm complex}
+        \partial H_{\rm complex}
     }{ \partial \overline{\pi}}
 =
     c^2 \pi
@@ -1350,7 +1438,7 @@ Lagrangian
 &=
     -
     \dfrac{
-        \partial \mathcal{H}_{\rm complex}
+        \partial H_{\rm complex}
     }{ \partial \varphi}
 =
     - \left[
@@ -1368,7 +1456,7 @@ Lagrangian
 &=
     -
     \dfrac{
-        \partial \mathcal{H}_{\rm complex}
+        \partial H_{\rm complex}
     }{ \partial \varphi^*}
 =
     - \left[
