@@ -330,7 +330,7 @@ $\eta$を
 (\ref{mostly plus minkowski metric})
 で与え、運動方程式を実際にFourier変換で解くと
 
-\subsubsection{Massive Free Vector場の例}
+\subsubsection{Massive Free Vector場（Proca場）の例}
 
 $\eta_{\mu\nu}$を無次元の実定数対称行列、
 $\eta^{\mu\nu}$をその逆行列
@@ -357,7 +357,10 @@ $F_{\mu\nu} :=
 \end{align}
 ため、以下では任意のvectorおよびtensorについて
 同様に添え字の上げ下げを$\eta$で行う。
-Lagrangianを
+自由vector場
+（特に$m^2 \neq 0$の場合
+$A^\mu$をProca場と言う）
+のLagrangianを
 \begin{align}
     \mathcal{L}_{\rm massvec}
     :=
@@ -875,6 +878,12 @@ $k_p A^p = i \lambda \bm{k}^2$
     (\ref{gauge invariance of vector field strength})
     で議論したgauge自由度に他ならないことが見て取れる。
 
+    物理的な自由度は$\bm{k}$に垂直な
+    $2$つの複素vector $\bm{B}^\pm$で、
+    $A^i$が実数となるよう適当な条件
+    $(A^i)^* = A^i$を課すと
+    実$2(d-1)$個の独立な成分を持つ事が分かる。
+
 \item {massive $m^2 \neq 0$の場合}
 
     この場合は
@@ -1089,7 +1098,9 @@ $k_p A^p = i \lambda \bm{k}^2$
     = \partial_0 A^0 + \nabla \cdot \bm{A}$
     が勝手に成立することに注意しよう。
     従ってmassiveの場合、
-    vector場の運動方程式は
+    vector場の運動方程式
+    (\ref{free massive vector field EL eq})
+    は
     \begin{subequations}
     \begin{align}
         0
@@ -1102,6 +1113,17 @@ $k_p A^p = i \lambda \bm{k}^2$
     \end{align}
     \end{subequations}
     の独立な$2$式に分離する。
+
+    独立な自由度は$2$つの複素vector $\bm{B}^\pm$で、
+    今度は$\bm{k}$に直交する必要はないので
+    実数条件$(A^i)^* = A^i$を課した後は
+    実$2d$個の独立な成分を持つ。
+    そのうち$\bm{k}$に平行な$2$成分が
+    $A^0$および$\lambda$を、
+    $\bm{k}$に垂直な$2(d-1)$成分が
+    $\bm{A}_\perp$を記述する事も明らかだろう。
+    物理的な自由度はmasslessの場合に比べ
+    $2$だけ増えている。
 \end{enumerate}
 
 \subsubsection{Hamilton形式}

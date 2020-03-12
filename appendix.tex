@@ -2194,6 +2194,7 @@ Laplacianは
     \dfrac{1}{r^2}
         \Delta_{S^{n-1}}
         f
+\label{n dim laplacian in polar coordinates}
 \end{align}
 と書けることが分かる。
 第$1$項は
@@ -2808,11 +2809,13 @@ Gaussの定理を使うと
 \end{align}
 を得る。
 
-$n \ge 3$でのGreen関数
+一般次元$n \neq 2$でのGreen関数
 $G^{(n)}(\bm{x})$は、
 $\delta(\bm{x})$が$r$にしか依らないため
-Laplacianの作用も簡単になり、
-$\bm{x} \neq 0$では
+Laplacian
+(\ref{n dim laplacian in polar coordinates})
+の作用が簡単になり、
+$\bm{x} \neq 0$で
 \begin{align}
     \Delta_{(n)}
     G^{(n)}(\bm{x})
@@ -2826,8 +2829,8 @@ $\bm{x} \neq 0$では
     \right)
 = 0
 \end{align}
-となる。
-これは容易に解けて
+となる事に気付けば容易に求まる。
+上式は簡単に積分出来て
 \begin{align}
     &r^{n-1}
     \dfrac{\partial}{\partial r}
