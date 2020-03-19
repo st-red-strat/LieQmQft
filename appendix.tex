@@ -1192,6 +1192,63 @@ Rodrigues' formulaは
 \end{subequations}
 とも書かれる。
 
+\subsubsection{Bessel関数}
+
+第一種Bessel関数
+（Bessel function of the first kind）
+は一般化された超幾何関数を用い
+\begin{subequations}
+\begin{align}
+    J_\nu (z)
+&=
+    \dfrac{ (z/2)^\nu }
+        { \Gamma(\nu + 1) }
+    {}_0 F_1 \left(
+        \nu + 1; - \dfrac{z^2}{4}
+    \right)
+\\&=
+    \dfrac{ (z/2)^\nu }
+        { \Gamma(\nu + 1) }
+    e^{- i z}
+    {}_1 F_1 \left(
+        \nu + \dfrac{1}{2};
+        2 \nu + 1;
+        2 i z
+    \right)
+\end{align}
+\end{subequations}
+の表示を持つ。
+平面波はBessel関数により
+\begin{align}
+    e^{ i z \sin \theta }
+&=
+    \sum_{n = - \infty}^{\infty}
+        J_n(z)
+        e^{i n \theta}
+\label{plane wave expanded by bessel 1st}
+\end{align}
+と展開される。
+
+$\Re \nu > -\dfrac{1}{2},
+\Re z > 0$
+の領域では
+Lommelの積分表示
+\begin{align}
+    \dfrac{
+        \pi^{1/2}
+        \Gamma(\nu + \frac{1}{2})
+    }
+    {(z/2)^\nu}
+    J_{\nu}(z)
+&=
+    \int_{0}^\pi
+        d \theta
+        \cos (z \cos \theta)
+        \sin^{2 \nu} \theta
+\label{lommel integral formula for Bessel 1st}
+\end{align}
+によっても表示できる。
+
 \newpage
 \subsection{Fourier級数展開、Fourier変換}
 
@@ -1224,7 +1281,7 @@ Rodrigues' formulaは
     \left(
         a_n \cos \dfrac{n \pi}{L}x
         +
-        b_n \cos \dfrac{n \pi}{L}x
+        b_n \sin \dfrac{n \pi}{L}x
     \right)
 \\
     a_n
@@ -2031,18 +2088,21 @@ Jacobian
 \notag\\&
 =
     \dfrac{R^n}{n}
-    S_n
+    S_{n-1}
 \end{align}
 と求まる。
-ここで$S_n$は$n$次元単位球面の面積で、
+ここで$S_{n-1}$は$n-1$次元
+単位球面$S^{n-1}$の面積で、
+対応する立体角を$d^{n-1} \Omega$
+と書くことにすると
 $\Gamma$関数の半整数での値
 (\ref{Gamma function at half integer})
 を用いて
 \begin{align}
-    S_n
+    S_{n-1}
 &=
     \int_{r = 1}
-        d^{n-1} x
+        d^{n-1} \Omega
 =
     2 \pi
     \prod_{i=1}^{n-2}
@@ -2528,6 +2588,11 @@ $D f(x) = \left(
 \end{align}
 を満たす関数$G(x, x')$を$D(x)$の
 グリーン関数（Green's function）と言う。
+適当な関数$f(x)$について
+$g(x)$を与えられた関数として
+$D(x) f(x) = g(x)$
+という形の微分方程式に名前が付いている場合には、
+その方程式のGreen関数という言い方をする場合もある。
 数学の微分方程式論の分野では
 方程式の全ての項を左辺に寄せて書く
 古い流儀があった名残として
@@ -2559,6 +2624,7 @@ $D f(x) = \left(
     \int dx'\ 
         G(x, x')
         \rho(x')
+\label{convolution representation of green function solution}
 \end{align}
 と書ける事が直接の計算
 \begin{align}
@@ -2574,7 +2640,6 @@ $D f(x) = \left(
     \delta (x - x')
 =
     \rho(x)
-\label{convolution representation of green function solution}
 \end{align}
 から確かめられる。
 
@@ -2659,6 +2724,28 @@ $n$次元Laplacian
     \partial_i^2
 \end{align}
 のGreen関数を求めよう。
+これにより、
+関数$f(x)$についての
+Laplace方程式（Laplace's equation）
+\begin{align}
+    \Delta_{(n)} f(x)
+    &= 0
+\label{laplace eq}
+\end{align}
+またはPoisson方程式（Poisson's equation）
+\begin{align}
+    \Delta_{(n)} f(x)
+    &= g(x)
+\label{poisson eq}
+\end{align}
+（ただし$g(x)$は与えられた関数）
+の適当な境界条件の下での解が
+積分
+(\ref{convolution representation of green function solution})
+によって得られる。
+典型的には、静的な場合のMaxwell方程式
+(\ref{static eq for ele-mag scalar potential})
+がこの形をしている。
 
 $1$次元の場合、
 \begin{align}
@@ -2862,22 +2949,19 @@ $\lim_{r \to \infty}
         \nabla
     G^{(n)}(\bm{x})
 =
-    \int d \Omega\ 
+    \int d^{n-1} \Omega\ 
         r^{n-1}
         \dfrac{d}{dr}
     G^{(n)}(\bm{x})
 =
-    - C S_n
+    - C S_{n-1}
 =    1
 \end{align}
 から$n$次元球の表面積
 (\ref{surface area of n dimensional sphere})
 を用い
-$C = - \dfrac{1}{S_n}, D = 0$
+$C = - \dfrac{1}{S_{n-1}}, D = 0$
 を得る。
-ただし$d \Omega$は
-$n$次元球の表面を掃く
-立体角である。
 結局、求めるLaplacianのGreen関数は
 \begin{align}
     G^{(n)}(\bm{x})
@@ -2893,13 +2977,15 @@ $n$次元球の表面を掃く
     \\
     \\
         -
-        \dfrac{1}{(n - 2) S_n r^{n-2}}
+        \dfrac{1}{
+            (n - 2) S_{n-1} r^{n-2}
+        }
     &(n \ge 3)
     \end{cases}
 \label{green function of n dim laplacian}
 \end{align}
 となる。
-特に、$n = 1$では$S_1 = 2$なので
+特に、$n = 1$では$S_0 = 2$なので
 $n \ge 3$の場合と同じ公式を用いて表せる。
 
 \subsubsection{次元正則化}
@@ -3046,7 +3132,7 @@ $r = 0$付近では
 $a$は考えている物理系のscaleよりも十分
 短距離（つまり高energy領域）の物理を
 あえて無視するために導入された
-regulatorであることが分かる。
+UV regulatorであることが分かる。
 
 一般に発散する積分を正則化した際には
 このような有限定数の任意性が残り、
@@ -3054,6 +3140,226 @@ regulatorであることが分かる。
 実験値との比較により
 これを決定する条件のことを
 繰り込み条件と呼ぶ。
+
+\subsection{Helmholtz方程式のGreen関数}
+
+Laplace方程式
+(\ref{laplace eq})
+の一般化である
+Helmholtz方程式（Helmholtz equation）
+\begin{align}
+    (\Delta_{(n)} + k^2)
+    f(x)
+&= 0
+\end{align}
+を考えよう。
+典型的にはLorenz gauge
+\begin{align}
+0 =
+    \mu_0 \epsilon_0
+    \frac{\partial \phi (t, \bm{x})}
+      {\partial t}
+  +
+    \nabla \cdot
+      \bm{A} (t, \bm{x})
+\end{align}
+のもとでのMaxwell方程式
+(\ref{maxwell eq of potentials})
+を時間についてFourier変換すると
+Helmholtz型の微分方程式に帰着する。
+あるいは調和振動子の運動方程式
+(\ref{newton harm osci eom})
+も$1$次元Helmholtz方程式と見做すことが出来る。
+
+なお、今の場合
+$A = x_i,
+B = \dfrac{d}{dx_i}$
+と置くことで
+\begin{align}
+    \left[
+        x_i,
+        \dfrac{d}{dx_j}
+    \right]
+&=
+    - \delta_{ij}
+\end{align}
+が成り立つので、
+operatorの固有値を変化する公式
+(\ref{finite translation of operator})
+により
+$\bm{k}^2 = k^2$となる任意のvector
+$\bm{k}$を用いて
+\begin{align}
+    &
+    \Delta_{(n)} + k^2
+=
+    \sum_{i = 1}^n
+    \left[
+        \dfrac{d^2}{dx_i^2}
+    +
+        k_i^2
+    \right]
+=
+    \sum_{i = 1}^n
+    \left[
+    \left(
+        \dfrac{d}{dx_i}
+    +
+        i k_i
+    \right)
+    \left(
+        \dfrac{d}{dx_i}
+    -
+        i k_i
+    \right)
+    \right]
+\notag\\&
+=
+    \sum_{i = 1}^n
+    \left[
+    \left(
+        e^{- i \bm{k} \cdot \bm{x}}
+        \dfrac{d}{d x_i}
+        e^{i \bm{k} \cdot \bm{x}}
+    \right)
+    \left(
+        e^{i \bm{k} \cdot \bm{x}}
+        \dfrac{d}{d x_i}
+        e^{- i \bm{k} \cdot \bm{x}}
+    \right)
+    \right]
+\end{align}
+と書き換えることが出来る。
+
+このGreen関数はもちろん
+Laplacianの場合と同様に
+Fourier変換と留数定理を用いて求まり、
+\begin{align}
+    0
+&=
+    (\Delta_{(n)} + k^2)
+    G^{(n)}( \bm{x}, k )
+    -
+    \delta( \bm{x} )
+\notag\\&
+=
+    (\Delta_{(n)} + k^2)
+    \int d^n p\ 
+        e^{i \bm{p} \cdot \bm{x}}
+        G^{(n)}( \bm{p}, k )
+    -
+    \int d^n p\ 
+        e^{i \bm{p} \cdot \bm{x}}
+\notag\\&
+=
+    \int d^n p\ 
+        e^{i \bm{p} \cdot \bm{x}}
+    \left[
+        (- \bm{p}^2 + k^2)
+        G^{(n)}( \bm{p}, k )
+    - 1
+    \right]
+\notag\\\therefore\quad
+    G^{(n)}( \bm{p}, k )
+&=
+    \dfrac{- 1}{\bm{p}^2 - k^2}
+\notag\\\Rightarrow\quad
+    G^{(n)}( \bm{x}, k )
+&=
+    \int d^n p\ 
+        e^{i \bm{p} \cdot \bm{x}}
+        G^{(n)}( \bm{p}, k )
+=
+    \int d^n p\ 
+        e^{i \bm{p} \cdot \bm{x}}
+        \dfrac{- 1}{\bm{p}^2 - k^2}
+\notag\\&
+=
+    \int d p\ 
+    d^{n-1} \Omega
+        \dfrac{
+            - p^{n-1}
+            e^{i p x \cos \theta_1}
+        }{p^2 - k^2}
+\end{align}
+となる。
+最後に積分を極座標表示に直したが、
+$p_n$軸を$\bm{x}$の方向に取ったので
+$\bm{p} \cdot \bm{x} = px \cos \theta_1$となった。
+$i = 2, \cdots, n-1$に対して
+$\theta_i$角度積分は
+(\ref{surface area of n dimensional sphere})
+と同様に実行でき$\displaystyle
+2 \pi
+\prod_{i=2}^{n-2}
+\left[
+    \sqrt{\pi}
+    \dfrac{\Gamma(\frac{n - i}{2})}
+    {\Gamma(\frac{n - i + 1}{2})}
+\right]
+=
+2 \pi^{n/2}
+    \dfrac{ \Gamma(1) }{ \Gamma(\frac{n-1}{2}) }
+$を出す。
+$\theta_1$積分も
+Lommelの積分表示
+(\ref{lommel integral formula for Bessel 1st})
+により第一種Bessel関数に書き換えられて
+\begin{align}
+    \int_0^\pi d \theta_1
+        \sin^{n-2} \theta_i
+        e^{i p x \cos \theta_1}
+&=
+    \dfrac{
+        \pi^{1/2}
+        \Gamma(
+            (\frac{n-2}{2})
+            + \frac{1}{2}
+        )
+    } { (px/2)^{ \frac{n-2}{2} } }
+    J_{ \frac{n-2}{2} } (px)
+=
+    \dfrac{
+        \pi^{1/2}
+        \Gamma(
+            \frac{n-1}{2}
+        )
+    } { (px/2)^{ \frac{n}{2} - 1 } }
+    J_{ \frac{n}{2} - 1 } (px)
+\end{align}
+を得る。
+
+最後に動径方向の$p$積分は
+\begin{align}
+    G^{(n)}( \bm{x}, k )
+&=
+    \int_0^\infty d p
+        \dfrac{
+            - p^{n-1}
+        }{(p + k)(p - k)}
+    2 \pi^{n/2}
+        \dfrac{ \Gamma(1) }
+            { \Gamma(\frac{n-1}{2}) }
+    \dfrac{
+        \pi^{1/2}
+        \Gamma(
+            \frac{n-1}{2}
+        )
+    } { (px/2)^{ \frac{n}{2} - 1 } }
+    J_{ \frac{n}{2} - 1 } (px)
+\notag\\&
+=
+    \int_0^\infty d p
+        \dfrac{
+            - p^{n-1}
+        }{(p + k)(p - k)}
+    2 \pi^{n/2}
+        \Gamma(1)
+    \dfrac{
+        \pi^{1/2}
+    } { (px/2)^{ \frac{n}{2} - 1 } }
+    J_{ \frac{n}{2} - 1 } (px)
+\end{align}
 
 \newpage
 \section{量子力学の公式}
@@ -3294,6 +3600,9 @@ Taylor展開出来ない場合を考える必要はない。
 
 \subsubsection{特殊な場合}
 
+公式
+(\ref{unitary transf formula for operator})
+において
 特に交換関係が$c$-数の場合$[\hat{A}, \hat{B}] = c$には
 \begin{align}
     e^{ \hat{A} } \hat{B} e^{ - \hat{A} }
