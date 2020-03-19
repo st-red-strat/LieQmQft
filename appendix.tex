@@ -2726,13 +2726,7 @@ $n$次元Laplacian
 のGreen関数を求めよう。
 これにより、
 関数$f(x)$についての
-Laplace方程式（Laplace's equation）
-\begin{align}
-    \Delta_{(n)} f(x)
-    &= 0
-\label{laplace eq}
-\end{align}
-またはPoisson方程式（Poisson's equation）
+Poisson方程式（Poisson's equation）
 \begin{align}
     \Delta_{(n)} f(x)
     &= g(x)
@@ -2746,6 +2740,16 @@ Laplace方程式（Laplace's equation）
 典型的には、静的な場合のMaxwell方程式
 (\ref{static eq for ele-mag scalar potential})
 がこの形をしている。
+
+また、Laplace方程式（Laplace's equation）
+\begin{align}
+    \Delta_{(n)} f(x)
+    &= 0
+\label{laplace eq}
+\end{align}
+はPoisson方程式の特別な場合であり、
+この方程式を満足する$f(x)$を
+調和関数という。
 
 $1$次元の場合、
 \begin{align}
@@ -3330,6 +3334,7 @@ Lommelの積分表示
 を得る。
 
 最後に動径方向の$p$積分は
+$t = p x$と置き換えて
 \begin{align}
     G^{(n)}( \bm{x}, k )
 &=
@@ -3349,17 +3354,43 @@ Lommelの積分表示
     J_{ \frac{n}{2} - 1 } (px)
 \notag\\&
 =
+    2 \pi^{(n+1)/2}
+    \left(
+        \dfrac{2}{x}
+    \right)^{ \frac{n}{2} - 1 }
     \int_0^\infty d p
         \dfrac{
-            - p^{n-1}
+            - p^{n/2}
+            J_{ \frac{n}{2} - 1 } (px)
         }{(p + k)(p - k)}
-    2 \pi^{n/2}
-        \Gamma(1)
-    \dfrac{
-        \pi^{1/2}
-    } { (px/2)^{ \frac{n}{2} - 1 } }
-    J_{ \frac{n}{2} - 1 } (px)
+\notag\\&
+=
+    \dfrac{ \pi^{(n+1)/2} }{ k }
+    \left(
+        \dfrac{2}{x}
+    \right)^{ \frac{n}{2} - 1 }
+    \int_0^\infty d p\ 
+        p^{n/2}
+        J_{ \frac{n}{2} - 1 } (px)
+    \left[
+        \dfrac{ 1 }{p + k}
+    -
+        \dfrac{ 1 }{p - k}
+    \right]
+\notag\\&
+=
+    \dfrac{ \pi^{(n+1)/2} }{ k }
+        \dfrac{2^{ n/2 - 1 }}{ x^{n-1} }
+    \int_0^\infty d t\ 
+        t^{n/2}
+        J_{ \frac{n}{2} - 1 } (t)
+    \left[
+        \dfrac{ 1 }{t + k x}
+    -
+        \dfrac{ 1 }{t - k x}
+    \right]
 \end{align}
+となる。
 
 \newpage
 \section{量子力学の公式}
