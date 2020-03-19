@@ -1249,6 +1249,21 @@ Lommelの積分表示
 \end{align}
 によっても表示できる。
 
+半整数次のBessel関数は初等関数を用い
+\begin{align}
+    J_{n + 1/2} (z)
+&=
+    \sqrt{ \dfrac{2}{\pi} }
+    z^{n + 1/2}
+    \left(
+        - \dfrac{1}{z}
+        \dfrac{d}{dz}
+    \right)^n
+    \dfrac{\sin z}{z}
+\label{half integral bessel 1st w.r.t. sin}
+\end{align}
+のように表される。
+
 \newpage
 \subsection{Fourier級数展開、Fourier変換}
 
@@ -3382,15 +3397,89 @@ $t = p x$と置き換えて
     \dfrac{ \pi^{(n+1)/2} }{ k }
         \dfrac{2^{ n/2 - 1 }}{ x^{n-1} }
     \int_0^\infty d t\ 
-        t^{n/2}
+        t^{ \frac{n}{2} }
         J_{ \frac{n}{2} - 1 } (t)
     \left[
         \dfrac{ 1 }{t + k x}
     -
         \dfrac{ 1 }{t - k x}
     \right]
+\notag\\&
+=
+    \dfrac{ \pi^{(n+1)/2} }{ k }
+        \dfrac{2^{ n/2 - 1 }}{ x^{n-1} }
+    \left[
+    -
+    \int_{- \infty}^0 d t\ 
+        t^{ \frac{n}{2} }
+        J_{ \frac{n}{2} - 1 } (t)
+        \dfrac{
+            (-1)^{\frac{n}{2} + \frac{n}{2} - 1 }
+        }{t - k x}
+    -
+    \int_0^\infty d t\ 
+        t^{ \frac{n}{2} }
+        J_{ \frac{n}{2} - 1 } (t)
+        \dfrac{ 1 }{t - k x}
+    \right]
 \end{align}
 となる。
+$n =: 2m + 1$が奇数の場合にはこれは
+\begin{align}
+    G^{(2m+1)}( \bm{x}, k )
+&=
+    \dfrac{ \pi^{m+1} }{ k }
+        \dfrac{2^{ m - 1/2 }}{ x^{2m} }
+    \int_{- \infty}^\infty d t\ 
+        t^{ m + \frac{1}{2} }
+        J_{ m - \frac{1}{2} } (t)
+        \dfrac{ - 1
+        }{ t - (k x \pm i \epsilon) }
+\end{align}
+のようにまとめられ
+（ただし積分経路上の極を避けるため
+分母に無限小の虚部を導入した）、
+留数定理および
+半整数次のBessel関数の性質
+(\ref{half integral bessel 1st w.r.t. sin})
+から
+\begin{align}
+    G^{(2m+1)}( \bm{x}, k )
+&=
+    - \dfrac{ \pi^{m+1} }{ k }
+        \dfrac{2^{ m - 1/2 }}{ x^{2m} }
+    (k x)^{ m + \frac{1}{2} }
+    J_{ m - \frac{1}{2} } (k x)
+\notag\\&
+=
+    - \dfrac{ \pi^{m+1} }{ k }
+        \dfrac{2^{ m - 1/2 }}{ x^{2m} }
+    (k x)^{ m + \frac{1}{2} }
+    \sqrt{ \dfrac{2}{\pi} }
+    (k x)^{(m-1) + 1/2}
+    \left(
+        - \dfrac{1}{kx^2}
+        \dfrac{d}{dk}
+    \right)^{m-1}
+    \dfrac{\sin (k x)}{ k x }
+\notag\\&
+=
+    - \dfrac{ \pi^{m + 1/2} }{ k }
+        \dfrac{
+            2^{ m }
+            k^{ 2 m }
+        }{ x^{2 m - 2} }
+    \left(
+        - \dfrac{1}{k}
+        \dfrac{d}{dk}
+    \right)^{m-1}
+    \dfrac{\sin (k x)}{ k x }
+\end{align}
+と導かれる
+（でいいのかしら、境界条件とかちゃんとやってないけど
+$3$次元$m = 1$では内向き・外向き球面波が出るはずだが
+$\dfrac{ 2 \pi^{3/2} \sin (kx) }{x}$
+となって$1$次元っぽい見た目になっている）。
 
 \newpage
 \section{量子力学の公式}
