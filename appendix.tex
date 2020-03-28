@@ -1279,6 +1279,121 @@ $\det( O' ) = - \det( O )$
 $J = \det( O ) = 1$
 に限って議論しても一般性は失わない。
 
+\subsubsection{行列のGauss積分：
+    source項のある場合}
+
+次にsource項$\bm{J} \cdot \bm{x} = J_i x_i$
+を足して
+\begin{align}
+    - \frac{1}{2}
+    x_i A_{ij} x_j
+    + x_i J_i
+\end{align}
+が指数関数の肩に乗っている場合の
+Gauss積分を考えよう。
+再び$A$は対称で正定値であることを仮定するので
+$\det (A) > 0$すなわち$A$は可逆であり、
+$y_i = x_i
+    - (A^{-1})_{ij} J_j$
+とおくと
+\begin{align}
+    - \frac{1}{2}
+    x_i A_{ij} x_j
+    + x_i J_i
+&=
+    - \frac{1}{2}
+    (y_i + (A^{-1})_{ij} J_j)
+    A_{ij}
+    (y_j + (A^{-1})_{jk} J_k)
++
+    (y_i + (A^{-1})_{ij} J_j)
+    J_i
+\notag\\&=
+    - \frac{1}{2}
+    (y_i + (A^{-1})_{ij} J_j)
+    (A_{ij} y_j + \delta_{ik} J_k)
++
+    y_i J_i
++
+    J_i (A^{-1})_{ij} J_j
+\notag\\&=
+    - \frac{1}{2}
+    (
+        y_i A_{ij} y_j
+        + y_i J_i
+        + y_j ({}^t A)_{ji}
+        (A^{-1})_{il} J_l
+        + J_i (A^{-1})_{ij} J_j
+    )
+    + y_i J_i + J_i
+    (A^{-1})_{ij} J_j
+\notag\\&=
+    - \frac{1}{2}
+    \left[
+        y_i A_{ij} y_j
+        - y_i J_i
+        + y_i ({}^t A)_{ij}
+        (A^{-1})_{jl} J_l
+    \right]
++
+    \frac{1}{2} J_i
+    (A^{-1})_{ij} J_j
+\notag\\&=
+    - \frac{1}{2}
+    y_i A_{ij} y_j
+    +
+    \frac{1}{2} J_i
+    (A^{-1})_{ij} J_j
+\label{eq:variable-convert-with-non-homo-term}
+\end{align}
+を得る。
+ただし、最後の変形では$A$の対称性
+$A_{ij} = ({}^t A)_{ij}$より、
+$ J_i - ({}^t A)_{ij}
+    (A^{-1})_{jl} J_l
+= J_i - A_{ij} (A^{-1})_{jl} J_l
+= J_i - \delta_{il} J_l 
+= J_i - J_i
+= 0$
+であることを使った。
+
+あとは
+(\ref{eq:gaussian-integral-matrix})
+の導出と全く同様にして
+\begin{align}
+    &
+    \int_{-\infty}^{\infty}
+    \prod_{i=1}^{N}
+    \left(
+        \frac{dx_i}{ \sqrt{2\pi} }
+    \right)
+    \exp \left(
+        - \frac{1}{2}
+        x_i A_{ij} x_j
+        + x_i J_i
+    \right)
+=
+    \int_{-\infty}^{\infty}
+    \prod_{i=1}^{N}
+    \left(
+        \frac{dy_i}{ \sqrt{2\pi} }
+    \right)
+    \exp \left(
+        - \frac{1}{2}
+        y_i A_{ij} y_j 
+        + \frac{1}{2}
+        J_i (A^{-1})_{ij} J_j
+    \right)
+\notag\\&=
+    \frac{1}{ \sqrt{\det (A) } }
+    \exp\left(
+        \frac{1}{2}
+        J_i (A^{-1})_{ij} J_j
+    \right)
+\label{eq:gaussian-integral-with-source}
+\end{align}
+を得る。
+
 \subsubsection{超幾何関数
     （hyper-geometric function）
 }
