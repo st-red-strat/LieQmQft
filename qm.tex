@@ -3238,6 +3238,7 @@ source項$qJ$を持つ$1$次元調和振動子のLagrangian
     \frac{1}{2}m\omega^2q^2
     +
     qJ(t)
+\label{harmonic oscillator lagrangian with source}
 \end{align}
 を考える
 （source項を導入する御利益については
@@ -4496,6 +4497,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     $\hat{q}$と同じoperatorであるとして
     $\bm{x}$-表示して良いのだろうか。
 
+    物理的にはこれは相互作用描像を採用している事に相当するのだが、
     あまりにもこれが気になる読者は、
     時間依存する波動関数ではなく
     単にHamiltonianの固有関数を用いて
@@ -5641,10 +5643,11 @@ Dirac deltaのFourier表示
 
 この結果はFeynman kernelの経路積分表示
 (\ref{path integral representation of feynman kernel})
-まで戻るともう少し系統的に理解できる。
+まで立ち戻るともう少し系統的に理解できる。
+求めた生成汎関数は
 \begin{align}
     W_{FI}[J](t)
-&:=
+&=
     \int d^D x_f d^D x_i\ 
         \phi_F^*( t_i + t, \bm{x}_f)
         \phi_I  ( t_i    , \bm{x}_i)
@@ -5655,17 +5658,94 @@ Dirac deltaのFourier表示
         \phi_F^*( t_i + t, \bm{x}_f)
         \phi_I  ( t_i    , \bm{x}_i)
     \int_{x(t_i) = x_i}^{x(t_f) = x_f}
-    \mathcal{D} x(t)
+    \mathcal{D} x
     \exp\left(\dfrac{i}{\hbar}S \right)
 \notag\\&
 =
     \int_{\forall \bm{x}(t)}
-    \mathcal{D} x(t)\ 
+    \mathcal{D} x\ 
         \phi_F^*( t_i + t, \bm{x}_f)
     \exp\left(\dfrac{i}{\hbar}S \right)
         \phi_I  ( t_i    , \bm{x}_i)
+\notag\\&
+=
+        \bra{ \phi_F }
+    \int_{\forall \bm{x}(t)}
+    \mathcal{D} x\ 
+    \exp\left(\dfrac{i}{\hbar}S \right)
+        \ket{ \phi_I }
 \end{align}
-と書ける事を思い出そう。
+と書ける事に気づけば、
+真ん中に現れたのはまさに
+source付きのGauss積分
+(\ref{eq:gaussian-integral-with-source})
+の無限次元における類似であって、
+特にいまsource付き調和振動子の
+作用が(\ref{harmonic oscillator lagrangian with source})により
+\begin{align}
+        \dfrac{i}{\hbar} S
+=
+    -
+    \dfrac{1}{2}
+    \int d \tau
+\left[
+        x(\tau)
+        \dfrac{i}{\hbar}
+        m
+    \left(
+        \dfrac{d^2}{d\tau^2}
+        +
+        \omega^2
+    \right)
+    x(\tau)
+\right]
+    +
+    \int d \tau\ 
+    x(\tau)
+    \dfrac{i}{\hbar}
+    J(\tau)
+\end{align}
+と与えられていたので、
+その積分結果が
+\begin{align}
+    &
+    \exp \left[
+        \dfrac{1}{2}
+        \int d \tau
+        \int d \tau'
+        \dfrac{i}{\hbar}
+        J(\tau')
+    \left\{
+        \dfrac{i}{\hbar}
+        m
+        \left(
+            \dfrac{d^2}{d\tau^2}
+        +
+            \omega^2
+        \right)
+    \right\}^{-1}
+        \dfrac{i}{\hbar}
+        J(\tau)
+    \right]
+\notag\\&
+=
+    \exp \left[
+        \dfrac{i}{4 \hbar}
+        \int d \tau
+        \int d \tau'
+        J(\tau')
+    \left\{
+        \dfrac{m}{2}
+        \left(
+            \dfrac{d^2}{d\tau^2}
+        +
+            \omega^2
+        \right)
+    \right\}^{-1}
+        J(\tau)
+    \right]
+\end{align}
+と与えられるのは自然である。
 
 \subsection{量子力学における対称性と保存量}
 
