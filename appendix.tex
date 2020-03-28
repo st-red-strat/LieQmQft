@@ -1498,9 +1498,9 @@ $\dfrac{\delta_{pl}}{\lambda_l}
 が分かる。
 
 結局、複素平面上の積分測度を
-$dz_i d\bar{z}_i := 2 dx_i dy_i$
+$dz_i d\bar{z}_i := 2 i dx_i dy_i$
 と定義
-（係数$2$は$x_i, y_i$の定義から
+（係数$2 i$は$x_i, y_i$の定義から
 Jacobianを計算すると自然に表れる）
 すると
 (\ref{eq:gaussian-integral-with-source})
@@ -1538,7 +1538,7 @@ Jacobianを計算すると自然に表れる）
     \int_{-\infty}^{\infty}
     \prod_{i=1}^{N}
     \left(
-        \frac{dx_i dy_i}{\pi}
+        i \frac{dx_i dy_i}{\pi}
     \right)
     \exp \left[
         - \lambda_j
@@ -1550,7 +1550,7 @@ Jacobianを計算すると自然に表れる）
         J^*_i (A^{-1})_{ik} J_k
     \right)
     \prod_{i=1}^{N}\left[
-        \frac{1}{\pi}
+        \frac{i}{\pi}
     \int_{-\infty}^{\infty}
         dx_i
         \exp \left(
@@ -1570,18 +1570,17 @@ Jacobianを計算すると自然に表れる）
     \right)
     \prod_{i=1}^{N}
     \left[
-        \frac{1}{\pi}
+        \frac{i}{\pi}
         \sqrt{\frac{\pi}{\lambda_i}}
         \sqrt{\frac{\pi}{\lambda_i}}
     \right]
 \notag\\&=
-    \frac{1}{ \det(A) }
+    \frac{ i^N }{ \det(A) }
     \exp \left(
         J^*_i (A^{-1})_{ik} J_k
     \right)
 \end{align}
 が成り立つ。
-
 ただし、$x_j \to z_j$の変数変換ではJacobianは
 unitary行列$U$の行列式
 （すなわち絶対値$1$の複素数）
@@ -1590,9 +1589,10 @@ $\bar{x}_j \to \bar{z}_j$から出る
 Jacobianと打ち消し合った。
 また、$z_j \to (x_j, y_j)$の変数変換では
 複素平面の虚軸方向へ積分していることを反映して
-Jacobianが$2$ではなく$2i$となるが、
-ここで現れる$i$は
-積分測度の再定義により吸収できるので無視した。
+Jacobian $2i$が現れるが、
+むしろ$y$を純虚に取って
+$z = x + y, \bar{z} = x - y$
+としておくとこの$i$倍を気にする必要はなくなる。
 
 \subsubsection{超幾何関数
     （hyper-geometric function）
