@@ -1394,6 +1394,206 @@ $ J_i - ({}^t A)_{ij}
 \end{align}
 を得る。
 
+指数関数は複素全平面で解析的なので、
+留数定理より
+$J_i$を複素変数としても
+積分結果は変わらない事に注意しよう。
+
+%参考： http://david-k-zhang.com/notes/gaussian-integrals.html
+%4. Multiple Dimensions
+% http://www.physik.uzh.ch/~marzocca/QFT2/exercises/Solution01.pdf
+% https://terrytao.wordpress.com/2013/02/19/supercommutative-gaussian-integration-and-the-gaussian-unitary-ensemble/
+
+\subsubsection{行列のGauss積分：
+    Hermitian行列の場合}
+
+Hermitian行列$A = A^\dagger$は
+unitary行列$U$
+（$U^\dagger = U^{-1}$）により
+$U^\dagger_{ij} A_{jk} U_{kl}
+= \lambda_i \delta_{il}$
+のように対角化できる
+（いま$A$はhermitianで正定値なので
+$\lambda_i > 0$）ので、
+$z_i := U_{ij}^\dagger x_j$
+と定義すると
+$x_i = U_{ij} z_j$であって
+\begin{align}
+    &
+    - x^*_i A_{ij} x_j
+    + x^*_i J_i
+    + J^*_i x_i
+=
+    - (U^*_{ij} z^*_j)
+    A_{ik}
+    (U_{kl} z_l)
+    + (U^*_{ij} z^*_j)
+    J_i
+    + J^*_i
+    (U _{ij} z_j)
+\notag\\&=
+    - z^*_j
+    (U^\dagger_{ji} A_{ik} U_{kl})
+    z_l
+    + J_i U^*_{ij} z^*_j
+    + J^*_i U_{ij} z_j
+=
+    - z^*_j
+    (\lambda_j \delta_{jl})
+    z_l
+    + J_i (U^\dagger)_{ji} z^*_j
+    + J^*_i U_{ij} z_j
+\notag\\&
+=
+    - \lambda_j
+    \left(
+        z^*_j
+        - \frac{ J^*_i U _{ij} }{\lambda_j}
+    \right)
+    \left(
+        z_j
+        - \frac{ (U^\dagger)_{jk} J_k }{\lambda_j}
+    \right)
+    + \frac{
+        J^*_i U _{ij}
+        (U^\dagger)_{jk} J_k
+    }{\lambda_j}
+\end{align}
+が分かる。
+このとき
+$z_j
+    -
+    \dfrac{ (U^\dagger)_{jk} J_k }{\lambda_j}
+= x_j + i y_j$
+（$x_i, y_i \in \mathbb{R}$）
+と変数変換すると、
+$U^\dagger_{ij} A_{jk} U_{kl} 
+= \lambda_i \delta_{il}$
+の両辺に左から
+$U^\dagger_{pn} (A^{-1})_{nm} U_{mi}$
+を掛けて
+$\delta_{pl}
+= U^\dagger_{pn} (A^{-1})_{nm} U_{ml} \lambda_l$
+（ただし右辺の$l$については和を取らない）
+すなわち
+$\dfrac{\delta_{pl}}{\lambda_l}
+= U^\dagger_{pn} (A^{-1})_{nm} U_{ml}$
+が得られることに注意して
+\begin{align}
+    - x^*_i A_{ij} x_j
+    + x^*_i J_i
+    + J^*_i x_i
+&=
+    - \lambda_j
+    \left( x^2_j + y_j^2 \right)
+    + J^*_i U _{ip}
+    \frac{ \delta_{pl} }{\lambda_l}
+    U^\dagger_{lk} J_k
+%\notag\\&
+=
+    - \lambda_j
+    \left( x^2_j + y_j^2 \right)
+    + J^*_i (A^{-1})_{ik} J_k
+\end{align}
+が分かる。
+
+結局、複素平面上の積分測度を
+$dz_i d\bar{z}_i := 2 dx_i dy_i$
+と定義
+（係数$2$は$x_i, y_i$の定義から
+Jacobianを計算すると自然に表れる）
+すると
+(\ref{eq:gaussian-integral-with-source})
+の複素積分への自然な拡張
+\footnote{
+    (\ref{eq:variable-convert-with-non-homo-term})
+    の変形は
+    任意の可逆な対称行列$A$について成り立つため、
+    正定値行列$A$がHermitian行列ではなく
+    複素対称行列である場合、
+    (\ref{eq:gaussian-integral-with-source})
+    のより自然な拡張
+    （複素平面への解析接続）が得られる。
+    この際、指数関数の解析性から
+    積分経路を複素平面上で並進または回転しても
+    積分値が変わらない事を用いている。
+    なお、複素対称行列（複素共役を含むHermitian行列ではなく）への拡張であることは、
+    解析接続が正則関数についてしか定義されないことを反映している。
+    式が変数の複素共役を含んでいた場合、このような拡張は可能ではない。
+}
+として
+\begin{align}
+    &
+    \int_{-\infty}^{\infty}
+    \prod_{i=1}^{N}
+    \left(
+        \frac{dx_i d\bar{x}_i}{2\pi}
+    \right)
+    \exp \left(
+        - x^*_i A_{ij} x_j
+        + x_i^* J_i
+        + J^*_i x_i
+    \right)
+\notag\\&=
+    \int_{-\infty}^{\infty}
+    \prod_{i=1}^{N}
+    \left(
+        \frac{dx_i dy_i}{\pi}
+    \right)
+    \exp \left[
+        - \lambda_j
+        \left( x^2_j + y_j^2 \right)
+        + J^*_i (A^{-1})_{ik} J_k
+    \right]
+\notag\\&=
+    \exp \left(
+        J^*_i (A^{-1})_{ik} J_k
+    \right)
+    \prod_{i=1}^{N}\left[
+        \frac{1}{\pi}
+    \int_{-\infty}^{\infty}
+        dx_i
+        \exp \left(
+            - \lambda_i
+            x^2_i
+        \right)
+    \int_{-\infty}^{\infty}
+        dy_i
+        \exp \left(
+            - \lambda_i
+            y_i^2 
+        \right)
+    \right]
+\notag\\&=
+    \exp \left(
+        J^*_i (A^{-1})_{ik} J_k
+    \right)
+    \prod_{i=1}^{N}
+    \left[
+        \frac{1}{\pi}
+        \sqrt{\frac{\pi}{\lambda_i}}
+        \sqrt{\frac{\pi}{\lambda_i}}
+    \right]
+\notag\\&=
+    \frac{1}{ \det(A) }
+    \exp \left(
+        J^*_i (A^{-1})_{ik} J_k
+    \right)
+\end{align}
+が成り立つ。
+
+ただし、$x_j \to z_j$の変数変換ではJacobianは
+unitary行列$U$の行列式
+（すなわち絶対値$1$の複素数）
+となって、
+$\bar{x}_j \to \bar{z}_j$から出る
+Jacobianと打ち消し合った。
+また、$z_j \to (x_j, y_j)$の変数変換では
+複素平面の虚軸方向へ積分していることを反映して
+Jacobianが$2$ではなく$2i$となるが、
+ここで現れる$i$は
+積分測度の再定義により吸収できるので無視した。
+
 \subsubsection{超幾何関数
     （hyper-geometric function）
 }
