@@ -335,7 +335,6 @@ $g_{\mu\nu}$を分解して出来る$D$個のvector
 \end{enumerate}
 \end{subequations}
 を満たすものと定義される。
-
 等価であるが、より具体的には
 行列の成分を完全反対称テンソルで潰したもの
 \begin{align}
@@ -348,6 +347,41 @@ $g_{\mu\nu}$を分解して出来る$D$個のvector
     g_{D, i_D}
 \end{align}
 とも定義され、$\det(g) = |g|$とも書く。
+
+$N$次元正方行列$A$が
+適当な行列$O$により対角化可能な場合、
+$A$を$i$番目の固有値を$\lambda_i$として
+$\det( O ) \det( O^{-1} ) = 1$
+から
+\begin{align}
+    \det( A )
+=
+    \det( O^{-1} )
+    \det( A )
+    \det( O )
+=
+    \det( O^{-1} A O )
+=
+    \det( \lambda_i \delta_{ij} )
+=
+    \prod_{i=1}^N
+        \lambda_i
+\label{eq:det as eigen value product}
+\end{align}
+が成り立つ
+（ただし$\lambda_i \delta_{ij}$は
+$i$について和を取っておらず、
+行列式は添え字$i, j$について計算した）。
+
+実対称な行列$A$は対角化可能で、
+対角化後の対角成分は
+正定値行列$A$の固有値$\lambda_i >0$である。
+式
+(\ref{eq:det as eigen value product})
+を見ても分かるように、
+このとき$\det(A) \neq 0$であるから
+$A$には逆行列が存在する。
+
 $g$の逆行列$g^{-1}$の$(\mu,\nu)$成分を
 $g^{\mu\nu}$と書くことにすると
 \begin{align}
@@ -389,6 +423,55 @@ $g_{\mu\nu}$の逆行列はCramer's rule
     { \det(g_{\mu\nu}) }
 \end{align}
 で書ける事が知られている。
+
+\subsubsection{直交行列}
+
+$O$が直交行列であるとは
+\begin{align}
+    {}^t O_{ik} O_{kj}
+=
+    O_{ki} O_{kj}
+=
+    \delta_{ij}
+\end{align}
+を満たすことを言う。
+
+行列式の性質から
+$\det( A B )
+=
+    \det( A )
+    \det( B )$
+及び
+$\det( {}^t A )
+= \det( A )$
+が成り立ち、
+単位行列の行列式は
+$\det( \mathbbm{1} ) = 1$
+であるから、
+$O$の直交性より
+${}^t O_{ik} O_{kj}
+= \delta_{ij}$
+の右辺が単位行列$\mathbbm{1}$の
+$i, j$成分であることに気を付けて
+辺々の行列式を取れば
+\begin{align}
+    [ \det( O ) ]^2
+=
+    \det( {}^t O )
+    \det( O )
+=
+    \det( {}^t O O )
+=
+    \det( \mathbbm{1} )
+= 1
+\end{align}
+すなわち
+\begin{align}
+    \det( O )
+=
+    \pm 1
+\end{align}
+が得られる。
 
 \subsubsection{内積とNorm}
 \label{subsubsec: inner product}
@@ -1064,9 +1147,140 @@ $\alpha \in \mathbb{C}$への拡張であり、
 \end{align}
 と求まる。
 
-\subsubsection{
-    超幾何関数
-    （confluent hyper-geometric function）
+\subsubsection{行列のGauss積分：
+    実対称行列の場合}
+
+$N$次元の
+実対称行列$A$は
+直交行列により対角化可能
+\begin{align}
+    {}^t O_{ik} A_{kl} O_{lj}
+=
+    \lambda_i \delta_{ij}
+\end{align}
+である。
+ここで$\lambda_i$は$A$の$i$番目の固有値であって、
+右辺の添え字$i$については和を取っていない。
+このとき、
+$y_i := {}^t O_{ij} x_j
+= x_j O_{ji}$
+を定義すると
+逆変換は
+$x_i = ({}^t O)^{-1}_{ij} y_j
+= O_{ij} y_j$で与えられ、
+\begin{align}
+    x_i A_{ij} x_j
+&=
+    x_i \delta_{ik}
+    A_{kl}
+    \delta_{ln} x_n
+=
+    ( x_i O_{ij} )
+    ( {}^t O_{jk} A_{kl} O_{lm} )
+    ( {}^t O_{mn} x_n )
+\notag\\&=
+    y_j
+    (\lambda_j \delta_{jm})
+    y_m
+&&
+    \text{（カッコ内では$j$について
+    和を取らない）}
+\notag\\&=
+    \lambda_j y_j^2
+&&
+    \text{（$j$について
+    一度だけ和を取る）}
+\end{align}
+のような書き換えが出来る。
+行列$A$が正定値
+（全ての固有値が正
+$\forall i, \lambda_i > 0 $）
+であることを仮定すると、
+直交行列の性質$\det O = \pm 1$から
+変数変換のJacobianが
+$J = \det \left(
+        \dfrac{\partial x_i}
+        {\partial y_j}
+    \right)
+= \det (O_{ij})
+= \pm 1$
+となることに気を付けて
+Gauss積分の行列への一般化
+\begin{align}
+    &
+    \int_{-\infty}^{\infty}
+        \prod_{i=1}^{N}
+    \left(
+        \frac{dx_i} { \sqrt{2\pi} }
+    \right)
+    \exp \left(
+        - \frac{1}{2}
+        x_i A_{ij} x_j
+    \right)
+=
+    \int_{-\infty}^{\infty}
+        |J|
+    \prod_{i=1}^{N}
+    \left(
+        \frac{dy_i}{\sqrt{2\pi}}
+    \right)
+    \exp \left(
+        - \frac{1}{2}
+        \sum_j
+        \lambda_j y_j^2
+    \right)
+\notag\\&=
+    \prod_{i=1}^{N}
+    \left[
+        \int_{-\infty}^{\infty}
+        \frac{dy_i}{ \sqrt{ 2\pi } }
+        \exp \left(
+            - \frac{\lambda_i}{2}
+            y_i^2
+        \right)
+    \right]
+=
+    \prod_{i=1}^{N}
+    \left[
+        \frac{1}{ \sqrt{ 2\pi } }
+        \sqrt{
+            \dfrac{\pi}{
+                \left(
+                    \dfrac{\lambda_i}{2}
+                \right)
+            }
+        }
+    \right]
+=
+    \dfrac{1}{
+        \sqrt{
+            \displaystyle
+            \prod_{i=1}^{N} \lambda_i
+        }
+    }
+=
+    \frac{1}{
+        \sqrt{ \det A }
+    }
+\label{eq:gaussian-integral-matrix}
+\end{align}
+が得られる。
+
+なお行列の対角化は一意的でなく、
+特に$A$を対角化する行列$O$の
+異なる$2$つの列vectorを入れ替えて
+$O'$を構成した場合、
+$O'$は再び$A$を対角化する
+（対角化後の固有値$\lambda_i$の
+現れる順番が変化するに過ぎない）。
+行列式の反対称性から
+$\det( O' ) = - \det( O )$
+が成り立つので、
+$J = \det( O ) = 1$
+に限って議論しても一般性は失わない。
+
+\subsubsection{超幾何関数
+    （hyper-geometric function）
 }
 
 Pochhammer symbolを

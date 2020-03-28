@@ -3202,15 +3202,18 @@ Feynman kernelは
     \exp\left(\dfrac{i}{\hbar}S \right)
 \notag\\&
     =:
-    \int_{x(t_i) = x_i}^{x(t_f) = x_f}
+    \int_{\bm{x}(t_i) = \bm{x}_i}
+        ^{\bm{x}(t_f) = \bm{x}_f}
         \mathcal{D} x(t)
     \exp\left(\dfrac{i}{\hbar}S \right)
+\label{path integral representation of feynman kernel}
 \end{align}
 のように書ける。
 ここでもちろん、$L, S$はそれぞれ
 古典的Lagrangianと作用である。
 
-結局、経路積分では時間の連続関数
+結局、経路積分により系の時間発展を求めるには、
+時間の連続関数
 $\bm{x}(t)$のうち、
 境界条件$t = t_i, t_f$で
 $\bm{x} = \bm{x}_f, \bm{x}_f$
@@ -5632,6 +5635,34 @@ Dirac deltaのFourier表示
     \delta (t)
 \end{align}
 となっている。
+
+この結果はFeynman kernelの経路積分表示
+(\ref{path integral representation of feynman kernel})
+まで戻るともう少し系統的に理解できる。
+\begin{align}
+    W_{FI}[J](t)
+&:=
+    \int d^D x_f d^D x_i\ 
+        \phi_F^*( t_i + t, \bm{x}_f)
+        \phi_I  ( t_i    , \bm{x}_i)
+        K[J](t_i + t, \bm{x}_f; t_i, \bm{x}_i)
+\notag\\&
+=
+    \int d^D x_f d^D x_i\ 
+        \phi_F^*( t_i + t, \bm{x}_f)
+        \phi_I  ( t_i    , \bm{x}_i)
+    \int_{x(t_i) = x_i}^{x(t_f) = x_f}
+    \mathcal{D} x(t)
+    \exp\left(\dfrac{i}{\hbar}S \right)
+\notag\\&
+=
+    \int_{\forall \bm{x}(t)}
+    \mathcal{D} x(t)\ 
+        \phi_F^*( t_i + t, \bm{x}_f)
+    \exp\left(\dfrac{i}{\hbar}S \right)
+        \phi_I  ( t_i    , \bm{x}_i)
+\end{align}
+と書ける事を思い出そう。
 
 \subsection{量子力学における対称性と保存量}
 
