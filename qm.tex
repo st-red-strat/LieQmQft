@@ -51,9 +51,13 @@ $O\ket{\psi} \in \mathcal{H}$
 $\hat{ \mathcal{O} } \in \mathrm{End}(\mathcal{H})
 = \mathrm{Hom}(\mathcal{H}, \mathcal{H}) $
 あるいは
-$\xymatrix{
-    \mathcal{H}\ar@(ul,dl)[]_{ \hat{\mathcal{O}} }
-}$
+$
+    \xymatrix{
+        \mathcal{H}
+        \ar@(ul,dl)
+        []_{ \hat{\mathcal{O}} }
+    }
+$
 などと書く（$\mathrm{End}, \mathrm{Hom}$はそれぞれ
 endomorphism（自己準同型）とhomomorphism（準同型）の意）。
 例えば時間反転操作に対応するoperator $T$は
@@ -2580,7 +2584,7 @@ Hamiltonianの固有状態に関して
 
 粒子の位置観測の間隔を$T := t_f - t_i$として、
 時間$\delta t := \dfrac{ T }{ N }$ごとに
-完全系$
+完全系$\displaystyle
     1 = \int d^D {x_i}
         \ket{ \bm{x}_i }
         \bra{ \bm{x}_i }
@@ -2591,7 +2595,7 @@ $を挟むこと
     \bra{ \bm{x}_f }
         \exp\left(
             \dfrac{ 1 }{ i\hbar }
-            \int_{t_i}^{t_f}dt
+            \int_{t_i}^{t_f} dt
             \hat{H}
         \right)
     \ket{ \bm{x}_i }
@@ -2670,7 +2674,8 @@ $を挟むこと
 を考える。
 ただし$x_0 := x_i,\ x_N := x_f$とした。
 ここで、被積分関数に現れる因子
-$\bra{ \bm{x}_{m+1} }
+$\displaystyle
+\bra{ \bm{x}_{m+1} }
     \exp\left(
         \dfrac{1}{i\hbar}
         \int_{t_i + m \delta t}
@@ -4424,6 +4429,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
         +
             q_i \sin \omega (t_i + t - \tau)
         }{ \sin \omega t }
+\notag\\&\qquad\qquad
     -
         \frac{ \sin \omega (\tau - t_i) }{
             \sin \omega t
@@ -5125,7 +5131,7 @@ $\theta(\tau)$は階段関数
     }{2 \sin \omega t}
 \\
     C^2 + D^2
-    &:=
+&:=
     -
     \dfrac{1}{4 \hbar^2 \sin^2 \omega t}
     \bigg\{
@@ -5147,7 +5153,6 @@ $\theta(\tau)$は階段関数
     \bigg\}
 \notag\\&
     =
-    \dfrac{1}{4 \hbar^2 \sin^2 \omega t}
     \dfrac{
             e^{- 2 i \omega t_i} F(t)^2
         -
@@ -5160,10 +5165,9 @@ $\theta(\tau)$は階段関数
             2 | F(t) |^2
         +
             e^{- 2 i \omega (t_i + t)} F(t)^2
-    }{4}
+    }{4 \times 4 \hbar^2 \sin^2 \omega t}
 \notag\\&
     =
-    \dfrac{1}{4 \hbar^2 \sin^2 \omega t}
     \dfrac{
         \bigg(
             1
@@ -5181,7 +5185,7 @@ $\theta(\tau)$は階段関数
         e^{+ 2 i \omega t_i} {F(t)^*}^2
     -
         4 | F(t) |^2
-    }{4}
+    }{4 \times 4 \hbar^2 \sin^2 \omega t}
 \\
     BCD
     &=
@@ -5235,10 +5239,9 @@ $\theta(\tau)$は階段関数
 の関係式を満たすから、
 \begin{align}
     A (C^2 + D^2) - 2 BCD
-    &=
+&=
     \dfrac{m \omega}{2 \hbar}
     \dfrac{- i e^{i \omega t} }{\sin \omega t}
-    \dfrac{1}{4 \hbar^2 \sin^2 \omega t}
     \dfrac{
         \bigg(
             1
@@ -5256,7 +5259,7 @@ $\theta(\tau)$は階段関数
         e^{+ 2 i \omega t_i} {F(t)^*}^2
     -
         4 | F(t) |^2
-    }{4}
+    }{4 \times 4 \hbar^2 \sin^2 \omega t}
 \notag\\&\qquad
     - 2
     \dfrac{m \omega}{32 \hbar^3}
@@ -5314,7 +5317,7 @@ $\theta(\tau)$は階段関数
     }{
         A^2 - B^2
     }
-    &=
+&=
     \dfrac{1}{16 \hbar m \omega \sin^2 \omega t}
     \bigg\{
         \bigg(
@@ -5379,7 +5382,7 @@ $\theta(\tau)$は階段関数
     }{
         A^2 - B^2
     }
-    &=
+&=
     \dfrac{i}{16 \hbar m \omega \sin \omega t}
     \bigg\{
     8 i
