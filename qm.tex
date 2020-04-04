@@ -4773,14 +4773,17 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
         1
     }{\sin \omega t}
     \dfrac{
-        e^{- i \omega t_i} F(t)
+        e^{- i \omega t_i}
+            F
         -
-        e^{+ i \omega t_i} F(t)^*
+        e^{+ i \omega t_i}
+            F^*
     }{ 2i }
 =
     \dfrac{1}{2 i \hbar}
     \dfrac{
-        \Im[ e^{- i \omega t_i} F(t) ]
+        \Im[ e^{- i \omega t_i}
+            F ]
     }{\sin \omega t}
 \\
     D(t)
@@ -4811,7 +4814,8 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
 =
     \dfrac{1}{2 i \hbar}
     \dfrac{
-        \Im[ e^{i \omega (t_i + t)} F(t)^* ]
+        \Im[ e^{i \omega (t_i + t)}
+            F^* ]
     }{\sin \omega t}
 \\
     E(t)
@@ -5046,14 +5050,14 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     \dfrac{1}{2}
     \bigg(
         e^{ i \omega (2 t_i + t) }
-        { F(t)^* }^2
+            { F^* }^2
     +
         e^{ i \omega ( - 2 t_i - t) }
-        F(t)^2
+            F^2
     \bigg)
     +
         e^{ - i \omega t }
-        | F(t) |^2
+            | F |^2
     \bigg\}
 \\
     F(t)
@@ -5140,34 +5144,42 @@ $\theta(\tau)$は階段関数
     \bigg\{
         \bigg(
             \dfrac{
-            e^{- i \omega t_i} F(t)
+            e^{- i \omega t_i}
+                F
         -
-            e^{+ i \omega t_i} F(t)^*
+            e^{+ i \omega t_i}
+                F^*
         }{ 2i }
         \bigg)^2
     +
         \bigg(
             \dfrac{
-            e^{i \omega (t_i + t)} F(t)^*
+            e^{i \omega (t_i + t)}
+                F^*
         -
-            e^{- i \omega (t_i + t)} F(t)
+            e^{- i \omega (t_i + t)}
+                F
         }{ 2i }
         \bigg)^2
     \bigg\}
 \notag\\&
     =
     \dfrac{
-            e^{- 2 i \omega t_i} F(t)^2
+            e^{- 2 i \omega t_i}
+                F^2
         -
-            2 | F(t) |^2
+            2 | F |^2
         +
-            e^{+ 2 i \omega t_i} {F(t)^*}^2
+            e^{+ 2 i \omega t_i}
+                {F^*}^2
     +
-            e^{2 i \omega (t_i + t)} {F(t)^*}^2
+            e^{2 i \omega (t_i + t)}
+                {F^*}^2
         -
-            2 | F(t) |^2
+            2 | F |^2
         +
-            e^{- 2 i \omega (t_i + t)} F(t)^2
+            e^{- 2 i \omega (t_i + t)}
+                F^2
     }{4 \times 4 \hbar^2 \sin^2 \omega t}
 \notag\\&
     =
@@ -5178,16 +5190,17 @@ $\theta(\tau)$は階段関数
             e^{- 2 i \omega t}
         \bigg) 
         e^{- 2 i \omega t_i}
-        F(t)^2
+            F^2
     +
         \bigg(
             1
         +
             e^{2 i \omega t}
         \bigg) 
-        e^{+ 2 i \omega t_i} {F(t)^*}^2
+        e^{+ 2 i \omega t_i}
+            {F^*}^2
     -
-        4 | F(t) |^2
+        4 | F |^2
     }{4 \times 4 \hbar^2 \sin^2 \omega t}
 \\
     BCD
@@ -5197,30 +5210,38 @@ $\theta(\tau)$は階段関数
 \times
     \dfrac{1}{2 i \hbar \sin \omega t}
     \dfrac{
-        e^{- i \omega t_i} F(t)
+        e^{- i \omega t_i}
+            F
     -
-        e^{i \omega t_i} F(t)^*
+        e^{i \omega t_i}
+            F^*
     }{2 i}
 \times
     \dfrac{1}{2 i \hbar \sin \omega t}
     \dfrac{
-        e^{i \omega (t_i + t)} F(t)^*
+        e^{i \omega (t_i + t)}
+            F^*
     -
-        e^{- i \omega (t_i + t)} F(t)
+        e^{- i \omega (t_i + t)}
+            F
     }{2 i}
 \notag\\&
     =
     \dfrac{m \omega}{32 \hbar^3}
     \dfrac{ i }{\sin^3 \omega t}
     \bigg[
-        e^{- i \omega t_i} F(t)
+        e^{- i \omega t_i}
+            F
     -
-        e^{i \omega t_i} F(t)^*
+        e^{i \omega t_i}
+            F^*
     \bigg]
     \bigg[
-        e^{i \omega (t_i + t)} F(t)^*
+        e^{i \omega (t_i + t)}
+            F^*
     -
-        e^{- i \omega (t_i + t)} F(t)
+        e^{- i \omega (t_i + t)}
+            F
     \bigg]
 \notag\\&
     =
@@ -5228,14 +5249,16 @@ $\theta(\tau)$は階段関数
     \dfrac{ i }{\sin^3 \omega t}
     \bigg[
         e^{i \omega t}
-        | F(t) |^2
+        | F |^2
     -
-        e^{- i \omega (2 t_i + t)} F(t)^2
+        e^{- i \omega (2 t_i + t)}
+            F^2
     -
-        e^{i \omega (2 t_i + t)} {F(t)^*}^2
+        e^{i \omega (2 t_i + t)}
+            {F^*}^2
     +
         e^{- i \omega t}
-        | F(t) |^2
+            | F |^2
     \bigg]
 \end{align}
 \end{subequations}
@@ -5252,31 +5275,35 @@ $\theta(\tau)$は階段関数
             e^{- 2 i \omega t}
         \bigg) 
         e^{- 2 i \omega t_i}
-        F(t)^2
+            F^2
     +
         \bigg(
             1
         +
             e^{2 i \omega t}
         \bigg) 
-        e^{+ 2 i \omega t_i} {F(t)^*}^2
+        e^{+ 2 i \omega t_i}
+            {F^*}^2
     -
-        4 | F(t) |^2
+        4 | F |^2
     }{4 \times 4 \hbar^2 \sin^2 \omega t}
 \notag\\&\qquad
     - 2
     \dfrac{m \omega}{32 \hbar^3}
-    \dfrac{ i }{\sin^3 \omega t}
+    \dfrac{
+        i e^{i \omega t}
+    }{\sin^3 \omega t}
     \bigg[
-        e^{i \omega t}
-        | F(t) |^2
+        | F |^2
     -
-        e^{- i \omega (2 t_i + t)} F(t)^2
+        e^{- 2 i \omega (t_i + t)}
+            F^2
     -
-        e^{i \omega (2 t_i + t)} {F(t)^*}^2
+        e^{ 2 i \omega t_i}
+            {F^*}^2
     +
-        e^{- i \omega t}
-        | F(t) |^2
+        e^{- 2 i \omega t}
+            | F |^2
     \bigg]
 \notag\\&
     =
@@ -5289,27 +5316,30 @@ $\theta(\tau)$は階段関数
             e^{- 2 i \omega t}
         \bigg)
         e^{- 2 i \omega t_i}
-        F(t)^2
+            F^2
     +
         \bigg(
             1
         +
             e^{2 i \omega t}
         \bigg) 
-        e^{+ 2 i \omega t_i} {F(t)^*}^2
+        e^{+ 2 i \omega t_i}
+            {F^*}^2
     -
-        4 | F(t) |^2
+        4 | F |^2
     \notag\\&\qquad
     + 2
         \bigg[
-            | F(t) |^2
+            | F |^2
         -
-            e^{- 2 i \omega (t_i + t)} F(t)^2
+            e^{- 2 i \omega (t_i + t)}
+                F^2
         -
-            e^{2 i \omega t_i} {F(t)^*}^2
+            e^{2 i \omega t_i}
+                {F^*}^2
         +
             e^{- 2 i \omega t}
-            | F(t) |^2
+                | F |^2
         \bigg]
     \bigg\}
 \notag\\
@@ -5329,7 +5359,7 @@ $\theta(\tau)$は階段関数
             e^{- 2 i \omega t}
         \bigg)
         e^{- 2 i \omega t_i}
-        F(t)^2
+            F^2
 \notag\\&\qquad
     +
         \bigg(
@@ -5337,14 +5367,15 @@ $\theta(\tau)$は階段関数
         -
             1
         \bigg) 
-        e^{+ 2 i \omega t_i} {F(t)^*}^2
+        e^{+ 2 i \omega t_i}
+            {F^*}^2
     - 2
         \bigg(
             1
         -
             e^{- 2 i \omega t}
         \bigg)
-        | F(t) |^2
+        | F |^2
     \bigg\}
 \notag\\&
     =
@@ -5355,11 +5386,12 @@ $\theta(\tau)$は階段関数
     }{16 \hbar m \omega \sin^2 \omega t}
     \bigg\{
         e^{- 2 i \omega t_i}
-        F(t)^2
+            F^2
     +
-        e^{+ 2 i \omega (t_i + t)} {F(t)^*}^2
+        e^{+ 2 i \omega (t_i + t)}
+            {F^*}^2
     - 2
-        | F(t) |^2
+        | F |^2
     \bigg\}
 \notag\\&
     =
@@ -5369,11 +5401,12 @@ $\theta(\tau)$は階段関数
     }{16 \hbar m \omega \sin \omega t}
     \bigg\{
         e^{- 2 i \omega t_i}
-        F(t)^2
+            F^2
     +
-        e^{+ 2 i \omega (t_i + t)} {F(t)^*}^2
+        e^{+ 2 i \omega (t_i + t)}
+            {F^*}^2
     - 2
-        | F(t) |^2
+        | F |^2
     \bigg\}
 \notag\\
     E
@@ -5401,13 +5434,13 @@ $\theta(\tau)$は階段関数
     -
     2
         e^{ i \omega (2 t_i + t) }
-        { F(t)^* }^2
+            { F^* }^2
     - 2
         e^{ i \omega ( - 2 t_i - t) }
-        F(t)^2
+            F^2
     + 4
         e^{ - i \omega t }
-        | F(t) |^2
+            | F |^2
     \bigg\}
 \notag\\&\qquad
         +
@@ -5417,11 +5450,12 @@ $\theta(\tau)$は階段関数
         }{16 \hbar m \omega \sin \omega t}
         \bigg\{
             e^{- 2 i \omega t_i}
-            F(t)^2
+                F^2
         +
-            e^{+ 2 i \omega (t_i + t)} {F(t)^*}^2
+            e^{+ 2 i \omega (t_i + t)}
+                {F^*}^2
         - 2
-        | F(t) |^2
+        | F |^2
     \bigg\}
 \notag\\&
     =
@@ -5440,24 +5474,25 @@ $\theta(\tau)$は階段関数
     -
     2
         e^{ i \omega (2 t_i + t) }
-        { F(t)^* }^2
+            { F^* }^2
     - 2
         e^{ i \omega ( - 2 t_i - t) }
-        F(t)^2
+            F^2
     + 4
         e^{ - i \omega t }
-        | F(t) |^2
+            | F |^2
 \notag\\&\qquad
         +
             2
             e^{i \omega (- t - 2 t_i)}
-            F(t)^2
+                F^2
         +
             2
-            e^{i \omega (2 t_i + t)} {F(t)^*}^2
+            e^{i \omega (2 t_i + t)}
+                {F^*}^2
         - 4
             e^{- i \omega t}
-        | F(t) |^2
+                | F |^2
     \bigg\}
 \notag\\&
     =
@@ -5901,7 +5936,7 @@ $Z [J = 0] (\tau = i t = \hbar \beta)
     }
 $
 は統計力学で習う調和振動子の
-分配関数をしっかり再現する
+分配関数をきちんと再現する。
 
 \subsection{量子力学における対称性と保存量}
 
