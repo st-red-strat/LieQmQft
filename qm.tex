@@ -4127,6 +4127,7 @@ Wick回転は一種の解析接続と考えることが出来るが、
     \int d^D x
     K_E ( \tau; \bm{x}_f = \bm{x},
         \bm{x}_i = \bm{x} )
+\label{P.B.C. path int and partition function}
 \end{align}
 と定義される。
 周期的境界条件（periodic boundary condition、P.B.C.）
@@ -4506,7 +4507,7 @@ $W_{FI}[J=0](t) = A_{FI}(t)$と
     結果が変わるだけである。
 }
 から、
-真空間の遷移振幅は
+真空間の遷移振幅に対応する生成汎関数は
 \begin{align}
     W_{00}[J](t)
     &=
@@ -5749,6 +5750,158 @@ source付きのGauss積分
     \right]
 \end{align}
 と与えられるのは自然である。
+
+さらに分配関数
+(\ref{P.B.C. path int and partition function})
+も求めてみよう。
+上の生成汎関数$W_{00} [J]$の計算から
+波動関数$\phi_0$による寄与を除き
+$x := q_i = q_f$
+と置けば、
+他はほとんど変わらずに計算できて
+\begin{align}
+    &
+    Z [J] (\tau)
+=
+    \int d x
+    K_E ( \tau; q_f = x, q_i = x )
+\notag\\&
+=
+    \left(
+        \dfrac{ 
+            m \omega
+        }{
+            2 \pi i \hbar
+            \sin \omega t
+        }
+    \right)^{1 / 2}
+    \int d x
+    \exp\left(
+        - 2 G x^2
+        - 2 H x
+    \right)
+=
+    \left(
+        \dfrac{ 
+            m \omega
+        }{
+            2 \pi i \hbar
+            \sin \omega t
+        }
+    \right)^{1 / 2}
+    \sqrt{ \dfrac{\pi}{2 G} }
+    \exp\left(
+        \dfrac{ H^2 }{ 2 G }
+    \right)
+\end{align}
+ただし
+\begin{align}
+    G(t)
+&:=
+    A(t) - (\text{波動関数の寄与})
+    + B (t)
+=
+    -
+    \dfrac{i}{\hbar}
+    \dfrac{m \omega \cos \omega t}{2 \sin \omega t}
+    -
+    \dfrac{1}{2}
+    \dfrac{i}{\hbar}
+    \dfrac{- m \omega}{\sin \omega t}
+\notag\\&
+=
+    \dfrac{i}{\hbar}
+    \dfrac{
+        m \omega (1 - \cos \omega t)
+    }{2 \sin \omega t}
+=
+    \dfrac{i}{\hbar}
+    \dfrac{
+        m \omega
+        \sin^2 \dfrac{ \omega t }{2}
+    }{\sin \omega t}
+\\
+    H(t)
+&:=
+    C(t) + D(t)
+=
+    \dfrac{1}{4 i \hbar}
+    \int_{t_i}^{t_i + t} d\tau
+    \dfrac{
+        2 \sin \omega (\tau - t_i)
+    }{\sin \omega t}
+    J(\tau)
++
+    \dfrac{1}{2 i \hbar}
+    \int_{t_i}^{t_i + t} d \tau
+        \dfrac{
+            \sin \omega (t_i + t - \tau)
+        }{\sin \omega t}
+    J(\tau)
+\notag\\&
+=
+    \dfrac{1}{2 i \hbar}
+    \int_{t_i}^{t_i + t} d\tau
+    \dfrac{
+        \sin \omega (\tau - t_i)
+    +
+        \sin \omega (t_i + t - \tau)
+    }{\sin \omega t}
+    J(\tau)
+\end{align}
+となる。
+まとめると
+\begin{align}
+    Z [J] (\tau)
+&=
+    \left(
+        \dfrac{
+            m \omega
+        }{
+            2 \pi i \hbar
+            \sin \omega t
+        }
+        \dfrac{\pi}{
+            2
+            \dfrac{i}{\hbar}
+            \dfrac{
+                m \omega
+                \sin^2 \dfrac{ \omega t }{2}
+            }{\sin \omega t}
+        }
+    \right)^{1 / 2}
+    \exp\left(
+        \dfrac{ H^2 }{ 2 G }
+    \right)
+\notag\\&
+=
+    \dfrac{ 1 }{
+        2 i \sin \dfrac{\omega t}{2}
+    }
+    \exp\left(
+        \dfrac{ H^2 }{ 2 G }
+    \right)
+=
+    \dfrac{ 1 }{
+        e^{ i \omega t / 2 }
+    -
+        e^{ - i \omega t / 2 }
+    }
+    \exp\left(
+        \dfrac{ H^2 }{ 2 G }
+    \right)
+\end{align}
+となり、特に$J = 0$のとき$H = 0$なので
+$Z [J = 0] (\tau = i t = \hbar \beta)
+=
+    \dfrac{ 1 }{
+        e^{ \beta \omega / 2 }
+    -
+        e^{ - \beta \omega / 2 }
+    }
+$
+は統計力学で習う調和振動子の
+分配関数をしっかり再現する
 
 \subsection{量子力学における対称性と保存量}
 
