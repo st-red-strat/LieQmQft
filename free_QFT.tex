@@ -211,6 +211,44 @@ Boltzmann constantも$k_B = 1$）
 と取る自然単位系を採用する。
 $\eta$は無次元の実定数対称行列である。
 
+質量$m$の特殊相対論的（かつ自由）な
+点粒子のkinetic energyは
+運動量$\bm{p}$を用いて
+\begin{align}
+    E
+&=
+    \sqrt{(mc^2)^2 + (c\bm{p})^2}
+=
+    mc^2
+    \sqrt{1 + \left(
+        \dfrac{\bm{p}}{mc}
+    \right)^2}
+\end{align}
+と表せる事を思い出そう。
+この関係をEinstein dispersion relation（アインシュタインの分散関係、
+エネルギー分散関係）などと言うことがある。
+特に粒子の速度が光速に対して十分小さい場合
+$\dfrac{|\bm{p}|}{m} \ll c$は
+有名な関係式$E \simeq mc^2$に帰着する。
+我々の目的のためには波数
+$\bm{k} = \dfrac{\bm{p}}{\hbar}$
+を用いて
+\begin{subequations}
+\begin{align}
+    E_{\bm{k}}
+&:=
+    mc^2
+    \sqrt{1 + \left(
+        \dfrac{\hbar \bm{k}}{mc}
+    \right)^2}
+\\
+    E_{\bm{k}}
+&=: \hbar \omega_{\bm{k}}
+\end{align}
+\end{subequations}
+を定義（もちろん自然単位系では両者に区別はないが）
+しておくのが便利である。
+
 Lagrangianや運動方程式に$\phi, \varphi$自身しか現れないため
 これらの理論で$\phi, \varphi$は
 他の場と相互作用をしていないことが分かり、
@@ -338,7 +376,7 @@ $\Box := \eta^{\mu \sigma}
 
 $\eta$を
 (\ref{mostly plus minkowski metric})
-で与え、運動方程式を実際にFourier変換で解くと
+で与え、運動方程式を実際にFourier変換で解いてみよう。
 
 \subsubsection{Massive Free Vector場（Proca場）の例}
 
