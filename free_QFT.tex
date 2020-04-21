@@ -169,7 +169,8 @@ Lagrange形式では
 全ての座標$(t, \bm{x})$が
 等価に扱われている事が分かる。
 
-\subsubsection{Free Scalar場の例}
+\subsubsection{Free Scalar場の例：
+    特殊相対論的点粒子との比較と自然単位系}
 
 $\phi(t, \bm{x}), \varphi(t, \bm{x})$を
 それぞれ実および複素scalar場とし、
@@ -246,8 +247,10 @@ $\bm{k} = \dfrac{\bm{p}}{\hbar}$
 &=: \hbar \omega_{\bm{k}}
 \end{align}
 \end{subequations}
-を定義（もちろん自然単位系では両者に区別はないが）
-しておくのが便利である。
+を定義しておくのが便利である。
+もちろん自然単位系では両者に区別はないが、
+SI単位系では$\omega_{\bm{k}}$は周波数（時間の逆）の次元、
+$E_{\bm{k}}$はenergyの次元を持っている。
 
 Lagrangianや運動方程式に$\phi, \varphi$自身しか現れないため
 これらの理論で$\phi, \varphi$は
@@ -377,6 +380,97 @@ $\Box := \eta^{\mu \sigma}
 $\eta$を
 (\ref{mostly plus minkowski metric})
 で与え、運動方程式を実際にFourier変換で解いてみよう。
+運動方程式は$\phi, \varphi, \varphi^*$
+のいずれについても同じ形なので、
+$\psi$をそのいずれかとして
+方程式をFourier変換
+(\ref{fourier transf})
+する（ただし面倒なので、
+いちいち$\psi$のFourier変換を
+$\tilde{\psi} (k)$などと書くことはせず、
+単に$\psi(k)$などと書く。以下同じ）と、
+微分$\partial_i$は$i k_i$倍に置き換わる
+（Fourier変換の定義の仕方によっては
+$- i k_i$となるが、
+逆Fourier変換の符号も伴って変わるので
+得られる解に違いはない）
+ため、
+\begin{align}
+    0
+&=
+    [- \partial_0^2 + (i \bm{k})^2 - m^2]
+    \psi (t, \bm{k})
+\notag\\
+    \partial_0^2 \psi (t, \bm{k})
+&=
+    - (\bm{k}^2 + m^2)
+    \psi (t, \bm{k})
+=
+    - E_{\bm{k}}^2
+    \psi (t, \bm{k})
+\notag\\
+    \psi (t, \bm{k})
+&=
+    A (\bm{k}) e^{i E_{\bm{k}} t}
+    +
+    B (\bm{k}) e^{- i E_{\bm{k}} t}
+\end{align}
+のように容易に解ける。
+ここで$A(\bm{k}), B(\bm{k})$は
+初期条件から決まる任意の関数で、
+とりあえずは複素関数と思っておこう。
+これを逆Fourier変換すれば、求める解が
+\begin{align}
+    \psi (t, \bm{x})
+=
+    \int d^d k\ 
+    e^{i \bm{k} \cdot \bm{x}}
+    \left(
+        A (\bm{k}) e^{i E_{\bm{k}} t}
+        +
+        B (\bm{k}) e^{- i E_{\bm{k}} t}
+    \right)
+\end{align}
+と得られる。
+これに加え、
+実scalar場$\psi = \phi$の場合なら
+実数性$\phi = \phi^*$を課すことで
+$B (\bm{k}) = A^* (- \bm{k})$
+が得られるため、
+実際の任意関数の自由度は複素関数$1$つ
+（実関数$2$つ）ということになる。
+複素scalar場の場合も、もちろん
+\begin{align*}
+    \varphi (t, \bm{x})
+=
+    \int d^d k\ 
+    e^{i \bm{k} \cdot \bm{x}}
+    \left(
+        A (\bm{k}) e^{i E_{\bm{k}} t}
+        +
+        B (\bm{k}) e^{- i E_{\bm{k}} t}
+    \right)
+\\
+    \varphi^* (t, \bm{x})
+=
+    \int d^d k\ 
+    e^{i \bm{k} \cdot \bm{x}}
+    \left(
+        C (\bm{k}) e^{i E_{\bm{k}} t}
+        +
+        D (\bm{k}) e^{- i E_{\bm{k}} t}
+    \right)
+\end{align*}
+のように運動方程式を解いて
+$A, B, C, D$が全て独立なわけではなく、
+$\psi$と$\psi^*$が互いに複素共役であるために
+$D^*(- \bm{k}) = A (\bm{k})$
+および
+$C^*(- \bm{k}) = B (\bm{k})$
+を課す必要がある。
+従って複素scalar場の場合、
+運動方程式の解が
+複素関数$2$つ（実関数$4$つ）の自由度を持つことが分かる。
 
 \subsubsection{Massive Free Vector場（Proca場）の例}
 
@@ -698,15 +792,8 @@ $A^0$の$x^0$による$2$階微分は
 方程式のどこにも現れない。
 この方程式をFourier変換
 (\ref{fourier transf})
-する（ただし面倒なので、
-いちいち$A$のFourier変換を
-$\tilde{A}$などと書くことはせず、
-単に$A(k)$などと書く）と、
-微分$\partial_i$は$i k_i$倍に置き換わる
-（Fourier変換の定義の仕方によっては
-$- i k_i$となるが、
-得られる解に違いはない）
-ため、
+すると、
+微分$\partial_i$は$i k_i$倍に置き換わり
 \begin{subequations}
 \begin{align}
     0
