@@ -236,21 +236,21 @@ $\bm{k} = \dfrac{\bm{p}}{\hbar}$
 を用いて
 \begin{subequations}
 \begin{align}
-    E_{\bm{k}}
+    E_k
 &:=
     mc^2
     \sqrt{1 + \left(
         \dfrac{\hbar \bm{k}}{mc}
     \right)^2}
 \\
-    E_{\bm{k}}
-&=: \hbar \omega_{\bm{k}}
+    E_k
+&=: \hbar \omega_k
 \end{align}
 \end{subequations}
 を定義しておくのが便利である。
 もちろん自然単位系では両者に区別はないが、
-SI単位系では$\omega_{\bm{k}}$は周波数（時間の逆）の次元、
-$E_{\bm{k}}$はenergyの次元を持っている。
+SI単位系では$\omega_k$は周波数（時間の逆）の次元、
+$E_k$はenergyの次元を持っている。
 
 Lagrangianや運動方程式に$\phi, \varphi$自身しか現れないため
 これらの理論で$\phi, \varphi$は
@@ -406,14 +406,15 @@ $- i k_i$となるが、
     - (\bm{k}^2 + m^2)
     \psi (t, \bm{k})
 =
-    - E_{\bm{k}}^2
+    - E_k^2
     \psi (t, \bm{k})
 \notag\\
+    \therefore
     \psi (t, \bm{k})
 &=
-    A (\bm{k}) e^{i E_{\bm{k}} t}
+    A (\bm{k}) e^{i E_k t}
     +
-    B (\bm{k}) e^{- i E_{\bm{k}} t}
+    B (\bm{k}) e^{- i E_k t}
 \end{align}
 のように容易に解ける。
 ここで$A(\bm{k}), B(\bm{k})$は
@@ -426,9 +427,9 @@ $- i k_i$となるが、
     \int d^d k\ 
     e^{i \bm{k} \cdot \bm{x}}
     \left(
-        A (\bm{k}) e^{i E_{\bm{k}} t}
+        A (\bm{k}) e^{i E_k t}
         +
-        B (\bm{k}) e^{- i E_{\bm{k}} t}
+        B (\bm{k}) e^{- i E_k t}
     \right)
 \end{align}
 と得られる。
@@ -446,9 +447,9 @@ $B (\bm{k}) = A^* (- \bm{k})$
     \int d^d k\ 
     e^{i \bm{k} \cdot \bm{x}}
     \left(
-        A (\bm{k}) e^{i E_{\bm{k}} t}
+        A (\bm{k}) e^{i E_k t}
         +
-        B (\bm{k}) e^{- i E_{\bm{k}} t}
+        B (\bm{k}) e^{- i E_k t}
     \right)
 \\
     \varphi^* (t, \bm{x})
@@ -456,9 +457,9 @@ $B (\bm{k}) = A^* (- \bm{k})$
     \int d^d k\ 
     e^{i \bm{k} \cdot \bm{x}}
     \left(
-        C (\bm{k}) e^{i E_{\bm{k}} t}
+        C (\bm{k}) e^{i E_k t}
         +
-        D (\bm{k}) e^{- i E_{\bm{k}} t}
+        D (\bm{k}) e^{- i E_k t}
     \right)
 \end{align*}
 のように運動方程式を解いて
@@ -472,7 +473,7 @@ $C^*(- \bm{k}) = B (\bm{k})$
 運動方程式の解が
 複素関数$2$つ（実関数$4$つ）の自由度を持つことが分かる。
 
-\subsubsection{Massive Free Vector場（Proca場）の例}
+\subsubsection{Massless及びMassive Free Vector（Proca）場の例}
 
 $\eta_{\mu\nu}$を無次元の実定数対称行列、
 $\eta^{\mu\nu}$をその逆行列
@@ -499,10 +500,7 @@ $F_{\mu\nu} :=
 \end{align}
 ため、以下では任意のvectorおよびtensorについて
 同様に添え字の上げ下げを$\eta$で行う。
-自由vector場
-（特に$m^2 \neq 0$の場合
-$A^\mu$をProca場と言う）
-のLagrangianを
+自由vector場のLagrangianを
 \begin{align}
     \mathcal{L}_{\rm massvec}
     :=
@@ -522,7 +520,10 @@ $A^\mu$をProca場と言う）
     \dfrac{m^2}{2}
         A^\mu A_\mu
 \end{align}
-で与えるとき、
+で与える。
+特に$m^2 \neq 0$の場合
+$A^\mu$をProca場と言い、
+単にvector場と言ったときは普通$m = 0$と取る。
 \begin{align}
     \dfrac{\partial}
         {\partial (\partial_\sigma A_\rho)}
@@ -701,13 +702,13 @@ $x^0 = ct$による$2$階微分を含まない。
 $A^0$やその空間微分は$A^i$を使って書けてしまうし、
 作用がgauge不変である場合$m^2 = 0$には
 この運動方程式の任意の解は
-$\Lambda =
+$\displaystyle
+    \Lambda =
     - \int_{t_0}^t dt'
         A^0(t', \bm{x})$
 と取るgauge変換によって
 temporal gauge $A^0 = 0$
 に移り変わる事が出来る。
-
 このように$A^0$という非物理的な自由度が
 Lagrangianに現れる事により
 vector場を含む系は一般に拘束系となり、
@@ -1264,6 +1265,15 @@ $k_p A^p = i \lambda \bm{k}^2$
     物理的な自由度はmasslessの場合に比べ
     $2$だけ増えている。
 \end{enumerate}
+
+\subsubsection{Massless Vector Fieldとしての古典電磁場}
+
+真空中の電磁potentialが満たす
+Maxwell方程式
+(\ref{maxwell eq of potentials in vacuum})
+を見ると、
+free vector fieldの運動方程式
+(\ref{free massive vector field EL eq})で$m = 0$としたものに
 
 \subsubsection{Hamilton形式}
 
