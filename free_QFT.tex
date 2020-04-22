@@ -1268,12 +1268,80 @@ $k_p A^p = i \lambda \bm{k}^2$
 
 \subsubsection{Massless Vector Fieldとしての古典電磁場}
 
+真空中での光速が誘電率と透磁率を用い
+$c = \dfrac{1}{\sqrt{ \epsilon_0 \mu_0 }}$
+と書ける事を思い出そう。
+scalar potentialを用い
+$A^0 := \dfrac{\phi}{c}
+= \sqrt{\epsilon_0 \mu_0} \phi$
+と定義すると、
 真空中の電磁potentialが満たす
 Maxwell方程式
 (\ref{maxwell eq of potentials in vacuum})
-を見ると、
-free vector fieldの運動方程式
-(\ref{free massive vector field EL eq})で$m = 0$としたものに
+は
+\begin{subequations}
+\begin{align}
+  0
+&=
+  \partial_i
+  \left[
+    \sqrt{ \mu_0 \epsilon_0 }
+    \frac{\partial A^0}
+      {\partial t}
+  +
+    \partial_j A^j
+  \right]
+  -
+  \Box A^i
+=
+    \partial^i
+    \partial_\mu A^\mu
+    - \Box A^i
+\\
+  0
+&=
+    \dfrac{1}{c} \Delta A^0
+  +
+    \partial_i
+    \dfrac{\partial A^i}
+      {\partial t}
+=
+    \dfrac{1}{c}
+    \left[
+        \partial_i \partial_i A^0
+      +
+        \partial_0
+        \partial_i A^i
+    \right]
+=
+    \dfrac{1}{c}
+    \left[
+        \partial_\mu
+        \partial^\mu A^0
+      +
+        \partial_0
+        \partial_\mu A^\mu
+    \right]
+\end{align}
+\end{subequations}
+と書き直せる。
+これはfree vector fieldの運動方程式
+(\ref{free massive vector field EL eq})
+で$m = 0$としたもの
+\begin{align}
+    0 =
+    \partial^\mu
+    \partial_\nu A^\nu
+    - \Box A^\mu
+=
+    \bigg[
+        \partial^\mu
+        \partial_\nu
+        - \delta^\mu_\nu \Box
+    \bigg] A^\nu
+\end{align}
+にまとめられるので、
+真空中の電磁場はfree vector fieldに他ならないことが分かる。
 
 \subsubsection{Hamilton形式}
 
