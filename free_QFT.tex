@@ -1368,24 +1368,48 @@ $j^0 := c \rho
 が得られる。
 特に、このMaxwell方程式を
 Euler-Lagrange方程式として導くには
-自由vector場のLagrangian
+massless自由vector場のLagrangian
 (\ref{massive free vector lagrangian})
-に
+に項を足して
+\begin{subequations}
 \begin{align}
+	\mathcal{L}_{\rm Maxwell}
+&:=
+	- \dfrac{1}{4 \mu_0}
+	F_{\mu\nu} F^{\mu\nu}
+	+
 	\mathcal{L}_{\text{EM-int}}
-:=
+\\
+	\mathcal{L}_{\text{EM-int}}
+&:=
 	j_\mu A^\mu
+=
+	- \rho \phi
+	+ \bm{j} \cdot \bm{A}
 \label{EM int lagrangian}
 \end{align}
-なる項を足せばよいことも、
+\end{subequations}
+とすればよいことも、
 (\ref{free massive vector field EL eq})
 の導出から明らかであろう。
-（Lagrangianの持つ次元を気にしなければ）
+特に、電荷$q$を持ち位置$\bm{x}'(t)$にある荷電粒子の電荷密度は
+$\rho(t, \bm{x})
+= q \delta(\bm{x} - \bm{x}'(t) )$、
+電流密度は
+$\bm{j} (t, \bm{x})
+= q \dot{\bm{x}}'
+\delta (\bm{x} - \bm{x}'(t))$
+であるので、今回導いた結果は
+荷電粒子のLagrangian
+(\ref{point particle lagrangian with ele-mag potential})
+で導いた電磁相互作用項の自然な一般化になっている（vector場のLagrangian密度の空間積分がLagrangianを与えることに注意せよ）。
+Lagrangianの持つ次元を気にしなければ、
 Lagrangianを定数倍しても運動方程式は変わらないので
 \begin{align}
 	\mathcal{L}'
 :=
-	\mathcal{L}_{\rm massvec}
+	- \dfrac{1}{4}
+	F_{\mu\nu} F^{\mu\nu}
 	+
 	\mu_0 \mathcal{L}_{\text{EM-int}}
 \end{align}
