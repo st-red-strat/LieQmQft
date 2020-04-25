@@ -1270,7 +1270,7 @@ $k_p A^p = i \lambda \bm{k}^2$
 
 真空中での光速が誘電率と透磁率を用い
 $c = \dfrac{1}{\sqrt{ \epsilon_0 \mu_0 }}$
-と書ける事を思い出そう。
+と書ける事、及び$x^0 = ct$を思い出そう。
 scalar potentialを用い
 $A^0 := \dfrac{\phi}{c}
 = \sqrt{\epsilon_0 \mu_0} \phi$
@@ -1281,23 +1281,6 @@ Maxwell方程式
 は
 \begin{subequations}
 \begin{align}
-  0
-&=
-  \partial_i
-  \left[
-    \sqrt{ \mu_0 \epsilon_0 }
-    \frac{\partial A^0}
-      {\partial t}
-  +
-    \partial_j A^j
-  \right]
-  -
-  \Box A^i
-=
-    \partial^i
-    \partial_\mu A^\mu
-    - \Box A^i
-\\
   0
 &=
     \dfrac{1}{c} \Delta A^0
@@ -1322,6 +1305,22 @@ Maxwell方程式
         \partial_0
         \partial_\mu A^\mu
     \right]
+\\
+  0
+&=
+  \partial_i
+  \left[
+    \sqrt{ \mu_0 \epsilon_0 }
+    \frac{\partial A^0}
+      {\partial t}
+  +
+    \partial_j A^j
+  \right]
+  - \Box A^i
+=
+    \partial^i
+    \partial_\mu A^\mu
+    - \Box A^i
 \end{align}
 \end{subequations}
 と書き直せる。
@@ -1342,6 +1341,14 @@ Maxwell方程式
 \end{align}
 にまとめられるので、
 真空中の電磁場はfree vector fieldに他ならないことが分かる。
+
+次に真空という仮定を取り除き、
+電流や電荷がある場合
+(\ref{maxwell eq of potentials})についても考える。
+右辺は真空中と全く同じであるので、
+$j^0 := \dfrac{\rho}{c}
+= \sqrt{\mu_0 \epsilon_0} \rho$
+と定義することで左辺が
 
 \subsubsection{Hamilton形式}
 

@@ -756,7 +756,7 @@ scalar potential $\phi$
 \end{subequations}
 の$2$本に集約される。
 
-\subsubsection{静電磁気学}
+\subsubsection{静電磁気学（electrostatics）}
 
 力学系や方程式系が時刻$t$に依存しない場合を
 静的（static、time-independent、定常とも）という。
@@ -766,6 +766,11 @@ scalar potential $\phi$
 から時間微分を含む項を落とせばよく
 \begin{subequations}
 \begin{align}
+  - \frac{\rho}{\epsilon_0}
+&=
+  \Delta \phi
+\label{static eq for ele-mag scalar potential}
+\\
   \mu_0 \bm{j}
 &=
   \nabla
@@ -780,11 +785,6 @@ scalar potential $\phi$
   \nabla \times
     (\nabla \times \bm{A})
 \label{static eq for ele-mag vector potential}
-\\
-  - \frac{\rho}{\epsilon_0}
-&=
-  \Delta \phi
-\label{static eq for ele-mag scalar potential}
 \end{align}
 \end{subequations}
 となる。
@@ -1091,6 +1091,14 @@ Maxwell方程式
 \begin{align}
   0
 &=
+    \Delta \phi (t, \bm{x})
+  +
+    \nabla \cdot
+    \dfrac{\partial \bm{A}}
+      {\partial t} (t, \bm{x})
+\\
+  0
+&=
   \nabla
   \left[
     \mu_0 \epsilon_0
@@ -1108,14 +1116,6 @@ Maxwell方程式
     \Delta
   \right]
     \bm{A} (t, \bm{x})
-\\
-  0
-&=
-    \Delta \phi (t, \bm{x})
-  +
-    \nabla \cdot
-    \dfrac{\partial \bm{A}}
-      {\partial t} (t, \bm{x})
 \end{align}
 \label{maxwell eq of potentials in vacuum}
 \end{subequations}
