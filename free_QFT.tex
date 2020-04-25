@@ -502,8 +502,8 @@ $F_{\mu\nu} :=
 同様に添え字の上げ下げを$\eta$で行う。
 自由vector場のLagrangianを
 \begin{align}
-    \mathcal{L}_{\rm massvec}
-    :=
+    \mu_0 \mathcal{L}_{\rm massvec}
+:=
     -
     \dfrac{1}{4}
         \eta^{\mu\rho}
@@ -518,9 +518,13 @@ $F_{\mu\nu} :=
     F_{\mu\nu} F^{\mu\nu}
     -
     \dfrac{m^2}{2}
-        A^\mu A_\mu
+		A^\mu A_\mu
+\label{massive free vector lagrangian}
 \end{align}
 で与える。
+ただし、左辺の$\mu_0$は真空の透磁率であり、
+次元合わせのために導入した
+（詳細は(\ref{EM int lagrangian})以下を参照）。
 特に$m^2 \neq 0$の場合
 $A^\mu$をProca場と言い、
 単にvector場と言ったときは普通$m = 0$と取る。
@@ -549,13 +553,16 @@ Euler-Lagrange方程式(\ref{field EL eq})は
 \begin{subequations}
 \begin{align}
     0
-    &=
+	&=
+	\mu_0
+\left[
     \dfrac{\partial \mathcal{L}_{\rm massvec}}
         {\partial A_\rho}
-    -
+	-
     \partial_\sigma
     \dfrac{\partial \mathcal{L}_{\rm massvec}}
-        {\partial (\partial_\sigma A_\rho)}
+		{\partial (\partial_\sigma A_\rho)}
+\right]
     =
     -
     \dfrac{m^2}{2}
@@ -1283,13 +1290,13 @@ Maxwell方程式
 \begin{align}
   0
 &=
-    \dfrac{1}{c} \Delta A^0
+    c \Delta A^0
   +
     \partial_i
     \dfrac{\partial A^i}
       {\partial t}
 =
-    \dfrac{1}{c}
+    c
     \left[
         \partial_i \partial_i A^0
       +
@@ -1297,10 +1304,9 @@ Maxwell方程式
         \partial_i A^i
     \right]
 =
-    \dfrac{1}{c}
+    c
     \left[
-        \partial_\mu
-        \partial^\mu A^0
+        \Box A^0
       +
         \partial_0
         \partial_\mu A^\mu
@@ -1308,6 +1314,8 @@ Maxwell方程式
 \\
   0
 &=
+  \Box A^i
+-
   \partial_i
   \left[
     \sqrt{ \mu_0 \epsilon_0 }
@@ -1316,11 +1324,10 @@ Maxwell方程式
   +
     \partial_j A^j
   \right]
-  - \Box A^i
 =
-    \partial^i
-    \partial_\mu A^\mu
-    - \Box A^i
+    \Box A^i
+    - \partial^i
+    	\partial_\mu A^\mu
 \end{align}
 \end{subequations}
 と書き直せる。
@@ -1329,14 +1336,13 @@ Maxwell方程式
 で$m = 0$としたもの
 \begin{align}
     0 =
-    \partial^\mu
+    \Box A^\mu
+    - \partial^\mu
     \partial_\nu A^\nu
-    - \Box A^\mu
 =
     \bigg[
-        \partial^\mu
-        \partial_\nu
-        - \delta^\mu_\nu \Box
+		\delta^\mu_\nu \Box
+    - \partial^\mu \partial_\nu
     \bigg] A^\nu
 \end{align}
 にまとめられるので、
@@ -1344,11 +1350,51 @@ Maxwell方程式
 
 次に真空という仮定を取り除き、
 電流や電荷がある場合
-(\ref{maxwell eq of potentials})についても考える。
+(\ref{maxwell eq of potentials})
+に一般化しよう。
 右辺は真空中と全く同じであるので、
-$j^0 := \dfrac{\rho}{c}
-= \sqrt{\mu_0 \epsilon_0} \rho$
-と定義することで左辺が
+$j^0 := c \rho
+= \dfrac{ \rho }
+	{ \sqrt{\mu_0 \epsilon_0} }$
+と定義することで
+\begin{align}
+	- \mu_0 j^\mu
+=
+    \bigg[
+		\delta^\mu_\nu \Box
+    - \partial^\mu \partial_\nu
+    \bigg] A^\nu
+\end{align}
+が得られる。
+特に、このMaxwell方程式を
+Euler-Lagrange方程式として導くには
+自由vector場のLagrangian
+(\ref{massive free vector lagrangian})
+に
+\begin{align}
+	\mathcal{L}_{\text{EM-int}}
+:=
+	j_\mu A^\mu
+\label{EM int lagrangian}
+\end{align}
+なる項を足せばよいことも、
+(\ref{free massive vector field EL eq})
+の導出から明らかであろう。
+（Lagrangianの持つ次元を気にしなければ）
+Lagrangianを定数倍しても運動方程式は変わらないので
+\begin{align}
+	\mathcal{L}'
+:=
+	\mathcal{L}_{\rm massvec}
+	+
+	\mu_0 \mathcal{L}_{\text{EM-int}}
+\end{align}
+としても同じことであるが、
+これは$\mu_0 \to 0$の極限で電磁場がcurrentと相互作用をしなくなること、
+つまり真空の透磁率$\mu_0$が
+電磁場と電流の相互作用の強さを表す定数であることを意味する。
+このように、ある場と他の場の相互作用の強さを規定する定数を一般に結合定数
+（coupling constant）という。
 
 \subsubsection{Hamilton形式}
 

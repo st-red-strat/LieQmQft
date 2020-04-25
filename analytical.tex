@@ -698,17 +698,14 @@ scalar potential $\phi$
     \dfrac{\partial \bm{A}}
       {\partial t} (t, \bm{x})
 \\
-  \mu_0 \bm{j}
+  - \mu_0 \bm{j}
 &=
-  \nabla \times \bm{B}
-  -
   \mu_0 \epsilon_0
     \frac{\partial \bm{E}}
       {\partial t}
-=
-  \nabla \times
-    (\nabla \times \bm{A})
   -
+  \nabla \times \bm{B}
+=
   \mu_0 \epsilon_0
     \frac{\partial}{\partial t}
   \left[
@@ -716,13 +713,12 @@ scalar potential $\phi$
     - \dfrac{\partial \bm{A}}
       {\partial t} (t, \bm{x})
   \right]
+  -
+  \nabla \times
+    (\nabla \times \bm{A})
 \notag\\&
 =
-  \nabla
-    (\nabla \cdot \bm{A} (t, \bm{x}))
   -
-    \Delta \bm{A} (t, \bm{x})
-  +
   \mu_0 \epsilon_0
   \left[
     \nabla
@@ -732,8 +728,23 @@ scalar potential $\phi$
     \dfrac{\partial^2 \bm{A}}
       {\partial t^2} (t, \bm{x})
   \right]
+  -
+  \left[
+    \nabla
+      (\nabla \cdot \bm{A} (t, \bm{x}))
+  -
+    \Delta \bm{A} (t, \bm{x})
+  \right]
 \notag\\&
 =
+  \left[
+    - \mu_0 \epsilon_0
+    \dfrac{\partial^2}{\partial t^2}
+  +
+    \Delta
+  \right]
+    \bm{A} (t, \bm{x})
+  -
   \nabla
   \left[
     \mu_0 \epsilon_0
@@ -743,14 +754,6 @@ scalar potential $\phi$
     \nabla \cdot
       \bm{A} (t, \bm{x})
   \right]
-  -
-  \left[
-    - \mu_0 \epsilon_0
-    \dfrac{\partial^2}{\partial t^2}
-  +
-    \Delta
-  \right]
-    \bm{A} (t, \bm{x})
 \end{align}
 \label{maxwell eq of potentials}
 \end{subequations}
@@ -771,18 +774,16 @@ scalar potential $\phi$
   \Delta \phi
 \label{static eq for ele-mag scalar potential}
 \\
-  \mu_0 \bm{j}
+  - \mu_0 \bm{j}
 &=
-  \nabla
-  \left[
-    \nabla \cdot
-      \bm{A}
-  \right]
+  - [
+    \nabla
+    ( \nabla \cdot \bm{A} )
   -
-    \Delta
-    \bm{A}
+    \Delta \bm{A}
+  ]
 =
-  \nabla \times
+  - \nabla \times
     (\nabla \times \bm{A})
 \label{static eq for ele-mag vector potential}
 \end{align}
@@ -1099,6 +1100,14 @@ Maxwell方程式
 \\
   0
 &=
+  \left[
+    - \mu_0 \epsilon_0
+    \dfrac{\partial^2}{\partial t^2}
+  +
+    \Delta
+  \right]
+    \bm{A} (t, \bm{x})
+  -
   \nabla
   \left[
     \mu_0 \epsilon_0
@@ -1108,14 +1117,6 @@ Maxwell方程式
     \nabla \cdot
       \bm{A} (t, \bm{x})
   \right]
-  -
-  \left[
-    - \mu_0 \epsilon_0
-    \dfrac{\partial^2}{\partial t^2}
-  +
-    \Delta
-  \right]
-    \bm{A} (t, \bm{x})
 \end{align}
 \label{maxwell eq of potentials in vacuum}
 \end{subequations}
