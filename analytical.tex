@@ -1247,17 +1247,13 @@ $\bm{E}$とか$\bm{B}$も変わってしまうのだが、
     \dfrac{\partial L}{\partial \dot{x}_i}
   -
     \dfrac{\partial L}{\partial x_i}
-- \left[
+- q \left[
   \dfrac{d}{dt}
     \dfrac{\partial}{\partial \dot{x}_i}
-    \left\{
-      q(\phi - \dot{x}_j A_j)
-    \right\}
+      (\phi - \dot{x}_j A_j)
   -
     \dfrac{\partial}{\partial x_i}
-    \left\{
-      q(\phi - \dot{x}_k A_k)
-    \right\}
+      (\phi - \dot{x}_k A_k)
 \right]
 \label{EL eq for charged point particle}
 \end{align}
@@ -1266,16 +1262,14 @@ potentialが位置$\bm{x}$のみに依存し
 速度$\dot{\bm{x}}$には依存しない事に気を付けると
 \begin{align}
   &
-- \left[
+- q \left[
   \dfrac{d}{dt}
     \dfrac{\partial}{\partial \dot{x}_i}
-    \left\{
-      q(\phi - \dot{x}_j A_j)
-    \right\}
+      (\phi - \dot{x}_j A_j)
   -
     \dfrac{\partial}{\partial x_i}
     \left\{
-      q(\phi - \dot{x}_k A_k)
+      (\phi - \dot{x}_k A_k)
     \right\}
 \right]
 =
@@ -1292,7 +1286,7 @@ potentialが位置$\bm{x}$のみに依存し
 \right]
 \notag\\&
 =
-+ q \left[
+  q \left[
   \dfrac{d A_i}{dt}
   +
     \left\{
@@ -1328,9 +1322,9 @@ q \left[
 \right]
 \end{align}
 と書ける。
-最後に公式
-(\ref{3rd order epsilon to delta2 formula})
-を使うと
+最後に関係
+(\ref{field strength and magnetic field})
+から
 \begin{align}
   \dot{x}_k
   \left(
@@ -1339,31 +1333,9 @@ q \left[
     \dfrac{\partial A_k}{\partial x_i}
   \right)
 &=
-  \dot{x}_k
-  \left(
-    \delta_{ij} \delta_{kl}
-  -
-    \delta_{il} \delta_{jk}
-  \right)
-  \dfrac{\partial A_j}{\partial x_l}
+  \epsilon_{nki} \dot{x}_k B_n
 =
-  \dot{x}_k
-    \epsilon_{nki}
-    \epsilon_{nlj}
-  \dfrac{\partial A_j}{\partial x_l}
-=
-  - \epsilon_{ikn}
-    \dot{x}_k
-  (\nabla \times \bm{A})_n
-\notag\\&
-=
-  \big(
-    \dot{\bm{x}}
-      \times
-    (\nabla \times \bm{A})
-  \big)_i
-=
-  \big(
+  - \big(
     \dot{\bm{x}} \times \bm{B}
   \big)_i
 \end{align}
@@ -1377,10 +1349,9 @@ q \left[
     \dfrac{\partial L}{\partial \dot{x}_i}
   -
     \dfrac{\partial L}{\partial x_i}
-+ q \left[
-  - E_i
-  +
-    \big(
+- q \left[
+    E_i
+  + \big(
       \dot{\bm{x}} \times \bm{B}
     \big)_i
 \right]

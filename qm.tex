@@ -114,9 +114,9 @@ Hilbert空間の元である。
 \begin{align}
     i\hbar \dfrac{d}{dt}
         \ket{\psi(t)}
-    &=
+&=
     \hat{H} \ket{\psi(t)}
-\label{Schrodinger eq}
+\label{time dependent Schrodinger eq}
 \end{align}
 によって与えられる。
 ここで$\hbar$は換算Planck定数またはDirac定数と呼ばれ、
@@ -134,7 +134,8 @@ Hamiltonian $\hat{H}$が
 時刻$t$に顕わに依存（explicitly dependent）
 しないとき、
 初期条件$\ket{ \psi(t_0) }$のもとでの
-Schr\"odinger方程式(\ref{Schrodinger eq})
+Schr\"odinger方程式
+(\ref{time dependent Schrodinger eq})
 の一般解は
 時間発展（time evolution）operator
 \begin{align}
@@ -739,7 +740,8 @@ Hamiltionian operator $\hat{H}$と
 対応する固有値$a$が得られる確率は時間発展と共に
 $1$から変化していく。
 これは$\ket{a}$を初期条件とする
-Schr\"odinger方程式(\ref{Schrodinger eq})の解
+Schr\"odinger方程式
+(\ref{time dependent Schrodinger eq})の解
 $\ket{\psi_a(t)}$が
 再び$\hat{A}$の固有値$a$に属する固有状態になるとは限らないからで、
 この場合は時刻$t$に固有値$a'$が観測される確率は
@@ -1770,8 +1772,12 @@ BCH formulaの特別な場合
 古典的な荷電粒子のHamiltonianを
 (\ref{point charge hamiltonian})
 で与えていた。
-このように点粒子が電磁場と相互作用している場合に粒子を量子化すると、
-そのHamiltonian operatorは
+このように点粒子が電磁場と相互作用している場合に粒子を量子化する事を考える。
+ただし、量子化されるのはあくまで荷電粒子のみであり、
+電磁場を量子化するには（まず場の解析力学を学んだ後）
+場の量子論の枠組みを用いなければならない事に注意しよう。
+古典的な電磁場と相互作用する
+量子力学的荷電粒子のHamiltonian operatorは
 \begin{align}
     \hat{H}(\{\hat{x}\},\{\hat{p} - qA\})
   +
@@ -1780,6 +1786,7 @@ BCH formulaの特別な場合
   \sum_m
     q_m
     \phi(\hat{\bm{x}}_m)
+\label{hamiltonian of quantum mechanical point charge}
 \end{align}
 のようになる。
 ここで、$\hat{x}_i$との正準交換関係を満たすoperatorはあくまで
@@ -1826,9 +1833,10 @@ Lagrangianから自然に導かれる
 粒子の位置$\bm{x}$を中心的に扱って
 量子力学を展開したいという向きもあるだろう。
 そこで、ある状態$\ket{ \psi }$が与えられたとき
-波動関数（wave function）と呼ばれる量を
+対応する波動関数（wave function）を
 \begin{align}
     \psi(\bm{x}) := \braket{ \bm{x} | \psi }
+\label{wave function as position rep of ket vector}
 \end{align}
 で定義する。
 ここでもちろん$\ket{ \bm{x} }$は
@@ -2144,10 +2152,12 @@ $\hat{p}$を作用させた結果なども全く同じ式で与えられる。
         \nabla
     \right)
 \end{align}
+\label{position representation of operators}
 \end{subequations}
 のように置き換えればよいことが分かり、
-このような表式をoperatorの座標表示、位置表示、
-または$\bm{x}$-表示という。
+このような表式をoperatorの位置表示
+（position representation
+座標表示、$\bm{x}$-表示）という。
 
 例として運動量の固有状態を
 $\bm{x}$-表示で求めると
@@ -2417,6 +2427,264 @@ Schr\"odinger方程式の一般解は
 調和振動子の時間依存解はその線形結合
 (\ref{eigen decomposition of time independent solution})
 で与えられる。
+
+\subsubsection{量子力学的荷電粒子と
+    位相$\mathrm{U}(1)$変換、
+    Gauge対称性}
+
+さて、ここまで電荷を持たない量子力学的粒子の波動関数を議論してきた。
+荷電粒子の波動関数も状態vectorの位置表示
+(\ref{wave function as position rep of ket vector})
+で同様に与えられるし、
+当然Hamiltonian
+(\ref{hamiltonian of quantum mechanical point charge})
+の位置表示も
+(\ref{position representation of operators})
+の規則に従って
+\begin{align}
+    H (\{x\},
+    \{- i \hbar \nabla - q A\})
+  + U
+  + \sum_m q_m \phi(\bm{x}_m)
+\label{position rep of charged many particle hamiltonian}
+\end{align}
+のように問題なく与えられる。
+何も特別な事はないように思われるが、
+ここで一見全く関係ない波動関数の位相について考えてみる。
+
+状態vectorは規格化されていなければならないが、
+規格化した後もoverallの位相は定まらないのであった。
+波動関数も定義式
+(\ref{wave function as position rep of ket vector})
+から同じ性質を引き継いでおり、
+その位相は物理的に意味を持たないため、
+位相分だけ波動関数を再定義しても物理法則
+（Schr\"odinger方程式の解、物理量の期待値、etc.）は不変である。
+しかし、波動関数は状態vectorとは異なり、
+個々の粒子の位置に依存する
+（つまり配位空間上の）複素関数と思うこともできる。
+例えば波動関数の位相を東大の本郷キャンパスで実になるように取ったとき、
+柏キャンパス（あるいはブラジルでも月の裏側でもよいが）において
+波動関数の位相をどう取るべきか決まってしまうのは不自然ではないだろうか
+\cite{fujikawa gauge review}。
+このような議論にどれだけ説得力があるかは一旦置いておいて、
+波動関数の位置依存する位相変換のもとで
+Schr\"odinger方程式
+(\ref{time dependent Schrodinger eq})
+が不変になるような拡張を試みてみよう。
+
+まず電荷を持たない$1$粒子の議論から始める。
+波動関数の位相変換は
+実parapeter $\theta \in \mathbb{R}$
+を用いて
+\begin{align}
+    \psi (t, \bm{x})
+\mapsto
+    \psi' (t, \bm{x})
+:=
+    e^{i \theta} \psi (t, \bm{x})
+\end{align}
+のように書ける。
+既に説明したように
+Schr\"odinger方程式はこの変換の下で不変
+（つまり$\psi$が方程式の解ならば
+$\psi'$も必ず解）である。
+位置に依存する位相変換とは単に
+$\theta$を位置や時間に依存する実関数とした変換
+\begin{align}
+    \psi (t, \bm{x})
+\mapsto
+    \psi'' (t, \bm{x})
+:=
+    e^{i \theta(t, \bm{x})}
+    \psi (t, \bm{x})
+\end{align}
+であって、このもとでSchr\"odinger方程式(\ref{time dependent Schrodinger eq})
+の位置表示
+\begin{align}
+    i\hbar
+    \dfrac{\partial \psi}{\partial t}
+    (t, \bm{x})
+&=
+    H (\bm{x}, -i \hbar \nabla)
+    \psi (t, \bm{x})
+\end{align}
+は不変ではない。
+運動量operatorの位置表示は微分operatorであるため、
+位相が位置に依存している場合には
+公式
+(\ref{commutator of function with momentum})
+から
+\begin{align}
+    [- i \hbar \partial_i,
+    e^{- i \theta(t, \bm{x})} ]
+=
+    - i \hbar (\partial_i
+    e^{- i \theta(t, \bm{x})} )
+=
+    - i \hbar e^{- i \theta}
+    (- i \partial_i \theta)
+\end{align}
+のようなお釣りが現れてしまうのである。
+変換後の$\psi''$が従うSchr\"odinger方程式は
+\begin{align}
+    i\hbar
+    e^{- i \theta}
+    \left(
+        \dfrac{\partial \psi''}
+        {\partial t}
+    -
+        i
+        \dfrac{\partial \theta}
+        {\partial t}
+        \psi''
+    \right)
+=
+    i \hbar
+    \dfrac{\partial \psi}{\partial t}
+&=
+    H (\bm{x}, - i \hbar \nabla) \psi
+=
+    e^{- i \theta}
+    H (\bm{x}, - i \hbar \nabla
+    - \hbar \nabla \theta )
+    \psi''
+\notag\\ \therefore \quad
+    i\hbar
+    \dfrac{\partial \psi''}{\partial t}
+&=
+    \left[
+        H (\bm{x}, - i \hbar
+        \nabla - \hbar \nabla \theta)
+    - \hbar
+        \dfrac{\partial \theta}{\partial t}
+    \right]
+    \psi''
+\end{align}
+となって元の形に一致しない。
+
+電荷$q$の荷電粒子が$1$つある場合はどうだろうか。
+粒子が電荷を持たない場合は
+Schr\"odinger方程式が不変ではないことを既に見たので、
+位相の形を
+$e^{i q \theta (t, \bm{x})}$
+と再定義して一般性を失わない。
+式変形自体は同様にでき、
+違いは位相を微分するたびに$q$倍が余計に現れることと
+Hamiltonianに電磁potentialが入ること
+\begin{align}
+    i\hbar
+    \dfrac{\partial \psi''}{\partial t}
+&=
+    \left[
+        H (\bm{x},
+        - i \hbar \nabla - q \bm{A}
+        - \hbar q \nabla \theta)
+    + U
+    + q \phi(\bm{x})
+    - q \hbar
+        \dfrac{\partial \theta}{\partial t}
+    \right]
+    \psi''
+\end{align}
+であり、
+今度もやはりSchr\"odinger方程式は不変ではない。
+ところが、電磁potentialはgauge変換のもとで不変であったので、
+位相変換とgauge変換を同時に行う
+\begin{subequations}
+\begin{align}
+    \psi (t, \bm{x}) &\mapsto
+    \psi' (t, \bm{x})
+    = e^{i q \theta} \psi (t, \bm{x})
+\\
+    \phi (t, \bm{x}) &\mapsto
+    \phi' (t, \bm{x}) :=
+    \phi (t, \bm{x}) - \hbar
+    \dfrac{\partial \theta}{\partial t} (t, \bm{x})
+\\
+    A_i (t, \bm{x}) &\mapsto
+    A_i' (t, \bm{x}) :=
+    A_i (t, \bm{x}) + \hbar
+    \partial_i \theta (t, \bm{x})
+\end{align}
+\end{subequations}
+を行ったときに限り、
+Schr\"odinger方程式は
+\begin{align}
+    i\hbar
+    \dfrac{\partial \psi'}{\partial t}
+&=
+    \left[
+        H (\bm{x},
+        - i \hbar \nabla - q \bm{A}')
+    + U
+    + q \phi' (\bm{x})
+    \right]
+    \psi'
+\end{align}
+となって元の形に一致する。
+
+荷電粒子が複数あるときに議論を一般化する時には注意が必要だ。
+$m$番目の粒子の電荷を$q_m$、
+位置を$\bm{x}_m$としたとき、
+電磁potentialはあくまで時空の関数
+$\phi(\bm{x}), \bm{A} (\bm{x})$
+であり、
+Hamiltonianに現れる
+$\phi(t, \bm{x}_m),
+\bm{A} (t, \bm{x}_m)$は
+時空の関数を特定の粒子の位置で評価したものである。
+一方で波動関数
+$\psi(t, \{\bm{x}\})
+= \psi(t, \bm{x}_1, \bm{x}_2, \dots)$
+は配位空間上の関数であって時空の関数ではない。
+$\theta$が配位空間上の関数なのか時空上の関数なのか見定めるためには、
+gauge変換があくまで時空の関数として
+電磁potentialを変換する操作である事に気を付ければよい。
+時空の関数に配位空間の関数の微分を足すような操作は、
+そもそもgauge変換にはなっていないのである。
+位相変換の多粒子系への正しい一般化は、
+時空上の関数
+$\theta (t, \bm{x})$を使って
+\begin{subequations}
+\begin{align}
+    \psi (t, \{\bm{x}\}) &\mapsto
+    \psi' (t, \{\bm{x}\})
+    = e^{i \sum_m q_m \theta(t, \bm{x}_m)}
+    \psi (t, \{\bm{x}\})
+\\
+    \phi (t, \bm{x}) &\mapsto
+    \phi' (t, \bm{x}) :=
+    \phi (t, \bm{x}) - \hbar
+    \dfrac{\partial \theta}{\partial t} (t, \bm{x})
+\\
+    A_i (t, \bm{x}) &\mapsto
+    A_i' (t, \bm{x}) :=
+    A_i (t, \bm{x}) + \hbar
+    \partial_i \theta (t, \bm{x})
+\end{align}
+\end{subequations}
+と書け、このもとで量子力学的な荷電粒子の
+多粒子系のHamiltonian
+(\ref{position rep of charged many particle hamiltonian})
+を用いた
+Schr\"odinger方程式は
+\begin{align}
+    i\hbar
+    \dfrac{\partial \psi'}{\partial t}
+    (t, \{\bm{x}\})
+&=
+    \left[
+      H (\{\bm{x}_m\},
+        \{- i \hbar \nabla_m
+        - q_m \bm{A}' (\bm{x}_m)\})
+      + U
+      + \sum_m q_m \phi' (\bm{x}_m)
+    \right]
+    \psi'
+    (t, \{\bm{x}\})
+\end{align}
+となって確かに不変となっている。
 
 \subsubsection{Feynman Kernel}
 
