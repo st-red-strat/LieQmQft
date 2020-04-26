@@ -4339,25 +4339,23 @@ $\dfrac{1}{i\hbar}
 一般にoperatorの関数$F$の定義
 (\ref{function of operator})
 はTaylor展開で与えられていたので、
+\begin{subequations}
 \begin{align}
     \dfrac{1}{i\hbar}
     [F(\{ \hat{q} \},\{ \hat{p} \}), \hat{p}_i]
     &=
-    \dfrac{
-        \partial F(\{ \hat{q} \},\{ \hat{p} \})
-    }{
-        \partial q_i
-    }
+    \dfrac{ \partial F }{ \partial q_i }
+    (\{ \hat{q} \},\{ \hat{p} \})
+\label{commutator of function with momentum}
 \\
     \dfrac{1}{i\hbar}
     [\hat{q}_j, F(\{ \hat{q} \},\{ \hat{p} \})]
     &=
-    \dfrac{
-        \partial F(\{ \hat{q} \},\{ \hat{p} \})
-    }{
-        \partial p_j
-    }
+    \dfrac{ \partial F }{ \partial p_j }
+    (\{ \hat{q} \},\{ \hat{p} \})
+\label{commutator of function with position}
 \end{align}
+\end{subequations}
 なる公式が得られる。
 
 時刻$t_0$で定義された

@@ -1765,7 +1765,59 @@ BCH formulaの特別な場合
 であることが証明できる。
 ただし最後の等式は真空条件$\hat{a}\ket{0}=0$から従う。
 
-\subsection{経路積分量子化}
+\subsubsection{荷電粒子の量子化}
+
+古典的な荷電粒子のHamiltonianを
+(\ref{point charge hamiltonian})
+で与えていた。
+このように点粒子が電磁場と相互作用している場合に粒子を量子化すると、
+そのHamiltonian operatorは
+\begin{align}
+    \hat{H}(\{\hat{x}\},\{\hat{p} - qA\})
+  +
+    U
+  +
+  \sum_m
+    q_m
+    \phi(\hat{\bm{x}}_m)
+\end{align}
+のようになる。
+ここで、$\hat{x}_i$との正準交換関係を満たすoperatorはあくまで
+Lagrangianから自然に導かれる
+正準運動量$\hat{p}_j$であり、
+力学的運動量$\hat{p}_j - (qA)_j$はもはや正準交換関係を満たさない事に注意しよう。
+特に、$\bm{A}(\hat{x})$の位置依存性から
+公式(\ref{commutator of function with momentum})
+と
+関係(\ref{field strength and magnetic field})
+を用いることで
+\begin{align}
+    [\hat{p}_i, \hat{p}_j] &= 0
+\notag\\
+\Rightarrow
+    [\hat{p}_i - (qA)_i,
+    \hat{p}_j - (qA)_j]
+&=
+    - [\hat{p}_i, (qA)_j]
+    - [(qA)_i, \hat{p}_j]
+=
+    [(qA)_j, \hat{p}_i]
+    - [(qA)_i, \hat{p}_j]
+\notag\\&
+=
+    i \hbar
+    \left[
+        \dfrac{ \partial (qA)_j}
+        {\partial q_i}
+    -
+        \dfrac{ \partial (qA)_i}
+        {\partial q_j}
+    \right]
+= i \hbar q \epsilon_{ijk} B_k
+\end{align}
+となることが分かる。
+
+\subsection{波動関数と経路積分量子化}
 
 \subsubsection{波動関数とoperatorの$\bm{x}$-表示}
 

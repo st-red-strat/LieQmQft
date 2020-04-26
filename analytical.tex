@@ -674,6 +674,7 @@ scalar potential $\phi$
   \nabla \times
   \bm{A} (t, \bm{x})
 \end{align}
+\label{relation between potential and electric or magnetic field}
 \end{subequations}
 と書け、これらの従うMaxwell方程式は
 公式
@@ -758,6 +759,32 @@ scalar potential $\phi$
 \label{maxwell eq of potentials}
 \end{subequations}
 の$2$本に集約される。
+
+potentialから再び電場や磁場を得るには
+単に(\ref{relation between potential and electric or magnetic field})
+に代入すればよいのだが、
+特に公式
+(\ref{3rd order epsilon to delta2 formula})
+に気を付けて磁場を成分で書くと
+\begin{subequations}
+\begin{align}
+  & \qquad B_i =
+  \epsilon_{ijk} \partial_j A_k
+\\
+  \partial_j A_k - \partial_k A_j
+&=
+  (\delta_{jn} \delta_{km}
+  - \delta_{kn} \delta_{jm})
+  \partial_n A_m
+=
+  \epsilon_{ijk} \epsilon_{inm}
+  \partial_n A_m
+=
+  \epsilon_{ijk} B_i
+\end{align}
+\label{field strength and magnetic field}
+\end{subequations}
+という相互関係がある事が分かる。
 
 \subsubsection{静電磁気学（electrostatics）}
 
@@ -2469,12 +2496,17 @@ $\dot{x}$には依存していないので、
 電磁場中の正準運動量は
 \begin{align}
   p'_i = p_i + (q A)_i
+\label{canonical momentum in em field}
 \end{align}
 である。
+これらを区別するために、
+正準運動量$p_i'$に対して
+$p_i$を力学的運動量と呼ぶことがある。
 電磁場を導入する前の正準運動量の定義を
 逆解きして
 $\dot{x}_i = \dot{x}_i(\{x\},\{p\},t)$のような
 関係式が得られるとすると、
+（$A$は$\dot{x}_i$に顕わに依存しない事を仮定していたので）
 $\dot{x}_i$を
 新たな正準運動量$p'_i$について逆解きした式は
 上の関係から
@@ -2553,6 +2585,7 @@ Hamiltonian
   \sum_m
     q_m
     \phi(\bm{x}_m)
+\label{point charge hamiltonian}
 \end{align}
 を得、電場はenergyを、
 磁場はmomentumをsiftする事が分かる。
