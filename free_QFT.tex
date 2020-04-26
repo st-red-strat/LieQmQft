@@ -288,7 +288,11 @@ $\Box := \eta^{\mu \sigma}
     \dfrac{\partial \mathcal{L}_{\rm real}}
         {\partial (\partial_\mu \phi)}
     =
-    - \dfrac{m^2}{2}2 \phi
+    - \dfrac{1}{2}
+    \left(
+        \dfrac{m c}{\hbar}
+    \right)^2
+    2 \phi
     -
     \partial_\mu
     \left[
@@ -304,7 +308,9 @@ $\Box := \eta^{\mu \sigma}
     \right]
 \notag\\&
     =
-    - m^2 \phi
+    - \left(
+        \dfrac{m c}{\hbar}
+    \right)^2 \phi
     +
     \partial_\mu
     \left[
@@ -317,7 +323,9 @@ $\Box := \eta^{\mu \sigma}
         }{2}
     \right]
     =
-    - m^2 \phi
+    - \left(
+        \dfrac{m c}{\hbar}
+    \right)^2 \phi
     +
     \eta^{\mu \sigma}
         \partial_\mu
@@ -325,6 +333,12 @@ $\Box := \eta^{\mu \sigma}
     \phi
 \notag\\&
     =
+    \left[\Box
+    - \left(
+        \dfrac{m c}{\hbar}
+    \right)^2
+    \right] \phi
+=
     (\Box - m^2) \phi
 \label{free real scalar eom}
 \end{align}
@@ -1411,7 +1425,7 @@ Lagrangianを定数倍しても運動方程式は変わらないので
 	- \dfrac{1}{4}
 	F_{\mu\nu} F^{\mu\nu}
 	+
-	\mu_0 \mathcal{L}_{\text{EM-int}}
+	\mu_0 j_\mu A^\mu
 \end{align}
 としても同じことであるが、
 これは$\mu_0 \to 0$の極限で電磁場がcurrentと相互作用をしなくなること、
@@ -1591,7 +1605,11 @@ $i, j = 1, \dots, d = D-1$を
             \partial_i \phi
             \partial_i \phi
         -
-        \dfrac{m^2}{2} \phi^2
+        \dfrac{1}{2}
+        \left(
+            \dfrac{m c}{\hbar}
+        \right)^2
+        \phi^2
     \right]
 \notag\\&
 =
@@ -1601,7 +1619,11 @@ $i, j = 1, \dots, d = D-1$を
             \partial_i \phi
             \partial_i \phi
     +
-        \dfrac{m^2}{2} \phi^2
+        \dfrac{1}{2}
+        \left(
+            \dfrac{m c}{\hbar}
+        \right)^2
+        \phi^2
 \end{align}
 \end{subequations}
 と得られる。
@@ -1627,12 +1649,14 @@ $i, j = 1, \dots, d = D-1$を
     -
         \partial_i^2 \phi
     +
-        m^2 \phi
+        \left(
+            \dfrac{m c}{\hbar}
+        \right)^2
+        \phi
     \right]
 =
-        \partial_i^2 \phi
-    -
-        m^2 \phi
+    \partial_i^2 \phi
+    - m^2 \phi
 \end{align}
 \end{subequations}
 となり、$\pi$を消去することで
@@ -1648,34 +1672,29 @@ Lagrangian
     \pi
 &=
     \dfrac{\partial \mathcal{L}_{\rm complex}}
-        {\partial (c \partial_0 \varphi)}
+        {\partial \partial_0 \varphi}
 =
-    - \dfrac{1}{c}
-    \partial^0 \varphi^*
+    - \partial^0 \varphi^*
 =
-    \dfrac{1}{c}
     \partial_0 \varphi^*
 \notag\\
     \overline{\pi}
 &=
     \dfrac{\partial \mathcal{L}_{\rm complex}}
-        {\partial (c \partial_0 \varphi^*)}
+        {\partial \partial_0 \varphi^*}
 =
-    - \dfrac{1}{c}
-    \partial^0 \varphi
+    - \partial^0 \varphi
 =
-    \dfrac{1}{c}
     \partial_0 \varphi
 \notag\\
     \mathcal{H}_{\rm complex}
 &=
-    \pi (c \partial_0 \varphi)
+    \pi \partial_0 \varphi
     +
-    \overline{\pi} (c \partial_0 \varphi^*)
+    \overline{\pi} \partial_0 \varphi^*
     -
     \left[
-        (c \pi)
-        (c \overline{\pi})
+        \pi \overline{\pi}
     -
         \partial_i \varphi^*
         \partial_i \varphi
@@ -1684,7 +1703,7 @@ Lagrangian
     \right]
 \notag\\&
 =
-    c^2 \overline{\pi} \pi
+        \overline{\pi} \pi
     +
         \partial_i \varphi^*
         \partial_i \varphi
