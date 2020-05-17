@@ -255,6 +255,11 @@ $3$次元直交座標系でvectorを成分表示すると、
 得られた外積はvecctorのように見えるが
 実は空間反転の下で負号を出すという意味で真のvectorではない。
 
+$3$次元空間には完全反対称tensor $\epsilon_{ijk}$が存在し、
+このためにvectorと$2$階の反対称tensorとは等価な情報を持っていた。
+(\ref{field strength and magnetic field})
+
+
 順を追って説明していこう。
 vector spaceに何らかの群$G$が作用しているとする。
 
@@ -417,8 +422,9 @@ $g^{\mu\nu}$と書くことにすると
 と定義され、
 $g_{\mu\nu}$の逆行列はCramer's rule
 \begin{align}
+    ( g^{i,j} := )
     (g^{-1})_{i,j}
-    = ( g^{i,j} = )
+=
     \dfrac{ (\Delta)_{i,j} }
     { \det(g_{\mu\nu}) }
 \end{align}

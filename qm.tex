@@ -1824,7 +1824,7 @@ Lagrangianから自然に導かれる
 \end{align}
 となることが分かる。
 
-\subsection{波動関数と経路積分量子化}
+\subsection{波動関数による量子力学}
 
 \subsubsection{波動関数とoperatorの$\bm{x}$-表示}
 
@@ -2564,7 +2564,7 @@ $\theta$を位置や時間に依存する実関数とした変換
 となって元の形に一致しない。
 
 電荷$q$の荷電粒子が$1$つある場合はどうだろうか。
-粒子が電荷を持たない場合は
+粒子が電荷を持たない場合$q=0$は
 Schr\"odinger方程式が不変ではないことを既に見たので、
 位相の形を
 $e^{i q \theta (t, \bm{x})}$
@@ -2624,8 +2624,7 @@ Schr\"odinger方程式は
 \end{align}
 となって元の形に一致するのである。
 詳しくはgauge場の理論で学ぶことになるが、
-これは電磁場が位相変換の$\mathrm{U}(1)$対称性のgauge化に伴うgauge粒子である事を
-反映している。
+これは電磁場が位相変換の$\mathrm{U}(1)$対称性のgauge化に伴うgauge粒子と解釈できる事を反映している。
 
 荷電粒子が複数ある場合に議論を一般化する時には注意が必要だ。
 $m$番目の粒子の電荷を$q_m$、
@@ -2688,6 +2687,8 @@ Schr\"odinger方程式は
     (t, \{\bm{x}\})
 \end{align}
 のように確かに不変となっている。
+
+\subsection{経路積分量子化とFeynman ruleによる摂動論}
 
 \subsubsection{Feynman Kernel}
 
@@ -6284,7 +6285,7 @@ $
 以下では、量子力学においても対称性や保存則について
 古典系に類似する記述が可能である事を見よう。
 
-\subsubsection{角運動量の代数}
+\subsubsection{$3$次元角運動量の代数}
 \label{subsubsec: angular momentum}
 
 Newton力学で角運動量
@@ -6475,10 +6476,12 @@ Newton力学で角運動量
 \end{align}
 が従う。
 (\ref{angular momentum algebra})を
-角運動量の代数（angular momentum algebra）、あるいは
+角運動量の代数（
+$\mathfrak{so}(3)$代数、
+angular momentum algebra）、あるいは
 $\mathfrak{su}(2)$代数という。
 
-\subsubsection{角運動量の代数の表現}
+\subsubsection{$3$次元角運動量の代数の表現}
 
 この代数が正定値なHilbert空間に作用しているということから
 再び非自明な条件が得られる事を見よう。
@@ -6710,8 +6713,10 @@ $\hat{\bm{L}}^2$と$\hat{L}_3$の同時固有状態$\ket{j,m}$が
         に矛盾する。
         結局、固有値$m$は（存在するならば）必ず
         $p, q \in \mathbb{N}_{\ge0}$を用い
-        $m = - j + p$かつ$ m = j - q$と書けなければならず、
-        従って$ 2j $は非負整数である必要がある。
+        $m = - j + p$かつ$ m = j - q$と書けなければならない。
+        従って$2j = (p-m) + (m+q)
+        = p+q$は非負整数であり、
+        $m$は$-j$から$j$まで$1$おきの値を取る必要がある。
     }
 \end{enumerate}
 が成り立つ。
@@ -6752,6 +6757,17 @@ $j$が整数または半整数でなければならない
 逆に整数または半整数$j$を与えれば
 $2j +1$個の固有値$m$と
 対応する固有状態が全て求まってしまうのである。
+
+この例から分かるように、ある交換関係を満たすoperatorの集合（代数（algebra）または環（ring）と呼ぶ。
+両者は厳密には異なる概念だが
+物理では特に区別しない事が多い）が与えられた時、
+これが自然に作用するvector空間を構成する事は自明ではなく、
+そのようなvector空間を代数の表現（representation）という。
+
+\subsubsection{$n$次元角運動量の代数}
+
+
+\subsection{角運動量の固有状態と球面調和関数}
 
 角運動量operator
 (\ref{angular momentum definition})
@@ -7086,7 +7102,8 @@ $
 \end{align}
 の関係があり、
 $\bm{x}$-表示の
-角運動量の大きさoperatorは
+角運動量の大きさoperator
+$\bm{L}^2$は
 球Laplacian $\Delta_{S^2}$
 (\ref{spherical Laplacian})
 に他ならないこと

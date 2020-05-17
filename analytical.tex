@@ -82,10 +82,10 @@ $x_i$だけを変化させたときに
 \begin{align}
   \bm{e}_i (r, \theta)
   &:=
-  \dfrac{ \tilde{\bm{e}}_i }
+  \dfrac{ \widetilde{\bm{e}}_i }
   { \big|\big| \tilde{\bm{e}}_i \big|\big| }
 \\
-  \tilde{\bm{e}}_i (r, \theta)
+  \widetilde{\bm{e}}_i (r, \theta)
   &:=
   \dfrac{\partial \bm{r}}{\partial x_i}
 \end{align}
@@ -770,6 +770,11 @@ potentialから再び電場や磁場を得るには
 \begin{align}
   & \qquad B_i =
   \epsilon_{ijk} \partial_j A_k
+=
+  \dfrac{1}{2}
+  \epsilon_{ijk}
+  ( \partial_j A_k
+  - \partial_k A_j )
 \\
   \partial_j A_k - \partial_k A_j
 &=
