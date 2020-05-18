@@ -437,13 +437,13 @@ $q_i = q_i(\{q'\})$
 と定めると、
 Euler-Lagrange方程式が形を変えないこと
 \begin{align}
-  0 &=
+  0 =
   \dfrac{d}{dt}\dfrac{\partial L}{\partial \dot{q}_i }
   - \dfrac{\partial L}{\partial q_i }
-\notag\\\Rightarrow
-0 &=
-\dfrac{d}{dt}\dfrac{\partial L'}{\partial \dot{q}'_i }
-- \dfrac{\partial L'}{\partial q_i' }
+\qquad \Rightarrow \qquad
+  0 =
+  \dfrac{d}{dt}\dfrac{\partial L'}{\partial \dot{q}'_i }
+  - \dfrac{\partial L'}{\partial q_i' }
 \label{point transformation}
 \end{align}
 が示される。
@@ -465,7 +465,7 @@ $n$次元調和振動子の場合Lagrangianは
   0 &=
   \dfrac{d}{dt}\dfrac{\partial L}{\partial \dot{q}_i }
   - \dfrac{\partial L}{\partial q_i }
-\notag\\&=
+=
   \dfrac{d}{dt}
   \bigg(
     m\dot{q}_i
@@ -475,7 +475,7 @@ $n$次元調和振動子の場合Lagrangianは
   -
     m\omega^2 q_i
   \bigg)
-\notag\\&=
+=
     m\ddot{q}_i
   +
     m\omega^2 q_i
@@ -796,7 +796,9 @@ potentialから再び電場や磁場を得るには
 \label{field strength and magnetic field}
 \end{subequations}
 という相互関係がある事が分かる。
-一般論は(\ref{3d hodge and axial vector})を参照のこと。
+この相互関係の一般論は(\ref{3d hodge and axial vector})を、
+$F_{ij}$については(\ref{field strength definition})
+を参照のこと。
 
 \subsubsection{静電磁気学（electrostatics）}
 
@@ -960,7 +962,6 @@ $\bm{x}'$に対する微分を$\nabla'$と書くと、
       4 \pi
       |\bm{x} - \bm{x}'|
     }
-\notag\\&
 =
   \int d^3 x'
     \dfrac{ \mu_0 }{
@@ -1198,7 +1199,7 @@ Lorentz force（ローレンツ力）
     \times
     \bm{B}
   \Big]
-\notag\\&=
+=
   q
   \Big[
     - \nabla\phi
@@ -1892,7 +1893,7 @@ Lie微分で比較するのは後者である。
     \dfrac{d}{dt}
     L
   \bigg]
-\notag\\&=
+=
   \int_{t_i}^{t_f} dt
   \dfrac{dF^a(t)}{dt}
 \end{align}
@@ -2114,11 +2115,10 @@ $\dot{q}$に依っていないこと
     \bigg)
   - \dfrac{\partial L}{\partial \dot{q}_i}
   \bigg]
-\notag\\&=
+=
     p_i
     - \dfrac{\partial L}{\partial \dot{q}_i}
-\notag\\
-  &\simeq 0
+  \simeq 0
 \end{align}
 である。
 ただし、偏微分を$\{q\},\{\dot{q}\},\{p\}$の全てを独立な変数と見做して
