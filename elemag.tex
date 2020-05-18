@@ -340,7 +340,39 @@ vector potentialと完全反対称tensorを用いた磁場の表式が存在す�
 \begin{align}
   \bm{F} = m \ddot{ \bm{x} }
 \end{align}
-という形をしていた。
+という形をしており、
+時間を反転する操作
+$t \mapsto t' := - t$のもとで
+\begin{align}
+  \bm{x}(t)
+  \mapsto \bm{x}(t')
+,\qquad
+  \dot{ \bm{x} }(t)
+  \mapsto - \dot{ \bm{x} }(t')
+,\qquad
+  \ddot{ \bm{x} }(t)
+  \mapsto \ddot{ \bm{x} }(t')
+\end{align}
+という変換則に気を付けると
+変換後も方程式は不変
+\begin{align}
+  \bm{F}(t') = m \ddot{ \bm{x} }(t')
+\end{align}
+であることが分かる。
+電磁場を含む運動方程式も同様に
+時間反転の下で不変であることが期待されるが、
+電荷$+q$の点電荷が受けるLorentz力は
+\begin{align}
+  q \Big[
+    \bm{E}
+  +
+   \dot{\bm{x}}
+    \times
+    \bm{B}
+  \Big]
+&\qquad \mapsto \qquad
+\end{align}
+のように変換するので
 
 \subsection{静電磁気学（electrostatics）とGreen関数}
 
