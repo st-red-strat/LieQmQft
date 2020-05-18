@@ -317,7 +317,8 @@ potentialから再び電場や磁場を得るには
 $F_{ij}$については(\ref{field strength definition})
 を参照のこと。
 
-\subsubsection{擬vectorとしての磁場$\bm{B}$}
+\subsubsection{擬vectorとしての磁場$\bm{B}$と
+時間反転対称性}
 
 磁場とpotentialの関係は
 (\ref{field strength and magnetic field})で表され、
@@ -328,13 +329,18 @@ $F_{ij}$については(\ref{field strength definition})
 vector potential $\bm{A}$を使って定義されている訳ではない。
 それどころか、例えば空間に無限に長いsolenoidを置いて磁場の定義域を単連結でなくした場合のように、
 物理的な問題設定によっては必ずしもPoincar\'eの補題が成り立たない場合もある。
-このように与えられた磁場に対してvector potentialが存在するとすら限らない量であるので、
+このように与えられた磁場に対してvector potentialは存在するとは限らない量であるので、
 vector potentialと完全反対称tensorを用いた磁場の表式が存在することは
 磁場が擬vectorであることの説明としては全く不十分である。
 
 ここでは、電磁場中にあってLorentz力を受ける点電荷の従うNewtonの運動方程式
 (\ref{lorentz force for charged point particle})
 を用いて磁場の空間反転の下での性質を議論してみよう。
+まず電磁場のないごく普通のNewtonの運動方程式(\ref{newton eom})は
+\begin{align}
+  \bm{F} = m \ddot{ \bm{x} }
+\end{align}
+という形をしていた。
 
 \subsection{静電磁気学（electrostatics）とGreen関数}
 
