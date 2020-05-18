@@ -768,16 +768,9 @@ potentialから再び電場や磁場を得るには
 に気を付けて磁場を成分で書くと
 \begin{subequations}
 \begin{align}
-  & \qquad B_i =
-  \epsilon_{ijk} \partial_j A_k
-=
-  \dfrac{1}{2}
-  \epsilon_{ijk}
-  ( \partial_j A_k
-  - \partial_k A_j )
-\\
+  & F_{jk} :=
   \partial_j A_k - \partial_k A_j
-&=
+=
   (\delta_{jn} \delta_{km}
   - \delta_{kn} \delta_{jm})
   \partial_n A_m
@@ -786,10 +779,24 @@ potentialから再び電場や磁場を得るには
   \partial_n A_m
 =
   \epsilon_{ijk} B_i
+\\
+  & \qquad B_i =
+  (\nabla \times A)_i =
+  \epsilon_{ijk} \partial_j A_k
+=
+  \dfrac{1}{2}
+  \epsilon_{ijk}
+  ( \partial_j A_k
+  - \partial_k A_j )
+=
+  \dfrac{1}{2}
+  \epsilon_{ijk}
+  F_{jk}
 \end{align}
 \label{field strength and magnetic field}
 \end{subequations}
 という相互関係がある事が分かる。
+一般論は(\ref{3d hodge and axial vector})を参照のこと。
 
 \subsubsection{静電磁気学（electrostatics）}
 

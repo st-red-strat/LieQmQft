@@ -132,7 +132,7 @@ Levi-Civita symbol、
 エディントンのepsilonと呼ばれる事もあるが
 Edington's epsilonと洋書に書いてあることは少ないようだ）を
 \begin{align}
-    \epsilon_{i_1,\dots,i_n} =
+    \epsilon_{i_1 \cdots i_n} =
     \begin{cases}
         + 1
         &\text{
@@ -154,9 +154,17 @@ Edington's epsilonと洋書に書いてあることは少ないようだ）を
 \label{completely antisymmetric tensor}
 \end{align}
 で定義する。
-特に$(i_1,\dots,t_n)$が$(1,\dots,n)$の置換$\sigma$であるとき、
+特に$(i_1,\dots,i_n)$が$(1,\dots,n)$の置換$\sigma$であるとき、
 明らかにこれは置換の符号
 $\mathrm{sign}(\sigma)$に一致する。
+
+等価であるが、
+$\epsilon_{1 \cdots n} = 1$
+とし、$n$個のtensor添字のいずれを奇数回入れ替えても必ず符号が出る
+ように定義しても同じtensorが得られることに気を付けよう。
+添字が$(1,2,\dots,n)$の置換であれば成分は置換の符号となるし、
+それ以外（つまり$2$つ以上の添字が同じ値を持つ時）であれば反対称性からその成分は消えてしまうからである。
+つまり完全反対称なtensorは比例定数を除いて一意である。
 
 縮約されている添え字は
 和を取るためだけに使っているdummyの添え字
@@ -246,22 +254,152 @@ $3$次元直交座標系でvectorを成分表示すると、
 \end{subequations}
 は簡単に示せる。
 
-\subsubsection{外積とAxial Vector}
+\subsubsection{不変tensor、外積とAxial Vector、$3$次元の特殊性}
 
 実は(\ref{cross product})は外積の性質ではなく、
 その定義である。
 ここで使われている$\epsilon_{ijk}$は
-非相対論的な$3$次元空間$\mathbb{R}$の回転群$SO(3)$の不変tensorであり、
+非相対論的な$3$次元空間$\mathbb{R}^3$の回転群$SO(3)$の不変tensorであり、
 得られた外積はvecctorのように見えるが
-実は空間反転の下で負号を出すという意味で真のvectorではない。
-
-$3$次元空間には完全反対称tensor $\epsilon_{ijk}$が存在し、
-このためにvectorと$2$階の反対称tensorとは等価な情報を持っていた。
-(\ref{field strength and magnetic field})
-
+実は空間反転（parity変換）の下で負号を出す
+\begin{align}
+    \bm{B} \mapsto - \bm{B}
+\quad\text{under}\quad
+    \bm{x} \mapsto - \bm{x}
+\end{align}
+という意味で真のvectorではない。
+このようにparityの下で符号を出すvectorを擬vector（pseudo vector、軸性vector、axial vector）といい、
+符号を出さない真のvector（極性vector、polar vector）と区別する。
 
 順を追って説明していこう。
-vector spaceに何らかの群$G$が作用しているとする。
+直交群$O(n)
+:= \{\forall O\ |\ 
+O \in {\rm Mat}(n, n; \mathbb{R})
+\text{ s.t. }
+O^T O = \mathbbm{1}\}$
+の元$O$の満たす定義式
+\begin{align}
+    O^T O = \mathbbm{1}
+\end{align}
+の両辺の行列式を取る事で
+\begin{align}
+    (\det O)^2
+= \det (O^T) \det O = 1
+,\qquad \therefore \quad
+    \det O = \pm 1
+\end{align}
+が導かれる。
+$O(n)$に適当な座標を導入した場合
+$\det O$はその座標の連続関数であるので、
+$\det O = 1$である元と
+$\det O = -1$である元（そのような例を作ってみよ）とは連続に繋がっていない事が分かる。
+
+さて、特殊直交群$SO(n)
+:= \{\forall O\ |\ 
+O \in O(n)
+\text{ s.t. }
+\det O = 1 \}$
+の元を$n$階の完全反対称tensor
+(\ref{completely antisymmetric tensor})
+に作用させた場合、
+\begin{align}
+    & \qquad
+    \epsilon_{i_1 i_2 \cdots i_n}
+\qquad \mapsto \qquad
+    \epsilon_{i_1 i_2 \cdots i_n}'
+:=
+    \sum_{j_1, j_2, \dots, j_n}
+    O^{j_1}{}_{i_1}
+    O^{j_2}{}_{i_2} \cdots
+    O^{j_n}{}_{i_n}
+    \epsilon_{j_1 j_2 \dots j_n}
+\\\notag
+    &
+    \therefore\quad
+    \epsilon_{1 2 \cdots n}'
+=
+    \sum_{j_1, j_2, \dots, j_n}
+    O^{j_1}{}_{1}
+    O^{j_2}{}_{2} \cdots
+    O^{j_n}{}_{n}
+    \epsilon_{j_1 j_2 \dots j_n}
+=
+    \sum_{\forall \sigma}
+    {\rm sign}( \sigma )
+    O^{\sigma(1)}{}_{1}
+    O^{\sigma(2)}{}_{2} \cdots
+    O^{\sigma(n)}{}_{n}
+= \det O = 1
+    &
+\end{align}
+及び完全反対称性から$\epsilon' = \epsilon$である
+（完全反対称なtensorは比例定数を除き一意であった事を思い出そう）。
+このように群作用の下で自分自身に戻るtensorをその群の不変tensorと呼ぶ。
+つまり$\epsilon$は$SO(n)$の不変tensorである。
+
+$3$次元空間には$3$階の完全反対称tensor $\epsilon_{ijk}$が存在し、
+このためにvectorと$2$階の反対称tensorとは等価な情報を持っていた。
+実際、$F_{ij}$を任意の$2$階反対称tensor、
+$B_i := \dfrac{1}{2}
+\epsilon_{ijk} F_{jk}$
+を対応するvectorとすると、
+(\ref{field strength and magnetic field})と全く同様に
+\begin{align}
+  F_{jk}
+= \dfrac{ F_{jk} - F_{kj} }{2}
+=
+  \dfrac{1}{2}
+  (\delta_{jn} \delta_{km}
+  - \delta_{kn} \delta_{jm})
+  F_{nm}
+=
+  \dfrac{1}{2}
+  \epsilon_{ijk} \epsilon_{inm}
+  F_{nm}
+= \epsilon_{ijk} B_i
+,\quad
+    B_i
+=
+  \dfrac{1}{2}
+  \epsilon_{ijk} F_{jk}
+\label{3d hodge and axial vector}
+\end{align}
+が成り立つため、両者は自由に行き来できる。
+
+一般の次元で同様に$2$階の反対称tensorを擬vectorにより表す事が可能か考えてみよう。
+$n$次元空間において、$2$階の反対称tensor $F_{ij}$は
+$\dfrac{(n-1)n}{2}$個の独立な成分を持つ。
+$F_{ii} = - F_{ii} = 0$より対角成分はなく、
+非対角成分のうち$i>j$のものを決めれば
+$i<j$の成分も反対称性により決まってしまうためである。
+擬vectorが$n$個の成分を持つ事は言うまでもないので、
+両者の成分数が同じになるのは
+\begin{align}
+    \dfrac{(n-1)n}{2} = n
+\quad \Rightarrow \quad
+    n = 0, 3
+\end{align}
+次元のときのみだと分かる。
+
+一般の$n$次元では、$m$個の完全反対称な添字（それぞれの添字は$1$から$n$までの値しか取れないため
+$m \le n$であることに注意）を持つtensor $F_{j_1 \cdots j_m}$を
+\begin{align}
+    B_{i_1 i_2 \cdots i_{n-m}}
+:=
+    \dfrac{1}{m!}
+    \epsilon_{i_1 i_2 \cdots i_{n-m}
+    j_{1} j_2 \cdots j_m}
+    F_{j_1 \cdots j_m}
+,\qquad
+    F_{j_1 \cdots j_m}
+=
+    \dfrac{ (-1)^{m(n-m)} }{(n-m)!}
+    \epsilon_{ j_{1} j_2 \cdots j_m
+    k_1 k_2 \cdots k_{n-m} }
+    B_{k_1 k_2 \cdots k_{n-m}}
+\end{align}
+のように$n-m$階の完全反対称tensor $B$によって表す事が出来る。
+これは更にHodge starと呼ばれる演算に拡張される。
 
 \subsubsection{行列式、余因子行列と逆行列}
 
