@@ -1,8 +1,6 @@
 \section{古典電磁気学}
 
-\subsection{Maxwell方程式と  
-  Scalar Potential、
-  Vector Potential}
+\subsection{Maxwell方程式}
 
 古典電磁気学によると、
 電荷密度$\rho$および
@@ -55,6 +53,9 @@ $\epsilon_0, \mu_0$をそれぞれ
 またはそれに加えて
 $\rho = 0, \bm{j} = \bm{0}$
 であることを指して真空という。
+
+\subsubsection{連続の式と電荷保存則}
+
 Maxwell方程式を組み合わせ、
 滑らかな関数に対して
 偏微分の順序を入れ替えてよい事
@@ -97,6 +98,10 @@ $- \nabla \cdot \bm{j}$
 the law of conservation of charge、
 連続の式（equation of continuity）とも）
 を表している。
+
+\subsubsection{Poincar\'eの補題と
+  Scalar Potential、
+  Vector Potential}
 
 Poincar\'eの補題により
 (\ref{eq:maxwell-divB})は
@@ -312,7 +317,26 @@ potentialから再び電場や磁場を得るには
 $F_{ij}$については(\ref{field strength definition})
 を参照のこと。
 
-\subsection{静電磁気学（electrostatics）}
+\subsubsection{擬vectorとしての磁場$\bm{B}$}
+
+磁場とpotentialの関係は
+(\ref{field strength and magnetic field})で表され、
+これを(\ref{3d hodge and axial vector})
+と見比べる限りでは磁場が擬vectorであることを
+自然に受け入れてしまいそうになる。
+しかし磁場$\bm{B}$はそれ自身が観測可能な物理量であって、
+vector potential $\bm{A}$を使って定義されている訳ではない。
+それどころか、例えば空間に無限に長いsolenoidを置いて磁場の定義域を単連結でなくした場合のように、
+物理的な問題設定によっては必ずしもPoincar\'eの補題が成り立たない場合もある。
+このように与えられた磁場に対してvector potentialが存在するとすら限らない量であるので、
+vector potentialと完全反対称tensorを用いた磁場の表式が存在することは
+磁場が擬vectorであることの説明としては全く不十分である。
+
+ここでは、電磁場中にあってLorentz力を受ける点電荷の従うNewtonの運動方程式
+(\ref{lorentz force for charged point particle})
+を用いて磁場の空間反転の下での性質を議論してみよう。
+
+\subsection{静電磁気学（electrostatics）とGreen関数}
 
 力学系や方程式系が時刻$t$に依存しない場合を
 静的（static、time-independent、定常とも）という。
@@ -673,4 +697,3 @@ Maxwell方程式
 \label{maxwell eq of potentials in vacuum}
 \end{subequations}
 を考えよう。
-
