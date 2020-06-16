@@ -4170,6 +4170,13 @@ $\dfrac{ 2 \pi^{3/2} \sin (kx) }{x}$
 
 \subsubsection{交換関係・反交換関係}
 
+定義$[\hat{A}, \hat{B}]
+:= \hat{A}\hat{B} - \hat{B}\hat{A}$
+(\ref{commutator definition})
+および$\{\hat{A}, \hat{B}\} :=
+\hat{A}\hat{B} + \hat{B}\hat{A}$
+(\ref{anticommutator definition})
+から容易に示される。
 証明は読者の演習問題とする。
 \begin{align}
     [\hat{A}, \hat{B}] &= - [\hat{B}, \hat{A}]
@@ -4234,33 +4241,60 @@ Baker-Campbell-Hausdrff formulaは
     \right)
 \label{BCH formula}
 \end{align}
-である
-（証明のためには
+である。
+証明のためには
 $e^{\hat{C}(t)}
 = e^{t\hat{A}} e^{t\hat{B}}$
 すなわち$\hat{C}(t) = \log (
     e^{t\hat{A}} e^{t\hat{B}}
 )$とおき、
-右辺のTaylor展開を計算した後
-$t=1$とおけばよい。
+右辺のTaylor展開を好きな次数まで計算した後
+$t=1$とおけばよい
+（類似の証明として
 \ref{proof for unitary transf formula for operator}
 も参照のこと）。
+$t$の次数とoperatorの次数は明らかに一致するので、
+次数に応じて交換子の数が増えることも明らかであろう。
 特に交換関係が$c$-数
 $[\hat{A},\hat{B}]=c$の場合は
 交換子を$2$回以上取ると必ず消えるため
 \begin{align}
-    e^{\hat{A}} e^{\hat{A}}
-    &=
+    e^{\hat{A}} e^{\hat{B}}
+&=
     \exp\left(
         \hat{A} + \hat{B}
         + \dfrac{1}{2}c
     \right)
-\label{simpler BCH formula}    
+\label{simpler BCH formula}
 \end{align}
 となる。
 
-\newpage
-\subsection{Unitary Transformation}
+\subsubsection{Trotter公式}
+
+Lie-Trotter product formula（Trotter公式）は
+上のBCH公式(\ref{BCH formula})の自明な系として
+\begin{align}
+    e^{\hat{A} + \hat{B}}
+= \lim_{M \to \infty}
+    \left(
+        e^{\hat{A}/M} e^{\hat{B}/M}
+    \right)^M
+\end{align}
+の形で与えられ、$M$をTrotter数（Trotter number）という。
+証明も上と同様に、
+$\hat{C}(t)
+= \log( e^{t\hat{A}} e^{t\hat{B}} )
+= t \log( e^{t\hat{A}} e^{t\hat{B}} )^{ 1/t }$
+で$M := \dfrac{1}{t} \to \infty$
+の極限を取ればよい。
+\ref{proof for unitary transf formula for operator}
+で見るように
+Taylor展開の各べきを比較して
+(\ref{BCH formula})が得られるのだから、
+$t \to 0$の極限でその最低次である
+交換子を持たない項のみが残るのは当然である。
+
+\subsection{Unitary Transformation of an Operator}
 
 (\ref{BCH formula})を示すのと全く同様の論法で、
 Hermitianとは限らない任意のoperator $A, B$に対して

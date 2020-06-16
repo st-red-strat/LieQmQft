@@ -166,15 +166,17 @@ Schr\"odinger方程式
 \subsubsection{正準交換関係（CCR: Canonical Commutation Relation）}
 \label{subsubsec: CCR}
 
-二つのoperator $\hat{A}, \hat{B}$の間の交換関係を
+二つのoperator $\hat{A}, \hat{B}$の間の交換関係（交換子、commutator）を
 \begin{align}
     [\hat{A}, \hat{B}] := \hat{A} \hat{B} - \hat{B} \hat{A}
+\label{commutator definition}
 \end{align}
 で定義し、$[\hat{A}, \hat{B}] = 0$であるとき
-$\hat{A}, \hat{B}$は交換する、または可換であるという。
-全く同様に反交換を
+$\hat{A}, \hat{B}$は交換する（commute）、または可換であるという。
+全く同様に反交換関係（anticommutator）を
 \begin{align}
     \{\hat{A}, \hat{B}\} := \hat{A} \hat{B} + \hat{B} \hat{A}
+\label{anticommutator definition}
 \end{align}
 で定義しておく。
 量子力学を考えるまで、
@@ -4378,7 +4380,8 @@ Wick rotation（Wick回転）という言うこともある。
 Feynman kernelが$t_f - t_i$の解析関数ならば
 Wick回転は一種の解析接続と考えることが出来るが、
 多くの場合には実時間$t$での経路積分がそもそも実行可能でないため、
-虚時間における経路積分によって実時間での量子力学が定められていると考えたほうが良い。
+経路積分は虚時間においてのみ定義され、
+その経路積分が実時間での量子力学を記述するかは別問題であると考えたほうが良い。
 
 \subsubsection{Euclidean Feynman Kernel、
     時間発展、
