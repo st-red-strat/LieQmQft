@@ -4090,7 +4090,7 @@ $の固有関数
 であるので、これで$x(t)$を展開し
 \begin{align}
     x(t)
-    =
+= \sum_{n=1}^\infty
     a_n
     \phi_n(t)
 \end{align}
@@ -4199,8 +4199,10 @@ $の固有関数
 \end{align}
 として実現できるだろう。
 ここで$\dfrac{ \partial ( x(t) ) }{ \partial (a_n) }$は
-$x(t)$から$a_n$への変数変換による
-Jacobianである。
+$x(t)$から$a_n$への変数変換によるJacobianである。
+$x(t)$が$a_n$の1次であることから
+その$a_n$微分で書ける
+$\dfrac{ \partial ( x(t) ) }{ \partial (a_n) }$は$a_n$には依存しないため、$a_n$積分の外に出すことが出来た事に注意しよう。
 さて、公式
 (\ref{infinite product of sine})
 より
