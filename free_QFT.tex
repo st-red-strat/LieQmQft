@@ -275,9 +275,10 @@ d'Alembert operator
 （ダランベール演算子、
 d'Alembertian、ダランベルシアン、
 古い文献ではd'Alemberian、ダランベーリアンとも）
-$\Box := \eta^{\mu \sigma}
+$\Box := \eta^{\mu \nu}
     \partial_\mu
-    \partial_\sigma$
+    \partial_\nu
+(= - (\partial_0)^2 + \nabla^2)$
 を用いて
 \begin{align}
     0 &=
@@ -390,6 +391,7 @@ $\Box := \eta^{\mu \sigma}
 \label{free complex scalar eom}
 \end{subequations}
 と得られる。
+この運動方程式はKlein-Gordon（クライン-ゴルドン）方程式と呼ばれている。
 
 $\eta$を
 (\ref{mostly plus minkowski metric})
@@ -1664,7 +1666,8 @@ $i, j = 1, \dots, d = D-1$を
 \end{align}
 \end{subequations}
 となり、$\pi$を消去することで
-Lagrange形式の結果
+Lagrange形式の結果すなわち
+Klein-Gordon方程式
 (\ref{free real scalar eom})を再現する。
 
 自由複素scalar場のHamiltonianも全く同様に
