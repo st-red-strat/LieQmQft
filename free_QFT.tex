@@ -176,7 +176,7 @@ $\phi(t, \bm{x}), \varphi(t, \bm{x})$を
 それぞれ実および複素scalar場とし、
 Lagrangianを
 \begin{align}
-    \mathcal{L}_{\rm real}
+    \mathcal{L}_{\text{real}}
     &:=
     -
     \dfrac{ \eta^{\rho\sigma} }{2}
@@ -190,7 +190,7 @@ Lagrangianを
     \phi^2
 \label{free real scalar lagrangian}
 \\
-    \mathcal{L}_{\rm complex}
+    \mathcal{L}_{\text{complex}}
     &:=
     -
     \eta^{\rho\sigma}
@@ -282,11 +282,11 @@ $\Box := \eta^{\mu \nu}
 を用いて
 \begin{align}
     0 &=
-    \dfrac{\partial \mathcal{L}_{\rm real}}
+    \dfrac{\partial \mathcal{L}_{\text{real}}}
         {\partial \phi}
     -
     \partial_\mu
-    \dfrac{\partial \mathcal{L}_{\rm real}}
+    \dfrac{\partial \mathcal{L}_{\text{real}}}
         {\partial (\partial_\mu \phi)}
     =
     - \dfrac{1}{2}
@@ -347,11 +347,11 @@ $\Box := \eta^{\mu \nu}
 \begin{subequations}
 \begin{align}
     0 &=
-    \dfrac{\partial \mathcal{L}_{\rm complex}}
+    \dfrac{\partial \mathcal{L}_{\text{complex}}}
         {\partial \varphi^*}
     -
     \partial_\mu
-    \dfrac{\partial \mathcal{L}_{\rm complex}}
+    \dfrac{\partial \mathcal{L}_{\text{complex}}}
         {\partial (\partial_\mu \varphi^*)}
     =
     -
@@ -378,11 +378,11 @@ $\Box := \eta^{\mu \nu}
     \varphi
 \\
     0 &=
-    \dfrac{\partial \mathcal{L}_{\rm complex}}
+    \dfrac{\partial \mathcal{L}_{\text{complex}}}
         {\partial \varphi}
     -
     \partial_\mu
-    \dfrac{\partial \mathcal{L}_{\rm complex}}
+    \dfrac{\partial \mathcal{L}_{\text{complex}}}
         {\partial (\partial_\mu \varphi)}
     =
     (\Box - m^2)
@@ -522,7 +522,7 @@ $A_\mu := \eta_{\mu\nu} A^\nu$
 同様に添え字の上げ下げを$\eta$で行う。
 自由vector場のLagrangianを
 \begin{align}
-    \mu_0 \mathcal{L}_{\rm massvec}
+    \mu_0 \mathcal{L}_{\text{massvec}}
 :=
     -
     \dfrac{1}{4}
@@ -576,11 +576,11 @@ Euler-Lagrange方程式(\ref{field EL eq})は
 	&=
 	\mu_0
 \left[
-    \dfrac{\partial \mathcal{L}_{\rm massvec}}
+    \dfrac{\partial \mathcal{L}_{\text{massvec}}}
         {\partial A_\rho}
 	-
     \partial_\sigma
-    \dfrac{\partial \mathcal{L}_{\rm massvec}}
+    \dfrac{\partial \mathcal{L}_{\text{massvec}}}
 		{\partial (\partial_\sigma A_\rho)}
 \right]
     =
@@ -1353,7 +1353,7 @@ Maxwell方程式
 と書き直せる。
 これはfree vector fieldの運動方程式
 (\ref{free massive vector field EL eq})
-で$m = 0$としたもの
+で質量を$m = 0$としたもの
 \begin{align}
     0 =
     \Box A^\mu
@@ -1366,7 +1366,7 @@ Maxwell方程式
     \bigg] A^\nu
 \end{align}
 にまとめられるので、
-真空中の電磁場はfree vector fieldに他ならないことが分かる。
+真空中の電磁場はmassless free vector fieldに他ならないことが分かる。
 
 次に真空という仮定を取り除き、
 電流や電荷がある場合
@@ -1393,7 +1393,7 @@ massless自由vector場のLagrangian
 に項を足して
 \begin{subequations}
 \begin{align}
-	\mathcal{L}_{\rm Maxwell}
+	\mathcal{L}_{\text{Maxwell}}
 &:=
 	- \dfrac{1}{4 \mu_0}
 	F_{\mu\nu} F^{\mu\nu}
@@ -1422,7 +1422,22 @@ $\bm{j} (t, \bm{x})
 であるので、今回導いた結果は
 荷電粒子のLagrangian
 (\ref{point particle lagrangian with ele-mag potential})
-で導いた電磁相互作用項の自然な一般化になっている（vector場のLagrangian密度の空間積分がLagrangianを与えることに注意せよ）。
+で導いた電磁相互作用項の自然な一般化になっている
+（vector場のLagrangian密度の空間積分がLagrangianを与えることに注意せよ）。
+すなわち、電磁場と荷電粒子の両方を含む全体系のLagrangianは
+粒子のLagrangianを
+$L_{\text{matter}}$と置いて
+\begin{align}
+    L_{\text{total}}
+:= L_{\text{matter}}
+	+ \int d^D x
+  \left[
+  	\mathcal{L}_{\text{Maxwell}}
+	+ \mathcal{L}_{\text{EM-int}}
+	\right]
+\end{align}
+で与えられる。
+
 Lagrangianの持つ次元を気にしなければ、
 Lagrangianを定数倍しても運動方程式は変わらないので
 \begin{align}
@@ -1585,7 +1600,7 @@ $i, j = 1, \dots, d = D-1$を
 \begin{align}
     \pi(t, \bm{x})
 &=
-    \dfrac{ \partial \mathcal{L}_{\rm real} }
+    \dfrac{ \partial \mathcal{L}_{\text{real}} }
         { \partial( c \partial_0 \phi) }
 =
     - \dfrac{1}{2 c}
@@ -1593,7 +1608,7 @@ $i, j = 1, \dots, d = D-1$を
 =   \dfrac{1}{c}
     \partial_0 \phi
 \\
-    \mathcal{H}_{\rm real}
+    \mathcal{H}_{\text{real}}
 &=
     \pi\ 
         c
@@ -1639,7 +1654,7 @@ $i, j = 1, \dots, d = D-1$を
     \dot{\phi}
 &=
     \dfrac{
-        \partial H_{\rm real}
+        \partial H_{\text{real}}
     }{ \partial \pi}
 =
     c^2 \pi
@@ -1648,7 +1663,7 @@ $i, j = 1, \dots, d = D-1$を
 &=
     -
     \dfrac{
-        \partial H_{\rm real}
+        \partial H_{\text{real}}
     }{ \partial \phi}
 =
     - \left[
@@ -1678,7 +1693,7 @@ Lagrangian
 \begin{align}
     \pi
 &=
-    \dfrac{\partial \mathcal{L}_{\rm complex}}
+    \dfrac{\partial \mathcal{L}_{\text{complex}}}
         {\partial \partial_0 \varphi}
 =
     - \partial^0 \varphi^*
@@ -1687,14 +1702,14 @@ Lagrangian
 \notag\\
     \overline{\pi}
 &=
-    \dfrac{\partial \mathcal{L}_{\rm complex}}
+    \dfrac{\partial \mathcal{L}_{\text{complex}}}
         {\partial \partial_0 \varphi^*}
 =
     - \partial^0 \varphi
 =
     \partial_0 \varphi
 \notag\\
-    \mathcal{H}_{\rm complex}
+    \mathcal{H}_{\text{complex}}
 &=
     \pi \partial_0 \varphi
     +
@@ -1727,7 +1742,7 @@ Lagrangian
     \dot{\varphi}
 &=
     \dfrac{
-        \partial H_{\rm complex}
+        \partial H_{\text{complex}}
     }{ \partial \pi}
 =
     \overline{\pi}
@@ -1735,7 +1750,7 @@ Lagrangian
     \dot{\varphi}^*
 &=
     \dfrac{
-        \partial H_{\rm complex}
+        \partial H_{\text{complex}}
     }{ \partial \overline{\pi}}
 =
     \pi
@@ -1744,7 +1759,7 @@ Lagrangian
 &=
     -
     \dfrac{
-        \partial H_{\rm complex}
+        \partial H_{\text{complex}}
     }{ \partial \varphi}
 =
     - \left[
@@ -1762,7 +1777,7 @@ Lagrangian
 &=
     -
     \dfrac{
-        \partial H_{\rm complex}
+        \partial H_{\text{complex}}
     }{ \partial \varphi^*}
 =
     - \left[
