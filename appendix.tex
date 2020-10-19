@@ -413,11 +413,11 @@ $D$次元正方行列$g_{\mu\nu}$の行列式（determinant）は、
 抽象的には
 $g_{\mu\nu}$を分解して出来る$D$個のvector
 \footnote{
-    うるさいことを言うと
-    vectorを太字にする流儀では
-    行列は太字の大文字で書くのが普通であるが、
-    物理では大文字小文字の使い分けにも意味がある場合が多いので、
-    行列（というか$2$階のtensor）は必ずしも大文字にも太字にもしない。
+	うるさいことを言うと
+	数学の分野でvectorを太字にする流儀では
+	行列は太字の大文字で書くのが普通であるが、
+	物理では大文字小文字の使い分けにも意味がある場合が多いので、
+	行列（というか$2$階のtensor）は必ずしも大文字にも太字にもしない。
 }
 \begin{align*}
     \bm{a}_1 :=
@@ -531,12 +531,18 @@ $i$について和を取っておらず、
 このとき$\det(A) \neq 0$であるから
 $A$には逆行列が存在する。
 
-$g$の逆行列$g^{-1}$の$(\mu,\nu)$成分を
+行列式が固有値の積になることとtraceが相似変換のもとで変わらないことからも、
+行列$g$の$i$番目の固有値を$\lambda_i$として
+$\log \det g = \log \prod_i \lambda_i
+= \sum_i \log \lambda_i
+= \tr \log g$
+が分かる。
+特に、$g$の逆行列$g^{-1}$の$(\mu,\nu)$成分を
 $g^{\mu\nu}$と書くことにすると
 \begin{align}
-    \dfrac{\partial \det(g)}{\partial g_{\mu\nu}}
-    =
-    g^{\mu\nu}
+	\dfrac{\partial \det(g)}{\partial g_{\mu\nu}}
+= \det(g) g^{\mu\nu}
+\label{determinant derivative}
 \end{align}
 が成り立つ。
 

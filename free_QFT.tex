@@ -1469,13 +1469,15 @@ Lagrangianを定数倍しても運動方程式は変わらないので
 $N$種類の場$\phi^a$（$a = 1, \dots, N$）
 で書かれたLagrangian
 $\mathcal{L}(\{ \phi \})$が与えられたとき、
-場の正準共役量（運動量と呼ばないのは、
+場の正準共役量（canonically conjugate variable。
+運動量と呼ばないのは、
 これ以外に場の理論の意味でmomentumと呼ばれるべき量、
 つまりenergy-momentum tensor (\ref{energy-momentum})があるからだ）は
 \begin{align}
-    \pi_a (t, x)
-    := \dfrac{\partial \mathcal{L}}
-        {\partial \dot{\phi}^a}
+	\pi_a (t, x)
+:= \dfrac{\partial \mathcal{L}}
+		{\partial \dot{\phi}^a}
+\label{canonical conjugate}
 \end{align}
 で定義される。
 Hamiltonianも解析力学の場合と全く同様に
@@ -1506,6 +1508,65 @@ $t$積分されていない事、
 $\phi$の$t$微分を含まない事からも明らかであるが、
 Lagrange形式(\ref{field EL eq})と異なり
 Hamilton形式では時間が露わに特別扱いされている。
+特筆すべき点として、このHamiltonianは時間に依らない：
+正準共役量の定義(\ref{canonical conjugate})、
+合成関数の微分および
+場の運動方程式(\ref{field EL eq})から、
+部分積分による表面項が消えることを仮定すると
+\begin{align}
+	\dfrac{d H(t)}{dt}
+&= \int d^dx
+	\dfrac{\partial \mathcal{H}}{\partial t}
+= \int d^dx \left[
+	\sum_a \left(
+		\dot{\pi}_a \dot{\phi}^a
+	+ \pi_a \ddot{\phi}^a
+	\right)
+		- \dfrac{\partial \mathcal{L}}{\partial t}
+	\right]
+\notag\\&
+= \sum_a \int d^dx \left[
+		\dfrac{\partial}{\partial t}
+		\dfrac{\partial \mathcal{L}}{\partial \dot{\phi}^a}
+		\dot{\phi}^a
+	+ \dfrac{\partial \mathcal{L}}{\partial \dot{\phi}^a}
+		\ddot{\phi}^a
+	- \left(
+		\dfrac{\partial \mathcal{L}}{\partial \phi^a}
+			\dot{\phi}^a
+	+ \dfrac{\partial \mathcal{L}}{\partial (\partial_\mu \phi^a)}
+		\dfrac{\partial}{\partial t}
+			(\partial_\mu \phi^a)
+	\right)
+	\right]
+\qquad(\because \text{合成関数の微分})
+\notag\\&
+= \sum_a \int d^dx \left[
+		\dfrac{\partial}{\partial t}
+		\dfrac{\partial \mathcal{L}}{\partial \dot{\phi}^a}
+		\dot{\phi}^a
+		+ \cancel{ \dfrac{\partial \mathcal{L}}{\partial \dot{\phi}^a}
+		\ddot{\phi}^a }
+		- \dfrac{\partial \mathcal{L}}{\partial \phi^a}
+			\dot{\phi}^a
+		- \cancel{ \dfrac{\partial \mathcal{L}}{\partial \dot{\phi}^a}
+			\ddot{\phi}^a }
+		+ \partial_i \dfrac{\partial \mathcal{L}}{\partial (\partial_i \phi^a)}
+			\dot{\phi}^a
+	\right]
+\notag\\&
+\qquad(\text{$\because$部分積分。$\partial_i$は空間微分、$\partial_0$は時間微分})
+\notag\\&
+= \sum_a \int d^dx \left[
+		\partial_\mu
+		\dfrac{\partial \mathcal{L}}{\partial (\partial_\mu \phi)^a}
+		- \dfrac{\partial \mathcal{L}}{\partial \phi^a}
+	\right] \dot{\phi}^a
+= 0
+\qquad(\because \text{EOM})
+\label{time independence of field hamiltonian}
+\end{align}
+と証明できる。
 
 関数$f(\bm{x})$の汎関数$F[f]$が与えられたとき、
 汎関数微分（functional derivative）を
@@ -1530,23 +1591,21 @@ F[f] = \int d^d x P(f(\bm{x}))$
 と与えられていた場合には、
 その汎関数微分は$P$の導関数$P'$を使い
 $\displaystyle
-    \dfrac{\delta F}{\delta f(\bm{x})}
-=
-    \int d^d y
-    P'( f(\bm{y}) )
-    \delta(\bm{y} - \bm{x})
-=
-    P'( f(\bm{x}) )$
+	\dfrac{\delta F}{\delta f(\bm{x})}
+= \int d^d y
+	P'( f(\bm{y}) )
+	\delta(\bm{y} - \bm{x})
+= P'( f(\bm{x}) )$
 と書ける。
 また、
 $\displaystyle
 \dfrac{\delta f(\bm{x})}
-    {\delta f(\bm{y})}
+	{\delta f(\bm{y})}
 = \lim_{\epsilon \to 0}
 \dfrac{
-    f(\bm{x})
-    + \epsilon \delta(\bm{x} - \bm{y})
-    - f(\bm{x})
+	f(\bm{x})
+	+ \epsilon \delta(\bm{x} - \bm{y})
+	- f(\bm{x})
 }{\epsilon}
 = \delta(\bm{x} - \bm{y})$
 も明らかであろう。
@@ -1559,14 +1618,14 @@ Dirac deltaの微分が
 例えば関数$g(\bm{x})$を使って
 $\displaystyle
 \bm{F}[f] = \int d^d x\ 
-    g(\bm{x}) \nabla f(\bm{x})$
+	g(\bm{x}) \nabla f(\bm{x})$
 であるならば、
 $\displaystyle
 \dfrac{ \delta \bm{F} }
-    {\delta f(\bm{x})}
+	{\delta f(\bm{x})}
 = \int d^d y\ 
 g(\bm{y}) \nabla_y
-    \delta(\bm{y} - \bm{x})
+	\delta(\bm{y} - \bm{x})
 = - \nabla g(\bm{x})$
 が成り立つ。
 
@@ -1577,17 +1636,17 @@ g(\bm{y}) \nabla_y
 $N$種類の場$\phi^a$及び
 対応する共役量$\pi_a$が存在するとき
 \begin{align}
-    \begin{cases}
-        \dot{\phi}^a (t, \bm{x}) =
-        \dfrac{\partial H (t)}
-            {\partial \pi_a (t, \bm{x})}
-      \\
-      \\
-        \dot{\pi}_a (t, \bm{x}) =
-        - \dfrac{\partial H (t)}
-            {\partial \phi^a(t, \bm{x})}
-      \end{cases}
-    \label{hamilton eom for fields}    
+\begin{cases}
+	\dot{\phi}^a (t, \bm{x}) =
+	\dfrac{\partial H (t)}
+		{\partial \pi_a (t, \bm{x})}
+\\
+\\
+	\dot{\pi}_a (t, \bm{x}) =
+- \dfrac{\partial H (t)}
+		{\partial \phi^a(t, \bm{x})}
+\end{cases}
+\label{hamilton eom for fields}
 \end{align}
 と書ける。
 Poisson括弧
@@ -1607,86 +1666,70 @@ $i, j = 1, \dots, d = D-1$を
 空間成分のみ走る添え字として
 \begin{subequations}
 \begin{align}
-    \pi(t, \bm{x})
+	\pi(t, \bm{x})
 &=
-    \dfrac{ \partial \mathcal{L}_{\text{real}} }
-        { \partial( c \partial_0 \phi) }
+	\dfrac{ \partial \mathcal{L}_{\text{real}} }
+		{ \partial( c \partial_0 \phi) }
 =
-    - \dfrac{1}{2 c}
-        2 \partial^0 \phi
+	- \dfrac{1}{2 c}
+		2 \partial^0 \phi
 =   \dfrac{1}{c}
-    \partial_0 \phi
+	\partial_0 \phi
 \\
-    \mathcal{H}_{\text{real}}
+	\mathcal{H}_{\text{real}}
 &=
-    \pi\ 
-        c
-        \partial_0 \phi
-    -
-    \mathcal{L}
-=
-    c^2 \pi^2
-    -
-    \left[
-        \dfrac{ c^2 }{2}
-            \pi^2
-        -
-        \dfrac{ 1 }{2}
-            \partial_i \phi
-            \partial_i \phi
-        -
-        \dfrac{1}{2}
-        \left(
-            \dfrac{m c}{\hbar}
-        \right)^2
-        \phi^2
-    \right]
+	\pi\ c \partial_0 \phi
+	-
+	\mathcal{L}
+= c^2 \pi^2
+	- \left[
+		\dfrac{ c^2 }{2} \pi^2
+	- \dfrac{ 1 }{2}
+			\partial_i \phi
+			\partial_i \phi
+	- \dfrac{1}{2}
+		\left(
+			\dfrac{m c}{\hbar}
+		\right)^2 \phi^2
+	\right]
 \notag\\&
-=
-    \dfrac{ c^2 }{2} \pi^2
-    +
-        \dfrac{ 1 }{2}
-            \partial_i \phi
-            \partial_i \phi
-    +
-        \dfrac{1}{2}
-        \left(
-            \dfrac{m c}{\hbar}
-        \right)^2
-        \phi^2
+= \dfrac{ c^2 }{2} \pi^2
+	+ \dfrac{ 1 }{2}
+		\partial_i \phi
+		\partial_i \phi
+	+	\dfrac{1}{2}
+		\left(
+			\dfrac{m c}{\hbar}
+		\right)^2
+		\phi^2
 \end{align}
 \end{subequations}
 と得られる。
 運動方程式は
 \begin{subequations}
 \begin{align}
-    \dot{\phi}
+	\dot{\phi}
 &=
-    \dfrac{
-        \partial H_{\text{real}}
-    }{ \partial \pi}
+	\dfrac{
+		\partial H_{\text{real}}
+	}{ \partial \pi}
 =
-    c^2 \pi
+	c^2 \pi
 \\
-    \dot{\pi}
+	\dot{\pi}
 &=
-    -
-    \dfrac{
-        \partial H_{\text{real}}
-    }{ \partial \phi}
+	- \dfrac{
+		\partial H_{\text{real}}
+	}{ \partial \phi}
 =
-    - \left[
-    -
-        \partial_i^2 \phi
-    +
-        \left(
-            \dfrac{m c}{\hbar}
-        \right)^2
-        \phi
-    \right]
-=
-    \partial_i^2 \phi
-    - m^2 \phi
+	- \left[
+	- \partial_i^2 \phi
+	+ \left(
+			\dfrac{m c}{\hbar}
+		\right)^2 \phi
+	\right]
+= \partial_i^2 \phi
+	- m^2 \phi
 \end{align}
 \end{subequations}
 となり、$\pi$を消去することで
@@ -1858,21 +1901,37 @@ $P^i := \int d^dx\ T^{0i} (x)$
 で与えられ、特に前者がHamiltonianの定義
 (\ref{field hamiltonian def})
 に一致している事は特筆に値する。
+一般論から保存電荷の時間微分は
+空間から流出するcurrentの積分に等しいが、
+Hamiltonianが時間依存しないこと
+(\ref{time independence of field hamiltonian})
+はここから来ていることが分かる。
+つまり、運動方程式が成り立ち部分積分が消えるような条件下では
+$\displaystyle
+\lim_{x \to \infty} \phi = 0$
+かつ$\displaystyle
+\lim_{x \to \infty} \partial \phi = 0$
+が成り立っていると考えられるので、
+無限遠で流出するcurrentが存在せず
+Hamiltonianは時間依存できないのである。
 
-別の定義として、計量tensor $g_{\mu\nu}$を用いて
+
+Energy-momentum tensorの別の定義として、計量tensor $g_{\mu\nu}$を用いて
 \begin{align}
   T^{\mu\nu}
-:= - \dfrac{2}{\sqrt{|g|} }
+:= \dfrac{2}{\sqrt{|g|} }
     \dfrac{\partial L_{\mathrm{matter}}}{\partial g_{\mu\nu}}
 \label{energy-momentum}
 \end{align}
-で定義される。
+がある。
 ただし、一般相対論まで行くと重力場そのものの作用も
 気にしなければならないので、
 今はLagrangianの中に重力を表すEinstein-Hilbert項を含めていないと示すため
 $L_{\mathrm{matter}}$と書いた。
 
-特殊相対論の範囲では計量は$\eta_{\mu \nu}$は単に定数であってそれによる微分は意味を為さないが、
+特殊相対論の範囲では計量$\eta_{\mu \nu}$は単に定数
+(\ref{mostly plus minkowski metric})
+であってそれによる微分は意味を為さないが、
 この場合も一旦Lagrangianに現れる$\eta$を全て$g$に置き換え、
 微分を実行した後に再び$\eta$に置き換えればよい。
 

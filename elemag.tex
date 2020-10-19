@@ -395,7 +395,8 @@ $t \mapsto t' := - t$のもとで
 であることが分かる。
 電磁場を含む運動方程式も同様に
 時間反転の下で不変であることが期待されるが、
-電荷$+q$の点電荷が受けるLorentz力は
+速度は$\dot{\bm{x}} \mapsto - \dot{\bm{x}}$のように反転することから
+電荷$+q$の点電荷が受けるLorentz力
 \begin{align}
   q \Big[
     \bm{E}
@@ -404,9 +405,23 @@ $t \mapsto t' := - t$のもとで
     \times
     \bm{B}
   \Big]
-&\qquad \mapsto \qquad
 \end{align}
-のように変換するので
+が時間反転のもとで不変となるためには
+$\bm{B} \mapsto - \bm{B}$
+のように変換しなければならない。
+このことから、Newtonの運動方程式が時間反転対称であるためには
+磁場が擬vectorであることが要求されると理解できる。
+\footnote{
+  ここではあくまでNewtonの運動方程式が時間反転対称であることを認めたうえで、
+  それを出発点に磁場の性質を議論した。
+  ここでの議論は、Lorentz力以外で我々が知る力は全て時間反転対称であるために
+  Lorentz力も時間反転対称であるとするのが自然であると言っているのみで、
+  本質的に我々の宇宙が時間反転対称でなければならないと主張しているわけではない。
+
+  我々の宇宙でも、時間反転に関連するCP対称性という対称性は破れていることが
+  中性$K$中間子の崩壊の観測から確かめられており、
+  1980年のノーベル物理学賞の受賞対象となっている。
+}
 
 \subsection{静電磁気学（electrostatics）とGreen関数}
 
@@ -637,13 +652,8 @@ Biot-Savart（ビオ・サバール）の法則
 =
   \int d^3 x'
   \bm{j} (\bm{x}') \times
-    \dfrac{
-      \mu_0
-      (\bm{x} - \bm{x}')
-    }{
-      4 \pi
-      |\bm{x} - \bm{x}'|^3
-    }
+  \dfrac{\mu_0}{4 \pi}
+  \dfrac{ \bm{x} - \bm{x}' }{ |\bm{x} - \bm{x}'|^3 }
 \end{align}
 を再現する。
 \footnote{
@@ -689,24 +699,14 @@ Biot-Savart（ビオ・サバール）の法則
     \int_{S'}
       [d \bm{S}' \cdot \bm{j} (\bm{x}')]
     d \bm{l}' \times
-      \dfrac{
-        \mu_0
-        (\bm{x} - \bm{x}')
-      }{
-        4 \pi
-        |\bm{x} - \bm{x}'|^3
-      }
-  =
+    \dfrac{\mu_0}{4 \pi}
+    \dfrac{ \bm{x} - \bm{x}' }{ |\bm{x} - \bm{x}'|^3 }
+    =
     I d \bm{l}'
     \times
-      \dfrac{
-        \mu_0
-        (\bm{x} - \bm{x}')
-      }{
-        4 \pi
-        |\bm{x} - \bm{x}'|^3
-      }
-  \end{align}
+    \dfrac{\mu_0}{4 \pi}
+    \dfrac{ \bm{x} - \bm{x}' }{ |\bm{x} - \bm{x}'|^3 }
+    \end{align}
   と書いても同じである。
 }
 
