@@ -1482,23 +1482,23 @@ Hamiltonianも解析力学の場合と全く同様に
 （もちろん時間積分は行わず）
 \begin{subequations}
 \begin{align}
-    H (t)
-    &:=
-    \int d^d x\ 
-        \mathcal{H} (t, \bm{x})
+	H (t)
+&:=
+	\int d^d x\ 
+		\mathcal{H} (t, \bm{x})
 \\
-    \mathcal{H} (t, \bm{x})
-    &:=
-    \sum_{a = 1}^N
-        \pi_a (t, \bm{x})
-        \dot{\phi}^a (t, \bm{x})
-    -
-    \mathcal{L}(t, \bm{x})
-    \bigg|_{
-        \pi(t, \bm{x})
-        = \pi[\dot{\phi}]
-    }
+	\mathcal{H} (t, \bm{x})
+&:=
+	\sum_{a = 1}^N
+		\pi_a (t, \bm{x})
+		\dot{\phi}^a (t, \bm{x})
+	- \mathcal{L}(t, \bm{x})
+	\bigg|_{
+		\pi(t, \bm{x})
+		= \pi[\dot{\phi}]
+	}
 \end{align}
+\label{field hamiltonian def}
 \end{subequations}
 と定義される。
 Hamiltonian $H$が
@@ -1807,14 +1807,62 @@ Lagrangian
 
 Noetherの定理は場の理論にも拡張できる。
 
-時空並進に対応する保存量である
-energy-momentum tensor（stress-energy tensor、stress tensor、エネルギー運動量テンソル）は
-計量tensor $g_{\mu\nu}$を用いて
+時空並進に対応する保存currentである
+energy-momentum tensor（stress-energy tensor、stress tensor、エネルギー運動量テンソル）密度は、
+系のLagrangianが位置$x$に顕わに依存せず、
+場$\phi^i(x)$とその1階微分$\partial_\mu \phi^i(x)$しか含まない場合
 \begin{align}
-    T^{\mu\nu}
-    :=
-    -
-    \dfrac{2}{\sqrt{|g|} }
+  T^{\mu}{}_{\nu} (x)
+:= \sum_i
+	\dfrac{\partial \mathcal{L}}{\partial (\partial_\mu \phi^i (x) )}
+	\partial_\nu \phi^i(x)
+- \delta^{\mu}_{\nu} \mathcal{L}
+\label{energy-momentum on flat space}
+\end{align}
+と定義される。
+添え字$\nu = 0,\dots, D-1$が$D$通りの値を走ることは、
+計$D$方向の時空方向の並進それぞれについて異なる保存currentが存在していることを意味する。
+これが添え字$\mu$について保存することは、
+Euler-Lagrange方程式(\ref{field EL eq})から
+\begin{align}
+	\partial_\mu T^{\mu \nu}
+&= \sum_i \left[
+		\partial_\mu \left(
+			\dfrac{\partial \mathcal{L}}{\partial (\partial_\mu \phi^i)}
+		\right)
+		\partial^\nu \phi^i
+	+	\dfrac{\partial \mathcal{L}}{\partial (\partial_\mu \phi^i)}
+		\partial_\mu \partial^\nu \phi^i
+	\right]
+	- \eta^{\mu \nu} \partial_\mu \mathcal{L}
+\notag\\&
+= \sum_i \left[
+		\dfrac{\partial \mathcal{L}}{\partial \phi^i}
+		\partial^\nu \phi^i
+	+	\dfrac{\partial \mathcal{L}}{\partial (\partial_\mu \phi^i )}
+		\partial^\nu \left(
+			\partial_\mu \phi^i
+		\right)
+	\right]
+	- \partial^\nu \mathcal{L} = 0
+\end{align}
+のように従う。
+最後の等号では単に合成関数の微分を用いた。
+
+これらの保存currentに対応する$D$個の保存電荷は
+もちろん時間成分の空間積分
+$H = \int d^dx\ T^{0}{}_0 (x)
+(= - \int d^dx\ T^{00} (x))$
+及び
+$P^i := \int d^dx\ T^{0i} (x)$
+で与えられ、特に前者がHamiltonianの定義
+(\ref{field hamiltonian def})
+に一致している事は特筆に値する。
+
+別の定義として、計量tensor $g_{\mu\nu}$を用いて
+\begin{align}
+  T^{\mu\nu}
+:= - \dfrac{2}{\sqrt{|g|} }
     \dfrac{\partial L_{\mathrm{matter}}}{\partial g_{\mu\nu}}
 \label{energy-momentum}
 \end{align}
@@ -1823,6 +1871,10 @@ energy-momentum tensor（stress-energy tensor、stress tensor、エネルギー�
 気にしなければならないので、
 今はLagrangianの中に重力を表すEinstein-Hilbert項を含めていないと示すため
 $L_{\mathrm{matter}}$と書いた。
+
+特殊相対論の範囲では計量は$\eta_{\mu \nu}$は単に定数であってそれによる微分は意味を為さないが、
+この場合も一旦Lagrangianに現れる$\eta$を全て$g$に置き換え、
+微分を実行した後に再び$\eta$に置き換えればよい。
 
 \subsection{場の量子化}
 
