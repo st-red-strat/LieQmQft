@@ -20,6 +20,7 @@
 
 \newcommand{\hb}{\hbar}
 \newcommand{\Bor}{\mathcal{B}}
+\newcommand{\cE}{\mathcal{E}}
 
 \theoremstyle{definition}
 \newtheorem*{sol}{解答}
@@ -34,72 +35,89 @@
 \vspace{-6zh}
 
 記号・式番号は問題ファイル \texttt{exercise\_double\_well\_resurgence.tex} のものを踏襲する
-（\texttt{xr} により本文中の \eqref{eq:coeffs} 等は問題ファイルの式番号を指す）。
+（\texttt{xr} により本文中の \eqref{eq:BW} 等は問題ファイルの式番号を指す）。
 
 \tableofcontents
 
 %======================================================================
-\section{問題 1：インスタントン作用}
+\section{問題 1：Bender--Wu 漸化式の導出}
 %======================================================================
 
 \begin{sol}
-$|x|<1$ で $V=\tfrac18(x^2-1)^2=\tfrac18(1-x^2)^2$ ゆえ
-$\sqrt{2V}=\sqrt{\tfrac14(1-x^2)^2}=\tfrac12(1-x^2)$。よって
+\textbf{(1)} $\partial_u(e^{-u^2/2}P)=e^{-u^2/2}(P'-uP)$ をもう一度微分すると
 \[
-    S_0=\int_{-1}^{1}\tfrac12(1-x^2)\,dx
-    =\tfrac12\Bigl[x-\tfrac{x^3}{3}\Bigr]_{-1}^{1}
-    =\tfrac12\Bigl[\bigl(1-\tfrac13\bigr)-\bigl(-1+\tfrac13\bigr)\Bigr]
-    =\tfrac12\Bigl(\tfrac23+\tfrac23\Bigr)=\frac23.
+    \partial_u^2(e^{-u^2/2}P)=e^{-u^2/2}\bigl(P''-uP'-P-u(P'-uP)\bigr)
+    =e^{-u^2/2}\bigl(P''-2uP'+(u^2-1)P\bigr).
 \]
-したがって $2S_0=\dfrac43$。
-（エネルギー保存 $\tfrac12\dot x^2=V$ より $\dot x=\sqrt{2V}$，
-$S_0=\int\dot x^2\,d\tau=\int\dot x\,dx=\int\sqrt{2V}\,dx$ を用いた。）
+ゆえに $\bigl(-\tfrac12\partial_u^2+\tfrac12u^2\bigr)(e^{-u^2/2}P)
+=e^{-u^2/2}\bigl(-\tfrac12P''+uP'+\tfrac12P\bigr)$。
+非調和項 $\bigl(\tfrac12\epsilon u^3+\tfrac18\epsilon^2u^4\bigr)$ を加え，
+$\frac{H}{\hb}\psi=\cE\psi$ の両辺を $e^{-u^2/2}$ で割ると
+\[
+    -\tfrac12P''+uP'+\tfrac12P+\Bigl(\tfrac12\epsilon u^3+\tfrac18\epsilon^2u^4\Bigr)P=\cE P,
+\]
+すなわち \eqref{eq:Peq}（$\tfrac12P$ を右辺に移して $\cE-\tfrac12$）。
+
+\textbf{(2)} $P=\sum_k\epsilon^kP_k$, $\cE-\tfrac12=\sum_{k\ge1}\cE_k\epsilon^k$ を入れて $\epsilon^k$ を比較する。
+左辺 $-\tfrac12P''+uP'$ は $\epsilon^k$ から $-\tfrac12P_k''+uP_k'$。
+$\tfrac12\epsilon u^3 P$ は $\epsilon^k$ から $\tfrac12u^3P_{k-1}$，$\tfrac18\epsilon^2u^4P$ は $\tfrac18u^4P_{k-2}$。
+右辺 $(\cE-\tfrac12)P$ は $\epsilon^k$ から $\sum_{j=1}^k\cE_jP_{k-j}$。整理して \eqref{eq:BW}：
+\[
+    -\tfrac12P_k''+uP_k'=-\tfrac12u^3P_{k-1}-\tfrac18u^4P_{k-2}+\sum_{j=1}^k\cE_jP_{k-j}.
+\]
 \end{sol}
 
 %======================================================================
-\section{問題 2：低次の摂動係数}
+\section{問題 2：低次係数の生成}
 %======================================================================
 
 \begin{sol}
-\textbf{(1) パリティ。}
-$H_0$ は偶パリティ，$V_3=\tfrac12u^3$ は奇，$V_4=\tfrac18u^4$ は偶。
-基底 $\ket0$ は偶なので，$\mathcal E$ の摂動展開で奇数個の $V_3$ を含む項は
-偶状態の期待値の中で消える。ゆえに $\mathcal E_{2k+1}=0$ で，
-$E_0=\hb\,\mathcal E(\sqrt\hb)=\hb\sum_k\mathcal E_{2k}\hb^k=\sum_n a_n\hb^n$ は $\hb$ の整級数。
-
-\par\smallskip
-\textbf{(2) 0 次。}
-$H_0=-\tfrac12\partial_u^2+\tfrac12u^2$ は $\omega=1$ の調和振動子で基底固有値 $\mathcal E_0=\tfrac12$。
-ゆえに $E_0=\hb(\tfrac12+\cdots)$ の最低次は $a_1=\tfrac12$（零点 energy）。
-
-\par\smallskip
-\textbf{(3) 1 次摂動。}
-$u=\tfrac1{\sqrt2}(a+a^\dagger)$，$\langle0|u^2|0\rangle=\tfrac12$。
-Wick より $\langle0|u^4|0\rangle=3\langle0|u^2|0\rangle^2=3\cdot\tfrac14=\tfrac34$。ゆえに
+左辺の演算子は単項式に対し
+$\bigl(-\tfrac12\partial_u^2+u\partial_u\bigr)u^m=m\,u^m-\tfrac12m(m-1)u^{m-2}$。
+したがって $P_k=\sum_m c_m u^m$ に対し，左辺の $u^m$ 係数は
+$m\,c_m-\tfrac12(m+2)(m+1)c_{m+2}$。これを右辺の $u^m$ 係数に等しいと置き，最高次から下げて解く。
+特に $u^0$ の式は $-c_2=[\text{右辺の }u^0]=\cE_k$，すなわち
 \[
-    \langle0|V_4|0\rangle=\tfrac18\langle0|u^4|0\rangle=\tfrac18\cdot\tfrac34=\frac{3}{32}.
+    \boxed{\;\cE_k=-[\,P_k\text{ の }u^2\text{ 係数}\,]\;}
 \]
+（右辺の $u^0$ 項は $\cE_kP_0=\cE_k$ のみ）。
 
-\par\smallskip
-\textbf{(4) 2 次摂動.}
-$(a+a^\dagger)^3\ket0=3\ket1+\sqrt6\ket3$ なので
-$\langle1|u^3|0\rangle=2^{-3/2}\cdot3=\tfrac{3}{2\sqrt2}$,
-$\langle3|u^3|0\rangle=2^{-3/2}\sqrt6=\tfrac{\sqrt3}{2}$。
-$V_3=\tfrac12u^3$ より
-$\langle1|V_3|0\rangle=\tfrac{3}{4\sqrt2}$,
-$\langle3|V_3|0\rangle=\tfrac{\sqrt3}{4}$。
-エネルギー分母は $\mathcal E_0-\mathcal E_m=\tfrac12-(m+\tfrac12)=-m$ ゆえ
+\textbf{(1) $k=1$.}
+右辺は $-\tfrac12u^3+\cE_1$。$P_1=au^3+bu$ とすると左辺は
+$3au^3+(b-3a)u$（$u^0$ 項なし）。比較：$u^3:3a=-\tfrac12\Rightarrow a=-\tfrac16$；
+$u^1:b-3a=0\Rightarrow b=-\tfrac12$；$u^0:0=\cE_1\Rightarrow\cE_1=0$。
+よって $P_1=-\tfrac16u^3-\tfrac12u$。
+
+\textbf{(2) $k=2$.}
+右辺 $=-\tfrac12u^3P_1-\tfrac18u^4+\cE_1P_1+\cE_2
+=\tfrac1{12}u^6+\tfrac18u^4+\cE_2$。
+$P_2=cu^6+du^4+eu^2$ の左辺は $6cu^6+(4d-15c)u^4+(2e-6d)u^2-e$。比較：
 \[
-    \sum_{m\neq0}\frac{|\langle m|V_3|0\rangle|^2}{\mathcal E_0-\mathcal E_m}
-    =\frac{(3/4\sqrt2)^2}{-1}+\frac{(\sqrt3/4)^2}{-3}
-    =-\frac{9}{32}-\frac13\cdot\frac{3}{16}
-    =-\frac{9}{32}-\frac{1}{16}=-\frac{11}{32}.
+    6c=\tfrac1{12}\Rightarrow c=\tfrac1{72};\quad
+    4d-15c=\tfrac18\Rightarrow d=\tfrac1{12};\quad
+    2e-6d=0\Rightarrow e=\tfrac14;\quad
+    u^0:\ -e=\cE_2.
 \]
+ゆえに $P_2=\tfrac1{72}u^6+\tfrac1{12}u^4+\tfrac14u^2$，$\cE_2=-\tfrac14$，すなわち $a_2=\cE_2=-\tfrac14$。
 
-\par\smallskip
-\textbf{(5)} よって $a_2=\mathcal E_2=\dfrac{3}{32}-\dfrac{11}{32}=-\dfrac{8}{32}=-\dfrac14$。
-（同じ手続き，または基底波動関数を $\psi=e^{-u^2/2}P(u)$ と置く Bender--Wu 漸化式を
-有理数演算で続ければ $a_3=-\tfrac{9}{32},\ a_4=-\tfrac{89}{128},\ a_5=-\tfrac{5013}{2048}$ が得られる。）
+\textbf{(3) $k=3,4$.}
+$k=3$：右辺 $=-\tfrac12u^3P_2-\tfrac18u^4P_1+\cE_2P_1+\cE_3$。$P_3$ は奇関数（$u^0$ 項なし）ゆえ
+$u^0$ の式は $0=\cE_3$，すなわち $\cE_3=0$。最高次から解くと
+$P_3=-\tfrac1{1296}u^9-\tfrac1{144}u^7-\tfrac1{24}u^5-\tfrac18u^3-\tfrac14u$。
+
+$k=4$：右辺 $=-\tfrac12u^3P_3-\tfrac18u^4P_2+\cE_2P_2+\cE_4$ の各冪は
+\[
+    r_{12}=\tfrac1{2592},\ r_{10}=\tfrac1{576},\ r_8=\tfrac1{96},\ r_6=\tfrac1{36},\
+    r_4=\tfrac5{48},\ r_2=-\tfrac1{16}.
+\]
+$P_4=\sum c_ju^j$ を $mc_m-\tfrac12(m+2)(m+1)c_{m+2}=r_m$ で上から解くと
+\[
+    c_{12}=\tfrac1{31104},\ c_{10}=\tfrac1{2592},\ c_8=\tfrac1{288},\ c_6=\tfrac1{48},\
+    c_4=\tfrac5{48},\ c_2=\tfrac9{32},
+\]
+最後に $u^0$ の式 $-c_2=\cE_4$ から $\cE_4=-\tfrac9{32}$，すなわち $a_3=\cE_4=-\tfrac9{32}$。
+同手続きで $a_4=\cE_6=-\tfrac{89}{128}$，$a_5=\cE_8=-\tfrac{5013}{2048}$ が得られ，
+\eqref{eq:coeffs} が漸化式から再現される。
 \end{sol}
 
 %======================================================================
@@ -115,142 +133,124 @@ $\langle3|V_3|0\rangle=\tfrac{\sqrt3}{4}$。
     \Big|\tfrac{a_5}{a_4}\Big|=\frac{5013/2048}{89/128}=\frac{5013}{1424}\approx3.520.
 \end{align*}
 
-\textbf{(1)} これらを $n=1,2,3,4$ に対しプロットすると概ね直線 $\approx0.75\,n$ に乗り
-（低次では $1/n$ 補正で予言値 $0.75n=0.75,1.5,2.25,3.0$ をやや上回る），
-$n$ とともに限りなく増大する：$|a_{n+1}/a_n|\to\infty$。
+\textbf{(1)} これらは $n$ とともに概ね直線 $\approx0.75n$ に乗り（低次では $1/n$ 補正で
+予言値 $0.75,1.5,2.25,3.0$ をやや上回る），$|a_{n+1}/a_n|\to\infty$。
 
-\textbf{(2)} ダランベールの判定法では級数 $\sum_n a_n\hb^n$ の収束半径は
-$R=\lim_{n\to\infty}|a_n/a_{n+1}|$。上の逆数は
-\[
-    \Big|\tfrac{a_1}{a_2}\Big|=2,\quad
-    \Big|\tfrac{a_2}{a_3}\Big|=\tfrac89\approx0.889,\quad
-    \Big|\tfrac{a_3}{a_4}\Big|=\tfrac{36}{89}\approx0.404,\quad
-    \Big|\tfrac{a_4}{a_5}\Big|=\tfrac{1424}{5013}\approx0.284,
-\]
-と単調に $0$ へ向かう。ゆえに $R=0$。級数は任意の $\hb>0$ で発散する漸近級数である。
+\textbf{(2)} ダランベール：$R=\lim_n|a_n/a_{n+1}|$。上の逆数 $2,\,0.889,\,0.404,\,0.284,\dots$ は
+単調に $0$ へ向かう。ゆえに $R=0$。任意の $\hb>0$ で発散する漸近級数である。
 \end{sol}
 
 %======================================================================
-\section{問題 4：大次数の漸近挙動}
+\section{問題 4：インスタントン作用}
 %======================================================================
 
 \begin{sol}
-\textbf{(1)} \eqref{eq:asymrec} を $a_{n+1}=\dfrac{n}{2S_0}a_n$ という差分方程式とみて
-$n=n_0$ から繰り返し掛けると
+$|x|<1$ で $\sqrt{2V}=\sqrt{\tfrac14(1-x^2)^2}=\tfrac12(1-x^2)$ ゆえ
+\[
+    S_0=\int_{-1}^{1}\tfrac12(1-x^2)\,dx
+    =\tfrac12\Bigl[x-\tfrac{x^3}{3}\Bigr]_{-1}^{1}
+    =\tfrac12\Bigl(\tfrac23+\tfrac23\Bigr)=\frac23,
+\]
+よって $2S_0=\tfrac43$。（$\tfrac12\dot x^2=V$ より $S_0=\int\dot x^2d\tau=\int\sqrt{2V}\,dx$。）
+\end{sol}
+
+%======================================================================
+\section{問題 5：大次数の leading order}
+%======================================================================
+
+\begin{sol}
+\textbf{(1) 階乗発散の起源。}
+\eqref{eq:BW} で $\deg P_k=3k$。各 $k$ で右辺の $-\tfrac12u^3P_{k-1}$ が最高次を $3$ 上げ，
+左辺の $\bigl(-\tfrac12\partial_u^2+u\partial_u\bigr)$ を逆に解いて高次係数を $u^2$ まで降ろすと，
+$\cE_k=-[u^2\text{ 係数}]$ が前の係数を$O(k)$ 倍しながら蓄積する。
+ゆえに $\cE_k$（したがって $a_n=\cE_{2(n-1)}$）は階乗的に増大し，
+収束半径ゼロ（問題 3）と整合する。
+
+\textbf{(2) 増大率の同定。}
+基底エネルギー級数は実数・パリティ対称なので，曖昧さを与える最低の非摂動鞍点は I--$\bar{\mathrm I}$
+（作用 $2S_0$）。大次数理論（漸化式の late-term 解析，あるいは分散関係
+$a_n\sim\frac1\pi\int_0^\infty\frac{\operatorname{Im}E_0(\hb)}{\hb^{n+1}}d\hb$ で
+$\operatorname{Im}E_0\propto e^{-2S_0/\hb}$）はこのとき
+$a_{n+1}/a_n\to n/(2S_0)$ を与える。傾き $1/(2S_0)=0.75$ は \eqref{eq:ratios} と整合する。
+
+\textbf{(3) telescoping.}
+$a_{n+1}=\tfrac{n}{2S_0}a_n$ を $n_0$ から掛け合わせると
 \[
     a_n=a_{n_0}\prod_{k=n_0}^{n-1}\frac{k}{2S_0}
-    =\frac{a_{n_0}}{(2S_0)^{\,n-n_0}}\frac{(n-1)!}{(n_0-1)!}
-    =\underbrace{\frac{a_{n_0}\,(2S_0)^{\,n_0}}{(n_0-1)!}}_{=:K}\;
-    \frac{(n-1)!}{(2S_0)^{\,n}}.
+    =\underbrace{\frac{a_{n_0}(2S_0)^{n_0}}{(n_0-1)!}}_{=:K}\frac{(n-1)!}{(2S_0)^n}
+    =K\frac{\Gamma(n)}{(2S_0)^n}.
 \]
-$(n-1)!=\Gamma(n)$ ゆえ $a_n\propto\Gamma(n)/(2S_0)^n$。
-
-\textbf{(2)} したがって
-\[
-    a_n\sim K\,\frac{\Gamma(n)}{(2S_0)^{\,n}}\qquad(n\to\infty),
-\]
-$K$ は $n$ によらない定数。Stirling より $\Gamma(n)\sim\sqrt{2\pi/n}\,(n/e)^n$ で
-階乗的に発散し，収束半径ゼロ（問題 3）と整合する。増大率を支配するスケールは
-$2S_0=4/3$，すなわち I--$\bar{\mathrm I}$ 作用である。
+ゆえに $a_n\sim K\,\Gamma(n)/(2S_0)^n$。増大率を支配するスケールは I--$\bar{\mathrm I}$ 作用
+$2S_0=4/3$ で，これは「漸化式が生む摂動級数の増大率 $=$ 非摂動鞍点の作用」という Bender--Wu 対応である。
 \end{sol}
 
 %======================================================================
-\section{問題 5：Borel 変換}
+\section{問題 6：Borel 変換}
 %======================================================================
 
 \begin{sol}
-大次数形 $a_n=K\,(n-1)!\,(2S_0)^{-n}$ では Borel 係数が
+$a_n=K(n-1)!\,(2S_0)^{-n}$ では Borel 係数 $b_n=a_n/(n-1)!=K(2S_0)^{-n}$ が公比 $1/(2S_0)$ の
+等比数列。ゆえに $|\zeta|<2S_0$ で
 \[
-    b_n=\frac{a_n}{(n-1)!}=K\,(2S_0)^{-n}
-\]
-と公比 $1/(2S_0)$ の等比数列になる。ゆえに $|\zeta|<2S_0$ で
-\[
-    \Bor[E_0](\zeta)=\sum_{n\ge1}b_n\,\zeta^{n-1}
-    =K\sum_{n\ge1}(2S_0)^{-n}\zeta^{n-1}
+    \Bor[E_0](\zeta)=\sum_{n\ge1}b_n\zeta^{n-1}
     =\frac{K}{2S_0}\sum_{n\ge1}\Bigl(\frac{\zeta}{2S_0}\Bigr)^{n-1}
-    =\frac{K}{2S_0}\cdot\frac{1}{1-\zeta/2S_0}
-    =\frac{K}{2S_0-\zeta}.
+    =\frac{K}{2S_0}\cdot\frac{1}{1-\zeta/2S_0}=\frac{K}{2S_0-\zeta}.
 \]
 最近接特異点は正実軸上の単純極 $\zeta=2S_0$。Borel 級数の収束半径は $2S_0$ で有限になり，
-階乗発散が「除算」されたことが分かる。この極が Laplace 積分路 $(0,\infty)$ 上にあるため，
-Borel 和は積分路を極の上下に避ける必要があり，その差は留数 $\propto e^{-2S_0/\hb}$ の
-虚数的曖昧さ（=I--$\bar{\mathrm I}$ 非摂動効果）を与える。
+階乗発散が「除算」された。この極が Laplace 積分路 $(0,\infty)$ 上にあるため，
+横方向に避ける和の差は留数 $\propto e^{-2S_0/\hb}$ の虚数的曖昧さ（=I--$\bar{\mathrm I}$ 非摂動効果）を与える。
 \end{sol}
 
 %======================================================================
-\section{問題 6：低次 Borel--Pad\'e}
+\section{問題 7：低次 Borel--Pad\'e}
 %======================================================================
 
 \begin{sol}
-\textbf{(1) Borel 係数。}
-$b_n=a_n/(n-1)!$ ゆえ
+\textbf{(1)} $b_n=a_n/(n-1)!$ より
+$b_1=\tfrac12,\ b_2=-\tfrac14,\ b_3=-\tfrac{9}{64},\ b_4=-\tfrac{89}{768},\ b_5=-\tfrac{5013}{49152}$。
+
+\textbf{(2) $[1/1]$.}
+$\frac{p_0+p_1\zeta}{1+q_1\zeta}=(p_0+p_1\zeta)(1-q_1\zeta+\cdots)$ を $b_1+b_2\zeta+b_3\zeta^2$ に合わせると
+$p_0=b_1$，$p_1-p_0q_1=b_2$，$-p_1q_1+p_0q_1^2=b_3$。第 3 式に第 2 式を代入して $-q_1b_2=b_3$,
+すなわち $q_1=-b_3/b_2$。極は
 \[
-    b_1=\tfrac12,\quad b_2=\tfrac{a_2}{1!}=-\tfrac14,\quad
-    b_3=\tfrac{a_3}{2!}=-\tfrac{9}{64},\quad
-    b_4=\tfrac{a_4}{3!}=-\tfrac{89}{768},\quad
-    b_5=\tfrac{a_5}{4!}=-\tfrac{5013}{49152}.
+    \zeta^\ast_{[1/1]}=-\frac1{q_1}=\frac{b_2}{b_3}=\frac{-1/4}{-9/64}=\frac{16}{9}\approx1.778.
 \]
 
-\textbf{(2) $[1/1]$ Pad\'e.}
-$\dfrac{p_0+p_1\zeta}{1+q_1\zeta}=(p_0+p_1\zeta)(1-q_1\zeta+q_1^2\zeta^2-\cdots)$ を
-$b_1+b_2\zeta+b_3\zeta^2$ に合わせる。$\zeta^0:\ p_0=b_1$,
-$\zeta^1:\ p_1-p_0q_1=b_2$, $\zeta^2:\ -p_1q_1+p_0q_1^2=b_3$。
-第 3 式に第 2 式 $p_1=b_2+p_0q_1$ を代入すると $-q_1 b_2=b_3$, すなわち $q_1=-b_3/b_2$。
-極は
-\[
-    \zeta^\ast_{[1/1]}=-\frac1{q_1}=\frac{b_2}{b_3}
-    =\frac{-1/4}{-9/64}=\frac14\cdot\frac{64}{9}=\frac{16}{9}\approx1.778.
-\]
-
-\textbf{(3) $[2/2]$ Pad\'e.}
-分母 $1+q_1\zeta+q_2\zeta^2$ は，$P=Q\cdot\Bor$ の $\zeta^3,\zeta^4$ の係数を消す条件
-\[
-    b_4+q_1 b_3+q_2 b_2=0,\qquad b_5+q_1 b_4+q_2 b_3=0
-\]
-を満たす。$b$ を代入し整理すると（第 1 式を $-64$ 倍，第 2 式を $-768$ 倍）
+\textbf{(3) $[2/2]$.}
+分母 $1+q_1\zeta+q_2\zeta^2$ は $b_4+q_1b_3+q_2b_2=0,\ b_5+q_1b_4+q_2b_3=0$ を満たす。
+代入して整理すると（第 1 式 $\times(-64)$，第 2 式 $\times(-768)$）
 \[
     9q_1+16q_2=-\frac{89}{12},\qquad 89q_1+108q_2=-\frac{5013}{64}.
 \]
-これを解くと
-\[
-    q_2=\frac{8615}{86784}\approx0.09927,\qquad
-    q_1=\frac{1}{9}\Bigl(-\frac{89}{12}-16q_2\Bigr)\approx-1.00055.
-\]
-分母 $1+q_1\zeta+q_2\zeta^2=0$ の根は
+解いて $q_2=\dfrac{8615}{86784}\approx0.09927$, $q_1=\tfrac19\bigl(-\tfrac{89}{12}-16q_2\bigr)\approx-1.00055$。
+分母 $=0$ の根は
 \[
     \zeta=\frac{-q_1\pm\sqrt{q_1^2-4q_2}}{2q_2}
-    =\frac{1.00055\pm\sqrt{1.00110-0.39708}}{0.19854}
     =\frac{1.00055\pm0.77719}{0.19854},
 \]
 すなわち $\zeta^\ast_{[2/2]}\approx1.125$（最近接）と $\approx8.95$（遠方）。
 
-\textbf{(4)} $[1/1]$ の $1.778$ と $[2/2]$ の $1.125$ は
-$2S_0=\dfrac43\approx1.333$ を上下から挟む。Pad\'e の次数を上げると最近接極は
-$\zeta=2S_0$ へ収束する（正確な $a_n$ を $n\le33$ まで使った対角 Pad\'e $[15/15]$ では
-$\zeta^\ast\approx1.3331\approx4/3$）。低次 5 項だけでも特異点を $\sim20\%$ の精度で当てられる。
+\textbf{(4)} $[1/1]$ の $1.778$ と $[2/2]$ の $1.125$ は $2S_0=\tfrac43\approx1.333$ を上下から挟む。
+Pad\'e の次数を上げると最近接極は $\zeta=2S_0$ へ収束する（正確な $a_n$ を $n\le33$ まで使った
+対角 Pad\'e $[15/15]$ では $\zeta^\ast\approx1.3331\approx4/3$）。低次 5 項でも $\sim20\%$ で当たる。
 \end{sol}
 
 %======================================================================
-\section{問題 7：ループを閉じる}
+\section{問題 8：ループを閉じる}
 %======================================================================
 
 \begin{sol}
-\textbf{(1)} Borel 平面の最近接特異点が $\zeta=\zeta^\ast$ なら，Borel 級数の収束半径は $\zeta^\ast$ で
-$b_n\sim(\zeta^\ast)^{-n}$。逆 Borel（$a_n=(n-1)!\,b_n$）に戻すと
-\[
-    a_n\sim\Gamma(n)\,(\zeta^\ast)^{-n}.
-\]
-低次 Pad\'e から当てた $\zeta^\ast\approx4/3=2S_0$ を入れると，これは問題 4 の大次数則
-\eqref{eq:large}（増大率 $1/(2S_0)=3/4$）を再現する。
-すなわち\emph{低次 5 項 $\to$ Pad\'e $\to$ 特異点 $\zeta^\ast\to$ 高次の増大率}という流れで，
-低次情報だけから高次の漸近挙動が復元された。
+\textbf{(1)} 最近接特異点が $\zeta=\zeta^\ast$ なら Borel 級数の収束半径は $\zeta^\ast$ で
+$b_n\sim(\zeta^\ast)^{-n}$，逆 Borel $a_n=(n-1)!\,b_n\sim\Gamma(n)(\zeta^\ast)^{-n}$。
+低次から当てた $\zeta^\ast\approx4/3=2S_0$ を入れると，これは問題 5 の大次数則 \eqref{eq:large}
+（増大率 $1/(2S_0)=3/4$）を再現する。すなわち\emph{低次 5 項 $\to$ Pad\'e $\to$ 特異点 $\to$ 高次の増大率}。
 
-\textbf{(2)} さらに，独立に計算したインスタントン作用 $S_0=2/3$（問題 1）の 2 倍
-$2S_0=4/3$ が，この $\zeta^\ast$ と一致する。同一の非摂動スケール $2S_0$ が
-\emph{摂動級数の大次数挙動}と\emph{インスタントン--反インスタントン作用}の両方に現れている。
-これが二重井戸量子力学における共鳴（resurgence）の核心であり，
-「摂動級数が自らの内に非摂動効果（I--$\bar{\mathrm I}$ スケール $e^{-2S_0/\hb}$）を符号化している」
-ことの具体的な現れである。
+\textbf{(2)} 独立計算のインスタントン作用 $S_0=2/3$（問題 4）の 2 倍 $2S_0=4/3$ が $\zeta^\ast$ と一致する。
+同一の非摂動スケール $2S_0$ が，漸化式が生む\emph{摂動級数の大次数挙動}と
+\emph{インスタントン--反インスタントン作用}の双方に現れている。これが二重井戸量子力学における
+共鳴（resurgence）の核心であり，摂動級数が自らの内に非摂動効果（I--$\bar{\mathrm I}$ スケール
+$e^{-2S_0/\hb}$）を符号化していることの具体的な現れである。
 \end{sol}
 
 \end{document}
