@@ -24,7 +24,7 @@
 \newtheorem{prob}{問題}
 
 \title{演習：二重井戸の摂動級数とインスタントン背景での Borel 和\\
-\large ―― Bender--Wu 漸化式から大次数挙動を導き，低次の情報で復元する ――}
+\large ―― 調和近似の基底状態からの補正が，非摂動スケールを内包する ――}
 \author{}
 \date{}
 
@@ -33,22 +33,18 @@
 \vspace{-6zh}
 
 \begin{abstract}
-1 次元二重井戸量子力学の基底エネルギーを半古典パラメータ $\hb$ で展開した
-摂動級数 $E_0(\hb)=\sum_{n\ge1}a_n\hb^n$ を題材に，
-摂動論と非摂動効果（インスタントン）の橋渡しを紙と鉛筆だけで体験する。
-まず (i) 摂動係数を生成する\textbf{Bender--Wu 漸化式}を自分で導出し，
-それを使って低次係数 $a_1,a_2,a_3$ を再現する。
-次に (ii) 同じ漸化式から，係数が階乗的に発散すること，
-その大次数（leading order）の主要形 $a_n\sim K\,\Gamma(n)(2S_0)^{-n}$ を導き，
-増大率がインスタントン作用で決まることを見る。
-ダランベールの判定法で収束半径がゼロであることを確かめ，
-Borel 変換の最近接特異点が実軸上 $\zeta=2S_0$ に立つこと，
-さらにその特異点が\textbf{低次 5 項から作る手計算可能な低次 Pad\'e 近似}だけで
-おおよそ復元できることを確かめる。
-$2S_0$ はインスタントン--反インスタントン（I--$\bar{\mathrm I}$）作用で，
-独立に計算するインスタントン作用 $S_0=2/3$ の 2 倍に一致する。
-こうして\emph{低次の摂動データが高次の漸近挙動（=非摂動スケール）を内包する}という
-共鳴（resurgence）の核心に到達する。
+1 次元二重井戸量子力学の基底エネルギーを，\textbf{片方の井戸の調和近似（無摂動）基底状態
+から出発し，非調和項による補正}として半古典パラメータ $\hb$ で展開する。
+得られる摂動級数 $E_0(\hb)=\sum_{n\ge1}a_n\hb^n$ は，もう一方の井戸やトンネル効果を
+各次では一切「知らない」にもかかわらず，その\emph{大次数挙動が非摂動スケール
+（インスタントン）を符号化している}――本演習はこの事実を紙と鉛筆だけで確かめる。
+順に，(i) 無摂動基底状態 $\psi_0\propto e^{-u^2/2}$ を丁寧に導き，
+(ii) そこからの補正を生成する\textbf{Bender--Wu 漸化式}を自分で導出して低次係数
+$a_1,a_2,a_3$ を再現し，(iii) 同じ漸化式から係数が階乗的に発散すること
+（収束半径ゼロをダランベールで確認）とその大次数の主要形 $a_n\sim K\,\Gamma(n)(2S_0)^{-n}$ を導く。
+さらに (iv) Borel 変換の最近接特異点が実軸上 $\zeta=2S_0$ に立つこと，それが\textbf{低次 5 項から作る
+手計算可能な低次 Pad\'e 近似}だけでおおよそ復元できることを見る。$2S_0$ は
+インスタントン--反インスタントン（I--$\bar{\mathrm I}$）作用で，独立に計算する $S_0=2/3$ の 2 倍に一致する。
 解答は別ファイル \texttt{exercise\_double\_well\_resurgence\_solutions.tex} にある。
 \end{abstract}
 
@@ -63,63 +59,103 @@ $2S_0$ はインスタントン--反インスタントン（I--$\bar{\mathrm I}$
 \label{eq:H}
 \end{align}
 を考える。$V$ は $x=\pm1$ に縮退した極小（$V=0$）を持つ対称二重井戸である。
-極小点 $x=1$ のまわりで $x=1+y$ とおくと $x^2-1=2y+y^2$ より
+片方の極小 $x=1$ のまわりで $x=1+y$ とおくと $x^2-1=2y+y^2$ より
 \begin{align}
     V=\frac18(2y+y^2)^2=\underbrace{\tfrac12 y^2}_{\text{調和}（\omega=1）}
-    +\underbrace{\tfrac12 y^3+\tfrac18 y^4}_{\text{非調和}},
+    +\underbrace{\tfrac12 y^3+\tfrac18 y^4}_{\text{非調和}}.
 \label{eq:Vexp}
 \end{align}
-すなわち振動数 $\omega=1$ の調和井戸に 3 次・4 次の非調和項が乗った系である。
-基底エネルギーの摂動級数 $E_0(\hb)=\sum_{n\ge1}a_n\hb^n$ の低次は
-\begin{align}
-    a_1=\tfrac12,\quad a_2=-\tfrac14,\quad a_3=-\tfrac{9}{32},\quad
-    a_4=-\tfrac{89}{128},\quad a_5=-\tfrac{5013}{2048},\quad\cdots
-\label{eq:coeffs}
-\end{align}
-である。本演習では，これらを\textbf{自分で導く漸化式から生成し}（問題 \ref{prob:bw}--\ref{prob:gen}），
-その漸化式から高次の振る舞いを取り出して（問題 \ref{prob:dalembert}--\ref{prob:asym}），
-最後に低次 5 項だけから非摂動スケールを復元する（問題 \ref{prob:borel}--\ref{prob:loop}）。
-
-%======================================================================
-\section{Bender--Wu 漸化式を導出する}
-%======================================================================
-$y=\sqrt{\hb}\,u$ と再スケールすると，\eqref{eq:H} は
+さらに $y=\sqrt{\hb}\,u$ と再スケールすると，Hamiltonian は
 \begin{align}
     \frac{H}{\hb}=\underbrace{\Bigl(-\tfrac12\partial_u^2+\tfrac12u^2\Bigr)}_{H_0}
     +\epsilon\,\tfrac12u^3+\epsilon^2\,\tfrac18u^4,
     \qquad \epsilon:=\sqrt{\hb}
 \label{eq:Hresc}
 \end{align}
-となる。固有値を $\cE:=E_0/\hb=\sum_{k\ge0}\cE_k\epsilon^k$ と展開する
-（$\cE_0=\tfrac12$）。整級数 \eqref{eq:coeffs} との対応は，$E_0=\hb\,\cE=\sum_k\cE_k\hb^{1+k/2}$ より
+となる。すなわち\textbf{無摂動部 $H_0$ は $x=1$ の井戸の調和振動子}（$\omega=1$）で，
+非調和項 $\tfrac12 u^3,\ \tfrac18 u^4$ が $\epsilon=\sqrt\hb$ を結合定数とする摂動である。
+固有値を $\cE:=E_0/\hb=\sum_{k\ge0}\cE_k\epsilon^k$ と展開する。整級数
+\begin{align}
+    E_0(\hb)=\sum_{n\ge1}a_n\hb^n,\qquad
+    a_1=\tfrac12,\ a_2=-\tfrac14,\ a_3=-\tfrac{9}{32},\
+    a_4=-\tfrac{89}{128},\ a_5=-\tfrac{5013}{2048},\ \cdots
+\label{eq:coeffs}
+\end{align}
+との対応は，$E_0=\hb\,\cE=\sum_k\cE_k\hb^{1+k/2}$ より
 \begin{align}
     a_n=\cE_{2(n-1)}\qquad(\text{奇数次 }\cE_{2k+1}\text{ はパリティから消える}).
 \label{eq:map}
 \end{align}
+本演習では，これらを\textbf{無摂動基底状態からの補正として漸化式で生成し}
+（問題 \ref{prob:vac}--\ref{prob:gen}），その漸化式から高次の振る舞いを取り出し
+（問題 \ref{prob:dalembert}--\ref{prob:asym}），最後に低次 5 項だけから非摂動スケールを復元する
+（問題 \ref{prob:borel}--\ref{prob:loop}）。
+
+%======================================================================
+\section{無摂動基底状態（調和近似の波動関数）}
+%======================================================================
+摂動展開はすべて，無摂動部 $H_0$ の基底状態を出発点とする。まずこれを丁寧に導く。
+
+\begin{prob}\label{prob:vac}
+$H_0=-\tfrac12\partial_u^2+\tfrac12u^2$（\eqref{eq:Hresc} の $\epsilon^0$ 部分）の基底状態を求める。
+\begin{enumerate}
+\item 生成・消滅演算子 $a:=\tfrac1{\sqrt2}(u+\partial_u)$, $a^\dagger:=\tfrac1{\sqrt2}(u-\partial_u)$ について
+$[a,a^\dagger]=1$ を示し，さらに
+\begin{align}
+    H_0=a^\dagger a+\tfrac12
+\end{align}
+となることを示せ（$\partial_u u=1+u\partial_u$ を用いる）。
+\item $a^\dagger a\ge0$ より基底状態は $a\psi_0=0$，すなわち $(u+\partial_u)\psi_0=0$ で特徴づけられる。
+これを解いて $\psi_0(u)\propto e^{-u^2/2}$ を得，規格化
+$\int_{-\infty}^{\infty}e^{-u^2}du=\sqrt{\pi}$ から
+\begin{align}
+    \psi_0(u)=\pi^{-1/4}\,e^{-u^2/2},\qquad H_0\psi_0=\tfrac12\psi_0
+\label{eq:vac}
+\end{align}
+を示せ。よって無摂動エネルギーは $\cE_0=\tfrac12$，次元を戻すと $E_0$ の最低次は
+$a_1\hb=\cE_0\hb=\tfrac{\hb}{2}$，すなわち調和井戸の零点エネルギー（1-loop）である。
+\item \textbf{物理的意味.}
+$\psi_0$ は $x=1$ の\emph{片方の井戸}に局在し，もう一方の井戸 $x=-1$ や両井戸間の
+トンネル効果を一切含まない。以降の摂動級数 \eqref{eq:coeffs} は，この単一井戸状態 $\psi_0$ への
+非調和項 $\tfrac12u^3,\tfrac18u^4$ による\emph{補正}を計算するものである。
+真に非摂動的なトンネル効果（インスタントン，$\propto e^{-S_0/\hb}$）は\emph{どの有限次にも現れない}。
+それにもかかわらず，本演習が示すように，この摂動級数の\emph{発散の仕方}が
+非摂動スケール $2S_0$ を内包している――この点を念頭に置け。
+\end{enumerate}
+\end{prob}
+
+%======================================================================
+\section{Bender--Wu 漸化式：基底状態への補正}
+%======================================================================
+無摂動基底状態 \eqref{eq:vac} からの補正を，係数を生成する漸化式の形に組織する。
 
 \begin{prob}\label{prob:bw}
-基底状態の波動関数を $\psi(u)=e^{-u^2/2}P(u)$，$P(u)=\sum_{k\ge0}\epsilon^k P_k(u)$（$P_0=1$）と置き，
-摂動係数を生成する Bender--Wu 漸化式を導出する。
+補正を取り込んだ基底状態を，無摂動部 $e^{-u^2/2}$ に補正因子 $P(u)$ を掛けた形
+\begin{align}
+    \psi(u)=e^{-u^2/2}P(u),\qquad
+    P(u)=\sum_{k\ge0}\epsilon^k P_k(u),\quad P_0=1
+\label{eq:ansatz}
+\end{align}
+で書く（$\epsilon^0$ 部分 $e^{-u^2/2}$ がちょうど無摂動基底状態 \eqref{eq:vac}，
+$P_{k\ge1}$ と $\cE_{k\ge1}$ が非調和項による補正）。
 \begin{enumerate}
 \item $\partial_u^2\!\bigl(e^{-u^2/2}P\bigr)=e^{-u^2/2}\bigl(P''-2uP'+(u^2-1)P\bigr)$ を示し，
-これを用いて固有値方程式 $\frac{H}{\hb}\psi=\cE\psi$ が
+固有値方程式 $\frac{H}{\hb}\psi=\cE\psi$ が
 \begin{align}
     -\tfrac12 P''+uP'+\Bigl(\tfrac12\epsilon u^3+\tfrac18\epsilon^2 u^4\Bigr)P
     =\Bigl(\cE-\tfrac12\Bigr)P
 \label{eq:Peq}
 \end{align}
-と書けることを示せ。
-\item \eqref{eq:Peq} を $\epsilon$ で展開し，$\epsilon^k$ の係数を比較して漸化式
+となることを示せ。$P=1$（無摂動）では左辺・右辺とも $0$ となり，$\cE=\tfrac12$ を再現することを確認せよ。
+\item \eqref{eq:Peq} を $\epsilon$ で展開し（$\cE-\tfrac12=\sum_{k\ge1}\cE_k\epsilon^k$），$\epsilon^k$ の比較から
 \begin{align}
     -\tfrac12 P_k''+uP_k'
     =-\tfrac12 u^3 P_{k-1}-\tfrac18 u^4 P_{k-2}+\sum_{j=1}^{k}\cE_j\,P_{k-j}
 \label{eq:BW}
 \end{align}
-を導け（$\cE-\tfrac12=\sum_{k\ge1}\cE_k\epsilon^k$ を用いる）。
-各 $k$ で右辺は既知の $P_{<k}$ から定まり，左辺の演算子
-$-\tfrac12\partial_u^2+u\partial_u$ を逆に解いて $P_k$ が，
-その際の可解条件（定数項の整合）から $\cE_k$ が定まる
-――これが\textbf{すべての $a_n$ を有理数演算で生成する漸化式}である。
+を導け。各 $k$ で右辺は既知の $P_{<k}$ から定まり，左辺の演算子 $-\tfrac12\partial_u^2+u\partial_u$ を逆に解いて
+$P_k$ が，可解条件（定数項の整合）から $\cE_k$ が定まる――これが無摂動基底状態からの補正を
+\textbf{すべての次数で生成する漸化式}である。
 \end{enumerate}
 \end{prob}
 
@@ -129,8 +165,8 @@ $-\tfrac12\partial_u^2+u\partial_u$ を逆に解いて $P_k$ が，
 
 \begin{prob}\label{prob:gen}
 正規化 $P_k(0)=0$（$k\ge1$）のもとで \eqref{eq:BW} を低次から解く。
-左辺は単項式に対し $-\tfrac12\partial_u^2+u\partial_u:\ u^m\mapsto m\,u^m-\tfrac12 m(m-1)u^{m-2}$
-と作用することに注意せよ。
+左辺は単項式に対し $\bigl(-\tfrac12\partial_u^2+u\partial_u\bigr)u^m=m\,u^m-\tfrac12 m(m-1)u^{m-2}$
+と作用する。
 \begin{enumerate}
 \item $k=1$：$P_1=au^3+bu$ と置いて \eqref{eq:BW} を解き，
 $P_1=-\tfrac16 u^3-\tfrac12 u$，$\cE_1=0$ を示せ。
@@ -146,7 +182,7 @@ $P_2=\tfrac1{72}u^6+\tfrac1{12}u^4+\tfrac14 u^2$ を求め，
     \cE_4=-\tfrac{9}{32}\qquad\Longrightarrow\qquad a_3=\cE_4=-\tfrac{9}{32}
 \end{align}
 が得られることを確かめよ（同様に $a_4=\cE_6=-\tfrac{89}{128},\ a_5=\cE_8=-\tfrac{5013}{2048}$）。
-これで \eqref{eq:coeffs} が漸化式から再現された。
+これで \eqref{eq:coeffs} が，無摂動基底状態からの補正として漸化式から再現された。
 \end{enumerate}
 \end{prob}
 
@@ -176,7 +212,8 @@ $0$ に向かうことから $R=0$，すなわち任意の $\hb>0$ で発散す�
 %======================================================================
 \section{インスタントン作用を手で求める}
 %======================================================================
-大次数の増大率を支配するスケールは，非摂動鞍点（インスタントン）の作用である。先に独立に計算しておく。
+大次数の増大率を支配するスケールは，両井戸を結ぶ非摂動鞍点（インスタントン）の作用である。
+先に独立に計算しておく。
 
 \begin{prob}\label{prob:S0}
 ユークリッド運動方程式 $\ddot x=V'(x)$ のエネルギー保存則 $\tfrac12\dot x^2=V(x)$ から，
@@ -199,10 +236,10 @@ $S_0=\int_{-\infty}^{\infty}\dot x_{\mathrm{cl}}^2\,d\tau=\int_{-1}^{1}\sqrt{2V(
 \begin{enumerate}
 \item \textbf{階乗発散の起源（漸化式から）。}
 漸化式 \eqref{eq:BW} で $P_k$ の次数は $\deg P_k=3k$ と $k$ に比例して増える。
-各次数で右辺の $-\tfrac12 u^3P_{k-1}$ 等が次数を上げ，左辺の演算子
-$u\partial_u-\tfrac12\partial_u^2$ を逆に解く際に高次の係数を低次へ送る過程で，
-$\cE_k$（$=-[P_k\text{ の }u^2\text{ 係数}]$）が次々と大きくなる。
-この機構により $a_n$ は収束半径ゼロ（問題 \ref{prob:dalembert}）に整合して階乗的に増大することを述べよ。
+各次数で右辺の $-\tfrac12 u^3P_{k-1}$ 等が次数を上げ，左辺の演算子 $u\partial_u-\tfrac12\partial_u^2$ を
+逆に解いて高次の係数を低次へ降ろす過程で，$\cE_k$（$=-[P_k\text{ の }u^2\text{ 係数}]$）が前の係数を
+$O(k)$ 倍しながら蓄積する。この機構により $a_n$ は収束半径ゼロ（問題 \ref{prob:dalembert}）と整合して
+階乗的に増大することを述べよ。
 \item \textbf{増大率の同定。}
 基底エネルギーの摂動級数は実数・パリティ対称なので，これに曖昧さを与える最低の非摂動鞍点は
 単一インスタントン $S_0$ ではなく I--$\bar{\mathrm I}$（作用 $2S_0$）である。
@@ -214,8 +251,7 @@ $\cE_k$（$=-[P_k\text{ の }u^2\text{ 係数}]$）が次々と大きくなる�
 \end{align}
 を与えることを，\eqref{eq:ratios} で得た傾き $\approx0.75$ が支持することを確認せよ。
 \item \textbf{leading order の閉じた形（telescoping）。}
-\eqref{eq:asymrec} を差分方程式 $a_{n+1}\simeq\frac{n}{2S_0}a_n$ とみなして
-$n_0$ から比を掛け合わせ，
+\eqref{eq:asymrec} を差分方程式 $a_{n+1}\simeq\frac{n}{2S_0}a_n$ とみなして $n_0$ から比を掛け合わせ，
 \begin{align}
     a_n\simeq a_{n_0}\prod_{k=n_0}^{n-1}\frac{k}{2S_0}\propto\frac{\Gamma(n)}{(2S_0)^{\,n}},
     \qquad\text{すなわち}\quad
@@ -223,7 +259,7 @@ $n_0$ から比を掛け合わせ，
 \label{eq:large}
 \end{align}
 を示せ（$K$ は $n$ によらない定数）。増大率を支配するスケールが I--$\bar{\mathrm I}$ 作用
-$2S_0=4/3$ であること（漸化式の増大率 $=$ 非摂動作用，という Bender--Wu の対応）を結論せよ。
+$2S_0=4/3$ であること（漸化式の増大率 $=$ 非摂動鞍点の作用，という Bender--Wu の対応）を結論せよ。
 \end{enumerate}
 \end{prob}
 
@@ -239,8 +275,7 @@ $2S_0=4/3$ であること（漸化式の増大率 $=$ 非摂動作用，とい�
 \label{eq:boreldef}
 \end{align}
 で定める（形式的に $\int_0^\infty e^{-\zeta/\hb}\zeta^{n-1}d\zeta=(n-1)!\,\hb^n$ で元に戻る）。
-大次数形 \eqref{eq:large} の純粋な階乗項
-$a_n=K\,\Gamma(n)(2S_0)^{-n}=K\,(n-1)!\,(2S_0)^{-n}$ を入れ，
+大次数形 \eqref{eq:large} の純粋な階乗項 $a_n=K\,\Gamma(n)(2S_0)^{-n}=K\,(n-1)!\,(2S_0)^{-n}$ を入れ，
 Borel 係数 $b_n:=a_n/(n-1)!=K\,(2S_0)^{-n}$ が等比数列になることから幾何級数の和で
 \begin{align}
     \Bor[E_0](\zeta)\;\simeq\;\sum_{n\ge1}K\,(2S_0)^{-n}\zeta^{\,n-1}=\frac{K}{2S_0-\zeta}
@@ -277,18 +312,19 @@ Pad\'e の次数を上げると最近接極は $\zeta=2S_0$ へ収束する（�
 \end{prob}
 
 %======================================================================
-\section{ループを閉じる：低次 $\Rightarrow$ 高次}
+\section{ループを閉じる：低次 $\Rightarrow$ 高次，摂動 $\Rightarrow$ 非摂動}
 %======================================================================
 
 \begin{prob}\label{prob:loop}
 \begin{enumerate}
 \item 問題 \ref{prob:pade} で\emph{低次 5 項だけ}から得た Borel 特異点 $\zeta^\ast\approx2S_0$ から，
-逆 Borel（$a_n=(n-1)!\,b_n$，$b_n\sim(\zeta^\ast)^{-n}$）により
-$a_n\sim\Gamma(n)(\zeta^\ast)^{-n}$ が従う。$\zeta^\ast\approx4/3$ を入れると，
-これは漸化式から導いた大次数則 \eqref{eq:large}（増大率 $1/(2S_0)=3/4$）を再現することを述べよ。
-\item 独立に計算したインスタントン作用 \eqref{eq:S0} の 2 倍 $2S_0=4/3$ が $\zeta^\ast$ と一致することを確認し，
-\textbf{摂動級数の低次の数項が I--$\bar{\mathrm I}$ 非摂動スケール $2S_0$ を内包し，そこから高次の漸近挙動が
-復元される}という共鳴（resurgence）の核心を述べよ。
+逆 Borel（$a_n=(n-1)!\,b_n$，$b_n\sim(\zeta^\ast)^{-n}$）により $a_n\sim\Gamma(n)(\zeta^\ast)^{-n}$ が従う。
+$\zeta^\ast\approx4/3$ を入れると，これは漸化式から導いた大次数則 \eqref{eq:large}
+（増大率 $1/(2S_0)=3/4$）を再現することを述べよ。
+\item 独立に計算したインスタントン作用 \eqref{eq:S0} の 2 倍 $2S_0=4/3$ が $\zeta^\ast$ と一致することを確認せよ。
+無摂動基底状態 \eqref{eq:vac} からの単純な補正計算（問題 \ref{prob:bw}--\ref{prob:gen}）に過ぎない摂動級数が，
+その\emph{低次の数項のうちに}，両井戸を結ぶトンネル（I--$\bar{\mathrm I}$）の非摂動スケール $2S_0$ を内包し，
+そこから高次の漸近挙動が復元される――\textbf{摂動展開から非摂動効果が拾える}という共鳴（resurgence）の核心を述べよ。
 \end{enumerate}
 \end{prob}
 
