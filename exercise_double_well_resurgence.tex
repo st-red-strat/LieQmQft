@@ -40,8 +40,9 @@
 （インスタントン）を符号化している}――本演習はこの事実を紙と鉛筆だけで確かめる。
 順に，(i) 無摂動基底状態 $\psi_0\propto e^{-u^2/2}$ を丁寧に導き，
 (ii) そこからの補正を生成する\textbf{Bender--Wu 漸化式}を自分で導出して低次係数
-$a_1,a_2,a_3$ を再現し，(iii) 同じ漸化式から係数が階乗的に発散すること
-（収束半径ゼロをダランベールで確認）とその大次数の主要形 $a_n\sim K\,\Gamma(n)(2S_0)^{-n}$ を導く。
+$a_1,a_2,a_3$ を再現し，(iii) 同じ漸化式の大次数解析から，係数の\textbf{Gevrey-1 階乗発散}
+$a_n\sim K\,\Gamma(n)(2S_0)^{-n}$ を陽に導き，その\emph{帰結として}収束半径ゼロを結論する
+（低次の数項からの外挿ではない）。
 さらに (iv) Borel 変換の最近接特異点が実軸上 $\zeta=2S_0$ に立つこと，それが\textbf{低次 5 項から作る
 手計算可能な低次 Pad\'e 近似}だけでおおよそ復元できることを見る。$2S_0$ は
 インスタントン--反インスタントン（I--$\bar{\mathrm I}$）作用で，独立に計算する $S_0=2/3$ の 2 倍に一致する。
@@ -87,9 +88,9 @@ $a_1,a_2,a_3$ を再現し，(iii) 同じ漸化式から係数が階乗的に発
 \label{eq:map}
 \end{align}
 本演習では，これらを\textbf{無摂動基底状態からの補正として漸化式で生成し}
-（問題 \ref{prob:vac}--\ref{prob:gen}），その漸化式から高次の振る舞いを取り出し
-（問題 \ref{prob:dalembert}--\ref{prob:asym}），最後に低次 5 項だけから非摂動スケールを復元する
-（問題 \ref{prob:borel}--\ref{prob:loop}）。
+（問題 \ref{prob:vac}--\ref{prob:gen}），その大次数挙動として\textbf{Gevrey-1 発散を陽に導いて
+収束半径ゼロを結論し}（問題 \ref{prob:S0}--\ref{prob:asym}），最後に低次 5 項だけから非摂動スケールを
+復元する（問題 \ref{prob:borel}--\ref{prob:loop}）。
 
 %======================================================================
 \section{無摂動基底状態（調和近似の波動関数）}
@@ -187,33 +188,10 @@ $P_2=\tfrac1{72}u^6+\tfrac1{12}u^4+\tfrac14 u^2$ を求め，
 \end{prob}
 
 %======================================================================
-\section{収束半径ゼロ：ダランベールの判定法}
-%======================================================================
-
-\begin{prob}\label{prob:dalembert}
-\eqref{eq:coeffs} から隣接比 $|a_{n+1}/a_n|$ を求めると
-\begin{align}
-    \Big|\frac{a_2}{a_1}\Big|=\frac12,\quad
-    \Big|\frac{a_3}{a_2}\Big|=\frac98=1.125,\quad
-    \Big|\frac{a_4}{a_3}\Big|=\frac{89}{36}\approx2.472,\quad
-    \Big|\frac{a_5}{a_4}\Big|=\frac{5013}{1424}\approx3.520
-\label{eq:ratios}
-\end{align}
-となることを確かめよ。
-\begin{enumerate}
-\item これらが $n$ とともに概ね線形に増大し（傾き $\approx0.75$），
-$|a_{n+1}/a_n|\to\infty$ であることを観察せよ。
-\item ダランベールの判定法では級数 $\sum_n a_n\hb^n$ の収束半径は
-$R=\lim_{n\to\infty}|a_n/a_{n+1}|$。\eqref{eq:ratios} の逆数 $2,\,0.889,\,0.404,\,0.284,\dots$ が
-$0$ に向かうことから $R=0$，すなわち任意の $\hb>0$ で発散する漸近級数であることを結論せよ。
-\end{enumerate}
-\end{prob}
-
-%======================================================================
 \section{インスタントン作用を手で求める}
 %======================================================================
 大次数の増大率を支配するスケールは，両井戸を結ぶ非摂動鞍点（インスタントン）の作用である。
-先に独立に計算しておく。
+これを独立に計算しておく。
 
 \begin{prob}\label{prob:S0}
 ユークリッド運動方程式 $\ddot x=V'(x)$ のエネルギー保存則 $\tfrac12\dot x^2=V(x)$ から，
@@ -228,38 +206,59 @@ $S_0=\int_{-\infty}^{\infty}\dot x_{\mathrm{cl}}^2\,d\tau=\int_{-1}^{1}\sqrt{2V(
 \end{prob}
 
 %======================================================================
-\section{漸化式から大次数の leading order を導く}
+\section{Bender--Wu から Gevrey-1 発散を導き，収束半径を決める}
 %======================================================================
-収束半径がゼロなので $a_n$ は階乗的に増大する。その主要形を漸化式から取り出す。
+低次の数項の比から「発散しそうだ」と\emph{外挿}するのは，高次の主張を低次から演繹する不当な推論である。
+ここでは大次数挙動 \emph{そのもの}を導き，収束半径をその\emph{帰結}として決める。
 
 \begin{prob}\label{prob:asym}
 \begin{enumerate}
-\item \textbf{階乗発散の起源（漸化式から）。}
-漸化式 \eqref{eq:BW} で $P_k$ の次数は $\deg P_k=3k$ と $k$ に比例して増える。
-各次数で右辺の $-\tfrac12 u^3P_{k-1}$ 等が次数を上げ，左辺の演算子 $u\partial_u-\tfrac12\partial_u^2$ を
-逆に解いて高次の係数を低次へ降ろす過程で，$\cE_k$（$=-[P_k\text{ の }u^2\text{ 係数}]$）が前の係数を
-$O(k)$ 倍しながら蓄積する。この機構により $a_n$ は収束半径ゼロ（問題 \ref{prob:dalembert}）と整合して
-階乗的に増大することを述べよ。
-\item \textbf{増大率の同定。}
-基底エネルギーの摂動級数は実数・パリティ対称なので，これに曖昧さを与える最低の非摂動鞍点は
-単一インスタントン $S_0$ ではなく I--$\bar{\mathrm I}$（作用 $2S_0$）である。
-大次数理論（漸化式の late-term 解析，あるいは分散関係）はこのとき隣接比の漸近線が
+\item \textbf{階乗発散の構造的起源（漸化式から）。}
+漸化式 \eqref{eq:BW} で $\deg P_k=3k$ は $k$ に比例して増え，右辺の $-\tfrac12u^3P_{k-1}$ 等が次数を上げる。
+左辺の演算子を逆に解く各段（問題 \ref{prob:gen} の $mc_m-\tfrac12(m+2)(m+1)c_{m+2}=r_m$）では，
+高次係数 $c_{m+2}$ が因子 $\tfrac{(m+2)(m+1)}{m}\sim m$ を掛けながら $u^2$ 係数へ降りてくる。
+この「次数 $\propto k$ ＋ インデックスに比例した増幅」という構造が $\cE_k=-[P_k\text{ の }u^2\text{ 係数}]$ の
+\emph{階乗的}増大を生む。発散は数値の外挿ではなく漸化式の構造の帰結であり，増大率は次の (2) で定量化する。
+\item \textbf{増大率と閉じた形（大次数解析：分散関係＋インスタントン）。}
+$E_0(\hb)$ を解析接続すると，両井戸を結ぶ I--$\bar{\mathrm I}$ インスタントンにより指数的に小さい虚部
 \begin{align}
-    \frac{a_{n+1}}{a_n}\;\xrightarrow[n\to\infty]{}\;\frac{n}{2S_0}
-    \qquad\Bigl(\text{傾き}\ \tfrac{1}{2S_0}=\tfrac34\Bigr)
-\label{eq:asymrec}
+    \operatorname{Im}E_0(\hb)\;\sim\;-\,C\,e^{-2S_0/\hb}\qquad(\hb\to0^+)
+\label{eq:ImE}
 \end{align}
-を与えることを，\eqref{eq:ratios} で得た傾き $\approx0.75$ が支持することを確認せよ。
-\item \textbf{leading order の閉じた形（telescoping）。}
-\eqref{eq:asymrec} を差分方程式 $a_{n+1}\simeq\frac{n}{2S_0}a_n$ とみなして $n_0$ から比を掛け合わせ，
+が生じる（$C$ は 1-インスタントン振幅で決まる正定数；Bender--Wu，Zinn-Justin の大次数解析）。
+摂動係数はこの虚部の分散関係
+$\displaystyle a_n=\frac1\pi\int_0^\infty\frac{\operatorname{Im}E_0(\hb)}{\hb^{\,n+1}}\,d\hb$
+で与えられる。\eqref{eq:ImE} を入れ，$t=1/\hb$ と置くと
+$\int_0^\infty\frac{e^{-2S_0/\hb}}{\hb^{n+1}}d\hb=\int_0^\infty t^{n-1}e^{-2S_0t}\,dt=\dfrac{\Gamma(n)}{(2S_0)^n}$（Gamma 積分）ゆえ
 \begin{align}
-    a_n\simeq a_{n_0}\prod_{k=n_0}^{n-1}\frac{k}{2S_0}\propto\frac{\Gamma(n)}{(2S_0)^{\,n}},
-    \qquad\text{すなわち}\quad
-    a_n\sim K\,\frac{\Gamma(n)}{(2S_0)^{\,n}}\quad(n\to\infty)
+    a_n\;\sim\;-\frac{C}{\pi}\,\frac{\Gamma(n)}{(2S_0)^{\,n}}
+    \;=\;-\frac{C}{\pi}\,\frac{(n-1)!}{(2S_0)^{\,n}}\qquad(n\to\infty)
 \label{eq:large}
 \end{align}
-を示せ（$K$ は $n$ によらない定数）。増大率を支配するスケールが I--$\bar{\mathrm I}$ 作用
-$2S_0=4/3$ であること（漸化式の増大率 $=$ 非摂動鞍点の作用，という Bender--Wu の対応）を結論せよ。
+を導け。これは\textbf{Gevrey-1 の階乗発散}（$a_n$ が $(n-1)!$ 並みに増大）の\emph{明示式}であり，
+増大率を支配するスケールが I--$\bar{\mathrm I}$ 作用 $2S_0=4/3$ であることを示す。
+（同じ閉じた形は，late-term 解析が与える漸近漸化式 $a_{n+1}/a_n\to n/(2S_0)$ を
+$a_n\simeq a_{n_0}\prod_{k=n_0}^{n-1}\frac{k}{2S_0}\propto\Gamma(n)(2S_0)^{-n}$ と telescoping しても得られる。）
+\item \textbf{系：収束半径ゼロ（ダランベール）。}
+\emph{導いた}漸近形 \eqref{eq:large} にダランベールの判定法を適用すると
+\begin{align}
+    \Big|\frac{a_{n+1}}{a_n}\Big|=\frac{\Gamma(n+1)}{\Gamma(n)}\frac1{2S_0}=\frac{n}{2S_0}\xrightarrow[n\to\infty]{}\infty,
+    \qquad
+    R=\lim_{n\to\infty}\Big|\frac{a_n}{a_{n+1}}\Big|=\lim_{n\to\infty}\frac{2S_0}{n}=0.
+\end{align}
+ゆえに収束半径 $R=0$，任意の $\hb>0$ で発散する漸近級数である。
+\emph{収束半径は導いた高次挙動の帰結であって，低次の数項からの外挿ではない}ことに注意せよ。
+\item \textbf{低次数による整合性チェック（根拠ではない）。}
+\eqref{eq:large} が予言する隣接比の漸近線は $|a_{n+1}/a_n|\simeq n/(2S_0)=0.75\,n$。\eqref{eq:coeffs} の低次 5 項から
+\begin{align}
+    \Big|\tfrac{a_2}{a_1}\Big|=0.5,\quad
+    \Big|\tfrac{a_3}{a_2}\Big|=1.125,\quad
+    \Big|\tfrac{a_4}{a_3}\Big|=\tfrac{89}{36}\approx2.472,\quad
+    \Big|\tfrac{a_5}{a_4}\Big|=\tfrac{5013}{1424}\approx3.520
+\label{eq:ratios}
+\end{align}
+を計算し，これらが予言値 $0.75,\,1.5,\,2.25,\,3.0$ に（$1/n$ 補正を伴いつつ）近づくことを確認せよ。
+これはあくまで導出 \eqref{eq:large} の\emph{整合性チェック}であり，収束半径の主張の根拠ではない。
 \end{enumerate}
 \end{prob}
 
