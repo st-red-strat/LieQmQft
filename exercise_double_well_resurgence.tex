@@ -1,0 +1,290 @@
+\documentclass[dvipdfmx, uplatex]{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{braket}
+
+\usepackage{silence}
+\WarningFilter*{hyperref}{Token not allowed in a PDF string}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+\allowdisplaybreaks[4]
+
+\usepackage[left=25truemm,top=20truemm,bottom=20truemm,right=25truemm]{geometry}
+
+\newcommand{\hb}{\hbar}
+\newcommand{\Bor}{\mathcal{B}}
+
+\theoremstyle{definition}
+\newtheorem{prob}{問題}
+
+\title{演習：二重井戸の摂動級数とインスタントン背景での Borel 和\\
+\large ―― 低次の情報だけから高次の漸近挙動を復元する ――}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-6zh}
+
+\begin{abstract}
+1 次元二重井戸量子力学の基底エネルギーを半古典パラメータ $\hb$ で展開すると，
+収束半径ゼロの漸近級数 $E_0(\hb)=\sum_{n\ge1}a_n\hb^n$ が得られる。
+本演習では，低次の数項 $a_1,\dots,a_5$ だけを手計算の出発点とし，
+(i) 級数が階乗的に発散し収束半径がゼロであることをダランベールの判定法で示し，
+(ii) 漸化式から大次数 $n$ の漸近挙動 $a_n\sim K\,\Gamma(n)(2S_0)^{-n}$ を導き，
+(iii) その Borel 変換が実軸上の特異点 $\zeta=2S_0$ を持つこと，
+(iv) しかもその特異点が，低次の係数から作った\textbf{手計算可能な低次 Pad\'e 近似}だけで
+おおよそ復元できること，を確かめる。
+$2S_0$ はインスタントン--反インスタントン（I--$\bar{\mathrm I}$）作用であり，
+インスタントンを独立に計算して得る $S_0=2/3$ と一致する。
+こうして\emph{低次の摂動データが高次の漸近挙動（=非摂動スケール）を内包している}という
+共鳴（resurgence）の核心を，紙と鉛筆だけで体験する。
+解答は別ファイル \texttt{exercise\_double\_well\_resurgence\_solutions.tex} にある。
+\end{abstract}
+
+\tableofcontents
+
+%======================================================================
+\section{設定}
+%======================================================================
+質量 $1$，Planck 定数 $\hb$ を陽に残した 1 次元 Hamiltonian
+\begin{align}
+    H=\frac{p^2}{2}+V(x),\qquad V(x)=\frac18\bigl(x^2-1\bigr)^2
+\label{eq:H}
+\end{align}
+を考える。$V$ は $x=\pm1$ に縮退した極小（$V=0$）を持つ対称二重井戸である。
+極小点 $x=1$ のまわりで $x=1+y$ とおくと $x^2-1=2y+y^2$ より
+\begin{align}
+    V=\frac18(2y+y^2)^2=\underbrace{\tfrac12 y^2}_{\text{調和}（\omega=1）}
+    +\underbrace{\tfrac12 y^3+\tfrac18 y^4}_{\text{非調和}},
+\label{eq:Vexp}
+\end{align}
+すなわち振動数 $\omega=1$ の調和井戸に 3 次・4 次の非調和項が乗った系である。
+基底エネルギーの摂動級数の低次は
+\begin{align}
+    E_0(\hb)=\frac{\hb}{2}-\frac{\hb^2}{4}-\frac{9}{32}\hb^3-\frac{89}{128}\hb^4
+    -\frac{5013}{2048}\hb^5-\cdots
+    \;=\;\sum_{n\ge1}a_n\hb^n
+\label{eq:series}
+\end{align}
+で与えられる。本演習の出発点はこの\textbf{低次 5 項}
+\begin{align}
+    a_1=\tfrac12,\quad a_2=-\tfrac14,\quad a_3=-\tfrac{9}{32},\quad
+    a_4=-\tfrac{89}{128},\quad a_5=-\tfrac{5013}{2048}
+\label{eq:coeffs}
+\end{align}
+だけである。これらがどこから来るかを問題 \ref{prob:low} で，
+そして高次の振る舞いをこの 5 項だけからどこまで復元できるかを問題
+\ref{prob:dalembert}--\ref{prob:loop} で見る。
+
+%======================================================================
+\section{インスタントン作用を手で求める}
+%======================================================================
+非摂動スケールを与えるインスタントン作用を，先に独立に計算しておく。
+
+\begin{prob}\label{prob:S0}
+ユークリッド運動方程式 $\ddot x=V'(x)$ のエネルギー保存則
+$\tfrac12\dot x^2=V(x)$ を用いると，$-1$ から $+1$ へ移る有限作用解
+（インスタントン）の作用は
+$\displaystyle S_0=\int_{-\infty}^{\infty}\dot x_{\mathrm{cl}}^2\,d\tau
+=\int_{-1}^{1}\sqrt{2V(x)}\,dx$
+と書ける。これを実行して
+\begin{align}
+    S_0=\int_{-1}^{1}\tfrac12(1-x^2)\,dx=\frac23
+\label{eq:S0}
+\end{align}
+を示せ。したがって I--$\bar{\mathrm I}$（2 インスタントン）作用は $2S_0=\dfrac43$ である。
+\end{prob}
+
+%======================================================================
+\section{低次の摂動係数を手で求める}
+%======================================================================
+\eqref{eq:coeffs} の最初の 2 項を Rayleigh--Schr\"odinger 摂動論で再現する。
+$y=\sqrt{\hb}\,u$ と再スケールすると
+\begin{align}
+    \frac{H}{\hb}=\underbrace{\Bigl(-\tfrac12\partial_u^2+\tfrac12u^2\Bigr)}_{H_0}
+    +\epsilon\,\underbrace{\tfrac12u^3}_{V_3}
+    +\epsilon^2\,\underbrace{\tfrac18u^4}_{V_4},
+    \qquad \epsilon:=\sqrt{\hb},
+\label{eq:Hresc}
+\end{align}
+すなわち $\epsilon$ を結合定数とする非調和振動子に帰着する。
+固有値を $\mathcal E(\epsilon)=E_0/\hb=\sum_k\mathcal E_k\epsilon^k$ と展開する。
+
+\begin{prob}\label{prob:low}
+\begin{enumerate}
+\item パリティ（$u\to-u$）から奇数次 $\mathcal E_{2k+1}$ が消えること，
+したがって $E_0$ が $\hb$ の整級数（半整数冪を含まない）になることを述べよ。
+\item 0 次は調和井戸の基底状態 $\mathcal E_0=\tfrac12$ ゆえ $a_1=\tfrac12$（零点 energy）であることを示せ。
+\item $\omega=1$ の調和振動子の生成・消滅演算子で $u=\tfrac1{\sqrt2}(a+a^\dagger)$ と書ける。
+1 次摂動 $\langle0|V_4|0\rangle$ を計算し $\dfrac{3}{32}$ となることを示せ
+（$\langle0|u^4|0\rangle=3\langle0|u^2|0\rangle^2=\tfrac34$ を使う）。
+\item 2 次摂動 $\displaystyle\sum_{m\neq0}\frac{|\langle m|V_3|0\rangle|^2}{\mathcal E_0-\mathcal E_m}$ を計算せよ。
+$V_3$ は $\ket0$ を $\ket1,\ket3$ にのみ繋ぐこと，エネルギー分母が $\mathcal E_0-\mathcal E_m=-m$ であることを使い，
+値が $-\dfrac{11}{32}$ となることを示せ。
+\item 以上より $a_2=\mathcal E_2=\dfrac{3}{32}-\dfrac{11}{32}=-\dfrac14$ を確かめよ。
+（より高次は同じ手続き（または Bender--Wu 漸化式）を機械的に続ければ
+\eqref{eq:coeffs} の $a_3,a_4,a_5$ が有理数として得られる。本演習ではこれらは所与とする。）
+\end{enumerate}
+\end{prob}
+
+%======================================================================
+\section{収束半径ゼロ：ダランベールの判定法}
+%======================================================================
+
+\begin{prob}\label{prob:dalembert}
+\eqref{eq:coeffs} から隣接比 $|a_{n+1}/a_n|$ を求めると
+\begin{align}
+    \Big|\frac{a_2}{a_1}\Big|=\frac12,\quad
+    \Big|\frac{a_3}{a_2}\Big|=\frac98=1.125,\quad
+    \Big|\frac{a_4}{a_3}\Big|=\frac{89}{36}\approx2.472,\quad
+    \Big|\frac{a_5}{a_4}\Big|=\frac{5013}{1424}\approx3.520
+\label{eq:ratios}
+\end{align}
+となることを確かめよ。
+\begin{enumerate}
+\item これらが $n$ とともに概ね線形に増大し（傾き $\approx0.75$），
+$|a_{n+1}/a_n|\to\infty$ であることを観察せよ。
+\item ベキ級数 $\sum_n a_n\hb^n$ の収束半径はダランベールの判定法で
+$R=\lim_{n\to\infty}\bigl|a_n/a_{n+1}\bigr|$ で与えられる。
+\eqref{eq:ratios} の逆数 $2,\,0.889,\,0.404,\,0.284,\dots$ が $0$ に向かうことから
+$R=0$，すなわち級数は任意の $\hb>0$ で発散する漸近級数であることを結論せよ。
+\end{enumerate}
+\end{prob}
+
+%======================================================================
+\section{漸化式から大次数の漸近挙動を導く}
+%======================================================================
+収束半径がゼロなので $a_n$ は階乗的に増大する。その増大則を，隣接比の極限から決める。
+基底エネルギーの摂動級数は実数・パリティ対称なので，これに虚数的曖昧さを与える最低の
+非摂動鞍点は単一インスタントン $S_0$ ではなく I--$\bar{\mathrm I}$（作用 $2S_0$）である。
+大次数理論（分散関係）はこのとき隣接比の漸近線が
+\begin{align}
+    \frac{a_{n+1}}{a_n}\;\xrightarrow[n\to\infty]{}\;\frac{n}{2S_0}
+    \qquad\Bigl(\text{傾き}\ \frac{1}{2S_0}=\frac34\Bigr)
+\label{eq:asymrec}
+\end{align}
+となることを与える。\eqref{eq:ratios} の傾き $\approx0.75$ はまさにこれを支持している。
+
+\begin{prob}\label{prob:asym}
+漸近的な漸化式 \eqref{eq:asymrec} を差分方程式とみなして解く。
+\begin{enumerate}
+\item ある大きな $n_0$ から出発して比を掛け合わせる（telescoping）と
+\begin{align}
+    a_n\;\simeq\;a_{n_0}\prod_{k=n_0}^{n-1}\frac{k}{2S_0}
+    \;\propto\;\frac{\Gamma(n)}{(2S_0)^{\,n}}
+\end{align}
+となることを示せ。
+\item したがって大次数の主要形が
+\begin{align}
+    a_n\;\sim\;K\,\frac{\Gamma(n)}{(2S_0)^{\,n}}
+    \qquad(n\to\infty)
+\label{eq:large}
+\end{align}
+（$K$ は $n$ によらない定数）であることを結論せよ。これは Gevrey-1 の階乗発散であり，
+増大率を支配するスケールが I--$\bar{\mathrm I}$ 作用 $2S_0=4/3$ であることを示している。
+\end{enumerate}
+\end{prob}
+
+%======================================================================
+\section{Borel 変換：漸近項は実軸上の極を与える}
+%======================================================================
+階乗発散を「除算」して有限収束半径の級数に変換するのが Borel 変換である。
+
+\begin{prob}\label{prob:borel}
+摂動級数 \eqref{eq:series} の Borel 変換を
+\begin{align}
+    \Bor[E_0](\zeta):=\sum_{n\ge1}\frac{a_n}{\Gamma(n)}\,\zeta^{\,n-1}
+    =\sum_{n\ge1}\frac{a_n}{(n-1)!}\,\zeta^{\,n-1}
+\label{eq:boreldef}
+\end{align}
+で定める（形式的に $\int_0^\infty e^{-\zeta/\hb}\zeta^{n-1}d\zeta=(n-1)!\,\hb^n$ を代入すると
+元の級数に戻る）。大次数形 \eqref{eq:large} の純粋な階乗項
+$a_n=K\,\Gamma(n)(2S_0)^{-n}=K\,(n-1)!\,(2S_0)^{-n}$ を \eqref{eq:boreldef} に入れ，
+Borel 係数 $b_n:=a_n/(n-1)!=K\,(2S_0)^{-n}$ が等比数列になることを使って，幾何級数の和から
+\begin{align}
+    \Bor[E_0](\zeta)\;\simeq\;\sum_{n\ge1}K\,(2S_0)^{-n}\zeta^{\,n-1}
+    =\frac{K}{2S_0-\zeta}
+\label{eq:borelpole}
+\end{align}
+を示せ。すなわち\textbf{階乗発散は，Borel 平面の正実軸上 $\zeta=2S_0$ の単純極に翻訳される}。
+（真の特異点は対数分岐だが，最近接特異点の\emph{位置}と主導的な増大率は単純極で正しく captured される。）
+この特異点が積分路 $\zeta\in(0,\infty)$ 上にあることが，Borel 和
+$E_0=\int_0^\infty e^{-\zeta/\hb}\Bor[E_0](\zeta)\,d\zeta$ の
+$\propto e^{-2S_0/\hb}$ の曖昧さ（非摂動効果）の起源である。
+\end{prob}
+
+%======================================================================
+\section{低次 Borel--Pad\'e：5 項だけで特異点を当てる}
+%======================================================================
+\eqref{eq:borelpole} は大次数の\emph{漸近}情報を使った。
+逆に，\textbf{低次 5 項 \eqref{eq:coeffs} だけ}から特異点 $\zeta=2S_0$ を当てられるかを見る。
+鍵は Borel 級数 \eqref{eq:boreldef} の Pad\'e 近似（有理関数近似）の極である。
+
+\begin{prob}\label{prob:pade}
+\begin{enumerate}
+\item Borel 係数 $b_n=a_n/(n-1)!$ を \eqref{eq:coeffs} から求め，
+\begin{align}
+    b_1=\tfrac12,\quad b_2=-\tfrac14,\quad b_3=-\tfrac{9}{64},\quad
+    b_4=-\tfrac{89}{768},\quad b_5=-\tfrac{5013}{49152}
+\end{align}
+となることを確かめよ。Borel 級数は $\Bor[E_0](\zeta)=b_1+b_2\zeta+b_3\zeta^2+b_4\zeta^3+b_5\zeta^4+\cdots$。
+\item \textbf{$[1/1]$ Pad\'e}：$\dfrac{p_0+p_1\zeta}{1+q_1\zeta}$ を $b_1,b_2,b_3$ に合わせると
+$q_1=-b_3/b_2$ となり，極が
+\begin{align}
+    \zeta^\ast_{[1/1]}=-\frac1{q_1}=\frac{b_2}{b_3}=\frac{16}{9}\approx1.78
+\end{align}
+に立つことを示せ。
+\item \textbf{$[2/2]$ Pad\'e}：分母 $1+q_1\zeta+q_2\zeta^2$ を $b_1,\dots,b_5$ に合わせる連立 1 次方程式
+\begin{align}
+    b_4+q_1 b_3+q_2 b_2=0,\qquad
+    b_5+q_1 b_4+q_2 b_3=0
+\end{align}
+を解き，$q_1\approx-1.0006,\ q_2\approx0.0993$ を得て，分母の最近接根が
+\begin{align}
+    \zeta^\ast_{[2/2]}\approx1.12
+\end{align}
+となることを示せ（もう一方の根は $\approx8.95$ で遠方）。
+\item $[1/1]$ の $1.78$ と $[2/2]$ の $1.12$ が $2S_0=\dfrac43\approx1.333$ を\emph{挟み込んで}いることを確認せよ。
+低次 Pad\'e の次数を上げると最近接極は $\zeta=2S_0$ へ収束する
+（高次 Borel--Pad\'e では $\zeta^\ast\approx1.333$ となることが知られている）。
+\end{enumerate}
+\end{prob}
+
+%======================================================================
+\section{ループを閉じる：低次 $\Rightarrow$ 高次}
+%======================================================================
+
+\begin{prob}\label{prob:loop}
+問題 \ref{prob:pade} で\emph{低次 5 項だけ}から得た Borel 特異点
+$\zeta^\ast\approx2S_0$ を，逆に \eqref{eq:borelpole} の論理にそって読み替える。
+\begin{enumerate}
+\item Borel 平面の最近接特異点が $\zeta=\zeta^\ast$ にあれば，Borel 係数は
+$b_n\sim(\zeta^\ast)^{-n}$，したがって元の係数は $a_n=(n-1)!\,b_n\sim\Gamma(n)(\zeta^\ast)^{-n}$ と
+増大する。低次から当てた $\zeta^\ast\approx4/3$ を入れると，これは大次数則 \eqref{eq:large}
+（増大率 $1/(2S_0)=3/4$）を\emph{再現}することを述べよ。
+\item さらに，独立に計算したインスタントン作用 \eqref{eq:S0} の $2$ 倍 $2S_0=4/3$ が
+この $\zeta^\ast$ と一致することを確認せよ。すなわち\textbf{摂動級数の低次の数項が，
+インスタントン--反インスタントンという非摂動スケール $2S_0$ を内包しており，
+そこから高次の漸近挙動が復元される}。これが二重井戸量子力学における共鳴（resurgence）の核心である。
+\end{enumerate}
+\end{prob}
+
+\bigskip
+\noindent\textbf{解答について：}各問の完全な解答は別ファイル
+\texttt{exercise\_double\_well\_resurgence\_solutions.tex} にある。
+
+\medskip
+\noindent\textbf{背景文献（共鳴・大次数挙動）：}
+C.~M.~Bender \& T.~T.~Wu, ``Anharmonic Oscillator''（摂動係数の大次数挙動）；
+J.~Zinn-Justin \& U.~D.~Jentschura, ``Multi-instantons and exact results I''
+(arXiv:quant-ph/0501136)（二重井戸の厳密公式）；
+G.~V.~Dunne \& M.~\"Unsal, ``Generating Non-perturbative Physics from
+Perturbation Theory'' (arXiv:1306.4405)（摂動--非摂動の共鳴）。
+
+\end{document}

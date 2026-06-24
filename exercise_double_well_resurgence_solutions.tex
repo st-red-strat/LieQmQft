@@ -1,0 +1,256 @@
+\documentclass[dvipdfmx, uplatex]{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{braket}
+\usepackage{xr}
+\externaldocument{exercise_double_well_resurgence}
+
+\usepackage{silence}
+\WarningFilter*{hyperref}{Token not allowed in a PDF string}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+\allowdisplaybreaks[4]
+
+\usepackage[left=25truemm,top=20truemm,bottom=20truemm,right=25truemm]{geometry}
+
+\newcommand{\hb}{\hbar}
+\newcommand{\Bor}{\mathcal{B}}
+
+\theoremstyle{definition}
+\newtheorem*{sol}{解答}
+
+\title{解答：二重井戸の摂動級数とインスタントン背景での Borel 和\\
+\large ―― \texttt{exercise\_double\_well\_resurgence.tex} の各問の解答 ――}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-6zh}
+
+記号・式番号は問題ファイル \texttt{exercise\_double\_well\_resurgence.tex} のものを踏襲する
+（\texttt{xr} により本文中の \eqref{eq:coeffs} 等は問題ファイルの式番号を指す）。
+
+\tableofcontents
+
+%======================================================================
+\section{問題 1：インスタントン作用}
+%======================================================================
+
+\begin{sol}
+$|x|<1$ で $V=\tfrac18(x^2-1)^2=\tfrac18(1-x^2)^2$ ゆえ
+$\sqrt{2V}=\sqrt{\tfrac14(1-x^2)^2}=\tfrac12(1-x^2)$。よって
+\[
+    S_0=\int_{-1}^{1}\tfrac12(1-x^2)\,dx
+    =\tfrac12\Bigl[x-\tfrac{x^3}{3}\Bigr]_{-1}^{1}
+    =\tfrac12\Bigl[\bigl(1-\tfrac13\bigr)-\bigl(-1+\tfrac13\bigr)\Bigr]
+    =\tfrac12\Bigl(\tfrac23+\tfrac23\Bigr)=\frac23.
+\]
+したがって $2S_0=\dfrac43$。
+（エネルギー保存 $\tfrac12\dot x^2=V$ より $\dot x=\sqrt{2V}$，
+$S_0=\int\dot x^2\,d\tau=\int\dot x\,dx=\int\sqrt{2V}\,dx$ を用いた。）
+\end{sol}
+
+%======================================================================
+\section{問題 2：低次の摂動係数}
+%======================================================================
+
+\begin{sol}
+\textbf{(1) パリティ。}
+$H_0$ は偶パリティ，$V_3=\tfrac12u^3$ は奇，$V_4=\tfrac18u^4$ は偶。
+基底 $\ket0$ は偶なので，$\mathcal E$ の摂動展開で奇数個の $V_3$ を含む項は
+偶状態の期待値の中で消える。ゆえに $\mathcal E_{2k+1}=0$ で，
+$E_0=\hb\,\mathcal E(\sqrt\hb)=\hb\sum_k\mathcal E_{2k}\hb^k=\sum_n a_n\hb^n$ は $\hb$ の整級数。
+
+\par\smallskip
+\textbf{(2) 0 次。}
+$H_0=-\tfrac12\partial_u^2+\tfrac12u^2$ は $\omega=1$ の調和振動子で基底固有値 $\mathcal E_0=\tfrac12$。
+ゆえに $E_0=\hb(\tfrac12+\cdots)$ の最低次は $a_1=\tfrac12$（零点 energy）。
+
+\par\smallskip
+\textbf{(3) 1 次摂動。}
+$u=\tfrac1{\sqrt2}(a+a^\dagger)$，$\langle0|u^2|0\rangle=\tfrac12$。
+Wick より $\langle0|u^4|0\rangle=3\langle0|u^2|0\rangle^2=3\cdot\tfrac14=\tfrac34$。ゆえに
+\[
+    \langle0|V_4|0\rangle=\tfrac18\langle0|u^4|0\rangle=\tfrac18\cdot\tfrac34=\frac{3}{32}.
+\]
+
+\par\smallskip
+\textbf{(4) 2 次摂動.}
+$(a+a^\dagger)^3\ket0=3\ket1+\sqrt6\ket3$ なので
+$\langle1|u^3|0\rangle=2^{-3/2}\cdot3=\tfrac{3}{2\sqrt2}$,
+$\langle3|u^3|0\rangle=2^{-3/2}\sqrt6=\tfrac{\sqrt3}{2}$。
+$V_3=\tfrac12u^3$ より
+$\langle1|V_3|0\rangle=\tfrac{3}{4\sqrt2}$,
+$\langle3|V_3|0\rangle=\tfrac{\sqrt3}{4}$。
+エネルギー分母は $\mathcal E_0-\mathcal E_m=\tfrac12-(m+\tfrac12)=-m$ ゆえ
+\[
+    \sum_{m\neq0}\frac{|\langle m|V_3|0\rangle|^2}{\mathcal E_0-\mathcal E_m}
+    =\frac{(3/4\sqrt2)^2}{-1}+\frac{(\sqrt3/4)^2}{-3}
+    =-\frac{9}{32}-\frac13\cdot\frac{3}{16}
+    =-\frac{9}{32}-\frac{1}{16}=-\frac{11}{32}.
+\]
+
+\par\smallskip
+\textbf{(5)} よって $a_2=\mathcal E_2=\dfrac{3}{32}-\dfrac{11}{32}=-\dfrac{8}{32}=-\dfrac14$。
+（同じ手続き，または基底波動関数を $\psi=e^{-u^2/2}P(u)$ と置く Bender--Wu 漸化式を
+有理数演算で続ければ $a_3=-\tfrac{9}{32},\ a_4=-\tfrac{89}{128},\ a_5=-\tfrac{5013}{2048}$ が得られる。）
+\end{sol}
+
+%======================================================================
+\section{問題 3：収束半径ゼロ（ダランベール）}
+%======================================================================
+
+\begin{sol}
+\eqref{eq:coeffs} から
+\begin{align*}
+    &\Big|\tfrac{a_2}{a_1}\Big|=\frac{1/4}{1/2}=\tfrac12,\qquad
+    \Big|\tfrac{a_3}{a_2}\Big|=\frac{9/32}{1/4}=\tfrac98=1.125,\\
+    &\Big|\tfrac{a_4}{a_3}\Big|=\frac{89/128}{9/32}=\frac{89}{36}\approx2.472,\qquad
+    \Big|\tfrac{a_5}{a_4}\Big|=\frac{5013/2048}{89/128}=\frac{5013}{1424}\approx3.520.
+\end{align*}
+
+\textbf{(1)} これらを $n=1,2,3,4$ に対しプロットすると概ね直線 $\approx0.75\,n$ に乗り
+（低次では $1/n$ 補正で予言値 $0.75n=0.75,1.5,2.25,3.0$ をやや上回る），
+$n$ とともに限りなく増大する：$|a_{n+1}/a_n|\to\infty$。
+
+\textbf{(2)} ダランベールの判定法では級数 $\sum_n a_n\hb^n$ の収束半径は
+$R=\lim_{n\to\infty}|a_n/a_{n+1}|$。上の逆数は
+\[
+    \Big|\tfrac{a_1}{a_2}\Big|=2,\quad
+    \Big|\tfrac{a_2}{a_3}\Big|=\tfrac89\approx0.889,\quad
+    \Big|\tfrac{a_3}{a_4}\Big|=\tfrac{36}{89}\approx0.404,\quad
+    \Big|\tfrac{a_4}{a_5}\Big|=\tfrac{1424}{5013}\approx0.284,
+\]
+と単調に $0$ へ向かう。ゆえに $R=0$。級数は任意の $\hb>0$ で発散する漸近級数である。
+\end{sol}
+
+%======================================================================
+\section{問題 4：大次数の漸近挙動}
+%======================================================================
+
+\begin{sol}
+\textbf{(1)} \eqref{eq:asymrec} を $a_{n+1}=\dfrac{n}{2S_0}a_n$ という差分方程式とみて
+$n=n_0$ から繰り返し掛けると
+\[
+    a_n=a_{n_0}\prod_{k=n_0}^{n-1}\frac{k}{2S_0}
+    =\frac{a_{n_0}}{(2S_0)^{\,n-n_0}}\frac{(n-1)!}{(n_0-1)!}
+    =\underbrace{\frac{a_{n_0}\,(2S_0)^{\,n_0}}{(n_0-1)!}}_{=:K}\;
+    \frac{(n-1)!}{(2S_0)^{\,n}}.
+\]
+$(n-1)!=\Gamma(n)$ ゆえ $a_n\propto\Gamma(n)/(2S_0)^n$。
+
+\textbf{(2)} したがって
+\[
+    a_n\sim K\,\frac{\Gamma(n)}{(2S_0)^{\,n}}\qquad(n\to\infty),
+\]
+$K$ は $n$ によらない定数。Stirling より $\Gamma(n)\sim\sqrt{2\pi/n}\,(n/e)^n$ で
+階乗的に発散し，収束半径ゼロ（問題 3）と整合する。増大率を支配するスケールは
+$2S_0=4/3$，すなわち I--$\bar{\mathrm I}$ 作用である。
+\end{sol}
+
+%======================================================================
+\section{問題 5：Borel 変換}
+%======================================================================
+
+\begin{sol}
+大次数形 $a_n=K\,(n-1)!\,(2S_0)^{-n}$ では Borel 係数が
+\[
+    b_n=\frac{a_n}{(n-1)!}=K\,(2S_0)^{-n}
+\]
+と公比 $1/(2S_0)$ の等比数列になる。ゆえに $|\zeta|<2S_0$ で
+\[
+    \Bor[E_0](\zeta)=\sum_{n\ge1}b_n\,\zeta^{n-1}
+    =K\sum_{n\ge1}(2S_0)^{-n}\zeta^{n-1}
+    =\frac{K}{2S_0}\sum_{n\ge1}\Bigl(\frac{\zeta}{2S_0}\Bigr)^{n-1}
+    =\frac{K}{2S_0}\cdot\frac{1}{1-\zeta/2S_0}
+    =\frac{K}{2S_0-\zeta}.
+\]
+最近接特異点は正実軸上の単純極 $\zeta=2S_0$。Borel 級数の収束半径は $2S_0$ で有限になり，
+階乗発散が「除算」されたことが分かる。この極が Laplace 積分路 $(0,\infty)$ 上にあるため，
+Borel 和は積分路を極の上下に避ける必要があり，その差は留数 $\propto e^{-2S_0/\hb}$ の
+虚数的曖昧さ（=I--$\bar{\mathrm I}$ 非摂動効果）を与える。
+\end{sol}
+
+%======================================================================
+\section{問題 6：低次 Borel--Pad\'e}
+%======================================================================
+
+\begin{sol}
+\textbf{(1) Borel 係数。}
+$b_n=a_n/(n-1)!$ ゆえ
+\[
+    b_1=\tfrac12,\quad b_2=\tfrac{a_2}{1!}=-\tfrac14,\quad
+    b_3=\tfrac{a_3}{2!}=-\tfrac{9}{64},\quad
+    b_4=\tfrac{a_4}{3!}=-\tfrac{89}{768},\quad
+    b_5=\tfrac{a_5}{4!}=-\tfrac{5013}{49152}.
+\]
+
+\textbf{(2) $[1/1]$ Pad\'e.}
+$\dfrac{p_0+p_1\zeta}{1+q_1\zeta}=(p_0+p_1\zeta)(1-q_1\zeta+q_1^2\zeta^2-\cdots)$ を
+$b_1+b_2\zeta+b_3\zeta^2$ に合わせる。$\zeta^0:\ p_0=b_1$,
+$\zeta^1:\ p_1-p_0q_1=b_2$, $\zeta^2:\ -p_1q_1+p_0q_1^2=b_3$。
+第 3 式に第 2 式 $p_1=b_2+p_0q_1$ を代入すると $-q_1 b_2=b_3$, すなわち $q_1=-b_3/b_2$。
+極は
+\[
+    \zeta^\ast_{[1/1]}=-\frac1{q_1}=\frac{b_2}{b_3}
+    =\frac{-1/4}{-9/64}=\frac14\cdot\frac{64}{9}=\frac{16}{9}\approx1.778.
+\]
+
+\textbf{(3) $[2/2]$ Pad\'e.}
+分母 $1+q_1\zeta+q_2\zeta^2$ は，$P=Q\cdot\Bor$ の $\zeta^3,\zeta^4$ の係数を消す条件
+\[
+    b_4+q_1 b_3+q_2 b_2=0,\qquad b_5+q_1 b_4+q_2 b_3=0
+\]
+を満たす。$b$ を代入し整理すると（第 1 式を $-64$ 倍，第 2 式を $-768$ 倍）
+\[
+    9q_1+16q_2=-\frac{89}{12},\qquad 89q_1+108q_2=-\frac{5013}{64}.
+\]
+これを解くと
+\[
+    q_2=\frac{8615}{86784}\approx0.09927,\qquad
+    q_1=\frac{1}{9}\Bigl(-\frac{89}{12}-16q_2\Bigr)\approx-1.00055.
+\]
+分母 $1+q_1\zeta+q_2\zeta^2=0$ の根は
+\[
+    \zeta=\frac{-q_1\pm\sqrt{q_1^2-4q_2}}{2q_2}
+    =\frac{1.00055\pm\sqrt{1.00110-0.39708}}{0.19854}
+    =\frac{1.00055\pm0.77719}{0.19854},
+\]
+すなわち $\zeta^\ast_{[2/2]}\approx1.125$（最近接）と $\approx8.95$（遠方）。
+
+\textbf{(4)} $[1/1]$ の $1.778$ と $[2/2]$ の $1.125$ は
+$2S_0=\dfrac43\approx1.333$ を上下から挟む。Pad\'e の次数を上げると最近接極は
+$\zeta=2S_0$ へ収束する（正確な $a_n$ を $n\le33$ まで使った対角 Pad\'e $[15/15]$ では
+$\zeta^\ast\approx1.3331\approx4/3$）。低次 5 項だけでも特異点を $\sim20\%$ の精度で当てられる。
+\end{sol}
+
+%======================================================================
+\section{問題 7：ループを閉じる}
+%======================================================================
+
+\begin{sol}
+\textbf{(1)} Borel 平面の最近接特異点が $\zeta=\zeta^\ast$ なら，Borel 級数の収束半径は $\zeta^\ast$ で
+$b_n\sim(\zeta^\ast)^{-n}$。逆 Borel（$a_n=(n-1)!\,b_n$）に戻すと
+\[
+    a_n\sim\Gamma(n)\,(\zeta^\ast)^{-n}.
+\]
+低次 Pad\'e から当てた $\zeta^\ast\approx4/3=2S_0$ を入れると，これは問題 4 の大次数則
+\eqref{eq:large}（増大率 $1/(2S_0)=3/4$）を再現する。
+すなわち\emph{低次 5 項 $\to$ Pad\'e $\to$ 特異点 $\zeta^\ast\to$ 高次の増大率}という流れで，
+低次情報だけから高次の漸近挙動が復元された。
+
+\textbf{(2)} さらに，独立に計算したインスタントン作用 $S_0=2/3$（問題 1）の 2 倍
+$2S_0=4/3$ が，この $\zeta^\ast$ と一致する。同一の非摂動スケール $2S_0$ が
+\emph{摂動級数の大次数挙動}と\emph{インスタントン--反インスタントン作用}の両方に現れている。
+これが二重井戸量子力学における共鳴（resurgence）の核心であり，
+「摂動級数が自らの内に非摂動効果（I--$\bar{\mathrm I}$ スケール $e^{-2S_0/\hb}$）を符号化している」
+ことの具体的な現れである。
+\end{sol}
+
+\end{document}
