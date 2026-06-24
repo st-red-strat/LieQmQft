@@ -1,0 +1,545 @@
+\documentclass[dvipdfmx, uplatex]{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{braket}
+
+\usepackage{silence}
+\WarningFilter*{hyperref}{Token not allowed in a PDF string}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+\allowdisplaybreaks[4]
+
+\usepackage[left=25truemm,top=20truemm,bottom=20truemm,right=25truemm]{geometry}
+
+\theoremstyle{definition}
+\newtheorem{prob}{問題}
+\newtheorem*{hint}{誘導}
+
+\title{演習問題：source 付き調和振動子の生成汎関数\\
+\large ―― \texttt{LieQmQft}「Generating Functional と Source Term」の計算を誘導付き演習にする ――}
+\author{原典：戸板 真太郎『Lie 代数から学ぶ量子力学と場の量子論』\\
+\texttt{LieQmQft}, \S「Generating Functional と Source Term」}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本ノートは，教科書 \texttt{LieQmQft} の「Generating Functional と Source Term」の節で
+実行されている，1 次元調和振動子の生成汎関数（generating functional）$W_{00}[J]$ の計算を，
+誘導付きの演習問題として再構成したものである。
+原典で一気に行われている計算は，個々の積分だけを見れば
+\textbf{Fresnel（Gauss）積分と三角関数の恒等式}に尽きており，
+学部 2--3 年程度の物理数学があれば完全に遂行できる。
+本ノートでは結果をいきなり書き下すのではなく，
+計算を小問に分割し，各小問に誘導（ヒント）を付した。
+解答は付属の別ファイル
+\texttt{exercise\_generating\_functional\_solutions.tex} にまとめてある。
+\end{abstract}
+
+\tableofcontents
+
+%======================================================================
+\section{前提：与えられているもの}
+%======================================================================
+本演習では，原典 \texttt{LieQmQft} の前節までに得られている次の結果を
+\textbf{既知の入力}として用いる（これらの導出自体は本演習の対象ではない）。
+記法・規約はすべて \texttt{LieQmQft} に従う（$\hbar$ を明示，計量や符号も同書のとおり）。
+
+\paragraph{(i) source 付き調和振動子。}
+質量 $m$，角振動数 $\omega$ の 1 次元調和振動子に外場（source）$J(t)$ を結合させた
+Lagrangian
+\begin{align}
+    L_{cl}
+    &=
+    \frac{1}{2}m\dot{q}^2
+    -
+    \frac{1}{2}m\omega^2q^2
+    +
+    qJ(t)
+\label{eq:Lsource}
+\end{align}
+を考える。$J=0$ で通常の調和振動子に戻る。
+
+\paragraph{(ii) 古典解と古典作用。}
+$t=t_i$ で $q=q_i$，$t=t_f$ で $q=q_f$ という境界条件のもとで，
+\eqref{eq:Lsource} の運動方程式 $m\ddot q+m\omega^2 q=J$ の古典解は
+\begin{align}
+    q_{cl}(t)
+    &=
+    \frac{
+        q_f \sin \omega (t - t_i)
+        +
+        q_i \sin \omega (t_f - t)
+    }{ \sin \omega (t_f - t_i) }
+    -
+    \frac{ \sin \omega (t - t_i) }{
+        \sin \omega(t_f - t_i)
+    }
+    \int_{t_i}^{t_f} \! d\tau\,
+    \frac{ \sin \omega (t_f-\tau) }{m\omega}
+    J(\tau)
+\notag\\&\qquad
+    +
+    \int_{t_i}^t \! d\tau\,
+    \frac{ \sin \omega (t-\tau)}{m\omega}
+    J(\tau)
+\label{eq:qcl}
+\end{align}
+であり，その境界での時間微分は（$t_f=t_i+t$ と書く）
+\begin{subequations}\label{eq:qcldot}
+\begin{align}
+    \dot{q}_{cl} (t_i)
+    &=
+    \dfrac{ \omega }{ \sin \omega t }
+    \left[
+    \left(
+        q_f
+    -
+        \int_{t_i}^{t_i + t}\! d\tau\,
+        \frac{ \sin \omega (t_i + t - \tau) }{m\omega}
+        J(\tau)
+    \right)
+    -
+        q_i \cos \omega t
+    \right],
+\\
+    \dot{q}_{cl} (t_f)
+    &=
+    \frac{ \omega }{ \sin \omega t }
+    \left[
+    \left(
+        q_f
+    -
+        \int_{t_i}^{t_i + t}\! d\tau\,
+        \frac{ \sin \omega (t_i + t - \tau) }{m\omega}
+        J(\tau)
+    \right)
+    \cos \omega t
+    -
+        q_i
+    \right]
+    +
+    \int_{t_i}^{t_i + t}\! d\tau\,
+    \frac{ \cos \omega (t_i + t - \tau)}{m}
+    J(\tau).
+\end{align}
+\end{subequations}
+これらを作用に代入した古典作用は，境界項と source 項にまとめて
+\begin{align}
+    S_{cl} [J]
+    &=
+    \frac{1}{2} m
+    \bigg(
+        q_f\,\dot{q}_{cl}(t_f)
+    -
+        q_i\,\dot{q}_{cl}(t_i)
+    \bigg)
+    +
+    \int_{t_i}^{t_i + t}\! d\tau\,
+        q_{cl}(\tau)\,
+        \frac{1}{2} J(\tau)
+\label{eq:Scl}
+\end{align}
+となる。
+
+\paragraph{(iii) source 付き Feynman kernel。}
+経路積分により得られる Feynman kernel は
+\begin{align}
+    K[J]( t_f, q_f ; t_i, q_i )
+    &=
+    \left(
+        \dfrac{ m \omega }{ 2 \pi i \hbar \sin \omega t }
+    \right)^{1/2}
+    \exp\!\left( \dfrac{i}{\hbar} S_{cl} [J] \right),
+    \qquad t:=t_f-t_i .
+\label{eq:kernel}
+\end{align}
+
+\paragraph{(iv) 基底状態（真空）の波動関数。}
+\begin{align}
+    \phi_0 (t, q)
+    &=
+    \left(
+        \dfrac{m \omega}{\pi \hbar}
+    \right)^{1/4}
+    \exp\!\left(
+        - \dfrac{m \omega}{2 \hbar} q^2
+        - \dfrac{i t \omega}{2}
+    \right).
+\label{eq:vacuum}
+\end{align}
+
+\paragraph{(v) 積分公式。}
+本演習で必要な積分は，本質的に次の Fresnel 積分（複素 $\alpha$ への拡張を含む Gauss 積分）だけである：
+\begin{align}
+    \int_{-\infty}^{\infty} dx\; e^{- \alpha x^2}
+    =
+    \sqrt{\dfrac{\pi}{\alpha}}
+    \qquad (\Re \alpha \ge 0).
+\label{eq:fresnel}
+\end{align}
+線形項を含む場合は平方完成して
+$\displaystyle\int dx\, e^{-\alpha x^2 - 2\beta x}
+=\sqrt{\tfrac{\pi}{\alpha}}\,e^{\beta^2/\alpha}$（$\Re\alpha\ge0$）を用いればよい。
+
+\paragraph{(vi) 生成汎関数の定義。}
+始状態 $\ket{\phi_I}$，終状態 $\ket{\phi_F}$ に対する生成汎関数を
+\begin{align}
+    W_{FI}[J](t)
+    :=
+    \int dq_f\, dq_i\;
+        \phi_F^*( t_i + t, q_f)\,
+        \phi_I  ( t_i    , q_i)\,
+        K[J](t_i + t, q_f; t_i, q_i)
+\label{eq:Wdef}
+\end{align}
+で定義する（多次元のときは $dq\to d^Dx$）。
+$J=0$ では遷移確率振幅 $A_{FI}(t)$ に一致する。
+本演習の主目標は，真空から真空への生成汎関数
+\begin{align}
+    W[J] := \lim_{t\to\infty} W_{00}[J](t),
+    \qquad
+    \phi_I=\phi_F=\phi_0
+\end{align}
+を最後まで計算し，その指数部に Feynman 伝播関数が現れることを確かめることである。
+
+%======================================================================
+\section{被積分関数を Gauss 型に整理する}
+%======================================================================
+
+\begin{prob}\label{prob:setup}
+\eqref{eq:vacuum} の真空波動関数と \eqref{eq:kernel} の kernel を
+\eqref{eq:Wdef} に代入し，$W_{00}[J](t)$ の被積分関数の指数部を
+\begin{align}
+    W_{00}[J](t)
+    =
+    \dfrac{m \omega}{\pi \hbar (2 i \sin \omega t)^{1/2}}
+    \exp\!\left( \dfrac{i t \omega}{2} + E \right)
+    \int dq_f\, dq_i\;
+        \exp\!\Big(
+            - A (q_i^2 + q_f^2)
+            - 2 B q_i q_f
+            - 2 C q_f
+            - 2 D q_i
+        \Big)
+\label{eq:WABCD}
+\end{align}
+の形に書き直し，係数 $A,B,C,D,E$（および補助量 $F$）を $J$ の汎関数として
+明示的に同定せよ。具体的には次を示せ：
+\begin{align*}
+    A&=\frac{m\omega}{2\hbar}\,\frac{-ie^{i\omega t}}{\sin\omega t},
+    &
+    B&=\frac{m\omega}{2\hbar}\,\frac{i}{\sin\omega t},
+\end{align*}
+\begin{align*}
+    C&=\frac{1}{2i\hbar}\,\frac{\Im[e^{-i\omega t_i}F]}{\sin\omega t},
+    &
+    D&=\frac{1}{2i\hbar}\,\frac{\Im[e^{i\omega(t_i+t)}F^*]}{\sin\omega t},
+    &
+    F&:=\int_{t_i}^{t_i+t}\! d\tau\, e^{i\omega\tau}J(\tau),
+\end{align*}
+そして $E$ は $J$ について 2 次の（$q_i,q_f$ に依らない）項全体。
+\end{prob}
+
+\begin{hint}
+\begin{itemize}
+\item まず波動関数の積を作る。$\phi_0^*(t_i+t,q_f)\,\phi_0(t_i,q_i)$ の位相は
+$+\tfrac{i(t_i+t)\omega}{2}-\tfrac{it_i\omega}{2}=+\tfrac{it\omega}{2}$ にまとまり，
+$q$ 依存部分は $\exp\!\big(-\tfrac{m\omega}{2\hbar}(q_i^2+q_f^2)\big)$ となる。
+\item 次に $\tfrac{i}{\hbar}S_{cl}[J]$ を，\eqref{eq:Scl} と \eqref{eq:qcldot} を使って
+$q_i^2,\ q_f^2,\ q_iq_f,\ q_f,\ q_i$ および $J$ の 2 次（$q$ 非依存）に整理する。
+$q_i^2,q_f^2$ の係数には波動関数由来の $\tfrac{m\omega}{2\hbar}$ も加わる ―― これが $A$ になる。
+\item $C,D$ の被積分関数は，$-\sin\omega(t_i+t-\tau)\cos\omega t+\sin\omega t\cos\omega(t_i+t-\tau)
+=\sin\omega(\tau-t_i)$ のような積和公式で簡約できる。
+最後に $\sin$ を指数で書けば $F=\int e^{i\omega\tau}J$ と $F^*$ が現れ，$\Im[\cdots]$ の形になる。
+\item $A,B$ は $1\pm e^{2i\omega t}$ 型の因子を半角公式で整理しておくと後が楽。
+\end{itemize}
+\end{hint}
+
+%----------------------------------------------------------------------
+\section{2 つの Gauss 積分を実行する}
+%----------------------------------------------------------------------
+
+\begin{prob}\label{prob:gauss}
+\eqref{eq:WABCD} の $q_f,\ q_i$ についての 2 重積分を，
+\eqref{eq:fresnel} を 2 回用いて実行し，
+\begin{align}
+    W_{00}[J](t)
+    =
+    \dfrac{m \omega}{
+        \hbar\,[\,2 i \sin \omega t\,(A^2 - B^2)\,]^{1/2}}
+    \exp\!\left(
+        \dfrac{i t \omega}{2}
+        + E
+        + \dfrac{A(C^2 + D^2) - 2 BCD}{A^2 - B^2}
+    \right)
+\label{eq:Wgauss}
+\end{align}
+を導け。途中で必要となる収束条件 $\Re A\ge0$，$\Re(A^2-B^2)\ge0$ が
+（$0<\omega t<\pi$ で）満たされていることも確認せよ。
+\end{prob}
+
+\begin{hint}
+\begin{itemize}
+\item まず $q_f$ について平方完成する：
+$-Aq_f^2-2(Bq_i+C)q_f$ の積分が $\sqrt{\pi/A}\,\exp\!\big(\tfrac{(Bq_i+C)^2}{A}\big)$ を与える。
+\item 残った $q_i$ 積分も同様。$q_i^2$ の係数が $A-\tfrac{B^2}{A}=\tfrac{A^2-B^2}{A}$ に，
+$q_i$ の 1 次係数が $D-\tfrac{BC}{A}$ になることに注意して，もう一度平方完成する。
+\item 2 つの $\sqrt{\pi/(\cdot)}$ と前因子 $\tfrac{m\omega}{\pi\hbar}(2i\sin\omega t)^{-1/2}$ を
+掛け合わせれば \eqref{eq:Wgauss} の前因子になる。
+\item 収束条件：$\Re A=\tfrac{m\omega}{2\hbar}>0$。$A^2-B^2$ は問題 \ref{prob:prefactor} で
+$\propto -ie^{i\omega t}$ と分かるので $0<\omega t<\pi$ で $\Re(A^2-B^2)\ge0$。
+\end{itemize}
+\end{hint}
+
+%----------------------------------------------------------------------
+\section{前因子の簡約}
+%----------------------------------------------------------------------
+
+\begin{prob}\label{prob:prefactor}
+$A^2-B^2$ を計算して
+\begin{align}
+    A^2 - B^2
+    =
+    \left( \dfrac{m \omega}{\hbar} \right)^2
+    \dfrac{ - i e^{i \omega t} }{2 \sin \omega t}
+\label{eq:A2mB2}
+\end{align}
+を示し，これを用いて \eqref{eq:Wgauss} の前因子が
+\begin{align}
+    \dfrac{m \omega}{ \hbar\,[\,2 i \sin \omega t\,(A^2 - B^2)\,]^{1/2}}
+    = e^{- i \omega t / 2}
+\label{eq:prefactor}
+\end{align}
+にまで簡約されることを示せ。
+\end{prob}
+
+\begin{hint}
+$A^2-B^2=\big(\tfrac{m\omega}{2\hbar\sin\omega t}\big)^2(1-e^{2i\omega t})$ から出発し，
+$1-e^{2i\omega t}=-e^{i\omega t}(e^{i\omega t}-e^{-i\omega t})=-2ie^{i\omega t}\sin\omega t$，
+あるいは半角公式 $1\mp e^{i\omega t}=\mp e^{i\omega t/2}(e^{i\omega t/2}\mp e^{-i\omega t/2})$ を使う。
+\eqref{eq:A2mB2} を \eqref{eq:prefactor} 左辺に代入すると
+$2i\sin\omega t\,(A^2-B^2)=(m\omega/\hbar)^2 e^{i\omega t}$ となり，平方根が $e^{i\omega t/2}$ を与える。
+\end{hint}
+
+%----------------------------------------------------------------------
+\section{指数部の簡約：劇的な相殺}
+%----------------------------------------------------------------------
+
+\begin{prob}\label{prob:exponent}
+補助量 $E,\,C^2+D^2,\,BCD$ をそれぞれ $F,F^*,|F|^2$ で表し，
+\eqref{eq:Wgauss} の指数部に現れる組合せが
+\begin{align}
+    E
+    +
+    \dfrac{ A(C^2 + D^2) - 2 BCD }{ A^2 - B^2 }
+    =
+    -
+    \dfrac{1}{2 \hbar m \omega}
+    \int_{t_i}^{t_i + t}\! d\tau
+    \int_{t_i}^{t_i + t}\! d\tau'\,
+    J(\tau) J(\tau')\,
+    \theta(\tau - \tau')\,
+    e^{ i \omega (\tau' - \tau) }
+\label{eq:exponent}
+\end{align}
+に簡約されることを示せ。ここで $\theta$ は階段関数である。
+（これが本演習で最も計算量の多い小問である。）
+\end{prob}
+
+\begin{hint}
+\begin{itemize}
+\item $E$ は 2 重積分
+\begin{align*}
+E=\frac{i}{2\hbar m\omega\sin\omega t}\int_{t_i<\tau'<\tau<t_i+t}\!\!d\tau d\tau'\,JJ\,
+\big[&\sin\omega(\tau-\tau')\sin\omega t-\sin\omega(\tau-t_i)\sin\omega(t_i+t-\tau')\\
+&-\sin\omega(\tau'-t_i)\sin\omega(t_i+t-\tau)\big]
+\end{align*}
+から出発する。積和公式で $\cos$ に直すと多くの項が打ち消し，
+$\theta(\tau-\tau')\,e^{i\omega(\tau'-\tau)}$ 型と
+$F^2,\,{F^*}^2,\,|F|^2$ の境界項に整理できる。
+\item $C^2+D^2$ と $BCD$ は，$C,D$ を $F,F^*$ で表した式（問題 \ref{prob:setup}）を
+そのまま 2 乗・積すればよい。$\Im[z]=\tfrac{z-z^*}{2i}$ を使う。
+\item $\dfrac{A(C^2+D^2)-2BCD}{A^2-B^2}$ を作るとき，$A,B$ の値（問題 \ref{prob:setup}）と
+\eqref{eq:A2mB2} を代入すると $\propto e^{-i\omega t}/\sin\omega t$ にまとまり，
+$F^2,{F^*}^2,|F|^2$ の境界項が現れる。
+\item $E$ 側の境界項
+$-\tfrac12 e^{i\omega(2t_i+t)}{F^*}^2-\tfrac12 e^{-i\omega(2t_i+t)}F^2+e^{-i\omega t}|F|^2$ と
+ちょうど打ち消し合い，2 重積分項
+$-\tfrac{1}{2\hbar m\omega}\iint JJ\,\theta(\tau-\tau')e^{i\omega(\tau'-\tau)}$ だけが残る。
+\end{itemize}
+\end{hint}
+
+%----------------------------------------------------------------------
+\section{最終形と Feynman 伝播関数}
+%----------------------------------------------------------------------
+
+\begin{prob}\label{prob:final}
+問題 \ref{prob:prefactor}，\ref{prob:exponent} の結果を \eqref{eq:Wgauss} に戻し，
+前因子 $e^{-i\omega t/2}$ が $e^{it\omega/2}$ と相殺することを用いて，生成汎関数が
+\begin{align}
+    W_{00}[J](t)
+    =
+    \exp\!\left(
+        \dfrac{i}{4 \hbar}
+        \int_{t_i}^{t_i + t}\! d\tau
+        \int_{t_i}^{t_i + t}\! d\tau'\;
+        J(\tau) J(\tau')\,
+        D_F (\tau - \tau')
+    \right)
+\label{eq:Wfinal}
+\end{align}
+と書けることを示せ。ここで
+\begin{align}
+    D_F (\tau - \tau')
+    :=
+    \dfrac{ i }{m \omega}
+    \Big[
+        \theta(\tau - \tau')\, e^{ - i \omega (\tau - \tau') }
+    +
+        \theta(\tau' - \tau)\, e^{ i \omega (\tau - \tau') }
+    \Big]
+\label{eq:DF}
+\end{align}
+である。さらに $D_F$ が Fourier 表示
+\begin{align}
+    D_F(\tau-\tau')
+    =
+    \dfrac{2}{m}
+    \int \dfrac{d\omega'}{2\pi}\,
+    \dfrac{ e^{- i \omega'(\tau-\tau')} }{ -\omega'^2 + \omega^2 - i\epsilon }
+\label{eq:DFfourier}
+\end{align}
+を持ち，作用に現れる微分演算子の Green 関数
+\begin{align}
+    \dfrac{m}{2}
+    \left( \dfrac{d^2}{dt^2} + \omega^2 \right) D_F (t) = \delta(t)
+\label{eq:green}
+\end{align}
+になっていることを確かめよ。
+\end{prob}
+
+\begin{hint}
+\begin{itemize}
+\item \eqref{eq:exponent} の被積分関数は $\tau\leftrightarrow\tau'$ で対称化できる：
+$\theta(\tau-\tau')e^{i\omega(\tau'-\tau)}$ を半分に分け，残り半分で $\tau\leftrightarrow\tau'$
+と変数交換すると $\theta(\tau'-\tau)e^{i\omega(\tau-\tau')}$ が現れ，
+$-\tfrac{1}{2\hbar m\omega}\to \tfrac{i}{4\hbar}\cdot\tfrac{i}{m\omega}[\,\cdots\,]$ の形で
+\eqref{eq:DF} が括り出される。
+\item Fourier 表示は，階段関数の表示
+$\theta(s)=-\displaystyle\int\tfrac{d\omega'}{2\pi i}\tfrac{e^{-i\omega' s}}{\omega'+i\epsilon}$ を
+\eqref{eq:DF} の各項に代入し，$\omega'\to\omega'\mp\omega$ と平行移動して 2 項をまとめる。
+\item Green 関数の確認は \eqref{eq:DFfourier} に $\tfrac{m}{2}(\partial_t^2+\omega^2)$ を作用させ，
+分母 $-\omega'^2+\omega^2$ が約分されて
+$\int\tfrac{d\omega'}{2\pi}e^{-i\omega' t}=\delta(t)$ になることを使う。
+\end{itemize}
+\end{hint}
+
+%----------------------------------------------------------------------
+\section{系統的な見方：経路積分と Green 関数}
+%----------------------------------------------------------------------
+
+\begin{prob}\label{prob:pathint}
+Feynman kernel の経路積分表示に立ち戻ると，生成汎関数 \eqref{eq:Wdef} は
+\begin{align}
+    W_{FI}[J](t)
+    =
+    \bra{\phi_F}
+    \int_{\forall q(t)} \mathcal{D}q\;
+    \exp\!\left( \dfrac{i}{\hbar} S \right)
+    \ket{\phi_I}
+\end{align}
+と，全経路にわたる（source 付き）無限次元 Gauss 積分の形に書けることを示せ。
+そのうえで，作用が
+\begin{align}
+    \dfrac{i}{\hbar} S
+    =
+    -\dfrac{1}{2}\int d\tau\;
+        q(\tau)\,\dfrac{i}{\hbar} m\!\left(\dfrac{d^2}{d\tau^2}+\omega^2\right)\! q(\tau)
+    + \int d\tau\; q(\tau)\,\dfrac{i}{\hbar} J(\tau)
+\end{align}
+であることを使い，行列 Gauss 積分の公式
+$\displaystyle\int \!\prod_i \tfrac{dx_i}{\sqrt{2\pi}}\,
+e^{-\frac12 x_i A_{ij}x_j + x_iJ_i}
+=\tfrac{1}{\sqrt{\det A}}\,e^{\frac12 J_i (A^{-1})_{ij}J_j}$
+の無限次元版として，\eqref{eq:Wfinal} が
+\begin{align}
+    W[J]
+    =
+    \exp\!\left[
+        \dfrac{i}{4\hbar}\int d\tau\, d\tau'\;
+        J(\tau')\left\{\dfrac{m}{2}\!\left(\dfrac{d^2}{d\tau^2}+\omega^2\right)\right\}^{-1} J(\tau)
+    \right]
+\end{align}
+と「自然に」再現されることを説明せよ（$D_F$ が演算子
+$\tfrac{m}{2}(\partial_\tau^2+\omega^2)$ の逆，すなわち Green 関数であることと整合する）。
+\end{prob}
+
+\begin{hint}
+$q_i,q_f$ 積分と波動関数を境界での $\ket{\phi_I},\bra{\phi_F}$ の重ね合わせとして読み替えれば，
+\eqref{eq:Wdef} は始・終端を固定しない全経路積分になる。
+有限次元の公式で行列 $A$ を演算子 $\tfrac{i}{\hbar}m(\partial^2+\omega^2)$，
+source $J_i$ を $\tfrac{i}{\hbar}J(\tau)$ に置き換え，$A^{-1}$ を Green 関数 $D_F$ と読めばよい。
+\end{hint}
+
+%----------------------------------------------------------------------
+\section{発展：分配関数と統計力学への接続}
+%----------------------------------------------------------------------
+
+\begin{prob}\label{prob:partition}
+上の生成汎関数 $W_{00}[J]$ の計算から，波動関数 $\phi_0$ の寄与を取り除き，
+周期境界条件 $x:=q_i=q_f$ を課すと分配関数
+\begin{align}
+    Z[J](\tau)
+    =
+    \int dx\; K_E(\tau; q_f=x, q_i=x)
+\end{align}
+が得られる。ほとんど同じ計算により
+\begin{align}
+    Z[J](\tau)
+    =
+    \dfrac{1}{\, e^{i\omega t/2} - e^{-i\omega t/2}\,}\,
+    \exp\!\left( \dfrac{H^2}{2G} \right),
+    \qquad
+    \begin{cases}
+    G = A + B - \dfrac{m\omega}{2\hbar},\\[4pt]
+    H = C + D,
+    \end{cases}
+\label{eq:Z}
+\end{align}
+となることを示せ。さらに $J=0$（したがって $H=0$）のとき，虚時間 $\tau=it=\hbar\beta$ とおくと
+\begin{align}
+    Z[J=0]
+    =
+    \dfrac{1}{\, e^{\beta\hbar\omega/2} - e^{-\beta\hbar\omega/2}\,}
+    =
+    \dfrac{1}{2\sinh(\beta\hbar\omega/2)}
+\end{align}
+となり，統計力学で習う調和振動子の分配関数を正しく再現することを確かめよ。
+\end{prob}
+
+\begin{hint}
+\begin{itemize}
+\item 波動関数の寄与とは $q_i^2,q_f^2$ の係数 $A$ に含まれる $\tfrac{m\omega}{2\hbar}$ の項。
+これを除き $q_i=q_f=x$ とおくと指数部は $-2Gx^2-2Hx$ となる。$x$ 積分は \eqref{eq:fresnel} で 1 回。
+\item $G=\dfrac{i}{\hbar}\dfrac{m\omega(1-\cos\omega t)}{2\sin\omega t}
+=\dfrac{i}{\hbar}\dfrac{m\omega\sin^2(\omega t/2)}{\sin\omega t}$ と半角でまとめると，
+前因子が $\tfrac{1}{2i\sin(\omega t/2)}$ になる。
+\item $\tau=it=\hbar\beta$ で $e^{i\omega t/2}=e^{\hbar\beta\omega/2}$。
+\end{itemize}
+\end{hint}
+
+%----------------------------------------------------------------------
+\section*{解答について}
+\addcontentsline{toc}{section}{解答について}
+各問の完全な解答（途中計算を含む）は，別ファイル
+\texttt{exercise\_generating\_functional\_solutions.tex} にまとめてある。
+まずは誘導のみを頼りに手を動かし，行き詰まったときに解答を参照することを勧める。
+
+\end{document}
