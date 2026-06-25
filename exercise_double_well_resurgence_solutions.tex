@@ -7,6 +7,8 @@
 \usepackage{mathrsfs}
 \usepackage{bm}
 \usepackage{braket}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
 \usepackage{xr}
 \externaldocument{exercise_double_well_resurgence}
 
@@ -21,6 +23,7 @@
 \newcommand{\hb}{\hbar}
 \newcommand{\Bor}{\mathcal{B}}
 \newcommand{\cE}{\mathcal{E}}
+\newcommand{\sech}{\operatorname{sech}}
 
 \theoremstyle{definition}
 \newtheorem*{sol}{解答}
@@ -36,7 +39,7 @@
 
 記号・式番号は問題ファイル \texttt{exercise\_double\_well\_resurgence.tex} のものを踏襲する
 （\texttt{xr} により本文中の \eqref{eq:BW} 等は問題ファイルの式番号を指す）。
-\textbf{各問の数値解（採点用）}は太字で示す。
+\textbf{各問の数値解（採点用）}は太字（\boxed）で示す。
 
 \tableofcontents
 
@@ -45,181 +48,200 @@
 %======================================================================
 
 \begin{sol}
-\textbf{(1) 真空解。}$V'(x)=\tfrac12 x(x^2-1)$ ゆえ $V'(\pm1)=0$，定数 $x\equiv\pm1$ は $\ddot x=0=V'$ を満たす。
-$V(\pm1)=0,\ \dot x=0$ ゆえ作用 $S_E=0$。2 つの縮退真空。
+\textbf{(1) 真空解。}$V'(\pm1)=0$，定数 $x\equiv\pm1$ は $\ddot x=0=V'$ を満たし $V(\pm1)=0,\dot x=0$ ゆえ $S_E=0$。
 
-\textbf{(2) インスタントン。}$\tfrac12\dot x^2=V=\tfrac18(1-x^2)^2$ より $\dot x=\tfrac12(1-x^2)$。
-$\int\frac{dx}{1-x^2}=\operatorname{arctanh}x=\tfrac12(\tau-\tau_0)$ ゆえ
-$\boxed{x_{\mathrm{cl}}(\tau)=\tanh\tfrac{\tau-\tau_0}{2}}$。
-$\tau\to+\infty$ で $\to+1$，$\tau\to-\infty$ で $\to-1$（境界条件を極限の意味で満たす弱解）。
-$\tanh z=1-2e^{-2z}+\cdots$ より $x_{\mathrm{cl}}\to1-2e^{-(\tau-\tau_0)}$（$\omega=1$）。反インスタントンは $-\tanh\tfrac{\tau-\tau_0}{2}$。
+\textbf{(2) インスタントン。}$\tfrac12\dot x^2=V=\tfrac18(1-x^2)^2$ より $\dot x=\tfrac12(1-x^2)$，
+$\operatorname{arctanh}x=\tfrac12(\tau-\tau_0)$ ゆえ $\boxed{x_{\mathrm{cl}}=\tanh\tfrac{\tau-\tau_0}{2}}$。
+$\tau\to\pm\infty$ で $\to\pm1$（極限の意味で境界条件を満たす弱解）。$\tanh z=1-2e^{-2z}+\cdots$ より
+$x_{\mathrm{cl}}\to1-2e^{-(\tau-\tau_0)}$（$\omega=1$）。反インスタントンは $-\tanh\tfrac{\tau-\tau_0}{2}$。
 
-\textbf{(3) 作用。}
-\[
-    S_0=\int_{-1}^{1}\tfrac12(1-x^2)\,dx=\tfrac12\Bigl[x-\tfrac{x^3}{3}\Bigr]_{-1}^{1}=\tfrac12\Bigl(\tfrac23+\tfrac23\Bigr)
-    =\boxed{\dfrac23}.
-\]
+\textbf{(3) 作用。}$S_0=\int_{-1}^{1}\tfrac12(1-x^2)dx=\tfrac12[x-\tfrac{x^3}3]_{-1}^1=\tfrac12(\tfrac23+\tfrac23)=\boxed{\tfrac23}$。
 
-\textbf{(4) N-インスタントン弱解。}よく離れた $N$ 個の(反)インスタントンの作用は，相互作用
-（$\propto e^{-|\tau_{i+1}-\tau_i|}$）が分離 $\to\infty$ で消えるため，個々の和 $\to\boxed{N S_0}$。
-両端で同じ真空へ戻る配位（基底状態の振幅に効く）は I と $\bar{\mathrm I}$ が偶数個 $2N$ 個並んだもので，
-作用は $2NS_0$。
+\textbf{(4) 作用密度の局在。}
+$\dot x_{\mathrm{cl}}=\tfrac12\sech^2\tfrac{\tau-\tau_0}{2}$ ゆえ
+$\boxed{\varepsilon(\tau)=\dot x_{\mathrm{cl}}^2=\tfrac14\sech^4\tfrac{\tau-\tau_0}{2}}$。
+$\tau=\tau_0$ にピーク値 $\tfrac14$ を持ち，$|\tau-\tau_0|$ 大で $\sech^4\tfrac{\tau}{2}\approx16e^{-2|\tau|}$ より
+$\varepsilon\approx4e^{-2|\tau-\tau_0|}$ と指数減衰する局在した山。
+$\int_{-\infty}^{\infty}\varepsilon\,d\tau=\tfrac12\int_{-\infty}^\infty\sech^4w\,dw=\tfrac12\cdot\tfrac43=\tfrac23=S_0$
+（$w=\tfrac{\tau-\tau_0}2$，$\int\sech^4w\,dw=\tanh w-\tfrac13\tanh^3w$）。
+$\tau_0=0$ でのグラフ（青：$x_{\mathrm{cl}}$，赤：$\varepsilon$）：
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=11cm,height=5.2cm,domain=-7:7,samples=120,
+  axis lines=middle,xlabel=$\tau$,ylabel={},
+  xtick={-6,-4,-2,2,4,6},ytick={-1,-0.5,0.5,1},
+  ymin=-1.15,ymax=1.15,enlargelimits=false,
+  legend pos=south east,legend style={font=\footnotesize,draw=none}]
+\addplot[blue,thick] {tanh(x/2)};   \addlegendentry{$x_{\mathrm{cl}}=\tanh(\tau/2)$}
+\addplot[red,thick]  {0.25*(1/cosh(x/2))^4}; \addlegendentry{$\varepsilon=\tfrac14\sech^4(\tau/2)$}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+キンク $x_{\mathrm{cl}}$ が $-1\to+1$ と移る一方，作用密度 $\varepsilon$ は $\tau=0$ 付近に局在している。
+
+\textbf{(5) N-インスタントン弱解。}局在ゆえ作用密度はよく離れた山の和 $\approx\sum_i\varepsilon(\tau-\tau_i)$ で，
+重なり（相互作用）は $\propto e^{-\omega|\tau_{i+1}-\tau_i|}$ で指数的に小さい。分離 $\to\infty$ で運動方程式を
+（核外で厳密・全体として弱の意味で）満たす弱解となり，作用は $\boxed{NS_0}$。同じ真空へ戻る配位は $2N$ 個，作用 $2NS_0$。
 \end{sol}
 
 %======================================================================
-\section{問題 2：無摂動基底状態}
+\section{問題 2：tadpole 和と真空の非摂動的分離}
 %======================================================================
 
 \begin{sol}
-\textbf{(1)} $[a,a^\dagger]=\tfrac12([u,-\partial_u]+[\partial_u,u])=\tfrac12(1+1)=1$。
-$a^\dagger a=\tfrac12(u^2-\partial_u^2-1)=H_0-\tfrac12$ ($\partial_u u=1+u\partial_u$) ゆえ $H_0=a^\dagger a+\tfrac12$。
+\textbf{(1) 古典臨界点。}$V'(y)=y+\tfrac32y^2+\tfrac12y^3=\tfrac12 y(y+1)(y+2)$ ゆえ
+$\boxed{y=0,\,-1,\,-2}$。$V''(y)=1+3y+\tfrac32y^2$ で $V''(0)=1>0$（極小，$x=1$ 真空），
+$V''(-2)=1>0$（極小，$x=-1$ 真空），$V''(-1)=-\tfrac12<0$（極大，障壁の頂上 $x=0$）。
 
-\textbf{(2)} $a\psi_0=0$: $(u+\partial_u)\psi_0=0\Rightarrow\psi_0=Ce^{-u^2/2}$。規格化 $C^2\sqrt\pi=1$ ゆえ
-$\boxed{\psi_0=\pi^{-1/4}e^{-u^2/2}}$。$H_0\psi_0=\tfrac12\psi_0$ ゆえ
-$\boxed{\cE_0=\tfrac12}$，次元を戻すと $\boxed{a_1=\tfrac12}$（零点・1-loop energy $\tfrac\hb2$）。
+\textbf{(2) tadpole 和。}$V'(y_*)=J$ すなわち $y_*=J-\tfrac32y_*^2-\tfrac12y_*^3$ を反復して
+\[
+    \boxed{\,y_*(J)=J-\tfrac32J^2+4J^3-\cdots\,}
+\]
+（伝播子 $1/V''(0)=1/\omega^2=1$，頂点 $\tfrac12y^3,\tfrac18y^4$ による tree（tadpole）の和）。
 
-\textbf{(3)} $\psi_0$ は $x=1$ の単一井戸に局在し，トンネルを含まない。
+\textbf{(3) 別の真空は届かない。}$V''(y_c)=1+3y_c+\tfrac32y_c^2=0$ より $y_c=-1\pm\tfrac1{\sqrt3}$。
+$y=0$ に近い枝の最近接分岐点は $\boxed{y_c=-1+\tfrac1{\sqrt3}\approx-0.42}$，そこで
+$J_c=V'(y_c)=-\tfrac1{3\sqrt3}=-\tfrac{\sqrt3}{9}$，収束半径
+$\boxed{|J_c|=\tfrac{\sqrt3}{9}\approx0.19}$。この枝で到達できる $|y|$ の最大は
+$\boxed{|y_c|=1-\tfrac1{\sqrt3}\approx0.42}$ で，障壁 $y=-1$ にも届かない（まして別の真空 $y=-2$ には届かない）。
+ゆえ $y=-2$（$J=0$ だが別の枝）は tadpole/非調和摂動をどう足し上げても到達不能。
+
+\textbf{(4) 結論。}別の真空へ移るには障壁越えが必要で，それを担うインスタントンの重みは $e^{-S_0/\hb}$，
+結合定数のベキでなく，摂動級数のどの有限次にも現れない。\textbf{真空間遷移（インスタントン）は非摂動効果}である。
 \end{sol}
 
 %======================================================================
-\section{問題 3：Bender--Wu 漸化式}
+\section{問題 3：無摂動基底状態}
+%======================================================================
+
+\begin{sol}
+\textbf{(1)} $[a,a^\dagger]=\tfrac12([u,-\partial_u]+[\partial_u,u])=1$，
+$a^\dagger a=\tfrac12(u^2-\partial_u^2-1)=H_0-\tfrac12$ ($\partial_u u=1+u\partial_u$) ゆえ $H_0=a^\dagger a+\tfrac12$。
+
+\textbf{(2)} $(u+\partial_u)\psi_0=0\Rightarrow\psi_0=Ce^{-u^2/2}$，規格化 $C^2\sqrt\pi=1$ ゆえ
+$\boxed{\psi_0=\pi^{-1/4}e^{-u^2/2}}$，$H_0\psi_0=\tfrac12\psi_0$ ゆえ $\boxed{\cE_0=\tfrac12,\ a_1=\tfrac12}$。
+
+\textbf{(3)} $\psi_0$ は $x=1$ の単一井戸に局在しトンネルを含まない。
+\end{sol}
+
+%======================================================================
+\section{問題 4：Bender--Wu 漸化式}
 %======================================================================
 
 \begin{sol}
 \textbf{(1)} $\partial_u^2(e^{-u^2/2}P)=e^{-u^2/2}(P''-2uP'+(u^2-1)P)$ より
 $(-\tfrac12\partial_u^2+\tfrac12u^2)(e^{-u^2/2}P)=e^{-u^2/2}(-\tfrac12P''+uP'+\tfrac12P)$。
-非調和項を加え $e^{-u^2/2}$ で割って \eqref{eq:Peq}。$P=1$ で左辺 $\tfrac12=$ 右辺 $\cE$，$\cE=\tfrac12$。
+非調和項を加え $e^{-u^2/2}$ で割って \eqref{eq:Peq}。$P=1$ で $\cE=\tfrac12$。
 
-\textbf{(2)} $\epsilon^k$ の比較で \eqref{eq:BW}：
-$-\tfrac12P_k''+uP_k'=-\tfrac12u^3P_{k-1}-\tfrac18u^4P_{k-2}+\sum_{j=1}^k\cE_jP_{k-j}$。
+\textbf{(2)} $\epsilon^k$ の比較で \eqref{eq:BW}。
 \end{sol}
 
 %======================================================================
-\section{問題 4：低次係数}
+\section{問題 5：低次係数}
 %======================================================================
 
 \begin{sol}
-左辺は $u^m\mapsto m\,u^m-\tfrac12m(m-1)u^{m-2}$。$P_k=\sum_m c_mu^m$ の $u^m$ 係数は
-$mc_m-\tfrac12(m+2)(m+1)c_{m+2}$。
+左辺は $u^m\mapsto m\,u^m-\tfrac12m(m-1)u^{m-2}$。$u^m$ 係数は $mc_m-\tfrac12(m+2)(m+1)c_{m+2}$。
 
-\textbf{(1)} $u^0$ の式は $-c_2=[\text{右辺の }u^0]=\cE_k$（右辺の $u^0$ 項は $\cE_kP_0=\cE_k$）。ゆえ
-$\cE_k=-[P_k\text{ の }u^2\text{ 係数}]$。
+\textbf{(1)} $u^0$：$-c_2=\cE_k$ ゆえ $\cE_k=-[P_k\text{ の }u^2\text{ 係数}]$。
 
-\textbf{(2) $k=1$.} 右辺 $-\tfrac12u^3+\cE_1$。$P_1=au^3+bu$ の左辺 $3au^3+(b-3a)u$。
-$3a=-\tfrac12,\ b=3a$，$u^0:\cE_1=0$。$\boxed{P_1=-\tfrac16u^3-\tfrac12u,\ \cE_1=0}$。
+\textbf{(2) $k=1$.} $P_1=au^3+bu$，左辺 $3au^3+(b-3a)u$。$3a=-\tfrac12,b=3a$，$\cE_1=0$。
+$\boxed{P_1=-\tfrac16u^3-\tfrac12u,\ \cE_1=0}$。
 
-\textbf{(3) $k=2$.} 右辺 $=-\tfrac12u^3P_1-\tfrac18u^4+\cE_2=\tfrac1{12}u^6+\tfrac18u^4+\cE_2$。
-$P_2=cu^6+du^4+eu^2$ の左辺 $6cu^6+(4d-15c)u^4+(2e-6d)u^2-e$。
-$6c=\tfrac1{12}\Rightarrow c=\tfrac1{72}$；$4d-15c=\tfrac18\Rightarrow d=\tfrac1{12}$；$2e-6d=0\Rightarrow e=\tfrac14$；$-e=\cE_2$。
-$\boxed{P_2=\tfrac1{72}u^6+\tfrac1{12}u^4+\tfrac14u^2,\ a_2=\cE_2=-\tfrac14}$。
+\textbf{(3) $k=2$.} 右辺 $\tfrac1{12}u^6+\tfrac18u^4+\cE_2$。$P_2=cu^6+du^4+eu^2$，
+左辺 $6cu^6+(4d-15c)u^4+(2e-6d)u^2-e$。$c=\tfrac1{72},d=\tfrac1{12},e=\tfrac14$，$-e=\cE_2$。
+$\boxed{a_2=\cE_2=-\tfrac14}$。
 
-\textbf{(4) $k=3,4$.} $P_3$ は奇関数ゆえ $\boxed{\cE_3=0}$，
+\textbf{(4) $k=3,4$.} $P_3$ 奇関数ゆえ $\boxed{\cE_3=0}$，
 $P_3=-\tfrac1{1296}u^9-\tfrac1{144}u^7-\tfrac1{24}u^5-\tfrac18u^3-\tfrac14u$。
-$k=4$：右辺 $=-\tfrac12u^3P_3-\tfrac18u^4P_2+\cE_2P_2+\cE_4$ の各冪
-$r_{12}=\tfrac1{2592},r_{10}=\tfrac1{576},r_8=\tfrac1{96},r_6=\tfrac1{36},r_4=\tfrac5{48},r_2=-\tfrac1{16}$。
-$mc_m-\tfrac12(m+2)(m+1)c_{m+2}=r_m$ を上から解くと
+$k=4$：右辺各冪 $r_{12}=\tfrac1{2592},r_{10}=\tfrac1{576},r_8=\tfrac1{96},r_6=\tfrac1{36},r_4=\tfrac5{48},r_2=-\tfrac1{16}$。
+$mc_m-\tfrac12(m+2)(m+1)c_{m+2}=r_m$ を上から解き
 $c_{12}=\tfrac1{31104},c_{10}=\tfrac1{2592},c_8=\tfrac1{288},c_6=\tfrac1{48},c_4=\tfrac5{48},c_2=\tfrac9{32}$，
-$-c_2=\cE_4$ ゆえ $\boxed{a_3=\cE_4=-\tfrac9{32}}$。（続けて $a_4=\cE_6=-\tfrac{89}{128},\ a_5=\cE_8=-\tfrac{5013}{2048}$。）
+$-c_2=\cE_4$ ゆえ $\boxed{a_3=\cE_4=-\tfrac9{32}}$。（続けて $a_4=-\tfrac{89}{128},a_5=-\tfrac{5013}{2048}$。）
 \end{sol}
 
 %======================================================================
-\section{問題 5：Gevrey-1 発散と収束半径}
+\section{問題 6：Gevrey-1 発散と収束半径}
 %======================================================================
 
 \begin{sol}
 \textbf{(1) 構造的起源。}$\deg P_k=3k$，下降求解 $c_m=\tfrac1m[r_m+\tfrac12(m+2)(m+1)c_{m+2}]$ で
-高次係数が因子 $\tfrac{(m+2)(m+1)}{2m}\sim\tfrac m2$ を掛けながら $u^2$ 係数へ降りる。
-インデックス比例因子の蓄積が $\cE_k=-c_2$ の階乗的増大を生む（定量化は (2)）。
+高次係数が因子 $\tfrac{(m+2)(m+1)}{2m}\sim\tfrac m2$ を掛けながら $u^2$ へ降りる。これが $\cE_k=-c_2$ の
+階乗的増大を生む（定量化は (2)）。
 
 \textbf{(2) 大次数解析。}$\operatorname{Im}E_0\sim-Ce^{-2S_0/\hb}$ を分散関係
 $a_n=\tfrac1\pi\int_0^\infty\frac{\operatorname{Im}E_0}{\hb^{n+1}}d\hb$ に入れ，$t=1/\hb$ で
 $\int_0^\infty t^{n-1}e^{-2S_0t}dt=\Gamma(n)/(2S_0)^n$ ゆえ
-\[
-    \boxed{\;a_n\sim-\frac{C}{\pi}\frac{\Gamma(n)}{(2S_0)^n}=-\frac{C}{\pi}\frac{(n-1)!}{(2S_0)^n}\;}\quad(n\to\infty).
-\]
-$(n-1)!$ 並みの増大＝Gevrey-1。スケールは I--$\bar{\mathrm I}$ 作用 $2S_0$。
+$\boxed{a_n\sim-\tfrac{C}{\pi}\Gamma(n)(2S_0)^{-n}=-\tfrac{C}{\pi}(n-1)!\,(2S_0)^{-n}}$。
+$(n-1)!$ 並み＝Gevrey-1，スケールは $2S_0$。
 
-\textbf{(3) 収束半径。}$\bigl|a_{n+1}/a_n\bigr|=\tfrac{\Gamma(n+1)}{\Gamma(n)}\tfrac1{2S_0}=\tfrac{n}{2S_0}\to\infty$，
-ゆえ $\boxed{R=\lim|a_n/a_{n+1}|=\lim\tfrac{2S_0}{n}=0}$。収束半径は導いた高次挙動の帰結。
+\textbf{(3) 収束半径.}$|a_{n+1}/a_n|=\tfrac{n}{2S_0}\to\infty$ ゆえ $\boxed{R=\lim|a_n/a_{n+1}|=0}$。
+導いた高次挙動の帰結（低次の外挿ではない）。
 
-\textbf{(4) チェック.}$|a_2/a_1|=\tfrac{1/4}{1/2}=0.5$, $|a_3/a_2|=\tfrac{9/32}{1/4}=1.125$。
-予言 $n/(2S_0)=0.75n$ は $n=1,2$ で $0.75,1.5$。$1/n$ 補正の範囲で矛盾しない（$2S_0=4/3$ を先取り）。
+\textbf{(4) チェック.}$|a_2/a_1|=0.5,|a_3/a_2|=1.125$ は予言 $0.75n=0.75,1.5$ に $1/n$ 補正の範囲で近い。
 \end{sol}
 
 %======================================================================
-\section{問題 6：Borel 変換}
+\section{問題 7：Borel 変換}
 %======================================================================
 
 \begin{sol}
-$b_n=a_n/(n-1)!\sim K(2S_0)^{-n}$ は公比 $1/(2S_0)$ の等比数列ゆえ $|\zeta|<2S_0$ で
-\[
-    \Bor[E_0](\zeta)=\sum_{n\ge1}b_n\zeta^{n-1}
-    =\frac{K}{2S_0}\frac{1}{1-\zeta/2S_0}=\boxed{\frac{K}{2S_0-\zeta}}.
-\]
-最近接特異点は\textbf{正実軸上 $\zeta=2S_0$ の単純極}（真の特異点は対数分岐だが，位置と主導的増大率は単純極で
-正しく captured される）。極が積分路 $(0,\infty)$ 上にあるため，横方向 Borel 和の差が
-留数 $\propto e^{-2S_0/\hb}$ の虚数的曖昧さ（I--$\bar{\mathrm I}$ 非摂動効果）を生む。
+$b_n=a_n/(n-1)!\sim K(2S_0)^{-n}$ は公比 $1/(2S_0)$ の等比数列ゆえ
+$\Bor[E_0](\zeta)=\tfrac{K}{2S_0}\tfrac{1}{1-\zeta/2S_0}=\boxed{\dfrac{K}{2S_0-\zeta}}$。
+最近接特異点は\textbf{正実軸上 $\zeta=2S_0$ の単純極}（真の特異点は対数分岐だが位置と主導増大率は単純極で正しい）。
+積分路上にあるため横方向 Borel 和の差が $\propto e^{-2S_0/\hb}$ の虚数的曖昧さを生む。
 \end{sol}
 
 %======================================================================
-\section{問題 7：周期的 Borel 特異性}
+\section{問題 8：周期的 Borel 特異性}
 %======================================================================
 
 \begin{sol}
-\textbf{(1)} Borel 平面の特異点 $\zeta=A$ は非摂動因子 $e^{-A/\hb}$ に対応する。
-$2N$ 個（N 対）の多重インスタントン弱解は作用 $2NS_0$，振幅 $\propto e^{-2NS_0/\hb}$ ゆえ，
-$\Bor[E_0]$ は\textbf{正実軸上の点列 $\boxed{\zeta=2NS_0\ (N=1,2,3,\dots)}$ に特異性を持つ}。
-これらは\textbf{等間隔（周期的），間隔 $2S_0$}。$S_0=\tfrac23$ を入れると最初の 3 点は
-$\boxed{\zeta=\tfrac43,\ \tfrac83,\ 4}$。
+\textbf{(1)} 特異点 $\zeta=A$ は $e^{-A/\hb}$ に対応。$2N$ 個（N 対）の弱解は作用 $2NS_0$，振幅 $e^{-2NS_0/\hb}$ ゆえ
+$\Bor[E_0]$ は\textbf{$\boxed{\zeta=2NS_0\ (N\ge1)}$ に等間隔（間隔 $2S_0$）の特異点列}を持つ。
+$S_0=\tfrac23$ ゆえ最初の 3 点は $\boxed{\zeta=\tfrac43,\tfrac83,4}$。
 
-\textbf{(2)} $N$ 番目は $a_n$ に $\propto\Gamma(n)(2NS_0)^{-n}$ を与える。$N=2$ の $N=1$ に対する相対抑制は
-$\boxed{(2S_0/4S_0)^n=(1/2)^n=2^{-n}}$。ゆえ大次数は最近接 $N=1$（$2S_0$）が支配し，
-多重インスタントンは指数的に抑制された subleading 補正を与える。
+\textbf{(2)} $N$ 番目は $\propto\Gamma(n)(2NS_0)^{-n}$。$N=2$ の $N=1$ に対する相対抑制は
+$\boxed{(2S_0/4S_0)^n=2^{-n}}$。ゆえ大次数は $N=1$（$2S_0$）が支配，多重インスタントンは指数抑制された subleading 補正。
 
-\textbf{(3)} 古典 N-インスタントン弱解（作用 $2NS_0$）$\leftrightarrow$ 量子 Borel 平面の周期的特異点 $\zeta=2NS_0$ が
-一対一対応する。（参考：全特異点を単純極でモデル化すると $\Bor\sim\sum_N r_N/(2NS_0-\zeta)$ で，等間隔極は
-digamma 型関数の極構造に対応する。）
+\textbf{(3)} 古典 N-インスタントン弱解（作用 $2NS_0$）$\leftrightarrow$ 量子 Borel の周期的特異点 $\zeta=2NS_0$ が一対一対応。
+（全特異点を単純極でモデル化すると $\Bor\sim\sum_N r_N/(2NS_0-\zeta)$，等間隔極は digamma 型関数の極構造に対応。）
 \end{sol}
 
 %======================================================================
-\section{問題 8：低次 Borel--Pad\'e}
+\section{問題 9：低次 Borel--Pad\'e}
 %======================================================================
 
 \begin{sol}
-\textbf{(1)} $b_n=a_n/(n-1)!$：$\boxed{b_1=\tfrac12,\ b_2=-\tfrac14,\ b_3=-\tfrac9{64}}$
-（$c_0=b_1,c_1=b_2,c_2=b_3$）。
+\textbf{(1)} $\boxed{b_1=\tfrac12,b_2=-\tfrac14,b_3=-\tfrac9{64}}$（$c_0=b_1,c_1=b_2,c_2=b_3$）。
 
-\textbf{(2) $[1/1]$.} \eqref{eq:padeden} の $L=M=1,\ k=1$：$c_2+q_1c_1=0$ ゆえ $q_1=-c_2/c_1=-b_3/b_2$。
-極 $\zeta^\ast_{[1/1]}=-1/q_1=b_2/b_3=\dfrac{-1/4}{-9/64}=\boxed{\dfrac{16}{9}\approx1.78}$。
-最近接特異点 $2S_0=\tfrac43\approx1.333$ をやや上回る。
+\textbf{(2) $[1/1]$.} \eqref{eq:padeden}（$L=M=1,k=1$）：$c_2+q_1c_1=0$，$q_1=-b_3/b_2$。
+極 $\zeta^\ast_{[1/1]}=-1/q_1=b_2/b_3=\boxed{\tfrac{16}{9}\approx1.78}$（$2S_0=\tfrac43\approx1.33$ をやや上回る）。
 
-\textbf{(3) $[2/2]$.} $\boxed{b_4=-\tfrac{89}{768},\ b_5=-\tfrac{5013}{49152}}$。
-\eqref{eq:padeden} の $L=M=2,\ k=1,2$：$b_4+q_1b_3+q_2b_2=0,\ b_5+q_1b_4+q_2b_3=0$。
-整理（$\times(-64),\times(-768)$）して
-\[
-    9q_1+16q_2=-\tfrac{89}{12},\qquad 89q_1+108q_2=-\tfrac{5013}{64}.
-\]
-解いて $q_2=\tfrac{8615}{86784}\approx0.09927,\ q_1\approx-1.00055$。根
-$\zeta=\dfrac{-q_1\pm\sqrt{q_1^2-4q_2}}{2q_2}=\dfrac{1.00055\pm0.77719}{0.19854}$ より
+\textbf{(3) $[2/2]$.} $\boxed{b_4=-\tfrac{89}{768},b_5=-\tfrac{5013}{49152}}$。
+\eqref{eq:padeden}（$L=M=2$）：$b_4+q_1b_3+q_2b_2=0,\ b_5+q_1b_4+q_2b_3=0$。
+整理して $9q_1+16q_2=-\tfrac{89}{12},\ 89q_1+108q_2=-\tfrac{5013}{64}$。解いて
+$q_2=\tfrac{8615}{86784}\approx0.0993,q_1\approx-1.0006$。根 $\dfrac{1.0006\pm0.7772}{0.1985}$ より
 最近接 $\boxed{\zeta^\ast_{[2/2]}\approx1.12}$（他方 $\approx8.95$）。
 
-\textbf{(4)} $[1/1]$ の $1.78$ と $[2/2]$ の $1.12$ は $2S_0=\tfrac43\approx1.333$ を上下から\textbf{挟む}。
-次数を上げると最近接極は $\zeta=2S_0$ へ収束（$n\le33$ の $[15/15]$ で $\zeta^\ast\approx1.3331\approx4/3$）。
-低次の数項だけで非摂動スケール $2S_0$ が当たる。
+\textbf{(4)} $[1/1]$ の $1.78$ と $[2/2]$ の $1.12$ が $2S_0=\tfrac43\approx1.33$ を上下から\textbf{挟む}。
+次数を上げると最近接極は $\zeta=2S_0$ へ収束（$[15/15]$ で $\approx1.3331$）。低次で非摂動スケールが当たる。
 \end{sol}
 
 %======================================================================
-\section{問題 9：ループを閉じる}
+\section{問題 10：ループを閉じる}
 %======================================================================
 
 \begin{sol}
-\textbf{(1)} 最近接特異点 $\zeta^\ast$ なら $b_n\sim(\zeta^\ast)^{-n}$，$a_n=(n-1)!\,b_n\sim\Gamma(n)(\zeta^\ast)^{-n}$。
-低次から当てた $\zeta^\ast\approx4/3=2S_0$ は問題 5 の大次数則（増大率 $1/(2S_0)=3/4$）を再現する。
+\textbf{(1)} $\zeta^\ast$ から $a_n\sim\Gamma(n)(\zeta^\ast)^{-n}$。低次から当てた $\zeta^\ast\approx4/3=2S_0$ は
+問題 6 の大次数則（増大率 $3/4$）を再現する。
 
-\textbf{(2)} $\zeta^\ast=2S_0=4/3$ は前半のインスタントン作用 $S_0=2/3$ の 2 倍。周期的特異点 $2NS_0$
-（問題 7）は古典 N-インスタントン弱解に対応。無摂動基底状態への単純な補正計算に過ぎない摂動級数が，
-低次の数項のうちにトンネル（多重インスタントン）の非摂動スケールを内包する
-――「摂動展開から非摂動効果が拾える」共鳴（resurgence）の核心。
+\textbf{(2)} $\zeta^\ast=2S_0=4/3$ は前半のインスタントン作用 $S_0=2/3$ の 2 倍。周期的特異点 $2NS_0$（問題 8）は
+古典 N-インスタントン弱解に対応。無摂動基底状態への補正計算に過ぎない摂動級数が，低次の数項のうちに
+トンネル（多重インスタントン）の非摂動スケールを内包する――「摂動展開から非摂動効果が拾える」
+共鳴（resurgence）の核心である。問題 2 で見たとおりインスタントン自体は摂動では到達できない非摂動配位であり，
+それでもなおその作用が摂動級数の発散に刻まれている点が決定的である。
 \end{sol}
 
 \end{document}
