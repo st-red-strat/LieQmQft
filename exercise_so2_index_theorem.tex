@@ -1,0 +1,211 @@
+\documentclass[dvipdfmx, uplatex]{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{braket}
+\usepackage{enumitem}
+
+\usepackage{silence}
+\WarningFilter*{hyperref}{Token not allowed in a PDF string}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+\allowdisplaybreaks[4]
+
+\usepackage[left=25truemm,top=20truemm,bottom=20truemm,right=25truemm]{geometry}
+
+\newcommand{\zbar}{\bar z}
+\newcommand{\dz}{\partial_z}
+\newcommand{\dzb}{\partial_{\bar z}}
+
+\theoremstyle{definition}
+\newtheorem*{prob}{問題}
+
+\title{演習：回転群 $SO(2)$ の表現から指数定理へ\\
+\large ―― ベクトル表現と関数表現・Laurent 基底・Poincar\'e--Hopf・複素線束上の $\bar\partial$ と APS 指数定理 ――}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-6zh}
+
+\begin{abstract}
+\sloppy
+平面の回転群 $SO(2)$ を，2 成分ベクトル $(x,y)$ に作用する\textbf{ベクトル表現}と，関数 $f(x,y)$ に
+作用する微分演算子 $\exp[\theta(y\partial_x-x\partial_y)]$ による\textbf{関数表現}の二通りで実現し，両者が
+同じ群の異なる表現であることを具体演算で確かめる。各表現の固有ベクトルを求めると，ベクトル表現では
+\emph{2 個}，関数表現では\emph{可算無限個}現れ，後者は複素座標 $z=x+iy,\ \bar z=x-iy$ で\textbf{Laurent
+級数の基底} $\{z^n\}_{n\in\mathbb{Z}}$ に一致する。次に有理関数が定める Riemann 球面上のベクトル場で
+\textbf{指数の総和が $2=\chi(S^2)$} になること（Poincar\'e--Hopf 定理の最も簡単な例）を確かめる。最後に
+$\dzb$ に $U(1)$ 接続を入れた\textbf{複素線束上の Cauchy--Riemann 作用素} $\dzb+iA_{\bar z}$ を考え，
+曲率 $F=dA$ の積分が $\int_{S^2}F=2\pi\mathbb{Z}$（第一 Chern 数）に量子化されること，球面を北・南半球に
+分けると\textbf{赤道上に境界作用素として回転の生成子が自然に現れる}こと，そしてバルクの Chern 数と
+境界のスペクトル非対称性（$\eta$ 不変量）との間に\textbf{APS 指数定理}が成り立つことを，いくつかの
+具体的な $A$ について検証する。
+
+\textbf{各問は表式・数値を答えさせる形にしてあり，本文中には原則として解答を与えていない}。
+完全な解答は別ファイル \texttt{exercise\_so2\_index\_theorem\_solutions.tex} にある。
+\end{abstract}
+
+\tableofcontents
+
+%======================================================================
+\section{設定と記号}
+%======================================================================
+平面 $\mathbb{R}^2$ の点を $(x,y)$，対応する複素座標を $z=x+iy,\ \bar z=x-iy$ と書く。
+$\partial_z=\tfrac12(\partial_x-i\partial_y),\ \partial_{\bar z}=\tfrac12(\partial_x+i\partial_y)$。
+回転角 $\theta$ のベクトル表現行列を
+\[
+    R(\theta)=\begin{pmatrix}\cos\theta&-\sin\theta\\ \sin\theta&\cos\theta\end{pmatrix},
+\]
+関数表現の生成子を $G:=y\partial_x-x\partial_y$，1 パラメータ群を $U(\theta):=e^{\theta G}$ とする。
+極座標は $x=r\cos\varphi,\ y=r\sin\varphi$。
+
+%======================================================================
+\section{SO(2) の二つの表現}
+%======================================================================
+同じ回転群が，2 次元ベクトルに作用する行列としても，関数に作用する微分演算子としても実現される。
+
+\begin{prob}
+\begin{enumerate}
+\item \textbf{ベクトル表現の群則。}行列の積 $R(\theta_1)R(\theta_2)$ を計算して成分で表し，それが
+$R(\theta_1+\theta_2)$ に等しいことを示せ。単位元 $R(0)$ と逆元 $R(\theta)^{-1}$ を $\theta$ で表せ。
+\item \textbf{生成子の作用。}$G x$ と $G y$ を計算せよ。これを用いて $e^{\theta G}x$ と $e^{\theta G}y$ を
+$x,y,\theta$ の関数として求めよ（$u(\theta)=e^{\theta G}x,\ v(\theta)=e^{\theta G}y$ が満たす連立 1 階
+常微分方程式を立てて解け）。
+\item \textbf{関数表現の群則。}生成子 $G$ が自分自身と可換であることから $U(\theta_1)U(\theta_2)$ を
+$U(\theta_1+\theta_2)$ の形にまとめよ。$U(0)$ と $U(\theta)^{-1}$ を述べよ。さらに，1 次関数の張る
+2 次元空間 $\mathrm{span}\{x,y\}$ 上で $U(\theta)$ を基底 $(x,y)$ に関する $2\times2$ 行列として表し，
+それを $R(\theta)$ と比較せよ（どの表現が現れるか）。
+\end{enumerate}
+\end{prob}
+
+%======================================================================
+\section{固有ベクトルと固有関数}
+%======================================================================
+表現を対角化する。固有値はどちらの表現でも回転群の指標 $e^{i(\text{整数})\theta}$ だが，固有ベクトルの
+\emph{個数}が表現で異なる。
+
+\begin{prob}
+\begin{enumerate}[start=4]
+\item \textbf{ベクトル表現の固有ベクトル。}$R(\theta)$ の固有値 $\lambda_\pm(\theta)$ と固有ベクトル
+$\bm e_\pm$ を求めよ（$\theta$ によらない定ベクトルとして表せ）。固有ベクトルは何個あるか。
+\item \textbf{関数表現の固有関数。}$G$ を極座標 $(r,\varphi)$ で表せ。$G\psi=\mu\psi$ を満たす固有関数
+$\psi$ を $\varphi$ 依存性について求め（単価性 $\psi(\varphi+2\pi)=\psi(\varphi)$ を課す），固有値 $\mu$ と，
+対応する $U(\theta)$ の固有値を求めよ。固有関数は何個（どんな集合で添字づけられるか）あるか。
+\end{enumerate}
+\end{prob}
+
+%======================================================================
+\section{複素座標と Laurent 基底}
+%======================================================================
+関数表現の固有関数を複素座標で書くと，正則・反正則のべきに分かれ，Laurent 級数の基底が現れる。
+
+\begin{prob}
+\begin{enumerate}[start=6]
+\item \textbf{複素座標での生成子。}$Gz$ と $G\bar z$ を計算せよ。これを用いて $G$ を $z\partial_z$ と
+$\bar z\partial_{\bar z}$ で表せ。単項式 $z^n\bar z^m$（$n,m\ge0$）が $G$ の固有関数であることを示し，
+その固有値と $U(\theta)$ の固有値を $n,m$ で表せ。
+\item \textbf{Laurent 基底。}原点を除いた領域（あるいは単位円 $|z|=1$）で，前問 (5) の固有関数
+$e^{in\varphi}$ が複素座標でどの関数に一致するかを述べよ。$\{$その関数 $\}_{n\in\mathbb{Z}}$ が何の基底に
+なっているか（級数の名前）を答えよ。
+\end{enumerate}
+\end{prob}
+
+%======================================================================
+\section{Poincar\'e--Hopf：指数の総和}
+%======================================================================
+有理関数 $R(z)$ は Riemann 球面 $S^2=\mathbb{C}\cup\{\infty\}$ 上のベクトル場 $v=R(z)\partial_z$ を定める。
+その零点・極における\textbf{指数}（零点の位数は $+$，極の位数は $-$）の総和を調べる。無限遠点 $\infty$ は
+座標 $w=1/z$ で見る（$\partial_z=-w^2\partial_w$ ゆえ $v=-w^2R(1/w)\partial_w$）。
+
+\begin{prob}
+\begin{enumerate}[start=8]
+\item \textbf{指数の総和。}次の各ベクトル場について，有限平面と無限遠点 $w=0$ のすべての零点・極での
+指数を求め，その総和を答えよ。さらにこの総和が等しい位相不変量の名前を述べよ。
+\[
+    \text{(a)}\ v=\partial_z,\qquad
+    \text{(b)}\ v=z\,\partial_z,\qquad
+    \text{(c)}\ v=\tfrac1z\,\partial_z,\qquad
+    \text{(d)}\ v=(z^2-1)\,\partial_z.
+\]
+（ヒント：(b) の零点の位置を，第 4 節で求めたベクトル表現の固定点と比べよ。）
+\end{enumerate}
+\end{prob}
+
+%======================================================================
+\section{U(1) 接続・複素線束上の Cauchy--Riemann 作用素・Chern 数}
+%======================================================================
+$\dzb$ に $U(1)$ 接続を入れて共変化する。実 $U(1)$ ゲージ場 $A$（実 1 形式）に対し
+\[
+    D_{\bar z}:=\dzb+iA_{\bar z}
+\]
+を\textbf{複素線束上の Cauchy--Riemann（$\bar\partial$）作用素}と呼ぶ（$A_{\bar z}$ は $A$ の $(0,1)$ 成分）。
+$D_{\bar z}\psi=0$ を満たす切断 $\psi$ を共変正則切断という。曲率は $F=dA$。
+
+\begin{prob}
+\begin{enumerate}[start=9]
+\item \textbf{ゲージ共変性。}局所 $U(1)$ 変換 $\psi\to e^{i\alpha}\psi$（$\alpha$ は実関数）に対し，
+$D_{\bar z}(e^{i\alpha}\psi)=e^{i\alpha}D_{\bar z}\psi$ が成り立つために $A_{\bar z}$ がどう変換すべきかを
+求めよ。曲率 $F=dA$ がこの変換で不変であることを述べよ。
+\item \textbf{単極子と Chern 数。}球面上の極座標 $(\vartheta,\varphi)$（$z=\tan(\vartheta/2)e^{i\varphi}$ は
+北極からの立体射影）で，電荷 $n$ の単極子接続を Dirac ゲージで
+\[
+    A=\frac{n}{2}\,(1-\cos\vartheta)\,d\varphi
+\]
+とする。曲率 2 形式 $F=dA$ を求め，全積分 $\displaystyle\int_{S^2}F$ を計算せよ。第一 Chern 数
+$c_1:=\dfrac{1}{2\pi}\displaystyle\int_{S^2}F$ を求め，それが整数であることを確かめよ。
+\item \textbf{正則ゼロモードと閉曲面の指数。}この線束（次数 $n\ge0$，すなわち $\mathcal O(n)$）上で
+$D_{\bar z}\psi=0$ かつ $S^2$ 上で 2 乗可積分な切断は，正則ゲージで $\psi_k\propto z^k\,(1+|z|^2)^{-n/2}$
+（$k=0,1,\dots,n$）で与えられる。独立なゼロモードの個数 $\dim\ker D_{\bar z}$ を $n$ で答えよ。
+コカーネルが $0$（$\dim\mathrm{coker}=0$）であることを認めると，閉曲面 $S^2$ 上の指数
+$\mathrm{ind}\,D_{\bar z}=\dim\ker-\dim\mathrm{coker}$ を $n$ で表せ。これを Chern 数 $c_1$ と Euler 数
+$\chi(S^2)$ で書いた式（$\mathrm{ind}=c_1+\tfrac12\chi$）と照合せよ。
+\end{enumerate}
+\end{prob}
+
+%======================================================================
+\section{半球分割・赤道上の境界作用素・APS 指数定理}
+%======================================================================
+球面を北半球 $D_+$（$\vartheta\le\pi/2$）と南半球 $D_-$ に分ける。境界は赤道 $\vartheta=\pi/2$（円 $|z|=1$）。
+境界に誘導される 1 次元 Dirac 型作用素が，第 2 節の\textbf{回転生成子}に他ならないことを見たうえで，
+Atiyah--Patodi--Singer (APS) 指数定理
+\[
+    \mathrm{ind}(D_{\bar z},\,\text{APS 境界条件})
+    =\underbrace{\frac{1}{2\pi}\int_{D_\pm}F+\frac12\cdot\frac{1}{2\pi}\int_{D_\pm}\!R_{\rm Euler}}_{\text{バルク}}
+    -\frac{\eta(0)+h}{2}
+\]
+を具体例で検証する。ここで $h=\dim\ker B$，$\eta(0)$ は境界作用素 $B$ のスペクトル非対称性（$\eta$ 不変量）。
+
+\begin{prob}
+\begin{enumerate}[start=12]
+\item \textbf{赤道上の境界作用素。}単極子電荷 $n$ のとき，ゼロモード $\psi_k\propto z^k(1+|z|^2)^{-n/2}$ は
+赤道 $|z|=1$ 上で $\varphi$ 依存性 $e^{ik\varphi}$ を持つ。これらは全角運動量（軌道部分＝回転生成子 $iG$ と
+単極子の寄与の和）$J_z$ の固有関数である。各 $\psi_k$ の $J_z$ 固有値を，最低 Landau 準位の事実
+（$J=n/2$，$J_z=k-\tfrac n2$，$k=0,\dots,n$）として書き下せ。境界作用素 $B$ の固有関数が第 6 節の
+Laurent 基底 $z^k$（$=e^{ik\varphi}$）であること，固有値が $k-\tfrac n2$ であることを述べよ。
+\item \textbf{$\eta$ 不変量。}スペクトルが $\{m+c:m\in\mathbb{Z}\}$（固有関数 $e^{im\varphi}$）である円周上の
+作用素の $\eta$ 不変量は，Hurwitz ゼータ関数を用いて $\eta(0)=\zeta(0,c)-\zeta(0,1-c)$ で与えられる。
+$\zeta(0,a)=\tfrac12-a$ を使って，$0<c<1$ のとき $\eta(0)$ を $c$ の 1 次式で表せ。単極子の境界スペクトル
+$\{k-\tfrac n2\}$ について（$c\equiv\tfrac n2 \bmod 1$），$n$ が偶数・奇数それぞれで $\eta(0)$ の値と
+ゼロ固有値の有無 $h$ を求めよ。
+\item \textbf{APS の検証。}$n=0,1,2$ の各場合について次を求め，表にまとめよ：(i) 全 Chern 数 $c_1$，
+(ii) 閉曲面の指数 $\mathrm{ind}_{S^2}$，(iii) 赤道上の $J_z$ 固有値の集合，(iv) 北半球の APS 境界条件
+（境界固有値 $<0$ のモードを残す）で生き残る正則切断の数 $N_+$，南半球で残る数 $N_-$，
+(v) $N_++N_-$ が $\mathrm{ind}_{S^2}$ に一致すること。さらに，北半球のバルク積分
+$\tfrac{1}{2\pi}\int_{D_+}F+\tfrac12\,\tfrac{1}{2\pi}\int_{D_+}R_{\rm Euler}=\tfrac n2+\tfrac12$ と前問の
+$(\eta(0),h)$ を用いて，APS 指数定理の右辺が $N_+$（$=\lceil n/2\rceil$）に一致することを確認せよ。
+\end{enumerate}
+\end{prob}
+
+\bigskip
+{\sloppy
+\noindent\textbf{解答について：}各問の完全な解答（求めるべき表式・数値を含む）は別ファイル
+\texttt{exercise\_so2\_index\_theorem\_solutions.tex} にある。
+\par}
+
+\end{document}
