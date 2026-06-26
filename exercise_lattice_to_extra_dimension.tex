@@ -22,9 +22,8 @@
 
 \theoremstyle{definition}
 \newtheorem*{prob}{問題}
-\newtheorem*{sol}{解答}
 
-\title{演習と解答：格子ランダムウォークから余剰次元上の拡散へ\\
+\title{演習：格子ランダムウォークから余剰次元上の拡散へ\\
 \large ―― diffusive scaling・等方性の創発・Kaluza--Klein 塔・スケーリング次元・運動量--巻きつき双対 ――}
 \author{}
 \date{}
@@ -34,6 +33,7 @@
 \vspace{-6zh}
 
 \begin{abstract}
+\sloppy
 本ノートは，離散確率過程から出発して連続拡散の物理と幾何を一続きに辿る誘導付き演習である。
 \textbf{第 I 部}では，無限 2 次元正方格子上のランダムウォークを題材に，master 方程式・特性関数・
 平均二乗変位を立て，格子間隔 $a$ と時間刻み $\tau$ を同時に $0$ へ送る\textbf{diffusive scaling}
@@ -49,9 +49,9 @@ $\propto m^2/R^2$ を持つ Kaluza--Klein 的な塔をなす。円上の熱核�
 $P\sim t^{-d/2}$ が空間次元を``測る''こと，本系では\textbf{有効次元が $2$（UV）から $1$（IR）へ流れる}
 ことを見る。最後に運動量--巻きつき双対（弦理論の T 双対の類似）を論ずる。
 
-\textbf{本ノートは誘導付き演習とその解答を一体にしたものである}：各節でまず問題（表式・数値を
-答えさせる形）を提示し，続けて解答を与える。各問の解（採点用）は太字（\boxed）で示す。以下，
-1 次元熱核を $G(x,t):=\dfrac{1}{\sqrt{4\pi Dt}}\,e^{-x^2/4Dt}$ と書く。
+\textbf{各問は表式・数値を答えさせる形にしてあり，本文中には原則として解答を与えていない}
+（正しく計算できていれば表式が一致するはずである）。完全な解答は別ファイル
+\texttt{exercise\_lattice\_to\_extra\_dimension\_solutions.tex} にある。
 \end{abstract}
 
 \tableofcontents
@@ -94,37 +94,6 @@ $\langle x^2+y^2\rangle_n$ を $n,p,a$ で表せ。
 \end{enumerate}
 \end{prob}
 
-\begin{sol}
-\textbf{(1) 初期条件。}原点に局在ゆえ $\boxed{\,P_0(i,j)=\delta_{i,0}\,\delta_{j,0}\,}$
-（時刻 $0$ で確率 $1$ が原点 $(0,0)$ に集中し，他の格子点では $0$）。
-
-\par\smallskip
-\textbf{(2) master 方程式。}時刻 $n+1$ に $(i,j)$ にいるのは，留まった（確率 $1-p$）か，隣接 4 点から
-移ってきた（各 $\tfrac p4$）場合だから
-\[
-    \boxed{\,P_{n+1}(i,j)=(1-p)P_n(i,j)+\frac{p}{4}\bigl[P_n(i{+}1,j)+P_n(i{-}1,j)+P_n(i,j{+}1)+P_n(i,j{-}1)\bigr]\,}.
-\]
-全格子点で和をとると右辺 $=(1-p)\sum P_n+\tfrac p4\cdot4\sum P_n=\sum P_n$ ゆえ $\sum_{i,j}P_n$ は不変，
-$\sum_{i,j}P_0=1$ より $\boxed{\sum_{i,j}P_n(i,j)=1}$（確率保存）。
-
-\par\smallskip
-\textbf{(3) 特性関数。}(2) に $\sum_{i,j}e^{i\bk\cdot\bx}$ を掛けて和をとり，添字をずらすと
-（例：$\sum e^{i\bk\cdot\bx}P_n(i{+}1,j)=e^{-ik_xa}\hat P_n$）
-$\hat P_{n+1}=\bigl[(1-p)+\tfrac p4(e^{ik_xa}+e^{-ik_xa}+e^{ik_ya}+e^{-ik_ya})\bigr]\hat P_n$，すなわち
-\[
-    \boxed{\,\lambda(\bk)=1-p+\frac{p}{2}\bigl(\cos k_xa+\cos k_ya\bigr)\,}.
-\]
-$\hat P_0(\bk)=\sum\delta_{i,0}\delta_{j,0}e^{i\bk\cdot\bx}=1$ ゆえ $\boxed{\,\hat P_n(\bk)=\lambda(\bk)^n\,}$。
-
-\par\smallskip
-\textbf{(4) 平均二乗変位。}1 ステップで $\Delta x=\pm a$ が各確率 $\tfrac p4$，それ以外は $\Delta x=0$ ゆえ
-$\langle\Delta x^2\rangle=\boxed{\dfrac{pa^2}{2}}$（$\langle\Delta y^2\rangle$ も同じ）。各ステップ独立・平均 $0$ で
-分散は加法的だから
-\[
-    \boxed{\,\langle x^2+y^2\rangle_n=n\,p\,a^2\,}.
-\]
-\end{sol}
-
 \section{連続極限：diffusive scaling と拡散方程式}
 $a,\tau\to0$ の連続極限を考える。鍵は，$a$ だけ・$\tau$ だけの素朴な極限が\emph{自明}になり，
 非自明な拡散を得るには両者を $\tau\propto a^2$ の関係で結ぶ必要があることである。
@@ -152,55 +121,6 @@ $\langle x^2+y^2\rangle$ を $D,t$ で求め，(4)(6) の結果と整合する�
 \end{enumerate}
 \end{enumerate}
 \end{prob}
-
-\begin{sol}
-\textbf{(5) 素朴な極限は自明。}$t=n\tau$ 固定（$n=t/\tau$）ゆえ物理的広がりは
-$\langle x^2+y^2\rangle=npa^2=\dfrac{t}{\tau}\,p\,a^2=p\,t\,\dfrac{a^2}{\tau}$。
-\begin{itemize}
-\item[(i)] $\tau$ 固定で $a\to0$：$n=t/\tau$ 固定，$\langle r^2\rangle=npa^2\to\boxed{0}$。有限歩数で歩幅 $0$ ゆえ
-分布は原点に潰れる（$\delta$ のまま，拡散しない）。自明。
-\item[(ii)] $a$ 固定で $\tau\to0$：$n=t/\tau\to\infty$，$\langle r^2\rangle\to\boxed{\infty}$。無限歩数で広がりが発散し，
-規格化された極限分布を持たない（どこでも $0$）。自明。
-\end{itemize}
-一方だけの極限ではダメで，両者を結びつける必要がある。
-
-\par\smallskip
-\textbf{(6) diffusive scaling と $D$。}$\langle r^2\rangle=p\,t\,\dfrac{a^2}{\tau}$ を有限非ゼロに保つには，
-$a,\tau\to0$ で $\boxed{\dfrac{a^2}{\tau}=\text{一定}}$（すなわち $\tau\propto a^2$，$a\sim\sqrt\tau$）に保てばよい
-（diffusive scaling）。このとき $\langle x^2+y^2\rangle=4Dt$ とおいて拡散係数を定義すると
-$4D=p\,\dfrac{a^2}{\tau}$ ゆえ
-\[
-    \boxed{\,D=\frac{p\,a^2}{4\tau}\,}.
-\]
-
-\par\smallskip
-\textbf{(7) 連続極限の方程式と解。}
-
-\textit{(a)} (2) を差の形にすると
-$P_{n+1}(i,j)-P_n(i,j)=\dfrac p4\bigl[(P_{i+1}-2P_i+P_{i-1})+(P_{j+1}-2P_j+P_{j-1})\bigr]$。
-右辺の 2 階差分は $P(x{\pm}a)=P\pm a\partial_xP+\tfrac{a^2}2\partial_x^2P\pm\cdots$ より
-$P_{i+1}-2P_i+P_{i-1}=a^2\partial_x^2P+O(a^4)$（奇数階は相殺）。左辺は
-$P(t{+}\tau)-P(t)=\tau\partial_tP+O(\tau^2)$。よって
-\[
-    \tau\,\partial_t P=\frac{pa^2}{4}\nabla^2P+O(a^4,\tau^2)
-    \ \xrightarrow[\ a^2/\tau\ \text{一定}\ ]{}\
-    \boxed{\,\frac{\partial P}{\partial t}=D\,\nabla^2 P\,}\quad\Bigl(D=\tfrac{pa^2}{4\tau}\Bigr).
-\]
-
-\textit{(b)} $\cos k_xa=1-\tfrac12(k_xa)^2+\cdots$ より $\lambda(\bk)=1-\tfrac{pa^2}{4}|\bk|^2+\cdots$。
-$n=t/\tau$ ゆえ
-$\hat P_n=\lambda^n=\exp[n\ln\lambda]\to\exp\!\bigl[-\tfrac{t}{\tau}\tfrac{pa^2}{4}|\bk|^2\bigr]
-=\boxed{\,e^{-D t|\bk|^2}\,}$。逆 Fourier 変換（各次元 Gauss 積分）して
-\[
-    P(x,y,t)=\int\frac{d^2k}{(2\pi)^2}e^{-i\bk\cdot\bx}e^{-Dt|\bk|^2}
-    =\boxed{\,\frac{1}{4\pi Dt}\exp\!\Bigl(-\frac{x^2+y^2}{4Dt}\Bigr)\,}\quad(\text{2 次元 Gauss 分布}).
-\]
-
-\textit{(c)} この $P$ は $\partial_tP=D\nabla^2P$ を満たす（$\hat P=e^{-Dt|\bk|^2}$ が $\partial_t\hat P=-D|\bk|^2\hat P$ を
-満たすことから）。Gauss 分布より $\langle x^2\rangle=\langle y^2\rangle=2Dt$ ゆえ
-$\boxed{\langle x^2+y^2\rangle=4Dt}$。これは (4) の $npa^2=\tfrac t\tau pa^2$ に (6) の $D=\tfrac{pa^2}{4\tau}$ を入れた
-$4Dt$ に一致する。
-\end{sol}
 
 \section{等方性の創発：マンハッタン距離と等確率面}
 連続極限の Gauss 解 $P\propto e^{-(x^2+y^2)/4Dt}$ の等確率面は\emph{円}である。格子の自然な距離が
@@ -234,42 +154,6 @@ $y$ 部分の積（独立な Gauss の積）になることを使い，等確率
 \end{enumerate}
 \end{prob}
 
-\begin{sol}
-\textbf{(8) マンハッタン距離と等確率面。}
-
-\textit{(a)} $(0,0)\to(i,j)$ の最小ステップ数は軸方向にしか動けないので $\boxed{|i|+|j|}$
-（マンハッタン距離 $=L^1$）。もし最短経路だけが効くなら $P\sim e^{-\beta(|x|+|y|)/a}$ 型となり，
-等確率面は $\boxed{|x|+|y|=\text{一定}}$ ＝\emph{菱形}（$L^1$ 球）になる。
-
-\textit{(b)} 終点 $x=(2k-N)a$ の経路数は $\Omega=\dbinom{N}{k}$。$k=N/2+\delta$（$\delta=x/2a$）とおき
-Stirling より
-\begin{align*}
-    \ln\binom{N}{k}&\simeq N\ln2-\frac{2\delta^2}{N}-\frac12\ln\frac{\pi N}{2}\\
-    &=N\ln2-\frac{x^2}{2Na^2}-\frac12\ln\frac{\pi N}{2}.
-\end{align*}
-よってエントロピー欠損 $\boxed{\Delta S=\ln\Omega_{\max}-\ln\Omega=\dfrac{x^2}{2Na^2}}$（$x$ の 2 次形式）。
-$\Omega\propto e^{-x^2/2Na^2}$ ゆえ分散 $\boxed{\sigma_x^2=Na^2}$（$=\langle\Delta x^2\rangle\cdot N=a^2\cdot N$，
-1 ステップ $\pm a$）。
-
-\textit{(c)} (7)(b) で連続極限の特性関数は $\hat P_n\to e^{-Dt k_x^2}e^{-Dt k_y^2}$ と\emph{積に分解}した。
-ゆえに $P(x,y,t)=G(x,t)\,G(y,t)\propto e^{-(x^2+y^2)/4Dt}$ であり，
-\[
-    P=\text{一定}\iff\boxed{x^2+y^2=\text{一定}}\quad(\text{円，}L^2\text{球}).
-\]
-分散は $\boxed{\sigma_x^2=\sigma_y^2=2Dt}$（等方）。
-
-\textit{(d)} 確率は\emph{最短経路の長さ}（``エネルギー''）ではなく\emph{経路数＝多重度}
-$\Omega=e^{S}$（``エントロピー''）で決まる：無偏りの歩みでは長さの等しい経路の重みに差はなく，
-終点の確率はそこへ至る経路数に比例する。(b) のとおり Stirling によりその対数（エントロピー）は
-終点座標の 2 次形式になり，しかも $x,y$ 方向の 1 ステップ分散が等しく
-（$\langle\Delta x^2\rangle=\langle\Delta y^2\rangle$）相関がない（$\langle\Delta x\Delta y\rangle=0$）ため，
-2 次形式は等方的な $x^2+y^2$ となる（中心極限定理）。これが等確率面が円（$L^2$）であって
-菱形（$L^1$）でない理由である。菱形は，長い経路を指数的に罰する``エネルギー''項があって最短経路が
-支配する場合（低温・大偏差領域）にのみ現れる。無偏り拡散ではエントロピーが支配し，格子の離散対称性
-$C_4$ は連続極限で\textbf{回転対称性 $O(2)$ に創発的に拡大}する。この等方的な異方的スケーリング
-（$x\to bx,\ t\to b^2t$，動的指数 $z=2$）の構造は，第 II 部のスケーリング次元の議論に引き継がれる。
-\end{sol}
-
 \section{考察：微分の階数}
 得られた方程式は時間 1 階・空間 2 階であった。この階数が何で決まるかを，変位モーメントの次数と
 diffusive scaling に結びつけて考察する。
@@ -289,27 +173,6 @@ diffusive scaling に結びつけて考察する。
 \end{enumerate}
 \end{enumerate}
 \end{prob}
-
-\begin{sol}
-\textbf{(9) 考察：微分の階数。}
-
-\textit{(a)} 各向きへの移動確率が左右・上下対称ゆえ 1 ステップの平均変位は $\langle\Delta\bx\rangle=\bm0$。
-このため 1 階差分（$\to\partial_x$，移流項）は相殺し，最低次で残るのは 2 階差分（$\to\partial_x^2$）である。
-言い換えれば，消えない最低次の変位モーメントが $\langle\Delta x^2\rangle\sim a^2$（2 次）だから，空間微分は 2 階になる。
-
-\textit{(b)} 連続極限の主要バランスは（時間 1 階）$\times\tau\ \sim\ $（空間 2 階）$\times a^2$，すなわち
-$\tau\partial_tP\sim a^2\nabla^2P$。これが有限であるためには $\tau\sim a^2$（時間 $\sim$ 長さ$^2$），まさに
-diffusive scaling である。つまり「時間 1 階・空間 2 階」という階数は $\tau\propto a^2$ と表裏一体。
-時間が 1 階なのは，より高次の $\tau^2\partial_t^2\sim a^4$ がこのスケーリングで相対的に消えるからである。
-
-\textit{(c)} 偏りがあると $\langle\Delta x\rangle\sim a\neq0$ となり，1 階差分が残って\emph{1 階}の空間微分項
-（移流項）$\sim a\,\partial_xP$ が現れる。バランスは $\tau\partial_t\sim a\,\partial_x$ すなわち
-$\boxed{\tau\propto a}$（ballistic／移流的，時間 $\sim$ 長さ）。このとき主要方程式は\emph{1 階}の移流方程式
-$\boxed{\partial_tP=-v\,\partial_xP}$（$v=\lim\frac{\langle\Delta x\rangle}{\tau}$）となり拡散項
-（$\sim a^2\nabla^2/\tau\sim a\to0$）は subleading。拡散を見るには移動座標系に移り，残差に diffusive scaling を
-施す必要がある。\emph{消えない最低次の変位モーメントの次数が，連続極限の空間微分の階数と $\tau$ のスケール冪を決める}
-――1 次（偏り）なら $\tau\sim a$ で移流，2 次（無偏り）なら $\tau\sim a^2$ で拡散，という対応である。
-\end{sol}
 
 %======================================================================
 \part{余剰次元（周期境界）上の拡散と次元簡約}
@@ -340,33 +203,6 @@ $\Gamma_m$ と 1 次元熱核で表せ。各モードの減衰の時定数 $\tau
 \end{enumerate}
 \end{prob}
 
-\begin{sol}
-\textbf{(10) Fourier モード分解。}周期性 $y\sim y+2\pi R$ より $e^{ik_y\cdot2\pi R}=1$，すなわち
-$\boxed{k_y=\dfrac{m}{R}}$（$m\in\mathbb{Z}$）。$\partial_y^2\to-(m/R)^2$ を 2 次元方程式に代入すると，各モードは
-\[
-    \boxed{\,\frac{\partial P_m}{\partial t}=D\,\frac{\partial^2 P_m}{\partial x^2}-\frac{Dm^2}{R^2}\,P_m\,}
-\]
-を満たす。$x$ 方向の拡散定数は $\boxed{D}$（不変），$m$ 依存の減衰率は $\boxed{\Gamma_m=\dfrac{Dm^2}{R^2}}$。
-（``質量''$\mu_m=m/R$ で $\Gamma_m=D\mu_m^2$。）
-
-\par\smallskip
-\textbf{(11) ゼロモード。}$P_0(x,t)=\int_0^{2\pi R}P(x,y,t)e^{-i\cdot0\cdot y/R}dy=\int_0^{2\pi R}P\,dy$ は
-$y$ で積分した周辺分布。(10) で $m=0$ ゆえ $\boxed{\partial_tP_0=D\partial_x^2P_0}$（純 1 次元拡散）。
-点源 $P_0(x,0)=\int\delta(x)\delta(y)dy=\delta(x)$ より
-\[
-    \boxed{\,P_0(x,t)=G(x,t)=\frac{1}{\sqrt{4\pi Dt}}\,e^{-x^2/4Dt}\,}.
-\]
-
-\par\smallskip
-\textbf{(12) KK 塔と寿命。}$P_m(x,0)=\int\delta(x)\delta(y)e^{-imy/R}dy=\delta(x)$ ゆえ，(10) の解は
-\[
-    \boxed{\,P_m(x,t)=e^{-\Gamma_m t}\,G(x,t)\,}.
-\]
-時定数 $\boxed{\tau_m=1/\Gamma_m=\dfrac{R^2}{Dm^2}}$。$|m|$ が小さいほど長寿命（$m=\pm1$ が最長）。
-最低非ゼロモード $m=\pm1$ の寿命からクロスオーバー時刻
-$\boxed{\,t^\ast:=\tau_1=\dfrac{R^2}{D}\,}$。
-\end{sol}
-
 \section{全解と双対な 2 表示}
 全モードを束ねると，解は $x$ 部分（自由 1 次元拡散）と円上熱核 $K(y,t)$ の積になる。$K$ は
 運動量モード和と巻きつき（像）和の 2 通りに書け，両者は Poisson 和で結ばれる。
@@ -380,17 +216,6 @@ $y$ 部分（半径 $R$ の円上の熱核）を，\textbf{(i)} 運動量モー�
 どちらで速く収束するかを述べよ。
 \end{enumerate}
 \end{prob}
-
-\begin{sol}
-\textbf{(13) 全解と 2 表示。}$P=\sum_m\frac{1}{2\pi R}P_m e^{imy/R}=G(x,t)\,K(y,t)$，ただし円上の熱核 $K$ は
-\begin{align*}
-    \text{(i) モード和：}&\ \boxed{K(y,t)=\frac{1}{2\pi R}\sum_{m\in\mathbb{Z}}e^{imy/R}\,e^{-Dm^2t/R^2}},\\
-    \text{(ii) 像和：}&\ \boxed{K(y,t)=\frac{1}{\sqrt{4\pi Dt}}\sum_{w\in\mathbb{Z}}e^{-(y-2\pi Rw)^2/4Dt}}.
-\end{align*}
-両者は Poisson 和で等しい。指数は (i) が $e^{-Dm^2t/R^2}$，(ii) が $e^{-(2\pi Rw)^2/4Dt}$ ゆえ，
-\textbf{大 $t$ ではモード和 (i)}（$m=0$ 以外急減衰，数項で十分），\textbf{小 $t$ では像和 (ii)}
-（$w=0$ 以外急減衰）が速く収束する。
-\end{sol}
 
 \section{2 つの極限：低エネルギー（1 次元）と高エネルギー（2 次元）}
 この 2 表示は逆の極限で威力を発揮する。長時間ではモード和の非ゼロ項が消え 1 次元拡散に，
@@ -407,27 +232,6 @@ $P(x,y,t)$ の主要項を求めよ。これが $y$ に一様で $x$ 方向の 1
 $R,D,t$ で見積もれ。
 \end{enumerate}
 \end{prob}
-
-\begin{sol}
-\textbf{(14) 低エネルギー（$t\gg t^\ast$）。}(13)(i) で $m\neq0$ は $e^{-Dm^2t/R^2}=e^{-(m^2)t/t^\ast}\to0$。
-生き残るのは $\boxed{m=0}$ のみで
-\[
-    \boxed{\,P(x,y,t)\simeq\frac{1}{2\pi R}\,G(x,t)=\frac{1}{2\pi R}\frac{1}{\sqrt{4\pi Dt}}e^{-x^2/4Dt}\,}
-\]
-――$y$ に一様，$x$ 方向の純 1 次元拡散（余剰次元は見えない）。最初の補正は $m=\pm1$ の項
-$\frac{2}{2\pi R}e^{-Dt/R^2}\cos(y/R)\,G(x,t)$ であり，その大きさは $\boxed{\propto e^{-t/t^\ast}}$
-（指数的に抑制）。
-
-\par\smallskip
-\textbf{(15) 高エネルギー（$t\ll t^\ast$）。}$y$ 方向の広がり $\sqrt{2Dt}\ll\sqrt{2}\,R<2\pi R$ ゆえ
-粒子は円を一周しておらず，(13)(ii) で $\boxed{w=0}$ の項のみ支配的：
-$K\simeq\frac{1}{\sqrt{4\pi Dt}}e^{-y^2/4Dt}$。よって
-\[
-    \boxed{\,P(x,y,t)\simeq\frac{1}{4\pi Dt}\,e^{-(x^2+y^2)/4Dt}\,}
-\]
-――自由 2 次元 Gauss（コンパクト性が見えない）。(13)(i) で実効的に効くのは $Dm^2t/R^2\lesssim1$，
-すなわち $|m|\lesssim R/\sqrt{Dt}$ の項で，個数は $\boxed{N\sim\dfrac{R}{\sqrt{Dt}}\gg1}$（多数のモード）。
-\end{sol}
 
 \section{スケーリング次元と有効次元の流れ}
 極限ごとに``見える次元''が違うことは，解の $t$ 冪＝スケーリング次元で定量化できる。第 I 部の
@@ -454,32 +258,6 @@ $P(0,0,t)$ の冪が何になるか；短時間ではこの和を積分で近似
 \end{enumerate}
 \end{prob}
 
-\begin{sol}
-\textbf{(16) スケーリング次元と有効次元。}
-
-\textit{(a)} $\partial_t\to b^{-z}\partial_t$，$\nabla^2\to b^{-2}\nabla^2$ ゆえ両辺が同じ冪になるのは
-$\boxed{z=2}$（動的指数 $2$）。このとき $D$ は\fbox{不変（無次元・marginal）}。
-
-\textit{(b)} $\int P\,d^dx=1$ かつ $x\to bx$（$d^dx\to b^d d^dx$）ゆえ $\boxed{P\to b^{-d}P}$。
-自己相似形 $P=t^{-\alpha}\Phi(x/\sqrt{4Dt})$ が $t\to b^2t,\ x\to bx$ で不変なら，
-プレファクター $t^{-\alpha}\to b^{-2\alpha}t^{-\alpha}$ が $b^{-d}$ と一致，すなわち $\boxed{\alpha=d/2}$。
-$d=1$ で $\alpha=\tfrac12$（$t^{-1/2}$），$d=2$ で $\alpha=1$（$t^{-1}$）。
-
-\textit{(c)(d)} $P(0,0,t)=G(0,t)\,K(0,t)$，$G(0,t)=\dfrac{1}{\sqrt{4\pi Dt}}\propto t^{-1/2}$。
-\begin{itemize}
-\item[$\bullet$] \textbf{長時間} $t\gg t^\ast$：$\sum_m e^{-Dm^2t/R^2}$ は $\boxed{m=0}$ の項のみ残り
-$K(0,t)\to\dfrac{1}{2\pi R}$（定数）。ゆえ $P(0,0,t)\propto\boxed{t^{-1/2}}$，$\boxed{d_{\mathrm{eff}}=1}$。
-効くモードは 1 個（最低 KK モード）。
-\item[$\bullet$] \textbf{短時間} $t\ll t^\ast$：$\displaystyle\sum_m e^{-Dm^2t/R^2}\simeq\int dm\,e^{-Dm^2t/R^2}
-=R\sqrt{\pi/Dt}$ ゆえ $K(0,t)\simeq\dfrac{1}{2\pi R}R\sqrt{\pi/Dt}=\dfrac{1}{\sqrt{4\pi Dt}}\propto t^{-1/2}$。
-よって $P(0,0,t)\propto\boxed{t^{-1}}$，$\boxed{d_{\mathrm{eff}}=2}$。効くモードは $N\sim R/\sqrt{Dt}\gg1$ 個。
-\end{itemize}
-有効次元 $d_{\mathrm{eff}}=-2\times(\text{$P(0,0,t)$ の $t$ 冪})$ は，効く KK モード数が多い UV（短時間）で
-$2$，最低モードだけが残る IR（長時間）で $1$ となる――\textbf{有効次元が $2\to1$ へ流れる}
-（次元簡約のスケーリング的表現）。第 I 部 (8) の $C_4\to O(2)$ 創発（$z=2$）と合わせ，連続極限では
-対称性が増え・有効次元が走る，という二つの``見かけ''の変化が現れている。
-\end{sol}
-
 \section{考察：運動量--巻きつき双対と次元簡約}
 最後に，これまでの結果を Poisson 双対・Kaluza--Klein 次元簡約・運動量--巻きつき双対の言葉で
 俯瞰し，本系が弦理論の T 双対とどこまで類似するかを論ずる。
@@ -499,25 +277,10 @@ $R$ はどのような量に置き換わると期待されるか（次元解析�
 \end{enumerate}
 \end{prob}
 
-\begin{sol}
-\textbf{(17) 考察。}
-
-\textit{(a)} 指数 $e^{-Dm^2t/R^2}$（モード和）と $e^{-(2\pi Rw)^2/4Dt}$（像和）は，無次元量 $Dt/R^2$ について
-互いに逆。$t\gg t^\ast$（$Dt/R^2\gg1$）ではモード和の非ゼロ項が消え 1 項（$m=0$）で済む＝(14)。
-$t\ll t^\ast$（$Dt/R^2\ll1$）では像和の非ゼロ項が消え 1 項（$w=0$）で済む＝(15)。同じ関数の
-\emph{速く収束する側}が極限ごとに入れ替わる（Poisson 和の双対性）。
-
-\textit{(b)} 余剰次元（半径 $R$ の円）は $\Gamma_m=Dm^2/R^2$ を持つモードの塔を生む。$\Gamma_m$ は KK 質量
-$\mu_m=m/R$ の 2 乗に拡散係数を掛けたもの（$\Gamma_m=D\mu_m^2$）で，KK 質量 $m/R$ に対応する。
-ここで\textbf{逆時間 $1/t$ がエネルギースケール}，\textbf{$1/t^\ast=D/R^2$（最低 KK ``質量'' のスケール）が
-コンパクト化スケール}に対応する。$1/t\ll1/t^\ast$（低エネルギー）では質量ゼロのゼロモードのみが効き
-有効理論は 1 次元；$1/t\gg1/t^\ast$（高エネルギー）では塔全体が効き 2 次元が回復する
-（(16) で見たスケーリング次元の流れ $d_{\mathrm{eff}}:2\to1$ はこの言い換え）。
-
-\textit{(c)} (13) の双対は theta 関数のモジュラー変換（Poisson 和）であり，モジュラー的パラメータは
-無次元の $Dt/R^2$。運動量 $m$（間隔 $1/R$）と巻きつき $w$（間隔 $2\pi R$）を入れ替える双対では，
-次元解析上 $R$ は\textbf{$\tilde R\sim Dt/R$}に置き換わる（$R\,\tilde R\sim Dt$，すなわち拡散長の 2 乗 $Dt$ が
-弦理論の $\alpha'$ に相当する不変スケール）。自己双対点は $R^2\sim Dt$，すなわち $t\sim t^\ast$ である。
-\end{sol}
+\bigskip
+{\sloppy
+\noindent\textbf{解答について：}各問の完全な解答（求めるべき表式・数値を含む）は別ファイル
+\texttt{exercise\_lattice\_to\_extra\_dimension\_solutions.tex} にある。
+\par}
 
 \end{document}
