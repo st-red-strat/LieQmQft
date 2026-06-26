@@ -7,6 +7,7 @@
 \usepackage{mathrsfs}
 \usepackage{bm}
 \usepackage{braket}
+\usepackage{enumitem}
 
 \usepackage{silence}
 \WarningFilter*{hyperref}{Token not allowed in a PDF string}
@@ -17,10 +18,11 @@
 \usepackage[left=25truemm,top=20truemm,bottom=20truemm,right=25truemm]{geometry}
 
 \theoremstyle{definition}
-\newtheorem{prob}{問題}
+\newtheorem*{prob}{問題}
+\newtheorem*{sol}{解答}
 
-\title{演習：余剰次元（周期境界）上の拡散と次元簡約\\
-\large ―― Kaluza--Klein 塔・ゼロモード・運動量--巻きつき双対 ――}
+\title{演習と解答：余剰次元（周期境界）上の拡散と次元簡約\\
+\large ―― Kaluza--Klein 塔・スケーリング次元・運動量--巻きつき双対 ――}
 \author{}
 \date{}
 
@@ -30,21 +32,20 @@
 
 \begin{abstract}
 前の演習（\texttt{exercise\_lattice\_random\_walk}）で，格子ランダムウォークの連続極限として
-2 次元拡散方程式 $\partial_t P=D\nabla^2P$ を得た。本問では，$y$ 方向を半径 $R$ の円に
-コンパクト化（周期境界条件）し，$y$ の Fourier モード $m$ ごとに分解する。
-\textbf{ゼロモード}は $x$ 方向の純 1 次元拡散に帰着し（長時間・低エネルギーでの有効理論），
-\textbf{非ゼロモード}は減衰率（``質量''）$\propto m^2/R^2$ を持つ Kaluza--Klein 的な塔を成して
-短時間・高エネルギーで余剰次元の効果を担う。さらに，円上の熱核が\emph{運動量モード和}と
-\emph{巻きつき（像）和}の 2 通りに表され（Poisson 和），互いに逆の極限で支配的になる――
-拡散における運動量--巻きつき双対の構造を見る。
-前演習（\texttt{exercise\_lattice\_random\_walk}）では連続極限で回転対称性 $O(2)$ が創発する
-（異方的スケーリング $z=2$）ことを見たが，本問ではその\textbf{スケーリング次元}を計算する：
-$x\to bx$ に対し $t\to b^2t$ と縮む異方的スケーリングのもとで，確率密度の $t$ 冪 $P\sim t^{-d/2}$ が
-空間次元 $d$ を``測る''こと，そして本系では\emph{多数の KK モードが効く短時間で $t^{-1}$（2 次元的），
-最低 KK モードだけが残る長時間で $t^{-1/2}$（1 次元的）}となって\textbf{有効次元が $2$（UV）から
-$1$（IR）へ流れる}ことを見る。\textbf{各問は表式・数値を答えさせる形にしてあり，
-本文中には原則として解答を与えていない}。完全な解答は別ファイル
-\texttt{exercise\_diffusion\_extra\_dimension\_solutions.tex} にある。
+2 次元拡散方程式 $\partial_t P=D\nabla^2P$ を得，連続極限で回転対称性 $O(2)$ が創発する
+（異方的スケーリング $z=2$）ことを見た。本ノートでは，$y$ 方向を半径 $R$ の円に
+コンパクト化（周期境界条件）し，$y$ の Fourier モード $m$ ごとに分解する。\textbf{ゼロモード}は
+$x$ 方向の純 1 次元拡散に帰着し（長時間・低エネルギーの有効理論），\textbf{非ゼロモード}は
+減衰率（``質量''）$\propto m^2/R^2$ を持つ Kaluza--Klein 的な塔をなして短時間・高エネルギーで
+余剰次元の効果を担う。円上の熱核は\emph{運動量モード和}と\emph{巻きつき（像）和}の 2 通りに表され
+（Poisson 和），互いに逆の極限で支配的になる。さらに前演習の異方的スケーリング $z=2$ を受けて
+拡散方程式の\textbf{スケーリング次元}を計算し，確率密度の $t$ 冪 $P\sim t^{-d/2}$ が空間次元 $d$ を
+``測る''こと，本系では\emph{多数の KK モードが効く短時間で $t^{-1}$（2 次元的），最低 KK モードだけが
+残る長時間で $t^{-1/2}$（1 次元的）}となって\textbf{有効次元が $2$（UV）から $1$（IR）へ流れる}
+ことを見る。
+
+\textbf{本ノートは誘導付き演習とその解答を一体にしたものである}：各節でまず問題（表式・数値を
+答えさせる形）を提示し，続けて解答を与える。各問の解（採点用）は太字（\boxed）で示す。
 \end{abstract}
 
 \tableofcontents
@@ -55,11 +56,14 @@ $1$（IR）へ流れる}ことを見る。\textbf{各問は表式・数値を答
 2 次元拡散方程式 $\partial_t P(x,y,t)=D\bigl(\partial_x^2+\partial_y^2\bigr)P$ を考える。
 $x\in\mathbb{R}$ は無限に広いが，$y$ は\textbf{半径 $R$ の円}（周期 $L=2\pi R$，$y\sim y+2\pi R$）に
 コンパクト化されているとする。初期条件は原点の点源 $P(x,y,0)=\delta(x)\,\delta(y)$
-（$\delta(y)$ は円上の周期的 delta）。拡散係数 $D$ は前演習で得たもの。
+（$\delta(y)$ は円上の周期的 delta）。拡散係数 $D$ は前演習で得たもの。以下，1 次元熱核を
+$G(x,t):=\dfrac{1}{\sqrt{4\pi Dt}}\,e^{-x^2/4Dt}$ と書く。
 
 %======================================================================
-\section{問題}
+\section{Fourier モード分解と Kaluza--Klein 塔}
 %======================================================================
+周期方向 $y$ を Fourier 分解すると，2 次元拡散は各モード $m$ ごとの``質量''付き 1 次元拡散に
+分かれる。ゼロモードは純 1 次元拡散，非ゼロモードは寿命有限の塔をなす――まずこの分解を立てる。
 
 \begin{prob}\label{prob:kk}
 \begin{enumerate}
@@ -73,11 +77,69 @@ $\displaystyle\int_0^{2\pi R}P(x,y,t)\,dy$ に等しいことを確かめ，そ�
 \item \textbf{Kaluza--Klein 塔と寿命。}$m\neq0$ のモードを点源初期条件のもとで解き，$P_m(x,t)$ を
 $\Gamma_m$ と 1 次元熱核で表せ。各モードの減衰の時定数 $\tau_m$ を $R,D,m$ で求め，モードを寿命の長い順に
 並べよ。最長寿命の非ゼロモードからクロスオーバー時刻 $t^\ast$ を定義し，$R,D$ で表せ。
+\end{enumerate}
+\end{prob}
+
+\begin{sol}
+\textbf{(1) Fourier モード分解。}周期性 $y\sim y+2\pi R$ より $e^{ik_y\cdot2\pi R}=1$，すなわち
+$\boxed{k_y=\dfrac{m}{R}}$（$m\in\mathbb{Z}$）。$\partial_y^2\to-(m/R)^2$ を 2 次元方程式に代入すると，各モードは
+\[
+    \boxed{\,\frac{\partial P_m}{\partial t}=D\,\frac{\partial^2 P_m}{\partial x^2}-\frac{Dm^2}{R^2}\,P_m\,}
+\]
+を満たす。$x$ 方向の拡散定数は $\boxed{D}$（不変），$m$ 依存の減衰率は $\boxed{\Gamma_m=\dfrac{Dm^2}{R^2}}$。
+（``質量''$\mu_m=m/R$ で $\Gamma_m=D\mu_m^2$。）
+
+\par\smallskip
+\textbf{(2) ゼロモード。}$P_0(x,t)=\int_0^{2\pi R}P(x,y,t)e^{-i\cdot0\cdot y/R}dy=\int_0^{2\pi R}P\,dy$ は
+$y$ で積分した周辺分布。(1) で $m=0$ ゆえ $\boxed{\partial_tP_0=D\partial_x^2P_0}$（純 1 次元拡散）。
+点源 $P_0(x,0)=\int\delta(x)\delta(y)dy=\delta(x)$ より
+\[
+    \boxed{\,P_0(x,t)=G(x,t)=\frac{1}{\sqrt{4\pi Dt}}\,e^{-x^2/4Dt}\,}.
+\]
+
+\par\smallskip
+\textbf{(3) KK 塔と寿命。}$P_m(x,0)=\int\delta(x)\delta(y)e^{-imy/R}dy=\delta(x)$ ゆえ，(1) の解は
+$\boxed{\,P_m(x,t)=e^{-\Gamma_m t}\,G(x,t)\,}$。時定数
+$\boxed{\tau_m=1/\Gamma_m=\dfrac{R^2}{Dm^2}}$。$|m|$ が小さいほど長寿命（$m=\pm1$ が最長）。
+最低非ゼロモード $m=\pm1$ の寿命からクロスオーバー時刻
+$\boxed{\,t^\ast:=\tau_1=\dfrac{R^2}{D}\,}$。
+\end{sol}
+
+%======================================================================
+\section{全解と双対な 2 表示}
+%======================================================================
+全モードを束ねると，解は $x$ 部分（自由 1 次元拡散）と円上熱核 $K(y,t)$ の積になる。$K$ は
+運動量モード和と巻きつき（像）和の 2 通りに書け，両者は Poisson 和で結ばれる。
+
+\begin{prob}
+\begin{enumerate}[start=4]
 \item \textbf{全解と 2 つの表示。}点源に対する全確率密度 $P(x,y,t)$ を書け（$x$ 部分と $y$ 部分の積になる）。
 $y$ 部分（半径 $R$ の円上の熱核）を，\textbf{(i)} 運動量モード $m$ についての和，および
 \textbf{(ii)} 巻きつき数（像）$w\in\mathbb{Z}$ についての和（$y$ の各像 $y-2\pi Rw$ からの自由熱核の重ね合わせ）
 の\emph{2 通り}で表せ。両者は Poisson 和で結ばれる。それぞれ $t$ が小さいとき・大きいときの
 どちらで速く収束するかを述べよ。
+\end{enumerate}
+\end{prob}
+
+\begin{sol}
+\textbf{(4) 全解と 2 表示。}$P=\sum_m\frac{1}{2\pi R}P_m e^{imy/R}=G(x,t)\,K(y,t)$，ただし円上の熱核 $K$ は
+\begin{align*}
+    \text{(i) モード和：}&\ \boxed{K(y,t)=\frac{1}{2\pi R}\sum_{m\in\mathbb{Z}}e^{imy/R}\,e^{-Dm^2t/R^2}},\\
+    \text{(ii) 像和：}&\ \boxed{K(y,t)=\frac{1}{\sqrt{4\pi Dt}}\sum_{w\in\mathbb{Z}}e^{-(y-2\pi Rw)^2/4Dt}}.
+\end{align*}
+両者は Poisson 和で等しい。指数は (i) が $e^{-Dm^2t/R^2}$，(ii) が $e^{-(2\pi Rw)^2/4Dt}$ ゆえ，
+\textbf{大 $t$ ではモード和 (i)}（$m=0$ 以外急減衰，数項で十分），\textbf{小 $t$ では像和 (ii)}
+（$w=0$ 以外急減衰）が速く収束する。
+\end{sol}
+
+%======================================================================
+\section{2 つの極限：低エネルギー（1 次元）と高エネルギー（2 次元）}
+%======================================================================
+この 2 表示は逆の極限で威力を発揮する。長時間ではモード和の非ゼロ項が消え 1 次元拡散に，
+短時間では像和の非ゼロ項が消え自由 2 次元拡散に帰着する。
+
+\begin{prob}
+\begin{enumerate}[start=5]
 \item \textbf{低エネルギー（長時間）極限。}$t\gg t^\ast$ のとき，どのモードが生き残るかを述べ，
 $P(x,y,t)$ の主要項を求めよ。これが $y$ に一様で $x$ 方向の 1 次元拡散になる（余剰次元が見えない）ことを示せ。
 さらに最初の補正（最低次の非ゼロモード）の大きさの $t$ 依存性を求めよ。
@@ -85,6 +147,38 @@ $P(x,y,t)$ の主要項を求めよ。これが $y$ に一様で $x$ 方向の 1
 比べよ。(4)(ii) の像和で支配的になる項を述べ，$P(x,y,t)$ の主要項を求めよ。これが自由 2 次元拡散
 （コンパクト性が見えない）になることを示せ。また (4)(i) のモード和で実質的に寄与する $m$ の個数を
 $R,D,t$ で見積もれ。
+\end{enumerate}
+\end{prob}
+
+\begin{sol}
+\textbf{(5) 低エネルギー（$t\gg t^\ast$）。}(i) で $m\neq0$ は $e^{-Dm^2t/R^2}=e^{-(m^2)t/t^\ast}\to0$。
+生き残るのは $\boxed{m=0}$ のみで
+\[
+    \boxed{\,P(x,y,t)\simeq\frac{1}{2\pi R}\,G(x,t)=\frac{1}{2\pi R}\frac{1}{\sqrt{4\pi Dt}}e^{-x^2/4Dt}\,}
+\]
+――$y$ に一様，$x$ 方向の純 1 次元拡散（余剰次元は見えない）。最初の補正は $m=\pm1$ の項
+$\frac{2}{2\pi R}e^{-Dt/R^2}\cos(y/R)\,G(x,t)$ であり，その大きさは $\boxed{\propto e^{-t/t^\ast}}$
+（指数的に抑制）。
+
+\par\smallskip
+\textbf{(6) 高エネルギー（$t\ll t^\ast$）。}$y$ 方向の広がり $\sqrt{2Dt}\ll\sqrt{2}\,R<2\pi R$ ゆえ
+粒子は円を一周しておらず，(ii) で $\boxed{w=0}$ の項のみ支配的：
+$K\simeq\frac{1}{\sqrt{4\pi Dt}}e^{-y^2/4Dt}$。よって
+\[
+    \boxed{\,P(x,y,t)\simeq\frac{1}{4\pi Dt}\,e^{-(x^2+y^2)/4Dt}\,}
+\]
+――自由 2 次元 Gauss（コンパクト性が見えない）。(i) で実効的に効くのは $Dm^2t/R^2\lesssim1$，
+すなわち $|m|\lesssim R/\sqrt{Dt}$ の項で，個数は $\boxed{N\sim\dfrac{R}{\sqrt{Dt}}\gg1}$（多数のモード）。
+\end{sol}
+
+%======================================================================
+\section{スケーリング次元と有効次元の流れ}
+%======================================================================
+極限ごとに``見える次元''が違うことは，解の $t$ 冪＝スケーリング次元で定量化できる。前演習の
+異方的スケーリング $z=2$ をここで正面から扱い，有効次元が UV から IR へ流れる様子を数える。
+
+\begin{prob}
+\begin{enumerate}[start=7]
 \item \textbf{スケーリング次元と有効次元。}拡散方程式のスケール不変性から，解の $t$ 冪が
 空間次元を``測る''ことを見る。
 \begin{enumerate}
@@ -101,6 +195,42 @@ $P(0,0,t)$ の冪が何になるか；短時間ではこの和を積分で近似
 冪が何になるかを示せ。有効次元が UV（短時間）の $2$ から IR（長時間）の $1$ へ\emph{流れる}ことを，
 効くモード数の言葉でまとめよ。
 \end{enumerate}
+\end{enumerate}
+\end{prob}
+
+\begin{sol}
+\textbf{(7) スケーリング次元と有効次元。}
+
+\textit{(a)} $\partial_t\to b^{-z}\partial_t$，$\nabla^2\to b^{-2}\nabla^2$ ゆえ両辺が同じ冪になるのは
+$\boxed{z=2}$（動的指数 $2$）。このとき $D$ は\fbox{不変（無次元・marginal）}。
+
+\textit{(b)} $\int P\,d^dx=1$ かつ $x\to bx$（$d^dx\to b^d d^dx$）ゆえ $\boxed{P\to b^{-d}P}$。
+自己相似形 $P=t^{-\alpha}\Phi(x/\sqrt{4Dt})$ が $t\to b^2t,\ x\to bx$ で不変なら，
+プレファクター $t^{-\alpha}\to b^{-2\alpha}t^{-\alpha}$ が $b^{-d}$ と一致，すなわち $\boxed{\alpha=d/2}$。
+$d=1$ で $\alpha=\tfrac12$（$t^{-1/2}$），$d=2$ で $\alpha=1$（$t^{-1}$）。
+
+\textit{(c)(d)} $P(0,0,t)=G(0,t)\,K(0,t)$，$G(0,t)=\dfrac{1}{\sqrt{4\pi Dt}}\propto t^{-1/2}$。
+\begin{itemize}
+\item[$\bullet$] \textbf{長時間} $t\gg t^\ast$：$\sum_m e^{-Dm^2t/R^2}$ は $\boxed{m=0}$ の項のみ残り
+$K(0,t)\to\dfrac{1}{2\pi R}$（定数）。ゆえ $P(0,0,t)\propto\boxed{t^{-1/2}}$，$\boxed{d_{\mathrm{eff}}=1}$。
+効くモードは 1 個（最低 KK モード）。
+\item[$\bullet$] \textbf{短時間} $t\ll t^\ast$：$\displaystyle\sum_m e^{-Dm^2t/R^2}\simeq\int dm\,e^{-Dm^2t/R^2}
+=R\sqrt{\pi/Dt}$ ゆえ $K(0,t)\simeq\dfrac{1}{2\pi R}R\sqrt{\pi/Dt}=\dfrac{1}{\sqrt{4\pi Dt}}\propto t^{-1/2}$。
+よって $P(0,0,t)\propto\boxed{t^{-1}}$，$\boxed{d_{\mathrm{eff}}=2}$。効くモードは $N\sim R/\sqrt{Dt}\gg1$ 個。
+\end{itemize}
+有効次元 $d_{\mathrm{eff}}=-2\times(\text{$P(0,0,t)$ の $t$ 冪})$ は，効く KK モード数が多い UV（短時間）で
+$2$，最低モードだけが残る IR（長時間）で $1$ となる――\textbf{有効次元が $2\to1$ へ流れる}
+（次元簡約のスケーリング的表現）。
+\end{sol}
+
+%======================================================================
+\section{考察：運動量--巻きつき双対と次元簡約}
+%======================================================================
+最後に，これまでの結果を Poisson 双対・Kaluza--Klein 次元簡約・運動量--巻きつき双対の言葉で
+俯瞰し，本系が弦理論の T 双対とどこまで類似するかを論ずる。
+
+\begin{prob}
+\begin{enumerate}[start=8]
 \item \textbf{考察：運動量--巻きつき双対と次元簡約。}
 \begin{enumerate}
 \item (4) の 2 表示（運動量モード和 $m$ と巻きつき和 $w$）が，それぞれ長時間・短時間で支配的になる
@@ -114,10 +244,25 @@ $R$ はどのような量に置き換わると期待されるか（次元解析�
 \end{enumerate}
 \end{prob}
 
-\bigskip
-{\sloppy
-\noindent\textbf{解答について：}各問の完全な解答（求めるべき表式・数値を含む）は別ファイル
-\texttt{exercise\_diffusion\_extra\_dimension\_solutions.tex} にある。
-\par}
+\begin{sol}
+\textbf{(8) 考察。}
+
+\textit{(a)} 指数 $e^{-Dm^2t/R^2}$（モード和）と $e^{-(2\pi Rw)^2/4Dt}$（像和）は，無次元量 $Dt/R^2$ について
+互いに逆。$t\gg t^\ast$（$Dt/R^2\gg1$）ではモード和の非ゼロ項が消え 1 項（$m=0$）で済む＝(5)。
+$t\ll t^\ast$（$Dt/R^2\ll1$）では像和の非ゼロ項が消え 1 項（$w=0$）で済む＝(6)。同じ関数の
+\emph{速く収束する側}が極限ごとに入れ替わる（Poisson 和の双対性）。
+
+\textit{(b)} 余剰次元（半径 $R$ の円）は $\Gamma_m=Dm^2/R^2$ を持つモードの塔を生む。$\Gamma_m$ は KK 質量
+$\mu_m=m/R$ の 2 乗に拡散係数を掛けたもの（$\Gamma_m=D\mu_m^2$）で，KK 質量 $m/R$ に対応する。
+ここで\textbf{逆時間 $1/t$ がエネルギースケール}，\textbf{$1/t^\ast=D/R^2$（最低 KK ``質量'' のスケール）が
+コンパクト化スケール}に対応する。$1/t\ll1/t^\ast$（低エネルギー）では質量ゼロのゼロモードのみが効き
+有効理論は 1 次元；$1/t\gg1/t^\ast$（高エネルギー）では塔全体が効き 2 次元が回復する
+（(7) で見たスケーリング次元の流れ $d_{\mathrm{eff}}:2\to1$ はこの言い換え）。
+
+\textit{(c)} (4) の双対は theta 関数のモジュラー変換（Poisson 和）であり，モジュラー的パラメータは
+無次元の $Dt/R^2$。運動量 $m$（間隔 $1/R$）と巻きつき $w$（間隔 $2\pi R$）を入れ替える双対では，
+次元解析上 $R$ は\textbf{$\tilde R\sim Dt/R$}に置き換わる（$R\,\tilde R\sim Dt$，すなわち拡散長の 2 乗 $Dt$ が
+弦理論の $\alpha'$ に相当する不変スケール）。自己双対点は $R^2\sim Dt$，すなわち $t\sim t^\ast$ である。
+\end{sol}
 
 \end{document}
