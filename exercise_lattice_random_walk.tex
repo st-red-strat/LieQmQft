@@ -33,13 +33,14 @@
 
 \begin{abstract}
 無限 2 次元正方格子上を歩く粒子の離散確率過程（ランダムウォーク）を題材に，
-master 方程式の立式，特性関数（Fourier 変換）による解，平均二乗変位，
-そして格子間隔 $a$・時間刻み $\tau$ を $0$ へ送る連続極限を扱う。鍵は，連続極限で
-非自明な拡散過程を得るための\textbf{スケーリング（diffusive scaling）}を見つけることである。
-最後に確率密度が拡散方程式を満たし，Gauss 分布になることを確かめる。
-\textbf{各問は表式・数値を答えさせる形にしてあり，本文中には原則として解答を与えていない}
-（正しく計算できていれば表式が一致するはずである）。完全な解答は別ファイル
-\texttt{exercise\_lattice\_random\_walk\_solutions.tex} にある。
+master 方程式の立式，特性関数（Fourier 変換）による解，平均二乗変位，そして格子間隔 $a$・
+時間刻み $\tau$ を $0$ へ送る連続極限を扱う。鍵は，$a$ だけ，あるいは $\tau$ だけを $0$ にする
+素朴な極限が\emph{自明}になってしまうこと，非自明な拡散過程を得るには $\tau$ を $a$ の関数として
+両者を同時に $0$ へ送る\textbf{スケーリング（diffusive scaling）}が必要で，そこから拡散係数 $D$ が
+現れること，を自分で見つけることにある。最後に，得られる偏微分方程式の\emph{微分の階数}が
+何によって決まるかを考察する。\textbf{各問は表式・数値を答えさせる形にしてあり，本文中には
+原則として解答を与えていない}（正しく計算できていれば表式が一致するはずである）。完全な解答は
+別ファイル \texttt{exercise\_lattice\_random\_walk\_solutions.tex} にある。
 \end{abstract}
 
 \tableofcontents
@@ -76,16 +77,37 @@ $\displaystyle\hat P_n(\bk):=\sum_{i,j}P_n(i,j)\,e^{i\bk\cdot\bx}
 \textbf{$\hat P_n(\bk)$ を $\lambda(\bk)$ と $n$ で表せ}。
 \item \textbf{平均二乗変位。}1 ステップあたりの変位 $\Delta\bx$ について $\langle\Delta x^2\rangle$ を
 $p,a$ で求めよ。これを用いて（各ステップが独立であることから），$n$ ステップ後の平均二乗変位
-$\langle x^2+y^2\rangle_n$ を $n,p,a$ で表せ。これが $n$（したがって時間 $t$）に比例することを確かめよ。
-\item \textbf{連続極限と diffusive scaling。}$\lambda(\bk)$ を $|\bk|a\ll1$ で
-$\bk$ の 2 次まで展開せよ。$t=n\tau$ を固定したまま $a,\tau\to0$（$n\to\infty$）の連続極限を考える。
-$\hat P_n(\bk)$ が非自明な極限 $\exp\!\bigl(-D\,t\,|\bk|^2\bigr)$ を持つためには，
-\textbf{$a$ と $\tau$ をどのような関係に保って $0$ へ送ればよいか（diffusive scaling）}，また
-\textbf{拡散係数 $D$ を $p,a,\tau$ でどう定めればよいか}を求めよ。
-\item \textbf{連続極限の確率密度。}(5) の $\hat P_n(\bk)\to e^{-Dt|\bk|^2}$ を逆 Fourier 変換し，
-連続極限の確率密度 $P(x,y,t)$ を $D,t$ で表せ。また $P$ が満たす偏微分方程式を書け。
-さらに連続極限での平均二乗変位 $\langle x^2+y^2\rangle$ を $D,t$ で求め，(4)・(5) の結果と
-整合することを確かめよ。
+$\langle x^2+y^2\rangle_n$ を $n,p,a$ で表せ。
+\item \textbf{素朴な極限は自明であること。}$t=n\tau$（すなわち $n=t/\tau$）を固定して連続極限を考える。
+(4) で求めた平均二乗変位 $\langle x^2+y^2\rangle$（物理的な長さの単位で）を用いて，次の 2 つの素朴な極限で
+分布の空間的な広がりがどうなるかを調べ，いずれも自明（退化した）極限になることを述べよ：
+\textbf{(i)} $\tau$ を固定したまま $a\to0$；\textbf{(ii)} $a$ を固定したまま $\tau\to0$。
+\item \textbf{diffusive scaling と拡散係数。}(5) を踏まえ，連続極限 $a,\tau\to0$ で分布の広がりを
+\emph{有限かつ非ゼロ}に保つには，$\tau$ を $a$ のどのような関数として（$a$ と $\tau$ をどんな関係に保って）
+$0$ へ送ればよいかを求めよ（diffusive scaling）。その極限で，平均二乗変位が
+$\langle x^2+y^2\rangle=(\text{定数})\times t$ となるときの比例係数から拡散係数 $D$ を定義し，
+\textbf{$D$ を $p,a,\tau$ で表せ}。
+\item \textbf{連続極限の方程式と解。}
+\begin{enumerate}
+\item master 方程式を $P_{n+1}(i,j)-P_n(i,j)$ の形に書き，$a,\tau$ が小さいとして
+$P(x,y,t)$ の Taylor 展開で両辺を評価せよ。(6) の diffusive scaling のもとで $a,\tau\to0$ とし，
+$P(x,y,t)$ が満たす偏微分方程式を導け。
+\item (3) の $\hat P_n(\bk)$ の diffusive 極限 $\displaystyle\lim\hat P_n(\bk)$ を $D,t,\bk$ で求めよ
+（$\lambda(\bk)$ の小 $\bk$ 展開を使う）。これを逆 Fourier 変換して，連続極限の確率密度 $P(x,y,t)$ を求めよ。
+\item 得た $P(x,y,t)$ が (a) の偏微分方程式を満たすことを確かめよ。さらに連続極限の平均二乗変位
+$\langle x^2+y^2\rangle$ を $D,t$ で求め，(4)(6) の結果と整合することを確かめよ。
+\end{enumerate}
+\item \textbf{考察：微分の階数。}(7)(a) で得た連続極限の方程式は，時間について 1 階・空間について
+2 階の微分方程式であった。次を考察せよ。
+\begin{enumerate}
+\item 空間微分が 2 階であって 1 階でないのはなぜか。本問の歩みの対称性（各向きへの移動確率）と
+1 ステップの平均変位 $\langle\Delta\bx\rangle$ に関連づけて説明せよ。
+\item 「時間 1 階・空間 2 階」という微分の階数が，diffusive scaling（(6) で求めた $\tau$ と $a$ の関係）と
+どのように結びつくかを述べよ。
+\item もし歩みに偏り（drift）があって 1 ステップの平均変位が $\langle\Delta x\rangle\neq0$（$a$ のオーダー）で
+あったなら，連続極限で現れる主要項の空間微分の階数はいくつになり，そのとき $\tau$ を $a$ の何乗で
+スケールさせればよいか，どんな型の方程式（拡散型／移流型）になるかを論ぜよ。
+\end{enumerate}
 \end{enumerate}
 \end{prob}
 
