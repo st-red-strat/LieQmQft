@@ -204,4 +204,43 @@ M.\,F.~Atiyah, V.\,K.~Patodi, I.\,M.~Singer (Math.\ Proc.\ Camb.\ Phil.\ Soc.\ 7
 T.\,T.~Wu, C.\,N.~Yang (Nucl.\ Phys.\ B107 (1976) 365)；F.\,D.\,M.~Haldane (Phys.\ Rev.\ Lett.\ 51 (1983) 605)。
 \end{sol}
 
+%======================================================================
+\section{連続変形と指数の不変性：バルクと境界の相殺}
+%======================================================================
+\begin{sol}
+\textbf{(14) 連続変形での相殺。}
+
+\textit{(a)} 追加項の作る磁束は緯度 $\vartheta$ の円まで
+$\boxed{\oint A_\varphi^{\text{(追加)}}\,d\varphi=2\pi\,t\sin^2\vartheta}$。赤道 $\vartheta=\pi/2$ で $2\pi t$，
+全球 $\vartheta=\pi$ で $2\pi t\sin^2\pi=\boxed0$ ゆえ\textbf{全磁束は $2\pi n$ のまま}（束＝指数が定義できる）。
+単極子の北半球磁束 $\tfrac n2\cdot2\pi=\pi n$ に追加分 $2\pi t$ を足して
+$\boxed{\dfrac{\Phi_+(t)}{2\pi}=\dfrac n2+t}$。
+
+\textit{(b)} バルクは $\boxed{\dfrac{\Phi_+(t)}{2\pi}+\dfrac12=\dfrac n2+t+\dfrac12}$。
+赤道の固有値 $k-\tfrac n2-t$，$\eta(t)=2\{\tfrac n2+t\}-1$，$h=0$（固有値が $0$ をまたがない範囲）より
+\[
+    \mathrm{ind}_+(t)=\Bigl(\tfrac n2+t+\tfrac12\Bigr)-\frac{(2\{\tfrac n2+t\}-1)+0}{2}
+    =\tfrac n2+t+1-\bigl\{\tfrac n2+t\bigr\}=\boxed{\bigl\lfloor\tfrac n2+t\bigr\rfloor+1}\ (=\text{一定}).
+\]
+相殺は微分で明示できる：$\dfrac{d}{dt}(\text{バルク})=1$，$\dfrac{d}{dt}\dfrac{\eta}{2}=\dfrac{d}{dt}\bigl(\{\tfrac n2+t\}-\tfrac12\bigr)=1$
+ゆえ $\boxed{\dfrac{d}{dt}\mathrm{ind}_+=1-1=0}$。バルクの $+t$ と境界 $\eta/2$ の $+t$ がちょうど相殺する。
+
+\textit{(c)} 南半球は $\dfrac{\Phi_-(t)}{2\pi}=\dfrac n2-t$，バルク $\tfrac n2-t+\tfrac12$，境界の符号非対称性は
+向きが逆ゆえ $-\eta$。$h=0$ で
+\[
+    \mathrm{ind}_++\mathrm{ind}_-
+    =\Bigl(\tfrac n2+t+\tfrac12-\tfrac\eta2\Bigr)+\Bigl(\tfrac n2-t+\tfrac12+\tfrac\eta2\Bigr)=\boxed{n+1}
+\]
+で $t$ に依らない（北の $+t$ と南の $-t$ が相殺，$\mp\eta/2$ も相殺）。\textbf{連続変形のもとで指数は不変}。
+
+\textit{(d)} 固有値 $k-\tfrac n2-t$ は $t=k-\tfrac n2$ で $0$ を横切る。そこで瞬間的に $\boxed{h=1}$，
+$\{\tfrac n2+t\}$ が $1^-\!\to0^+$ と落ちるので $\boxed{\eta\ \text{は}\ -2\ \text{跳ぶ}}$，
+$\mathrm{ind}_+=\lfloor\tfrac n2+t\rfloor+1$ は $\boxed{+1\ \text{跳ぶ}}$。
+$n=1$ では最初の横切りは $\boxed{t=\tfrac12}$，越えるのは固有値 $\tfrac12-t$ をもつ状態 $\boxed{z^{1}}$
+（$t<\tfrac12$ で正＝南，$t>\tfrac12$ で負＝北）。このとき北は $\{z^0\}\to\{z^0,z^1\}$，南は
+$\{z^1\}\to\{\,\}$ と移るだけで，球面全体の指数は $\boxed{n+1=2}$ のまま不変。
+（半球の状態数は境界をまたぐスペクトルフローでのみ整数だけ跳び，閉曲面の整数は保たれる――
+APS 指数定理の帰結。）
+\end{sol}
+
 \end{document}
