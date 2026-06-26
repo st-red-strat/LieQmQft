@@ -302,6 +302,14 @@ $\propto e^{-2S_0/\hb}$ の曖昧さ（非摂動効果）の起源であるこ�
 最近接特異点 $\zeta=2S_0$ を，\textbf{低次の数項だけ}から復元できるかを，Borel 級数の Pad\'e 近似
 （有理関数近似）の極で見る。
 
+\paragraph{なぜ Pad\'e（有理関数）が要るのか。}
+Borel 級数を有限項 $N$ で打ち切ると $\Bor_N(\zeta)=\sum_{n=1}^N b_n\zeta^{n-1}$ は\emph{多項式}（整関数）で，
+特異点を一切持たない。これを項別に Laplace 積分すれば
+$\int_0^\infty e^{-\zeta/\hb}\Bor_N(\zeta)d\zeta=\sum_{n=1}^N b_n(n-1)!\,\hb^n=\sum_{n=1}^N a_n\hb^n$
+と，元の（発散）級数の打ち切りに\emph{厳密に}戻るだけで，新しい情報（特異点・非摂動的曖昧さ）は何も出ない。
+特異点 $\zeta=2S_0$ は\textbf{無限項の和ではじめて現れる}。有限の係数からそれを捉えるには，多項式の外へ
+\emph{解析接続}せねばならない――分母の零点として実際の極を作る有理関数近似（Pad\'e）はそのための最小の道具である。
+
 \paragraph{Pad\'e 近似の定義と係数の決め方。}
 ベキ級数 $f(\zeta)=\sum_{j\ge0}c_j\zeta^j$ の \textbf{$[L/M]$ Pad\'e 近似}とは，分子・分母の次数が
 $\deg P\le L$, $\deg Q\le M$，$Q(0)=1$ の有理関数 $\dfrac{P(\zeta)}{Q(\zeta)}$ で，その Taylor 展開が
