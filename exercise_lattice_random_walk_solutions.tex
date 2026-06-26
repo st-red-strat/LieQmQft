@@ -119,7 +119,41 @@ $\boxed{\langle x^2+y^2\rangle=4Dt}$。これは (4) の $npa^2=\tfrac t\tau pa^
 $4Dt$ に一致する。
 
 \par\smallskip
-\textbf{(8) 考察：微分の階数。}
+\textbf{(8) マンハッタン距離と等確率面。}
+
+\textit{(a)} $(0,0)\to(i,j)$ の最小ステップ数は軸方向にしか動けないので $\boxed{|i|+|j|}$
+（マンハッタン距離 $=L^1$）。もし最短経路だけが効くなら $P\sim e^{-\beta(|x|+|y|)/a}$ 型となり，
+等確率面は $\boxed{|x|+|y|=\text{一定}}$ ＝\emph{菱形}（$L^1$ 球）になる。
+
+\textit{(b)} 終点 $x=(2k-N)a$ の経路数は $\Omega=\dbinom{N}{k}$。$k=N/2+\delta$（$\delta=x/2a$）とおき
+Stirling より
+\begin{align*}
+    \ln\binom{N}{k}&\simeq N\ln2-\frac{2\delta^2}{N}-\frac12\ln\frac{\pi N}{2}\\
+    &=N\ln2-\frac{x^2}{2Na^2}-\frac12\ln\frac{\pi N}{2}.
+\end{align*}
+よってエントロピー欠損 $\boxed{\Delta S=\ln\Omega_{\max}-\ln\Omega=\dfrac{x^2}{2Na^2}}$（$x$ の 2 次形式）。
+$\Omega\propto e^{-x^2/2Na^2}$ ゆえ分散 $\boxed{\sigma_x^2=Na^2}$（$=\langle\Delta x^2\rangle\cdot N=a^2\cdot N$，
+1 ステップ $\pm a$）。
+
+\textit{(c)} (7)(b) で連続極限の特性関数は $\hat P_n\to e^{-Dt k_x^2}e^{-Dt k_y^2}$ と\emph{積に分解}した。
+ゆえに $P(x,y,t)=G(x,t)\,G(y,t)\propto e^{-(x^2+y^2)/4Dt}$ であり，
+\[
+    P=\text{一定}\iff\boxed{x^2+y^2=\text{一定}}\quad(\text{円，}L^2\text{球}).
+\]
+分散は $\boxed{\sigma_x^2=\sigma_y^2=2Dt}$（等方）。ここで $G(x,t)=\frac{1}{\sqrt{4\pi Dt}}e^{-x^2/4Dt}$。
+
+\textit{(d)} 確率は\emph{最短経路の長さ}（``エネルギー''）ではなく\emph{経路数＝多重度}
+$\Omega=e^{S}$（``エントロピー''）で決まる：無偏りの歩みでは長さの等しい経路の重みに差はなく，
+終点の確率はそこへ至る経路数に比例する。(b) のとおり Stirling によりその対数（エントロピー）は
+終点座標の 2 次形式になり，しかも $x,y$ 方向の 1 ステップ分散が等しく
+（$\langle\Delta x^2\rangle=\langle\Delta y^2\rangle$）相関がない（$\langle\Delta x\Delta y\rangle=0$）ため，
+2 次形式は等方的な $x^2+y^2$ となる（中心極限定理）。これが等確率面が円（$L^2$）であって
+菱形（$L^1$）でない理由である。菱形は，長い経路を指数的に罰する``エネルギー''項があって最短経路が
+支配する場合（低温・大偏差領域）にのみ現れる。無偏り拡散ではエントロピーが支配し，格子の離散対称性
+$C_4$ は連続極限で\textbf{回転対称性 $O(2)$ に創発的に拡大}する。
+
+\par\smallskip
+\textbf{(9) 考察：微分の階数。}
 
 \textit{(a)} 各向きへの移動確率が左右・上下対称ゆえ 1 ステップの平均変位は $\langle\Delta\bx\rangle=\bm0$。
 このため 1 階差分（$\to\partial_x$，移流項）は相殺し，最低次で残るのは 2 階差分（$\to\partial_x^2$）である。

@@ -93,7 +93,31 @@ $K\simeq\frac{1}{\sqrt{4\pi Dt}}e^{-y^2/4Dt}$。よって
 すなわち $|m|\lesssim R/\sqrt{Dt}$ の項で，個数は $\boxed{N\sim\dfrac{R}{\sqrt{Dt}}\gg1}$（多数のモード）。
 
 \par\smallskip
-\textbf{(7) 考察。}
+\textbf{(7) スケーリング次元と有効次元。}
+
+\textit{(a)} $\partial_t\to b^{-z}\partial_t$，$\nabla^2\to b^{-2}\nabla^2$ ゆえ両辺が同じ冪になるのは
+$\boxed{z=2}$（動的指数 $2$）。このとき $D$ は\fbox{不変（無次元・marginal）}。
+
+\textit{(b)} $\int P\,d^dx=1$ かつ $x\to bx$（$d^dx\to b^d d^dx$）ゆえ $\boxed{P\to b^{-d}P}$。
+自己相似形 $P=t^{-\alpha}\Phi(x/\sqrt{4Dt})$ が $t\to b^2t,\ x\to bx$ で不変なら，
+プレファクター $t^{-\alpha}\to b^{-2\alpha}t^{-\alpha}$ が $b^{-d}$ と一致，すなわち $\boxed{\alpha=d/2}$。
+$d=1$ で $\alpha=\tfrac12$（$t^{-1/2}$），$d=2$ で $\alpha=1$（$t^{-1}$）。
+
+\textit{(c)(d)} $P(0,0,t)=G(0,t)\,K(0,t)$，$G(0,t)=\dfrac{1}{\sqrt{4\pi Dt}}\propto t^{-1/2}$。
+\begin{itemize}
+\item[$\bullet$] \textbf{長時間} $t\gg t^\ast$：$\sum_m e^{-Dm^2t/R^2}$ は $\boxed{m=0}$ の項のみ残り
+$K(0,t)\to\dfrac{1}{2\pi R}$（定数）。ゆえ $P(0,0,t)\propto\boxed{t^{-1/2}}$，$\boxed{d_{\mathrm{eff}}=1}$。
+効くモードは 1 個（最低 KK モード）。
+\item[$\bullet$] \textbf{短時間} $t\ll t^\ast$：$\displaystyle\sum_m e^{-Dm^2t/R^2}\simeq\int dm\,e^{-Dm^2t/R^2}
+=R\sqrt{\pi/Dt}$ ゆえ $K(0,t)\simeq\dfrac{1}{2\pi R}R\sqrt{\pi/Dt}=\dfrac{1}{\sqrt{4\pi Dt}}\propto t^{-1/2}$。
+よって $P(0,0,t)\propto\boxed{t^{-1}}$，$\boxed{d_{\mathrm{eff}}=2}$。効くモードは $N\sim R/\sqrt{Dt}\gg1$ 個。
+\end{itemize}
+有効次元 $d_{\mathrm{eff}}=-2\times(\text{$P(0,0,t)$ の $t$ 冪})$ は，効く KK モード数が多い UV（短時間）で
+$2$，最低モードだけが残る IR（長時間）で $1$ となる――\textbf{有効次元が $2\to1$ へ流れる}
+（次元簡約のスケーリング的表現）。
+
+\par\smallskip
+\textbf{(8) 考察。}
 
 \textit{(a)} 指数 $e^{-Dm^2t/R^2}$（モード和）と $e^{-(2\pi Rw)^2/4Dt}$（像和）は，無次元量 $Dt/R^2$ について
 互いに逆。$t\gg t^\ast$（$Dt/R^2\gg1$）ではモード和の非ゼロ項が消え 1 項（$m=0$）で済む＝(5)。
