@@ -1,0 +1,115 @@
+\documentclass[dvipdfmx, uplatex]{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{braket}
+\usepackage{xr}
+\externaldocument{exercise_diffusion_extra_dimension}
+
+\usepackage{silence}
+\WarningFilter*{hyperref}{Token not allowed in a PDF string}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+\allowdisplaybreaks[4]
+
+\usepackage[left=25truemm,top=20truemm,bottom=20truemm,right=25truemm]{geometry}
+
+\theoremstyle{definition}
+\newtheorem*{sol}{解答}
+
+\title{解答：余剰次元（周期境界）上の拡散と次元簡約\\
+\large ―― \texttt{exercise\_diffusion\_extra\_dimension.tex} の解答 ――}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-6zh}
+
+記号・式番号は問題ファイル \texttt{exercise\_diffusion\_extra\_dimension.tex} のものを踏襲する。
+\textbf{各問の解（採点用）}は太字（\boxed）で示す。
+以下，1 次元熱核を $G(x,t):=\dfrac{1}{\sqrt{4\pi Dt}}e^{-x^2/4Dt}$ と書く。
+
+%======================================================================
+\section{解答}
+%======================================================================
+
+\begin{sol}
+\textbf{(1) Fourier モード分解。}周期性 $y\sim y+2\pi R$ より $e^{ik_y\cdot2\pi R}=1$，すなわち
+$\boxed{k_y=\dfrac{m}{R}}$（$m\in\mathbb{Z}$）。$\partial_y^2\to-(m/R)^2$ を 2 次元方程式に代入すると，各モードは
+\[
+    \boxed{\,\frac{\partial P_m}{\partial t}=D\,\frac{\partial^2 P_m}{\partial x^2}-\frac{Dm^2}{R^2}\,P_m\,}
+\]
+を満たす。$x$ 方向の拡散定数は $\boxed{D}$（不変），$m$ 依存の減衰率は $\boxed{\Gamma_m=\dfrac{Dm^2}{R^2}}$。
+（``質量''$\mu_m=m/R$ で $\Gamma_m=D\mu_m^2$。）
+
+\par\smallskip
+\textbf{(2) ゼロモード。}$P_0(x,t)=\int_0^{2\pi R}P(x,y,t)e^{-i\cdot0\cdot y/R}dy=\int_0^{2\pi R}P\,dy$ は
+$y$ で積分した周辺分布。(1) で $m=0$ ゆえ $\boxed{\partial_tP_0=D\partial_x^2P_0}$（純 1 次元拡散）。
+点源 $P_0(x,0)=\int\delta(x)\delta(y)dy=\delta(x)$ より
+\[
+    \boxed{\,P_0(x,t)=G(x,t)=\frac{1}{\sqrt{4\pi Dt}}\,e^{-x^2/4Dt}\,}.
+\]
+
+\par\smallskip
+\textbf{(3) KK 塔と寿命。}$P_m(x,0)=\int\delta(x)\delta(y)e^{-imy/R}dy=\delta(x)$ ゆえ，(1) の解は
+$\boxed{\,P_m(x,t)=e^{-\Gamma_m t}\,G(x,t)\,}$。時定数
+$\boxed{\tau_m=1/\Gamma_m=\dfrac{R^2}{Dm^2}}$。$|m|$ が小さいほど長寿命（$m=\pm1$ が最長）。
+最低非ゼロモード $m=\pm1$ の寿命からクロスオーバー時刻
+$\boxed{\,t^\ast:=\tau_1=\dfrac{R^2}{D}\,}$。
+
+\par\smallskip
+\textbf{(4) 全解と 2 表示。}$P=\sum_m\frac{1}{2\pi R}P_m e^{imy/R}=G(x,t)\,K(y,t)$，ただし円上の熱核 $K$ は
+\begin{align*}
+    \text{(i) モード和：}&\ \boxed{K(y,t)=\frac{1}{2\pi R}\sum_{m\in\mathbb{Z}}e^{imy/R}\,e^{-Dm^2t/R^2}},\\
+    \text{(ii) 像和：}&\ \boxed{K(y,t)=\frac{1}{\sqrt{4\pi Dt}}\sum_{w\in\mathbb{Z}}e^{-(y-2\pi Rw)^2/4Dt}}.
+\end{align*}
+両者は Poisson 和で等しい。指数は (i) が $e^{-Dm^2t/R^2}$，(ii) が $e^{-(2\pi Rw)^2/4Dt}$ ゆえ，
+\textbf{大 $t$ ではモード和 (i)}（$m=0$ 以外急減衰，数項で十分），\textbf{小 $t$ では像和 (ii)}
+（$w=0$ 以外急減衰）が速く収束する。
+
+\par\smallskip
+\textbf{(5) 低エネルギー（$t\gg t^\ast$）。}(i) で $m\neq0$ は $e^{-Dm^2t/R^2}=e^{-(m^2)t/t^\ast}\to0$。
+生き残るのは $\boxed{m=0}$ のみで
+\[
+    \boxed{\,P(x,y,t)\simeq\frac{1}{2\pi R}\,G(x,t)=\frac{1}{2\pi R}\frac{1}{\sqrt{4\pi Dt}}e^{-x^2/4Dt}\,}
+\]
+――$y$ に一様，$x$ 方向の純 1 次元拡散（余剰次元は見えない）。最初の補正は $m=\pm1$ の項
+$\frac{2}{2\pi R}e^{-Dt/R^2}\cos(y/R)\,G(x,t)$ であり，その大きさは $\boxed{\propto e^{-t/t^\ast}}$
+（指数的に抑制）。
+
+\par\smallskip
+\textbf{(6) 高エネルギー（$t\ll t^\ast$）。}$y$ 方向の広がり $\sqrt{2Dt}\ll\sqrt{2}\,R<2\pi R$ ゆえ
+粒子は円を一周しておらず，(ii) で $\boxed{w=0}$ の項のみ支配的：
+$K\simeq\frac{1}{\sqrt{4\pi Dt}}e^{-y^2/4Dt}$。よって
+\[
+    \boxed{\,P(x,y,t)\simeq\frac{1}{4\pi Dt}\,e^{-(x^2+y^2)/4Dt}\,}
+\]
+――自由 2 次元 Gauss（コンパクト性が見えない）。(i) で実効的に効くのは $Dm^2t/R^2\lesssim1$，
+すなわち $|m|\lesssim R/\sqrt{Dt}$ の項で，個数は $\boxed{N\sim\dfrac{R}{\sqrt{Dt}}\gg1}$（多数のモード）。
+
+\par\smallskip
+\textbf{(7) 考察。}
+
+\textit{(a)} 指数 $e^{-Dm^2t/R^2}$（モード和）と $e^{-(2\pi Rw)^2/4Dt}$（像和）は，無次元量 $Dt/R^2$ について
+互いに逆。$t\gg t^\ast$（$Dt/R^2\gg1$）ではモード和の非ゼロ項が消え 1 項（$m=0$）で済む＝(5)。
+$t\ll t^\ast$（$Dt/R^2\ll1$）では像和の非ゼロ項が消え 1 項（$w=0$）で済む＝(6)。同じ関数の
+\emph{速く収束する側}が極限ごとに入れ替わる（Poisson 和の双対性）。
+
+\textit{(b)} 余剰次元（半径 $R$ の円）は $\Gamma_m=Dm^2/R^2$ を持つモードの塔を生む。$\Gamma_m$ は KK 質量
+$\mu_m=m/R$ の 2 乗に拡散係数を掛けたもの（$\Gamma_m=D\mu_m^2$）で，KK 質量 $m/R$ に対応する。
+ここで\textbf{逆時間 $1/t$ がエネルギースケール}，\textbf{$1/t^\ast=D/R^2$（最低 KK ``質量'' のスケール）が
+コンパクト化スケール}に対応する。$1/t\ll1/t^\ast$（低エネルギー）では質量ゼロのゼロモードのみが効き
+有効理論は 1 次元；$1/t\gg1/t^\ast$（高エネルギー）では塔全体が効き 2 次元が回復する。
+
+\textit{(c)} (4) の双対は theta 関数のモジュラー変換（Poisson 和）であり，モジュラー的パラメータは
+無次元の $Dt/R^2$。運動量 $m$（間隔 $1/R$）と巻きつき $w$（間隔 $2\pi R$）を入れ替える双対では，
+次元解析上 $R$ は\textbf{$\tilde R\sim Dt/R$}に置き換わる（$R\,\tilde R\sim Dt$，すなわち拡散長の 2 乗 $Dt$ が
+弦理論の $\alpha'$ に相当する不変スケール）。自己双対点は $R^2\sim Dt$，すなわち $t\sim t^\ast$ である。
+\end{sol}
+
+\end{document}
