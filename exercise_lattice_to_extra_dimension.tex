@@ -192,8 +192,14 @@ $y\sim y+2\pi R$）にコンパクト化されているとする。初期条件�
 \begin{enumerate}[start=10]
 \item \textbf{$y$ の Fourier モード分解。}周期性から $y$ 方向の波数は離散的になる。
 許される波数 $k_y$ を整数 $m$ で表せ。$P(x,y,t)=\dfrac{1}{2\pi R}\displaystyle\sum_{m\in\mathbb{Z}}
-P_m(x,t)\,e^{ik_y y}$ と展開したとき，各モード係数 $P_m(x,t)$ が満たす\textbf{1 次元の}偏微分方程式を導け。
-その方程式の $x$ 方向の拡散定数と，$m$ に依存する減衰率 $\Gamma_m$ を，それぞれ $D,R,m$ で表せ。
+P_m(x,t)\,e^{ik_y y}$ と展開したとき，各モード係数 $P_m(x,t)$ が満たす\textbf{1 次元の}偏微分方程式を導き，
+それを
+\[
+    \frac{\partial P_m}{\partial t}=D_x\,\frac{\partial^2 P_m}{\partial x^2}-\Gamma_m\,P_m
+\]
+の形に整理せよ。ここで $\Gamma_m\,(\ge0)$ は各モードの一様な\textbf{減衰率}，すなわち $-\Gamma_m P_m$ の項の
+係数であり，$x$ について積分した $\displaystyle\int P_m\,dx$ が $e^{-\Gamma_m t}$ に従って減衰する率を表す
+（$D_x$ は $x$ 方向の実効拡散定数）。実効拡散定数 $D_x$ と減衰率 $\Gamma_m$ を，それぞれ $D,R,m$ で表せ。
 \item \textbf{ゼロモード＝1 次元拡散。}$m=0$ のモード係数 $P_0(x,t)$ が $y$ で積分した周辺分布
 $\displaystyle\int_0^{2\pi R}P(x,y,t)\,dy$ に等しいことを確かめ，それが満たす方程式を書け。
 点源初期条件のもとで $P_0(x,t)$ を求めよ。
