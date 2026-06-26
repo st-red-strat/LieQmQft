@@ -18,14 +18,10 @@
 
 \usepackage[left=25truemm,top=20truemm,bottom=20truemm,right=25truemm]{geometry}
 
-\newcommand{\zbar}{\bar z}
-\newcommand{\dz}{\partial_z}
-\newcommand{\dzb}{\partial_{\bar z}}
-
 \theoremstyle{definition}
 \newtheorem*{sol}{解答}
 
-\title{解答：回転群 $SO(2)$ の表現から指数定理へ\\
+\title{解答：平面の回転から「指数の保存」へ\\
 \large ―― \texttt{exercise\_so2\_index\_theorem.tex} の解答 ――}
 \author{}
 \date{}
@@ -35,208 +31,177 @@
 \vspace{-6zh}
 
 記号・問題番号は問題ファイル \texttt{exercise\_so2\_index\_theorem.tex} のものを踏襲する。
-\textbf{各問の解（採点用）}は太字（\boxed）で示す。
+\textbf{各問の解（採点用）}は太字（\boxed）で示す。以下 $c_i=\cos\theta_i,\ s_i=\sin\theta_i$。
 
 %======================================================================
-\section{SO(2) の二つの表現}
+\section{回転の二つの表し方}
 %======================================================================
 \begin{sol}
-\textbf{(1) ベクトル表現の群則。}加法定理より
+\textbf{(1) 行列での表し方。}加法定理 $c_1c_2-s_1s_2=\cos(\theta_1{+}\theta_2)$，
+$s_1c_2+c_1s_2=\sin(\theta_1{+}\theta_2)$ より
 \[
-    R(\theta_1)R(\theta_2)=
-    \begin{pmatrix}c_1c_2-s_1s_2 & -(s_1c_2+c_1s_2)\\ s_1c_2+c_1s_2 & c_1c_2-s_1s_2\end{pmatrix}
-    =\begin{pmatrix}\cos(\theta_1{+}\theta_2)&-\sin(\theta_1{+}\theta_2)\\ \sin(\theta_1{+}\theta_2)&\cos(\theta_1{+}\theta_2)\end{pmatrix}
-    =\boxed{R(\theta_1+\theta_2)}
+    R_{\theta_1}R_{\theta_2}=\begin{pmatrix}c_1c_2-s_1s_2 & -(s_1c_2+c_1s_2)\\ s_1c_2+c_1s_2 & c_1c_2-s_1s_2\end{pmatrix}
+    =\boxed{R_{\theta_1+\theta_2}}.
 \]
-（$c_i=\cos\theta_i,\ s_i=\sin\theta_i$）。$\boxed{R(0)=I}$，$\boxed{R(\theta)^{-1}=R(-\theta)=R(\theta)^{\mathsf T}}$。
+単位元は $\boxed{R_0=I}$（$\theta=0$），逆は $\boxed{R_\theta^{-1}=R_{-\theta}}$。閉性・結合律は行列積から従う。
 
 \par\smallskip
-\textbf{(2) 生成子の作用。}$\boxed{Gx=y,\quad Gy=-x}$（$Gx=y\partial_x x-x\partial_y x=y$ 等）。
-$u=e^{\theta G}x,\ v=e^{\theta G}y$ は $u'=e^{\theta G}Gx=v,\ v'=e^{\theta G}Gy=-u$ を満たす。
-$u''=-u$，初期条件 $u(0)=x,v(0)=y$ より
+\textbf{(2) 関数での表し方。}$(U_{\theta_2}f)(x,y)=f(xc_2+ys_2,\,-xs_2+yc_2)$。これに $U_{\theta_1}$ を施すと
+変数を $(x,y)\to(xc_1+ys_1,\,-xs_1+yc_1)$ と置き換えるので，第 1 引数は
+$(xc_1+ys_1)c_2+(-xs_1+yc_1)s_2=x(c_1c_2-s_1s_2)+y(s_1c_2+c_1s_2)=x\cos(\theta_1{+}\theta_2)+y\sin(\theta_1{+}\theta_2)$，
+第 2 引数は同様に $-x\sin(\theta_1{+}\theta_2)+y\cos(\theta_1{+}\theta_2)$。よって
 \[
-    \boxed{\,e^{\theta G}x=x\cos\theta+y\sin\theta,\qquad e^{\theta G}y=-x\sin\theta+y\cos\theta\,}.
+    \boxed{\,U_{\theta_1}(U_{\theta_2}f)=U_{\theta_1+\theta_2}f\,}.
 \]
+単位元 $\boxed{U_0=\text{恒等}}$（$\theta=0$），逆 $\boxed{U_\theta^{-1}=U_{-\theta}}$。
 
 \par\smallskip
-\textbf{(3) 関数表現の群則。}$[G,G]=0$ ゆえ $e^{\theta_1G}e^{\theta_2G}=e^{(\theta_1+\theta_2)G}$，すなわち
-$\boxed{U(\theta_1)U(\theta_2)=U(\theta_1+\theta_2)}$。$\boxed{U(0)=\mathrm{id},\ U(\theta)^{-1}=U(-\theta)}$。
-1 次関数 $x,y$ への作用は (2) より
-$U(\theta)\begin{pmatrix}x\\ y\end{pmatrix}=\begin{pmatrix}\cos\theta & \sin\theta\\ -\sin\theta & \cos\theta\end{pmatrix}
-\begin{pmatrix}x\\ y\end{pmatrix}$ ゆえ，$\mathrm{span}\{x,y\}$ 上で
-$\boxed{U(\theta)\big|_{\{x,y\}}=R(-\theta)=R(\theta)^{\mathsf T}}$（反傾＝双対表現；$SO(2)$ では
-ベクトル表現と同値）。よって\emph{同じ回転群}が，2 次元ベクトル表現としても無限次元関数表現としても
-実現され，後者の 1 次部分に前者が埋め込まれている。
+\textbf{(3) 二つの表し方の関係。}$f=x,y$ を代入すると（第 1・第 2 引数そのもの）
+\[
+    \boxed{U_\theta x=x\cos\theta+y\sin\theta},\qquad \boxed{U_\theta y=-x\sin\theta+y\cos\theta}.
+\]
+行列で
+\[
+    \begin{pmatrix}U_\theta x\\ U_\theta y\end{pmatrix}
+    =\begin{pmatrix}\cos\theta & \sin\theta\\ -\sin\theta&\cos\theta\end{pmatrix}\begin{pmatrix}x\\ y\end{pmatrix}
+    =\boxed{R_{-\theta}}\begin{pmatrix}x\\ y\end{pmatrix}
+\]
+ゆえ，関数表現を 1 次式 $x,y$ に制限すると\textbf{ベクトル表現（の向き反転＝同値なもの）}が現れる。
+小さい $\theta$ では $f(x+\theta y,\ y-\theta\,x)\approx f+\theta\bigl(y f_x-x f_y\bigr)$ ゆえ
+$\boxed{Gf=y\,\partial_x f-x\,\partial_y f}$。
 \end{sol}
 
 %======================================================================
 \section{固有ベクトルと固有関数}
 %======================================================================
 \begin{sol}
-\textbf{(4) ベクトル表現の固有ベクトル。}特性方程式 $(\cos\theta-\lambda)^2+\sin^2\theta=0$ より
-$\boxed{\lambda_\pm(\theta)=e^{\pm i\theta}}$。固有ベクトルは
+\textbf{(4) 行列の固有ベクトル。}$R_\theta\bm v=\lambda\bm v$ の固有値は
+$\boxed{\lambda_\pm(\theta)=e^{\pm i\theta}}$，固有ベクトルは
 \[
-    \boxed{\,\bm e_+=\begin{pmatrix}1\\ -i\end{pmatrix}\ (\lambda_+=e^{i\theta}),\qquad
-    \bm e_-=\begin{pmatrix}1\\ i\end{pmatrix}\ (\lambda_-=e^{-i\theta})\,}
+    \boxed{\bm e_+=\begin{pmatrix}1\\ -i\end{pmatrix}\ (\lambda_+=e^{i\theta}),\qquad
+    \bm e_-=\begin{pmatrix}1\\ i\end{pmatrix}\ (\lambda_-=e^{-i\theta})}.
 \]
-（$R(\theta)\bm e_\pm=e^{\pm i\theta}\bm e_\pm$，$\theta$ によらない定ベクトル）。\textbf{2 個}。
+$\theta$ によらない定ベクトルが\textbf{2 個}。
 
 \par\smallskip
-\textbf{(5) 関数表現の固有関数。}$\partial_\varphi=-y\partial_x+x\partial_y=-G$ ゆえ $\boxed{G=-\partial_\varphi}$。
-$G\psi=\mu\psi\Leftrightarrow-\partial_\varphi\psi=\mu\psi\Leftrightarrow\psi\propto e^{-\mu\varphi}$。
-単価性より $-\mu=in$（$n\in\mathbb{Z}$），すなわち
+\textbf{(5) 関数の固有関数。}$U_\theta(x+iy)=(xc+ys)+i(-xs+yc)=x(c-is)+y(s+ic)=e^{-i\theta}(x+iy)$
+（$c-is=e^{-i\theta},\ s+ic=ie^{-i\theta}$）。よって
 \[
-    \boxed{\,\psi_n=e^{in\varphi}\times(\text{任意の動径関数}),\quad G\psi_n=-in\,\psi_n,\quad
-    U(\theta)\psi_n=e^{-in\theta}\psi_n\,}.
+    \boxed{\,U_\theta\,(x+iy)^n=e^{-in\theta}(x+iy)^n\,},\qquad \lambda(\theta)=e^{-in\theta}.
 \]
-固有関数は $\mathbb{Z}$ で添字づけられ\textbf{可算無限個}。ベクトル表現の固有値 $e^{\pm i\theta}$ は
-$n=\mp1$ の場合に当たる（ベクトル表現 $=$ 関数表現の $n=\pm1$ 部分表現）。
+固有関数 $(x+iy)^n$ は整数 $n\in\mathbb{Z}$ で番号づき\textbf{可算無限個}。$n=\mp1$ がベクトル表現の
+固有値 $e^{\pm i\theta}$ にあたる。
 \end{sol}
 
 %======================================================================
-\section{複素座標と Laurent 基底}
+\section{複素座標と整数べき級数の基底}
 %======================================================================
 \begin{sol}
-\textbf{(6) 複素座標での生成子。}$Gz=Gx+iGy=y-ix=-i(x+iy)$，$G\bar z=y+ix=i(x-iy)$ ゆえ
-$\boxed{Gz=-iz,\quad G\bar z=+i\bar z}$。これより
-\[
-    \boxed{\,G=-i\bigl(z\partial_z-\bar z\partial_{\bar z}\bigr)\,}
-\]
-（$z\partial_z,\bar z\partial_{\bar z}$ への作用が一致することで確認できる）。単項式について
-$G(z^n\bar z^m)=-i(n-m)\,z^n\bar z^m$ ゆえ固有関数であり，
-\[
-    \boxed{\,G\text{ 固有値}=-i(n-m),\qquad U(\theta)\text{ 固有値}=e^{-i(n-m)\theta}\,}.
-\]
+\textbf{(6) べきは固有関数。}$Gx=y,\ Gy=-x$ より
+$Gz=Gx+iGy=y-ix=\boxed{-iz}$，$G\bar z=y+ix=\boxed{+i\bar z}$。積の微分で
+$G(z^n)=n z^{n-1}(Gz)=n z^{n-1}(-iz)=\boxed{-in\,z^n}$。よって $U_\theta(z^n)=e^{-in\theta}z^n$
+（(5) と一致）。
 
 \par\smallskip
-\textbf{(7) Laurent 基底。}単位円 $|z|=1$ では $z=e^{i\varphi}$ ゆえ (5) の固有関数は
-$\boxed{e^{in\varphi}=z^n}$。$\{z^n\}_{n\in\mathbb{Z}}$ は環状領域（あるいは $|z|=1$）上の関数の
-\textbf{Laurent 級数の基底}である（$n\ge0$ が正則部分 $z^n$，$n<0$ が主要部 $z^{-|n|}$）。
-回転生成子の固有関数がそのまま Laurent 基底になっている。
+\textbf{(7) 整数べき級数の基底。}単位円上 $z=e^{i\varphi}$ ゆえ $\boxed{z^n=e^{in\varphi}}$。
+$\{z^n\}_{n\in\mathbb{Z}}$ は円周上の関数の整数べき（Laurent）展開
+$\sum_{n}a_n z^n$ の基底（$n\ge0$ がべき，$n<0$ がその逆数）。\emph{回転の固有関数がそのまま
+整数べき級数の基底}になっている。
 \end{sol}
 
 %======================================================================
-\section{Poincar\'e--Hopf：指数の総和}
+\section{ベクトル場の渦の数（指数）とその総和}
 %======================================================================
 \begin{sol}
-\textbf{(8) 指数の総和。}有限平面では零点の位数 $=+$ 指数，極の位数 $=-$ 指数。無限遠は
-$v=-w^2R(1/w)\partial_w$ の $w=0$ での位数で読む。
+\textbf{(8) 指数の総和。}零点では矢印 $(P,Q)$ の向きの一周あたりの回転数（渦の数）が指数。
+複素数 $f=P+iQ$ で，$f$ の零点の位数 $=$ 指数（極でも\emph{向き}の回転数で読み，$1/z$ は $-1$）。
+無限遠は $Z=1/z$ に直して原点の位数で読む（$f$ が $\dot z=f$ なら，$Z=1/z$ で $\dot Z=-Z^2 f(1/Z)$）。
 \[
 \renewcommand{\arraystretch}{1.3}
 \begin{array}{c|c|c|c}
- & \text{有限の零点／極（指数）} & \text{無限遠 }w=0\ (\text{指数}) & \text{総和}\\\hline
-\text{(a) }\partial_z & \text{なし} & -w^2\cdot1=-w^2\partial_w\ (+2) & \boxed{+2}\\
-\text{(b) }z\partial_z & z=0\ (+1) & -w^2\cdot\tfrac1w=-w\partial_w\ (+1) & \boxed{+2}\\
-\text{(c) }\tfrac1z\partial_z & z=0\ \text{極}\ (-1) & -w^2\cdot w=-w^3\partial_w\ (+3) & \boxed{+2}\\
-\text{(d) }(z^2-1)\partial_z & z=\pm1\ (+1,+1) & -(1-w^2)\partial_w\ (\text{零点なし}) & \boxed{+2}
+& \text{平面内の零点・極（指数）} & \text{無限遠 }Z=0\ (\text{指数}) & \text{総和}\\\hline
+\text{(a) }f=1 & \text{なし} & \dot Z=-Z^2\ (+2) & \boxed{2}\\
+\text{(b) }f=z & z=0\ (+1) & \dot Z=-Z\ (+1) & \boxed{2}\\
+\text{(c) }f=1/z & z=0\ \text{極}\ (-1) & \dot Z=-Z^3\ (+3) & \boxed{2}\\
+\text{(d) }f=z^2-1 & z=\pm1\ (+1,+1) & \dot Z=Z^2-1\ (\text{零点なし},0) & \boxed{2}
 \end{array}
 \]
-いずれも総和 $\boxed{2}$。これは $\boxed{S^2\text{ の Euler 数 }\chi(S^2)=2}$ に等しい（\textbf{Poincar\'e--Hopf
-定理}）。一般に種数 $g$ の閉曲面上の有理型ベクトル場では（零点数）$-$（極数）$=\chi=2-2g$。
-(b) の零点 $z=0,\infty$ は (2)(4) の回転の固定点（北極・南極）に対応し，回転ベクトル場が指数
-$+1$ の固定点を 2 個持つことが $\chi=2$ を与える。
+いずれも総和 $\boxed{2}$。これは\textbf{球面 $S^2$ の Euler 数 $\chi(S^2)=2$}（穴 $0$ 個の閉曲面の位相量）。
+(b) の零点 $z=0,\infty$ は回転行列の固定点（北極・南極）で，回転ベクトル場が指数 $+1$ の点を 2 個持つ
+ことが $\chi=2$ を与える。
 \end{sol}
 
 %======================================================================
-\section{U(1) 接続・Cauchy--Riemann 作用素・Chern 数}
+\section{磁気単極子・磁束の量子化・最低エネルギー状態}
 %======================================================================
 \begin{sol}
-\textbf{(9) ゲージ共変性。}$D_{\bar z}(e^{i\alpha}\psi)=e^{i\alpha}\bigl(i(\dzb\alpha)\psi+\dzb\psi+iA'_{\bar z}\psi\bigr)$
-が $e^{i\alpha}(\dzb\psi+iA_{\bar z}\psi)$ に等しいためには
-\[
-    \boxed{\,A'_{\bar z}=A_{\bar z}-\dzb\alpha\,}\qquad(\text{1 形式では }A\to A-d\alpha).
-\]
-曲率 $F=dA\to d(A-d\alpha)=dA=F$ ゆえ\textbf{ゲージ不変}（$d^2=0$）。
+\textbf{(9) 単極子の磁束。}半径 $1$ の球面で $B_r=g$（$r=1$）一定，表面積 $4\pi$ ゆえ
+$\Phi=\iint_{S^2}B_r\,dS=g\cdot4\pi=\boxed{4\pi g}$。$\Phi=2\pi n$ より $\boxed{g=\dfrac n2}$。
+ベクトルポテンシャル $A_\varphi=\tfrac n2(1-\cos\vartheta)$ では，緯度 $\vartheta$ の円を一周する線積分が
+その円までの（極冠を貫く）磁束に等しく，$\displaystyle\oint A_\varphi\,d\varphi=2\pi\cdot\tfrac n2(1-\cos\vartheta)
+=\pi n(1-\cos\vartheta)$。微小面あたりでは（$\vartheta$ で微分して）磁束 $\tfrac n2\sin\vartheta\,d\vartheta\,d\varphi$，
+全球で $\tfrac n2\!\int_0^\pi\!\sin\vartheta\,d\vartheta\!\int_0^{2\pi}\!d\varphi=\tfrac n2\cdot2\cdot2\pi=\boxed{2\pi n}$。
 
 \par\smallskip
-\textbf{(10) 単極子と Chern 数。}
+\textbf{(10) 最低エネルギーの状態数。}$\psi_k\ (k=0,1,\dots,n)$ は $n+1$ 個ゆえ
+$\boxed{\text{状態数}=n+1}$。これは
 \[
-    \boxed{\,F=dA=\frac{n}{2}\sin\vartheta\,d\vartheta\wedge d\varphi\,},\qquad
-    \int_{S^2}F=\frac n2\int_0^\pi\!\sin\vartheta\,d\vartheta\int_0^{2\pi}\!d\varphi=\frac n2\cdot2\cdot2\pi=\boxed{2\pi n}.
+    n+1=\underbrace{n}_{\Phi/2\pi}+\underbrace{1}_{\text{球面のぶん}}
+    =\boxed{\frac{\Phi}{2\pi}+1}.
 \]
-よって第一 Chern 数 $\boxed{c_1=\dfrac{1}{2\pi}\displaystyle\int_{S^2}F=n\in\mathbb{Z}}$（Dirac の量子化）。
-（立体射影では $F=n\,\dfrac{i\,dz\wedge d\bar z}{(1+|z|^2)^2}$ と同じものになり，
-$\int i\,dz\wedge d\bar z/(1+|z|^2)^2=2\pi$ から同じ結論を得る。）
-
-\par\smallskip
-\textbf{(11) 正則ゼロモードと閉曲面の指数。}正則ゲージで $D_{\bar z}\psi=0\Leftrightarrow\psi=f(z)\times$（正則枠）。
-$S^2$ 上 2 乗可積分（南極 $w=1/z$ でも正則）となるのは $f$ が高々 $n$ 次の多項式，すなわち
-$f=1,z,\dots,z^n$。よって
-\[
-    \boxed{\dim\ker D_{\bar z}=n+1},\qquad
-    \boxed{\mathrm{ind}\,D_{\bar z}=(n+1)-0=n+1}.
-\]
-これは $\mathrm{ind}=c_1+\tfrac12\chi(S^2)=n+\tfrac12\cdot2=n+1$（Atiyah--Singer／Riemann--Roch，
-$\mathrm{ind}=\deg+1-g$，$g=0$）と一致する。ゼロモード $z^k$ は第 6 節の Laurent 基底の
-$0\le k\le n$ 部分にほかならない。
 \end{sol}
 
 %======================================================================
-\section{半球分割・境界作用素・APS 指数定理}
+\section{半球分割・赤道上の回転演算子・状態数の対応}
 %======================================================================
 \begin{sol}
-\textbf{(12) 赤道上の境界作用素。}最低 Landau 準位は全角運動量 $J=n/2$ の多重項で，
-$\psi_k\propto z^k(1+|z|^2)^{-n/2}$ の $J_z$ 固有値は
+\textbf{(11) 赤道上の回転の固有値。}最低準位は $J=n/2$ の多重項で
 \[
-    \boxed{\,J_z\,\psi_k=\Bigl(k-\tfrac n2\Bigr)\psi_k,\qquad k=0,1,\dots,n\,}
-    \quad(J_z=-\tfrac n2,\dots,+\tfrac n2).
+    \boxed{\,j_k=k-\frac n2\quad(k=0,1,\dots,n),\qquad j_k=-\tfrac n2,\,-\tfrac n2{+}1,\dots,+\tfrac n2\,}.
 \]
-赤道 $|z|=1$ 上で $\psi_k\propto e^{ik\varphi}$ ゆえ，境界に誘導される 1 次元作用素 $B$（軌道部分は
-回転生成子 $iG=-i\partial_\varphi$ に単極子の寄与を加えた全角運動量 $J_z$）の固有関数は\textbf{Laurent 基底
-$z^k=e^{ik\varphi}$}，固有値は $\boxed{k-\tfrac n2}$ である。回転の生成子が境界作用素として自然に現れている。
+赤道 $z=e^{i\varphi}$ 上で $\psi_k\propto e^{ik\varphi}=z^k$ ゆえ，境界の回転演算子 $J_z$ の固有関数は
+\textbf{整数べき $z^k$}（第 4 節の基底），固有値は $k-\tfrac n2$。
 
 \par\smallskip
-\textbf{(13) $\eta$ 不変量。}スペクトル $\{m+c\}$（固有関数 $e^{im\varphi}$，$0<c<1$）について
-$\eta(s)=\zeta(s,c)-\zeta(s,1-c)$，$\zeta(0,a)=\tfrac12-a$ より
-\[
-    \boxed{\,\eta(0)=\bigl(\tfrac12-c\bigr)-\bigl(\tfrac12-(1-c)\bigr)=1-2c\,}\qquad(0<c<1).
-\]
-単極子では $c\equiv\tfrac n2\pmod1$：
+\textbf{(12) 符号の非対称性。}$\{j_k=k-\tfrac n2\}$（$k=0,\dots,n$）について：
 \begin{itemize}
-\item[・]\textbf{$n$ 偶数}（$c\equiv0$）：スペクトル $\{m\}$ は $0$ に関して対称ゆえ $\boxed{\eta(0)=0}$，
-かつ零固有値（$k=n/2$）が 1 個 $\boxed{h=1}$。
-\item[・]\textbf{$n$ 奇数}（$c\equiv\tfrac12$）：スペクトル $\{m+\tfrac12\}$ も対称ゆえ $\boxed{\eta(0)=0}$，
-零固有値なし $\boxed{h=0}$。
+\item[・] $n$ \textbf{偶数}：$k=\tfrac n2$ で $j=0$ ゆえ零が $\boxed{h=1}$，正負は同数。
+\item[・] $n$ \textbf{奇数}：$j_k=k-\tfrac n2$ は半整数で $0$ を取らず $\boxed{h=0}$，正負は同数。
 \end{itemize}
-（いずれもスペクトルが $0$ に関して対称なので $\eta(0)=0$。）
+境界演算子を全整数 $k\in\mathbb{Z}$ に広げたスペクトル $\{k-\tfrac n2\}$ は $0$ について対称（$j$ と $-j$ が
+対）だから，符号の非対称性は相殺して $\boxed{\eta=\sum_{j\neq0}\operatorname{sign}(j)\big|_{\text{正則化}}=0}$
+（くわしい定義は問題文の補足）。
 
 \par\smallskip
-\textbf{(14) APS の検証。}北半球の APS 境界条件は\emph{境界固有値 $k-\tfrac n2<0$ のモードを残す}。
-生き残る正則切断は $z^k$（$0\le k<\tfrac n2$）で $N_+=\#\{k:0\le k<\tfrac n2\}=\lceil n/2\rceil$，
-南半球は $k>\tfrac n2$ を残し $N_-=n+1-\lceil n/2\rceil$（$n$ 偶数の境界零モード $k=\tfrac n2$ は $h/2$ で配分）。
+\textbf{(13) 状態数の対応。}北半球は固有値が負（$k<\tfrac n2$）の $z^k$，南半球は正（$k>\tfrac n2$）の $z^k$ を
+担う。$N_+=\#\{k:0\le k<\tfrac n2\}=\lceil n/2\rceil$，$N_-=\#\{k:\tfrac n2<k\le n\}$。
 \[
 \renewcommand{\arraystretch}{1.35}
 \begin{array}{c|c|c|c|c|c|c}
-n & c_1 & \mathrm{ind}_{S^2} & \{J_z\}=\{k-\tfrac n2\} & N_+ & N_- & N_++N_-\\\hline
-0 & 0 & 1 & \{0\} & 0 & 0\,(+\text{境界零モード}) & \boxed{1}\\
+n & \Phi/2\pi & \text{全状態数} & \{j_k=k-\tfrac n2\} & N_+ & N_- & N_++N_-\\\hline
+0 & 0 & 1 & \{0\} & 0 & 0\ (+\text{境界零モード}) & \boxed{1}\\
 1 & 1 & 2 & \{-\tfrac12,+\tfrac12\} & 1 & 1 & \boxed{2}\\
-2 & 2 & 3 & \{-1,0,+1\} & 1 & 1\,(+\text{境界零モード}) & \boxed{3}
+2 & 2 & 3 & \{-1,0,+1\} & 1 & 1\ (+\text{境界零モード}) & \boxed{3}
 \end{array}
 \]
-各行で $\boxed{N_++N_-=\mathrm{ind}_{S^2}=n+1}$（境界 $J_z=0$ のモードは両半球に $h/2$ ずつ配分）。
-n+1 個の正則切断が，赤道上の $J_z$ の符号で南北に振り分けられている。
-
-\smallskip
-APS 指数定理の右辺：北半球のバルクは
-$\tfrac{1}{2\pi}\int_{D_+}F=\tfrac n2$（対称ゆえ半分）と
-$\tfrac12\cdot\tfrac{1}{2\pi}\int_{D_+}R_{\rm Euler}=\tfrac12\cdot1=\tfrac12$（赤道は測地線で測地的曲率 $0$，
-Gauss--Bonnet より $\tfrac{1}{2\pi}\int_{D_+}R_{\rm Euler}=\chi(D_+)=1$）の和 $\tfrac n2+\tfrac12$。よって
+各行で $\boxed{N_++N_-=\text{全状態数}=n+1}$（境界の $j=0$ モードは上下に半分ずつ配分）。
+$n+1$ 個の状態が，赤道上の回転固有値の符号で南北に振り分けられている。バルクと境界の対応：
 \[
-    \mathrm{ind}(D_{\bar z},\text{APS})=\Bigl(\tfrac n2+\tfrac12\Bigr)-\frac{\eta(0)+h}{2}
-    =\begin{cases}\tfrac n2+\tfrac12-\tfrac{0+1}{2}=\dfrac n2 & (n\ \text{偶}),\\[1.2ex]
-    \tfrac n2+\tfrac12-\tfrac{0+0}{2}=\dfrac{n+1}{2} & (n\ \text{奇}),\end{cases}
-    =\boxed{\Bigl\lceil\tfrac n2\Bigr\rceil=N_+}.
+    \Bigl(\tfrac n2+\tfrac12\Bigr)-\frac{\eta+h}{2}
+    =\begin{cases}\tfrac n2+\tfrac12-\tfrac{0+1}{2}=\dfrac n2 & (n\,\text{偶}),\\[1ex]
+    \tfrac n2+\tfrac12-\tfrac{0+0}{2}=\dfrac{n+1}{2} & (n\,\text{奇}),\end{cases}
+    =\boxed{\Bigl\lceil\tfrac n2\Bigr\rceil=N_+}
 \]
-具体的には $n=0\!:0,\ n=1\!:1,\ n=2\!:1$ で前表の $N_+$ に一致する。バルクの Chern 数（${+}$Euler 項）と
-境界のスペクトル非対称性 $\eta$ の差として半球の指数が定まり，南北を貼り合わせると境界項が相殺して
-閉曲面の指数 $n+1=c_1+\tfrac12\chi$ を再現する――これが APS 指数定理の主張である。
+（$n=0:0,\ n=1:1,\ n=2:1$）。すなわち「北半球の磁束 $/2\pi$ ＋球面のぶん $\tfrac12$」から「境界の符号
+非対称性 $\tfrac{\eta+h}{2}$」を引くと半球の状態数 $N_+$ になり，南北を足すと境界の寄与が相殺して
+球面全体の $n+1$ にもどる――これが\textbf{指数の保存（APS 型の対応）}である。
 
 \par\smallskip
-\noindent\textbf{参考。}指数定理：M.\,F.~Atiyah, I.\,M.~Singer, \textit{The index of elliptic operators}
-(Ann.\ Math.\ 1968)。境界付き版：M.\,F.~Atiyah, V.\,K.~Patodi, I.\,M.~Singer,
-\textit{Spectral asymmetry and Riemannian geometry I} (Math.\ Proc.\ Camb.\ Phil.\ Soc.\ 77 (1975) 43)。
-球面上の Landau 準位・単極子調和関数：F.\,D.\,M.~Haldane (Phys.\ Rev.\ Lett.\ 51 (1983) 605)，
-T.\,T.~Wu, C.\,N.~Yang (Nucl.\ Phys.\ B107 (1976) 365)。
+\noindent\textbf{注（言葉の対応・文献）。}本文の量と微分幾何の用語の対応は問題文末の補足を見よ
+（磁束 $=\int F$，状態数 $=\bar\partial$ 作用素の指数 $=\frac1{2\pi}\int F+\tfrac12\chi$，符号非対称性
+$=\eta$ 不変量，半球の対応 $=$ APS 指数定理）。文献：M.\,F.~Atiyah, I.\,M.~Singer (Ann.\ Math.\ 1968)；
+M.\,F.~Atiyah, V.\,K.~Patodi, I.\,M.~Singer (Math.\ Proc.\ Camb.\ Phil.\ Soc.\ 77 (1975) 43)；
+T.\,T.~Wu, C.\,N.~Yang (Nucl.\ Phys.\ B107 (1976) 365)；F.\,D.\,M.~Haldane (Phys.\ Rev.\ Lett.\ 51 (1983) 605)。
 \end{sol}
 
 \end{document}

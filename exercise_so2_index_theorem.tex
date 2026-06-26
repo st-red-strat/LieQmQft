@@ -17,15 +17,11 @@
 
 \usepackage[left=25truemm,top=20truemm,bottom=20truemm,right=25truemm]{geometry}
 
-\newcommand{\zbar}{\bar z}
-\newcommand{\dz}{\partial_z}
-\newcommand{\dzb}{\partial_{\bar z}}
-
 \theoremstyle{definition}
 \newtheorem*{prob}{問題}
 
-\title{演習：回転群 $SO(2)$ の表現から指数定理へ\\
-\large ―― ベクトル表現と関数表現・Laurent 基底・Poincar\'e--Hopf・複素線束上の $\bar\partial$ と APS 指数定理 ――}
+\title{演習：平面の回転から「指数の保存」へ\\
+\large ―― 回転の二つの表し方・整数べき級数・ベクトル場の渦の数・磁気単極子と状態数 ――}
 \author{}
 \date{}
 
@@ -35,176 +31,223 @@
 
 \begin{abstract}
 \sloppy
-平面の回転群 $SO(2)$ を，2 成分ベクトル $(x,y)$ に作用する\textbf{ベクトル表現}と，関数 $f(x,y)$ に
-作用する微分演算子 $\exp[\theta(y\partial_x-x\partial_y)]$ による\textbf{関数表現}の二通りで実現し，両者が
-同じ群の異なる表現であることを具体演算で確かめる。各表現の固有ベクトルを求めると，ベクトル表現では
-\emph{2 個}，関数表現では\emph{可算無限個}現れ，後者は複素座標 $z=x+iy,\ \bar z=x-iy$ で\textbf{Laurent
-級数の基底} $\{z^n\}_{n\in\mathbb{Z}}$ に一致する。次に有理関数が定める Riemann 球面上のベクトル場で
-\textbf{指数の総和が $2=\chi(S^2)$} になること（Poincar\'e--Hopf 定理の最も簡単な例）を確かめる。最後に
-$\dzb$ に $U(1)$ 接続を入れた\textbf{複素線束上の Cauchy--Riemann 作用素} $\dzb+iA_{\bar z}$ を考え，
-曲率 $F=dA$ の積分が $\int_{S^2}F=2\pi\mathbb{Z}$（第一 Chern 数）に量子化されること，球面を北・南半球に
-分けると\textbf{赤道上に境界作用素として回転の生成子が自然に現れる}こと，そしてバルクの Chern 数と
-境界のスペクトル非対称性（$\eta$ 不変量）との間に\textbf{APS 指数定理}が成り立つことを，いくつかの
-具体的な $A$ について検証する。
+平面の\textbf{回転}という最も身近な対称性を出発点に，それを「2 成分ベクトルに掛ける行列」と
+「関数の変数を回す操作」の\emph{二通り}で表す。固有ベクトルを調べると前者では 2 個，後者では
+\emph{整数で番号づけられた無限個}が現れ，後者は複素数 $z=x+iy$ のべき $z^n$（$n$ は負も含む整数），
+すなわち\textbf{整数べき級数}の基底になっている。次に平面上のベクトル場の零点のまわりの\textbf{渦の数
+（指数）}を定義し，球面全体で足すと必ず $2$ になることを確かめる。最後に，磁気単極子の作る磁場の中の
+荷電粒子を考え，\textbf{磁束が $2\pi$ の整数倍に量子化}されること，最低エネルギーの状態数がその整数で
+決まること，球面を上下に分けると\textbf{赤道上に回転の操作が自然に現れて}状態数の勘定が合うことを見る。
 
-\textbf{各問は表式・数値を答えさせる形にしてあり，本文中には原則として解答を与えていない}。
-完全な解答は別ファイル \texttt{exercise\_so2\_index\_theorem\_solutions.tex} にある。
+\textbf{方針：}本文の問題はすべて\emph{成分（数式）で}書き，必要な用語（群・固有ベクトル・指数・磁束
+など）はその場で定義する。微分形式やベクトル場の演算子記法といった進んだ書き方は，本文では使わず
+末尾の\textbf{補足}にのみ載せる。\textbf{各問は表式・数値を答えさせる形}にしてあり，本文中には原則として
+解答を与えていない。完全な解答は別ファイル \texttt{exercise\_so2\_index\_theorem\_solutions.tex} にある。
 \end{abstract}
 
 \tableofcontents
 
 %======================================================================
-\section{設定と記号}
+\section{準備：用語の定義}
 %======================================================================
-平面 $\mathbb{R}^2$ の点を $(x,y)$，対応する複素座標を $z=x+iy,\ \bar z=x-iy$ と書く。
-$\partial_z=\tfrac12(\partial_x-i\partial_y),\ \partial_{\bar z}=\tfrac12(\partial_x+i\partial_y)$。
-回転角 $\theta$ のベクトル表現行列を
+\noindent\textbf{定義（群）。}集合 $G$ とその上の積 $\ast$ が次を満たすとき $G$ を\textbf{群}という：
+(i)〔閉じている〕$a,b\in G$ なら $a\ast b\in G$；(ii)〔結合法則〕$(a\ast b)\ast c=a\ast(b\ast c)$；
+(iii)〔単位元〕ある $e\in G$ があって任意の $a$ に $e\ast a=a\ast e=a$；(iv)〔逆元〕各 $a$ に
+$a\ast a^{-1}=a^{-1}\ast a=e$ となる $a^{-1}\in G$ がある。
+
+\smallskip
+\noindent\textbf{定義（回転群 $SO(2)$）。}平面の原点まわりの回転全体
+$\{R_\theta:0\le\theta<2\pi\}$ を，積を「続けて回す（合成）」として $SO(2)$ と書く。
+
+\smallskip
+\noindent\textbf{定義（表し方＝表現）。}群の各元 $a$ に変換 $\rho(a)$（行列や，関数を関数に移す操作）を
+対応させ，積を合成に移す，すなわち $\rho(a\ast b)=\rho(a)\,\rho(b)$ を満たすとき，$\rho$ を $G$ の
+\textbf{表し方（表現）}という。
+
+\smallskip
+\noindent\textbf{記号。}平面の点を $(x,y)$，複素数表示を $z=x+iy$，その共役を $\bar z=x-iy$ とする
+（$x=\tfrac{z+\bar z}{2},\ y=\tfrac{z-\bar z}{2i}$）。回転行列を
 \[
-    R(\theta)=\begin{pmatrix}\cos\theta&-\sin\theta\\ \sin\theta&\cos\theta\end{pmatrix},
+    R_\theta=\begin{pmatrix}\cos\theta&-\sin\theta\\ \sin\theta&\cos\theta\end{pmatrix},
 \]
-関数表現の生成子を $G:=y\partial_x-x\partial_y$，1 パラメータ群を $U(\theta):=e^{\theta G}$ とする。
-極座標は $x=r\cos\varphi,\ y=r\sin\varphi$。
+関数 $f(x,y)$ を回す操作を，変数を $-\theta$ 回した点での値
+\[
+    \bigl(U_\theta f\bigr)(x,y):=f\bigl(x\cos\theta+y\sin\theta,\ -x\sin\theta+y\cos\theta\bigr)
+\]
+で定める（点を $+\theta$ 回したときの新しい場の値に対応）。極座標は $x=r\cos\varphi,\ y=r\sin\varphi$。
 
 %======================================================================
-\section{SO(2) の二つの表現}
+\section{回転の二つの表し方}
 %======================================================================
-同じ回転群が，2 次元ベクトルに作用する行列としても，関数に作用する微分演算子としても実現される。
+同じ回転群が，2 成分ベクトルに掛ける行列としても，関数の変数を回す操作としても表せる。
+両方が群の定義（合成が再び同種の操作・単位元・逆）を満たすことを，具体的な計算で確かめる。
 
 \begin{prob}
 \begin{enumerate}
-\item \textbf{ベクトル表現の群則。}行列の積 $R(\theta_1)R(\theta_2)$ を計算して成分で表し，それが
-$R(\theta_1+\theta_2)$ に等しいことを示せ。単位元 $R(0)$ と逆元 $R(\theta)^{-1}$ を $\theta$ で表せ。
-\item \textbf{生成子の作用。}$G x$ と $G y$ を計算せよ。これを用いて $e^{\theta G}x$ と $e^{\theta G}y$ を
-$x,y,\theta$ の関数として求めよ（$u(\theta)=e^{\theta G}x,\ v(\theta)=e^{\theta G}y$ が満たす連立 1 階
-常微分方程式を立てて解け）。
-\item \textbf{関数表現の群則。}生成子 $G$ が自分自身と可換であることから $U(\theta_1)U(\theta_2)$ を
-$U(\theta_1+\theta_2)$ の形にまとめよ。$U(0)$ と $U(\theta)^{-1}$ を述べよ。さらに，1 次関数の張る
-2 次元空間 $\mathrm{span}\{x,y\}$ 上で $U(\theta)$ を基底 $(x,y)$ に関する $2\times2$ 行列として表し，
-それを $R(\theta)$ と比較せよ（どの表現が現れるか）。
+\item \textbf{行列での表し方。}積 $R_{\theta_1}R_{\theta_2}$ を成分で計算し，加法定理を使って
+$R_{\theta_1+\theta_2}$ に等しいことを示せ。単位元にあたる $R_\theta$（$\theta=$?）と，
+$R_\theta$ の逆行列 $R_\theta^{-1}$ を $\theta$ で表せ。
+\item \textbf{関数での表し方。}定義に従い $\bigl(U_{\theta_1}(U_{\theta_2}f)\bigr)(x,y)$ を計算し
+（変数の回転を二度続ける），それが $\bigl(U_{\theta_1+\theta_2}f\bigr)(x,y)$ に等しいことを示せ。
+$U_\theta$ の単位元（$\theta=$?）と逆操作 $U_\theta^{-1}$ を述べよ。
+\item \textbf{二つの表し方の関係。}$U_\theta x$ と $U_\theta y$ を計算せよ（$f=x$ および $f=y$ を代入）。
+結果を「$(x,y)$ に掛かる $2\times2$ 行列」として書き，$R_\theta$ と比べよ（どちらの表し方が現れるか）。
+また $\theta$ が小さいとき $U_\theta f\approx f+\theta\,(Gf)$ となる演算子
+$\boxed{Gf=y\,\dfrac{\partial f}{\partial x}-x\,\dfrac{\partial f}{\partial y}}$ を，定義式から導け。
 \end{enumerate}
 \end{prob}
 
 %======================================================================
 \section{固有ベクトルと固有関数}
 %======================================================================
-表現を対角化する。固有値はどちらの表現でも回転群の指標 $e^{i(\text{整数})\theta}$ だが，固有ベクトルの
-\emph{個数}が表現で異なる。
+\noindent\textbf{定義（固有ベクトル）。}変換 $A$ に対し $A\bm v=\lambda\bm v$（$\lambda$ は数，$\bm v\neq\bm0$）
+となる $\bm v$ を固有値 $\lambda$ の固有ベクトルという。関数についても $A f=\lambda f$ なら $f$ を固有関数という。
 
 \begin{prob}
 \begin{enumerate}[start=4]
-\item \textbf{ベクトル表現の固有ベクトル。}$R(\theta)$ の固有値 $\lambda_\pm(\theta)$ と固有ベクトル
-$\bm e_\pm$ を求めよ（$\theta$ によらない定ベクトルとして表せ）。固有ベクトルは何個あるか。
-\item \textbf{関数表現の固有関数。}$G$ を極座標 $(r,\varphi)$ で表せ。$G\psi=\mu\psi$ を満たす固有関数
-$\psi$ を $\varphi$ 依存性について求め（単価性 $\psi(\varphi+2\pi)=\psi(\varphi)$ を課す），固有値 $\mu$ と，
-対応する $U(\theta)$ の固有値を求めよ。固有関数は何個（どんな集合で添字づけられるか）あるか。
+\item \textbf{行列の固有ベクトル。}すべての $\theta$ で $R_\theta\bm v=\lambda(\theta)\,\bm v$ となる
+（$\theta$ によらない）定ベクトル $\bm v$ と固有値 $\lambda(\theta)$ を求めよ。固有ベクトルは何個あるか。
+\item \textbf{関数の固有関数。}すべての $\theta$ で $U_\theta f=\lambda(\theta)\,f$ となる関数 $f$ を求めたい。
+$f=(x+iy)^n$（$n$ は整数）に対して $U_\theta f$ を計算し，固有値 $\lambda(\theta)$ を $n,\theta$ で表せ
+（負の $n$ は $(x+iy)^{-1}=\tfrac{x-iy}{x^2+y^2}$ などと読む）。固有関数は何個（どんな整数で番号づくか）あるか。
 \end{enumerate}
 \end{prob}
 
 %======================================================================
-\section{複素座標と Laurent 基底}
+\section{複素座標と整数べき級数の基底}
 %======================================================================
-関数表現の固有関数を複素座標で書くと，正則・反正則のべきに分かれ，Laurent 級数の基底が現れる。
-
 \begin{prob}
 \begin{enumerate}[start=6]
-\item \textbf{複素座標での生成子。}$Gz$ と $G\bar z$ を計算せよ。これを用いて $G$ を $z\partial_z$ と
-$\bar z\partial_{\bar z}$ で表せ。単項式 $z^n\bar z^m$（$n,m\ge0$）が $G$ の固有関数であることを示し，
-その固有値と $U(\theta)$ の固有値を $n,m$ で表せ。
-\item \textbf{Laurent 基底。}原点を除いた領域（あるいは単位円 $|z|=1$）で，前問 (5) の固有関数
-$e^{in\varphi}$ が複素座標でどの関数に一致するかを述べよ。$\{$その関数 $\}_{n\in\mathbb{Z}}$ が何の基底に
-なっているか（級数の名前）を答えよ。
+\item \textbf{べきは固有関数。}前問の演算子 $G$ について $G z=Gx+iGy$ を計算して $Gz=-iz$ を示し，
+同様に $G\bar z=+i\bar z$ を示せ。これを使って $G(z^n)$ を計算し（積の微分），固有値を $n$ で表せ。
+あわせて $U_\theta(z^n)$ の固有値を $n,\theta$ で表せ。
+\item \textbf{整数べき級数（Laurent）の基底。}単位円 $x^2+y^2=1$ 上では $z=e^{i\varphi}$
+（$x=\cos\varphi,\ y=\sin\varphi$）ゆえ $z^n=e^{in\varphi}$ である。$\{z^n\}_{n\in\mathbb{Z}}$ が，
+円周上の関数を $\displaystyle\sum_{n=-\infty}^{\infty}a_n z^n$ と展開する級数（\textbf{整数べき級数，Laurent 級数}，
+$n\ge0$ が普通のべき，$n<0$ がその逆数）の基底になっていることを述べよ。すなわち\emph{回転の固有関数が
+そのまま整数べき級数の基底}である。
 \end{enumerate}
 \end{prob}
 
 %======================================================================
-\section{Poincar\'e--Hopf：指数の総和}
+\section{ベクトル場の渦の数（指数）とその総和}
 %======================================================================
-有理関数 $R(z)$ は Riemann 球面 $S^2=\mathbb{C}\cup\{\infty\}$ 上のベクトル場 $v=R(z)\partial_z$ を定める。
-その零点・極における\textbf{指数}（零点の位数は $+$，極の位数は $-$）の総和を調べる。無限遠点 $\infty$ は
-座標 $w=1/z$ で見る（$\partial_z=-w^2\partial_w$ ゆえ $v=-w^2R(1/w)\partial_w$）。
+\noindent\textbf{定義（ベクトル場と渦の数＝指数）。}平面の各点 $(x,y)$ に矢印
+$\bm v(x,y)=(P(x,y),\,Q(x,y))$ を割り当てたものを\textbf{ベクトル場}という。$\bm v$ が $0$ になる点
+（零点）$\bm p$ のまわりに小さな円を反時計回りに一周するとき，矢印 $(P,Q)$ の向きが回る\emph{正味の
+回転数}（反時計回りを正）を，その零点の\textbf{指数（渦の数）}と呼ぶ。たとえば $(P,Q)=(x,y)$（湧き出し）や
+$(-y,x)$（渦）は原点で指数 $+1$，$(x,-y)$（鞍点）は $-1$ である。
+
+\smallskip
+平面は，無限遠点 $\infty$ を 1 点付け加えると球面 $S^2$ になる（地球儀の北極から平面への射影の逆）。
+$\infty$ での指数は，反転 $(x,y)\mapsto(X,Y)=\dfrac{(x,-y)}{x^2+y^2}$（複素数で $Z=1/z$）で移した新しい座標
+$(X,Y)$ の原点での指数として読む。
 
 \begin{prob}
 \begin{enumerate}[start=8]
-\item \textbf{指数の総和。}次の各ベクトル場について，有限平面と無限遠点 $w=0$ のすべての零点・極での
-指数を求め，その総和を答えよ。さらにこの総和が等しい位相不変量の名前を述べよ。
+\item \textbf{指数の総和。}次の各ベクトル場について，平面内の零点と無限遠点 $\infty$ での指数をすべて求め，
+その総和を答えよ。（複素数で書くと $\bm v\leftrightarrow$（$P+iQ$）で，零点の指数 $=$ そこでの
+$P+iQ$ の零点の位数になる。$\infty$ では $Z=1/z$ に直してから原点での位数を読む。）
 \[
-    \text{(a)}\ v=\partial_z,\qquad
-    \text{(b)}\ v=z\,\partial_z,\qquad
-    \text{(c)}\ v=\tfrac1z\,\partial_z,\qquad
-    \text{(d)}\ v=(z^2-1)\,\partial_z.
+\begin{aligned}
+&\text{(a)}\ (P,Q)=(1,0) && [\,P+iQ=1\,],\\
+&\text{(b)}\ (P,Q)=(x,y) && [\,P+iQ=z\,],\\
+&\text{(c)}\ (P,Q)=\Bigl(\tfrac{x}{x^2+y^2},\,\tfrac{-y}{x^2+y^2}\Bigr) && [\,P+iQ=\tfrac1z\,],\\
+&\text{(d)}\ (P,Q)=(x^2-y^2-1,\ 2xy) && [\,P+iQ=z^2-1\,].
+\end{aligned}
 \]
-（ヒント：(b) の零点の位置を，第 4 節で求めたベクトル表現の固定点と比べよ。）
+すべてで総和は同じ整数になる。その値と，それが球面 $S^2$ のどんな量（穴の数で決まる位相の量）に
+等しいかを答えよ。（ヒント：(b) の零点 $0,\infty$ は第 3 節の回転行列の固定点＝北極・南極にあたる。）
 \end{enumerate}
 \end{prob}
 
+\noindent\textbf{事実（Poincar\'e--Hopf）。}球面 $S^2$ 上の（孤立零点だけを持つ）どんなベクトル場でも，
+零点の指数の総和は一定で，値は $2$ である。一般に取っ手が $g$ 個の閉曲面では総和は $2-2g$。
+
 %======================================================================
-\section{U(1) 接続・複素線束上の Cauchy--Riemann 作用素・Chern 数}
+\section{磁気単極子・磁束の量子化・最低エネルギー状態}
 %======================================================================
-$\dzb$ に $U(1)$ 接続を入れて共変化する。実 $U(1)$ ゲージ場 $A$（実 1 形式）に対し
+\noindent\textbf{定義（磁場・磁束）。}平面上のベクトルポテンシャル $\bm A=(A_x,A_y)$ から作る
+\textbf{磁場}（面に垂直な成分）を
 \[
-    D_{\bar z}:=\dzb+iA_{\bar z}
+    B(x,y)=\frac{\partial A_y}{\partial x}-\frac{\partial A_x}{\partial y}
 \]
-を\textbf{複素線束上の Cauchy--Riemann（$\bar\partial$）作用素}と呼ぶ（$A_{\bar z}$ は $A$ の $(0,1)$ 成分）。
-$D_{\bar z}\psi=0$ を満たす切断 $\psi$ を共変正則切断という。曲率は $F=dA$。
+とする。曲面 $S$ を貫く\textbf{磁束}は $\displaystyle\Phi=\iint_S B\,dS$。荷電粒子の波動関数が一価である
+ためには（Dirac），閉曲面の全磁束は $\Phi=2\pi n$（$n$ は整数）に\textbf{量子化}される。$n$ を磁気単極子の
+電荷（Chern 数）という。
 
 \begin{prob}
 \begin{enumerate}[start=9]
-\item \textbf{ゲージ共変性。}局所 $U(1)$ 変換 $\psi\to e^{i\alpha}\psi$（$\alpha$ は実関数）に対し，
-$D_{\bar z}(e^{i\alpha}\psi)=e^{i\alpha}D_{\bar z}\psi$ が成り立つために $A_{\bar z}$ がどう変換すべきかを
-求めよ。曲率 $F=dA$ がこの変換で不変であることを述べよ。
-\item \textbf{単極子と Chern 数。}球面上の極座標 $(\vartheta,\varphi)$（$z=\tan(\vartheta/2)e^{i\varphi}$ は
-北極からの立体射影）で，電荷 $n$ の単極子接続を Dirac ゲージで
+\item \textbf{単極子の磁束。}半径 $1$ の球面の中心に磁気単極子（磁荷 $g$）を置くと，磁場は球の外向き
+$B_r=\dfrac{g}{r^2}$（点電荷の電場と同じ形）。球面全体の磁束 $\Phi=\displaystyle\iint_{S^2}B_r\,dS$ を計算し
+（球の表面積を使う），$\Phi=2\pi n$ となる磁荷 $g$ を $n$ で表せ。極座標 $(\vartheta,\varphi)$ での
+ベクトルポテンシャル $A_\varphi=\dfrac{n}{2}(1-\cos\vartheta)$（他成分 $0$）から磁束面密度
+$\dfrac{n}{2}\sin\vartheta$ が出ること，その積分が $2\pi n$ になることも確かめよ。
+\item \textbf{最低エネルギーの状態数。}この単極子（電荷 $n\ge0$）の磁場中を運動する荷電粒子の
+\textbf{最低エネルギー状態}（基底状態）の波動関数は，複素座標で
 \[
-    A=\frac{n}{2}\,(1-\cos\vartheta)\,d\varphi
+    \psi_k(z,\bar z)=\frac{z^k}{(1+|z|^2)^{n/2}}\qquad(k=0,1,2,\dots,n)
 \]
-とする。曲率 2 形式 $F=dA$ を求め，全積分 $\displaystyle\int_{S^2}F$ を計算せよ。第一 Chern 数
-$c_1:=\dfrac{1}{2\pi}\displaystyle\int_{S^2}F$ を求め，それが整数であることを確かめよ。
-\item \textbf{正則ゼロモードと閉曲面の指数。}この線束（次数 $n\ge0$，すなわち $\mathcal O(n)$）上で
-$D_{\bar z}\psi=0$ かつ $S^2$ 上で 2 乗可積分な切断は，正則ゲージで $\psi_k\propto z^k\,(1+|z|^2)^{-n/2}$
-（$k=0,1,\dots,n$）で与えられる。独立なゼロモードの個数 $\dim\ker D_{\bar z}$ を $n$ で答えよ。
-コカーネルが $0$（$\dim\mathrm{coker}=0$）であることを認めると，閉曲面 $S^2$ 上の指数
-$\mathrm{ind}\,D_{\bar z}=\dim\ker-\dim\mathrm{coker}$ を $n$ で表せ。これを Chern 数 $c_1$ と Euler 数
-$\chi(S^2)$ で書いた式（$\mathrm{ind}=c_1+\tfrac12\chi$）と照合せよ。
+で\emph{ちょうど与えられる}（最低 Landau 準位）。独立な状態の個数を $n$ で答えよ。これを「（状態数）$=$
+（磁束）$/2\pi\ +\ 1$」の形に書け（$1$ は球面のもの）。
 \end{enumerate}
 \end{prob}
 
 %======================================================================
-\section{半球分割・赤道上の境界作用素・APS 指数定理}
+\section{半球分割・赤道上の回転演算子・状態数の対応}
 %======================================================================
-球面を北半球 $D_+$（$\vartheta\le\pi/2$）と南半球 $D_-$ に分ける。境界は赤道 $\vartheta=\pi/2$（円 $|z|=1$）。
-境界に誘導される 1 次元 Dirac 型作用素が，第 2 節の\textbf{回転生成子}に他ならないことを見たうえで，
-Atiyah--Patodi--Singer (APS) 指数定理
-\[
-    \mathrm{ind}(D_{\bar z},\,\text{APS 境界条件})
-    =\underbrace{\frac{1}{2\pi}\int_{D_\pm}F+\frac12\cdot\frac{1}{2\pi}\int_{D_\pm}\!R_{\rm Euler}}_{\text{バルク}}
-    -\frac{\eta(0)+h}{2}
-\]
-を具体例で検証する。ここで $h=\dim\ker B$，$\eta(0)$ は境界作用素 $B$ のスペクトル非対称性（$\eta$ 不変量）。
+球面を北半球（$\vartheta\le\pi/2$）と南半球に分ける。境界は赤道（円 $x^2+y^2=1$）。境界の上で，
+基底状態 $\psi_k$ は $\varphi$ 依存性 $e^{ik\varphi}$（$=z^k$，第 4 節の整数べき級数の基底！）を持ち，
+\textbf{$z$ 軸まわりの回転の演算子}$J_z$（軌道の回転＝第 2 節の $G$ に単極子の寄与を足したもの）の固有関数になる。
 
 \begin{prob}
-\begin{enumerate}[start=12]
-\item \textbf{赤道上の境界作用素。}単極子電荷 $n$ のとき，ゼロモード $\psi_k\propto z^k(1+|z|^2)^{-n/2}$ は
-赤道 $|z|=1$ 上で $\varphi$ 依存性 $e^{ik\varphi}$ を持つ。これらは全角運動量（軌道部分＝回転生成子 $iG$ と
-単極子の寄与の和）$J_z$ の固有関数である。各 $\psi_k$ の $J_z$ 固有値を，最低 Landau 準位の事実
-（$J=n/2$，$J_z=k-\tfrac n2$，$k=0,\dots,n$）として書き下せ。境界作用素 $B$ の固有関数が第 6 節の
-Laurent 基底 $z^k$（$=e^{ik\varphi}$）であること，固有値が $k-\tfrac n2$ であることを述べよ。
-\item \textbf{$\eta$ 不変量。}スペクトルが $\{m+c:m\in\mathbb{Z}\}$（固有関数 $e^{im\varphi}$）である円周上の
-作用素の $\eta$ 不変量は，Hurwitz ゼータ関数を用いて $\eta(0)=\zeta(0,c)-\zeta(0,1-c)$ で与えられる。
-$\zeta(0,a)=\tfrac12-a$ を使って，$0<c<1$ のとき $\eta(0)$ を $c$ の 1 次式で表せ。単極子の境界スペクトル
-$\{k-\tfrac n2\}$ について（$c\equiv\tfrac n2 \bmod 1$），$n$ が偶数・奇数それぞれで $\eta(0)$ の値と
-ゼロ固有値の有無 $h$ を求めよ。
-\item \textbf{APS の検証。}$n=0,1,2$ の各場合について次を求め，表にまとめよ：(i) 全 Chern 数 $c_1$，
-(ii) 閉曲面の指数 $\mathrm{ind}_{S^2}$，(iii) 赤道上の $J_z$ 固有値の集合，(iv) 北半球の APS 境界条件
-（境界固有値 $<0$ のモードを残す）で生き残る正則切断の数 $N_+$，南半球で残る数 $N_-$，
-(v) $N_++N_-$ が $\mathrm{ind}_{S^2}$ に一致すること。さらに，北半球のバルク積分
-$\tfrac{1}{2\pi}\int_{D_+}F+\tfrac12\,\tfrac{1}{2\pi}\int_{D_+}R_{\rm Euler}=\tfrac n2+\tfrac12$ と前問の
-$(\eta(0),h)$ を用いて，APS 指数定理の右辺が $N_+$（$=\lceil n/2\rceil$）に一致することを確認せよ。
+\begin{enumerate}[start=11]
+\item \textbf{赤道上の回転の固有値。}最低 Landau 準位は回転の全角運動量 $J=n/2$ の多重項で，
+$\psi_k$ の $J_z$ 固有値は $j_k=k-\dfrac{n}{2}$（$k=0,\dots,n$，すなわち $-\tfrac n2,\dots,+\tfrac n2$）である。
+各 $\psi_k$ の固有値 $j_k$ を書き下し，境界の回転演算子の固有関数が整数べき $z^k=e^{ik\varphi}$，
+固有値が $k-\tfrac n2$ であることを述べよ。
+\item \textbf{符号の非対称性。}赤道上の固有値の集合 $\{j_k=k-\tfrac n2:k=0,\dots,n\}$ について，
+\emph{正の個数 $N_+$（$j_k>0$）}，\emph{負の個数 $N_-$（$j_k<0$）}，\emph{零の個数 $h$（$j_k=0$）}を
+$n$ の偶奇で求めよ。「符号の非対称性」$\displaystyle\sum_k\operatorname{sign}(j_k)=N_{+}^{\text{（外）}}-N_{-}^{\text{（外）}}$
+が，スペクトル全体（$k$ を全整数に広げた境界演算子）では $0$ になることを，スペクトルが $0$ について
+対称であることから述べよ（この量を $\eta$ と書く；くわしい定義は補足）。
+\item \textbf{状態数の対応（指数の保存）。}$n=0,1,2$ について次を表にせよ：(i) 磁束 $\Phi/2\pi=n$，
+(ii) 球面全体の最低準位の状態数 $=n+1$，(iii) 赤道上の固有値の集合 $\{k-\tfrac n2\}$，
+(iv) \textbf{北半球に属する状態数} $N_+$（固有値が負 $k-\tfrac n2<0$ の $z^k$，すなわち $k<\tfrac n2$ の個数），
+\textbf{南半球に属する状態数} $N_-$（$k>\tfrac n2$ の個数），(v) $N_++N_-$（と境界の零モードの配分）が
+球面全体の状態数 $n+1$ に一致すること。さらに
+\[
+    \underbrace{\Bigl(\tfrac n2+\tfrac12\Bigr)}_{\text{北半球の磁束}/2\pi\,+\,1/2}
+    -\underbrace{\frac{\eta+h}{2}}_{\text{境界の補正}}=N_+=\Bigl\lceil\tfrac n2\Bigr\rceil
+\]
+が各 $n$ で成り立つことを，$\eta=0$ と前問の $h$ を使って確かめよ（バルクの量と境界の量の差で半球の
+状態数が決まる，という対応）。
 \end{enumerate}
 \end{prob}
+
+%======================================================================
+\section*{補足：進んだ書き方との対応（読み飛ばし可）}
+\addcontentsline{toc}{section}{補足：進んだ書き方との対応}
+%======================================================================
+本文を成分で書いた量は，微分幾何・指数定理の言葉では次のように書かれる（参考のみ）。
+\begin{itemize}
+\item 第 2 節の $G=y\partial_x-x\partial_y$ は複素座標で $-i(z\partial_z-\bar z\partial_{\bar z})$，
+$\partial_z=\tfrac12(\partial_x-i\partial_y),\ \partial_{\bar z}=\tfrac12(\partial_x+i\partial_y)$。
+\item 第 5 節のベクトル場 $\bm v=(P,Q)$ は $v=(P+iQ)\,\partial_z$ 型の正則ベクトル場に対応し，零点の指数の
+総和 $=2$ は Poincar\'e--Hopf 定理（$\chi(S^2)=2$）。
+\item 第 6 節の磁場・磁束は接続 $A=A_x dx+A_y dy$ と曲率 2 形式 $F=dA$，$B=F_{xy}$，$\Phi=\int_{S^2}F$，
+$n=\frac1{2\pi}\int_{S^2}F$（第一 Chern 数）。最低 Landau 準位の波動関数は線束 $\mathcal O(n)$ 上の
+Cauchy--Riemann（$\bar\partial$）作用素 $D_{\bar z}=\partial_{\bar z}+iA_{\bar z}$ の零モードで，
+状態数 $n+1=\mathrm{ind}\,D_{\bar z}=\frac1{2\pi}\int F+\tfrac12\chi$（Atiyah--Singer）。
+\item 第 7 節の半球分割・境界の回転演算子・符号の非対称性 $\eta$ は，境界付き多様体の
+Atiyah--Patodi--Singer (APS) 指数定理であり，$\eta$ は $\eta(s)=\sum_{j\neq0}\operatorname{sign}(j)\,|j|^{-s}$ の
+$s\to0$ 値（スペクトル非対称性）。
+\end{itemize}
+（文献：Atiyah--Singer 1968; Atiyah--Patodi--Singer 1975; Wu--Yang 1976; Haldane 1983。）
 
 \bigskip
 {\sloppy
-\noindent\textbf{解答について：}各問の完全な解答（求めるべき表式・数値を含む）は別ファイル
+\noindent\textbf{解答について：}各問の完全な解答は別ファイル
 \texttt{exercise\_so2\_index\_theorem\_solutions.tex} にある。
 \par}
 
