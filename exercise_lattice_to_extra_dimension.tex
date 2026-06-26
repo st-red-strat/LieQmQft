@@ -85,7 +85,8 @@ $n$ によらず一定であることを確かめ，その値を述べよ。
 \item \textbf{特性関数（Fourier 変換）。}特性関数を
 $\displaystyle\hat P_n(\bk):=\sum_{i,j}P_n(i,j)\,e^{i\bk\cdot\bx}
 =\sum_{i,j}P_n(i,j)\,e^{i(k_x ia+k_y ja)}$
-で定める。(2) の漸化式から，これが 1 段の関係 $\hat P_{n+1}(\bk)=\lambda(\bk)\,\hat P_n(\bk)$ を
+で定める（$\bk=(k_x,k_y)$ は波数ベクトル，$\bx=(ia,ja)$ は格子点の位置）。(2) の漸化式から，これが
+1 段の関係 $\hat P_{n+1}(\bk)=\lambda(\bk)\,\hat P_n(\bk)$ を
 満たすことを示し，\textbf{$\lambda(\bk)$ を $\cos$ を用いて表せ}。さらに初期条件から $\hat P_0(\bk)$ を求め，
 \textbf{$\hat P_n(\bk)$ を $\lambda(\bk)$ と $n$ で表せ}。
 \item \textbf{平均二乗変位。}1 ステップあたりの変位 $\Delta\bx$ について $\langle\Delta x^2\rangle$ を
@@ -182,7 +183,9 @@ diffusive scaling に結びつけて考察する。
 第 I 部で得た 2 次元拡散方程式 $\partial_t P(x,y,t)=D\bigl(\partial_x^2+\partial_y^2\bigr)P$ を考える。
 ただし今度は $x\in\mathbb{R}$ は無限に広いが，$y$ は\textbf{半径 $R$ の円}（周期 $L=2\pi R$，
 $y\sim y+2\pi R$）にコンパクト化されているとする。初期条件は原点の点源 $P(x,y,0)=\delta(x)\,\delta(y)$
-（$\delta(y)$ は円上の周期的 delta）。拡散係数 $D$ は第 I 部で得たもの。
+（$\delta(y)$ は円上の周期的 delta）。拡散係数 $D$ は第 I 部で得たもの。以下，1 次元拡散方程式
+$\partial_t f=D\,\partial_x^2 f$ の点源解（\textbf{1 次元熱核}）を
+$G(x,t):=\dfrac{1}{\sqrt{4\pi Dt}}\,e^{-x^2/4Dt}$ と書く。
 
 \section{Fourier モード分解と Kaluza--Klein 塔}
 周期方向 $y$ を Fourier 分解すると，2 次元拡散は各モード $m$ ごとの``質量''付き 1 次元拡散に
@@ -197,9 +200,11 @@ P_m(x,t)\,e^{ik_y y}$ と展開したとき，各モード係数 $P_m(x,t)$ が�
 \[
     \frac{\partial P_m}{\partial t}=D_x\,\frac{\partial^2 P_m}{\partial x^2}-\Gamma_m\,P_m
 \]
-の形に整理せよ。ここで $\Gamma_m\,(\ge0)$ は各モードの一様な\textbf{減衰率}，すなわち $-\Gamma_m P_m$ の項の
-係数であり，$x$ について積分した $\displaystyle\int P_m\,dx$ が $e^{-\Gamma_m t}$ に従って減衰する率を表す
-（$D_x$ は $x$ 方向の実効拡散定数）。実効拡散定数 $D_x$ と減衰率 $\Gamma_m$ を，それぞれ $D,R,m$ で表せ。
+の形に整理せよ。ここで $\Gamma_m\,(\ge0)$ は各モードの一様な\textbf{減衰率}（$-\Gamma_m P_m$ の項の係数）で
+ある：拡散項を止めた $D_x\to0$ の極限では方程式は $\partial_t P_m=-\Gamma_m P_m$ となり，解
+$P_m(x,t)=P_m(x,0)\,e^{-\Gamma_m t}$ は時間とともに $e^{-\Gamma_m t}$ で急減衰する（$\Gamma_m$ がその減衰の
+速さである）。一般にも $x$ について積分した $\displaystyle\int P_m\,dx$ は $e^{-\Gamma_m t}$ で減衰する。
+$D_x$ は $x$ 方向の実効拡散定数である。実効拡散定数 $D_x$ と減衰率 $\Gamma_m$ を，それぞれ $D,R,m$ で表せ。
 \item \textbf{ゼロモード＝1 次元拡散。}$m=0$ のモード係数 $P_0(x,t)$ が $y$ で積分した周辺分布
 $\displaystyle\int_0^{2\pi R}P(x,y,t)\,dy$ に等しいことを確かめ，それが満たす方程式を書け。
 点源初期条件のもとで $P_0(x,t)$ を求めよ。
@@ -251,9 +256,10 @@ $R,D,t$ で見積もれ。
 \item $d$ 次元拡散方程式 $\partial_t P=D\nabla^2P$ を不変に保つスケール変換
 $x\to bx,\ t\to b^z t$ の指数 $z$ を求めよ。このとき $D$ はどう変換するか。
 \item 規格化 $\int P\,d^dx=1$ を保つには $P$ がどう変換しなければならないか。これと (a) から，
-点源解の自己相似形 $P(x,t)=t^{-\alpha}\Phi\!\bigl(x/\sqrt{4Dt}\bigr)$ の冪 $\alpha$ を空間次元 $d$ の
-関数で表し，$d=1,2$ で評価せよ。
-\item 本問（$\mathbb{R}\times S^1$）の原点回帰確率 $P(0,0,t)$ の $t$ 依存の冪を，$t\gg t^\ast$ と
+点源解の自己相似形 $P(x,t)=t^{-\alpha}\Phi\!\bigl(x/\sqrt{4Dt}\bigr)$（$\Phi$ は無次元のスケーリング関数，
+$\alpha$ はプレファクターの冪）の $\alpha$ を空間次元 $d$ の関数で表し，$d=1,2$ で評価せよ。
+\item 本問（$\mathbb{R}\times S^1$）の原点における確率密度（原点回帰確率密度）$P(0,0,t)$ の $t$ 依存の
+冪を，$t\gg t^\ast$ と
 $t\ll t^\ast$ のそれぞれで求めよ。各領域でこの冪が``見かけ上''何次元の拡散の $\alpha$ に一致するか
 （有効次元 $d_{\mathrm{eff}}$）を述べ，その領域で実質的に効いている KK モードの個数と対応づけよ。
 \item (c) を具体的に示せ：長時間では $K(0,t)=\frac{1}{2\pi R}\sum_m e^{-Dm^2t/R^2}$ のどの項が残り
