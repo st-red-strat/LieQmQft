@@ -54,48 +54,58 @@
 %======================================================================
 \section{代数（ウォームアップ）}
 %======================================================================
-固有値・行列式・その摂動など，行列（線形写像）の言葉での計算です。以下，
-$A=\begin{pmatrix}2&1\\ 1&2\end{pmatrix}$ とする。
+固有値とその摂動（行列を少し動かすと固有値がどう動くか）など，行列（線形写像）の言葉での計算です。
+以下，$A=\begin{pmatrix}2&1\\ 1&2\end{pmatrix}$ とする。
 
 \begin{ex}[代数 1]
 $A$ の固有値と固有ベクトルを求めよ。
 \end{ex}
 
 \begin{ex}[代数 2]
-$B=\begin{pmatrix}0&1\\ 1&0\end{pmatrix}$ とし，微小パラメータ $\lambda$ を入れた $A+\lambda B$ を考える。
-行列式 $\det(A+\lambda B)$ を $\lambda$ の\textbf{1 次まで}求めよ（$\det(A+\lambda B)=\det A\,
-\bigl(1+\lambda\,\mathrm{tr}(A^{-1}B)+\cdots\bigr)$ を使ってよい）。
+$B=\begin{pmatrix}1&1\\ 1&0\end{pmatrix}$ とし，微小パラメータ $\lambda$ で摂動した $A+\lambda B$ を考える。
+その固有値 $\mu_\pm(\lambda)$ を $\lambda$ の関数として求めよ。$\lambda\to0$ で代数 1 の固有値に戻ることを
+確かめ，さらに各固有値の\textbf{1 次（$\lambda$ に比例する）のずれ}を求めよ。
 \end{ex}
 
 \begin{ex}[代数 3]
-単位行列を $I$ として $\det(A+\lambda I)$ を考える。これが固有値 $\mu_i$ を用いて
-$\prod_i(\mu_i+\lambda)$ に等しいことを使い，$\det(A+\lambda I)$ を $\lambda$ の多項式として書き下せ。
+摂動前の $A$ の固有ベクトル $\bm v_i$（代数 1）を用いると，1 次摂動論は固有値のずれを
+\[
+    \delta\mu_i=\frac{\bm v_i^{\mathsf T}B\,\bm v_i}{\bm v_i^{\mathsf T}\bm v_i}\,\lambda
+\]
+と予言する。各 $\bm v_i$ についてこれを計算し，代数 2 で展開した 1 次のずれと一致することを確かめよ。
 \end{ex}
 
 %======================================================================
 \section{幾何（ウォームアップ）}
 %======================================================================
-平面ベクトル場の「渦の数」・閉曲線まわりの循環・写像の巻き数など，位相的・幾何的な量です。
+平面ベクトル場の零点や閉曲線の「回転量」は，\emph{角度の増分を 1 周積分}して測る。点 $(x,y)$ の偏角
+$\theta=\arg(x+iy)$ の増分は $d\theta=\dfrac{x\,dy-y\,dx}{x^2+y^2}$ で，原点を反時計回りに 1 周したときの
+\textbf{巻き数}は $\dfrac{1}{2\pi}\displaystyle\oint\dfrac{x\,dy-y\,dx}{x^2+y^2}$ で与えられる。同様に，ベクトル場
+$\bm v=(P,Q)$ の零点まわりの\textbf{渦の数（指数）}は，矢印の偏角 $\arg(P+iQ)$ の増分を 1 周積分した
+\[
+    \mathrm{ind}=\frac{1}{2\pi}\oint\frac{P\,dQ-Q\,dP}{P^2+Q^2}\qquad(\text{反時計回りを正})
+\]
+で定義される。以下この定義に沿って答えよ。
 
 \begin{ex}[幾何 1]
-平面の各点 $(x,y)$ に矢印 $\bm v=(P,Q)$ を与える。原点を反時計回りに 1 周するとき矢印 $(P,Q)$ の向きが
-回る\emph{正味の回転数}（渦の数，反時計回りを正）を，次の 3 つについて求めよ：
+次の各ベクトル場 $\bm v=(P,Q)$ の原点（零点）まわりの渦の数（指数）を求めよ
+（偏角 $\arg(P+iQ)$ が 1 周で何回まわるかを見てもよい）：
 \[
     \text{(a)}\ (x,\,y),\qquad \text{(b)}\ (x,\,-y),\qquad \text{(c)}\ (x^2-y^2,\,2xy).
 \]
 \end{ex}
 
 \begin{ex}[幾何 2]
-原点を中心とする単位円 $C$ に沿った線積分（循環）
+巻き数の定義に現れる線積分を，原点を中心とする単位円 $C$ について直接計算せよ：
 \[
-    \oint_C \frac{-y\,dx + x\,dy}{x^2+y^2}
+    \oint_C \frac{x\,dy - y\,dx}{x^2+y^2}.
 \]
-を求めよ。さらに，これが原点を 1 周だけ囲む\emph{任意の}単純閉曲線で同じ値になることを述べよ。
+さらに，これが原点を 1 周だけ囲む\emph{任意の}単純閉曲線で同じ値になることを述べよ。
 \end{ex}
 
 \begin{ex}[幾何 3]
-整数 $k$ に対し，閉曲線 $\varphi\mapsto(\cos k\varphi,\ \sin k\varphi)$（$\varphi:0\to2\pi$）は原点のまわりを
-何回まわるか（巻き数）。$k=2$ と $k=3$ で答えよ。
+整数 $k$ に対し，閉曲線 $\varphi\mapsto(\cos k\varphi,\ \sin k\varphi)$（$\varphi:0\to2\pi$）の巻き数を，
+上の定義式 $\tfrac{1}{2\pi}\oint d\theta$ で計算せよ。$k=2$ と $k=3$ で答えよ。
 \end{ex}
 
 %======================================================================
@@ -159,39 +169,42 @@ $\langle X_n^2\rangle$ を $n,a$ で求めよ。
 $\boxed{\mu=1,\,3}$。固有ベクトルは $\mu=3$ で $\boxed{(1,1)}$，$\mu=1$ で $\boxed{(1,-1)}$。
 
 \smallskip
-\noindent\textbf{代数 2.}\quad $A+\lambda B=\begin{pmatrix}2&1+\lambda\\ 1+\lambda&2\end{pmatrix}$ ゆえ
-$\det(A+\lambda B)=4-(1+\lambda)^2=3-2\lambda-\lambda^2$。1 次までで
+\noindent\textbf{代数 2.}\quad $A+\lambda B=\begin{pmatrix}2+\lambda&1+\lambda\\ 1+\lambda&2\end{pmatrix}$，
+$\mathrm{tr}=4+\lambda$，$\det=(2+\lambda)\cdot2-(1+\lambda)^2=3-\lambda^2$ ゆえ
 \[
-    \boxed{\,\det(A+\lambda B)=3-2\lambda+O(\lambda^2)\,}.
+    \mu_\pm(\lambda)=\frac{(4+\lambda)\pm\sqrt{(4+\lambda)^2-4(3-\lambda^2)}}{2}
+    =\boxed{\,\frac{(4+\lambda)\pm\sqrt{4+8\lambda+5\lambda^2}}{2}\,}.
 \]
-（一般式でも $\det A=3$，$A^{-1}=\tfrac13\begin{pmatrix}2&-1\\ -1&2\end{pmatrix}$ より
-$\mathrm{tr}(A^{-1}B)=-\tfrac23$，$\det A\cdot\mathrm{tr}(A^{-1}B)=-2$ で一致。）
+$\lambda=0$ で $\dfrac{4\pm2}{2}=3,\,1$（代数 1 に一致）。$\sqrt{4+8\lambda+5\lambda^2}\simeq2+2\lambda$ より，
+1 次のずれは
+\[
+    \boxed{\mu_+\simeq3+\tfrac32\lambda},\qquad \boxed{\mu_-\simeq1-\tfrac12\lambda}.
+\]
 
 \smallskip
-\noindent\textbf{代数 3.}\quad 固有値 $1,3$ より $\det(A+\lambda I)=(1+\lambda)(3+\lambda)$，すなわち
-\[
-    \boxed{\,\det(A+\lambda I)=\lambda^2+4\lambda+3\,}.
-\]
-（代数 2 で $B=I$ とした場合に当たり，$\det A=3$，1 次係数 $\mathrm{tr}(\mathrm{adj}\,A)=4$，$\lambda^2$ 係数 $\det I=1$。）
+\noindent\textbf{代数 3.}\quad $\bm v_+=(1,1),\ \bm v_-=(1,-1)$（ともに $\bm v^{\mathsf T}\bm v=2$）。
+$B\bm v_+=(2,1)^{\mathsf T}$ で $\bm v_+^{\mathsf T}B\bm v_+=3$ ゆえ $\delta\mu_+=\boxed{\tfrac32\lambda}$；
+$B\bm v_-=(0,1)^{\mathsf T}$ で $\bm v_-^{\mathsf T}B\bm v_-=-1$ ゆえ $\delta\mu_-=\boxed{-\tfrac12\lambda}$。
+代数 2 の 1 次のずれと一致する。
 
 \bigskip
-\noindent\textbf{幾何 1.}\quad 円上で $(x,y)=(\cos\varphi,\sin\varphi)$ とすると，
-(a) $(\cos\varphi,\sin\varphi)$ は向きが $\varphi$ ゆえ $\boxed{+1}$；
-(b) $(\cos\varphi,-\sin\varphi)$ は向きが $-\varphi$ ゆえ $\boxed{-1}$（鞍点型）；
-(c) $(\cos^2\varphi-\sin^2\varphi,\,2\sin\varphi\cos\varphi)=(\cos2\varphi,\sin2\varphi)$ は向きが $2\varphi$ ゆえ $\boxed{+2}$。
+\noindent\textbf{幾何 1.}\quad 偏角 $\arg(P+iQ)$ の 1 周での増分 $/2\pi$ が指数。
+(a) $P+iQ=x+iy$，偏角 $\varphi$ ゆえ $\boxed{+1}$；
+(b) $P+iQ=x-iy$，偏角 $-\varphi$ ゆえ $\boxed{-1}$（鞍点型）；
+(c) $P+iQ=(x+iy)^2$，偏角 $2\varphi$ ゆえ $\boxed{+2}$。
 
 \smallskip
 \noindent\textbf{幾何 2.}\quad 単位円上 $x=\cos\varphi,\,y=\sin\varphi$ では
-$-y\,dx+x\,dy=(\sin^2\varphi+\cos^2\varphi)\,d\varphi=d\varphi$，$x^2+y^2=1$ ゆえ
+$x\,dy-y\,dx=(\cos^2\varphi+\sin^2\varphi)\,d\varphi=d\varphi$，$x^2+y^2=1$ ゆえ
 \[
-    \oint_C\frac{-y\,dx+x\,dy}{x^2+y^2}=\int_0^{2\pi}d\varphi=\boxed{2\pi}.
+    \oint_C\frac{x\,dy-y\,dx}{x^2+y^2}=\int_0^{2\pi}d\varphi=\boxed{2\pi}.
 \]
-被積分形式は原点以外で「回転なし」（完全形式）なので，原点を 1 周囲む任意の単純閉曲線で値は同じ $2\pi$
-（原点を囲まなければ $0$）。これは曲線の\emph{巻き数} $\times2\pi$ である。
+被積分形式は原点以外で完全（$d\theta$ そのもの）なので，原点を 1 周囲む任意の単純閉曲線で値は同じ $2\pi$
+（原点を囲まなければ $0$）。巻き数は $\tfrac1{2\pi}\cdot2\pi=1$。
 
 \smallskip
-\noindent\textbf{幾何 3.}\quad 偏角が $k\varphi$ ゆえ $\varphi:0\to2\pi$ で偏角は $2\pi k$ 増える。巻き数は $k$：
-$k=2$ で $\boxed{2}$ 回，$k=3$ で $\boxed{3}$ 回。
+\noindent\textbf{幾何 3.}\quad 偏角は $k\varphi$ で，$\varphi:0\to2\pi$ で $2\pi k$ 増えるから
+$\tfrac1{2\pi}\oint d\theta=\tfrac1{2\pi}\cdot2\pi k=k$。$k=2$ で $\boxed{2}$，$k=3$ で $\boxed{3}$。
 
 \bigskip
 \noindent\textbf{解析 1.}\quad $y=\sum_{n\ge1}a_nx^n$，$x^2y'=\sum_{n\ge1}n a_n x^{n+1}=\sum_{m\ge2}(m-1)a_{m-1}x^m$。
