@@ -129,8 +129,11 @@ $\bm v=(P,Q)$ の零点まわりの\textbf{渦の数（指数）}は，矢印の
 \end{ex}
 
 \begin{ex}[解析 3]
-得られたべき級数 $\sum_{n\ge1}a_n x^n$ の収束半径を求めよ（理由も一言）。この級数は $x\neq0$ で
-収束するか。
+得られたべき級数 $\sum_{n\ge1}a_n x^n$ の収束半径 $R$ を求めよ。ダランベールの判定法
+\[
+    R=\lim_{n\to\infty}\left|\frac{a_n}{a_{n+1}}\right|\qquad(\text{右辺の極限が存在するとき})
+\]
+を用いてよい。この級数は $x\neq0$ で収束するか。
 \end{ex}
 
 %======================================================================
@@ -221,7 +224,8 @@ $x^2y'+y=x$ の各次を比べて，$x^1$：$\boxed{a_1=1}$；$x^m\ (m\ge2)$：$
 \]
 
 \smallskip
-\noindent\textbf{解析 3.}\quad 比 $\bigl|a_{n+1}/a_n\bigr|=n\to\infty$ ゆえ収束半径 $\boxed{R=0}$。
+\noindent\textbf{解析 3.}\quad ダランベールの判定法より
+$R=\lim_n\bigl|a_n/a_{n+1}\bigr|=\lim_n\dfrac1n=\boxed{0}$（$\bigl|a_{n+1}/a_n\bigr|=n\to\infty$）。
 $x\neq0$ ではどこでも発散する（係数が階乗で増える形式的発散級数）。
 
 \bigskip
