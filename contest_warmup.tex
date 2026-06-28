@@ -62,17 +62,18 @@ $A$ の固有値と固有ベクトルを求めよ。
 \end{ex}
 
 \begin{ex}[代数 2]
-$B=\begin{pmatrix}1&1\\ 1&0\end{pmatrix}$ とし，微小パラメータ $\lambda$ で摂動した $A+\lambda B$ を考える。
-その固有値 $\mu_\pm(\lambda)$ を $\lambda$ の関数として求めよ。$\lambda\to0$ で代数 1 の固有値に戻ることを
-確かめ，さらに各固有値の\textbf{1 次（$\lambda$ に比例する）のずれ}を求めよ。
+$B=\begin{pmatrix}1&1\\ 1&0\end{pmatrix}$ とし，微小パラメータ $\delta$ で摂動した $A+\delta B$ を考える。
+その固有値 $\lambda_\pm(\delta)$ を $\delta$ の関数として求めよ。$\delta\to0$ で代数 1 の固有値に戻ることを
+確かめ，さらに各固有値の\textbf{1 次（$\delta$ に比例する）のずれ}を求めよ。
 \end{ex}
 
 \begin{ex}[代数 3]
-摂動前の $A$ の固有ベクトル $\bm v_i$（代数 1）を用いると，1 次摂動論は固有値のずれを
+摂動前の $A$ の固有値 $\lambda_i$ と固有ベクトル $\bm v_i$（代数 1）を用いると，1 次摂動論は固有値を
 \[
-    \delta\mu_i=\frac{\bm v_i^{\mathsf T}B\,\bm v_i}{\bm v_i^{\mathsf T}\bm v_i}\,\lambda
+    \lambda_i(\delta)\simeq\lambda_i+\frac{\bm v_i^{\mathsf T}B\,\bm v_i}{\bm v_i^{\mathsf T}\bm v_i}\,\delta
 \]
-と予言する。各 $\bm v_i$ についてこれを計算し，代数 2 で展開した 1 次のずれと一致することを確かめよ。
+と予言する。各 $\bm v_i$ について $\delta$ の 1 次の係数を計算し，代数 2 で展開した 1 次のずれと
+一致することを確かめよ。
 \end{ex}
 
 %======================================================================
@@ -159,33 +160,33 @@ $\langle X_n^2\rangle=\sum_{j,l}\langle\Delta_j\Delta_l\rangle$ を出発点に�
 $\langle X_n^2\rangle$ を $n,a$ で求めよ。
 \end{ex}
 
-\newpage
+\bigskip
 %======================================================================
 \section*{解答}
 \addcontentsline{toc}{section}{解答}
 %======================================================================
 
-\noindent\textbf{代数 1.}\quad 固有方程式 $(2-\mu)^2-1=0$ より $2-\mu=\pm1$，すなわち
-$\boxed{\mu=1,\,3}$。固有ベクトルは $\mu=3$ で $\boxed{(1,1)}$，$\mu=1$ で $\boxed{(1,-1)}$。
+\noindent\textbf{代数 1.}\quad 固有方程式 $(2-\lambda)^2-1=0$ より $2-\lambda=\pm1$，すなわち
+$\boxed{\lambda=1,\,3}$。固有ベクトルは $\lambda=3$ で $\boxed{(1,1)}$，$\lambda=1$ で $\boxed{(1,-1)}$。
 
 \smallskip
-\noindent\textbf{代数 2.}\quad $A+\lambda B=\begin{pmatrix}2+\lambda&1+\lambda\\ 1+\lambda&2\end{pmatrix}$，
-$\mathrm{tr}=4+\lambda$，$\det=(2+\lambda)\cdot2-(1+\lambda)^2=3-\lambda^2$ ゆえ
+\noindent\textbf{代数 2.}\quad $A+\delta B=\begin{pmatrix}2+\delta&1+\delta\\ 1+\delta&2\end{pmatrix}$，
+$\mathrm{tr}=4+\delta$，$\det=(2+\delta)\cdot2-(1+\delta)^2=3-\delta^2$ ゆえ
 \[
-    \mu_\pm(\lambda)=\frac{(4+\lambda)\pm\sqrt{(4+\lambda)^2-4(3-\lambda^2)}}{2}
-    =\boxed{\,\frac{(4+\lambda)\pm\sqrt{4+8\lambda+5\lambda^2}}{2}\,}.
+    \lambda_\pm(\delta)=\frac{(4+\delta)\pm\sqrt{(4+\delta)^2-4(3-\delta^2)}}{2}
+    =\boxed{\,\frac{(4+\delta)\pm\sqrt{4+8\delta+5\delta^2}}{2}\,}.
 \]
-$\lambda=0$ で $\dfrac{4\pm2}{2}=3,\,1$（代数 1 に一致）。$\sqrt{4+8\lambda+5\lambda^2}\simeq2+2\lambda$ より，
+$\delta=0$ で $\dfrac{4\pm2}{2}=3,\,1$（代数 1 に一致）。$\sqrt{4+8\delta+5\delta^2}\simeq2+2\delta$ より，
 1 次のずれは
 \[
-    \boxed{\mu_+\simeq3+\tfrac32\lambda},\qquad \boxed{\mu_-\simeq1-\tfrac12\lambda}.
+    \boxed{\lambda_+\simeq3+\tfrac32\delta},\qquad \boxed{\lambda_-\simeq1-\tfrac12\delta}.
 \]
 
 \smallskip
 \noindent\textbf{代数 3.}\quad $\bm v_+=(1,1),\ \bm v_-=(1,-1)$（ともに $\bm v^{\mathsf T}\bm v=2$）。
-$B\bm v_+=(2,1)^{\mathsf T}$ で $\bm v_+^{\mathsf T}B\bm v_+=3$ ゆえ $\delta\mu_+=\boxed{\tfrac32\lambda}$；
-$B\bm v_-=(0,1)^{\mathsf T}$ で $\bm v_-^{\mathsf T}B\bm v_-=-1$ ゆえ $\delta\mu_-=\boxed{-\tfrac12\lambda}$。
-代数 2 の 1 次のずれと一致する。
+$B\bm v_+=(2,1)^{\mathsf T}$ で $\bm v_+^{\mathsf T}B\bm v_+=3$ ゆえ $\delta$ の 1 次係数は $\boxed{\tfrac32}$
+（ずれ $\tfrac32\delta$）；$B\bm v_-=(0,1)^{\mathsf T}$ で $\bm v_-^{\mathsf T}B\bm v_-=-1$ ゆえ係数 $\boxed{-\tfrac12}$
+（ずれ $-\tfrac12\delta$）。代数 2 の 1 次のずれと一致する。
 
 \bigskip
 \noindent\textbf{幾何 1.}\quad 偏角 $\arg(P+iQ)$ の 1 周での増分 $/2\pi$ が指数。
