@@ -354,6 +354,23 @@ $-\frac{1}{2\hbar m\omega}\theta(\tau-\tau')e^{i\omega(\tau'-\tau)}\to\frac{i}{4
 \]
 $D_F$ は $\hat O=\frac{m}{2}(\partial_t^2+\omega^2)$ の Green 関数。第 1 部で揺らぎを対角化した演算子の逆が，
 そのまま伝播関数として現れている。
+
+\par\smallskip
+\textbf{(4) 始まりに潜んでいた Green 関数。}$g(s):=\dfrac{\sin\omega s}{m\omega}$ について
+$\theta(s)g(s)$ を 2 回微分すると（$g(0)=0,\ g'(0)=1/m$）
+$\frac{d}{ds}[\theta g]=\theta g'$，$\frac{d^2}{ds^2}[\theta g]=\delta(s)g'(0)+\theta g''=\frac{\delta(s)}{m}-\omega^2\theta g$ ゆえ
+\[
+    m\Bigl(\frac{d^2}{ds^2}+\omega^2\Bigr)\theta(s)g(s)=\delta(s).
+\]
+よって問題 1(2) の特解の核 $g(t-\tau)$ は\textbf{古典運動方程式 $m(\partial_t^2+\omega^2)$ の遅延 Green 関数}。
+一方 $D_F$ は同じ微分演算子 $\partial_t^2+\omega^2$ の Green 関数（規格化は $m/2$）で，境界条件だけが異なる：
+$g$ は遅延（$\theta(s)$，$s<0$ で $0$），$D_F$ は Feynman（$e^{-i\omega|s|}$）。具体的に，$s=t-\tau>0$ で
+\[
+    D_F(s)=\frac{i}{m\omega}e^{-i\omega s}=\frac{\sin\omega s+i\cos\omega s}{m\omega}
+    \;\Rightarrow\; \boxed{\Re D_F(s)=\frac{\sin\omega s}{m\omega}=g(s)}.
+\]
+\textbf{序盤の古典解の特解にすでに伝播関数（の実部）が現れていた}わけである――終点の $D_F$ と始点の
+特解の核は，同じ演算子の逆という一つの対象であった。
 \end{sol}
 
 %======================================================================
