@@ -1,0 +1,214 @@
+\documentclass[dvipdfmx, uplatex]{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{enumitem}
+
+\usepackage{silence}
+\WarningFilter*{hyperref}{Token not allowed in a PDF string}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+\allowdisplaybreaks[4]
+
+\usepackage[left=25truemm,top=20truemm,bottom=20truemm,right=25truemm]{geometry}
+
+\theoremstyle{definition}
+\newtheorem*{ex}{例題}
+
+\title{数理コンテスト 事前アナウンスとウォームアップ例題\\
+\large ―― 代数・幾何・解析・確率の 4 分野 ――}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-4zh}
+
+%======================================================================
+\section*{コンテストについて}
+\addcontentsline{toc}{section}{コンテストについて}
+%======================================================================
+本コンテストは大学院修了程度の数理素養をお持ちの社会人を対象とした出題です。形式は次のとおり。
+
+\begin{itemize}[leftmargin=1.6em]
+\item \textbf{制限時間 2 時間。}本番は\textbf{代数・幾何・解析・確率}の 4 分野から各 1 題，計 4 題を出します。
+各題は独立で，どれから解いても構いません。
+\item \textbf{全問を解き切る分量ではありません。}得意分野を選び，深く解き進めてください。各題は多数の
+小問に細かく分かれており，序盤は易しく後半ほど重くなります。\textbf{部分点が積み上がる}設計なので，
+途中まででも得点になります。
+\item \textbf{解答形式。}多くの小問は「\,$\sim$ を求めよ／表式で表せ／値を答えよ／オーダーを答えよ\,」の
+形です。\emph{正しく計算できていれば表式が一致する}ことで採点します（証明の体裁は問いません）。
+\item \textbf{道具立て。}必要な公式・定義は本番の問題文内で与えます。特殊な前提知識は要求しません
+（微分積分・線形代数・初等確率の運用力が中心）。
+\end{itemize}
+
+\medskip
+\noindent\textbf{このプリントの目的。}本番の中身（核心）には触れず，\emph{各分野の入口の手触り}だけを示す
+ウォームアップ例題を分野ごとに 2--3 問用意しました。所要は各問 数分程度。\textbf{解答は末尾にまとめて}
+あります。まず自力で手を動かし，肩慣らしと得意分野の見極めにお使いください。
+
+\bigskip
+%======================================================================
+\section{代数（ウォームアップ）}
+%======================================================================
+2 次形式・Gauss 積分・無限積など，線形代数を連続無限自由度へ広げる感覚を確かめます。
+
+\begin{ex}[代数 1]
+$a>0$ とする。次の 1 変数 Gauss 積分を $a,b$ で表せ：
+\[
+    \int_{-\infty}^{\infty} e^{-a x^2 + b x}\,dx .
+\]
+\end{ex}
+
+\begin{ex}[代数 2]
+2 変数の Gauss 積分
+\[
+    \iint_{\mathbb{R}^2} \exp\!\bigl(-(x^2+xy+y^2)\bigr)\,dx\,dy
+\]
+を求めよ。（ヒント：指数の 2 次形式を対称行列 $A$ で $-\bm{r}^{\mathsf T}A\,\bm{r}$ と書き，
+$\det A$ を使う。）
+\end{ex}
+
+\begin{ex}[代数 3]
+$N\ge2$ に対して有限積
+\[
+    \prod_{n=2}^{N}\Bigl(1-\frac{1}{n^2}\Bigr)
+\]
+を $N$ の閉じた式で表し，$N\to\infty$ の極限値を求めよ。
+\end{ex}
+
+%======================================================================
+\section{幾何（ウォームアップ）}
+%======================================================================
+回転・固有値・平面ベクトル場の「渦の数」など，対称性と位相の入口です。
+
+\begin{ex}[幾何 1]
+回転行列 $R_\theta=\begin{pmatrix}\cos\theta&-\sin\theta\\ \sin\theta&\cos\theta\end{pmatrix}$ について，
+積 $R_{\theta_1}R_{\theta_2}$ を成分計算し，ひとつの回転行列 $R_{?}$ にまとまることを示せ（$?$ を答えよ）。
+\end{ex}
+
+\begin{ex}[幾何 2]
+同じ $R_\theta$ の固有値と固有ベクトルを（$\theta$ によらない定ベクトルとして）求めよ。
+\end{ex}
+
+\begin{ex}[幾何 3]
+平面の各点 $(x,y)$ に矢印 $\bm v=(P,Q)$ を与える。原点を反時計回りに 1 周するとき矢印の向きが回る
+\emph{正味の回転数}（渦の数）を，次の 2 つについて求めよ：
+\[
+    \text{(a)}\ (P,Q)=(x,\,y),\qquad \text{(b)}\ (P,Q)=(x,\,-y).
+\]
+\end{ex}
+
+%======================================================================
+\section{解析（ウォームアップ）}
+%======================================================================
+臨界点・級数の反転・収束半径など，関数の局所と漸近の扱いです。
+
+\begin{ex}[解析 1]
+$f(x)=x^3-3x$ の臨界点（$f'(x)=0$ の点）をすべて求め，各点が極小か極大かを $f''$ の符号で判定せよ。
+\end{ex}
+
+\begin{ex}[解析 2]
+$y=x+x^2$ を $x$ について解き，$x$ を $y$ のべき級数 $x=\sum_{k\ge1}c_k y^k$ として $y^3$ の項まで求めよ
+（係数 $c_1,c_2,c_3$ を答えよ）。
+\end{ex}
+
+\begin{ex}[解析 3]
+べき級数 $\displaystyle\sum_{n=0}^{\infty} n!\,z^n$ の収束半径を求めよ（理由も一言）。
+\end{ex}
+
+%======================================================================
+\section{確率（ウォームアップ）}
+%======================================================================
+ランダムウォーク・特性関数・Stirling など，離散確率と連続極限の入口です。
+
+\begin{ex}[確率 1]
+各ステップで $+1$ または $-1$ に等確率 $\tfrac12$ で動く 1 次元ランダムウォークを考える。
+$n$ ステップ後の位置 $x_n$ について，平均 $\langle x_n\rangle$ と平均二乗 $\langle x_n^2\rangle$ を $n$ で表せ。
+\end{ex}
+
+\begin{ex}[確率 2]
+1 ステップの変位 $\Delta$ が $+a,\,-a$ を各確率 $\tfrac12$ でとる。特性関数 $\langle e^{ik\Delta}\rangle$ を求めよ。
+さらに独立な $n$ ステップの和 $x_n$ について $\langle e^{ikx_n}\rangle$ を求めよ。
+\end{ex}
+
+\begin{ex}[確率 3]
+$N$ が大きいとき，中心二項確率 $\dfrac{1}{2^N}\dbinom{N}{N/2}$（$N$ は偶数）の主要な振る舞いを
+Stirling の公式 $n!\simeq\sqrt{2\pi n}\,(n/e)^n$ を使って $N$ の関数で表せ。
+\end{ex}
+
+\newpage
+%======================================================================
+\section*{解答}
+\addcontentsline{toc}{section}{解答}
+%======================================================================
+
+\noindent\textbf{代数 1.}\quad 平方完成 $-ax^2+bx=-a\bigl(x-\tfrac{b}{2a}\bigr)^2+\tfrac{b^2}{4a}$ より
+\[
+    \boxed{\;\int_{-\infty}^{\infty} e^{-ax^2+bx}\,dx=\sqrt{\frac{\pi}{a}}\;e^{b^2/4a}\;}.
+\]
+
+\smallskip
+\noindent\textbf{代数 2.}\quad $x^2+xy+y^2=\bm r^{\mathsf T}A\bm r$，$A=\begin{pmatrix}1&\tfrac12\\ \tfrac12&1\end{pmatrix}$，
+$\det A=1-\tfrac14=\tfrac34$。$\displaystyle\iint e^{-\bm r^{\mathsf T}A\bm r}d^2r=\frac{\pi}{\sqrt{\det A}}$ より
+\[
+    \boxed{\;\frac{\pi}{\sqrt{3/4}}=\frac{2\pi}{\sqrt3}\;}.
+\]
+
+\smallskip
+\noindent\textbf{代数 3.}\quad
+$1-\tfrac1{n^2}=\dfrac{(n-1)(n+1)}{n^2}$ を入れると望遠鏡的に積が約分し
+\[
+    \prod_{n=2}^{N}\frac{(n-1)(n+1)}{n^2}
+    =\Bigl(\prod_{n=2}^{N}\frac{n-1}{n}\Bigr)\Bigl(\prod_{n=2}^{N}\frac{n+1}{n}\Bigr)
+    =\frac1N\cdot\frac{N+1}{2}=\boxed{\frac{N+1}{2N}}\ \xrightarrow[N\to\infty]{}\ \boxed{\frac12}.
+\]
+
+\bigskip
+\noindent\textbf{幾何 1.}\quad 加法定理より
+$R_{\theta_1}R_{\theta_2}=\begin{pmatrix}\cos(\theta_1{+}\theta_2)&-\sin(\theta_1{+}\theta_2)\\
+\sin(\theta_1{+}\theta_2)&\cos(\theta_1{+}\theta_2)\end{pmatrix}=\boxed{R_{\theta_1+\theta_2}}$。
+
+\smallskip
+\noindent\textbf{幾何 2.}\quad 固有値 $\boxed{\lambda_\pm=e^{\pm i\theta}}$，固有ベクトル
+$\boxed{\bm e_\pm=\begin{pmatrix}1\\ \mp i\end{pmatrix}}$
+（$R_\theta\bm e_\pm=e^{\pm i\theta}\bm e_\pm$）。
+
+\smallskip
+\noindent\textbf{幾何 3.}\quad 円上で $(x,y)=(\cos\varphi,\sin\varphi)$。
+(a) $(P,Q)=(\cos\varphi,\sin\varphi)$ は向きが $\varphi$，1 周で\boxed{+1}。
+(b) $(P,Q)=(\cos\varphi,-\sin\varphi)$ は向きが $-\varphi$，1 周で\boxed{-1}（鞍点型）。
+
+\bigskip
+\noindent\textbf{解析 1.}\quad $f'(x)=3x^2-3=0\Rightarrow x=\pm1$。$f''(x)=6x$ ゆえ
+$\boxed{x=1\ \text{は極小}}$（$f''>0$），$\boxed{x=-1\ \text{は極大}}$（$f''<0$）。
+
+\smallskip
+\noindent\textbf{解析 2.}\quad $x=y-x^2$ を反復。$x=c_1y+c_2y^2+c_3y^3+\cdots$ とおくと
+$c_1=1$；$c_2=-c_1^2=-1$；$c_3=-2c_1c_2=2$。よって
+\[
+    \boxed{\,x=y-y^2+2y^3-\cdots\,}\quad(c_1,c_2,c_3)=(1,-1,2).
+\]
+
+\smallskip
+\noindent\textbf{解析 3.}\quad 比 $\dfrac{(n+1)!\,|z|^{n+1}}{n!\,|z|^{n}}=(n+1)|z|\to\infty$（$z\neq0$）ゆえ，
+$z\neq0$ では発散。収束半径 $\boxed{R=0}$。
+
+\bigskip
+\noindent\textbf{確率 1.}\quad 1 ステップで平均 $0$，分散 $1$。独立和ゆえ平均・分散は加法的で
+$\boxed{\langle x_n\rangle=0},\ \boxed{\langle x_n^2\rangle=n}$。
+
+\smallskip
+\noindent\textbf{確率 2.}\quad $\langle e^{ik\Delta}\rangle=\tfrac12 e^{ika}+\tfrac12 e^{-ika}=\boxed{\cos ka}$。
+独立 $n$ ステップは積になり $\langle e^{ikx_n}\rangle=\boxed{\cos^n(ka)}$。
+
+\smallskip
+\noindent\textbf{確率 3.}\quad Stirling より $\dbinom{N}{N/2}\simeq 2^N\sqrt{\dfrac{2}{\pi N}}$ ゆえ
+\[
+    \frac{1}{2^N}\binom{N}{N/2}\simeq\boxed{\sqrt{\frac{2}{\pi N}}}\quad(N\to\infty).
+\]
+
+\end{document}
