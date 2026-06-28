@@ -339,19 +339,10 @@ $q_i,q_f$ について整理して
     e^{-A(q_i^2+q_f^2)-2Bq_iq_f-2Cq_f-2Dq_i}
 \label{eq:WABCD}
 \end{align}
-の形にせよ。各係数を $J$ の汎関数として求め，次になることを示せ：
-\begin{align*}
-    A&=\frac{m\omega}{2\hbar}\frac{-ie^{i\omega T}}{\sin\omega T},
-    &
-    B&=\frac{m\omega}{2\hbar}\frac{i}{\sin\omega T},
-    &
-    F&:=\int_{t_i}^{t_i+T}\! e^{i\omega\tau}J(\tau)\,d\tau,
-    \\
-    C&=\frac{1}{2i\hbar}\frac{\Im[e^{-i\omega t_i}F]}{\sin\omega T},
-    &
-    D&=\frac{1}{2i\hbar}\frac{\Im[e^{i\omega(t_i+T)}F^*]}{\sin\omega T},
-\end{align*}
-$E$ は $J$ について 2 次の（$q_i,q_f$ 非依存の）項全体。
+の形にせよ。ここで $A,B$ は $q_i,q_f$ の 2 次の係数，$C,D$ は 1 次の係数（source $J$ の汎関数），
+$E$ は $q_i,q_f$ に依らない $J$ の 2 次の項である。\textbf{これら $A,B,C,D,E$ を $m,\omega,T,t_i$ と $J$ で
+求めよ}（$C,D,E$ は略記 $F:=\displaystyle\int_{t_i}^{t_i+T}\! e^{i\omega\tau}J(\tau)\,d\tau$ を用いてよい）。
+正しく整理できていれば，次問の Fresnel 積分が実行できる形に揃うはずである。
 \item $q_f$，続いて $q_i$ について Fresnel 積分 \eqref{eq:fresnel} を 2 回実行し
 （収束条件 $\Re A\ge0,\ \Re(A^2-B^2)\ge0$ を確認），
 \begin{align}
