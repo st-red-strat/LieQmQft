@@ -129,11 +129,18 @@ $\bm v=(P,Q)$ の零点まわりの\textbf{渦の数（指数）}は，矢印の
 \end{ex}
 
 \begin{ex}[解析 3]
-得られたべき級数 $\sum_{n\ge1}a_n x^n$ の収束半径 $R$ を求めよ。ダランベールの判定法
+この方程式は，$x>0$ で\textbf{有限な}解析解
 \[
-    R=\lim_{n\to\infty}\left|\frac{a_n}{a_{n+1}}\right|\qquad(\text{右辺の極限が存在するとき})
+    y(x)=x\int_0^\infty\frac{e^{-t}}{1+xt}\,dt
 \]
-を用いてよい。この級数は $x\neq0$ で収束するか。
+を持つ（これが ODE を満たすことは確かめてよい）。
+\begin{enumerate}
+\item[(a)] 被積分の $\dfrac{1}{1+xt}$ を $xt$ のべきに展開し，$\displaystyle\int_0^\infty e^{-t}t^k\,dt=k!$ を用いて，
+この解の形式的 Taylor 展開が 解析 2 の級数 $\sum_{n\ge1}(-1)^{n-1}(n-1)!\,x^n$ に一致することを示せ。
+\item[(b)] この級数の収束半径を，ダランベールの判定法 $R=\lim_{n\to\infty}|a_n/a_{n+1}|$ で求めよ。
+\emph{有限な関数 $y(x)$ があるのに，その冪級数が収束しない}のはなぜか――被積分の極 $t=-1/x$ の位置に
+着目し，$x<0$ で何が起きるか（$y$ が $x=0$ で解析的でないこと）と結びつけて説明せよ。
+\end{enumerate}
 \end{ex}
 
 %======================================================================
@@ -224,9 +231,13 @@ $x^2y'+y=x$ の各次を比べて，$x^1$：$\boxed{a_1=1}$；$x^m\ (m\ge2)$：$
 \]
 
 \smallskip
-\noindent\textbf{解析 3.}\quad ダランベールの判定法より
-$R=\lim_n\bigl|a_n/a_{n+1}\bigr|=\lim_n\dfrac1n=\boxed{0}$（$\bigl|a_{n+1}/a_n\bigr|=n\to\infty$）。
-$x\neq0$ ではどこでも発散する（係数が階乗で増える形式的発散級数）。
+\noindent\textbf{解析 3.}\quad (a) $\dfrac{1}{1+xt}=\sum_{k\ge0}(-xt)^k$ を代入し $\int_0^\infty e^{-t}t^k dt=k!$ より
+$y=x\sum_{k\ge0}(-1)^k k!\,x^k=\boxed{\sum_{n\ge1}(-1)^{n-1}(n-1)!\,x^n}$（解析 2 と一致）。
+(b) $\bigl|a_{n+1}/a_n\bigr|=n\to\infty$ ゆえ $\boxed{R=0}$。$y(x)$ は $x>0$ で有限（$C^\infty$）だが，被積分の極
+$t=-1/x$ は $x>0$ では負の $t$ 軸（積分路の外）にあり問題ないのに対し，$x<0$ では正の $t$ 軸（積分路上）に
+乗って積分が定義できない。ゆえ $y$ は $x=0$ で\textbf{解析的でなく}，$x=0$ まわりの Taylor 級数は収束半径
+$0$ の\emph{漸近級数}にとどまる（打ち切り誤差は $\sim e^{-1/x}$ の非摂動的な大きさ）。
+\textbf{関数が有限でも，原点での非解析性が形式級数を発散させる}。
 
 \bigskip
 \noindent\textbf{確率 1.}\quad 定義より $\langle\Delta\rangle=\tfrac12(+a)+\tfrac12(-a)=\boxed{0}$，
