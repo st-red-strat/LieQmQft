@@ -151,10 +151,16 @@ $0<\omega T<\pi$ を仮定する。本演習で用いる道具は次の 3 つだ
 \begin{enumerate}
 \item \eqref{eq:L} の Euler--Lagrange 方程式が $m\ddot q+m\omega^2 q=J(t)$ となること。
 \item 斉次方程式の一般解 $A\sin\omega(t-\alpha)$ に，特解
-$\displaystyle\int_{t_i}^{t}\frac{\sin\omega(t-\tau)}{m\omega}J(\tau)\,d\tau$
-を加えたものが一般解であること（特解が方程式を満たすことを，
-$\dot q,\ddot q$ を計算して直接確認せよ）。
-\item 境界条件 $q(t_i)=q_i,\ q(t_f)=q_f$ で定数 $A,\alpha$ を定めると，古典解は
+\[
+    q_p(t)=\frac12\int_{t_i}^{t_f} g_F(t-\tau)\,J(\tau)\,d\tau,
+    \qquad g_F(s):=\frac{i}{m\omega}\,e^{-i\omega|s|}
+\]
+を加えたものが一般解であること。特解の核には因果的な遅延核ではなく，\emph{時間対称な}（両向きの）
+複素核 $g_F$ を選ぶ（第 2 部の真空振幅が選ぶ境界条件に対応する）。$g_F$ の $|s|$ の折れ目が $s=0$ で
+$\delta$ 関数を生むこと（$\partial_s\,\mathrm{sgn}\,s=2\delta(s)$）に注意して $\dot q_p,\ddot q_p$ を計算し，
+$m\ddot q_p+m\omega^2 q_p=J$ を直接確認せよ。
+\item 境界条件 $q(t_i)=q_i,\ q(t_f)=q_f$ で定数 $A,\alpha$ を定める（$q_p$ の虚部は斉次解なので
+定数に吸収され，物理的な古典解 $q_{cl}$ は実の一意解となる）。結果は
 \begin{align}
     q_{cl}(t)
     &=
@@ -430,13 +436,16 @@ $D_F$ が
 \end{align}
 であることを示せ。第 1 部で揺らぎを支配していたまさにその演算子の逆が，
 第 2 部で伝播関数として現れたことになる。
-\item \textbf{始まりに潜んでいた Green 関数（検算）。}問題 \ref{prob:cl}(2) の古典解の\emph{特解}に現れた核
-$g(t-\tau):=\dfrac{\sin\omega(t-\tau)}{m\omega}$ が，古典運動方程式の演算子 $m\bigl(\frac{d^2}{dt^2}+\omega^2\bigr)$ の
-\emph{遅延} Green 関数であること――$m\bigl(\frac{d^2}{dt^2}+\omega^2\bigr)\,\theta(t-\tau)\,g(t-\tau)=\delta(t-\tau)$
-――を確かめよ。これと \eqref{eq:DF} の $D_F$ を比べ，両者が同じ微分演算子 $\frac{d^2}{dt^2}+\omega^2$ の
-Green 関数（規格化は前者が $m$，後者が $m/2$）であって，境界条件（遅延 vs.\ Feynman，すなわち加える
-斉次解）だけが異なることを述べよ。とくに $t>\tau$ で $\Re D_F(t-\tau)=g(t-\tau)$ となることを示せ。
-\textbf{序盤の古典解の特解に，すでに伝播関数が潜んでいた}のである。
+\item \textbf{始まりに潜んでいた伝播関数（検算）。}問題 \ref{prob:cl}(2) の古典解の\emph{特解}で選んだ核
+$g_F(s)=\dfrac{i}{m\omega}e^{-i\omega|s|}$ を，\eqref{eq:DF} で導いた $D_F$ と比べよ。恒等式
+$\theta(s)e^{-i\omega s}+\theta(-s)e^{i\omega s}=e^{-i\omega|s|}$ を用いて，両者が\textbf{完全に同一の関数}
+\[
+    g_F(t-\tau)=D_F(t-\tau)
+\]
+であること――$t>\tau$ の実部だけでなく，時間順序の\emph{両向き}を含む複素核の全体が一致すること――を
+示せ。すなわち第 2 部の真空振幅から現れた伝播関数 $D_F$ は，第 1 部の古典解の特解に\textbf{そのままの形で
+最初から潜んでいた}のである。（規格化の対応：特解側は $m\bigl(\frac{d^2}{dt^2}+\omega^2\bigr)\tfrac12 D_F=\delta$，
+揺らぎ側は $\frac m2\bigl(\frac{d^2}{dt^2}+\omega^2\bigr)D_F=\delta$ で，同一の $D_F$ が両役を担う。）
 \end{enumerate}
 \end{prob}
 

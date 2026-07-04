@@ -47,15 +47,17 @@ Euler--Lagrange 方程式は $m\ddot q+m\omega^2 q=J(t)$。
 
 \par\smallskip
 \textbf{(2) 特解の確認。}
-$q_p(t)=\int_{t_i}^{t}\frac{\sin\omega(t-\tau)}{m\omega}J(\tau)d\tau$ を微分すると，上端 $\tau=t$ で
-$\sin\omega(t-t)=0$ なので
+$q_p(t)=\frac12\int_{t_i}^{t_f}g_F(t-\tau)J(\tau)d\tau$，$g_F(s)=\frac{i}{m\omega}e^{-i\omega|s|}$。
+$\partial_t e^{-i\omega|t-\tau|}=-i\omega\,\mathrm{sgn}(t-\tau)\,e^{-i\omega|t-\tau|}$，さらに
+$\partial_t\,\mathrm{sgn}(t-\tau)=2\delta(t-\tau)$ より
 \[
-    \dot q_p=\int_{t_i}^t\frac{\cos\omega(t-\tau)}{m}J\,d\tau,
-    \qquad
-    \ddot q_p=\frac{J(t)}{m}-\omega^2\int_{t_i}^t\frac{\sin\omega(t-\tau)}{m\omega}J\,d\tau
+    \ddot q_p=\frac12\!\int_{t_i}^{t_f}\!\frac{i}{m\omega}
+    \bigl[-i\omega\bigl(2\delta(t-\tau)-i\omega\,e^{-i\omega|t-\tau|}\bigr)\bigr]J\,d\tau
     =\frac{J(t)}{m}-\omega^2 q_p,
 \]
-ゆえ $m\ddot q_p+m\omega^2 q_p=J$。斉次解 $A\sin\omega(t-\alpha)$ を足したものが一般解。
+ゆえ $m\ddot q_p+m\omega^2 q_p=J$。斉次解 $A\sin\omega(t-\alpha)$ を足したものが一般解
+（$q_p$ の虚部 $\frac1{2m\omega}\!\int\cos\omega(t-\tau)J\,d\tau$ は斉次解ゆえ境界条件で吸収され，
+$q_{cl}$ は実の一意解 \eqref{eq:qcl}）。
 
 \par\smallskip
 \textbf{(3) 境界条件。}
@@ -356,21 +358,20 @@ $D_F$ は $\hat O=\frac{m}{2}(\partial_t^2+\omega^2)$ の Green 関数。第 1 �
 そのまま伝播関数として現れている。
 
 \par\smallskip
-\textbf{(4) 始まりに潜んでいた Green 関数。}$g(s):=\dfrac{\sin\omega s}{m\omega}$ について
-$\theta(s)g(s)$ を 2 回微分すると（$g(0)=0,\ g'(0)=1/m$）
-$\frac{d}{ds}[\theta g]=\theta g'$，$\frac{d^2}{ds^2}[\theta g]=\delta(s)g'(0)+\theta g''=\frac{\delta(s)}{m}-\omega^2\theta g$ ゆえ
+\textbf{(4) 始まりに潜んでいた伝播関数。}問題 1(2) の特解の核は $g_F(s)=\dfrac{i}{m\omega}e^{-i\omega|s|}$。
+一方 \eqref{eq:DF} の $D_F$ は，恒等式
 \[
-    m\Bigl(\frac{d^2}{ds^2}+\omega^2\Bigr)\theta(s)g(s)=\delta(s).
+    \theta(s)e^{-i\omega s}+\theta(-s)e^{i\omega s}=e^{-i\omega|s|}
 \]
-よって問題 1(2) の特解の核 $g(t-\tau)$ は\textbf{古典運動方程式 $m(\partial_t^2+\omega^2)$ の遅延 Green 関数}。
-一方 $D_F$ は同じ微分演算子 $\partial_t^2+\omega^2$ の Green 関数（規格化は $m/2$）で，境界条件だけが異なる：
-$g$ は遅延（$\theta(s)$，$s<0$ で $0$），$D_F$ は Feynman（$e^{-i\omega|s|}$）。具体的に，$s=t-\tau>0$ で
+（$s>0$ では第 1 項＝$e^{-i\omega s}$，$s<0$ では第 2 項＝$e^{i\omega s}=e^{-i\omega|s|}$）より
 \[
-    D_F(s)=\frac{i}{m\omega}e^{-i\omega s}=\frac{\sin\omega s+i\cos\omega s}{m\omega}
-    \;\Rightarrow\; \boxed{\Re D_F(s)=\frac{\sin\omega s}{m\omega}=g(s)}.
+    D_F(s)=\frac{i}{m\omega}\bigl[\theta(s)e^{-i\omega s}+\theta(-s)e^{i\omega s}\bigr]
+    =\frac{i}{m\omega}e^{-i\omega|s|}=\boxed{g_F(s)}.
 \]
-\textbf{序盤の古典解の特解にすでに伝播関数（の実部）が現れていた}わけである――終点の $D_F$ と始点の
-特解の核は，同じ演算子の逆という一つの対象であった。
+$t>\tau$ の実部だけでなく，時間順序の\emph{両向き}を含む複素核の全体が一致する。規格化は
+$m(\partial_t^2+\omega^2)\tfrac12 D_F=\delta$（特解側）と $\frac m2(\partial_t^2+\omega^2)D_F=\delta$（揺らぎ側）で，
+同一の $D_F$ が両役を担う。\textbf{終点の真空振幅から現れた伝播関数 $D_F$ は，始点の古典解の特解に
+そのままの形で最初から潜んでいた}のである。
 \end{sol}
 
 %======================================================================
