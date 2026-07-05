@@ -1,0 +1,247 @@
+\documentclass[dvipdfmx, uplatex]{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{braket}
+\usepackage{xr}
+\externaldocument{exercise_so2_index_theorem}
+
+\usepackage{silence}
+\WarningFilter*{hyperref}{Token not allowed in a PDF string}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+\allowdisplaybreaks[4]
+
+\usepackage[left=25truemm,top=20truemm,bottom=20truemm,right=25truemm]{geometry}
+
+\theoremstyle{definition}
+\newtheorem*{sol}{解答}
+
+\title{解答：平面の回転から「指数の保存」へ\\
+\large ―― \texttt{exercise\_so2\_index\_theorem.tex} の解答 ――}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-6zh}
+
+記号・問題番号は問題ファイル \texttt{exercise\_so2\_index\_theorem.tex} のものを踏襲する。
+\textbf{各問の解（採点用）}は太字（\boxed）で示す。以下 $c_i=\cos\theta_i,\ s_i=\sin\theta_i$。
+
+%======================================================================
+\section{回転の二つの表し方}
+%======================================================================
+\begin{sol}
+\textbf{(1) 行列での表し方。}加法定理 $c_1c_2-s_1s_2=\cos(\theta_1{+}\theta_2)$，
+$s_1c_2+c_1s_2=\sin(\theta_1{+}\theta_2)$ より
+\[
+    R_{\theta_1}R_{\theta_2}=\begin{pmatrix}c_1c_2-s_1s_2 & -(s_1c_2+c_1s_2)\\ s_1c_2+c_1s_2 & c_1c_2-s_1s_2\end{pmatrix}
+    =\boxed{R_{\theta_1+\theta_2}}.
+\]
+単位元は $\boxed{R_0=I}$（$\theta=0$），逆は $\boxed{R_\theta^{-1}=R_{-\theta}}$。閉性・結合律は行列積から従う。
+
+\par\smallskip
+\textbf{(2) 関数での表し方。}$(U_{\theta_2}f)(x,y)=f(xc_2+ys_2,\,-xs_2+yc_2)$。これに $U_{\theta_1}$ を施すと
+変数を $(x,y)\to(xc_1+ys_1,\,-xs_1+yc_1)$ と置き換えるので，第 1 引数は
+$(xc_1+ys_1)c_2+(-xs_1+yc_1)s_2=x(c_1c_2-s_1s_2)+y(s_1c_2+c_1s_2)=x\cos(\theta_1{+}\theta_2)+y\sin(\theta_1{+}\theta_2)$，
+第 2 引数は同様に $-x\sin(\theta_1{+}\theta_2)+y\cos(\theta_1{+}\theta_2)$。よって
+\[
+    \boxed{\,U_{\theta_1}(U_{\theta_2}f)=U_{\theta_1+\theta_2}f\,}.
+\]
+単位元 $\boxed{U_0=\text{恒等}}$（$\theta=0$），逆 $\boxed{U_\theta^{-1}=U_{-\theta}}$。
+
+\par\smallskip
+\textbf{(3) 二つの表し方の関係。}$f=x,y$ を代入すると（第 1・第 2 引数そのもの）
+\[
+    \boxed{U_\theta x=x\cos\theta+y\sin\theta},\qquad \boxed{U_\theta y=-x\sin\theta+y\cos\theta}.
+\]
+行列で
+\[
+    \begin{pmatrix}U_\theta x\\ U_\theta y\end{pmatrix}
+    =\begin{pmatrix}\cos\theta & \sin\theta\\ -\sin\theta&\cos\theta\end{pmatrix}\begin{pmatrix}x\\ y\end{pmatrix}
+    =\boxed{R_{-\theta}}\begin{pmatrix}x\\ y\end{pmatrix}
+\]
+ゆえ，関数表現を 1 次式 $x,y$ に制限すると\textbf{ベクトル表現（の向き反転＝同値なもの）}が現れる。
+小さい $\theta$ では $f(x+\theta y,\ y-\theta\,x)\approx f+\theta\bigl(y f_x-x f_y\bigr)$ ゆえ
+$\boxed{Gf=y\,\partial_x f-x\,\partial_y f}$。
+\end{sol}
+
+%======================================================================
+\section{固有ベクトルと固有関数}
+%======================================================================
+\begin{sol}
+\textbf{(4) 行列の固有ベクトル。}$R_\theta\bm v=\lambda\bm v$ の固有値は
+$\boxed{\lambda_\pm(\theta)=e^{\pm i\theta}}$，固有ベクトルは
+\[
+    \boxed{\bm e_+=\begin{pmatrix}1\\ -i\end{pmatrix}\ (\lambda_+=e^{i\theta}),\qquad
+    \bm e_-=\begin{pmatrix}1\\ i\end{pmatrix}\ (\lambda_-=e^{-i\theta})}.
+\]
+$\theta$ によらない定ベクトルが\textbf{2 個}。
+
+\par\smallskip
+\textbf{(5) 関数の固有関数。}$U_\theta(x+iy)=(xc+ys)+i(-xs+yc)=x(c-is)+y(s+ic)=e^{-i\theta}(x+iy)$
+（$c-is=e^{-i\theta},\ s+ic=ie^{-i\theta}$）。よって
+\[
+    \boxed{\,U_\theta\,(x+iy)^n=e^{-in\theta}(x+iy)^n\,},\qquad \lambda(\theta)=e^{-in\theta}.
+\]
+固有関数 $(x+iy)^n$ は整数 $n\in\mathbb{Z}$ で番号づき\textbf{可算無限個}。$n=\mp1$ がベクトル表現の
+固有値 $e^{\pm i\theta}$ にあたる。
+\end{sol}
+
+%======================================================================
+\section{複素座標と整数べき級数の基底}
+%======================================================================
+\begin{sol}
+\textbf{(6) べきは固有関数。}$Gx=y,\ Gy=-x$ より
+$Gz=Gx+iGy=y-ix=\boxed{-iz}$，$G\bar z=y+ix=\boxed{+i\bar z}$。積の微分で
+$G(z^n)=n z^{n-1}(Gz)=n z^{n-1}(-iz)=\boxed{-in\,z^n}$。よって $U_\theta(z^n)=e^{-in\theta}z^n$
+（(5) と一致）。
+
+\par\smallskip
+\textbf{(7) 整数べき級数の基底。}単位円上 $z=e^{i\varphi}$ ゆえ $z^n=e^{in\varphi}$。正しいのは
+$\boxed{\text{(あ)(い)}}$。(あ)：$\{z^n=e^{in\varphi}\}_{n\in\mathbb{Z}}$ は円周上の関数の Fourier（整数べき／Laurent）
+展開 $\sum_n a_n z^n$ の基底（$n\ge0$ がべき，$n<0$ がその逆数）。(い)：各 $z^n$ は $U_\theta$ の固有関数
+（固有値 $e^{-in\theta}$）で，\emph{回転の固有関数がそのまま基底}。(う) は誤――全整数 $n\in\mathbb{Z}$
+（無限個）が必要で，有限個では一般の周期関数を厳密に表せない。
+\end{sol}
+
+%======================================================================
+\section{ベクトル場の渦の数（指数）とその総和}
+%======================================================================
+\begin{sol}
+\textbf{(8) 指数の総和。}零点では矢印 $(P,Q)$ の向きの一周あたりの回転数（渦の数）が指数。
+複素数 $f=P+iQ$ で，$f$ の零点の位数 $=$ 指数（極でも\emph{向き}の回転数で読み，$1/z$ は $-1$）。
+無限遠は $Z=1/z$ に直して原点の位数で読む（$f$ が $\dot z=f$ なら，$Z=1/z$ で $\dot Z=-Z^2 f(1/Z)$）。
+\[
+\renewcommand{\arraystretch}{1.3}
+\begin{array}{c|c|c|c}
+& \text{平面内の零点・極（指数）} & \text{無限遠 }Z=0\ (\text{指数}) & \text{総和}\\\hline
+\text{(a) }f=1 & \text{なし} & \dot Z=-Z^2\ (+2) & \boxed{2}\\
+\text{(b) }f=z & z=0\ (+1) & \dot Z=-Z\ (+1) & \boxed{2}\\
+\text{(c) }f=1/z & z=0\ \text{極}\ (-1) & \dot Z=-Z^3\ (+3) & \boxed{2}\\
+\text{(d) }f=z^2-1 & z=\pm1\ (+1,+1) & \dot Z=Z^2-1\ (\text{零点なし},0) & \boxed{2}
+\end{array}
+\]
+いずれも総和 $\boxed{2}$。これは\textbf{球面 $S^2$ の Euler 数 $\chi(S^2)=2$}（穴 $0$ 個の閉曲面の位相量）。
+(b) の零点 $z=0,\infty$ は回転行列の固定点（北極・南極）で，回転ベクトル場が指数 $+1$ の点を 2 個持つ
+ことが $\chi=2$ を与える。
+\end{sol}
+
+%======================================================================
+\section{磁気単極子・磁束の量子化・最低エネルギー状態}
+%======================================================================
+\begin{sol}
+\textbf{(9) 単極子の磁束。}半径 $1$ の球面で $B_r=g$（$r=1$）一定，表面積 $4\pi$ ゆえ
+$\Phi=\iint_{S^2}B_r\,dS=g\cdot4\pi=\boxed{4\pi g}$。$\Phi=2\pi n$ より $\boxed{g=\dfrac n2}$。
+ベクトルポテンシャル $A_\varphi=\tfrac n2(1-\cos\vartheta)$ では，緯度 $\vartheta$ の円を一周する線積分が
+その円までの（極冠を貫く）磁束に等しく，$\displaystyle\oint A_\varphi\,d\varphi=2\pi\cdot\tfrac n2(1-\cos\vartheta)
+=\pi n(1-\cos\vartheta)$。微小面あたりでは（$\vartheta$ で微分して）磁束 $\tfrac n2\sin\vartheta\,d\vartheta\,d\varphi$，
+全球で $\tfrac n2\!\int_0^\pi\!\sin\vartheta\,d\vartheta\!\int_0^{2\pi}\!d\varphi=\tfrac n2\cdot2\cdot2\pi=\boxed{2\pi n}$。
+
+\par\smallskip
+\textbf{(10) 最低エネルギーの状態数。}$\psi_k\ (k=0,1,\dots,n)$ は $n+1$ 個ゆえ
+$\boxed{\text{状態数}=n+1}$。これは
+\[
+    n+1=\underbrace{n}_{\Phi/2\pi}+\underbrace{1}_{\text{球面のぶん}}
+    =\boxed{\frac{\Phi}{2\pi}+1}.
+\]
+\end{sol}
+
+%======================================================================
+\section{半球分割・赤道上の回転演算子・状態数の対応}
+%======================================================================
+\begin{sol}
+\textbf{(11) 赤道上の回転の固有値。}最低準位は $J=n/2$ の多重項で
+\[
+    \boxed{\,j_k=k-\frac n2\quad(k=0,1,\dots,n),\qquad j_k=-\tfrac n2,\,-\tfrac n2{+}1,\dots,+\tfrac n2\,}.
+\]
+赤道 $z=e^{i\varphi}$ 上で $\psi_k\propto e^{ik\varphi}=z^k$ ゆえ，境界の回転演算子 $J_z$ の固有関数は
+\textbf{整数べき $z^k$}（第 4 節の基底），固有値は $k-\tfrac n2$。
+
+\par\smallskip
+\textbf{(12) 符号の非対称性。}$\{j_k=k-\tfrac n2\}$（$k=0,\dots,n$）について：
+\begin{itemize}
+\item[・] $n$ \textbf{偶数}：$k=\tfrac n2$ で $j=0$ ゆえ零が $\boxed{h=1}$，正負は同数。
+\item[・] $n$ \textbf{奇数}：$j_k=k-\tfrac n2$ は半整数で $0$ を取らず $\boxed{h=0}$，正負は同数。
+\end{itemize}
+境界演算子を全整数 $k\in\mathbb{Z}$ に広げたスペクトル $\{k-\tfrac n2\}$ は $0$ について対称（$j$ と $-j$ が
+対）だから，符号の非対称性は相殺して $\boxed{\eta=\sum_{j\neq0}\operatorname{sign}(j)\big|_{\text{正則化}}=0}$
+（くわしい定義は問題文の補足）。
+
+\par\smallskip
+\textbf{(13) 状態数の対応。}北半球は固有値が負（$k<\tfrac n2$）の $z^k$，南半球は正（$k>\tfrac n2$）の $z^k$ を
+担う。$N_+=\#\{k:0\le k<\tfrac n2\}=\lceil n/2\rceil$，$N_-=\#\{k:\tfrac n2<k\le n\}$。
+\[
+\renewcommand{\arraystretch}{1.35}
+\begin{array}{c|c|c|c|c|c|c}
+n & \Phi/2\pi & \text{全状態数} & \{j_k=k-\tfrac n2\} & N_+ & N_- & N_++N_-\\\hline
+0 & 0 & 1 & \{0\} & 0 & 0\ (+\text{境界零モード}) & \boxed{1}\\
+1 & 1 & 2 & \{-\tfrac12,+\tfrac12\} & 1 & 1 & \boxed{2}\\
+2 & 2 & 3 & \{-1,0,+1\} & 1 & 1\ (+\text{境界零モード}) & \boxed{3}
+\end{array}
+\]
+各行で $\boxed{N_++N_-=\text{全状態数}=n+1}$（境界の $j=0$ モードは上下に半分ずつ配分）。
+$n+1$ 個の状態が，赤道上の回転固有値の符号で南北に振り分けられている。バルクと境界の対応：
+\[
+    \Bigl(\tfrac n2+\tfrac12\Bigr)-\frac{\eta+h}{2}
+    =\begin{cases}\tfrac n2+\tfrac12-\tfrac{0+1}{2}=\dfrac n2 & (n\,\text{偶}),\\[1ex]
+    \tfrac n2+\tfrac12-\tfrac{0+0}{2}=\dfrac{n+1}{2} & (n\,\text{奇}),\end{cases}
+    =\boxed{\Bigl\lceil\tfrac n2\Bigr\rceil=N_+}
+\]
+（$n=0:0,\ n=1:1,\ n=2:1$）。すなわち「北半球の磁束 $/2\pi$ ＋球面のぶん $\tfrac12$」から「境界の符号
+非対称性 $\tfrac{\eta+h}{2}$」を引くと半球の状態数 $N_+$ になり，南北を足すと境界の寄与が相殺して
+球面全体の $n+1$ にもどる――これが\textbf{指数の保存（APS 型の対応）}である。
+
+\par\smallskip
+\noindent\textbf{注（言葉の対応・文献）。}本文の量と微分幾何の用語の対応は問題文末の補足を見よ
+（磁束 $=\int F$，状態数 $=\bar\partial$ 作用素の指数 $=\frac1{2\pi}\int F+\tfrac12\chi$，符号非対称性
+$=\eta$ 不変量，半球の対応 $=$ APS 指数定理）。文献：M.\,F.~Atiyah, I.\,M.~Singer (Ann.\ Math.\ 1968)；
+M.\,F.~Atiyah, V.\,K.~Patodi, I.\,M.~Singer (Math.\ Proc.\ Camb.\ Phil.\ Soc.\ 77 (1975) 43)；
+T.\,T.~Wu, C.\,N.~Yang (Nucl.\ Phys.\ B107 (1976) 365)；F.\,D.\,M.~Haldane (Phys.\ Rev.\ Lett.\ 51 (1983) 605)。
+\end{sol}
+
+%======================================================================
+\section{連続変形と指数の不変性：バルクと境界の相殺}
+%======================================================================
+\begin{sol}
+\textbf{(14) 連続変形での相殺。}
+
+\textit{(a)} 追加項の作る磁束は緯度 $\vartheta$ の円まで
+$\boxed{\oint A_\varphi^{\text{(追加)}}\,d\varphi=2\pi\,t\sin^2\vartheta}$。赤道 $\vartheta=\pi/2$ で $2\pi t$，
+全球 $\vartheta=\pi$ で $2\pi t\sin^2\pi=\boxed0$ ゆえ\textbf{全磁束は $2\pi n$ のまま}（束＝指数が定義できる）。
+単極子の北半球磁束 $\tfrac n2\cdot2\pi=\pi n$ に追加分 $2\pi t$ を足して
+$\boxed{\dfrac{\Phi_+(t)}{2\pi}=\dfrac n2+t}$。
+
+\textit{(b)} バルクは $\boxed{\dfrac{\Phi_+(t)}{2\pi}+\dfrac12=\dfrac n2+t+\dfrac12}$。
+赤道の固有値 $k-\tfrac n2-t$，$\eta(t)=2\{\tfrac n2+t\}-1$，$h=0$（固有値が $0$ をまたがない範囲）より
+\[
+    \mathrm{ind}_+(t)=\Bigl(\tfrac n2+t+\tfrac12\Bigr)-\frac{(2\{\tfrac n2+t\}-1)+0}{2}
+    =\tfrac n2+t+1-\bigl\{\tfrac n2+t\bigr\}=\boxed{\bigl\lfloor\tfrac n2+t\bigr\rfloor+1}\ (=\text{一定}).
+\]
+相殺は微分で明示できる：$\dfrac{d}{dt}(\text{バルク})=1$，$\dfrac{d}{dt}\dfrac{\eta}{2}=\dfrac{d}{dt}\bigl(\{\tfrac n2+t\}-\tfrac12\bigr)=1$
+ゆえ $\boxed{\dfrac{d}{dt}\mathrm{ind}_+=1-1=0}$。バルクの $+t$ と境界 $\eta/2$ の $+t$ がちょうど相殺する。
+
+\textit{(c)} 南半球は $\dfrac{\Phi_-(t)}{2\pi}=\dfrac n2-t$，バルク $\tfrac n2-t+\tfrac12$，境界の符号非対称性は
+向きが逆ゆえ $-\eta$。$h=0$ で
+\[
+    \mathrm{ind}_++\mathrm{ind}_-
+    =\Bigl(\tfrac n2+t+\tfrac12-\tfrac\eta2\Bigr)+\Bigl(\tfrac n2-t+\tfrac12+\tfrac\eta2\Bigr)=\boxed{n+1}
+\]
+で $t$ に依らない（北の $+t$ と南の $-t$ が相殺，$\mp\eta/2$ も相殺）。\textbf{連続変形のもとで指数は不変}。
+
+\textit{(d)} 固有値 $k-\tfrac n2-t$ は $t=k-\tfrac n2$ で $0$ を横切る。そこで瞬間的に $\boxed{h=1}$，
+$\{\tfrac n2+t\}$ が $1^-\!\to0^+$ と落ちるので $\boxed{\eta\ \text{は}\ -2\ \text{跳ぶ}}$，
+$\mathrm{ind}_+=\lfloor\tfrac n2+t\rfloor+1$ は $\boxed{+1\ \text{跳ぶ}}$。
+$n=1$ では最初の横切りは $\boxed{t=\tfrac12}$，越えるのは固有値 $\tfrac12-t$ をもつ状態 $\boxed{z^{1}}$
+（$t<\tfrac12$ で正＝南，$t>\tfrac12$ で負＝北）。このとき北は $\{z^0\}\to\{z^0,z^1\}$，南は
+$\{z^1\}\to\{\,\}$ と移るだけで，球面全体の指数は $\boxed{n+1=2}$ のまま不変。
+（半球の状態数は境界をまたぐスペクトルフローでのみ整数だけ跳び，閉曲面の整数は保たれる――
+APS 指数定理の帰結。）
+\end{sol}
+
+\end{document}

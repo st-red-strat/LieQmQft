@@ -1,0 +1,440 @@
+\documentclass[dvipdfmx, uplatex]{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{braket}
+\usepackage{xr}
+\externaldocument{exercise_generating_functional}
+
+\usepackage{silence}
+\WarningFilter*{hyperref}{Token not allowed in a PDF string}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+\allowdisplaybreaks[4]
+
+\usepackage[left=25truemm,top=20truemm,bottom=20truemm,right=25truemm]{geometry}
+
+\theoremstyle{definition}
+\newtheorem*{sol}{解答}
+
+\title{解答：source 付き調和振動子の経路積分\\
+\large ―― \texttt{exercise\_generating\_functional.tex} の各問の解答 ――}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-6zh}
+
+記号・式番号は問題ファイル \texttt{exercise\_generating\_functional.tex} のものを踏襲する
+（\texttt{xr} により本文中の \eqref{eq:Kdef} 等は問題ファイルの式番号を指す）。
+$T:=t_f-t_i$，$0<\omega T<\pi$ とする。
+
+\tableofcontents
+
+%======================================================================
+\section{問題 1：古典解と古典作用}
+%======================================================================
+
+\begin{sol}
+\textbf{(1) 運動方程式。}
+\eqref{eq:L} より $\dfrac{\partial L}{\partial\dot q}=m\dot q$，$\dfrac{\partial L}{\partial q}=-m\omega^2q+J$ なので
+Euler--Lagrange 方程式は $m\ddot q+m\omega^2 q=J(t)$。
+
+\par\smallskip
+\textbf{(2) 特解の確認。}
+$q_p(t)=\frac12\int_{t_i}^{t_f}g_F(t-\tau)J(\tau)d\tau$，$g_F(s)=\frac{i}{m\omega}e^{-i\omega|s|}$。
+$\partial_t e^{-i\omega|t-\tau|}=-i\omega\,\mathrm{sgn}(t-\tau)\,e^{-i\omega|t-\tau|}$，さらに
+$\partial_t\,\mathrm{sgn}(t-\tau)=2\delta(t-\tau)$ より
+\[
+    \ddot q_p=\frac12\!\int_{t_i}^{t_f}\!\frac{i}{m\omega}
+    \bigl[-i\omega\bigl(2\delta(t-\tau)-i\omega\,e^{-i\omega|t-\tau|}\bigr)\bigr]J\,d\tau
+    =\frac{J(t)}{m}-\omega^2 q_p,
+\]
+ゆえ $m\ddot q_p+m\omega^2 q_p=J$。斉次解 $A\sin\omega(t-\alpha)$ を足したものが一般解
+（$q_p$ の虚部 $\frac1{2m\omega}\!\int\cos\omega(t-\tau)J\,d\tau$ は斉次解ゆえ境界条件で吸収され，
+$q_{cl}$ は実の一意解 \eqref{eq:qcl}）。
+
+\par\smallskip
+\textbf{(3) 境界条件。}
+$q_p(t_i)=0$ なので $q(t_i)=A\sin\omega(t_i-\alpha)=q_i$。
+$q(t_f)=A\sin\omega(t_f-\alpha)+\int_{t_i}^{t_f}\frac{\sin\omega(t_f-\tau)}{m\omega}J=q_f$。
+$\tilde q_f:=q_f-\int_{t_i}^{t_f}\frac{\sin\omega(t_f-\tau)}{m\omega}J$ とおくと，2 点境界値問題
+\[
+    A\sin\omega(t_i-\alpha)=q_i,\qquad A\sin\omega(t_f-\alpha)=\tilde q_f
+\]
+の解として斉次部分は
+$A\sin\omega(t-\alpha)=\dfrac{\tilde q_f\sin\omega(t-t_i)+q_i\sin\omega(t_f-t)}{\sin\omega T}$
+（加法定理で両条件を満たすことを確認できる）。$q_p$ を加えて \eqref{eq:qcl} を得る。
+
+\par\smallskip
+\textbf{(4) 端点速度。}
+\eqref{eq:qcl} を微分すると
+\[
+    \dot q_{cl}(t)
+    =\frac{\omega}{\sin\omega T}\Big[\tilde q_f\cos\omega(t-t_i)-q_i\cos\omega(t_f-t)\Big]
+    +\int_{t_i}^t\frac{\cos\omega(t-\tau)}{m}J\,d\tau,
+\]
+ここで $\tilde q_f=q_f-\int_{t_i}^{t_f}\frac{\sin\omega(t_f-\tau)}{m\omega}J$。
+$t=t_i$（積分項は 0），$t=t_f$ を代入して \eqref{eq:qcldot} を得る。
+
+\par\smallskip
+\textbf{(5) 古典作用。}
+$S_{cl}=\int_{t_i}^{t_f}\big[\frac12 m\dot q_{cl}^2-\frac12 m\omega^2 q_{cl}^2+q_{cl}J\big]dt$ の運動項を部分積分すると
+\[
+    \int\tfrac12 m\dot q_{cl}^2
+    =\Big[\tfrac12 m q_{cl}\dot q_{cl}\Big]_{t_i}^{t_f}-\int\tfrac12 m q_{cl}\ddot q_{cl},
+\]
+ゆえ
+\[
+    S_{cl}=\Big[\tfrac12 m q_{cl}\dot q_{cl}\Big]_{t_i}^{t_f}
+    +\int_{t_i}^{t_f} q_{cl}\Big[-\tfrac12 m\ddot q_{cl}-\tfrac12 m\omega^2 q_{cl}+J\Big]dt.
+\]
+$m\ddot q_{cl}+m\omega^2 q_{cl}=J$ より角括弧は $-\frac12 J+J=\frac12 J$ となり \eqref{eq:Scl} を得る。
+\end{sol}
+
+%======================================================================
+\section{問題 2：揺らぎへの分離}
+%======================================================================
+
+\begin{sol}
+\textbf{(1)} $q$ は両端で $q_i,q_f$ に固定され，$q_{cl}$ も同じ境界条件を満たすから
+$x(t_i)=q_i-q_{cl}(t_i)=0$，$x(t_f)=q_f-q_{cl}(t_f)=0$。
+
+\par\smallskip
+\textbf{(2)} $q=q_{cl}+x$ を作用に入れて $x$ の次数で分けると，$x^0$ が $S_{cl}$，
+$x^2$ が $S_{\text{fl}}=\frac{m}{2}\int(\dot x^2-\omega^2x^2)$，$x^1$ が
+$\int(m\dot q_{cl}\dot x-m\omega^2 q_{cl}x+xJ)$。第 1 項を部分積分すると
+$\int m\dot q_{cl}\dot x=[m\dot q_{cl}x]_{t_i}^{t_f}-\int m\ddot q_{cl}x=-\int m\ddot q_{cl}x$
+（境界項は $x(t_i)=x(t_f)=0$ で消える）。よって 1 次項は
+$-\int(m\ddot q_{cl}+m\omega^2 q_{cl}-J)x=0$（運動方程式）。
+
+\par\smallskip
+\textbf{(3)} 1 次項が消えたので $S=S_{cl}[J]+S_{\text{fl}}[x]$。
+$S_{\text{fl}}$ は $J$ を含まず，$J$ 依存性はすべて $S_{cl}[J]$ にある。
+
+\par\smallskip
+\textbf{(4)} $e^{iS/\hbar}=e^{iS_{cl}/\hbar}e^{iS_{\text{fl}}/\hbar}$ で $e^{iS_{cl}/\hbar}$ は経路によらないから
+積分の外に出て \eqref{eq:Kfactor} を得る。残る揺らぎの積分は両端 $0,0$，被積分は $T,\omega,m$ のみに依存し
+$J,q_i,q_f$ によらない。これを $\mathcal{N}(T)$ と書く。
+\end{sol}
+
+%======================================================================
+\section{問題 3：経路積分を mode 積分に翻訳する}
+%======================================================================
+
+\begin{sol}
+\textbf{(1)} $\int\dot x^2=[\dot x x]-\int\ddot x\,x=-\int x\ddot x$（境界消失）より
+$S_{\text{fl}}=\frac{m}{2}\int(-x\ddot x-\omega^2x^2)=-\int x\,\frac{m}{2}(\partial_t^2+\omega^2)x=-\int x\hat O x$。
+
+\par\smallskip
+\textbf{(2)} $\hat O\phi=\lambda\phi$ は $\frac{m}{2}(\phi''+\omega^2\phi)=\lambda\phi$，すなわち
+$\phi''=(\frac{2\lambda}{m}-\omega^2)\phi$。両端 $0$ の境界条件を満たすのは
+$\phi_n\propto\sin\omega_n(t-t_i)$，$\omega_n=\frac{n\pi}{T}$。代入して $-\omega_n^2=\frac{2\lambda_n}{m}-\omega^2$,
+すなわち $\lambda_n=\frac{m}{2}(\omega^2-\omega_n^2)$。規格化は
+$\int_{t_i}^{t_f}\frac{2}{T}\sin^2\omega_n(t-t_i)dt=\frac{2}{T}\cdot\frac{T}{2}=1$，直交性は正弦の直交性から
+$\int_{t_i}^{t_f}\phi_n\phi_m=\delta_{nm}$。これで \eqref{eq:modes}。
+
+\par\smallskip
+\textbf{(3)} $x=\sum_n a_n\phi_n$ を入れると
+\[
+    \int x\hat O x
+    =\int\Big(\sum_n a_n\phi_n\Big)\Big(\sum_m a_m\lambda_m\phi_m\Big)
+    =\sum_{n,m}a_na_m\lambda_m\delta_{nm}=\sum_n\lambda_n a_n^2,
+\]
+ゆえ $S_{\text{fl}}=-\sum_n\lambda_n a_n^2$。
+
+\par\smallskip
+\textbf{(4)} $x(t)$ は $a_n$ について 1 次なので Jacobian $\mathcal{J}=\partial(x)/\partial(a_n)$ は
+$a_n$ によらない。測度 $\mathcal{D}x=\mathcal{J}\prod_n da_n$ を用い，対角化された作用 \eqref{eq:Sdiag} を入れると
+\[
+    \mathcal{N}(T)
+    =\mathcal{J}\int\prod_n da_n\,\exp\!\Big(-\frac{i}{\hbar}\sum_n\lambda_n a_n^2\Big)
+    =\mathcal{J}\prod_n\int da_n\,\exp\!\Big(-\frac{i}{\hbar}\lambda_n a_n^2\Big),
+\]
+すなわち \eqref{eq:Nmode}。各 mode が独立なので積分が積に分かれた。
+\end{sol}
+
+%======================================================================
+\section{問題 4：無限個の Fresnel 積分から Feynman kernel へ}
+%======================================================================
+
+\begin{sol}
+\textbf{(1)} \eqref{eq:fresnel} で $\alpha=\frac{i}{\hbar}\lambda_n$（$i\epsilon$ で $\Re\alpha\ge0$）とすると
+$\int da_n\,e^{-i\lambda_n a_n^2/\hbar}=\sqrt{\pi\hbar/(i\lambda_n)}$。
+$\lambda_n=\frac{m}{2}(\omega^2-\omega_n^2)=-\frac{m}{2}\omega_n^2(1-\omega^2/\omega_n^2)$ を入れ，$1/(-i)=i$ より
+\[
+    \frac{\pi\hbar}{i\lambda_n}
+    =\frac{\pi\hbar}{i\cdot(-\frac{m}{2}\omega_n^2)(1-\omega^2/\omega_n^2)}
+    =\frac{2\pi i\hbar}{m\omega_n^2(1-\omega^2/\omega_n^2)}.
+\]
+
+\par\smallskip
+\textbf{(2)} 無限積をとり $\omega$ 依存部分を分離：
+\[
+    \mathcal{N}(T)
+    =\mathcal{J}\prod_n\sqrt{\frac{2\pi i\hbar}{m\omega_n^2}}\,
+    \sqrt{\prod_n\frac{1}{1-\omega^2/\omega_n^2}}.
+\]
+$\omega_n=n\pi/T$ より $\omega^2/\omega_n^2=(\omega T/\pi)^2/n^2$。Euler の乗積 \eqref{eq:euler}（$z=\omega T/\pi$）から
+\[
+    \prod_{n=1}^\infty\Big(1-\frac{\omega^2}{\omega_n^2}\Big)
+    =\prod_{n=1}^\infty\Big(1-\frac{(\omega T/\pi)^2}{n^2}\Big)
+    =\frac{\sin\pi(\omega T/\pi)}{\pi(\omega T/\pi)}=\frac{\sin\omega T}{\omega T}.
+\]
+ゆえ $\mathcal{N}(T)=\mathcal{J}\sqrt{\prod_n\frac{2\pi i\hbar}{m\omega_n^2}}\,\sqrt{\dfrac{\omega T}{\sin\omega T}}$。
+
+\par\smallskip
+\textbf{(3) 規格化合わせ。}
+$\mathcal{N}_0:=\mathcal{J}\sqrt{\prod_n\frac{2\pi i\hbar}{m\omega_n^2}}$ は $\omega,J$ によらない。
+$\omega\to0$ では $\sqrt{\omega T/\sin\omega T}\to1$ ゆえ $\mathcal{N}(T)\to\mathcal{N}_0$，
+かつ \eqref{eq:Kfactor} は自由粒子の kernel に一致しなければならない。自由粒子 kernel \eqref{eq:free} の
+前因子（端点を固定した揺らぎの寄与，$x_i,x_f$ によらない）は $\sqrt{m/(2\pi i\hbar T)}$ だから
+\[
+    \mathcal{N}_0=\sqrt{\frac{m}{2\pi i\hbar T}}.
+\]
+
+\par\smallskip
+\textbf{(4)} 以上より
+\[
+    \mathcal{N}(T)=\sqrt{\frac{m}{2\pi i\hbar T}}\sqrt{\frac{\omega T}{\sin\omega T}}
+    =\sqrt{\frac{m\omega}{2\pi i\hbar\sin\omega T}},
+\]
+これを \eqref{eq:Kfactor} に戻して \eqref{eq:kernel} を得る。Feynman kernel は，揺らぎを支配する演算子 $\hat O$ の
+固有値 $\lambda_n$ にわたる無限個の Fresnel 積分（行列式 $\prod_n\lambda_n$ の平方根の逆）として現れた。
+\end{sol}
+
+%======================================================================
+\section{問題 5：生成汎関数}
+%======================================================================
+
+\begin{sol}
+\textbf{(1) 被積分関数の整理。}
+$\phi_0^*(t_i+T,q_f)\phi_0(t_i,q_i)$ の位相は
+$+\frac{i(t_i+T)\omega}{2}-\frac{it_i\omega}{2}=+\frac{i\omega T}{2}$ にまとまり，
+$q$ 依存部分は $\exp\!\big(-\frac{m\omega}{2\hbar}(q_i^2+q_f^2)\big)$。これと \eqref{eq:kernel} を
+\eqref{eq:Wdef} に入れると前因子 $\frac{m\omega}{\pi\hbar}(2i\sin\omega T)^{-1/2}$，位相 $e^{i\omega T/2}$ が出る。
+指数部 $-\frac{m\omega}{2\hbar}(q_i^2+q_f^2)+\frac{i}{\hbar}S_{cl}[J]$ を $q_i,q_f$ で整理して係数を読み取る。
+
+\par\smallskip
+\textit{$A$（$q_i^2,q_f^2$）：}波動関数由来の $\frac{m\omega}{2\hbar}$ と，$S_{cl}$ の境界項由来の
+$-\frac{i}{\hbar}\frac{m\omega\cos\omega T}{2\sin\omega T}$ の和。
+\[
+    A=\frac{m\omega}{2\hbar}-\frac{i}{\hbar}\frac{m\omega\cos\omega T}{2\sin\omega T}
+    =\frac{m\omega}{2\hbar}\frac{\sin\omega T-i\cos\omega T}{\sin\omega T}
+    =\frac{m\omega}{2\hbar}\frac{-ie^{i\omega T}}{\sin\omega T}.
+\]
+\textit{$B$（$q_iq_f$ の半分）：}$S_{cl}$ の交差項 $-m\frac{\omega}{\sin\omega T}q_iq_f$ より
+$B=-\frac12\frac{i}{\hbar}\frac{-m\omega}{\sin\omega T}=\frac{m\omega}{2\hbar}\frac{i}{\sin\omega T}$。
+
+\par\smallskip
+\textit{$C$（$q_f$ の半分）：}$q_f$ に線形な項をまとめ，積和公式
+$-\sin\omega(t_i+T-\tau)\cos\omega T+\sin\omega T\cos\omega(t_i+T-\tau)=\sin\omega(\tau-t_i)$ を用いると
+\[
+    C=\frac{1}{2i\hbar}\frac{1}{\sin\omega T}\int_{t_i}^{t_i+T}\!\sin\omega(\tau-t_i)J(\tau)d\tau
+    =\frac{1}{2i\hbar}\frac{\Im[e^{-i\omega t_i}F]}{\sin\omega T},
+\]
+ただし $\sin\omega(\tau-t_i)=\frac{e^{i\omega(\tau-t_i)}-e^{-i\omega(\tau-t_i)}}{2i}$ と
+$F=\int_{t_i}^{t_i+T}e^{i\omega\tau}J\,d\tau$，
+$\int\sin\omega(\tau-t_i)J=\frac{e^{-i\omega t_i}F-e^{i\omega t_i}F^*}{2i}=\Im[e^{-i\omega t_i}F]$ を使った。
+
+\par\smallskip
+\textit{$D$（$q_i$ の半分）：}同様に
+$D=\frac{1}{2i\hbar}\int_{t_i}^{t_i+T}\frac{\sin\omega(t_i+T-\tau)}{\sin\omega T}J\,d\tau
+=\frac{1}{2i\hbar}\frac{\Im[e^{i\omega(t_i+T)}F^*]}{\sin\omega T}$。
+
+\par\smallskip
+\textit{$E$（$J$ の 2 次）：}$q_{cl}$ の source 部分どうしの積から
+\begin{align*}
+    E
+    &=\frac{i}{2\hbar m\omega\sin\omega T}
+    \int_{t_i<\tau'<\tau<t_i+T}\!\!\!d\tau d\tau'\,J(\tau)J(\tau')\,
+    \big[\,\sin\omega(\tau-\tau')\sin\omega T\\
+    &\qquad
+    -\sin\omega(\tau-t_i)\sin\omega(t_i+T-\tau')
+    -\sin\omega(\tau'-t_i)\sin\omega(t_i+T-\tau)\,\big].
+\end{align*}
+各 $\sin\cdot\sin$ を積和公式で $\cos$ に直すと大半が打ち消し，
+\[
+    E=\frac{1}{i\hbar m\omega\sin\omega T}
+    \int_{t_i}^{t_i+T}\!\!d\tau\int_{t_i}^{t_i+T}\!\!d\tau'\,\theta(\tau-\tau')J(\tau)J(\tau')
+    \sin\omega(t_i+T-\tau)\sin\omega(\tau'-t_i),
+\]
+$\sin$ を指数で書くと
+\begin{align}
+    E
+    &=\frac{i}{4\hbar m\omega\sin\omega T}
+    \bigg\{2i\sin\omega T\!\int\!\!\int d\tau d\tau'\,JJ\,\theta(\tau-\tau')e^{i\omega(\tau'-\tau)}
+    \notag\\
+    &\qquad
+    -\tfrac12\Big(e^{i\omega(2t_i+T)}{F^*}^2+e^{-i\omega(2t_i+T)}F^2\Big)+e^{-i\omega T}|F|^2\bigg\}.
+\label{eq:Esol}
+\end{align}
+
+\par\smallskip
+\textbf{(2) 2 つの Fresnel 積分。}
+$\Re A=\frac{m\omega}{2\hbar}>0$ で $q_f$ を平方完成：
+$\int dq_f\,e^{-Aq_f^2-2(Bq_i+C)q_f}=\sqrt{\pi/A}\,e^{(Bq_i+C)^2/A}$。残る $q_i$ 積分は
+$q_i^2$ の係数が $A-\frac{B^2}{A}=\frac{A^2-B^2}{A}$，1 次係数が $D-\frac{BC}{A}$ となり，
+$\Re\frac{A^2-B^2}{A}\ge0$（問題 5(3) と $\Re A>0$）ゆえ再び \eqref{eq:fresnel}：
+\[
+    \int dq_i=\sqrt{\frac{\pi A}{A^2-B^2}}\exp\!\Big(\frac{C^2}{A}+\frac{(AD-BC)^2}{A(A^2-B^2)}\Big).
+\]
+前因子と 2 つの平方根を掛けると $\frac{m\omega}{\hbar[2i\sin\omega T(A^2-B^2)]^{1/2}}$，
+指数部は $\frac{C^2}{A}+\frac{(AD-BC)^2}{A(A^2-B^2)}=\frac{A(C^2+D^2)-2BCD}{A^2-B^2}$
+（分子を展開し $A^2-B^2$ でくくる）。よって \eqref{eq:Wgauss}。
+
+\par\smallskip
+\textbf{(3) 前因子。}
+$A^2-B^2=\big(\frac{m\omega}{2\hbar\sin\omega T}\big)^2[(-ie^{i\omega T})^2-i^2]
+=\big(\frac{m\omega}{2\hbar\sin\omega T}\big)^2(1-e^{2i\omega T})$。
+$1-e^{2i\omega T}=-2ie^{i\omega T}\sin\omega T$ より
+$A^2-B^2=\big(\frac{m\omega}{\hbar}\big)^2\frac{-ie^{i\omega T}}{2\sin\omega T}$。
+ゆえ $2i\sin\omega T(A^2-B^2)=(m\omega/\hbar)^2e^{i\omega T}$ で
+$\frac{m\omega}{\hbar[\cdots]^{1/2}}=e^{-i\omega T/2}$。
+
+\par\smallskip
+\textbf{(4) 指数部の相殺。}
+$C,D$ を $F,F^*$ で表したものを 2 乗・積すると
+\begin{align*}
+    C^2+D^2
+    &=\frac{(1+e^{-2i\omega T})e^{-2i\omega t_i}F^2+(1+e^{2i\omega T})e^{2i\omega t_i}{F^*}^2-4|F|^2}{16\hbar^2\sin^2\omega T},\\
+    BCD
+    &=\frac{m\omega}{32\hbar^3}\frac{i}{\sin^3\omega T}
+    \big[(e^{i\omega T}+e^{-i\omega T})|F|^2-e^{-i\omega(2t_i+T)}F^2-e^{i\omega(2t_i+T)}{F^*}^2\big].
+\end{align*}
+$A=\frac{m\omega}{2\hbar}\frac{-ie^{i\omega T}}{\sin\omega T}$ を掛けて $2BCD$ を引き，\eqref{eq:Wgauss} の $A^2-B^2$ で割ると
+\[
+    \frac{A(C^2+D^2)-2BCD}{A^2-B^2}
+    =\frac{2ie^{-i\omega T}}{16\hbar m\omega\sin\omega T}
+    \Big\{e^{-2i\omega t_i}F^2+e^{2i\omega(t_i+T)}{F^*}^2-2|F|^2\Big\},
+\]
+ここで $1-e^{-2i\omega T}=2ie^{-i\omega T}\sin\omega T$ を用いた。これを \eqref{eq:Esol} の $E$ に加えると，
+$F^2,{F^*}^2,|F|^2$ の境界項が
+\[
+    \underbrace{-2e^{i\omega(2t_i+T)}{F^*}^2-2e^{-i\omega(2t_i+T)}F^2+4e^{-i\omega T}|F|^2}_{E\text{ 側}}
+    +\underbrace{2e^{-i\omega(2t_i+T)}F^2+2e^{2i\omega(t_i+T)}{F^*}^2-4e^{-i\omega T}|F|^2}_{\text{右項}}=0
+\]
+と完全に打ち消し，2 重積分項だけが残って \eqref{eq:exponent} を得る。
+\end{sol}
+
+%======================================================================
+\section{問題 6：Feynman 伝播関数}
+%======================================================================
+
+\begin{sol}
+\textbf{(1)} \eqref{eq:Wgauss} に問題 5(3),(4) を入れると前因子 $e^{-i\omega T/2}$ と位相 $e^{i\omega T/2}$ が相殺し，
+\[
+    W_{00}[J](T)=\exp\!\Big(-\frac{1}{2\hbar m\omega}\!\int\!\!\int d\tau d\tau'\,JJ\,\theta(\tau-\tau')e^{i\omega(\tau'-\tau)}\Big).
+\]
+積分領域は対称なので被積分を半分に分け，片方で $\tau\leftrightarrow\tau'$ と入れ替えると
+$\theta(\tau'-\tau)e^{i\omega(\tau-\tau')}$ が現れ，
+$-\frac{1}{2\hbar m\omega}\theta(\tau-\tau')e^{i\omega(\tau'-\tau)}\to\frac{i}{4\hbar}\cdot\frac{i}{m\omega}[\,\cdots\,]$ の形で
+\eqref{eq:DF} の $D_F$ が括り出され \eqref{eq:Wfinal} を得る。
+
+\par\smallskip
+\textbf{(2)} $\theta(s)=-\int\frac{d\omega'}{2\pi i}\frac{e^{-i\omega's}}{\omega'+i\epsilon}$（$s=\tau-\tau'$）を \eqref{eq:DF} に入れ，
+第 1 項で $\omega'\to\omega'-\omega$，第 2 項で $\omega'\to-\omega'-\omega$ と平行移動して通分すると
+\[
+    D_F=\frac{i}{m\omega}\int\frac{d\omega'}{2\pi i}
+    \frac{e^{-i\omega'(\tau-\tau')}}{\omega'^2-(\omega-i\epsilon)^2}
+    \big[(-\omega'-\omega+i\epsilon)+(\omega'-\omega+i\epsilon)\big]
+    =\frac{2}{m}\int\frac{d\omega'}{2\pi}\frac{e^{-i\omega'(\tau-\tau')}}{-\omega'^2+\omega^2-i\epsilon},
+\]
+すなわち \eqref{eq:DFfourier}。
+
+\par\smallskip
+\textbf{(3)} \eqref{eq:DFfourier} に $\frac{m}{2}(\partial_t^2+\omega^2)$ を作用させると $\partial_t^2\to-\omega'^2$ で分母が約分し，
+\[
+    \frac{m}{2}\Big(\frac{d^2}{dt^2}+\omega^2\Big)D_F(t)
+    =\int\frac{d\omega'}{2\pi}\frac{-\omega'^2+\omega^2}{-\omega'^2+\omega^2-i\epsilon}e^{-i\omega't}
+    \xrightarrow{\epsilon\to0}\int\frac{d\omega'}{2\pi}e^{-i\omega't}=\delta(t).
+\]
+$D_F$ は $\hat O=\frac{m}{2}(\partial_t^2+\omega^2)$ の Green 関数。第 1 部で揺らぎを対角化した演算子の逆が，
+そのまま伝播関数として現れている。
+
+\par\smallskip
+\textbf{(4) 始まりに潜んでいた伝播関数。}問題 1(2) の特解の核は $g_F(s)=\dfrac{i}{m\omega}e^{-i\omega|s|}$。
+一方 \eqref{eq:DF} の $D_F$ は，恒等式
+\[
+    \theta(s)e^{-i\omega s}+\theta(-s)e^{i\omega s}=e^{-i\omega|s|}
+\]
+（$s>0$ では第 1 項＝$e^{-i\omega s}$，$s<0$ では第 2 項＝$e^{i\omega s}=e^{-i\omega|s|}$）より
+\[
+    D_F(s)=\frac{i}{m\omega}\bigl[\theta(s)e^{-i\omega s}+\theta(-s)e^{i\omega s}\bigr]
+    =\frac{i}{m\omega}e^{-i\omega|s|}=\boxed{g_F(s)}.
+\]
+$t>\tau$ の実部だけでなく，時間順序の\emph{両向き}を含む複素核の全体が一致する。規格化は
+$m(\partial_t^2+\omega^2)\tfrac12 D_F=\delta$（特解側）と $\frac m2(\partial_t^2+\omega^2)D_F=\delta$（揺らぎ側）で，
+同一の $D_F$ が両役を担う。\textbf{終点の真空振幅から現れた伝播関数 $D_F$ は，始点の古典解の特解に
+そのままの形で最初から潜んでいた}のである。
+\end{sol}
+
+%======================================================================
+\section{問題 7：経路積分による統一的理解}
+%======================================================================
+
+\begin{sol}
+\textbf{(1)} \eqref{eq:Wdef} に kernel の経路積分表示を入れ，端点 $q_i,q_f$ の積分を波動関数と合わせると
+端点を固定しない全経路積分になり，$\bra{\phi_0}\!\int\mathcal{D}q\,e^{iS/\hbar}\!\ket{\phi_0}$ と書ける。
+
+\par\smallskip
+\textbf{(2)} \eqref{eq:L} の作用を部分積分すれば
+$\frac{i}{\hbar}S=-\frac12\int q\,\frac{i}{\hbar}m(\partial_\tau^2+\omega^2)q+\int q\,\frac{i}{\hbar}J$。
+これは $-\frac12 x\!\cdot\!Ax+J\!\cdot\!x$ 型の無限次元 Gauss 積分。
+
+\par\smallskip
+\textbf{(3)} 有限次元の公式で $A\to\frac{i}{\hbar}m(\partial_\tau^2+\omega^2)$，$J_i\to\frac{i}{\hbar}J(\tau)$，
+$A^{-1}\to D_F$ と読み替えると，規格化（$J$ 非依存部分，$W[0]=1$）を除いて
+\[
+    W[J]=\exp\!\Big[\frac12\!\int d\tau d\tau'\,\tfrac{i}{\hbar}J(\tau')
+    \big\{\tfrac{i}{\hbar}m(\partial_\tau^2+\omega^2)\big\}^{-1}\tfrac{i}{\hbar}J(\tau)\Big]
+    =\exp\!\Big[\frac{i}{4\hbar}\!\int d\tau d\tau'\,J(\tau')\big\{\tfrac{m}{2}(\partial_\tau^2+\omega^2)\big\}^{-1}J(\tau)\Big],
+\]
+$\big\{\frac{m}{2}(\partial_\tau^2+\omega^2)\big\}^{-1}=D_F$ より \eqref{eq:Wfinal} に一致する。
+\textbf{対応関係}（正しいのは $\boxed{\text{(あ)(い)(う)}}$）：第 1 部の mode 展開は，この演算子 $A$ を
+固有関数基底で対角化して固有値 $\lambda_n$ を取り出す操作であり（$\det A=\prod_n\lambda_n$ が kernel の
+前因子を与える＝(あ)），その逆 $A^{-1}$ を座標表示したものが第 2 部の伝播関数 $D_F$ である＝(い)。
+kernel の前因子（揺らぎの行列式）と生成汎関数の指数部（逆演算子）は，同じ演算子 $\hat O$ の固有値と逆と
+いう，表裏の情報にほかならない＝(う)。(え) は誤――$D_F=A^{-1}$（座標表示で $\sum_n\lambda_n^{-1}\phi_n\phi_n$）は
+固有値の\emph{逆}の和であって，固有値の総和 $\sum_n\lambda_n$（＝発散する跡）ではない。
+\end{sol}
+
+%======================================================================
+\section{問題 8：分配関数と統計力学}
+%======================================================================
+
+\begin{sol}
+\textbf{(1)} 波動関数の寄与（$A$ 中の $\frac{m\omega}{2\hbar}$ と位相 $e^{i\omega T/2}$）を除き $q_i=q_f=x$ とおくと
+指数部は $-2Gx^2-2Hx$。ここで
+\begin{align*}
+    G&=A-\frac{m\omega}{2\hbar}+B
+    =\frac{i}{\hbar}\frac{m\omega(1-\cos\omega T)}{2\sin\omega T}
+    =\frac{i}{\hbar}\frac{m\omega\sin^2(\omega T/2)}{\sin\omega T},
+    \\
+    H&=C+D=\frac{1}{2i\hbar}\!\int_{t_i}^{t_i+T}\!\frac{\sin\omega(\tau-t_i)+\sin\omega(t_i+T-\tau)}{\sin\omega T}J(\tau)\,d\tau.
+\end{align*}
+$x$ の Fresnel 積分 \eqref{eq:fresnel} 1 回で
+$Z[J]=\big(\frac{m\omega}{2\pi i\hbar\sin\omega T}\big)^{1/2}\sqrt{\frac{\pi}{2G}}\,e^{H^2/2G}$。前因子に $G$ を代入すると
+\[
+    \Big(\frac{m\omega}{2\pi i\hbar\sin\omega T}\frac{\pi}{2G}\Big)^{1/2}
+    =\Big(\frac{1}{4i^2\sin^2(\omega T/2)}\Big)^{1/2}
+    =\frac{1}{2i\sin(\omega T/2)}=\frac{1}{e^{i\omega T/2}-e^{-i\omega T/2}}.
+\]
+
+\par\smallskip
+\textbf{(2)} $J=0$ で $H=0$ ゆえ $e^{H^2/2G}=1$。虚時間 $\tau=iT=\hbar\beta$ で $e^{i\omega T/2}=e^{\hbar\beta\omega/2}$ だから
+\[
+    Z[J=0]=\frac{1}{e^{\beta\hbar\omega/2}-e^{-\beta\hbar\omega/2}}
+    =\frac{1}{2\sinh(\beta\hbar\omega/2)}
+    =\frac{e^{-\beta\hbar\omega/2}}{1-e^{-\beta\hbar\omega}}
+    =\sum_{n=0}^\infty e^{-\beta\hbar\omega(n+1/2)},
+\]
+零点 energy $\frac12\hbar\omega$ を含む調和振動子の分配関数を正しく再現する。
+\end{sol}
+
+\end{document}

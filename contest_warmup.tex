@@ -1,0 +1,281 @@
+\documentclass[dvipdfmx, uplatex]{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{enumitem}
+
+\usepackage{silence}
+\WarningFilter*{hyperref}{Token not allowed in a PDF string}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+\allowdisplaybreaks[4]
+
+\usepackage[left=25truemm,top=20truemm,bottom=20truemm,right=25truemm]{geometry}
+
+\theoremstyle{definition}
+\newtheorem*{ex}{例題}
+
+\title{数理コンテスト 事前アナウンスとウォームアップ例題\\
+\large ―― 代数・幾何・解析・確率の 4 分野 ――}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-4zh}
+
+%======================================================================
+\section*{コンテストについて}
+\addcontentsline{toc}{section}{コンテストについて}
+%======================================================================
+本コンテストは大学院修了程度の数理素養をお持ちの社会人を対象とした出題です。形式は次のとおり。
+
+\begin{itemize}[leftmargin=1.6em]
+\item \textbf{制限時間 2 時間。}本番は\textbf{代数・幾何・解析・確率}の 4 分野から各 1 題，計 4 題を出します。
+各題は独立で，どれから解いても構いません。
+\item \textbf{全問を解き切る分量ではありません。}得意分野を選び，深く解き進めてください。各題は多数の
+小問に細かく分かれており，序盤は易しく後半ほど重くなります。\textbf{部分点が積み上がる}設計なので，
+途中まででも得点になります。
+\item \textbf{解答形式。}多くの小問は「\,$\sim$ を求めよ／表式で表せ／値を答えよ／オーダーを答えよ\,」の
+形です。\emph{正しく計算できていれば表式が一致する}ことで採点します（証明の体裁は問いません）。
+\item \textbf{道具立て。}必要な公式・定義は本番の問題文内で与えます。特殊な前提知識は要求しません
+（微分積分・線形代数・初等確率の運用力が中心）。
+\end{itemize}
+
+\medskip
+\noindent\textbf{このプリントの目的。}本番の中身（核心）には触れず，\emph{各分野の入口の手触り}だけを示す
+ウォームアップ例題を分野ごとに 2--3 問用意しました。所要は各問 数分程度。\textbf{解答は末尾にまとめて}
+あります。まず自力で手を動かし，肩慣らしと得意分野の見極めにお使いください。
+
+\medskip
+\noindent\textbf{共通の定義（複数分野で使う）。}関数 $f(x)$ の $x=0$ まわりの\textbf{Taylor（マクローリン）展開}とは
+\[
+    f(x)=\sum_{n\ge0}\frac{f^{(n)}(0)}{n!}\,x^n
+    \qquad(f^{(n)}\text{ は }n\text{ 階微分，}f^{(0)}=f,\ 0!=1)
+\]
+のこと。また\textbf{無限等比級数の公式} $\dfrac{1}{1-r}=\displaystyle\sum_{k\ge0}r^k\ (|r|<1)$
+（したがって $\dfrac{1}{1+u}=\sum_{k\ge0}(-u)^k$）は，Taylor 展開を経由せずそのまま用いてよい。
+必要なら 1 次近似 $\sqrt{1+u}\simeq1+\tfrac12u$ も用いる。
+
+\bigskip
+%======================================================================
+\section{代数（ウォームアップ）}
+%======================================================================
+固有値とその摂動（行列を少し動かすと固有値がどう動くか）など，行列（数を並べた表）の言葉での計算です。
+行列 $A$ の\textbf{固有値} $\lambda$・\textbf{固有ベクトル} $\bm v$ とは，$A\bm v=\lambda\bm v$（$\bm v\neq\bm0$）を
+満たす数 $\lambda$ とベクトル $\bm v$ のこと。以下，$A=\begin{pmatrix}2&1\\ 1&2\end{pmatrix}$ とする。
+
+\begin{ex}[代数 1]
+$A$ の固有値と固有ベクトルを求めよ。
+\end{ex}
+
+\begin{ex}[代数 2]
+$B=\begin{pmatrix}1&1\\ 1&0\end{pmatrix}$ とし，微小パラメータ $\delta$ で摂動した $A+\delta B$ を考える。
+その固有値 $\lambda_\pm(\delta)$ を $\delta$ の関数として求めよ。$\delta\to0$ で代数 1 の固有値に戻ることを
+確かめ，さらに各固有値の\textbf{1 次（$\delta$ に比例する）のずれ}を求めよ。
+\end{ex}
+
+\begin{ex}[代数 3]
+摂動前の $A$ の固有値 $\lambda_i$ と固有ベクトル $\bm v_i$（代数 1）を用いると，1 次摂動論は固有値を
+\[
+    \lambda_i(\delta)\simeq\lambda_i+\frac{\bm v_i\cdot(B\bm v_i)}{\bm v_i\cdot\bm v_i}\,\delta
+\]
+と予言する（$\cdot$ は内積 $\bm a\cdot\bm b=a_1b_1+a_2b_2$）。各 $\bm v_i$ について $\delta$ の 1 次の係数を
+計算し，代数 2 で展開した 1 次のずれと一致することを確かめよ。
+\end{ex}
+
+%======================================================================
+\section{幾何（ウォームアップ）}
+%======================================================================
+平面ベクトル場の零点や閉曲線の「回転量」は，\emph{向き（偏角）が 1 周で何回まわるか}で測る。原点のまわりを
+反時計回りに 1 周する動きを，パラメータ $\varphi\ (0\to2\pi)$ で $\bigl(x(\varphi),\,y(\varphi)\bigr)$ と表す
+（各成分は $\varphi$ の 1 変数関数，$x'=\tfrac{dx}{d\varphi}$ 等）。点 $(x,y)$ の偏角 $\theta$
+（$x$ 軸からの角，$\tan\theta=y/x$）の変化率は $\dfrac{d\theta}{d\varphi}=\dfrac{x\,y'-y\,x'}{x^2+y^2}$ で，
+1 周での\textbf{巻き数}は
+\[
+    \frac{1}{2\pi}\int_0^{2\pi}\frac{x\,y'-y\,x'}{x^2+y^2}\,d\varphi .
+\]
+同様に，ベクトル場 $\bm v=(P,Q)$ の零点のまわりを 1 周するとき，$P=P(\varphi),\ Q=Q(\varphi)$ と
+その微分 $P'=\tfrac{dP}{d\varphi},\ Q'=\tfrac{dQ}{d\varphi}$ を用いて，矢印 $(P,Q)$ の向きの巻き数
+＝\textbf{渦の数（指数）}は
+\[
+    \mathrm{ind}=\frac{1}{2\pi}\int_0^{2\pi}\frac{P\,Q'-Q\,P'}{P^2+Q^2}\,d\varphi\qquad(\text{反時計回りを正})
+\]
+で定義される。以下この定義に沿って答えよ。
+
+\begin{ex}[幾何 1]
+次の各ベクトル場 $\bm v=(P,Q)$ の原点（零点）まわりの渦の数（指数）を求めよ
+（偏角 $\arg(P+iQ)$ が 1 周で何回まわるかを見てもよい）：
+\[
+    \text{(a)}\ (x,\,y),\qquad \text{(b)}\ (x,\,-y),\qquad \text{(c)}\ (x^2-y^2,\,2xy).
+\]
+\end{ex}
+
+\begin{ex}[幾何 2]
+原点を中心とする単位円を $x=\cos\varphi,\ y=\sin\varphi\ (\varphi:0\to2\pi)$ とパラメータ表示し，巻き数の
+定義に現れる積分
+\[
+    \int_0^{2\pi}\frac{x\,y'-y\,x'}{x^2+y^2}\,d\varphi\qquad(x'=\tfrac{dx}{d\varphi},\ y'=\tfrac{dy}{d\varphi})
+\]
+を直接計算せよ。さらに，これが原点を 1 周だけ囲む\emph{任意の}単純閉曲線で同じ値になることを述べよ。
+\end{ex}
+
+\begin{ex}[幾何 3]
+整数 $k$ に対し，閉曲線 $x=\cos k\varphi,\ y=\sin k\varphi$（$\varphi:0\to2\pi$）の巻き数を，上の定義式
+$\tfrac{1}{2\pi}\int_0^{2\pi}\tfrac{x\,y'-y\,x'}{x^2+y^2}\,d\varphi$ で計算せよ。$k=2$ と $k=3$ で答えよ。
+\end{ex}
+
+%======================================================================
+\section{解析（ウォームアップ）}
+%======================================================================
+微分方程式に冪級数を代入して係数の漸化式を作り，その解がどんな級数になるかを調べます（Taylor 展開の
+定義は冒頭の共通の定義を参照。\emph{この係数付き冪級数が元の関数に一致するとは限らない}点が後半の主題）。
+微分方程式
+\[
+    x^2\,y'(x) + y(x) = x
+\]
+の，$x=0$ で $0$ となる形式的べき級数解 $y(x)=\displaystyle\sum_{n\ge1} a_n x^n$ を考える。
+
+\begin{ex}[解析 1]
+上の級数を方程式に代入し，両辺の $x^n$ の係数を比べて，$a_n$ の満たす漸化式を導け
+（$a_1$ の値と，$n\ge2$ での $a_n$ と $a_{n-1}$ の関係）。
+\end{ex}
+
+\begin{ex}[解析 2]
+その漸化式を解いて $a_n$ を $n$ の閉じた式で表せ。
+\end{ex}
+
+\begin{ex}[解析 3]
+この方程式は，$x>0$ で\textbf{有限な}解析解
+\[
+    y(x)=x\int_0^\infty\frac{e^{-t}}{1+xt}\,dt
+\]
+を持つ（これが ODE を満たすことは確かめてよい）。
+\begin{enumerate}
+\item[(a)] 被積分の $\dfrac{1}{1+xt}$ を無限等比級数の公式で $xt$ のべきに展開し，
+$\displaystyle\int_0^\infty e^{-t}t^k\,dt=k!$ を用いて $y(x)$ の形式的べき級数を求めよ。
+それが 解析 2 で求めた級数に一致することを確かめよ。
+\item[(b)] この級数の収束半径を，ダランベールの判定法 $R=\lim_{n\to\infty}|a_n/a_{n+1}|$ で求めよ。
+\emph{有限な関数 $y(x)$ があるのに，その冪級数が収束しない}のはなぜか――被積分の極 $t=-1/x$ の位置に
+着目し，$x<0$ で何が起きるか（$y$ が $x=0$ で解析的でないこと）と結びつけて説明せよ。
+\end{enumerate}
+\end{ex}
+
+%======================================================================
+\section{確率（ウォームアップ）}
+%======================================================================
+期待値の定義に沿って計算します。離散確率変数 $X$（取りうる値 $x$，確率 $P(x)$）と任意関数 $g$ に対し
+\[
+    \langle g(X)\rangle := \sum_{x} g(x)\,P(x)
+\]
+を期待値と定める（$\sum_x P(x)=1$）。
+
+\begin{ex}[確率 1]
+1 ステップの変位 $\Delta$ が値 $+a,\,-a$ を各確率 $\tfrac12$ でとる。定義に従って
+$\langle\Delta\rangle$ と $\langle\Delta^2\rangle$ を $a$ で求めよ。
+\end{ex}
+
+\begin{ex}[確率 2]
+同じ $\Delta$ について，特性関数 $\langle e^{ik\Delta}\rangle=\sum_\delta e^{ik\delta}P(\delta)$
+（$i$ は虚数単位，$e^{i\theta}=\cos\theta+i\sin\theta$）を求めよ。
+さらに，独立な $n$ 個の変位の和 $X_n=\sum_{j=1}^n\Delta_j$ について
+$\langle e^{ikX_n}\rangle=\prod_{j=1}^n\langle e^{ik\Delta_j}\rangle$（独立性）を使って $\langle e^{ikX_n}\rangle$ を求めよ。
+\end{ex}
+
+\begin{ex}[確率 3]
+同じ和 $X_n=\sum_{j=1}^n\Delta_j$（各 $\Delta_j$ は独立同分布）について，
+$\langle X_n^2\rangle=\sum_{j,l}\langle\Delta_j\Delta_l\rangle$ を出発点に，独立性
+（$j\neq l$ で $\langle\Delta_j\Delta_l\rangle=\langle\Delta_j\rangle\langle\Delta_l\rangle$）を用いて
+$\langle X_n^2\rangle$ を $n,a$ で求めよ。
+\end{ex}
+
+\bigskip
+%======================================================================
+\section*{解答}
+\addcontentsline{toc}{section}{解答}
+%======================================================================
+
+\noindent\textbf{代数 1.}\quad 固有方程式 $(2-\lambda)^2-1=0$ より $2-\lambda=\pm1$，すなわち
+$\boxed{\lambda=1,\,3}$。固有ベクトルは $\lambda=3$ で $\boxed{(1,1)}$，$\lambda=1$ で $\boxed{(1,-1)}$。
+
+\smallskip
+\noindent\textbf{代数 2.}\quad $A+\delta B=\begin{pmatrix}2+\delta&1+\delta\\ 1+\delta&2\end{pmatrix}$ の
+固有方程式 $(2+\delta-\lambda)(2-\lambda)-(1+\delta)^2=0$，すなわち $\lambda^2-(4+\delta)\lambda+(3-\delta^2)=0$ より
+\[
+    \lambda_\pm(\delta)=\frac{(4+\delta)\pm\sqrt{(4+\delta)^2-4(3-\delta^2)}}{2}
+    =\boxed{\,\frac{(4+\delta)\pm\sqrt{4+8\delta+5\delta^2}}{2}\,}.
+\]
+$\delta=0$ で $\dfrac{4\pm2}{2}=3,\,1$（代数 1 に一致）。$\delta=0$ まわりの Taylor 展開により
+$\sqrt{4+8\delta+5\delta^2}=2\sqrt{1+2\delta+\tfrac54\delta^2}\simeq2+2\delta$ なので，1 次のずれは
+\[
+    \boxed{\lambda_+\simeq3+\tfrac32\delta},\qquad \boxed{\lambda_-\simeq1-\tfrac12\delta}.
+\]
+
+\smallskip
+\noindent\textbf{代数 3.}\quad $\bm v_+=(1,1),\ \bm v_-=(1,-1)$（ともに $\bm v\cdot\bm v=2$）。
+$B\bm v_+=(2,1)$ で $\bm v_+\cdot(B\bm v_+)=3$ ゆえ $\delta$ の 1 次係数は $\boxed{\tfrac32}$
+（ずれ $\tfrac32\delta$）；$B\bm v_-=(0,1)$ で $\bm v_-\cdot(B\bm v_-)=-1$ ゆえ係数 $\boxed{-\tfrac12}$
+（ずれ $-\tfrac12\delta$）。代数 2 の 1 次のずれと一致する。
+
+\bigskip
+\noindent\textbf{幾何 1.}\quad 単位円 $x=\cos\varphi,\,y=\sin\varphi$ 上で矢印 $(P,Q)$ の向きが 1 周で回る回数を見る。
+(a) $(P,Q)=(\cos\varphi,\sin\varphi)$：向きは $\varphi$ ゆえ $\boxed{+1}$；
+(b) $(P,Q)=(\cos\varphi,-\sin\varphi)$：向きは $-\varphi$ ゆえ $\boxed{-1}$（鞍点型）；
+(c) $(P,Q)=(\cos2\varphi,\sin2\varphi)$：向きは $2\varphi$ ゆえ $\boxed{+2}$。
+（定義の積分 $\tfrac1{2\pi}\int_0^{2\pi}\tfrac{PQ'-QP'}{P^2+Q^2}\,d\varphi$ でも同じ値。）
+
+\smallskip
+\noindent\textbf{幾何 2.}\quad $x=\cos\varphi,\,y=\sin\varphi$ より $x'=-\sin\varphi,\ y'=\cos\varphi$，
+$x\,y'-y\,x'=\cos^2\varphi+\sin^2\varphi=1$，$x^2+y^2=1$ ゆえ
+\[
+    \int_0^{2\pi}\frac{x\,y'-y\,x'}{x^2+y^2}\,d\varphi=\int_0^{2\pi}1\,d\varphi=\boxed{2\pi}
+\]
+（巻き数 $\tfrac1{2\pi}\cdot2\pi=1$）。これは偏角 $\theta$ の 1 周の総変化なので，原点を 1 周囲む任意の
+単純閉曲線で同じ $2\pi$（囲まなければ $0$）。
+
+\smallskip
+\noindent\textbf{幾何 3.}\quad $x=\cos k\varphi,\,y=\sin k\varphi$ より $x'=-k\sin k\varphi,\ y'=k\cos k\varphi$，
+$x\,y'-y\,x'=k(\cos^2 k\varphi+\sin^2 k\varphi)=k$ ゆえ
+$\tfrac1{2\pi}\int_0^{2\pi}k\,d\varphi=k$。$k=2$ で $\boxed{2}$，$k=3$ で $\boxed{3}$。
+
+\bigskip
+\noindent\textbf{解析 1.}\quad $y=\sum_{n\ge1}a_nx^n$，$x^2y'=\sum_{n\ge1}n a_n x^{n+1}=\sum_{m\ge2}(m-1)a_{m-1}x^m$。
+$x^2y'+y=x$ の各次を比べて，$x^1$：$\boxed{a_1=1}$；$x^m\ (m\ge2)$：$(m-1)a_{m-1}+a_m=0$，すなわち
+\[
+    \boxed{\,a_m=-(m-1)\,a_{m-1}\quad(m\ge2)\,}.
+\]
+
+\smallskip
+\noindent\textbf{解析 2.}\quad $a_1=1$ から $a_m=-(m-1)a_{m-1}$ を反復して
+\[
+    \boxed{\,a_n=(-1)^{n-1}(n-1)!\,}\qquad(a_1=1,\ a_2=-1,\ a_3=2,\ a_4=-6,\dots).
+\]
+
+\smallskip
+\noindent\textbf{解析 3.}\quad (a) $\dfrac{1}{1+xt}=\sum_{k\ge0}(-xt)^k$ を代入し $\int_0^\infty e^{-t}t^k dt=k!$ より
+$y=x\sum_{k\ge0}(-1)^k k!\,x^k=\boxed{\sum_{n\ge1}(-1)^{n-1}(n-1)!\,x^n}$（解析 2 と一致）。
+(b) $\bigl|a_{n+1}/a_n\bigr|=n\to\infty$ ゆえ $\boxed{R=0}$。$y(x)$ は $x>0$ で有限（何回でも微分できる）だが，被積分の極
+$t=-1/x$ は $x>0$ では負の $t$ 軸（積分路の外）にあり問題ないのに対し，$x<0$ では正の $t$ 軸（積分路上）に
+乗って積分が定義できない。ゆえ $y$ は $x=0$ で\textbf{解析的でなく}，$x=0$ まわりの Taylor 級数は収束半径
+$0$ の\emph{漸近級数}にとどまる（打ち切り誤差は $\sim e^{-1/x}$ で，級数のどの項にも現れない大きさ）。
+\textbf{関数が有限でも，原点での非解析性が形式級数を発散させる}。
+
+\bigskip
+\noindent\textbf{確率 1.}\quad 定義より $\langle\Delta\rangle=\tfrac12(+a)+\tfrac12(-a)=\boxed{0}$，
+$\langle\Delta^2\rangle=\tfrac12a^2+\tfrac12a^2=\boxed{a^2}$。
+
+\smallskip
+\noindent\textbf{確率 2.}\quad $\langle e^{ik\Delta}\rangle=\tfrac12 e^{ika}+\tfrac12 e^{-ika}=\boxed{\cos ka}$。
+独立性より $\langle e^{ikX_n}\rangle=\prod_{j=1}^n\langle e^{ik\Delta_j}\rangle=\boxed{\cos^n(ka)}$。
+
+\smallskip
+\noindent\textbf{確率 3.}\quad $j\neq l$ では独立かつ平均 $0$ ゆえ $\langle\Delta_j\Delta_l\rangle=0$，$j=l$ では
+$\langle\Delta_j^2\rangle=a^2$。よって
+\[
+    \langle X_n^2\rangle=\sum_{j,l}\langle\Delta_j\Delta_l\rangle=\sum_{j=1}^n a^2=\boxed{n\,a^2}.
+\]
+
+\end{document}
