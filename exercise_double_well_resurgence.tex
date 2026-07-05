@@ -122,8 +122,8 @@ Laplace 積分 $\int_0^\infty e^{-\zeta/\hb}\zeta^{n-1}d\zeta=(n-1)!\,\hb^{n}$�
 \item \textbf{インスタントン解。}有限作用解はエネルギー保存 $\tfrac12\dot x^2-V=0$（finite action ゆえ
 積分定数 $=0$）を満たす。$\dot x=\sqrt{2V}=\tfrac12(1-x^2)$ を積分して，$-1$ から $+1$ へ移る解
 $x_{\mathrm{cl}}(\tau)$（中心位置 $\tau_0$ を含む）を$\tau$ の初等関数として求めよ。
-さらに $\tau\to+\infty$ での $1-x_{\mathrm{cl}}(\tau)$ の主要な振る舞いを $\tau$ の関数として求め，
-その大きさのオーダーをランダウ記号で表せ。$x_{\mathrm{cl}}$ の符号を変えたものは
+さらに $\tau\to+\infty$ での $1-x_{\mathrm{cl}}(\tau)$ の減衰のオーダーとして正しいものを選べ：
+(A) $O(e^{-\tau})$／(B) $O(e^{-2\tau})$／(C) $O(1/\tau)$／(D) $O(e^{-\tau^2})$。$x_{\mathrm{cl}}$ の符号を変えたものは
 $+1$ から $-1$ へ移る反インスタントンである。
 \item \textbf{作用。}インスタントン 1 個の作用
 $S_0=\int_{-\infty}^{\infty}\dot x_{\mathrm{cl}}^2\,d\tau=\int_{-1}^{1}\sqrt{2V}\,dx
@@ -133,16 +133,17 @@ $S_0=\int_{-\infty}^{\infty}\dot x_{\mathrm{cl}}^2\,d\tau=\int_{-1}^{1}\sqrt{2V}
 $\varepsilon(\tau):=\tfrac12\dot x_{\mathrm{cl}}^2+V=\dot x_{\mathrm{cl}}^2$。
 (2) で求めた $x_{\mathrm{cl}}$ から $\varepsilon(\tau)$ を $\tau$ の初等関数として求めよ。
 $\tau_0=0$ として $x_{\mathrm{cl}}(\tau)$ と $\varepsilon(\tau)$ のグラフを同じ $\tau$ 軸上に描き，
-\textbf{$\varepsilon$ のピーク値}，\textbf{$|\tau|\to\infty$ での $\varepsilon$ の減衰のオーダー（ランダウ記号）}，
-\textbf{$\displaystyle\int_{-\infty}^\infty\varepsilon\,d\tau$ の値}を求めよ。
+\textbf{$\varepsilon$ のピーク値}と \textbf{$\displaystyle\int_{-\infty}^\infty\varepsilon\,d\tau$ の値}を求めよ。
+また $|\tau|\to\infty$ での $\varepsilon$ の減衰のオーダーとして正しいものを選べ：
+(A) $O(e^{-2|\tau|})$／(B) $O(e^{-|\tau|})$／(C) $O(e^{-4|\tau|})$／(D) $O(1/\tau^2)$。
 このグラフから読み取れる $\varepsilon$ の $\tau$ 軸上での広がり方が，次問の作用の加法性の根拠になる。
 \item \textbf{多重インスタントン。}中心 $\tau_1\ll\tau_2\ll\cdots\ll\tau_N$ に，インスタントンと反インスタントンを
 交互につないだ配位を考える。前問の $\varepsilon$ の振る舞いから，よく離れた配位の作用密度は山の和
 $\varepsilon(\tau)\approx\sum_i\varepsilon(\tau-\tau_i)$ で近似でき，各山が $\int\varepsilon\,d\tau=S_0$ を担う
 （作用の加法性）。一方，隣接する(反)インスタントンの\emph{相互作用}は，作用密度の重なりではなく
 問題(2)で求めた\textbf{場の裾} $1\mp x_{\mathrm{cl}}\sim e^{-\omega|\tau-\tau_i|}$（$\omega^2=V''(1)=1$）
-どうしの重なりで決まる。この相互作用の大きさを隣接間隔 $R=\tau_{i+1}-\tau_i$ の関数
-（オーダーをランダウ記号）で表せ。
+どうしの重なりで決まる。この相互作用の大きさのオーダー（隣接間隔 $R=\tau_{i+1}-\tau_i$ の関数）として
+正しいものを選べ：(A) $O(e^{-\omega R})=O(e^{-R})$／(B) $O(e^{-2\omega R})=O(e^{-2R})$／(C) $O(1/R)$／(D) $O(e^{-R^2})$。
 分離 $R\to\infty$ の極限でこの配位は運動方程式を（核の外で厳密に，全体として極限・弱の意味で）満たし，
 両端で 2 つの真空に漸近する弱解となる。\textbf{この $N$ 個の連なりの作用を（相互作用が消える極限で）
 $N$ と $S_0$ で表せ}。とくに，同じ真空へ戻る配位（基底状態の振幅に効くもの）は(反)インスタントンが
@@ -281,15 +282,17 @@ $a_4=\cE_6,\ a_5=\cE_8$ は問題 \ref{prob:pade} で数値を与える。）
 \item \textbf{増大の構造的起源（漸化式から）。}\eqref{eq:BW} で $\deg P_k=3k$ は $k$ に比例して増え，
 左辺を逆に解く各段 $mc_m-\tfrac12(m+2)(m+1)c_{m+2}=r_m$ では，高次係数 $c_{m+2}$ に因子
 $\tfrac{(m+2)(m+1)}{2m}$ が掛かりながら $u^2$ 係数へ降りる。この構造から，$\cE_k=-[u^2\text{ 係数}]$ が
-$k$ とともにどのようなオーダーで増大するかを定性的に見積もれ（定量化は (2)）。
+$k$ とともに示す増大として最も適切なものを選べ（定量化は (2)）：
+(A) 階乗的 $\sim k!$（べきより速い）／(B) 指数的 $\sim c^k$（一定比）／(C) べき的 $\sim k^p$／(D) 有界（増大しない）。
 \item \textbf{増大率と閉じた形（大次数解析：分散関係＋インスタントン）。}$E_0(\hb)$ を解析接続すると，
 両井戸を結ぶ I--$\bar{\mathrm I}$ インスタントンにより指数的に小さい虚部
 $\operatorname{Im}E_0(\hb)\sim-Ce^{-2S_0/\hb}$（$\hb\to0^+$；$C>0$ は定数，$2S_0$ は問題 \ref{prob:classical}(5) の
 I--$\bar{\mathrm I}$ 作用）が生じる。摂動係数は分散関係
 $a_n=\tfrac1\pi\int_0^\infty\frac{\operatorname{Im}E_0(\hb)}{\hb^{n+1}}d\hb$ で与えられる。
 これに $\operatorname{Im}E_0$ を代入し，$t=1/\hb$ と置換して\textbf{積分を実行し，$a_n$ の大次数の主要形を
-$n,\,S_0,\,C$ で表せ}。さらにその増大のオーダーをランダウ記号（$\Gamma$ または階乗を用いて）で表し，
-増大率を支配するスケールを答えよ。
+$n,\,S_0,\,C$ で表せ}。この増大の速さについて正しいものを選べ：
+(A) 階乗的 $\sim(n-1)!$ で，増大率を支配するスケール（$|a_{n+1}/a_n|\sim n/(\cdot)$ の分母）は $2S_0$／
+(B) 指数的 $\sim c^n$ でスケールは $S_0$／(C) べき的 $\sim n^p$／(D) $n$ 大で $0$ に収束。
 \item \textbf{系：収束半径。}(2) で導いた漸近形にダランベールの判定法
 $R=\lim_{n\to\infty}|a_n/a_{n+1}|$ を適用し，\textbf{$|a_{n+1}/a_n|$ の $n\to\infty$ での振る舞いと
 収束半径 $R$ を求めよ}。収束半径が，低次の数項の外挿ではなく導いた高次挙動の帰結であることに注意せよ。
@@ -313,7 +316,8 @@ $n,\,S_0$ で表せ。
 \item これを使って $\Bor[E_0](\zeta)=\sum_{n\ge1}b_n\zeta^{n-1}$ を閉じた形に和し，
 \textbf{得られた関数の最近接特異点の位置（$S_0$ で表す）と型（極か分岐か）を求めよ}。
 \item その特異点が Laplace 積分路 $\zeta\in(0,\infty)$ 上にあることが，Borel 和の曖昧さ（非摂動効果）の
-起源である。この曖昧さの大きさのオーダーを $\hb$ の関数（$e$ の肩を $S_0,\hb$ で）として表せ。
+起源である。この曖昧さの大きさのオーダー（$\hb$ の関数）として正しいものを選べ：
+(A) $O(e^{-2S_0/\hb})$／(B) $O(e^{-S_0/\hb})$／(C) $O(e^{-S_0^2/\hb})$／(D) $O(\hb^{2S_0})$。
 \end{enumerate}
 \end{prob}
 

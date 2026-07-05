@@ -53,15 +53,16 @@
 \textbf{(2) インスタントン。}$\tfrac12\dot x^2=V=\tfrac18(1-x^2)^2$ より $\dot x=\tfrac12(1-x^2)$，
 $\operatorname{arctanh}x=\tfrac12(\tau-\tau_0)$ ゆえ $\boxed{x_{\mathrm{cl}}=\tanh\tfrac{\tau-\tau_0}{2}}$。
 $\tau\to\pm\infty$ で $\to\pm1$（極限の意味で境界条件を満たす弱解）。$\tanh z=1-2e^{-2z}+\cdots$ より
-$x_{\mathrm{cl}}\to1-2e^{-(\tau-\tau_0)}$（$\omega=1$）。反インスタントンは $-\tanh\tfrac{\tau-\tau_0}{2}$。
+$x_{\mathrm{cl}}\to1-2e^{-(\tau-\tau_0)}$，ゆえ減衰のオーダーは $\boxed{\text{(A)}\ O(e^{-\tau})}$（$\omega=1$）。
+反インスタントンは $-\tanh\tfrac{\tau-\tau_0}{2}$。
 
 \textbf{(3) 作用。}$S_0=\int_{-1}^{1}\tfrac12(1-x^2)dx=\tfrac12[x-\tfrac{x^3}3]_{-1}^1=\tfrac12(\tfrac23+\tfrac23)=\boxed{\tfrac23}$。
 
 \textbf{(4) 作用密度の局在。}
 $\dot x_{\mathrm{cl}}=\tfrac12\sech^2\tfrac{\tau-\tau_0}{2}$ ゆえ
 $\boxed{\varepsilon(\tau)=\dot x_{\mathrm{cl}}^2=\tfrac14\sech^4\tfrac{\tau-\tau_0}{2}}$。
-$\tau=\tau_0$ にピーク値 $\tfrac14$ を持ち，$|\tau-\tau_0|$ 大で $\sech^4\tfrac{\tau}{2}\approx16e^{-2|\tau|}$ より
-$\varepsilon\approx4e^{-2|\tau-\tau_0|}$ と指数減衰する局在した山。
+$\tau=\tau_0$ にピーク値 $\boxed{\tfrac14}$ を持ち，$|\tau-\tau_0|$ 大で $\sech^4\tfrac{\tau}{2}\approx16e^{-2|\tau|}$ より
+$\varepsilon\approx4e^{-2|\tau-\tau_0|}$、減衰のオーダーは $\boxed{\text{(A)}\ O(e^{-2|\tau|})}$。
 $\int_{-\infty}^{\infty}\varepsilon\,d\tau=\tfrac12\int_{-\infty}^\infty\sech^4w\,dw=\tfrac12\cdot\tfrac43=\tfrac23=S_0$
 （$w=\tfrac{\tau-\tau_0}2$，$\int\sech^4w\,dw=\tanh w-\tfrac13\tanh^3w$）。
 $\tau_0=0$ でのグラフ（青：$x_{\mathrm{cl}}$，赤：$\varepsilon$）：
@@ -82,8 +83,8 @@ $\tau_0=0$ でのグラフ（青：$x_{\mathrm{cl}}$，赤：$\varepsilon$）：
 
 \textbf{(5) N-インスタントン弱解。}局在ゆえ作用密度はよく離れた山の和 $\approx\sum_i\varepsilon(\tau-\tau_i)$ で，
 各山の $\int\varepsilon\,d\tau=S_0$ が加わり作用は $\boxed{NS_0}$。相互作用は作用密度（$\sim e^{-2|\tau|}$）ではなく
-場の裾 $1\mp x_{\mathrm{cl}}\sim e^{-\omega|\tau-\tau_i|}$（$\omega=1$）の重なりで決まり
-$\boxed{\propto e^{-\omega R}=e^{-R}}$ と指数的に小さい。分離 $\to\infty$ で運動方程式を
+場の裾 $1\mp x_{\mathrm{cl}}\sim e^{-\omega|\tau-\tau_i|}$（$\omega=1$）の重なりで決まり，オーダーは
+$\boxed{\text{(A)}\ \propto e^{-\omega R}=e^{-R}}$（作用密度 $\sim e^{-2R}$ とする(B)は誤り）と指数的に小さい。分離 $\to\infty$ で運動方程式を
 （核外で厳密・全体として弱の意味で）満たす弱解となる。同じ真空へ戻る配位は $2N$ 個，作用 $2NS_0$。
 \end{sol}
 
@@ -174,14 +175,14 @@ $-c_2=\cE_4$ ゆえ $\boxed{a_3=\cE_4=-\tfrac9{32}}$。（続けて $a_4=-\tfrac
 
 \begin{sol}
 \textbf{(1) 構造的起源。}$\deg P_k=3k$，下降求解 $c_m=\tfrac1m[r_m+\tfrac12(m+2)(m+1)c_{m+2}]$ で
-高次係数が因子 $\tfrac{(m+2)(m+1)}{2m}\sim\tfrac m2$ を掛けながら $u^2$ へ降りる。これが $\cE_k=-c_2$ の
-階乗的増大を生む（定量化は (2)）。
+高次係数が因子 $\tfrac{(m+2)(m+1)}{2m}\sim\tfrac m2$ を掛けながら $u^2$ へ降りる。$k$ 段で $\sim\prod(m/2)$ の
+掛け算が積もるため，増大は $\boxed{\text{(A) 階乗的 }\sim k!}$（べきより速い；定量化は (2)）。
 
 \textbf{(2) 大次数解析。}$\operatorname{Im}E_0\sim-Ce^{-2S_0/\hb}$ を分散関係
 $a_n=\tfrac1\pi\int_0^\infty\frac{\operatorname{Im}E_0}{\hb^{n+1}}d\hb$ に入れ，$t=1/\hb$ で
 $\int_0^\infty t^{n-1}e^{-2S_0t}dt=\Gamma(n)/(2S_0)^n$ ゆえ
 $\boxed{a_n\sim-\tfrac{C}{\pi}\Gamma(n)(2S_0)^{-n}=-\tfrac{C}{\pi}(n-1)!\,(2S_0)^{-n}}$。
-$(n-1)!$ 並み＝Gevrey-1，スケールは $2S_0$。
+$(n-1)!$ 並み＝Gevrey-1 の $\boxed{\text{(A) 階乗的増大}}$，増大率を支配するスケールは $\boxed{2S_0}$。
 
 \textbf{(3) 収束半径.}$|a_{n+1}/a_n|=\tfrac{n}{2S_0}\to\infty$ ゆえ $\boxed{R=\lim|a_n/a_{n+1}|=0}$。
 導いた高次挙動の帰結（低次の外挿ではない）。
@@ -197,7 +198,8 @@ $(n-1)!$ 並み＝Gevrey-1，スケールは $2S_0$。
 $b_n=a_n/(n-1)!\sim K(2S_0)^{-n}$ は公比 $1/(2S_0)$ の等比数列ゆえ
 $\Bor[E_0](\zeta)=\tfrac{K}{2S_0}\tfrac{1}{1-\zeta/2S_0}=\boxed{\dfrac{K}{2S_0-\zeta}}$。
 最近接特異点は\textbf{正実軸上 $\zeta=2S_0$ の単純極}（真の特異点は対数分岐だが位置と主導増大率は単純極で正しい）。
-積分路上にあるため横方向 Borel 和の差が $\propto e^{-2S_0/\hb}$ の虚数的曖昧さを生む。
+積分路上にあるため横方向 Borel 和の差が $\propto e^{-2S_0/\hb}$ の虚数的曖昧さを生む。オーダーは
+$\boxed{\text{(A)}\ O(e^{-2S_0/\hb})}$（最近接特異点 $2S_0$ が肩に乗る）。
 \end{sol}
 
 %======================================================================
