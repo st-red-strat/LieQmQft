@@ -143,7 +143,8 @@ $\Omega\propto e^{-x^2/2Na^2}$ ゆえ分散 $\boxed{\sigma_x^2=Na^2}$（$=\langl
 \]
 分散は $\boxed{\sigma_x^2=\sigma_y^2=2Dt}$（等方）。
 
-\textit{(d)} 確率は\emph{最短経路の長さ}（``エネルギー''）ではなく\emph{経路数＝多重度}
+\textit{(d)} 正しいのは $\boxed{\text{(あ)(い)(え)}}$（(う) は誤――以下のとおり最短経路が支配するのは
+特殊な場合のみで，無偏り拡散では菱形にならない）。確率は\emph{最短経路の長さ}（``エネルギー''）ではなく\emph{経路数＝多重度}
 $\Omega=e^{S}$（``エントロピー''）で決まる：無偏りの歩みでは長さの等しい経路の重みに差はなく，
 終点の確率はそこへ至る経路数に比例する。(b) のとおり Stirling によりその対数（エントロピー）は
 終点座標の 2 次形式になり，しかも $x,y$ 方向の 1 ステップ分散が等しく
@@ -157,22 +158,17 @@ $C_4$ は連続極限で\textbf{回転対称性 $O(2)$ に創発的に拡大}す
 \par\smallskip
 \textbf{(9) 考察：微分の階数。}
 
-\textit{(a)} 各向きへの移動確率が左右・上下対称ゆえ 1 ステップの平均変位は $\langle\Delta\bx\rangle=\bm0$。
-このため 1 階差分（$\to\partial_x$，移流項）は相殺し，最低次で残るのは 2 階差分（$\to\partial_x^2$）である。
-言い換えれば，消えない最低次の変位モーメントが $\langle\Delta x^2\rangle\sim a^2$（2 次）だから，空間微分は 2 階になる。
+\textit{(a)} 正しいのは $\boxed{\text{(あ)(い)}}$。(あ)：左右・上下対称ゆえ $\langle\Delta\bx\rangle=\bm0$ で 1 階差分
+（移流項 $\partial_x$）が相殺し，最低次に残るのは 2 階差分 $\partial_x^2$。(い)：$\langle\Delta x^2\rangle\sim a^2$ と時間刻み
+$\tau$ が $\tau\propto a^2$ で釣り合う（$\tau\partial_tP\sim a^2\nabla^2P$）のが「時間 1 階・空間 2 階」の由来。
+(う) は誤――空間 2 階は歩みの対称性（$\langle\Delta x\rangle=0$）に由来し，1 次元の対称歩でも 2 階になる。$C_4$ は
+等確率面の等方性（$x^2+y^2$）を保証するが，微分が 2 階である理由ではない。
 
-\textit{(b)} 連続極限の主要バランスは（時間 1 階）$\times\tau\ \sim\ $（空間 2 階）$\times a^2$，すなわち
-$\tau\partial_tP\sim a^2\nabla^2P$。これが有限であるためには $\tau\sim a^2$（時間 $\sim$ 長さ$^2$），まさに
-diffusive scaling である。つまり「時間 1 階・空間 2 階」という階数は $\tau\propto a^2$ と表裏一体。
-時間が 1 階なのは，より高次の $\tau^2\partial_t^2\sim a^4$ がこのスケーリングで相対的に消えるからである。
-
-\textit{(c)} 偏りがあると $\langle\Delta x\rangle\sim a\neq0$ となり，1 階差分が残って\emph{1 階}の空間微分項
-（移流項）$\sim a\,\partial_xP$ が現れる。バランスは $\tau\partial_t\sim a\,\partial_x$ すなわち
-$\boxed{\tau\propto a}$（ballistic／移流的，時間 $\sim$ 長さ）。このとき主要方程式は\emph{1 階}の移流方程式
-$\boxed{\partial_tP=-v\,\partial_xP}$（$v=\lim\frac{\langle\Delta x\rangle}{\tau}$）となり拡散項
-（$\sim a^2\nabla^2/\tau\sim a\to0$）は subleading。拡散を見るには移動座標系に移り，残差に diffusive scaling を
-施す必要がある。\emph{消えない最低次の変位モーメントの次数が，連続極限の空間微分の階数と $\tau$ のスケール冪を決める}
-――1 次（偏り）なら $\tau\sim a$ で移流，2 次（無偏り）なら $\tau\sim a^2$ で拡散，という対応である。
+\textit{(b)} 偏り $\langle\Delta x\rangle\sim a\neq0$ があると 1 階差分が残り，主要項は空間\textbf{1 階}の移流項 $\sim a\,\partial_xP$。
+バランス $\tau\partial_t\sim a\,\partial_x$ より $\boxed{\tau\propto a^{1}}$，方程式は\textbf{移流型} $\boxed{\partial_tP=-v\,\partial_xP}$
+（$v=\lim\langle\Delta x\rangle/\tau$）。答：\textbf{階数 $1$，$\tau\propto a^1$，移流型}。拡散項（$\sim a^2\nabla^2/\tau\sim a\to0$）は
+subleading で，拡散を見るには移動座標系で残差に diffusive scaling を施す。\emph{消えない最低次の変位モーメントの
+次数が空間微分の階数と $\tau$ の冪を決める}――1 次なら $\tau\sim a$ で移流，2 次なら $\tau\sim a^2$ で拡散。
 \end{sol}
 
 %======================================================================

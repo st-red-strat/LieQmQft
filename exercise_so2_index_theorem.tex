@@ -116,7 +116,7 @@ $R_{\theta_1+\theta_2}$ に等しいことを示せ。単位元にあたる $R_\
 $R_\theta$ の逆行列 $R_\theta^{-1}$ を $\theta$ で表せ。
 \item \textbf{関数での表し方。}定義に従い $\bigl(U_{\theta_1}(U_{\theta_2}f)\bigr)(x,y)$ を計算し
 （変数の回転を二度続ける），それが $\bigl(U_{\theta_1+\theta_2}f\bigr)(x,y)$ に等しいことを示せ。
-$U_\theta$ の単位元（$\theta=$?）と逆操作 $U_\theta^{-1}$ を述べよ。
+$U_\theta$ の単位元（$\theta=$?）と逆操作 $U_\theta^{-1}$ を答えよ。
 \item \textbf{二つの表し方の関係。}$U_\theta x$ と $U_\theta y$ を計算せよ（$f=x$ および $f=y$ を代入）。
 結果を「$(x,y)$ に掛かる $2\times2$ 行列」として書き，$R_\theta$ と比べよ（どちらの表し方が現れるか）。
 また $\theta$ が小さいとき $U_\theta f\approx f+\theta\,(Gf)$ となる演算子
@@ -151,8 +151,12 @@ $f=(x+iy)^n$（$n$ は整数）に対して $U_\theta f$ を計算し，固有�
 \item \textbf{整数べき級数（Laurent）の基底。}単位円 $x^2+y^2=1$ 上では $z=e^{i\varphi}$
 （$x=\cos\varphi,\ y=\sin\varphi$）ゆえ $z^n=e^{in\varphi}$ である。$\{z^n\}_{n\in\mathbb{Z}}$ が，
 円周上の関数を $\displaystyle\sum_{n=-\infty}^{\infty}a_n z^n$ と展開する級数（\textbf{整数べき級数，Laurent 級数}，
-$n\ge0$ が普通のべき，$n<0$ がその逆数）の基底になっていることを述べよ。すなわち\emph{回転の固有関数が
-そのまま整数べき級数の基底}である。
+$n\ge0$ が普通のべき，$n<0$ がその逆数）の基底になっている。この基底について\textbf{正しいものをすべて選べ}。
+\begin{itemize}\setlength{\itemsep}{1pt}
+\item[(あ)] $\{z^n=e^{in\varphi}\}_{n\in\mathbb{Z}}$ は円周上の関数の Fourier（整数べき／Laurent）基底である。
+\item[(い)] 各 $z^n$ は回転 $U_\theta$ の固有関数（固有値 $e^{-in\theta}$）で，\emph{回転の固有関数がそのまま基底}である。
+\item[(う)] 有限個の $z^n$（$n=0,\dots,N$）だけで円周上の任意の関数を厳密に表せる。
+\end{itemize}
 \end{enumerate}
 \end{prob}
 
@@ -235,13 +239,13 @@ $\dfrac{n}{2}\sin\vartheta$ が出ること，その積分が $2\pi n$ になる
 \begin{enumerate}[start=11]
 \item \textbf{赤道上の回転の固有値。}最低 Landau 準位は回転の全角運動量 $J=n/2$ の多重項で，
 $\psi_k$ の $J_z$ 固有値は $j_k=k-\dfrac{n}{2}$（$k=0,\dots,n$，すなわち $-\tfrac n2,\dots,+\tfrac n2$）である。
-各 $\psi_k$ の固有値 $j_k$ を書き下し，境界の回転演算子の固有関数が整数べき $z^k=e^{ik\varphi}$，
-固有値が $k-\tfrac n2$ であることを述べよ。
+各 $\psi_k$ の固有値 $j_k$ を書き下せ（境界の回転演算子の固有関数は整数べき $z^k=e^{ik\varphi}$，
+固有値 $k-\tfrac n2$）。
 \item \textbf{符号の非対称性。}赤道上の固有値の集合 $\{j_k=k-\tfrac n2:k=0,\dots,n\}$ について，
 \emph{正の個数 $N_+$（$j_k>0$）}，\emph{負の個数 $N_-$（$j_k<0$）}，\emph{零の個数 $h$（$j_k=0$）}を
-$n$ の偶奇で求めよ。「符号の非対称性」$\displaystyle\sum_k\operatorname{sign}(j_k)=N_{+}^{\text{（外）}}-N_{-}^{\text{（外）}}$
-が，スペクトル全体（$k$ を全整数に広げた境界演算子）では $0$ になることを，スペクトルが $0$ について
-対称であることから述べよ（この量を $\eta$ と書く；くわしい定義は補足）。
+$n$ の偶奇で求めよ。さらに，$k$ を全整数に広げた境界演算子での「符号の非対称性」
+$\displaystyle\sum_k\operatorname{sign}(j_k)$（この量を $\eta$ と書く；くわしい定義は補足）の値を，スペクトルが
+$0$ について対称であることを使って答えよ。
 \item \textbf{状態数の対応（指数の保存）。}$n=0,1,2$ について次を表にせよ：(i) 磁束 $\Phi/2\pi=n$，
 (ii) 球面全体の最低準位の状態数 $=n+1$，(iii) 赤道上の固有値の集合 $\{k-\tfrac n2\}$，
 (iv) \textbf{北半球に属する状態数} $N_+$（固有値が負 $k-\tfrac n2<0$ の $z^k$，すなわち $k<\tfrac n2$ の個数），
@@ -291,7 +295,7 @@ $h=0$ の範囲で $t$ に依らず $n+1$ になること（北の $+t$ と南�
 \item $t$ を増やして赤道の固有値 $k-\tfrac n2-t$ のひとつが $0$ を横切る瞬間（スペクトルフロー）に，
 $\eta$ がいくつ跳び，$h$ がどうなり，$\mathrm{ind}_+$ がいくつ跳ぶかを求めよ。$n=1$ について，最初の
 横切りが起こる $t$ の値と，そこで赤道を越えて南から北へ移る状態 $z^k$ を答えよ。このとき球面全体の
-指数 $n+1$ は変わらない（状態が南の勘定から北の勘定へ移るだけ）ことを述べよ。
+指数 $n+1$ が変わるか否かを答えよ（状態が南の勘定から北の勘定へ移るだけ）。
 \end{enumerate}
 \end{enumerate}
 \end{prob}
